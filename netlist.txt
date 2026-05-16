@@ -1,0 +1,529 @@
+>> netlist
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation
+===================================================
+Connection 1: From I2 to Out1
+Connection 2: From Conn1 to CT 2000/5 A 25 VA
+Connection 3: From CT 2000/5 A 25 VA to Conn2
+Connection 4: From 1ohm to I2
+Connection 5: From CT 2000/5 A 25 VA to 1ohm
+Connection 6: From CT 2000/5 A 25 VA to I2
+Connection 7: From CT 2000/5 A 25 VA to I2
+Connection 8: From CT 2000/5 A 25 VA to 1ohm
+Connection 9: From 1ohm to I2
+Connection 10: From CT 2000/5 A 25 VA to Conn2
+Connection 11: From Conn1 to CT 2000/5 A 25 VA
+Connection 12: From I2 to Inport
+Connection 13: From I2 to Inport1
+Connection 14: From Conn1 to CT 2000/5 A 25 VA
+Connection 15: From CT 2000/5 A 25 VA to Conn2
+Connection 16: From 1ohm to I2
+Connection 17: From CT 2000/5 A 25 VA to 1ohm
+Connection 18: From CT 2000/5 A 25 VA to I2
+Connection 19: From CT 2000/5 A 25 VA to I2
+Connection 20: From CT 2000/5 A 25 VA to 1ohm
+Connection 21: From 1ohm to I2
+Connection 22: From CT 2000/5 A 25 VA to Conn2
+Connection 23: From Conn1 to CT 2000/5 A 25 VA
+Connection 24: From I2 to Inport3
+Connection 25: From I2 to Inport2
+Connection 26: From Conn1 to CT 2000/5 A 25 VA
+Connection 27: From CT 2000/5 A 25 VA to Conn2
+Connection 28: From 1ohm to I2
+Connection 29: From CT 2000/5 A 25 VA to 1ohm
+Connection 30: From CT 2000/5 A 25 VA to I2
+Connection 31: From I2 to Inport4
+Connection 32: From Conn1 to CT 2000/5 A 25 VA
+Connection 33: From CT 2000/5 A 25 VA to Conn2
+Connection 34: From 1ohm to I2
+Connection 35: From CT 2000/5 A 25 VA to 1ohm
+Connection 36: From CT 2000/5 A 25 VA to I2
+Connection 37: From Data Type Conversion to S-R Latch
+Connection 38: From RESET to S-R Latch
+Connection 39: From RMS4 to Mux3
+Connection 40: From RMS5 to Mux3
+Connection 41: From RMS3 to Mux3
+Connection 42: From Mux2 to Supervisory Override with Hardware Fallback
+Connection 43: From RMS to Mux2
+Connection 44: From RMS2 to Mux2
+Connection 45: From RMS1 to Mux2
+Connection 46: From Demux2 to RMS5
+Connection 47: From Demux2 to RMS3
+Connection 48: From Gain to Demux2
+Connection 49: From Demux2 to RMS4
+Connection 50: From Demux1 to RMS2
+Connection 51: From Demux1 to RMS1
+Connection 52: From Demux1 to RMS
+Connection 53: From Abs2 to Demux1
+Connection 54: From S-R Latch to Trip_Signal
+Connection 55: From Manual Switch to Supervisory Override with Hardware Fallback
+Connection 56: From OFF to Manual Switch
+Connection 57: From Selector  to Manual Switch
+Connection 58: From Supervisory Override with Hardware Fallback to Data Type Conversion
+Connection 59: From Mux3 to Supervisory Override with Hardware Fallback
+Connection 60: From LSTM Predict to Selector 
+Connection 61: From Reshape  to LSTM Predict
+Connection 62: From Feature Window to Reshape 
+Connection 63: From MATLAB Function1 to Feature Window
+Connection 64: From I_diff_window to MATLAB Function1
+Connection 65: From I_diff to Abs2
+Connection 66: From I_diff to I_diff_window
+Connection 67: From I_diff to I_diff_window
+Connection 68: From I_diff to Abs2
+Connection 69: From I_diff to Display
+Connection 70: From I_diff to Display
+Connection 71: From I_diff to I_diff_window
+Connection 72: From I_diff to Abs2
+Connection 73: From I_rest to Gain
+Connection 74: From I_rest to Display1
+Connection 75: From I_rest to Display1
+Connection 76: From I_rest to Gain
+Connection 77: From Abs to I_rest
+Connection 78: From Abs1 to I_rest
+Connection 79: From MATLAB Function to I_diff
+Connection 80: From MATLAB Function to Abs1
+Connection 81: From MATLAB Function to Abs1
+Connection 82: From MATLAB Function to I_diff
+Connection 83: From MATLAB Function to Display3
+Connection 84: From MATLAB Function to Display3
+Connection 85: From MATLAB Function to Abs1
+Connection 86: From MATLAB Function to I_diff
+Connection 87: From MATLAB Function to I_diff
+Connection 88: From MATLAB Function to Display2
+Connection 89: From MATLAB Function to Display2
+Connection 90: From MATLAB Function to I_diff
+Connection 91: From MATLAB Function to Abs
+Connection 92: From MATLAB Function to Abs
+Connection 93: From MATLAB Function to Display2
+Connection 94: From MATLAB Function to I_diff
+Connection 95: From Mux1 to MATLAB Function
+Connection 96: From Mux1 to Display5
+Connection 97: From Mux1 to Display5
+Connection 98: From Mux1 to MATLAB Function
+Connection 99: From Mux to MATLAB Function
+Connection 100: From Mux to Display4
+Connection 101: From Mux to Display4
+Connection 102: From Mux to MATLAB Function
+Connection 103: From Mux to Scope1
+Connection 104: From Mux to Scope1
+Connection 105: From Mux to Display4
+Connection 106: From Mux to MATLAB Function
+Connection 107: From Inport1 to Mux
+Connection 108: From Inport to Mux
+Connection 109: From In1 to Mux
+Connection 110: From In1 to Scope
+Connection 111: From In1 to Scope
+Connection 112: From In1 to Mux
+Connection 113: From Inport4 to Mux1
+Connection 114: From Inport2 to Mux1
+Connection 115: From Inport3 to Mux1
+Connection 116: From Noise_Gain_6 to Add5
+Connection 117: From Noise_Gain_5 to Add4
+Connection 118: From Noise_Gain_4 to Add3
+Connection 119: From Noise_Gain_3 to Add2
+Connection 120: From Noise_Gain_2 to Add1
+Connection 121: From Noise_Gain_1 to Add
+Connection 122: From Band-Limited White Noise to Noise_Gain_1
+Connection 123: From Band-Limited White Noise to Noise_Gain_2
+Connection 124: From Band-Limited White Noise to Noise_Gain_3
+Connection 125: From Band-Limited White Noise to Noise_Gain_4
+Connection 126: From Band-Limited White Noise to Noise_Gain_5
+Connection 127: From Band-Limited White Noise to Noise_Gain_6
+Connection 128: From Band-Limited White Noise to Noise_Gain_6
+Connection 129: From Band-Limited White Noise to Noise_Gain_5
+Connection 130: From Band-Limited White Noise to Noise_Gain_6
+Connection 131: From Band-Limited White Noise to Noise_Gain_5
+Connection 132: From Band-Limited White Noise to Noise_Gain_4
+Connection 133: From Band-Limited White Noise to Noise_Gain_6
+Connection 134: From Band-Limited White Noise to Noise_Gain_5
+Connection 135: From Band-Limited White Noise to Noise_Gain_4
+Connection 136: From Band-Limited White Noise to Noise_Gain_3
+Connection 137: From Band-Limited White Noise to Noise_Gain_6
+Connection 138: From Band-Limited White Noise to Noise_Gain_5
+Connection 139: From Band-Limited White Noise to Noise_Gain_4
+Connection 140: From Band-Limited White Noise to Noise_Gain_3
+Connection 141: From Band-Limited White Noise to Noise_Gain_2
+Connection 142: From Band-Limited White Noise to Noise_Gain_6
+Connection 143: From Band-Limited White Noise to Noise_Gain_5
+Connection 144: From Band-Limited White Noise to Noise_Gain_4
+Connection 145: From Band-Limited White Noise to Noise_Gain_3
+Connection 146: From Band-Limited White Noise to Noise_Gain_2
+Connection 147: From Band-Limited White Noise to Noise_Gain_1
+Connection 148: From Quantizer5 to Dig_IC_Sec
+Connection 149: From Quantizer4 to Dig_IB_Sec
+Connection 150: From Quantizer3 to Dig_IA_Sec
+Connection 151: From Quantizer2 to Dig_IC_Prim
+Connection 152: From Quantizer1 to Dig_IB_Prim
+Connection 153: From Quantizer to Dig_IA_Prim
+Connection 154: From CT_Gain_Mismatch_6 to Add5
+Connection 155: From Add5 to Quantizer5
+Connection 156: From CT_Gain_Mismatch_5 to Add4
+Connection 157: From Add4 to Quantizer4
+Connection 158: From CT_Gain_Mismatch_4 to Add3
+Connection 159: From Add3 to Quantizer3
+Connection 160: From CT_Gain_Mismatch_3 to Add2
+Connection 161: From CT_Gain_Mismatch_2 to Add1
+Connection 162: From CT_Gain_Mismatch_1 to Add
+Connection 163: From Add2 to Quantizer2
+Connection 164: From Add1 to Quantizer1
+Connection 165: From Add to Quantizer
+Connection 166: From IC_Sec to CT_Gain_Mismatch_6
+Connection 167: From IB_Sec to CT_Gain_Mismatch_5
+Connection 168: From IA_Sec to CT_Gain_Mismatch_4
+Connection 169: From IC_Prim to CT_Gain_Mismatch_3
+Connection 170: From IB_Prim to CT_Gain_Mismatch_2
+Connection 171: From IA_Prim to CT_Gain_Mismatch_1
+Connection 172: From Hybrid 87T Relay to Three-Phase Breaker1
+Connection 173: From Hybrid 87T Relay to Three-Phase Breaker
+Connection 174: From Hybrid 87T Relay to Three-Phase Breaker1
+Connection 175: From Hybrid 87T Relay to Three-Phase Breaker
+Connection 176: From Mux1 to To Workspace1
+Connection 177: From Mux to To Workspace
+Connection 178: From Noise Merging Unit to Secondary Current Scope
+Connection 179: From Noise Merging Unit to Mux1
+Connection 180: From Noise Merging Unit to Mux1
+Connection 181: From Noise Merging Unit to Secondary Current Scope
+Connection 182: From Noise Merging Unit to Secondary Current Scope
+Connection 183: From Noise Merging Unit to Mux1
+Connection 184: From Noise Merging Unit to Mux1
+Connection 185: From Noise Merging Unit to Secondary Current Scope
+Connection 186: From Noise Merging Unit to Secondary Current Scope
+Connection 187: From Noise Merging Unit to Mux1
+Connection 188: From Noise Merging Unit to Mux1
+Connection 189: From Noise Merging Unit to Secondary Current Scope
+Connection 190: From Noise Merging Unit to Primary Current Scope
+Connection 191: From Noise Merging Unit to Mux
+Connection 192: From Noise Merging Unit to Mux
+Connection 193: From Noise Merging Unit to Primary Current Scope
+Connection 194: From Noise Merging Unit to Primary Current Scope
+Connection 195: From Noise Merging Unit to Mux
+Connection 196: From Noise Merging Unit to Mux
+Connection 197: From Noise Merging Unit to Primary Current Scope
+Connection 198: From Noise Merging Unit to Primary Current Scope
+Connection 199: From Noise Merging Unit to Mux
+Connection 200: From Noise Merging Unit to Mux
+Connection 201: From Noise Merging Unit to Primary Current Scope
+Connection 202: From Series RLC Branch17 to Ground8
+Connection 203: From Ground6 to Series RLC Branch16
+Connection 204: From Ground7 to Series RLC Branch15
+Connection 205: From Ground5 to Series RLC Branch12
+Connection 206: From Ground4 to Series RLC Branch13
+Connection 207: From Series RLC Branch14 to Ground3
+Connection 208: From Series RLC Branch11 to CT4
+Connection 209: From Series RLC Branch10 to CT3
+Connection 210: From Series RLC Branch9 to CT6
+Connection 211: From CT to Series RLC Branch6
+Connection 212: From VSc to Three-Phase Series RLC Branch
+Connection 213: From VSb to Three-Phase Series RLC Branch
+Connection 214: From VSa to Three-Phase Series RLC Branch
+Connection 215: From Three-Phase Series RLC Branch to Three-Phase Breaker
+Connection 216: From Three-Phase Series RLC Branch to Three-Phase Breaker
+Connection 217: From Three-Phase Series RLC Branch to Three-Phase Breaker
+Connection 218: From CT2 to Series RLC Branch8
+Connection 219: From CT1 to Series RLC Branch7
+Connection 220: From Step3 to Internal_Fault
+Connection 221: From RMS7 to Display4
+Connection 222: From Demux5 to Scope9
+Connection 223: From Demux5 to RMS7
+Connection 224: From Demux5 to RMS7
+Connection 225: From Demux5 to Scope9
+Connection 226: From Demux5 to Scope9
+Connection 227: From Demux5 to Scope9
+Connection 228: From Step4 to External_Fault
+Connection 229: From CT6 to Hybrid 87T Relay
+Connection 230: From CT6 to Noise Merging Unit
+Connection 231: From CT6 to Hybrid 87T Relay
+Connection 232: From CT6 to Noise Merging Unit
+Connection 233: From CT6 to Before Noise SecCurr
+Connection 234: From CT6 to Before Noise SecCurr
+Connection 235: From CT6 to Hybrid 87T Relay
+Connection 236: From CT6 to Noise Merging Unit
+Connection 237: From CT3 to Hybrid 87T Relay
+Connection 238: From CT3 to Noise Merging Unit
+Connection 239: From CT3 to Hybrid 87T Relay
+Connection 240: From CT3 to Noise Merging Unit
+Connection 241: From CT3 to Before Noise SecCurr
+Connection 242: From CT3 to Before Noise SecCurr
+Connection 243: From CT3 to Hybrid 87T Relay
+Connection 244: From CT3 to Noise Merging Unit
+Connection 245: From CT4 to Hybrid 87T Relay
+Connection 246: From CT4 to Noise Merging Unit
+Connection 247: From CT4 to Hybrid 87T Relay
+Connection 248: From CT4 to Noise Merging Unit
+Connection 249: From CT4 to Before Noise SecCurr
+Connection 250: From CT4 to Before Noise SecCurr
+Connection 251: From CT4 to Hybrid 87T Relay
+Connection 252: From CT4 to Noise Merging Unit
+Connection 253: From RMS8 to Display5
+Connection 254: From Demux4 to RMS8
+Connection 255: From Demux4 to Scope3
+Connection 256: From Demux4 to Scope3
+Connection 257: From Demux4 to RMS8
+Connection 258: From Demux4 to Scope3
+Connection 259: From Demux4 to Scope3
+Connection 260: From Primary_side to Demux4
+Connection 261: From RMS5 to Display2
+Connection 262: From Demux7 to Scope15
+Connection 263: From Demux7 to Scope15
+Connection 264: From Demux7 to Scope15
+Connection 265: From Demux7 to RMS5
+Connection 266: From Demux7 to RMS5
+Connection 267: From Demux7 to Scope15
+Connection 268: From RMS6 to VS
+Connection 269: From Primary_side to Demux7
+Connection 270: From Demux6 to Scope13
+Connection 271: From Demux6 to Scope13
+Connection 272: From Demux6 to Scope13
+Connection 273: From Demux6 to RMS6
+Connection 274: From Demux6 to RMS6
+Connection 275: From Demux6 to Scope13
+Connection 276: From Secondary_side to Demux6
+Connection 277: From Secondary_side to Demux5
+Connection 278: From Three-Phase Breaker to Primary_side
+Connection 279: From Three-Phase Breaker to Primary_side
+Connection 280: From Three-Phase Breaker to Primary_side
+Connection 281: From RMS3 to Display1
+Connection 282: From CT2 to Hybrid 87T Relay
+Connection 283: From CT2 to Noise Merging Unit
+Connection 284: From CT2 to Hybrid 87T Relay
+Connection 285: From CT2 to Noise Merging Unit
+Connection 286: From CT2 to Before Noise PrimCurr
+Connection 287: From CT2 to Before Noise PrimCurr
+Connection 288: From CT2 to Hybrid 87T Relay
+Connection 289: From CT2 to Noise Merging Unit
+Connection 290: From CT1 to Hybrid 87T Relay
+Connection 291: From CT1 to Noise Merging Unit
+Connection 292: From CT1 to Hybrid 87T Relay
+Connection 293: From CT1 to Noise Merging Unit
+Connection 294: From CT to Hybrid 87T Relay
+Connection 295: From CT to Noise Merging Unit
+Connection 296: From CT to Hybrid 87T Relay
+Connection 297: From CT to Noise Merging Unit
+Connection 298: From CT to Before Noise PrimCurr
+Connection 299: From CT to Before Noise PrimCurr
+Connection 300: From CT to Hybrid 87T Relay
+Connection 301: From CT to Noise Merging Unit
+Connection 302: From CT to Before Noise PrimCurr
+Connection 303: From CT to Before Noise PrimCurr
+Connection 304: From CT to Before Noise PrimCurr
+Connection 305: From CT to Hybrid 87T Relay
+Connection 306: From CT to Noise Merging Unit
+Connection 307: From CT to RMS3
+Connection 308: From CT to RMS3
+Connection 309: From CT to Before Noise PrimCurr
+Connection 310: From CT to Before Noise PrimCurr
+Connection 311: From CT to Hybrid 87T Relay
+Connection 312: From CT to Noise Merging Unit
+Connection 313: From Ground1 to VSb
+Connection 314: From Three-Phase Breaker1 to Secondary_side
+Connection 315: From Three-Phase Breaker1 to Secondary_side
+Connection 316: From Three-Phase Breaker1 to Secondary_side
+Connection 317: From Ground to VSc
+Connection 318: From VSa to Ground2
+===================================================
+
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation/CT
+===================================================
+Connection 1: From I2 to Out1
+Connection 2: From Conn1 to CT 2000/5 A 25 VA
+Connection 3: From CT 2000/5 A 25 VA to Conn2
+Connection 4: From 1ohm to I2
+Connection 5: From CT 2000/5 A 25 VA to 1ohm
+Connection 6: From CT 2000/5 A 25 VA to I2
+===================================================
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation/CT1
+===================================================
+Connection 1: From CT 2000/5 A 25 VA to I2
+Connection 2: From CT 2000/5 A 25 VA to 1ohm
+Connection 3: From 1ohm to I2
+Connection 4: From CT 2000/5 A 25 VA to Conn2
+Connection 5: From Conn1 to CT 2000/5 A 25 VA
+Connection 6: From I2 to Inport
+===================================================
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation/CT2
+===================================================
+Connection 1: From I2 to Inport1
+Connection 2: From Conn1 to CT 2000/5 A 25 VA
+Connection 3: From CT 2000/5 A 25 VA to Conn2
+Connection 4: From 1ohm to I2
+Connection 5: From CT 2000/5 A 25 VA to 1ohm
+Connection 6: From CT 2000/5 A 25 VA to I2
+===================================================
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation/CT3
+===================================================
+Connection 1: From CT 2000/5 A 25 VA to I2
+Connection 2: From CT 2000/5 A 25 VA to 1ohm
+Connection 3: From 1ohm to I2
+Connection 4: From CT 2000/5 A 25 VA to Conn2
+Connection 5: From Conn1 to CT 2000/5 A 25 VA
+Connection 6: From I2 to Inport3
+===================================================
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation/CT4
+===================================================
+Connection 1: From I2 to Inport2
+Connection 2: From Conn1 to CT 2000/5 A 25 VA
+Connection 3: From CT 2000/5 A 25 VA to Conn2
+Connection 4: From 1ohm to I2
+Connection 5: From CT 2000/5 A 25 VA to 1ohm
+Connection 6: From CT 2000/5 A 25 VA to I2
+===================================================
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation/CT6
+===================================================
+Connection 1: From I2 to Inport4
+Connection 2: From Conn1 to CT 2000/5 A 25 VA
+Connection 3: From CT 2000/5 A 25 VA to Conn2
+Connection 4: From 1ohm to I2
+Connection 5: From CT 2000/5 A 25 VA to 1ohm
+Connection 6: From CT 2000/5 A 25 VA to I2
+===================================================
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation/Noise Merging Unit
+===================================================
+Connection 1: From Noise_Gain_6 to Add5
+Connection 2: From Noise_Gain_5 to Add4
+Connection 3: From Noise_Gain_4 to Add3
+Connection 4: From Noise_Gain_3 to Add2
+Connection 5: From Noise_Gain_2 to Add1
+Connection 6: From Noise_Gain_1 to Add
+Connection 7: From Band-Limited White Noise to Noise_Gain_1
+Connection 8: From Band-Limited White Noise to Noise_Gain_2
+Connection 9: From Band-Limited White Noise to Noise_Gain_3
+Connection 10: From Band-Limited White Noise to Noise_Gain_4
+Connection 11: From Band-Limited White Noise to Noise_Gain_5
+Connection 12: From Band-Limited White Noise to Noise_Gain_6
+Connection 13: From Band-Limited White Noise to Noise_Gain_6
+Connection 14: From Band-Limited White Noise to Noise_Gain_5
+Connection 15: From Band-Limited White Noise to Noise_Gain_6
+Connection 16: From Band-Limited White Noise to Noise_Gain_5
+Connection 17: From Band-Limited White Noise to Noise_Gain_4
+Connection 18: From Band-Limited White Noise to Noise_Gain_6
+Connection 19: From Band-Limited White Noise to Noise_Gain_5
+Connection 20: From Band-Limited White Noise to Noise_Gain_4
+Connection 21: From Band-Limited White Noise to Noise_Gain_3
+Connection 22: From Band-Limited White Noise to Noise_Gain_6
+Connection 23: From Band-Limited White Noise to Noise_Gain_5
+Connection 24: From Band-Limited White Noise to Noise_Gain_4
+Connection 25: From Band-Limited White Noise to Noise_Gain_3
+Connection 26: From Band-Limited White Noise to Noise_Gain_2
+Connection 27: From Band-Limited White Noise to Noise_Gain_6
+Connection 28: From Band-Limited White Noise to Noise_Gain_5
+Connection 29: From Band-Limited White Noise to Noise_Gain_4
+Connection 30: From Band-Limited White Noise to Noise_Gain_3
+Connection 31: From Band-Limited White Noise to Noise_Gain_2
+Connection 32: From Band-Limited White Noise to Noise_Gain_1
+Connection 33: From Quantizer5 to Dig_IC_Sec
+Connection 34: From Quantizer4 to Dig_IB_Sec
+Connection 35: From Quantizer3 to Dig_IA_Sec
+Connection 36: From Quantizer2 to Dig_IC_Prim
+Connection 37: From Quantizer1 to Dig_IB_Prim
+Connection 38: From Quantizer to Dig_IA_Prim
+Connection 39: From CT_Gain_Mismatch_6 to Add5
+Connection 40: From Add5 to Quantizer5
+Connection 41: From CT_Gain_Mismatch_5 to Add4
+Connection 42: From Add4 to Quantizer4
+Connection 43: From CT_Gain_Mismatch_4 to Add3
+Connection 44: From Add3 to Quantizer3
+Connection 45: From CT_Gain_Mismatch_3 to Add2
+Connection 46: From CT_Gain_Mismatch_2 to Add1
+Connection 47: From CT_Gain_Mismatch_1 to Add
+Connection 48: From Add2 to Quantizer2
+Connection 49: From Add1 to Quantizer1
+Connection 50: From Add to Quantizer
+Connection 51: From IC_Sec to CT_Gain_Mismatch_6
+Connection 52: From IB_Sec to CT_Gain_Mismatch_5
+Connection 53: From IA_Sec to CT_Gain_Mismatch_4
+Connection 54: From IC_Prim to CT_Gain_Mismatch_3
+Connection 55: From IB_Prim to CT_Gain_Mismatch_2
+Connection 56: From IA_Prim to CT_Gain_Mismatch_1
+===================================================
+===================================================
+EXTRACTING NETLIST FOR: TransformerWithCTSaturation/Hybrid 87T Relay
+===================================================
+Connection 1: From Data Type Conversion to S-R Latch
+Connection 2: From RESET to S-R Latch
+Connection 3: From RMS4 to Mux3
+Connection 4: From RMS5 to Mux3
+Connection 5: From RMS3 to Mux3
+Connection 6: From Mux2 to Supervisory Override with Hardware Fallback
+Connection 7: From RMS to Mux2
+Connection 8: From RMS2 to Mux2
+Connection 9: From RMS1 to Mux2
+Connection 10: From Demux2 to RMS5
+Connection 11: From Demux2 to RMS3
+Connection 12: From Gain to Demux2
+Connection 13: From Demux2 to RMS4
+Connection 14: From Demux1 to RMS2
+Connection 15: From Demux1 to RMS1
+Connection 16: From Demux1 to RMS
+Connection 17: From Abs2 to Demux1
+Connection 18: From S-R Latch to Trip_Signal
+Connection 19: From Manual Switch to Supervisory Override with Hardware Fallback
+Connection 20: From OFF to Manual Switch
+Connection 21: From Selector  to Manual Switch
+Connection 22: From Supervisory Override with Hardware Fallback to Data Type Conversion
+Connection 23: From Mux3 to Supervisory Override with Hardware Fallback
+Connection 24: From LSTM Predict to Selector 
+Connection 25: From Reshape  to LSTM Predict
+Connection 26: From Feature Window to Reshape 
+Connection 27: From MATLAB Function1 to Feature Window
+Connection 28: From I_diff_window to MATLAB Function1
+Connection 29: From I_diff to Abs2
+Connection 30: From I_diff to I_diff_window
+Connection 31: From I_diff to I_diff_window
+Connection 32: From I_diff to Abs2
+Connection 33: From I_diff to Display
+Connection 34: From I_diff to Display
+Connection 35: From I_diff to I_diff_window
+Connection 36: From I_diff to Abs2
+Connection 37: From I_rest to Gain
+Connection 38: From I_rest to Display1
+Connection 39: From I_rest to Display1
+Connection 40: From I_rest to Gain
+Connection 41: From Abs to I_rest
+Connection 42: From Abs1 to I_rest
+Connection 43: From MATLAB Function to I_diff
+Connection 44: From MATLAB Function to Abs1
+Connection 45: From MATLAB Function to Abs1
+Connection 46: From MATLAB Function to I_diff
+Connection 47: From MATLAB Function to Display3
+Connection 48: From MATLAB Function to Display3
+Connection 49: From MATLAB Function to Abs1
+Connection 50: From MATLAB Function to I_diff
+Connection 51: From MATLAB Function to I_diff
+Connection 52: From MATLAB Function to Display2
+Connection 53: From MATLAB Function to Display2
+Connection 54: From MATLAB Function to I_diff
+Connection 55: From MATLAB Function to Abs
+Connection 56: From MATLAB Function to Abs
+Connection 57: From MATLAB Function to Display2
+Connection 58: From MATLAB Function to I_diff
+Connection 59: From Mux1 to MATLAB Function
+Connection 60: From Mux1 to Display5
+Connection 61: From Mux1 to Display5
+Connection 62: From Mux1 to MATLAB Function
+Connection 63: From Mux to MATLAB Function
+Connection 64: From Mux to Display4
+Connection 65: From Mux to Display4
+Connection 66: From Mux to MATLAB Function
+Connection 67: From Mux to Scope1
+Connection 68: From Mux to Scope1
+Connection 69: From Mux to Display4
+Connection 70: From Mux to MATLAB Function
+Connection 71: From Inport1 to Mux
+Connection 72: From Inport to Mux
+Connection 73: From In1 to Mux
+Connection 74: From In1 to Scope
+Connection 75: From In1 to Scope
+Connection 76: From In1 to Mux
+Connection 77: From Inport4 to Mux1
+Connection 78: From Inport2 to Mux1
+Connection 79: From Inport3 to Mux1
+===================================================
+
+

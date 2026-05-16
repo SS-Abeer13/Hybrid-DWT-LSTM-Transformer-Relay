@@ -1,0 +1,2865 @@
+
+--- Block: TransformerWithCTSaturation/Before Noise PrimCurr ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 3
+  LayoutDimensionsString: [3 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: on
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -124.7577
+  ActiveDisplayYMaximum: 64.701
+  YLabel: 
+  DataLoggingLimitDataPoints: off
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: off
+  DataLoggingDecimation: 2
+  DataLogging: off
+  DataLoggingVariableName: ScopeData2
+  DataLoggingSaveFormat: Dataset
+
+--- Block: TransformerWithCTSaturation/Before Noise SecCurr ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 3
+  LayoutDimensionsString: [3 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: on
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -0.89868
+  ActiveDisplayYMaximum: 0.89964
+  YLabel: 
+  DataLoggingLimitDataPoints: off
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: off
+  DataLoggingDecimation: 2
+  DataLogging: off
+  DataLoggingVariableName: ScopeData3
+  DataLoggingSaveFormat: Dataset
+
+--- Block: TransformerWithCTSaturation/CT ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: 
+  PermitHierarchicalResolution: All
+  TreatAsAtomicUnit: off
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: on
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/CT/1ohm ---
+  BranchType: R
+  Resistance: 1
+  Inductance: []
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: []
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/CT/CT 2000//5 A
+25 VA ---
+  ThreeWindings: off
+  Hysteresis: off
+  DataFile: 'hysteresis'
+  Measurements: Flux and magnetization current ( Imag )
+  UNITS: pu
+  NominalPower: [25 50]
+  Winding1: [5*1/20 0.001 0.04]
+  Winding2: [5 0.001 0.04 ]
+  Winding3: [5 0.001 0.04 ]
+  Saturation: [0 0 ; 0.01 10 ; 1 10.5]
+  CoreLoss: [100]
+  BreakLoop: off
+  DiscreteSolver: Trapezoidal iterative
+  DataType: off
+  InitialFlux: -0.000145051785515919
+  TransfoNumber: 1
+
+--- Block: TransformerWithCTSaturation/CT/I2 ---
+  PhasorSimulation: off
+  OutputType: Magnitude
+  PSBequivalent: 0
+
+--- Block: TransformerWithCTSaturation/CT/Conn1 ---
+  Port: 1
+  Side: Left
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT/Conn2 ---
+  Port: 2
+  Side: Right
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT/Out1 ---
+  Port: 1
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/CT1 ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: 
+  PermitHierarchicalResolution: All
+  TreatAsAtomicUnit: off
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: on
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/CT1/1ohm ---
+  BranchType: R
+  Resistance: 1
+  Inductance: []
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: []
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/CT1/CT 2000//5 A
+25 VA ---
+  ThreeWindings: on
+  Hysteresis: off
+  DataFile: 'hysteresis'
+  Measurements: Flux and magnetization current ( Imag )
+  UNITS: pu
+  NominalPower: [25 50]
+  Winding1: [5*1/20 0.001 0.04]
+  Winding2: [5 0.001 0.04 ]
+  Winding3: [5 0.001 0.04 ]
+  Saturation: [0 0 ; 0.01 10 ; 1 10.5]
+  CoreLoss: [100]
+  BreakLoop: off
+  DiscreteSolver: Trapezoidal iterative
+  DataType: off
+  InitialFlux: 6.74702885713869e-05
+  TransfoNumber: 1
+
+--- Block: TransformerWithCTSaturation/CT1/I2 ---
+  PhasorSimulation: off
+  OutputType: Magnitude
+  PSBequivalent: 0
+
+--- Block: TransformerWithCTSaturation/CT1/Conn1 ---
+  Port: 1
+  Side: Left
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT1/Conn2 ---
+  Port: 2
+  Side: Right
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT1/Out1 ---
+  Port: 1
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/CT2 ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: 
+  PermitHierarchicalResolution: All
+  TreatAsAtomicUnit: off
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: on
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/CT2/1ohm ---
+  BranchType: R
+  Resistance: 1
+  Inductance: []
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: []
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/CT2/CT 2000//5 A
+25 VA ---
+  ThreeWindings: off
+  Hysteresis: off
+  DataFile: 'hysteresis'
+  Measurements: Flux and magnetization current ( Imag )
+  UNITS: pu
+  NominalPower: [25 50]
+  Winding1: [5*1/20 0.001 0.04]
+  Winding2: [5 0.001 0.04 ]
+  Winding3: [5 0.001 0.04 ]
+  Saturation: [0 0 ; 0.01 10 ; 1 10.5]
+  CoreLoss: [100]
+  BreakLoop: off
+  DiscreteSolver: Trapezoidal iterative
+  DataType: off
+  InitialFlux: 7.75814969445313e-05
+  TransfoNumber: 1
+
+--- Block: TransformerWithCTSaturation/CT2/I2 ---
+  PhasorSimulation: off
+  OutputType: Magnitude
+  PSBequivalent: 0
+
+--- Block: TransformerWithCTSaturation/CT2/Conn1 ---
+  Port: 1
+  Side: Left
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT2/Conn2 ---
+  Port: 2
+  Side: Right
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT2/Out1 ---
+  Port: 1
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/CT3 ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: 
+  PermitHierarchicalResolution: All
+  TreatAsAtomicUnit: off
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: on
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/CT3/1ohm ---
+  BranchType: R
+  Resistance: 1
+  Inductance: []
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: []
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/CT3/CT 2000//5 A
+25 VA ---
+  ThreeWindings: off
+  Hysteresis: off
+  DataFile: 'hysteresis'
+  Measurements: Flux and magnetization current ( Imag )
+  UNITS: pu
+  NominalPower: [25 50]
+  Winding1: [5*1/500 0.001 0.04]
+  Winding2: [5 0.001 0.04 ]
+  Winding3: [5 0.001 0.04 ]
+  Saturation: [0 0 ; 0.01 10 ; 1 10.5]
+  CoreLoss: [100]
+  BreakLoop: off
+  DiscreteSolver: Trapezoidal iterative
+  DataType: off
+  InitialFlux: 3.88081416677772e-06
+  TransfoNumber: 1
+
+--- Block: TransformerWithCTSaturation/CT3/I2 ---
+  PhasorSimulation: off
+  OutputType: Magnitude
+  PSBequivalent: 0
+
+--- Block: TransformerWithCTSaturation/CT3/Conn1 ---
+  Port: 1
+  Side: Left
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT3/Conn2 ---
+  Port: 2
+  Side: Right
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT3/Out1 ---
+  Port: 1
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/CT4 ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: 
+  PermitHierarchicalResolution: All
+  TreatAsAtomicUnit: off
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: on
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/CT4/1ohm ---
+  BranchType: R
+  Resistance: 1
+  Inductance: []
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: []
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/CT4/CT 2000//5 A
+25 VA ---
+  ThreeWindings: off
+  Hysteresis: off
+  DataFile: 'hysteresis'
+  Measurements: Flux and magnetization current ( Imag )
+  UNITS: pu
+  NominalPower: [25 50]
+  Winding1: [5*1/500 0.001 0.04]
+  Winding2: [5 0.001 0.04 ]
+  Winding3: [5 0.001 0.04 ]
+  Saturation: [0 0 ; 0.01 10 ; 1 10.5]
+  CoreLoss: [100]
+  BreakLoop: off
+  DiscreteSolver: Trapezoidal iterative
+  DataType: off
+  InitialFlux: -4.05875152771098e-06
+  TransfoNumber: 1
+
+--- Block: TransformerWithCTSaturation/CT4/I2 ---
+  PhasorSimulation: off
+  OutputType: Magnitude
+  PSBequivalent: 0
+
+--- Block: TransformerWithCTSaturation/CT4/Conn1 ---
+  Port: 1
+  Side: Left
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT4/Conn2 ---
+  Port: 2
+  Side: Right
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT4/Out1 ---
+  Port: 1
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/CT6 ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: 
+  PermitHierarchicalResolution: All
+  TreatAsAtomicUnit: off
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: on
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/CT6/1ohm ---
+  BranchType: R
+  Resistance: 1
+  Inductance: []
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: []
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/CT6/CT 2000//5 A
+25 VA ---
+  ThreeWindings: off
+  Hysteresis: off
+  DataFile: 'hysteresis'
+  Measurements: Flux and magnetization current ( Imag )
+  UNITS: pu
+  NominalPower: [25 50]
+  Winding1: [5*1/500 0.001 0.04]
+  Winding2: [5 0.001 0.04 ]
+  Winding3: [5 0.001 0.04 ]
+  Saturation: [0 0 ; 0.01 10 ; 1 10.5]
+  CoreLoss: [100]
+  BreakLoop: off
+  DiscreteSolver: Trapezoidal iterative
+  DataType: off
+  InitialFlux: 1.77937360933238e-07
+  TransfoNumber: 1
+
+--- Block: TransformerWithCTSaturation/CT6/I2 ---
+  PhasorSimulation: off
+  OutputType: Magnitude
+  PSBequivalent: 0
+
+--- Block: TransformerWithCTSaturation/CT6/Conn1 ---
+  Port: 1
+  Side: Left
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT6/Conn2 ---
+  Port: 2
+  Side: Right
+  ConnectionType: Inherit: auto
+
+--- Block: TransformerWithCTSaturation/CT6/Out1 ---
+  Port: 1
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/Constant ---
+  Value: 1
+  VectorParams1D: on
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit from 'Constant value'
+  LockScale: off
+  SampleTime: inf
+  FramePeriod: inf
+
+--- Block: TransformerWithCTSaturation/Constant1 ---
+  Value: 1
+  VectorParams1D: on
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit from 'Constant value'
+  LockScale: off
+  SampleTime: inf
+  FramePeriod: inf
+
+--- Block: TransformerWithCTSaturation/Demux4 ---
+  Outputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Demux5 ---
+  Outputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Demux6 ---
+  Outputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Demux7 ---
+  Outputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Display1 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Display2 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Display4 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Display5 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/External_Fault ---
+  InitialStates: 0
+  FaultA: off
+  FaultB: on
+  FaultC: on
+  GroundFault: off
+  SwitchTimes: [1/60  5/60]
+  External: on
+  SwitchStatus: NaN
+  FaultResistance: 19.2403
+  GroundResistance: 0.01
+  SnubberResistance: 1e6
+  SnubberCapacitance: inf
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Ground ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Ground1 ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Ground2 ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Ground3 ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Ground4 ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Ground5 ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Ground6 ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Ground7 ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Ground8 ---
+  [No dialog parameters found]
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: 
+  PermitHierarchicalResolution: All
+  TreatAsAtomicUnit: off
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: on
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/In1 ---
+  Port: 1
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Inport ---
+  Port: 2
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Inport1 ---
+  Port: 3
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Inport2 ---
+  Port: 4
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Inport3 ---
+  Port: 5
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Inport4 ---
+  Port: 6
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Abs ---
+  ZeroCross: on
+  SampleTime: -1
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Same as input
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Abs1 ---
+  ZeroCross: on
+  SampleTime: -1
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Same as input
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Abs2 ---
+  ZeroCross: on
+  SampleTime: -1
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Same as input
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Data Type Conversion ---
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: boolean
+  LockScale: off
+  ConvertRealWorld: Real World Value (RWV)
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Demux1 ---
+  Outputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Demux2 ---
+  Outputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Display ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Display1 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Display2 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Display3 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Display4 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Display5 ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Gain ---
+  Gain: 0.5
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/I_diff ---
+  IconShape: rectangular
+  Inputs: |+-
+  CollapseMode: All dimensions
+  CollapseDim: 1
+  InputSameDT: off
+  AccumDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/I_rest ---
+  IconShape: rectangular
+  Inputs: |++
+  CollapseMode: All dimensions
+  CollapseDim: 1
+  InputSameDT: off
+  AccumDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/MATLAB Function ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: Stateflow.Translate.translate
+  PermitHierarchicalResolution: ExplicitOnly
+  TreatAsAtomicUnit: on
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: off
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch ---
+  varsize: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Mux ---
+  Inputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Mux1 ---
+  Inputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Mux2 ---
+  Inputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Mux3 ---
+  Inputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/OFF ---
+  Value: -1
+  VectorParams1D: on
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit from 'Constant value'
+  LockScale: off
+  SampleTime: inf
+  FramePeriod: inf
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/RESET ---
+  Value: 0
+  VectorParams1D: on
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: boolean
+  LockScale: off
+  SampleTime: inf
+  FramePeriod: inf
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/RMS ---
+  TrueRMS: on
+  Freq: 50
+  RMSInit: 0
+  Ts: 0.0001
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/RMS1 ---
+  TrueRMS: on
+  Freq: 50
+  RMSInit: 0
+  Ts: 0.0001
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/RMS2 ---
+  TrueRMS: on
+  Freq: 50
+  RMSInit: 0
+  Ts: 0.0001
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/RMS3 ---
+  TrueRMS: on
+  Freq: 50
+  RMSInit: 0
+  Ts: 0.0001
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/RMS4 ---
+  TrueRMS: on
+  Freq: 50
+  RMSInit: 0
+  Ts: 0.0001
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/RMS5 ---
+  TrueRMS: on
+  Freq: 50
+  RMSInit: 0
+  Ts: 0.0001
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/S-R
+Latch ---
+  initial_condition: 0
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Scope ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 1
+  LayoutDimensionsString: [1 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: off
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -4.7862
+  ActiveDisplayYMaximum: 4.5762
+  YLabel: 
+  DataLoggingLimitDataPoints: off
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: off
+  DataLoggingDecimation: 2
+  DataLogging: off
+  DataLoggingVariableName: ScopeData2
+  DataLoggingSaveFormat: Dataset
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Scope1 ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 1
+  LayoutDimensionsString: [1 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: on
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -4.9037
+  ActiveDisplayYMaximum: 5.1338
+  YLabel: 
+  DataLoggingLimitDataPoints: off
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: off
+  DataLoggingDecimation: 2
+  DataLogging: off
+  DataLoggingVariableName: ScopeData3
+  DataLoggingSaveFormat: Dataset
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Supervisory Override with Hardware Fallback ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: Stateflow.Translate.translate
+  PermitHierarchicalResolution: ExplicitOnly
+  TreatAsAtomicUnit: on
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: off
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/Hybrid 87T Relay/Trip_Signal ---
+  Port: 1
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/Internal_Fault ---
+  InitialStates: 0
+  FaultA: on
+  FaultB: off
+  FaultC: off
+  GroundFault: on
+  SwitchTimes: [1/60  5/60]
+  External: on
+  SwitchStatus: NaN
+  FaultResistance: 3.9016
+  GroundResistance: 0.01
+  SnubberResistance: 1e6
+  SnubberCapacitance: inf
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Mux ---
+  Inputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Mux1 ---
+  Inputs: 3
+  DisplayOption: bar
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit ---
+  ShowPortLabels: FromPortIcon
+  BlockChoice: 
+  TemplateBlock: 
+  MemberBlocks: 
+  Permissions: ReadWrite
+  ErrorFcn: 
+  PermitHierarchicalResolution: All
+  TreatAsAtomicUnit: off
+  ShowSubsystemReinitializePorts: off
+  MinAlgLoopOccurrences: off
+  ScheduleAs: Sample time
+  PartitionName: 
+  SystemSampleTime: -1
+  SetExecutionDomain: off
+  ExecutionDomainType: Deduce
+  RTWSystemCode: Auto
+  RTWFcnNameOpts: Auto
+  RTWFcnName: 
+  RTWFileNameOpts: Auto
+  RTWFileName: 
+  FunctionInterfaceSpec: void_void
+  FunctionWithSeparateData: off
+  RTWMemSecFuncInitTerm: Inherit from model
+  RTWMemSecFuncExecute: Inherit from model
+  RTWMemSecDataConstants: Inherit from model
+  RTWMemSecDataInternal: Inherit from model
+  RTWMemSecDataParameters: Inherit from model
+  IsSubsystemVirtual: on
+  Variant: off
+  VariantChoicesSpecifier: 
+  VariantChoicesEnumeration: 
+  VariantControlVariable: 
+  VariantChoices: 
+  VariantControlMode: expression
+  VariantControl: 
+  LabelModeActiveChoice: 
+  VariantActivationTime: update diagram
+  AllowZeroVariantControls: off
+  PropagateVariantConditions: off
+  CompiledActiveChoiceControl: 
+  CompiledActiveChoiceBlock: 
+  TreatAsGroupedWhenPropagatingVariantConditions: on
+  ReferencedSubsystem: 
+  Latency: 0
+  AutoFrameSizeCalculation: off
+  CompiledVariantActivationTime: update diagram
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/IA_Prim ---
+  Port: 1
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/IB_Prim ---
+  Port: 2
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/IC_Prim ---
+  Port: 3
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/IA_Sec ---
+  Port: 4
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/IB_Sec ---
+  Port: 5
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/IC_Sec ---
+  Port: 6
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  LatchByDelayingOutsideSignal: off
+  LatchInputForFeedbackSignals: off
+  Interpolate: on
+  InputConnect: 
+  DataMode: inherit
+  MessageQueueUseDefaultAttributes: on
+  MessageQueueCapacity: 1
+  MessageQueueType: LIFO
+  MessageQueueOverwriting: on
+  EventTriggers: 
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Add ---
+  IconShape: rectangular
+  Inputs: ++
+  CollapseMode: All dimensions
+  CollapseDim: 1
+  InputSameDT: off
+  AccumDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Add1 ---
+  IconShape: rectangular
+  Inputs: ++
+  CollapseMode: All dimensions
+  CollapseDim: 1
+  InputSameDT: off
+  AccumDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Add2 ---
+  IconShape: rectangular
+  Inputs: ++
+  CollapseMode: All dimensions
+  CollapseDim: 1
+  InputSameDT: off
+  AccumDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Add3 ---
+  IconShape: rectangular
+  Inputs: ++
+  CollapseMode: All dimensions
+  CollapseDim: 1
+  InputSameDT: off
+  AccumDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Add4 ---
+  IconShape: rectangular
+  Inputs: ++
+  CollapseMode: All dimensions
+  CollapseDim: 1
+  InputSameDT: off
+  AccumDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Add5 ---
+  IconShape: rectangular
+  Inputs: ++
+  CollapseMode: All dimensions
+  CollapseDim: 1
+  InputSameDT: off
+  AccumDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Band-Limited
+White Noise ---
+  Cov: [0.1]
+  Ts: 0.0001
+  seed: [23341]
+  VectorParams1D: on
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/CT_Gain_Mismatch_1 ---
+  Gain: 1.0093
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/CT_Gain_Mismatch_2 ---
+  Gain: 0.98652
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/CT_Gain_Mismatch_3 ---
+  Gain: 1.0168
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/CT_Gain_Mismatch_4 ---
+  Gain: 0.98889
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/CT_Gain_Mismatch_5 ---
+  Gain: 0.98334
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/CT_Gain_Mismatch_6 ---
+  Gain: 0.98295
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Noise_Gain_1 ---
+  Gain: 0.02566
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Noise_Gain_2 ---
+  Gain: 0.02566
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Noise_Gain_3 ---
+  Gain: 0.02566
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Noise_Gain_4 ---
+  Gain: 0.02566
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Noise_Gain_5 ---
+  Gain: 0.02566
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Noise_Gain_6 ---
+  Gain: 0.02566
+  Multiplication: Element-wise(K.*u)
+  ParamMin: []
+  ParamMax: []
+  ParamDataTypeStr: Inherit: Inherit via internal rule
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: Inherit via internal rule
+  LockScale: off
+  RndMeth: Floor
+  SaturateOnIntegerOverflow: off
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Quantizer ---
+  QuantizationInterval: 0.01
+  LinearizeAsGain: on
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Quantizer1 ---
+  QuantizationInterval: 0.01
+  LinearizeAsGain: on
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Quantizer2 ---
+  QuantizationInterval: 0.01
+  LinearizeAsGain: on
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Quantizer3 ---
+  QuantizationInterval: 0.01
+  LinearizeAsGain: on
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Quantizer4 ---
+  QuantizationInterval: 0.01
+  LinearizeAsGain: on
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Quantizer5 ---
+  QuantizationInterval: 0.01
+  LinearizeAsGain: on
+  SampleTime: -1
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Dig_IA_Prim ---
+  Port: 1
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Dig_IB_Prim ---
+  Port: 2
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Dig_IC_Prim ---
+  Port: 3
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Dig_IA_Sec ---
+  Port: 4
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Dig_IB_Sec ---
+  Port: 5
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/Noise Merging Unit/Dig_IC_Sec ---
+  Port: 6
+  SignalName: 
+  SignalObject: 
+  StorageClass: Auto
+  IconDisplay: Port number
+  OutputFunctionCall: off
+  OutMin: []
+  OutMax: []
+  OutDataTypeStr: Inherit: auto
+  LockScale: off
+  BusOutputAsStruct: off
+  BusVirtuality: inherit
+  DataMode: inherit
+  Unit: inherit
+  PortDimensions: -1
+  VarSizeSig: Inherit
+  SampleTime: -1
+  SignalType: auto
+  EnsureOutportIsVirtual: off
+  SourceOfInitialOutputValue: Dialog
+  OutputWhenDisabled: held
+  InitialOutput: []
+  MustResolveToSignalObject: off
+  OutputWhenUnConnected: off
+  OutputWhenUnconnectedValue: 0
+  VectorParamsAs1DForOutWhenUnconnected: on
+
+--- Block: TransformerWithCTSaturation/Primary Current Scope ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 3
+  LayoutDimensionsString: [3 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: on
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -124.6262
+  ActiveDisplayYMaximum: 65.8363
+  YLabel: 
+  DataLoggingLimitDataPoints: off
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: off
+  DataLoggingDecimation: 2
+  DataLogging: off
+  DataLoggingVariableName: ScopeData1
+  DataLoggingSaveFormat: Dataset
+
+--- Block: TransformerWithCTSaturation/Primary_side ---
+  VoltageMeasurement: phase-to-phase
+  SetLabelV: off
+  LabelV: Vabc
+  Vpu: off
+  VpuLL: off
+  CurrentMeasurement: yes
+  SetLabelI: off
+  LabelI: Iabc
+  Ipu: off
+  Pbase: 100e6
+  Vbase: 500e3
+  OutputType: Complex
+  PhasorSimulation: off
+  PSBequivalent: 0
+
+--- Block: TransformerWithCTSaturation/RMS3 ---
+  run: off
+  directionMode: Each column
+  dimension: 1
+  InputProcessing: Columns as channels (frame based)
+  reset_popup: None
+
+--- Block: TransformerWithCTSaturation/RMS5 ---
+  run: on
+  directionMode: Each column
+  dimension: 1
+  InputProcessing: Columns as channels (frame based)
+  reset_popup: None
+
+--- Block: TransformerWithCTSaturation/RMS6 ---
+  run: on
+  directionMode: Each column
+  dimension: 1
+  InputProcessing: Columns as channels (frame based)
+  reset_popup: None
+
+--- Block: TransformerWithCTSaturation/RMS7 ---
+  run: on
+  directionMode: Each column
+  dimension: 1
+  InputProcessing: Columns as channels (frame based)
+  reset_popup: None
+
+--- Block: TransformerWithCTSaturation/RMS8 ---
+  run: on
+  directionMode: Each column
+  dimension: 1
+  InputProcessing: Columns as channels (frame based)
+  reset_popup: None
+
+--- Block: TransformerWithCTSaturation/Scope ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 1
+  LayoutDimensionsString: [1 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: off
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -0.125
+  ActiveDisplayYMaximum: 1.125
+  YLabel: 
+  DataLoggingLimitDataPoints: off
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: off
+  DataLoggingDecimation: 2
+  DataLogging: off
+  DataLoggingVariableName: ScopeData1
+  DataLoggingSaveFormat: Dataset
+
+--- Block: TransformerWithCTSaturation/Scope13 ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 3
+  LayoutDimensionsString: [3 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: off
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -19046.2697
+  ActiveDisplayYMaximum: 19046.4151
+  YLabel: 
+  DataLoggingLimitDataPoints: on
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: on
+  DataLoggingDecimation: 1
+  DataLogging: off
+  DataLoggingVariableName: ScopeData
+  DataLoggingSaveFormat: Array
+
+--- Block: TransformerWithCTSaturation/Scope15 ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 3
+  LayoutDimensionsString: [3 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: off
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -406397.6316
+  ActiveDisplayYMaximum: 406535.0016
+  YLabel: 
+  DataLoggingLimitDataPoints: on
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: on
+  DataLoggingDecimation: 1
+  DataLogging: off
+  DataLoggingVariableName: ScopeData
+  DataLoggingSaveFormat: Array
+
+--- Block: TransformerWithCTSaturation/Scope3 ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 3
+  LayoutDimensionsString: [3 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Auto
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: off
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -1985.8709
+  ActiveDisplayYMaximum: 259.8358
+  YLabel: 
+  DataLoggingLimitDataPoints: on
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: on
+  DataLoggingDecimation: 1
+  DataLogging: off
+  DataLoggingVariableName: ScopeData
+  DataLoggingSaveFormat: Array
+
+--- Block: TransformerWithCTSaturation/Scope9 ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 3
+  LayoutDimensionsString: [3 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: off
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -908.0097
+  ActiveDisplayYMaximum: 908.0215
+  YLabel: 
+  DataLoggingLimitDataPoints: on
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: on
+  DataLoggingDecimation: 1
+  DataLogging: off
+  DataLoggingVariableName: ScopeData
+  DataLoggingSaveFormat: Array
+
+--- Block: TransformerWithCTSaturation/Secondary Current Scope ---
+  OpenAtSimulationStart: off
+  DisplayFullPath: off
+  NumInputPorts: 3
+  LayoutDimensionsString: [3 1]
+  SampleTime: -1
+  FrameBasedProcessingString: Elements as channels (sample based)
+  MaximizeAxes: Off
+  AxesScaling: Manual
+  AxesScalingNumUpdates: 10
+  TimeSpan: Auto
+  TimeSpanOverrunAction: Wrap
+  TimeUnits: None
+  TimeDisplayOffset: 0
+  TimeAxisLabels: Bottom displays only
+  ShowTimeAxisLabel: off
+  ActiveDisplayString: 1
+  Title: %<SignalLabel>
+  ShowLegend: on
+  ShowGrid: on
+  PlotAsMagnitudePhase: off
+  ActiveDisplayYMinimum: -3.7637
+  ActiveDisplayYMaximum: 3.9737
+  YLabel: 
+  DataLoggingLimitDataPoints: off
+  DataLoggingMaxPoints: 5000
+  DataLoggingDecimateData: off
+  DataLoggingDecimation: 2
+  DataLogging: off
+  DataLoggingVariableName: ScopeData2
+  DataLoggingSaveFormat: Dataset
+
+--- Block: TransformerWithCTSaturation/Secondary_side ---
+  VoltageMeasurement: phase-to-phase
+  SetLabelV: off
+  LabelV: Vabc
+  Vpu: off
+  VpuLL: off
+  CurrentMeasurement: yes
+  SetLabelI: off
+  LabelI: Iabc
+  Ipu: off
+  Pbase: 100e6
+  Vbase: 500e3
+  OutputType: Complex
+  PhasorSimulation: off
+  PSBequivalent: 0
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch1 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch10 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch11 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch12 ---
+  BranchType: C
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-9
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch13 ---
+  BranchType: C
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-9
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch14 ---
+  BranchType: C
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-9
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch15 ---
+  BranchType: C
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-9
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch16 ---
+  BranchType: C
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-9
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch17 ---
+  BranchType: C
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-9
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch2 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch3 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch4 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch5 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch6 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch7 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch8 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Series RLC Branch9 ---
+  BranchType: R
+  Resistance: 0.5
+  Inductance: 1e-3
+  SetiL0: off
+  InitialCurrent: 0
+  Capacitance: 1e-6
+  Setx0: off
+  InitialVoltage: 0
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Step3 ---
+  Time: 10
+  Before: 0
+  After: 1
+  OutDataTypeStr: double
+  SampleTime: 0
+  VectorParams1D: on
+  ZeroCross: on
+
+--- Block: TransformerWithCTSaturation/Step4 ---
+  Time: 10
+  Before: 0
+  After: 1
+  OutDataTypeStr: double
+  SampleTime: 0
+  VectorParams1D: on
+  ZeroCross: on
+
+--- Block: TransformerWithCTSaturation/Step_down_Transformer ---
+  Winding1Connection: Y
+  Winding2Connection: Delta (D1)
+  CoreType: Three single-phase transformers
+  SetSaturation: on
+  Hysteresis: off
+  DataFile: 'hysteresis'
+  SetInitialFlux: off
+  Measurements: Winding voltages
+  UNITS: pu
+  NominalPower: [ 300e6 50 ]
+  Winding1: [ 230e3 0.0025  0.01 ]
+  Winding2:  [ 11e3 0.0025 0.01]  
+  Rm: 500
+  Lm: inf
+  L0: 0.5
+  Saturation: [0 0 ; 0.005 1.2 ; 5.0 1.8]
+  InitialFluxes: [-0.99984243149136 0.500274507228811 0.499567924262549]
+  BreakLoop: off
+  DiscreteSolver: Trapezoidal iterative
+  DataType: off
+  TransfoNumber: 1
+
+--- Block: TransformerWithCTSaturation/Three-Phase
+Series RLC Branch ---
+  BranchType: RLC
+  Resistance: 0.1
+  Inductance: 1e-3
+  Capacitance: inf
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/Three-Phase
+Series RLC Load ---
+  Configuration: Y (grounded)
+  NominalVoltage: 11e3
+  Vabc: [1e3 1e3 1e3]
+  Vabcp: [1e3 1e3 1e3]
+  NominalFrequency: 50
+  UnbalancedPower: off
+  ActivePower: 10e6
+  InductivePower: 100
+  CapacitivePower: 0
+  Pabc: [10e3 9e3 11e3]
+  QLabc: [100 90 110]
+  QCabc: [100 90 110]
+  Pabcp: [10e3 9e3 11e3]
+  QLabcp: [100 90 110]
+  QCabcp: [100 90 110]
+  Measurements: None
+  LoadType: constant Z
+
+--- Block: TransformerWithCTSaturation/Three-Phase Breaker ---
+  InitialState: closed
+  SwitchA: on
+  SwitchB: on
+  SwitchC: on
+  SwitchTimes: [1/60  5/60]
+  External: on
+  BreakerResistance: 0.01
+  SnubberResistance: 1e6
+  SnubberCapacitance: inf
+  Measurements: Breaker voltages and currents
+
+--- Block: TransformerWithCTSaturation/Three-Phase Breaker1 ---
+  InitialState: closed
+  SwitchA: on
+  SwitchB: on
+  SwitchC: on
+  SwitchTimes: [1/60  5/60]
+  External: on
+  BreakerResistance: 0.01
+  SnubberResistance: 1e6
+  SnubberCapacitance: inf
+  Measurements: None
+
+--- Block: TransformerWithCTSaturation/To Workspace ---
+  VariableName: I_primary_abc
+  MaxDataPoints: inf
+  Decimation: 1
+  SaveFormat: Array
+  Save2DSignal: 3-D array (concatenate along third dimension)
+  FixptAsFi: on
+  SampleTime: 6.25e-4
+
+--- Block: TransformerWithCTSaturation/To Workspace1 ---
+  VariableName: I_secondary_abc
+  MaxDataPoints: inf
+  Decimation: 1
+  SaveFormat: Array
+  Save2DSignal: 3-D array (concatenate along third dimension)
+  FixptAsFi: on
+  SampleTime: 6.25e-4
+
+--- Block: TransformerWithCTSaturation/VS ---
+  Format: short
+  Decimation: 1
+  Floating: off
+
+--- Block: TransformerWithCTSaturation/VSa ---
+  Amplitude: (230e3*sqrt(2))/(sqrt(3))
+  Phase: 0
+  Frequency: 50
+  SampleTime: 0
+  Measurements: None
+  BusType: swing
+  Pref: 10e3
+  Qref: 0
+  Qmin: -inf
+  Qmax: +inf
+
+--- Block: TransformerWithCTSaturation/VSb ---
+  Amplitude: (230e3*sqrt(2))/(sqrt(3))
+  Phase: -120
+  Frequency: 50
+  SampleTime: 0
+  Measurements: None
+  BusType: swing
+  Pref: 10e3
+  Qref: 0
+  Qmin: -inf
+  Qmax: +inf
+
+--- Block: TransformerWithCTSaturation/VSc ---
+  Amplitude: (230e3*sqrt(2))/(sqrt(3))
+  Phase: 120
+  Frequency: 50
+  SampleTime: 0
+  Measurements: None
+  BusType: swing
+  Pref: 10e3
+  Qref: 0
+  Qmin: -inf
+  Qmax: +inf
+
+--- Block: TransformerWithCTSaturation/powergui ---
+  SimulationMode: Discrete
+  SampleTime: 10e-5
+  frequency: 60
+  Iterations: 50
+  frequencyindice: 50
+  Pbase: 100e6
+  ErrMax: 1e-4
+  UnitsV: kV
+  UnitsW: MW
+  buscounter: 0
+  FunctionMessages: off
+  echomessages: off
+  EnableUseOfTLC: off
+  CurrentSourceSwitches: off
+  DisableSnubberDevices: off
+  DisableRonSwitches: off
+  DisableVfSwitches: off
+  DisplayEquations: off
+  AutomaticDiscreteSolvers: off
+  SolverType: Backward Euler
+  Interpol: off
+  ExternalGateDelay: off
+  methode: off
+  Ts: 0
+  x0status: blocks
+  SPID: off
+  SwTol: 0
+  HookPort: off
+  NonlinearTolerance: 1e-4
+  nMaxIteration: 100
+  ContinueOnMaxIteration: off
+  RestoreLinks: warning
+  ResistiveCurrentMeasurement: off
+  Frange: [0:2:500]
+  Ylog: off
+  Xlog: on
+  ShowGrid: off
+  save: off
+  variable: ZData
+  structure: 0
+  ZoomFFT: on
+  StartTime: 0.0
+  cycles: 1
+  DisplayStyle: 1
+  fundamental: 60
+  FreqAxis: off
+  MaxFrequency: 1000
+  frequencyindicesteady: 1
+  RmsSteady: 1
+  display: off
