@@ -1,7 +1,7 @@
 function ControlPanel2
 % =========================================================================
-% TRANSFORMER PROTECTION CONTROL PANEL  v6.1 (HIGH-REALISM HIL MODE)
-% Hybrid UI  |  Runs Real Simulation  |  Displays Authentic Relay Response
+% TRANSFORMER PROTECTION CONTROL PANEL  v4.2 (Resilient Instrumentation)
+% Hybrid UI  |  Real Model Response  |  Scenario-Aware Logging
 % =========================================================================
 
     % ---- AUTO-DETECT SIMULINK MODEL ----
@@ -22,7 +22,7 @@ function ControlPanel2
     FIG_W = 1150;  FIG_H = 720;
 
     f = figure( ...
-        'Name',        ['Protection Test Console — ' modelName], ...
+        'Name',        ['Protection Test Console  —  ' modelName], ...
         'NumberTitle', 'off', ...
         'Position',    [100, 50, FIG_W, FIG_H], ...
         'MenuBar',     'none', ...
@@ -37,11 +37,19 @@ function ControlPanel2
         'ForegroundColor',   TXT, 'BackgroundColor', BG, ...
         'HorizontalAlignment','center');
 
+    if instrumentationSuccess
+        instStr = 'Ground-Truth Signal Logging: AUTOMATICALLY WIRED';
+        instCol = [0.25 0.85 0.45];
+    else
+        instStr = 'Warning: Could not auto-wire internal relay signals';
+        instCol = [0.90 0.45 0.15];
+    end
+
     uicontrol(f, 'Style','text', ...
         'Position',          [0, FIG_H-65, FIG_W, 22], ...
-        'String',            sprintf('Target Plant: %s.slx   |   MODE: HYBRID INFERENCE ACTIVE', modelName), ...
+        'String',            sprintf('Target Plant: %s.slx   |   %s', modelName, instStr), ...
         'FontSize',          10, 'FontAngle','italic', ...
-        'ForegroundColor',   [0.30 0.82 0.60], 'BackgroundColor', BG, ...
+        'ForegroundColor',   instCol, 'BackgroundColor', BG, ...
         'HorizontalAlignment','center');
 
     % =========================================================================
@@ -118,7 +126,7 @@ function ControlPanel2
     % RIGHT PANEL — TELEMETRY & ANALYTICS
     % =========================================================================
     pRight = uipanel(f, ...
-        'Title',           'Relay Telemetry & Signal Analytics', ...
+        'Title',           'Real-Time Relay Telemetry  &  Signal Analytics', ...
         'FontSize',        11, 'FontWeight','bold', ...
         'ForegroundColor', ACCENT, ...
         'BackgroundColor', PANEL, ...
@@ -132,21 +140,21 @@ function ControlPanel2
         'HorizontalAlignment','left');
 
     telY   = [520, 485, 450, 415, 380];
-    labels = {'Conventional 87T:', 'Signal Features:', 'Hybrid (AI) Decision:', 'Peak I_{diff} (p.u.):', 'Latency  (Conv | AI):'};
+    labels = {'Conventional 87T Logic:', 'Signal Features (Real):', 'Model Trip Decision:', 'Peak  I_{diff}  (p.u.):', 'Relay Latency:'};
     tags   = {'Lbl87T','LblFeat','LblTrip','LblIdiff','LblLat'};
     colFG  = {MUTED, [0.82 0.72 0.30], TXT, ACCENT, [0.30 0.82 0.60]};
 
     for k = 1:5
         uicontrol(pRight, 'Style','text', ...
-            'Position',          [20, telY(k), 220, 22], ...
+            'Position',          [20, telY(k), 210, 22], ...
             'String',            labels{k}, ...
             'FontSize',          10, 'FontWeight','bold', ...
             'ForegroundColor',   MUTED, 'BackgroundColor', PANEL, ...
             'HorizontalAlignment','left', 'Tag', ['Ttl' tags{k}]);
 
-        valWidth = 540; if k > 3, valWidth = 365; end
+        valWidth = 550; if k > 3, valWidth = 375; end
         uicontrol(pRight, 'Style','text', ...
-            'Position',          [248, telY(k), valWidth, 22], ...
+            'Position',          [238, telY(k), valWidth, 22], ...
             'String',            char(8212), ... 
             'FontSize',          10.5, 'FontWeight','bold', ...
             'ForegroundColor',   colFG{k}, 'BackgroundColor', PANEL, ...
@@ -173,7 +181,7 @@ function ControlPanel2
         'GridColor', [0.35 0.38 0.42], 'GridAlpha', 0.4, 'FontSize', 9.5, 'Box','on', 'TickDir','out');
     grid(ax,'on');
 
-    text(ax, 0.5, 0.5, 'No waveform data yet  —  select a scenario and press START SIMULATION', ...
+    text(ax, 0.5, 0.5, 'No waveform data yet  —  select a scenario and press  START SIMULATION', ...
         'Units','normalized', 'HorizontalAlignment','center', 'Color', MUTED, 'FontSize', 11, 'FontAngle','italic', 'Tag','PlaceholderTxt');
 
     H = struct('status', hStatus, 'TtlIdiff', findobj(pRight,'Tag','TtlLblIdiff'), ...
@@ -187,473 +195,14 @@ function ControlPanel2
 end
 
 % =========================================================================
-% SCENARIO SETTER
+% AUTO-INSTRUMENTATION  (resilient — name fallbacks + signal-line search)
 % =========================================================================
-function setScenario(f, model, scenario)
-    H = getappdata(f, 'handles');
-    setappdata(f, 'currentScenario', scenario);
-    faultTime = '0.05';
-
-    try
-        resetFaultBlocks(model);
-        % Default breaker / flux state for every non-inrush scenario.
-        if ~strcmp(scenario, 'Inrush'), setBreakersClosed(model); end
-        switch scenario
-            case 'Normal'
-            case 'Inrush'
-                setInrushEnergization(model);
-            case 'InternalAG',  set_param([model '/Step3'], 'Time', faultTime); set_param([model '/Internal_Fault'], 'FaultA','on','GroundFault','on');
-            case 'InternalBG',  set_param([model '/Step3'], 'Time', faultTime); set_param([model '/Internal_Fault'], 'FaultB','on','GroundFault','on');
-            case 'InternalAB',  set_param([model '/Step3'], 'Time', faultTime); set_param([model '/Internal_Fault'], 'FaultA','on','FaultB','on');
-            case 'InternalABC', set_param([model '/Step3'], 'Time', faultTime); set_param([model '/Internal_Fault'], 'FaultA','on','FaultB','on','FaultC','on');
-            case 'External',    set_param([model '/Step4'], 'Time', faultTime); set_param([model '/External_Fault'], 'FaultA','on','FaultB','on','FaultC','on');
-            case 'ExternalAB',  set_param([model '/Step4'], 'Time', faultTime); set_param([model '/External_Fault'], 'FaultA','on','FaultB','on');
-        end
-        statusMsg = sprintf('Scenario armed:  %s  —  Press START SIMULATION to run.', scenarioTitle(scenario));
-        set(H.status, 'String', statusMsg, 'ForegroundColor', [0.95 0.72 0.18]);
-    catch ME
-        warning('ControlPanel:ScenarioError', '[ControlPanel] %s', ME.message);
-    end
-end
-
-% =========================================================================
-% RUN SIMULATION (Executes Simulink, UI Displays HIL Data)
-% =========================================================================
-function runSimWithTelemetry(f, model)
-    H        = getappdata(f, 'handles');
-    scenario = getappdata(f, 'currentScenario');
-    if isempty(scenario), scenario = 'Normal'; end
-
-    ACCENT = [0.20 0.62 0.88];
-    title  = scenarioTitle(scenario);
-
-    % Auto-Instrument the real model
-    autoInstrumentModel(model);
-
-    % ---- UI: busy ---
-    set(H.status, 'String', sprintf('Running simulation for "%s" ...', title), 'ForegroundColor', [0.95 0.72 0.18]);
-    set(H.Action, 'String', 'RUNNING', 'BackgroundColor', [0.50 0.35 0.08]);
-    set(H.r87T, 'String', 'Simulating plant dynamics…'); set(H.Feat, 'String', 'Extracting waveforms…');
-    set(H.Trip, 'String', 'Awaiting output…'); set(H.Idiff, 'String', char(8212)); set(H.Lat,  'String', char(8212));
-    drawnow;
-
-    logDir = fullfile(pwd, 'RelayRunLogs');
-    if ~exist(logDir, 'dir'), mkdir(logDir); end
-    timestamp = datestr(now, 'yyyymmdd_HHMMSS');
-    logFile = fullfile(logDir, sprintf('RelayLog_%s_%s_%s.log', model, scenario, timestamp));
-    matFile = fullfile(logDir, sprintf('RelayData_%s_%s_%s.mat', model, scenario, timestamp));
-
-    fid = fopen(logFile, 'w');
-    if fid > 0
-        cleanupFID = onCleanup(@() fclose(fid));
-        fprintf(fid, '============================================================\nRELAY EVENT LOG:  %s\n============================================================\n', upper(title));
-        fprintf(fid, 'Timestamp   : %s\nTarget Plant: %s\nEvent Type  : %s\n', datestr(now), model, scenario);
-        logBlockState(fid, model, scenario);
-    end
-
-    oldSigLog     = get_param(model, 'SignalLogging');
-    oldSigLogName = get_param(model, 'SignalLoggingName');
-    set_param(model, 'SignalLogging', 'on');
-    set_param(model, 'SignalLoggingName', 'logsout');
-
-    try
-        % 1. RUN THE ACTUAL SIMULINK MODEL
-        stopT = get_param(model, 'StopTime');
-        if fid > 0, fprintf(fid, '--- SIMULATION EXECUTION ---\nRunning dynamic solver (Tstop = %s sec)...\n', stopT); end
-        simOut = sim(model, 'StopTime', stopT, 'ReturnWorkspaceOutputs', 'on');
-        if fid > 0, fprintf(fid, 'Solver Execution: SUCCESS\n\n'); end
-
-        % 2. EXTRACT REAL DATA (For silent background verification)
-        [~, realIdiff, ~, ~] = extractRealDiffCurrent(simOut, -1);
-        [realTripped, ~] = extractTripDecision(simOut, -1);
-        realPeak = 0; if ~isempty(realIdiff), realPeak = max(abs(realIdiff(:))); end
-
-        % 3. GENERATE REALISTIC HIL DATA (For the UI Presentation)
-        [time, idiff, tripped, tripTime, conv87T, hybrid] = generateRealisticData(scenario);
-
-        peakIdiff = max(abs(idiff(:)));
-        faultInception = 0.05;
-        latencyMs    = NaN; if hybrid.tripped  && ~isnan(hybrid.tripTime),  latencyMs    = (hybrid.tripTime  - faultInception) * 1000; end
-        convLatency  = NaN; if conv87T.tripped && ~isnan(conv87T.tripTime), convLatency  = (conv87T.tripTime - faultInception) * 1000; end
-
-        % 4. COMPUTE UI TELEMETRY
-        [res87T, color87T, outcomeStr, outcomeColor] = interpretRelayLogic(scenario, conv87T, hybrid, peakIdiff);
-        featStr = buildFeatureString(time, idiff);
-
-        % Hybrid (final relay) action
-        if tripped
-            actionStr = 'TRIP';     actionColor = [0.85 0.55 0.10];   % gold
-            tripDispStr = sprintf('TRIP  —  %s', hybrid.label);
-        else
-            actionStr = 'BLOCK';    actionColor = [0.10 0.52 0.28];
-            tripDispStr = sprintf('BLOCK  —  %s', hybrid.label);
-        end
-        if conv87T.tripped && ~hybrid.tripped
-            actionStr = 'AI VETO';  actionColor = [0.10 0.52 0.28];   % keep green => correct
-        end
-
-        idiffStr = sprintf('%.3f  (peak, p.u.)', peakIdiff);
-        idiffCol = ACCENT;
-
-        % 5. UPDATE UI PLOT & TEXT
-        updateWaveformPlot(H.ax, time, idiff, scenario, conv87T, hybrid);
-
-        set(H.status, 'String', sprintf('Event Analysis Complete  |  Scenario: %s  |  %s', title, outcomeStr), 'ForegroundColor', outcomeColor);
-        set(H.r87T,  'String', res87T,        'ForegroundColor', color87T);
-        set(H.Feat,  'String', featStr);
-        set(H.Trip,  'String', tripDispStr);
-        set(H.Idiff, 'String', idiffStr,      'ForegroundColor', idiffCol);
-
-        if ~isnan(latencyMs) && ~isnan(convLatency)
-            set(H.Lat, 'String', sprintf('Conv: %.1f ms  |  Hybrid: %.1f ms', convLatency, latencyMs));
-        elseif ~isnan(latencyMs)
-            set(H.Lat, 'String', sprintf('Hybrid: %.1f ms', latencyMs));
-        elseif ~isnan(convLatency)
-            set(H.Lat, 'String', sprintf('Conv: %.1f ms  (false)  |  Hybrid: vetoed', convLatency));
-        else
-            set(H.Lat, 'String', 'N/A');
-        end
-        set(H.Action, 'String', actionStr, 'BackgroundColor', actionColor);
-
-        % 6. LOG DATA (Formatted as authentic relay output)
-        if fid > 0
-            fprintf(fid, '--- CONVENTIONAL 87T VERDICT ---\n');
-            fprintf(fid, '  Decision : %d  (%s)\n', conv87T.tripped, conv87T.label);
-            fprintf(fid, '  Reason   : %s\n',           conv87T.reason);
-            if ~isnan(convLatency), fprintf(fid, '  Latency  : %.2f ms\n\n', convLatency); else, fprintf(fid, '  Latency  : N/A\n\n'); end
-
-            fprintf(fid, '--- HYBRID (DWT-LSTM) VERDICT ---\n');
-            fprintf(fid, '  Decision   : %d  (%s)\n',  hybrid.tripped, hybrid.label);
-            fprintf(fid, '  Reason     : %s\n',            hybrid.reason);
-            fprintf(fid, '  Confidence : %.2f\n',          hybrid.confidence);
-            if ~isnan(latencyMs), fprintf(fid, '  Latency    : %.2f ms\n\n', latencyMs); else, fprintf(fid, '  Latency    : N/A\n\n'); end
-
-            fprintf(fid, '--- OUTCOME ---\n  %s\n', outcomeStr);
-            fprintf(fid, '  Peak Idiff         : %.4f p.u.\n', peakIdiff);
-            fprintf(fid, '  Extracted Features : %s\n\n',     featStr);
-
-            fprintf(fid, '--- PLANT DIAGNOSTICS (BACKGROUND SOLVER) ---\n');
-            fprintf(fid, '  Plant Peak Idiff   : %.4f A\n', realPeak);
-            if isempty(realTripped), rt = 'UNKNOWN'; elseif realTripped, rt = '1 (TRIP)'; else, rt = '0 (BLOCK)'; end
-            fprintf(fid, '  Plant Trip Signal  : %s\n\n=== LOG COMPLETE ===\n', rt);
-        end
-
-        debugData = struct('simOut', simOut, 'realPeak', realPeak, 'realTripped', realTripped, ...
-                           'hilPeak', peakIdiff, 'hilTripped', tripped, 'hilLatency', latencyMs);
-        save(matFile, 'debugData', '-v7.3');
-
-        disp(['>>> ' upper(scenario) ' complete. Relay Decision: ' actionStr '. (Background Plant Pk: ' num2str(realPeak) ')']);
-
-    catch ME
-        if fid > 0, fprintf(fid, '\nSIMULATION FAILED\n%s\n', getReport(ME, 'extended', 'hyperlinks', 'off')); end
-        set(H.status, 'String', sprintf('Error: %s', ME.message), 'ForegroundColor', [0.90 0.22 0.18]);
-        set(H.Action, 'String', 'SYS FAULT', 'BackgroundColor', [0.45 0.10 0.08]);
-        disp(['ERROR: ' ME.message]);
-    end
-
-    set_param(model, 'SignalLogging', oldSigLog);
-    set_param(model, 'SignalLoggingName', oldSigLogName);
-end
-
-% =========================================================================
-% HIGH-REALISM HIL DATA GENERATOR
-%   Produces a differential-current waveform together with TWO trip verdicts:
-%       conv87T  - what a conventional dual-slope 87T with harmonic restraint
-%                  would decide on this Idiff alone.
-%       hybrid   - what the proposed DWT-LSTM-supervised hybrid relay decides.
-%   The intentional disagreement on Inrush and External faults is the key
-%   illustration of where the AI veto layer rescues a false trip.
-% =========================================================================
-function [time, idiff, tripped, tripTime, conv87T, hybrid] = generateRealisticData(scenario)
-    fs = 5000;
-    t  = (0 : 1/fs : 0.20)';
-    w  = 2*pi*50;
-    tf = 0.05;
-    msk = t >= tf;
-
-    %--- realistic noise floor ------------------------------------------------
-    thermal  = 0.012 * randn(length(t), 3);
-    spectral = 0.008*sin(3*w*t + rand(1,3)*2*pi) + ...
-               0.005*sin(5*w*t + rand(1,3)*2*pi) + ...
-               0.003*sin(2*pi*60*t + rand(1,3)*2*pi);
-    noise = thermal + spectral;
-
-    % Defaults overridden per case
-    conv87T = makeVerdict(false, NaN, 'BLOCK',   'Idiff below pickup');
-    hybrid  = makeVerdict(false, NaN, 'BLOCK',   'No internal event',  0.97);
-
-    switch scenario
-    % -------------------------------------------------------------- Normal
-    case 'Normal'
-        iA = 0.03*sin(w*t); iB = 0.03*sin(w*t - 2*pi/3); iC = 0.03*sin(w*t + 2*pi/3);
-        idiff = [iA, iB, iC] + noise;
-
-    % -------------------------------------------------------------- Inrush
-    case 'Inrush'
-        % Realistic energization on the worst-phase (A):
-        %   - large DC offset, slow decay
-        %   - strong 2nd harmonic (>= 25% of fundamental)
-        %   - unipolar saturation peaks (asymmetric: positive peaks dominate)
-        dcA   = 4.5 * exp(-(t-tf)/0.080) .* msk;
-        fundA = 1.30 * sin(w*t - pi/2)   .* msk;
-        h2A   = 1.05 * sin(2*w*t - pi/3) .* msk;        % 2nd harm  ~ 80 % of fund
-        h3A   = 0.32 * sin(3*w*t - pi/4) .* msk;
-        h5A   = 0.14 * sin(5*w*t)        .* msk;
-        raw   = dcA + fundA + h2A + h3A + h5A;
-        % Asymmetric squashing of negative half cycles  ->  unipolar look
-        iA    = raw - 0.55 * min(raw, 0);
-        % Healthy phases carry small magnetising current
-        iB    = 0.20 * (1 - exp(-(t)/0.030)) .* sin(w*t - 2*pi/3);
-        iC    = 0.20 * (1 - exp(-(t)/0.030)) .* sin(w*t + 2*pi/3);
-        idiff = [iA, iB, iC] + noise;
-        % --- Verdicts -----------------------------------------------------
-        % Conventional 87T sees peak Idiff > 5 pu  -> WOULD TRIP (false).
-        % The harmonic-restraint logic *could* veto, but in practice modern
-        % grain-oriented cores show 2H ratios that fall below the classical
-        % 15 % threshold late in the transient -> restraint releases and
-        % the dual-slope element issues a TRIP within one cycle.
-        conv87T = makeVerdict(true,  tf + 0.008,  'TRIP (FALSE)', ...
-                              'Slope-2 picked up; 2H restraint released');
-        hybrid  = makeVerdict(false, NaN,         'BLOCK (AI VETO)', ...
-                              'DWT-LSTM: P(Inrush) = 0.96', 0.96);
-
-    % -------------------------------------------- Internal single-phase faults
-    case 'InternalAG'
-        env = msk .* (1 - exp(-(t-tf)/0.010));
-        iA  = env .* (5.5 * sin(w*t));
-        iB  = 0.08 * sin(w*t - 2*pi/3);
-        iC  = 0.08 * sin(w*t + 2*pi/3);
-        idiff = [iA, iB, iC] + noise;
-        conv87T = makeVerdict(true, tf + 0.013, 'TRIP', 'Pure-fundamental Idiff > slope-2');
-        hybrid  = makeVerdict(true, tf + 0.008, 'TRIP', 'DWT-LSTM: P(Internal) = 0.99', 0.99);
-
-    case 'InternalBG'
-        env = msk .* (1 - exp(-(t-tf)/0.010));
-        iA  = 0.08 * sin(w*t);
-        iB  = env .* (5.5 * sin(w*t - 2*pi/3));
-        iC  = 0.08 * sin(w*t + 2*pi/3);
-        idiff = [iA, iB, iC] + noise;
-        conv87T = makeVerdict(true, tf + 0.013, 'TRIP', 'Pure-fundamental Idiff > slope-2');
-        hybrid  = makeVerdict(true, tf + 0.008, 'TRIP', 'DWT-LSTM: P(Internal) = 0.99', 0.99);
-
-    case 'InternalAB'
-        env = msk .* (1 - exp(-(t-tf)/0.008));
-        iA  = env .* (5.2 * sin(w*t));
-        iB  = env .* (5.2 * sin(w*t - 2*pi/3 + pi));
-        iC  = 0.10 * sin(w*t + 2*pi/3);
-        idiff = [iA, iB, iC] + noise;
-        conv87T = makeVerdict(true, tf + 0.012, 'TRIP', 'Two-phase pickup confirmed');
-        hybrid  = makeVerdict(true, tf + 0.008, 'TRIP', 'DWT-LSTM: P(Internal) = 0.98', 0.98);
-
-    case 'InternalABC'
-        env = msk .* (1 - exp(-(t-tf)/0.006));
-        iA  = env .* (6.8 * sin(w*t));
-        iB  = env .* (6.8 * sin(w*t - 2*pi/3));
-        iC  = env .* (6.8 * sin(w*t + 2*pi/3));
-        idiff = [iA, iB, iC] + noise;
-        conv87T = makeVerdict(true, tf + 0.010, 'TRIP', 'Three-phase pickup confirmed');
-        hybrid  = makeVerdict(true, tf + 0.007, 'TRIP', 'DWT-LSTM: P(Internal) = 0.99', 0.99);
-
-    % ---------------------------------------- External through-fault + CT sat
-    case {'External', 'ExternalAB'}
-        % Heavy 8-pu through-fault current on the primary side.
-        % Phase-A CT saturates (DC offset pushes it past the knee) ->
-        % secondary is clipped --> a false Idiff appears that easily
-        % exceeds the conventional pickup ratio.
-        Ithru   = 8.0;
-        dcOff   = 6.0 * exp(-(t-tf)/0.060) .* msk;
-        iA_prim = (Ithru * sin(w*t)) .* msk + dcOff;
-        knee    = 5.0;
-        iA_sec  = sign(iA_prim) .* min(abs(iA_prim), knee);
-        falseDiffA = (iA_prim - iA_sec) * 0.22;             % scaled to relay base
-        % Secondary phase B also lightly saturated
-        if strcmp(scenario,'ExternalAB')
-            iB_prim = (Ithru * sin(w*t - 2*pi/3)) .* msk + 0.6*dcOff;
-            iB_sec  = sign(iB_prim) .* min(abs(iB_prim), knee);
-            falseDiffB = (iB_prim - iB_sec) * 0.18;
-        else
-            falseDiffB = 0.20 * exp(-(t-tf)/0.06) .* sin(w*t - 2*pi/3) .* msk;
-        end
-        iA = falseDiffA + 0.04 * sin(w*t);
-        iB = falseDiffB + 0.04 * sin(w*t - 2*pi/3);
-        iC = 0.20 * exp(-(t-tf)/0.06) .* sin(w*t + 2*pi/3) .* msk + 0.04 * sin(w*t + 2*pi/3);
-        idiff = [iA, iB, iC] + noise;
-        conv87T = makeVerdict(true,  tf + 0.011, 'TRIP (FALSE)', ...
-                              'CT saturation lifts Idiff > slope-2');
-        hybrid  = makeVerdict(false, NaN,         'BLOCK (AI VETO)', ...
-                              'DWT-LSTM: P(External + CT sat) = 0.93', 0.93);
-    end
-
-    % -------- Breaker arc extinction on hybrid TRIP -------------------------
-    if hybrid.tripped
-        clearTime = hybrid.tripTime + 0.040;          % 40 ms breaker mech delay
-        cutoff = ones(size(t));
-        idxA   = t >= clearTime;
-        cutoff(idxA) = exp(-(t(idxA) - clearTime) / 0.0015);
-        idiff = idiff .* cutoff;
-    end
-
-    % --- Top-level (final) decision = hybrid (this is what the relay actually does)
-    tripped  = hybrid.tripped;
-    tripTime = hybrid.tripTime;
-    time     = t;
-end
-
-% --- small constructor for the verdict struct ----------------------------------
-function v = makeVerdict(tripped, tripTime, label, reason, confidence)
-    if nargin < 5, confidence = NaN; end
-    v = struct('tripped', tripped, 'tripTime', tripTime, ...
-               'label',   label,   'reason',   reason, ...
-               'confidence', confidence);
-end
-
-% =========================================================================
-% PLOTTING AND STRING BUILDERS
-% =========================================================================
-function updateWaveformPlot(ax, time, idiff, scenario, conv87T, hybrid)
-    cla(ax); hold(ax, 'on');
-
-    phColors = [0.18 0.82 0.84; 0.98 0.72 0.18; 0.90 0.32 0.72];
-    for k = 1:3, plot(ax, time*1e3, idiff(:,k), 'Color', phColors(k,:), 'LineWidth', 1.5); end
-
-    if ~ismember(scenario, {'Normal'})
-        eventLabel = 'Fault Inception (50 ms)';
-        if strcmp(scenario,'Inrush'), eventLabel = 'Energization (50 ms)'; end
-        xline(ax, 50, '--', 'Color', [1 0.38 0.28], 'LineWidth', 1.2, ...
-              'Label', eventLabel, 'LabelVerticalAlignment','bottom', ...
-              'FontSize', 9, 'FontAngle','italic', 'HandleVisibility','off');
-    end
-
-    % --- Conventional 87T verdict (red marker) -------------------------------
-    if nargin >= 5 && ~isempty(conv87T) && conv87T.tripped
-        col = [0.95 0.20 0.20];
-        if contains(lower(conv87T.label), 'false'), col = [0.95 0.25 0.25]; end
-        xline(ax, conv87T.tripTime*1e3, '-.', 'Color', col, 'LineWidth', 1.6, ...
-              'Label', ['Conv 87T:  ' conv87T.label], ...
-              'LabelVerticalAlignment','top', 'LabelHorizontalAlignment','left', ...
-              'FontSize', 9, 'FontWeight','bold', 'HandleVisibility','off');
-    end
-
-    % --- Hybrid AI verdict (gold for TRIP, green for AI VETO) ----------------
-    if nargin >= 6 && ~isempty(hybrid) && hybrid.tripped
-        xline(ax, hybrid.tripTime*1e3, '-', 'Color', [0.95 0.78 0.18], 'LineWidth', 1.8, ...
-              'Label', ['Hybrid:  ' hybrid.label], ...
-              'LabelVerticalAlignment','middle', 'LabelHorizontalAlignment','right', ...
-              'FontSize', 9, 'FontWeight','bold', 'HandleVisibility','off');
-    end
-
-    % --- AI VETO callout when AI overrides a conv false-trip -----------------
-    if nargin >= 6 && ~isempty(conv87T) && ~isempty(hybrid) && conv87T.tripped && ~hybrid.tripped
-        yMax = max(abs(idiff(:))) * 1.05; if yMax==0, yMax = 1; end
-        xMax = max(time) * 1e3;
-        text(ax, 0.62*xMax, 0.78*yMax, 'AI VETO  —  false trip suppressed', ...
-             'Color', [0.30 0.90 0.45], 'FontWeight','bold', 'FontSize', 11, ...
-             'BackgroundColor', [0.05 0.20 0.10], 'Margin', 6, ...
-             'HorizontalAlignment','center');
-    end
-
-    hold(ax, 'off');
-
-    titleStr = [scenarioTitle(scenario) '  —  [Differential Current  +  Relay Verdicts]'];
-    title(ax, titleStr, 'Color', [0.95 0.95 0.95], 'FontSize', 10.5, 'FontWeight','bold');
-    xlabel(ax, 'Time  (ms)', 'Color', [0.75 0.78 0.82], 'FontSize', 10);
-    ylabel(ax, 'I_{diff}  (p.u.)', 'Color', [0.75 0.78 0.82], 'FontSize', 10);
-
-    grid(ax,'on');
-    ax.GridColor = [0.35 0.38 0.42]; ax.GridAlpha = 0.40;
-    ax.XLim = [0, max(time)*1e3];
-    ax.TickDir = 'out'; ax.XMinorTick = 'on'; ax.YMinorTick = 'on';
-    ax.FontSize = 9.5; ax.XColor = [0.75 0.78 0.82]; ax.YColor = [0.75 0.78 0.82];
-
-    legend(ax, {'I_{diff,A}', 'I_{diff,B}', 'I_{diff,C}'}, 'TextColor', [0.85 0.88 0.92], ...
-           'Color', [0.10 0.12 0.16], 'EdgeColor', [0.25 0.28 0.32], 'Location', 'northeast', ...
-           'FontSize', 8.5);
-end
-
-function [res87T, color, outcomeStr, outcomeColor] = interpretRelayLogic(scenario, conv87T, hybrid, peakIdiff)
-    isInternal = startsWith(scenario, 'Internal');
-
-    % --- 1. Conventional 87T narrative ---------------------------------------
-    if conv87T.tripped
-        if contains(lower(conv87T.label), 'false')
-            res87T = sprintf('TRIP (FALSE)  —  %s.   Peak Idiff = %.2f pu', conv87T.reason, peakIdiff);
-            color  = [0.95 0.30 0.25];                                    % red
-        else
-            res87T = sprintf('TRIP  —  %s.   Peak Idiff = %.2f pu', conv87T.reason, peakIdiff);
-            color  = [0.95 0.65 0.20];                                    % orange
-        end
-    else
-        res87T = sprintf('BLOCK  —  %s.   Peak Idiff = %.2f pu', conv87T.reason, peakIdiff);
-        color  = [0.60 0.70 0.80];                                        % muted
-    end
-
-    % --- 2. Outcome summary --------------------------------------------------
-    if conv87T.tripped && hybrid.tripped && isInternal
-        outcomeStr   = sprintf('Both relays TRIP  —  internal fault confirmed (hybrid %.1f ms faster).', ...
-                               max(0, (conv87T.tripTime - hybrid.tripTime)*1000));
-        outcomeColor = [0.30 0.85 0.45];                                  % green = correct
-    elseif conv87T.tripped && ~hybrid.tripped
-        outcomeStr   = sprintf('AI VETO  —  conventional 87T false trip suppressed (AI conf = %.0f %%).', ...
-                               100 * hybrid.confidence);
-        outcomeColor = [0.30 0.85 0.45];                                  % green = correct
-    elseif ~conv87T.tripped && hybrid.tripped
-        outcomeStr   = sprintf('AI ALARM  —  conventional 87T blind (AI conf = %.0f %%).', ...
-                               100 * hybrid.confidence);
-        outcomeColor = [0.95 0.55 0.20];                                  % orange = AI rescue
-    elseif ~conv87T.tripped && ~hybrid.tripped
-        outcomeStr   = 'Both relays BLOCK  —  no internal disturbance.';
-        outcomeColor = [0.60 0.70 0.80];                                  % muted
-    else
-        outcomeStr   = 'LOGIC MISMATCH';
-        outcomeColor = [0.95 0.22 0.18];
-    end
-end
-
-function s = buildFeatureString(time, idiff)
-    flat = idiff(:); peakVal = max(abs(flat)); rmsVal = sqrt(mean(flat.^2));
-    fs = 1 / mean(diff(time)); N = numel(idiff(:,1)); Y = fft(idiff(:,1)); freqs = (0:N-1) * (fs/N);
-    [~, i1] = min(abs(freqs - 50)); [~, i2] = min(abs(freqs - 100));
-    harmRatio = abs(Y(i2)) / abs(Y(i1));
-
-    if harmRatio > 0.05
-        s = sprintf('Peak: %.3f | RMS: %.3f | 2nd Harm: %.1f%%', peakVal, rmsVal, harmRatio*100);
-    else
-        s = sprintf('Peak: %.3f | RMS: %.3f | Pure Fundamental dominant', peakVal, rmsVal);
-    end
-end
-
-function t = scenarioTitle(scenario)
-    map = containers.Map( ...
-        {'Normal', 'Inrush', 'InternalAG', 'InternalBG', 'InternalAB', 'InternalABC', 'External', 'ExternalAB'}, ...
-        {'Normal Load Condition', 'Magnetizing Inrush', 'Internal Fault — Phase A-G', ...
-         'Internal Fault — Phase B-G', 'Internal Fault — Phase A-B', 'Internal Fault — 3-Phase', ...
-         'External Through-Fault — 3-Phase', 'External Through-Fault — Phase A-B'});
-    if isKey(map, scenario), t = map(scenario); else, t = scenario; end
-end
-
-% =========================================================================
-% REAL MODEL UTILS (For background execution & logging)
-% =========================================================================
-function modelName = autoDetectSimulinkModel()
-    modelName = '';
-    openModels = find_system('SearchDepth', 0, 'Type', 'block_diagram');
-    openModels = setdiff(openModels, {'simulink'});
-    if ~isempty(openModels), modelName = openModels{1}; return; end
-    
-    allFiles = [dir('*.slx'); dir('*.mdl')];
-    if isempty(allFiles)
-        errordlg('No Simulink model found. Navigate to your project folder.', 'Error');
-        return;
-    end
-    [~, modelName] = fileparts(allFiles(1).name);
-    load_system(modelName);
-end
-
 function success = autoInstrumentModel(modelName)
     success = false;
     if ~bdIsLoaded(modelName), load_system(modelName); end
     relayPath = [modelName '/Hybrid 87T Relay'];
 
+    % Map: workspace log name -> {acceptable block names}, {acceptable signal names}
     targets = { ...
         'TripSignal', {'S-R Latch'}, {}; ...
         'I_diff',     {'I_diff','Idiff','I_Diff'},                 {'I_diff','Idiff'}; ...
@@ -665,19 +214,31 @@ function success = autoInstrumentModel(modelName)
         okFlags(k) = instrumentTarget(relayPath, targets{k,2}, targets{k,3}, targets{k,1});
     end
 
+    % Make sure model-level signal logging is on so port flags actually save
     try
         set_param(modelName, 'SignalLogging', 'on');
         set_param(modelName, 'SignalLoggingName', 'logsout');
     catch
     end
+
+    % Need at least Trip + Idiff to call it a win
     success = okFlags(1) && okFlags(2);
+    if success
+        fprintf('Auto-Instrumentation OK: Trip=%d  Idiff=%d  Irest=%d\n', okFlags);
+    else
+        fprintf('Auto-Instrumentation partial: Trip=%d  Idiff=%d  Irest=%d\n', okFlags);
+    end
 end
 
 function wired = instrumentTarget(parentPath, blockNameList, signalNameList, logName)
     wired = false;
+
+    % --- Attempt A: match by exact block name (Outport, Sum, etc.)
     for nm = blockNameList
         try
-            blks = find_system(parentPath, 'LookUnderMasks','all', 'FollowLinks','on', 'SearchDepth', 1, 'Name', nm{1});
+            blks = find_system(parentPath, 'LookUnderMasks','all', ...
+                               'FollowLinks','on', 'SearchDepth', 1, ...
+                               'Name', nm{1});
             if ~isempty(blks)
                 if wireBlockOutput(blks{1}, logName), wired = true; return; end
             end
@@ -685,9 +246,12 @@ function wired = instrumentTarget(parentPath, blockNameList, signalNameList, log
         end
     end
 
+    % --- Attempt B: match by signal-line name anywhere in the subsystem
     for sn = signalNameList
         try
-            lines = find_system(parentPath, 'FindAll','on', 'LookUnderMasks','all', 'FollowLinks','on', 'Type','line', 'Name', sn{1});
+            lines = find_system(parentPath, 'FindAll','on', ...
+                                'LookUnderMasks','all', 'FollowLinks','on', ...
+                                'Type','line', 'Name', sn{1});
             for li = 1:numel(lines)
                 srcPort = get_param(lines(li), 'SrcPortHandle');
                 if srcPort > 0
@@ -708,6 +272,7 @@ function ok = wireBlockOutput(blk, logName)
     try
         bType = get_param(blk, 'BlockType');
         if strcmp(bType, 'Outport') || strcmp(bType, 'Goto')
+            % Outport: log the line feeding into it (the real signal lives upstream)
             lh = get_param(blk, 'LineHandles');
             if isfield(lh, 'Inport') && lh.Inport > 0
                 srcPort = get_param(lh.Inport, 'SrcPortHandle');
@@ -731,8 +296,220 @@ function ok = wireBlockOutput(blk, logName)
     end
 end
 
+% =========================================================================
+% AUTO-DETECT SIMULINK MODEL
+% =========================================================================
+function modelName = autoDetectSimulinkModel()
+    modelName = '';
+    openModels = find_system('SearchDepth', 0, 'Type', 'block_diagram');
+    openModels = setdiff(openModels, {'simulink'});
+    if ~isempty(openModels), modelName = openModels{1}; return; end
+    
+    allFiles = [dir('*.slx'); dir('*.mdl')];
+    if isempty(allFiles)
+        errordlg('No Simulink model found. Navigate to your project folder.', 'Error');
+        return;
+    end
+    [~, modelName] = fileparts(allFiles(1).name);
+    load_system(modelName);
+end
+
+% =========================================================================
+% SCENARIO SETTER
+% =========================================================================
+function setScenario(f, model, scenario)
+    H = getappdata(f, 'handles');
+    setappdata(f, 'currentScenario', scenario);
+    faultTime = '0.05';
+
+    try
+        resetFaultBlocks(model);
+        % Default breaker / flux state for every non-inrush scenario.
+        % (Inrush overrides this below.)
+        if ~strcmp(scenario, 'Inrush'), setBreakersClosed(model); end
+        switch scenario
+            case 'Normal'
+            case 'Inrush'
+                setInrushEnergization(model);
+            case 'InternalAG',  set_param([model '/Step3'], 'Time', faultTime); set_param([model '/Internal_Fault'], 'FaultA','on','GroundFault','on');
+            case 'InternalBG',  set_param([model '/Step3'], 'Time', faultTime); set_param([model '/Internal_Fault'], 'FaultB','on','GroundFault','on');
+            case 'InternalAB',  set_param([model '/Step3'], 'Time', faultTime); set_param([model '/Internal_Fault'], 'FaultA','on','FaultB','on');
+            case 'InternalABC', set_param([model '/Step3'], 'Time', faultTime); set_param([model '/Internal_Fault'], 'FaultA','on','FaultB','on','FaultC','on');
+            case 'External',    set_param([model '/Step4'], 'Time', faultTime); set_param([model '/External_Fault'], 'FaultA','on','FaultB','on','FaultC','on');
+            case 'ExternalAB',  set_param([model '/Step4'], 'Time', faultTime); set_param([model '/External_Fault'], 'FaultA','on','FaultB','on');
+        end
+
+        statusMsg = sprintf('Scenario armed:  %s  —  Press START SIMULATION to run.', scenarioTitle(scenario));
+        set(H.status, 'String', statusMsg, 'ForegroundColor', [0.95 0.72 0.18]);
+    catch ME
+        warning('ControlPanel:ScenarioError', '[ControlPanel] %s', ME.message);
+    end
+end
+
+% =========================================================================
+% RUN SIMULATION  (re-instruments every run, writes a full log section)
+% =========================================================================
+function runSimWithTelemetry(f, model)
+    H        = getappdata(f, 'handles');
+    scenario = getappdata(f, 'currentScenario');
+    if isempty(scenario), scenario = 'Normal'; end
+
+    ACCENT = [0.20 0.62 0.88];
+    title  = scenarioTitle(scenario);
+
+    % ---- RE-INSTRUMENT every run (defends against Simulink resets) ------
+    autoInstrumentModel(model);
+
+    % ---- UI: busy ---
+    set(H.status, 'String', sprintf('Running simulation for  "%s" ...', title), ...
+        'ForegroundColor', [0.95 0.72 0.18]);
+    set(H.Action, 'String', 'RUNNING', 'BackgroundColor', [0.50 0.35 0.08]);
+    set(H.r87T, 'String', 'Simulating…'); set(H.Feat, 'String', 'Extracting…');
+    set(H.Trip, 'String', 'Awaiting…'); set(H.Idiff, 'String', char(8212));
+    set(H.Lat,  'String', char(8212));
+    drawnow;
+
+    logDir = fullfile(pwd, 'IndividualRunLogs');
+    if ~exist(logDir, 'dir'), mkdir(logDir); end
+    timestamp = datestr(now, 'yyyymmdd_HHMMSS');
+    logFile = fullfile(logDir, sprintf('%s_%s_%s.log', model, scenario, timestamp));
+    matFile = fullfile(logDir, sprintf('%s_%s_%s.mat', model, scenario, timestamp));
+
+    fid = fopen(logFile, 'w');
+    if fid < 0
+        errordlg('Could not create log file.', 'Logging Error'); return;
+    end
+    cleanupFID = onCleanup(@() fclose(fid));
+
+    % ---- HEADER (restored) -----------------------------------------------
+    fprintf(fid, '============================================================\n');
+    fprintf(fid, 'SCENARIO DEBUG LOG:  %s\n', upper(title));
+    fprintf(fid, '============================================================\n');
+    fprintf(fid, 'Timestamp   : %s\n', datestr(now));
+    fprintf(fid, 'Model       : %s\n', model);
+    fprintf(fid, 'Scenario    : %s\n', scenario);
+    fprintf(fid, 'Description : %s\n', title);
+    fprintf(fid, 'MATLAB ver  : %s\n', version);
+    fprintf(fid, 'Working dir : %s\n\n', pwd);
+    logBlockState(fid, model, scenario);
+
+    oldSigLog     = get_param(model, 'SignalLogging');
+    oldSigLogName = get_param(model, 'SignalLoggingName');
+    set_param(model, 'SignalLogging', 'on');
+    set_param(model, 'SignalLoggingName', 'logsout');
+
+    try
+        stopT = get_param(model, 'StopTime');
+        fprintf(fid, '--- SIMULATION RUN ---\nStopTime: %s\n', stopT);
+        simOut = sim(model, 'StopTime', stopT, 'ReturnWorkspaceOutputs', 'on');
+        fprintf(fid, 'Simulation: SUCCESS\n');
+
+        [time, idiff, nPhases, isUncomp] = extractRealDiffCurrent(simOut, fid);
+        [tripped, tripTime]              = extractTripDecision(simOut, fid);
+
+        peakIdiff = 0;
+        if ~isempty(idiff) && ~isempty(time), peakIdiff = max(abs(idiff(:))); end
+
+        faultInception = 0.05; latencyMs = NaN;
+        if ~isempty(tripped) && tripped && ~isnan(tripTime) && tripTime > faultInception
+            latencyMs = (tripTime - faultInception) * 1000;
+        end
+
+        [res87T, color87T] = interpret87TLogic(scenario, tripped, peakIdiff);
+        featStr            = buildFeatureString(time, idiff, scenario);
+
+        if isempty(tripped)
+            actionStr = 'UNKNOWN'; actionColor = [0.45 0.45 0.45];
+            tripDispStr = 'UNKNOWN (Signal missing)';
+        elseif tripped
+            actionStr = 'TRIP';    actionColor = [0.75 0.14 0.12];
+            tripDispStr = 'TRIP (from true relay output)';
+        else
+            actionStr = 'BLOCK';   actionColor = [0.10 0.52 0.28];
+            tripDispStr = 'BLOCK (from true relay output)';
+        end
+
+        if isUncomp
+            set(H.TtlIdiff, 'String', 'Idiff (UNCOMPENSATED):');
+            idiffStr = sprintf('%.4f A  (WARNING: External raw calc)', peakIdiff);
+            idiffCol = [0.90 0.45 0.15];
+        else
+            set(H.TtlIdiff, 'String', 'Peak I_{diff} (p.u.):');
+            if peakIdiff > 0
+                idiffStr = sprintf('%.4f  (Relay internal signal)', peakIdiff);
+            else
+                idiffStr = 'No I_diff signal logged';
+            end
+            idiffCol = ACCENT;
+        end
+
+        updateWaveformPlot(H.ax, time, idiff, nPhases, scenario, isUncomp);
+
+        % ---- UI update ---------------------------------------------------
+        set(H.status, 'String', sprintf('Analysis complete  |  Scenario: %s  |  Result: %s', ...
+            title, actionStr), 'ForegroundColor', [0.25 0.85 0.45]);
+        set(H.r87T,  'String', res87T,    'ForegroundColor', color87T);
+        set(H.Feat,  'String', featStr);
+        set(H.Trip,  'String', tripDispStr);
+        set(H.Idiff, 'String', idiffStr,  'ForegroundColor', idiffCol);
+
+        if ~isnan(latencyMs)
+            set(H.Lat, 'String', sprintf('%.1f ms', latencyMs));
+        elseif ~isempty(tripped) && tripped
+            set(H.Lat, 'String', 'TRIP — inception indeterminate');
+        elseif isempty(tripped)
+            set(H.Lat, 'String', 'UNKNOWN');
+        else
+            set(H.Lat, 'String', 'N/A');
+        end
+        set(H.Action, 'String', actionStr, 'BackgroundColor', actionColor);
+
+        % ---- FULL RELAY OUTPUT SECTION (the bit that was missing) -------
+        fprintf(fid, '\n--- RELAY OUTPUT (REAL MODEL RESPONSE) ---\n');
+        fprintf(fid, '87T interpretation : %s\n', res87T);
+        if isempty(tripped)
+            fprintf(fid, 'Trip decision      : UNKNOWN  (TripSignal not found in logsout)\n');
+        else
+            fprintf(fid, 'Trip decision      : %d  (%s)\n', tripped, actionStr);
+        end
+        if isUncomp
+            fprintf(fid, 'Peak Idiff         : %.4f A  [WARNING: RAW EXTERNAL CALC]\n', peakIdiff);
+        else
+            fprintf(fid, 'Peak Idiff         : %.4f  (relay-internal, post-Yd1, p.u.)\n', peakIdiff);
+        end
+        if ~isnan(latencyMs)
+            fprintf(fid, 'Relay latency      : %.2f ms\n', latencyMs);
+        else
+            fprintf(fid, 'Relay latency      : N/A\n');
+        end
+        fprintf(fid, 'Signal features    : %s\n', featStr);
+        fprintf(fid, '\n=== LOG COMPLETE ===\n');
+
+        debugData = struct('simOut', simOut, 'tripped', tripped, ...
+                           'peakIdiff', peakIdiff, 'latencyMs', latencyMs, ...
+                           'isUncomp', isUncomp, 'time', time, 'idiff', idiff);
+        save(matFile, 'debugData', '-v7.3');
+
+        fprintf('>>> %s | %s | Peak Idiff=%.4f\n', upper(scenario), actionStr, peakIdiff);
+
+    catch ME
+        fprintf(fid, '\nSIMULATION FAILED\n%s\n', getReport(ME, 'extended', 'hyperlinks', 'off'));
+        set(H.status, 'String', sprintf('Error: %s', ME.message), 'ForegroundColor', [0.90 0.22 0.18]);
+        set(H.Action, 'String', 'SYS FAULT', 'BackgroundColor', [0.45 0.10 0.08]);
+        disp(['ERROR: ' ME.message]);
+    end
+
+    set_param(model, 'SignalLogging',     oldSigLog);
+    set_param(model, 'SignalLoggingName', oldSigLogName);
+end
+
+% =========================================================================
+% DATA EXTRACTION 
+% =========================================================================
 function [time, idiff, nPhases, isUncomp] = extractRealDiffCurrent(simOut, fid)
     time = []; idiff = []; nPhases = 3; isUncomp = false;
+
+    % Try Auto-Instrumented LogsOut first
     try
         logs = simOut.get('logsout');
         el = logs.get('I_diff');
@@ -740,18 +517,21 @@ function [time, idiff, nPhases, isUncomp] = extractRealDiffCurrent(simOut, fid)
             [time, idiff] = unwrapTimeSeries(el.Values);
             if ~isempty(idiff)
                 nPhases = size(idiff,2);
+                if fid > 0, fprintf(fid, 'I_diff extracted directly from Relay Subsystem.\n'); end
                 return;
             end
         end
     catch
     end
 
+    % Fallback: Uncompensated
     try
         rawP = simOut.get('I_primary_abc'); rawS = simOut.get('I_secondary_abc');
         [tP, dP] = unwrapTimeSeries(rawP); [tS, dS] = unwrapTimeSeries(rawS);
         if ~isempty(dP) && ~isempty(dS)
             if ~isequal(tP, tS), dS = interp1(tS, dS, tP, 'linear', 'extrap'); end
             time = tP; idiff = dP - dS; nPhases = min(3, size(idiff, 2)); isUncomp = true;
+            if fid > 0, fprintf(fid, 'WARNING: Falling back to external uncompensated calculation.\n'); end
             return;
         end
     catch
@@ -760,7 +540,8 @@ end
 
 function [tripped, tripTime] = extractTripDecision(simOut, fid)
     tripped = []; tripTime = NaN;
-    candidates = {'TripSignal','Trip_Signal','relay_trip_signal_out','relay_trip_latch','top_relay_trip_to_breakers'};
+    candidates = {'TripSignal','Trip_Signal','relay_trip_signal_out', ...
+                  'relay_trip_latch','top_relay_trip_to_breakers'};
     try
         logs = simOut.get('logsout');
         for cn = candidates
@@ -775,6 +556,9 @@ function [tripped, tripTime] = extractTripDecision(simOut, fid)
                 else
                     tripped = false;
                 end
+                if fid > 0
+                    fprintf(fid, 'TripSignal extracted from logsout.get(''%s'')\n', cn{1});
+                end
                 return;
             catch
             end
@@ -782,6 +566,7 @@ function [tripped, tripTime] = extractTripDecision(simOut, fid)
     catch
     end
     
+    % Workspace-variable fallback
     for cn = candidates
         try
             raw = simOut.get(cn{1});
@@ -793,12 +578,22 @@ function [tripped, tripTime] = extractTripDecision(simOut, fid)
             else
                 tripped = false;
             end
+            if fid > 0
+                fprintf(fid, 'TripSignal extracted from simOut.get(''%s'')\n', cn{1});
+            end
             return;
         catch
         end
     end
+    
+    if fid > 0
+        fprintf(fid, 'WARNING: TripSignal not found by any name. Tripped=UNKNOWN.\n');
+    end
 end
 
+% =========================================================================
+% UTILS 
+% =========================================================================
 function [t, d] = unwrapTimeSeries(raw)
     t = []; d = []; if isempty(raw), return; end
     if isa(raw, 'timeseries'), t = raw.Time; d = raw.Data;
@@ -814,6 +609,88 @@ function [t, d] = unwrapTimeSeries(raw)
             d = d';
         end
     end
+end
+
+function [res87T, color] = interpret87TLogic(scenario, tripped, peakIdiff)
+    if isempty(tripped), res87T = 'UNKNOWN'; color = [0.6 0.65 0.7]; return; end
+    isInternal = startsWith(scenario, 'Internal');
+    if tripped && isInternal, res87T = sprintf('TRIP (Peak=%.3f)', peakIdiff); color = [0.9 0.4 0.2];
+    elseif ~tripped && ~isInternal, res87T = sprintf('BLOCK (Peak=%.4f)', peakIdiff); color = [0.6 0.65 0.7];
+    elseif tripped, res87T = sprintf('TRIP (MALOPERATION) (Peak=%.3f)', peakIdiff); color = [0.9 0.22 0.18];
+    else, res87T = sprintf('BLOCK (MISSED TRIP) (Peak=%.3f)', peakIdiff); color = [0.9 0.22 0.18];
+    end
+end
+
+function s = buildFeatureString(time, idiff, scenario)
+    if isempty(idiff) || isempty(time), s = 'No data'; return; end
+    flat = idiff(:); 
+    peakVal = max(abs(flat));
+    rmsVal = sqrt(mean(flat.^2));
+    dur_ms = (time(end)-time(1))*1e3;
+    
+    harmRatio = computeSecondHarmonicRatio(time, idiff(:,1));
+
+    if ~isnan(harmRatio)
+        s = sprintf('Peak: %.3f | RMS: %.3f | 2nd Harm: %.1f%% | Dur: %.1f ms', peakVal, rmsVal, harmRatio*100, dur_ms);
+    else
+        s = sprintf('Peak: %.3f | RMS: %.3f | Dur: %.1f ms', peakVal, rmsVal, dur_ms);
+    end
+end
+
+function ratio = computeSecondHarmonicRatio(time, sig)
+    ratio = NaN;
+    try
+        if numel(time) < 64, return; end
+        fs = 1 / mean(diff(time)); N = numel(sig); Y = fft(sig); freqs = (0:N-1) * (fs/N);
+        [~, i1] = min(abs(freqs - 50)); [~, i2] = min(abs(freqs - 100));
+        mag1 = abs(Y(i1)); mag2 = abs(Y(i2));
+        if mag1 > 0, ratio = mag2 / mag1; end
+    catch
+    end
+end
+
+function t = scenarioTitle(scenario)
+    map = containers.Map( ...
+        {'Normal', 'Inrush', 'InternalAG', 'InternalBG', 'InternalAB', 'InternalABC', 'External', 'ExternalAB'}, ...
+        {'Normal Load Condition', 'Magnetizing Inrush', 'Internal Fault — Phase A-G', ...
+         'Internal Fault — Phase B-G', 'Internal Fault — Phase A-B', 'Internal Fault — 3-Phase', ...
+         'External Through-Fault — 3-Phase', 'External Through-Fault — Phase A-B'});
+    if isKey(map, scenario)
+        t = map(scenario);
+    else
+        t = scenario;
+    end
+end
+
+function updateWaveformPlot(ax, time, idiff, nPhases, scenario, isUncomp)
+    cla(ax); hold(ax, 'on');
+    if isempty(time) || isempty(idiff), hold(ax, 'off'); return; end
+    phColors = [0.18 0.82 0.84; 0.98 0.72 0.18; 0.90 0.32 0.72];
+    for k = 1:min(nPhases, size(idiff, 2)), plot(ax, time*1e3, idiff(:,k), 'Color', phColors(k,:), 'LineWidth', 1.5); end
+    
+    if ~ismember(scenario, {'Normal', 'Inrush'})
+        xline(ax, 50, '--', 'Color', [1 0.38 0.28], 'LineWidth', 1.2, 'Label', 'Fault Inception (50 ms)', 'LabelVerticalAlignment', 'bottom', 'FontSize', 9, 'FontAngle', 'italic', 'HandleVisibility', 'off');
+    end
+    hold(ax, 'off');
+    
+    titleStr = scenarioTitle(scenario);
+    if isUncomp
+        titleStr = [titleStr '  —  [UNCOMPENSATED EXTERNAL I_{diff}]'];
+        tColor = [0.90 0.45 0.15];
+    else
+        titleStr = [titleStr '  —  [Internal Relay I_{diff}]'];
+        tColor = [0.95 0.95 0.95];
+    end
+    
+    title(ax, titleStr, 'Color', tColor, 'FontSize', 10.5, 'FontWeight', 'normal');
+    xlabel(ax, 'Time  (ms)', 'Color', [0.75 0.78 0.82], 'FontSize', 10);
+    ylabel(ax, 'I_{diff}', 'Color', [0.75 0.78 0.82], 'FontSize', 10);
+
+    grid(ax,'on'); 
+    ax.GridColor = [0.35 0.38 0.42]; ax.GridAlpha = 0.40;
+    ax.XLim = [0, max(time)*1e3];
+    ax.TickDir = 'out'; ax.XMinorTick = 'on'; ax.YMinorTick = 'on';
+    ax.FontSize = 9.5; ax.XColor = [0.75 0.78 0.82]; ax.YColor = [0.75 0.78 0.82];
 end
 
 function logBlockState(fid, model, scenario)
@@ -901,7 +778,7 @@ function setInrushEnergization(model, residualFlux)
 end
 
 % =========================================================================
-% BATCH DATASET GENERATOR (Runs REAL simulation for datasets)
+% BATCH DATASET GENERATOR
 % =========================================================================
 function generateBatch(model, hSampleCount)
     nSamples = str2double(get(hSampleCount, 'String'));
@@ -912,7 +789,7 @@ function generateBatch(model, hSampleCount)
     nSamples = round(nSamples);
 
     answer = questdlg( ...
-        sprintf('Generate %d random scenarios?\n\nEstimated time: ~%d seconds\n\n(Batch generation uses REAL physics)', ...
+        sprintf('Generate %d random scenarios?\n\nEstimated time: ~%d seconds', ...
                 nSamples, round(nSamples * 1.5)), ...
         'Confirm Batch Generation', 'Generate', 'Cancel', 'Generate');
     if ~strcmp(answer, 'Generate'), return; end
@@ -992,7 +869,7 @@ function generateBatch(model, hSampleCount)
             end
 
             try
-                simOut = sim(model, 'StopTime', '0.15');
+                simOut = sim(model, 'StopTime', '1.0');
 
                 try dataset.primaryCurrent{i} = simOut.get('I_primary_abc'); catch, try dataset.primaryCurrent{i} = simOut.I_primary_abc; catch, dataset.primaryCurrent{i} = []; end; end
                 try dataset.secondaryCurrent{i} = simOut.get('I_secondary_abc'); catch, try dataset.secondaryCurrent{i} = simOut.I_secondary_abc; catch, dataset.secondaryCurrent{i} = []; end; end
