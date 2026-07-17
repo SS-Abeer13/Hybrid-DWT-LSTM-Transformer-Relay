@@ -10,10 +10,10 @@ ax = axes(fig, 'FontName','Times New Roman','FontSize',11);
 hold(ax, 'on'); grid(ax, 'on'); box(ax, 'on');
 
 % Parameters
-I_pickup = 0.3;   % Minimum pickup current (A)
-I_knee1  = 2.0;   % First knee point (A)
-S1       = 0.15;  % Slope 1 (15%)
-S2       = 0.40;  % Slope 2 (40%)
+I_pickup = 0.30;  % Minimum pickup current (A)
+I_knee1  = 3.0;   % First knee point (A)
+S1       = 0.25;  % Slope 1 (25%)
+S2       = 0.60;  % Slope 2 (60%)
 
 % Compute Operating Boundary
 Ir = 0:0.01:6.5;
@@ -46,13 +46,13 @@ plot(I_pickup, I_pickup, 'ko', 'MarkerFaceColor','k', 'MarkerSize',6);
 plot(I_knee1, Id_thresh(Ir == I_knee1), 'ko', 'MarkerFaceColor','k', 'MarkerSize',6);
 
 % Annotate settings
-text(I_pickup + 0.1, I_pickup - 0.1, 'I_{pickup} = 0.3 A', 'FontName','Times New Roman','FontSize',9.5);
-text(I_knee1 - 0.6, Id_thresh(Ir == I_knee1) + 0.25, {'Knee Point', '(I_{rest} = 2.0 A)'}, ...
+text(I_pickup + 0.1, I_pickup - 0.1, 'I_{pickup} = 0.30 A', 'FontName','Times New Roman','FontSize',9.5);
+text(I_knee1 - 0.6, Id_thresh(Ir == I_knee1) + 0.25, {'Knee Point', '(I_{rest} = 3.0 A)'}, ...
      'FontName','Times New Roman','FontSize',9.5, 'HorizontalAlignment','center');
 
 % Slopes
-text(1.1, 0.45, 'Slope 1 = 15%', 'FontName','Times New Roman','FontSize',10, 'Rotation',8);
-text(4.2, 1.45, 'Slope 2 = 40%', 'FontName','Times New Roman','FontSize',10, 'Rotation',21);
+text(1.1, 0.55, 'Slope 1 = 25%', 'FontName','Times New Roman','FontSize',10, 'Rotation',13);
+text(4.2, 1.65, 'Slope 2 = 60%', 'FontName','Times New Roman','FontSize',10, 'Rotation',31);
 
 % Region Text Labels
 text(2.0, 4.0, {'OPERATE REGION', '(Internal Faults)'}, 'FontName','Times New Roman','FontSize',12, ...

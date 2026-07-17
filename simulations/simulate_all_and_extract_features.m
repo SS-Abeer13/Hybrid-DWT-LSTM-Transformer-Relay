@@ -43,10 +43,10 @@ try
     % therefore recompute the conventional 87T trip OFFLINE from the logged
     % differential/restraint currents, using the thesis dual-slope settings
     % (see plotting/plot_percentage_restraint_slope.m).
-    RELAY.I_pickup = 0.3;   % Minimum pickup current (A, secondary)
-    RELAY.I_knee1  = 2.0;   % First knee point (A)
-    RELAY.S1       = 0.15;  % Slope 1 (15%)
-    RELAY.S2       = 0.40;  % Slope 2 (40%)
+    RELAY.I_pickup = 0.30;  % Minimum pickup current (A, secondary)
+    RELAY.I_knee1  = 3.0;   % First knee point (A) (breakpoint = 3.0 pu)
+    RELAY.S1       = 0.25;  % Slope 1 (25%)
+    RELAY.S2       = 0.60;  % Slope 2 (60%)
     RELAY.dwell_s  = 0.005; % Operate must persist this long to declare a trip
 
     % Save model changes
