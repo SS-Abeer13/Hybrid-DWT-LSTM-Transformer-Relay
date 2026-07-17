@@ -1,0 +1,19 @@
+# Core packages used by the XFormer LSTM notebooks.
+# Install PyTorch first with the CUDA 12.8 wheel index; see setup_lstm_env.ps1.
+numpy
+scipy
+h5py
+pandas
+matplotlib
+seaborn
+scikit-learn
+tqdm
+optuna
+umap-learn
+jupyter
+notebook
+ipykernel
+ipywidgets
+psutil
+onnx
+onnxruntime-gpu

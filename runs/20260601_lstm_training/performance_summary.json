@@ -1,0 +1,65 @@
+{
+    "run_tag": "20260601_055925",
+    "hpo": {
+        "n_trials": 30,
+        "best_auc_roc": 0.967,
+        "best_params": {
+            "hidden_size": 64,
+            "num_layers": 2,
+            "dropout": 0.22137852035542321,
+            "bidirectional": false,
+            "lr": 0.0002465233025381014,
+            "batch_size": 8,
+            "weight_decay": 0.0001378356900362665
+        }
+    },
+    "cross_validation": {
+        "Val Loss": {
+            "mean": 0.1573,
+            "std": 0.0186
+        },
+        "Accuracy": {
+            "mean": 0.9121,
+            "std": 0.0113
+        },
+        "Precision": {
+            "mean": 0.9191,
+            "std": 0.0299
+        },
+        "Recall": {
+            "mean": 0.9309,
+            "std": 0.0311
+        },
+        "F1": {
+            "mean": 0.9243,
+            "std": 0.0094
+        },
+        "AUC-ROC": {
+            "mean": 0.9791,
+            "std": 0.0049
+        }
+    },
+    "test_set": {
+        "loss": 0.1363,
+        "accuracy": 0.9229,
+        "precision": 0.9167,
+        "recall": 0.9527,
+        "f1": 0.9344,
+        "auc_roc": 0.9831
+    },
+    "model_params": 56898,
+    "final_config": {
+        "input_size": 9,
+        "hidden_size": 64,
+        "num_layers": 2,
+        "dropout": 0.22137852035542321,
+        "bidirectional": false,
+        "lr": 0.0002465233025381014,
+        "batch_size": 8,
+        "weight_decay": 0.0001378356900362665,
+        "max_epochs": 60,
+        "patience": 12,
+        "grad_clip": 1.0,
+        "k_folds": 5
+    }
+}

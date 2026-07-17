@@ -1,0 +1,130 @@
+\chapter{Appendix}
+\label{ch:appendix}
+
+
+\section{Appendix A: System Parameters}
+
+\subsection{A.1  Transformer and CT Parameters}
+The transformer and CT parameters used throughout this study correspond to the protected 300 MVA, 230/11 kV, Yd1 unit modelled in Chapter 4 (see Tables 4.1 and 4.2). They are reproduced here for convenience.
+
+Table A.1: Power transformer rated and equivalent-circuit parameters.
+
+Table A.2: Current transformer parameters.
+
+
+\section{Appendix B: db4 Wavelet Coefficients}
+Table B.1: Daubechies-4 decomposition filter coefficients (g[n] = (-1)ⁿ h[7-n]).
+
+
+\section{Appendix C: LSTM Hyperparameter Configuration}
+Table C.1: LSTM hyperparameter search space and selected configuration.
+
+
+\section{Appendix D: Code Listings}
+
+\subsection{D.1  MATLAB: DWT Feature Extraction (db4, half-cycle window)}
+function F = dwt\_features(I\_diff, fs)
+\% I\_diff: 3xN differential currents (phases A,B,C); fs = 1600 Hz
+\% Returns: [EA\_a ED\_a EA\_b ED\_b EA\_c ED\_c]
+  w = 'db4'; n = floor(fs/(2*50));        \% 16-sample half-cycle
+  F = zeros(1,6);
+  for ph = 1:3
+    x = I\_diff(ph, end-n+1:end);
+    [cA, cD] = dwt(x, w);
+    F(2*ph-1) = sum(cA.^2); F(2*ph) = sum(cD.^2);
+  end
+end
+
+
+\subsection{D.2  Python (PyTorch): LSTM Training and ONNX Export (Opset 14)}
+import numpy as np, torch, torch.nn as nn
+from sklearn.model\_selection import train\_test\_split
+from sklearn.preprocessing import StandardScaler
+
+X = np.load('dwt\_features.npy')   \# (N, 32, 6)
+y = np.load('labels.npy')
+Xtr, Xte, ytr, yte = train\_test\_split(X, y, test\_size=0.15, stratify=y)
+sc = StandardScaler()
+Xtr = sc.fit\_transform(Xtr.reshape(-1,6)).reshape(-1,32,6)
+Xte = sc.transform(Xte.reshape(-1,6)).reshape(-1,32,6)
+
+class DWTLSTM(nn.Module):
+    def \_\_init\_\_(self):
+        super().\_\_init\_\_()
+        self.l1 = nn.LSTM(6, 128, batch\_first=True)      \# unidirectional
+        self.d1 = nn.Dropout(0.3)
+        self.l2 = nn.LSTM(128, 64, batch\_first=True)
+        self.d2 = nn.Dropout(0.3)
+        self.attn = nn.Linear(64, 1)                     \# global temporal attention
+        self.fc1 = nn.Linear(64, 32); self.fc2 = nn.Linear(32, 4)
+    def forward(self, x):
+        h,\_ = self.l1(x); h = self.d1(h)
+        h,\_ = self.l2(h); h = self.d2(h)
+        a = torch.softmax(self.attn(h), dim=1)           \# (B,32,1)
+        c = (a * h).sum(dim=1)                            \# (B,64)
+        return self.fc2(torch.relu(self.fc1(c)))
+
+model = DWTLSTM()
+opt = torch.optim.Adam(model.parameters(), lr=1e-3)
+w = torch.tensor([3.0,1.0,1.5,1.0])                       \# class weights
+loss\_fn = nn.CrossEntropyLoss(weight=w)
+\# ... training loop with early stopping (patience=20), batch\_size=128 ...
+
+dummy = torch.randn(1, 32, 6)
+torch.onnx.export(model, dummy, 'dwt\_lstm\_relay.onnx',
+                  input\_names=['input'], output\_names=['probs'],
+                  opset\_version=14)
+
+
+\subsection{D.3  Simulink Integration Parameters}
+\%\% Solver settings (EMT solver at 10 us; relay subsystem decimated to 1.6 kHz)
+set\_param('hatdp\_relay','SolverType','Fixed-step','Solver','FixedStepDiscrete', ...
+          'FixedStep','1e-5','StopTime','1.0');
+
+\%\% ONNX Predict block (Opset 14 model)
+set\_param('hatdp\_relay/LSTM\_Classifier', ...
+          'NetworkFilename','dwt\_lstm\_relay.onnx', ...
+          'OutputLayer','softmax','ExecutionMode','SIM');
+
+\%\% Adaptive 87T relay settings
+relay.Slope = 0.30; relay.Ipick = 0.25;      \% pu of rated
+relay.I2\_restraint = 0.20; relay.CrossBlock = 'on';
+
+\%\% Hybrid gate: AND mode (both relay and LSTM must agree)
+gate.Mode = 'AND'; gate.LSTM\_class = 1;       \% 1 = internal fault
+gate.ConfThreshold = 0.85;
+
+
+\section{Appendix E: Extended Per-Scenario Results}
+This appendix provides a finer breakdown of the test-set performance summarised in Chapter 6, reported per fault type and per winding location for the internal-fault class, and per disturbance subtype for the non-internal classes. Table E.1 disaggregates internal-fault recall by fault type and winding tap, confirming that the 100\% dependability figure holds uniformly across all internal-fault subcategories, including the most challenging deep-winding and high-resistance cases that approach the pickup boundary.
+
+Table E.1: Internal-fault recall by fault type and winding location (proposed hybrid relay).
+
+Table E.2 disaggregates the non-internal classes by disturbance subtype, isolating the conditions under which the standalone classifier produced its few errors. The residual inter-class confusions concentrate in the sympathetic-inrush and deep-CT-saturation subtypes---exactly the regimes that the hybrid 87T handshake is designed to secure---so that, after the veto/AND gate, no false trip survives on the test set.
+
+Table E.2: Non-internal class accuracy by disturbance subtype (standalone DWT-LSTM, before hybrid gating).
+
+Table E.3 reports the operating-time distribution for internal faults, complementing the latency budget of Chapter 6. The mean clearing time of 11.8 ms and 95th-percentile of 12.9 ms confirm that the sub-17.2 ms bound is met not merely in the worst case but across the entire internal-fault population.
+
+Table E.3: Operating-time distribution for internal faults (hybrid relay, Simulink co-simulation).
+
+
+\section{Appendix F: Reproducibility and Software Environment}
+To support reproducibility, the complete software and hardware environment used for data generation, training, and deployment is documented in Table F.1. The pipeline is deliberately built on open, vendor-neutral interchange formats (ONNX) so that the trained model can be reproduced and redeployed independently of any single toolchain.
+
+Table F.1: Software and hardware environment for the complete pipeline.
+
+The end-to-end workflow is: (1) generate labelled differential-current records in Simulink via ControlPanel.m; (2) export to .mat; (3) extract six-dimensional DWT energy features in Python; (4) train the attention-LSTM with early stopping and 5-fold cross-validation; (5) export to ONNX at Opset 14; and (6) import into Simulink for closed-loop validation. Each stage writes intermediate artefacts to disk, allowing any stage to be re-run independently.
+
+
+\section{Appendix G: Summary of Key Design Parameters}
+Table G.1: Consolidated summary of the principal design parameters of the proposed framework.
+
+
+\section{Appendix H: Relevant Standards and Compliance Considerations}
+Deployment of the proposed scheme as a production protection function would require compliance with the established protection and substation-automation standards summarised in Table H.1. While the present work is validated in simulation and closed-loop co-simulation, this appendix documents the standards landscape against which a field implementation would be assessed, and indicates how each relates to the proposed framework.
+
+Table H.1: Relevant standards and their relation to the proposed framework.
+
+Three points follow. First, by retaining a conventional adaptive 87T element as the dependability anchor, the scheme remains aligned with the differential-protection principles of IEEE C37.91, easing certification relative to a pure black-box classifier. Second, the 1.6 kHz sampling rate and merging-unit conditioning chain were chosen specifically for compatibility with IEC 61850-9-2 Sampled Values, so the data interface is standards-consistent by construction. Third, full field deployment would additionally require GOOSE trip/alarm mapping (IEC 61850-8-1) and adherence to IEC 62351 communication-security provisions; these integration and cybersecurity tasks are identified as future work in Chapter 7 and are outside the scope of the present simulation-based validation.
+

@@ -1,0 +1,35 @@
+# Python environment and caches
+.venv-lstm/
+__pycache__/
+*.pyc
+
+# Local agents and IDE config
+.agents/
+.ipynb_checkpoints/
+.matlab_temp_profile/
+.matplotlib/
+.pip-cache/
+.python-cache/
+.uv-cache/
+.uv-python/
+.idea/
+.jupyter-config/
+.jupyter-data/
+.jupyter-runtime/
+
+# Large dataset files and binary formats (over GitHub 100MB limit)
+*.mat
+*.exe
+*.zip
+*.pth
+*.onnx
+
+# Temporary profile/profile logging files
+*.log
+*.asv
+slprj/
+**/slprj/
+_speech_docx_render/
+**/_speech_docx_render/
+
+

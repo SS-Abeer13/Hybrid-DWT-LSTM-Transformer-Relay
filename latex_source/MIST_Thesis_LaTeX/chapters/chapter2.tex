@@ -1,0 +1,89 @@
+\chapter{Literature Review}
+\label{ch:chapter2}
+
+
+\section{2.1  Introduction to Literature Review}
+This chapter presents a critical review of the existing literature on transformer differential protection, spanning conventional harmonic restraint and waveform-based methods, signal processing techniques (Fourier and wavelet transforms), machine learning approaches (ANN, SVM, PNN, ensemble methods), and deep learning architectures (CNN, RNN, LSTM). The review identifies the strengths and limitations of each category and highlights the specific research gaps that motivate the hybrid DWT-LSTM framework proposed in this thesis. The surveyed literature is drawn primarily from IEEE Transactions on Power Delivery, IEEE Transactions on Power Systems, Electric Power Systems Research, and related conference proceedings published from the 1950s through 2024.
+
+
+\section{2.2  Conventional Transformer Differential Protection Methods}
+
+\subsection{2.2.1  Harmonic Restraint Methods}
+The harmonic restraint (HR) method, first proposed by Sharp and Glassburn in 1958, is the most widely deployed technique for discriminating magnetizing inrush from internal faults \cite{ref7}. The premise is that inrush currents contain significant even-harmonic content (particularly the second harmonic, with k2 = I2/I1 typically ranging from 15\% to 60\%), while internal fault currents are predominantly fundamental and odd harmonics. The relay trips only when the following conditions are simultaneously satisfied:
+
+I\_d > I\_pickup	(2.1)
+
+I\_d > S · I\_r	(2.2)
+
+I2 / I1 < k\_threshold	(2.3)
+
+where I\_d is the differential current, I\_r the restraint current, I\_pickup the minimum pickup current, S the slope setting, and k\_threshold is typically set between 15\% and 20\%.
+
+Despite widespread adoption, HR suffers from documented shortcomings: modern transformers with amorphous alloy cores exhibit second harmonic ratios as low as 7--10\%, below the conventional 15\% threshold, causing false tripping \cite{ref11}; internal faults near voltage zero-crossing produce DC offsets with sufficient second harmonic to inadvertently restrain the relay \cite{ref8}; and cross-blocking schemes improve security during three-phase energization but increase the risk of failure to trip for simultaneous inrush and fault events \cite{ref25}.
+
+
+\subsection{2.2.2  Waveform-Based and Equivalent Circuit Methods}
+Waveform-based methods exploit the distinct shape of inrush versus fault current waveforms. The dead-angle method defines the angular duration during each half-cycle where the current magnitude falls below a threshold; if this exceeds 65--80 degrees, the event is classified as inrush. While computationally straightforward, dead-angle methods are highly sensitive to threshold selection, measurement noise, and CT saturation \cite{ref26}. Gap-detection methods operate on the current derivative and are more noise-susceptible \cite{ref27}, while waveform-correlation methods compute half-cycle symmetry but are sensitive to data-window length and CT saturation \cite{ref28}.
+
+Equivalent circuit-based methods model the transformer using magnetic equivalent circuits, detecting internal faults when terminal measurements violate the circuit equations \cite{ref29}. Voltage-restrained differential protection increases relay restraint during overexcitation based on fifth-harmonic content \cite{ref29}. While physically grounded, these methods require accurate transformer models, voltage measurements, and real-time solutions to differential equations, limiting their practical deployment \cite{ref30}.
+
+
+\section{2.3  Signal Processing Techniques}
+
+\subsection{2.3.1  Fourier and Wavelet Transform Approaches}
+The Discrete Fourier Transform (DFT) has been the workhorse of digital relaying since the 1980s. Full-cycle DFT provides excellent frequency selectivity but incurs a one-cycle delay, while half-cycle DFT is faster but susceptible to decaying DC components \cite{ref31}. The fundamental limitation of Fourier methods is the uncertainty principle: the DFT provides frequency resolution at the expense of time-domain localization, making it unable to capture the transient, non-stationary characteristics of inrush and fault waveforms \cite{ref32}.
+
+The wavelet transform overcomes this limitation through simultaneous time-frequency localization with adaptive resolution. For digital implementation, the Discrete Wavelet Transform (DWT) is preferred, using cascaded low-pass and high-pass filters with downsampling to produce multi-resolution decomposition \cite{ref5}. In \cite{ref6}, DWT with db4 at five levels achieved 97.3\% accuracy with an ANN classifier; \cite{ref19} proposed Wavelet Packet Transform (WPT) with sym8 for improved entropy-based discrimination; and \cite{ref14} concluded that db4 provides an optimal trade-off for 50 Hz signals. A persistent limitation of wavelet-based methods is that they extract features from individual windows without modeling temporal evolution across successive windows.
+
+
+\section{2.4  Machine Learning Approaches}
+Artificial Neural Networks (ANNs). Backpropagation-trained multilayer perceptrons have been extensively applied to classify differential current events. A three-layer MLP with harmonic features achieved 98.5\% accuracy on 2,000 simulated events \cite{ref9}, while incorporating wavelet energy and entropy features improved accuracy to 99.1\% \cite{ref10}. However, ANNs process features as static vectors, discarding temporal ordering information critical for transient discrimination.
+
+Support Vector Machines (SVMs). SVMs with RBF kernels achieved 98.2\% accuracy using wavelet features, with superior generalization from limited data \cite{ref13}. While robust to noise via margin maximization, their cubic training-cost scaling and inherent binary formulation limit applicability to multi-class fault discrimination, and they treat inputs as static feature vectors without temporal modeling.
+
+Probabilistic Neural Networks (PNNs). PNNs employ non-iterative Parzen-window density estimation for Bayesian classification, achieving 97.8\% accuracy with harmonic features \cite{ref9} and 98.9\% with combined wavelet features \cite{ref25}. However, computational and memory requirements scale linearly with training samples, and performance is sensitive to the smoothing parameter.
+
+Ensemble and Hybrid Methods. Random Forest classifiers using combined Fourier and wavelet features achieved 99.0\% accuracy with built-in feature-importance measures \cite{ref11}. Two-stage hybrid schemes reduced computational burden while maintaining accuracy \cite{ref34}, at the cost of increased training complexity and reduced interpretability.
+
+
+\section{2.5  Deep Learning Approaches}
+
+\subsection{2.5.1  CNN, RNN and LSTM Architectures}
+Convolutional Neural Networks (CNNs) have been adapted for 1-D time-series classification of differential currents. A 1D-CNN processing raw waveforms at 1 kHz over two-cycle windows achieved 98.7\% accuracy, outperforming ANNs with hand-crafted Fourier features (96.3\%) \cite{ref16}. However, CNNs treat the input as a fixed-length vector and do not explicitly model global temporal dependencies across successive cycles---information critical for distinguishing events with evolving characteristics.
+
+Recurrent Neural Networks (RNNs) address this limitation by maintaining a hidden state updated at each time step, but standard RNNs suffer from the vanishing-gradient problem. The Long Short-Term Memory (LSTM) network overcomes this through a gated memory cell with input gate i\_t, forget gate f\_t, and output gate o\_t:
+
+f\_t = σ(W\_f · [h\_{t-1}, x\_t] + b\_f)	(2.4)
+
+i\_t = σ(W\_i · [h\_{t-1}, x\_t] + b\_i)	(2.5)
+
+C̃\_t = tanh(W\_C · [h\_{t-1}, x\_t] + b\_C)	(2.6)
+
+C\_t = f\_t ⊙ C\_{t-1} + i\_t ⊙ C̃\_t	(2.7)
+
+o\_t = σ(W\_o · [h\_{t-1}, x\_t] + b\_o)	(2.8)
+
+h\_t = o\_t ⊙ tanh(C\_t)	(2.9)
+
+where σ is the sigmoid function and ⊙ denotes the Hadamard product. An LSTM classifier processing sequences of wavelet-extracted features over successive half-cycle windows achieved 99.3\% accuracy \cite{ref1}, significantly outperforming ANNs and CNNs. Attention mechanisms have been integrated with LSTM to assign learned importance weights to different time steps, achieving high accuracy with reduced complexity and interpretable attention weights \cite{ref3}. A comprehensive comparison of vanilla RNN, GRU, and LSTM concluded that LSTM consistently outperforms alternatives for complex transient scenarios \cite{ref23}.
+
+
+\subsection{2.5.2  Emerging Deep Learning Architectures}
+Beyond CNNs and RNNs, autoencoders have been explored for unsupervised anomaly detection through reconstruction-error analysis \cite{ref35}, and Generative Adversarial Networks (GANs) have been proposed for synthetic fault and inrush data augmentation \cite{ref36}. The Transformer architecture, with its self-attention mechanism, has been adapted for power-system time-series classification but remains in early stages for transformer protection, with quadratic computational scaling posing real-time implementation challenges \cite{ref37}.
+
+
+\section{2.6  Research Gaps}
+Despite extensive literature, five critical gaps motivate this thesis. (1) Wavelet parameter selection has been ad hoc rather than systematically optimized using quantitative separability metrics. (2) Existing approaches either use wavelet features as static inputs to feedforward classifiers (discarding temporal information) or feed raw waveforms to sequence models (discarding multi-resolution decomposition); no prior work fully integrates DWT feature extraction with LSTM temporal modeling in a serial hybrid architecture. (3) The vast majority of ML/DL methods employ fixed decision thresholds that do not adapt to real-time operating conditions. (4) Most studies lack comprehensive robustness evaluation under realistic adversities. (5) The absence of standardized datasets, metrics, and benchmarking protocols hinders fair cross-method comparison. This thesis addresses all five gaps through systematic wavelet optimization, a novel DWT-LSTM hybrid architecture, adaptive dynamic thresholding, comprehensive robustness analysis, and standardized benchmarking against seven baseline methods.
+
+
+\section{2.7  Comparative Synthesis of the Literature}
+The preceding sections reviewed individual methodological families. To consolidate this body of work and to position the present thesis precisely against the state of the art, Table 2.1 synthesises the most directly comparable studies drawn from the reference list. For each work, the table records the signal-processing front end, the classifier or decision mechanism, the principal feature set, the best reported accuracy (as stated by the respective authors and measured on their own datasets), the validation modality, and the dominant residual limitation that the present work seeks to address. Because each study uses a different transformer model, dataset size, and evaluation protocol, the reported accuracies are not directly commensurable; they are reproduced here only to characterise the maturity of each approach, not to rank methods against one another. A controlled, like-for-like comparison on a single unified dataset is deferred to Chapter 6 (Section 6.8), where every baseline is re-implemented and evaluated on the same 2,500-case corpus used for the proposed framework.
+
+Table 2.1: Comparative synthesis of representative transformer differential protection studies from the reviewed literature.
+
+Three observations follow from this synthesis. First, the field has progressed from fixed-threshold analytic schemes [7, 8, 21] through shallow learning on static feature vectors [9, 13, 18, 19, 20, 25] to deep sequence models [1, 2, 3, 16, 23]; reported accuracy has correspondingly risen from the low-97\% range to above 99\%. Second, despite this progress, almost all recent high-accuracy studies evaluate a standalone classifier that directly issues the trip decision, leaving the dependability--security trade-off implicit and the false-trip rate unquantified under adverse, out-of-distribution conditions. Third, none of the surveyed works couples the learned classifier to a conventional, safety-certified 87T element through an explicit supervisory handshake; consequently, a single classifier error translates directly into a maloperation. The present thesis is distinguished on all three counts: it quantifies security explicitly, it stress-tests well beyond the training distribution, and it subordinates the LSTM to the classical relay through an AND/veto gate that preserves deterministic, explainable behaviour.
+
+It is also instructive to contrast the feature-engineering philosophy across studies. Several works pursue high-dimensional descriptors---36-component wavelet statistics \cite{ref18}, full wavelet-packet energy maps \cite{ref20, ref31}, or raw waveform windows fed to convolutional layers \cite{ref16}. Such representations can be discriminative but inflate inference cost and obscure the physical meaning of each input. The present work deliberately adopts a parsimonious, physics-informed six-feature vector (approximation and detail energy per phase), demonstrating in Chapter 6 that compact, interpretable features paired with a temporal model match or exceed the accuracy of high-dimensional alternatives while remaining deployable on standard relay hardware.
+
+Finally, the validation modality deserves emphasis. The overwhelming majority of the surveyed studies report results purely on offline simulation datasets [1, 2, 3, 5, 6, 9, 13, 16, 18, 19, 20, 23, 25, 30, 31, 32]. Field-recorded validation and hardware-in-the-loop testing remain rare. While the present work is likewise simulation-based, it advances validation realism by deploying the trained model back into the MATLAB/Simulink electromagnetic-transient environment through ONNX, executing the complete protection pipeline---feature extraction, inference, and the hybrid decision---in closed loop with the physical plant model rather than scoring a static feature matrix offline. This closed-loop co-simulation is a meaningful step toward the hardware-in-the-loop validation outlined in Chapter 7.
+

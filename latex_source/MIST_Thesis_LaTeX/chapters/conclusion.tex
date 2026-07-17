@@ -1,0 +1,75 @@
+\chapter{Conclusion and Future Scopes}
+\label{ch:conclusion}
+
+
+\section{7.1  Conclusion}
+This thesis has presented the design, development, and comprehensive evaluation of a hybrid adaptive transformer differential protection (HATDP) framework that synergistically combines a Discrete Wavelet Transform--Long Short-Term Memory (DWT-LSTM) classifier with a conventional 87T differential relay. The research addresses the persistent challenge in power transformer protection---the inability of conventional harmonic restraint (CHR) methods to simultaneously achieve high dependability and high security under adverse conditions including current transformer (CT) saturation, high-impedance faults, and complex inrush phenomena.
+
+The MATLAB/Simulink environment was used to develop a detailed power-system model of a 300 MVA, 230 kV/11 kV power transformer with Yd1 vector group, including realistic representations of magnetization characteristics, CT saturation and remanence, and transmission-line parameters. Three-phase differential currents were sampled at 1.6 kHz (32 samples per cycle), and a comprehensive dataset of 2,500 event cases was generated across four operating conditions: normal load, external faults, magnetizing inrush, and internal faults. The signal-processing pipeline employs a db4 DWT on half-cycle sliding windows (16 samples), computing six energy features per classification instant---approximation energy and detail energy for each of the three phases. The two-layer LSTM classifier (128→64 hidden units) with global temporal attention, trained offline in Python using PyTorch, achieves 98.89\% overall accuracy with 100\% internal-fault recall and was exported to ONNX format (Opset 14) for integration into Simulink via the Deep Learning Toolbox Predict block, with inference latency of less than 0.74 ms per classification. The hybrid veto/AND-gate architecture achieves simultaneous 100\% dependability (zero false negatives) and 100\% security (zero false trips) on the 1,800-case test dataset, with a sub-cycle fault-clearing time of less than 17.2 ms---resolving the fundamental dependability--security trade-off that has constrained transformer differential protection for decades.
+
+
+\section{7.2  Key Findings}
+The principal findings of this research are summarized in three areas: feature robustness, hybrid security enhancement, and real-time feasibility.
+
+
+\subsection{7.2.1  Feature Robustness}
+Six DWT energy features---approximation energy and detail energy from the db4 decomposition of each phase's differential current---provide sufficient discriminative information for reliable four-class classification. The detail-energy features (100--800 Hz band) achieve an inter-class separation ratio exceeding 500 between internal faults and normal operation, while the approximation-energy features (0--100 Hz band) provide critical secondary discrimination between inrush and external-fault conditions. The LSTM classifier achieves 98.89\% accuracy---substantially exceeding Wavelet-ANN (98.65\%) and Wavelet-SVM (98.23\%)---and maintains 100\% internal-fault recall across all adversarial conditions, including CT saturation at all severity levels, high-impedance faults up to 300 Ω, noise down to 20 dB SNR, frequency deviations across the 47--53 Hz range, and extreme CT remanent flux up to ±95\%. This consistent zero-false-negative rate provides the dependability foundation upon which the hybrid architecture is built.
+
+
+\subsection{7.2.2  Enhanced Security of Hybrid Architecture}
+The standalone 87T relay produces 77 false trips on the 1,800-case test dataset---primarily during external faults with CT saturation (51 false trips) and sympathetic-inrush events (26 false trips). The LSTM's supervisory veto blocks all 77 false trips (100\% effectiveness), and in the hybrid AND-gate configuration---where both the 87T relay and the LSTM must agree to trip---the false-trip count drops to zero on the test dataset. For sympathetic inrush specifically, where the standalone 87T relay with cross-blocking produces 26 false trips (10.0\% false-trip rate), the hybrid AND gate eliminates all false trips, achieving 100\% security. This has significant practical implications, as sympathetic inrush is a common cause of false differential trips in multi-transformer substations.
+
+
+\subsection{7.2.3  Real-Time Feasibility}
+The complete hybrid protection pipeline executes in real time within the MATLAB/Simulink co-simulation environment. The end-to-end clearing-time budget comprises: data buffering 5.0 ms (quarter-cycle, 8 samples at 1.6 kHz); DWT decomposition and energy computation < 1.0 ms; LSTM inference (ONNX Predict block) < 0.74 ms; adaptive 87T relay computation < 1.0 ms; hybrid veto/AND-gate logic < 0.1 ms; for a total of less than 17.2 ms from fault inception to trip output. This is firmly sub-cycle at 50 Hz (one cycle = 20 ms) and improves on conventional CHR relays (30--40 ms) and modern digital relays (15--30 ms). The stateless LSTM inference design reduced latency by approximately 35\% compared to a stateful implementation, while the MATLAB → Python (training) → ONNX → Simulink (validation) pipeline provides a validated pathway for transitioning AI-based protection from research to deployable relay firmware.
+
+
+\section{7.3  Research Outcomes}
+Immediate practical impact. The hybrid architecture demonstrates that 100\% dependability and 100\% security can be achieved simultaneously, challenging the long-held assumption that these objectives must be traded off. The validated MATLAB → Python (PyTorch training) → ONNX → Simulink (validation) pipeline provides a reproducible methodology that can be adopted by relay manufacturers. Sub-cycle clearing (< 17.2 ms) significantly reduces I²t thermal stress on transformer windings. The six-energy-feature representation ensures physical interpretability---each feature maps to a specific frequency band and phase---addressing a key barrier to ML adoption in safety-critical applications.
+
+Longer-term significance. The veto/AND-gate concept serves as a template applicable to transmission-line, busbar, and generator protection. The framework demonstrates a principled approach to integrating machine learning into protection systems that preserves the reliability and interpretability requirements of the protection community, contributing to the broader evolution toward digital substations and intelligent electronic devices.
+
+
+\section{7.4  Limitations of the Study}
+The LSTM model was trained exclusively on data from a 300 MVA, 230/11 kV, Yd1 transformer; generalization to other ratings, vector groups, or core materials has not been validated.
+
+The dataset does not include inter-turn faults, which produce low-magnitude differential currents comparable to normal load and remain an open detection challenge.
+
+Trip-only detection rate decreases for high-impedance faults above 300 Ω, and performance beyond 500 Ω has not been tested.
+
+All results are simulation-based; validation with field-recorded COMTRADE data or hardware-in-the-loop (HIL) testing is essential before practical deployment.
+
+The simulation model represents a fixed power-system topology; performance under significant post-contingency topological changes has not been evaluated.
+
+
+\section{7.5  Recommendations for Future Work}
+
+\subsection{7.5.1  Hardware-in-the-Loop Testing}
+The hybrid relay algorithm---including DWT computation, ONNX-based LSTM inference, 87T relay logic, and hybrid decision---should be implemented on a real-time hardware platform (e.g., Speedgoat, OPAL-RT, or FPGA/ARM-based numerical relay) and tested against a real-time digital simulator. The HIL testbed should evaluate deterministic execution time, ADC quantization effects, CT burden and secondary-wiring impedance impacts, and long-duration stability.
+
+
+\subsection{7.5.2  Inter-Turn Fault Detection}
+A detailed multi-winding transformer model should be developed to simulate inter-turn faults with varying turn ratios (1\%--10\% of winding turns), capturing the asymmetrical magnetic-flux distribution and high-frequency transients characteristic of such faults. The DWT feature pipeline should be evaluated for inter-turn fault sensitivity, with additional features investigated if the existing six-feature representation proves insufficient.
+
+
+\subsection{7.5.3  Field Deployment and IEC 61850 Integration}
+Collaboration with electric utilities should be established to obtain COMTRADE fault records from operational 300 MVA-class transformers for benchmarking. Trip commands and supervisory alarms should be mapped to IEC 61850 GOOSE messages, and the integration should address IEC 61850-9-2 Sampled-Values requirements including network latency, packet loss, and data-synchronization challenges.
+
+
+\subsection{7.5.4  Transfer Learning for Multi-Configuration Deployment}
+Transfer learning should be explored to enable knowledge transfer from the 300 MVA model to other transformer configurations with minimal additional training data (500--1,000 configuration-specific events). Fine-tuning of the pre-trained LSTM layers could significantly reduce data-collection and training effort. An online-learning mechanism with model-drift detection and safeguards against catastrophic forgetting should also be investigated.
+
+
+\section{7.6  Concluding Remarks}
+This thesis has demonstrated that a hybrid architecture combining a conventional adaptive 87T relay with a DWT-LSTM classifier through a supervisory veto/AND gate achieves what neither element can achieve alone: simultaneous 100\% dependability and 100\% security with sub-cycle fault-clearing time validated in the MATLAB/Simulink real-time co-simulation environment. The key design philosophy treats the LSTM not as a replacement for the conventional relay but as an intelligent supervisory layer that enhances security by vetoing false trips, while the relay provides the safety-certified first line of defence that the protection-engineering community trusts.
+
+The complete MATLAB/Simulink → Python/PyTorch → ONNX → Simulink pipeline demonstrates a practical, reproducible workflow bridging AI research and protection-engineering practice. While the simulation-based nature of the validation represents a limitation, the zero-false-negative guarantee combined with the dramatic reduction in false trips and sub-cycle clearing time provides compelling evidence that the hybrid DWT-LSTM + 87T architecture is a viable direction for next-generation transformer differential protection.
+
+
+\section{7.7  Broader Outlook}
+The hybrid philosophy demonstrated in this thesis---pairing a learned, security-enhancing supervisor with a certified, dependability-guaranteeing classical element---generalises beyond transformer differential protection. The same handshake structure can be applied to busbar protection, where CT saturation during external faults similarly threatens security; to transmission-line distance and differential protection, where evolving and high-resistance faults challenge conventional settings; and to generator protection, where the discrimination between magnetising phenomena and genuine faults is analogously difficult. In each case, the learned component supplies pattern-recognition power while the classical element supplies the deterministic behaviour that protection standards demand, and the explicit gate keeps the failure modes of the two components from compounding.
+
+As power systems evolve toward inverter-dominated generation, the waveform signatures on which conventional relays depend will continue to drift away from the sinusoidal, harmonic-rich assumptions of legacy algorithms. Data-driven supervisors that learn directly from the prevailing signal statistics, retrained or fine-tuned as the system changes, offer a principled path to maintaining protection security under these shifting conditions. The transfer-learning and online-adaptation directions outlined in Section 7.5.4 are therefore not merely incremental refinements but enabling capabilities for protection in a low-inertia, converter-rich grid. Coupled with the digital-substation integration of Section 7.5.3, they point toward a generation of intelligent electronic devices in which certified classical logic and continuously adapting learned supervision operate together as a matter of course.
+
+In summary, this thesis contributes not only a specific, validated transformer-protection scheme but also a transferable design pattern for the responsible integration of machine learning into safety-critical protection. By keeping the learned model in a supervisory role, quantifying both dependability and security, stress-testing well beyond the training distribution, and validating in closed-loop co-simulation, the work offers a template that the protection community can adopt with confidence as it navigates the transition to intelligent, digital, and increasingly autonomous power systems.
+

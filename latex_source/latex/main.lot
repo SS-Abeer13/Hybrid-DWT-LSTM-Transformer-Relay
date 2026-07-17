@@ -1,0 +1,30 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Comparative synthesis of representative transformer differential protection studies.}}{7}{table.caption.5}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Transformer nameplate and equivalent-circuit parameters.}}{15}{table.caption.11}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Current transformer parameters.}}{16}{table.caption.12}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Composition of the 2{,}500-case base dataset by event category and protection label.}}{17}{table.caption.14}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Stochastic augmentation parameter ranges.}}{17}{table.caption.15}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Frequency band allocation for the 3-level DWT at 1.6\,kHz.}}{22}{table.caption.21}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Per-inference parameter and operation budget of the DWT--LSTM pipeline.}}{23}{table.caption.24}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Statistical distribution of the six DWT energy features across event classes (mean $\pm $ s.d., $\times 10^{-3}$\,pu$^2$).}}{26}{table.caption.27}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Binary (Trip/No-Trip) confusion matrix on the 1{,}800-case test set. Accuracy $=98.89\%$; F1 $=0.9901$; ROC--AUC $=0.9999$.}}{28}{table.caption.32}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Per-class performance metrics of the DWT--LSTM classifier.}}{29}{table.caption.34}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Five-fold stratified cross-validation results.}}{29}{table.caption.35}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Performance comparison of standalone 87T, standalone LSTM, and hybrid relay.}}{30}{table.caption.36}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces Average fault-clearing time by method.}}{31}{table.caption.38}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Accuracy under AWGN.}}{31}{table.6.7}%
+\contentsline {table}{\numberline {6.8}{\ignorespaces Recall vs.\ fault resistance.}}{31}{table.6.8}%
+\contentsline {table}{\numberline {6.9}{\ignorespaces Comprehensive performance comparison of all evaluated methods.}}{32}{table.caption.40}%
+\contentsline {table}{\numberline {6.10}{\ignorespaces Capability-level comparison against representative prior studies ($\text {$\mathsurround \z@ \mathchar "458$}$ present, $\times $ absent, $\circ $ partial).}}{33}{table.caption.41}%
+\contentsline {table}{\numberline {6.11}{\ignorespaces Ablation study (unified test set).}}{33}{table.6.11}%
+\contentsline {table}{\numberline {6.12}{\ignorespaces Wavelet/level sensitivity.}}{33}{table.6.12}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {A.1}{\ignorespaces Daubechies-4 decomposition filter coefficients ($g[n]=(-1)^n h[7-n]$).}}{43}{table.caption.47}%
+\contentsline {table}{\numberline {A.2}{\ignorespaces LSTM hyperparameter search space and selected configuration.}}{43}{table.caption.48}%
+\addvspace {10\p@ }

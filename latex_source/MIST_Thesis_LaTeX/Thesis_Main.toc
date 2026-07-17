@@ -1,0 +1,173 @@
+\contentsline {chapter}{ABSTRACT}{v}{chapter*.6}%
+\contentsline {chapter}{ABSTRACT (BENGALI)}{vi}{chapter*.6}%
+\contentsline {chapter}{LIST OF NOTATIONS}{vii}{chapter*.6}%
+\contentsline {chapter}{LIST OF ABBREVIATIONS}{viii}{table.0.1}%
+\contentsline {chapter}{LIST OF TABLES}{ix}{table.0.2}%
+\contentsline {chapter}{LIST OF FIGURES}{x}{table.0.2}%
+\contentsline {chapter}{CHAPTER \numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}1.1 Background}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}1.2 Research Motivation}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}1.3 Problem Statement}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}1.4 Research Objectives}{3}{section.1.4}%
+\contentsline {section}{\numberline {1.5}1.5 Scope and Limitations}{4}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}1.5.1 Scope of the Work}{4}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}1.5.2 Limitations}{5}{subsection.1.5.2}%
+\contentsline {section}{\numberline {1.6}1.6 Contributions of This Work}{5}{section.1.6}%
+\contentsline {section}{\numberline {1.7}1.7 Thesis Organization}{6}{section.1.7}%
+\contentsline {chapter}{CHAPTER \numberline {2}Literature Review}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}2.1 Introduction to Literature Review}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}2.2 Conventional Transformer Differential Protection Methods}{7}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}2.2.1 Harmonic Restraint Methods}{7}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}2.2.2 Waveform-Based and Equivalent Circuit Methods}{8}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}2.3 Signal Processing Techniques}{9}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}2.3.1 Fourier and Wavelet Transform Approaches}{9}{subsection.2.3.1}%
+\contentsline {section}{\numberline {2.4}2.4 Machine Learning Approaches}{9}{section.2.4}%
+\contentsline {section}{\numberline {2.5}2.5 Deep Learning Approaches}{10}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}2.5.1 CNN, RNN and LSTM Architectures}{10}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}2.5.2 Emerging Deep Learning Architectures}{11}{subsection.2.5.2}%
+\contentsline {section}{\numberline {2.6}2.6 Research Gaps}{12}{section.2.6}%
+\contentsline {section}{\numberline {2.7}2.7 Comparative Synthesis of the Literature}{12}{section.2.7}%
+\contentsline {chapter}{CHAPTER \numberline {3}Mathematical Modeling and Theoretical Framework}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}3.1 Introduction}{15}{section.3.1}%
+\contentsline {section}{\numberline {3.2}3.2 Transformer Differential Protection Fundamentals}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}3.2.1 Differential Current and Restraint Current}{15}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}3.2.2 Operating Characteristics}{15}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}3.2.3 Pickup Current}{16}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}3.3 Magnetizing Inrush Current Phenomenon}{16}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}3.3.1 Core Saturation Theory}{16}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}3.3.2 Factors Affecting Inrush}{16}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}3.3.3 Harmonic Characteristics}{16}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}3.3.4 Sympathetic Inrush}{17}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}3.4 Current Transformer Saturation Model}{17}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}3.4.1 CT Equivalent Circuit}{17}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}3.4.2 Transient DC Offset and Flux Buildup}{17}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}3.4.3 Impact on Differential Protection}{17}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}3.5 Internal Fault Characteristics}{18}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}3.5.1 Types of Internal Faults}{18}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}3.5.2 Fault Current Analysis}{18}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}3.6 Mathematical Framework for Classification}{18}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}3.6.1 Feature Space Formulation}{18}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}3.6.2 Performance Metrics}{19}{subsection.3.6.2}%
+\contentsline {section}{\numberline {3.7}3.7 Adaptive Threshold and Decision-Theoretic Foundations}{19}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}3.7.1 Bayes-Optimal Decision Boundary}{19}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}3.7.2 Adaptive Pickup as a Function of Operating State}{20}{subsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.7.3}3.7.3 Information-Theoretic Feature Separability}{20}{subsection.3.7.3}%
+\contentsline {subsection}{\numberline {3.7.4}3.7.4 Operating-Time Bound}{21}{subsection.3.7.4}%
+\contentsline {chapter}{CHAPTER \numberline {4}Power System Simulation Model Using MATLAB/Simulink}{24}{chapter.4}%
+\contentsline {section}{\numberline {4.1}4.1 Introduction}{24}{section.4.1}%
+\contentsline {section}{\numberline {4.2}4.2 MATLAB/Simulink Simulation Environment}{24}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}4.2.1 Software Overview}{24}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}4.2.2 Solver Configuration}{25}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}4.2.3 Simulation Duration}{25}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}4.3 Transformer Model Parameters}{25}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}4.3.1 Transformer Rating and Configuration}{25}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}4.3.2 Core Saturation Characteristics}{25}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}4.3.3 Three-Phase Winding Configuration}{26}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}4.4 Power System Network Model}{26}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}4.4.1 Source Model and Equivalent Impedance}{26}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}4.4.2 Breaker and Snubber Circuit}{26}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}4.4.3 Load Model}{26}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}4.4.4 Current Transformer Model}{27}{subsection.4.4.4}%
+\contentsline {section}{\numberline {4.5}4.5 Fault and Event Simulation Scenarios}{27}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}4.5.1 Internal Fault Modeling}{27}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}4.5.2 External Fault Modeling}{27}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}4.5.3 Inrush Current Simulation}{27}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}4.5.4 CT Saturation Conditions}{28}{subsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.5.5}4.5.5 Normal Operating Conditions}{28}{subsection.4.5.5}%
+\contentsline {section}{\numberline {4.6}4.6 Automated Data Generation and Dataset Summary}{28}{section.4.6}%
+\contentsline {section}{\numberline {4.7}4.7 Signal Conditioning and Merging-Unit Emulation}{29}{section.4.7}%
+\contentsline {section}{\numberline {4.8}4.8 Dataset Statistics and Class Balance}{29}{section.4.8}%
+\contentsline {chapter}{CHAPTER \numberline {5}Proposed DWT-LSTM Methodology}{32}{chapter.5}%
+\contentsline {section}{\numberline {5.1}5.1 Introduction}{32}{section.5.1}%
+\contentsline {section}{\numberline {5.2}5.2 Framework Architecture Overview}{32}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}5.2.1 Two-Step Architectural Approach}{32}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}5.2.2 The Hybrid Decision Handshake}{34}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}5.2.3 Block Diagram Description}{34}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}5.3 Data Preprocessing and Digital Sampling}{35}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}5.3.1 1.6 kHz Discrete Sampling Rate}{35}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}5.3.2 Sliding Window Implementation}{35}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}5.3.3 Column-Major to Row-Major Data Conversion}{36}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}5.4 DWT Engine and Feature Extraction}{36}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}5.4.1 Daubechies-4 (db4) Mother Wavelet Selection}{36}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}5.4.2 Three-Level Wavelet Decomposition}{37}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}5.4.3 Approximation and Detail Energy Calculation}{37}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}5.4.4 Feature Vector Construction}{38}{subsection.5.4.4}%
+\contentsline {section}{\numberline {5.5}5.5 LSTM Architecture and Training Pipeline}{38}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}5.5.1 Model Architecture}{38}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}5.5.2 Training Procedure}{39}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}5.5.3 Hyperparameter Optimization and Cross-Validation}{39}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}5.5.4 ONNX Export}{40}{subsection.5.5.4}%
+\contentsline {section}{\numberline {5.6}5.6 Real-Time Implementation in Simulink}{40}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}5.6.1 Predict Block Integration}{40}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}5.6.2 Hybrid Decision Engine}{40}{subsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.6.3}5.6.3 Computational Latency}{41}{subsection.5.6.3}%
+\contentsline {section}{\numberline {5.7}5.7 Robustness Enhancement}{41}{section.5.7}%
+\contentsline {section}{\numberline {5.8}5.8 Chapter Summary}{41}{section.5.8}%
+\contentsline {section}{\numberline {5.9}5.9 Adaptive Decision Logic and Confidence Calibration}{42}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}5.9.1 Probabilistic Uncertainty Layer}{43}{subsection.5.9.1}%
+\contentsline {section}{\numberline {5.10}5.10 Computational Complexity Derivation}{43}{section.5.10}%
+\contentsline {chapter}{CHAPTER \numberline {6}Results, Analysis and Discussion}{47}{chapter.6}%
+\contentsline {section}{\numberline {6.1}6.1 Introduction}{47}{section.6.1}%
+\contentsline {section}{\numberline {6.2}6.2 Data Generation and Preprocessing Results}{47}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}6.2.1 MATLAB/Simulink Simulation Data Quality}{47}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}6.2.2 DWT Feature Distribution Analysis}{48}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}6.2.3 Feature Importance Analysis}{48}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}6.3 LSTM Classification Performance (Offline Training)}{49}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}6.3.1 Training and Validation Curves}{49}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}6.3.2 Confusion Matrix Analysis}{49}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}6.3.3 Per-Class Performance Metrics}{50}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.4}6.3.4 K-Fold Cross-Validation Results}{50}{subsection.6.3.4}%
+\contentsline {section}{\numberline {6.4}6.4 Real-Time Hybrid Relay Validation (Simulink)}{50}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}6.4.1 ONNX Integration and Inference Latency}{50}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}6.4.2 Hybrid Decision Logic Performance}{51}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}6.4.3 System Clearing Time Benchmarks}{51}{subsection.6.4.3}%
+\contentsline {section}{\numberline {6.5}6.5 Stress Testing and Out-of-Distribution Robustness}{51}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}6.5.1 Varying Point-on-Wave Switching}{51}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}6.5.2 CT Remanent Flux Mismatch}{52}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}6.5.3 Frequency Deviation Tests}{52}{subsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.5.4}6.5.4 Measurement Noise}{52}{subsection.6.5.4}%
+\contentsline {subsection}{\numberline {6.5.5}6.5.5 High-Impedance Faults}{52}{subsection.6.5.5}%
+\contentsline {section}{\numberline {6.6}6.6 Comparative Benchmarking}{53}{section.6.6}%
+\contentsline {section}{\numberline {6.7}6.7 Discussion of Results}{53}{section.6.7}%
+\contentsline {section}{\numberline {6.8}6.8 Detailed Comparison with Prior Published Work}{54}{section.6.8}%
+\contentsline {subsection}{\numberline {6.8.1}6.8.1 Discussion Relative to Specific LSTM Studies}{55}{subsection.6.8.1}%
+\contentsline {section}{\numberline {6.9}6.9 Ablation Studies}{56}{section.6.9}%
+\contentsline {section}{\numberline {6.10}6.10 Mother-Wavelet and Decomposition-Level Sensitivity}{56}{section.6.10}%
+\contentsline {section}{\numberline {6.11}6.11 ROC and Confidence-Threshold Analysis}{57}{section.6.11}%
+\contentsline {section}{\numberline {6.12}6.12 Reliability and Economic Impact}{58}{section.6.12}%
+\contentsline {section}{\numberline {6.13}6.13 Mapping of Results to Research Objectives}{58}{section.6.13}%
+\contentsline {section}{\numberline {6.14}6.14 Threats to Validity}{59}{section.6.14}%
+\contentsline {subsection}{\numberline {6.14.1}6.14.1 Internal Validity}{59}{subsection.6.14.1}%
+\contentsline {subsection}{\numberline {6.14.2}6.14.2 External Validity}{59}{subsection.6.14.2}%
+\contentsline {subsection}{\numberline {6.14.3}6.14.3 Construct and Statistical Validity}{60}{subsection.6.14.3}%
+\contentsline {chapter}{CHAPTER \numberline {7}Conclusion and Future Scopes}{71}{chapter.7}%
+\contentsline {section}{\numberline {7.1}7.1 Conclusion}{71}{section.7.1}%
+\contentsline {section}{\numberline {7.2}7.2 Key Findings}{72}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}7.2.1 Feature Robustness}{72}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}7.2.2 Enhanced Security of Hybrid Architecture}{72}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}7.2.3 Real-Time Feasibility}{73}{subsection.7.2.3}%
+\contentsline {section}{\numberline {7.3}7.3 Research Outcomes}{73}{section.7.3}%
+\contentsline {section}{\numberline {7.4}7.4 Limitations of the Study}{74}{section.7.4}%
+\contentsline {section}{\numberline {7.5}7.5 Recommendations for Future Work}{74}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}7.5.1 Hardware-in-the-Loop Testing}{74}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}7.5.2 Inter-Turn Fault Detection}{75}{subsection.7.5.2}%
+\contentsline {subsection}{\numberline {7.5.3}7.5.3 Field Deployment and IEC 61850 Integration}{75}{subsection.7.5.3}%
+\contentsline {subsection}{\numberline {7.5.4}7.5.4 Transfer Learning for Multi-Configuration Deployment}{75}{subsection.7.5.4}%
+\contentsline {section}{\numberline {7.6}7.6 Concluding Remarks}{75}{section.7.6}%
+\contentsline {section}{\numberline {7.7}7.7 Broader Outlook}{76}{section.7.7}%
+\contentsline {chapter}{List of Publications}{78}{chapter*.37}%
+\contentsline {chapter}{REFERENCES}{80}{section*.38}%
+\contentsline {chapter}{APPENDIX \numberline {A}Appendix}{83}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Appendix A: System Parameters}{83}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}A.1 Transformer and CT Parameters}{83}{subsection.A.1.1}%
+\contentsline {section}{\numberline {A.2}Appendix B: db4 Wavelet Coefficients}{83}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Appendix C: LSTM Hyperparameter Configuration}{83}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Appendix D: Code Listings}{83}{section.A.4}%
+\contentsline {subsection}{\numberline {A.4.1}D.1 MATLAB: DWT Feature Extraction (db4, half-cycle window)}{83}{subsection.A.4.1}%
+\contentsline {subsection}{\numberline {A.4.2}D.2 Python (PyTorch): LSTM Training and ONNX Export (Opset 14)}{83}{subsection.A.4.2}%
+\contentsline {subsection}{\numberline {A.4.3}D.3 Simulink Integration Parameters}{84}{subsection.A.4.3}%
+\contentsline {section}{\numberline {A.5}Appendix E: Extended Per-Scenario Results}{84}{section.A.5}%
+\contentsline {section}{\numberline {A.6}Appendix F: Reproducibility and Software Environment}{85}{section.A.6}%
+\contentsline {section}{\numberline {A.7}Appendix G: Summary of Key Design Parameters}{85}{section.A.7}%
+\contentsline {section}{\numberline {A.8}Appendix H: Relevant Standards and Compliance Considerations}{85}{section.A.8}%
+\contentsfinish 

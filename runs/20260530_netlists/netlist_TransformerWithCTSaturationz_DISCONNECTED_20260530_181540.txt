@@ -1,0 +1,4053 @@
+
+╔════════════════════════════════════════════════════════════════╗
+║ SIMULINK NETLIST  —  TransformerWithCTSaturationz_DISCONNECTED ║
+╚════════════════════════════════════════════════════════════════╝
+
+Generated : 30-May-2026 18:15:40
+MATLAB    : 9.14.0.2206163 (R2023a)
+
+
+╔══════════════════╗
+║ 1. MODEL SUMMARY ║
+╚══════════════════╝
+
+  Total blocks     : 196
+  Total lines      : 0
+  Total ports      : 0
+  Subsystems       : 43
+
+  Block-type inventory:
+    Abs                                      : 3
+    Constant                                 : 2
+    DataTypeConversion                       : 1
+    Demux                                    : 6
+    Display                                  : 11
+    Gain                                     : 13
+    Inport                                   : 12
+    ManualSwitch                             : 1
+    Mux                                      : 6
+    Outport                                  : 13
+    PMComponent                              : 35
+    PMIOPort                                 : 12
+    Quantizer                                : 6
+    S-Function                               : 5
+    Scope                                    : 11
+    Step                                     : 6
+    SubSystem                                : 43
+    Sum                                      : 8
+    ToWorkspace                              : 2
+
+╔════════════════════╗
+║ 2. BLOCK HIERARCHY ║
+╚════════════════════╝
+
+├─ [Scope                    ] Before Noise PrimCurr
+├─ [Scope                    ] Before Noise SecCurr
+├─ [SubSystem                ] CT
+  ├─ [PMComponent              ] 1ohm
+  ├─ [SubSystem                ] CT 2000//5 A
+25 VA
+  ├─ [SubSystem                ] I2
+  ├─ [PMIOPort                 ] Conn1
+  ├─ [PMIOPort                 ] Conn2
+  ├─ [Outport                  ] Out1
+├─ [SubSystem                ] CT1
+  ├─ [PMComponent              ] 1ohm
+  ├─ [SubSystem                ] CT 2000//5 A
+25 VA
+  ├─ [SubSystem                ] I2
+  ├─ [PMIOPort                 ] Conn1
+  ├─ [PMIOPort                 ] Conn2
+  ├─ [Outport                  ] Out1
+├─ [SubSystem                ] CT2
+  ├─ [PMComponent              ] 1ohm
+  ├─ [SubSystem                ] CT 2000//5 A
+25 VA
+  ├─ [SubSystem                ] I2
+  ├─ [PMIOPort                 ] Conn1
+  ├─ [PMIOPort                 ] Conn2
+  ├─ [Outport                  ] Out1
+├─ [SubSystem                ] CT3
+  ├─ [PMComponent              ] 1ohm
+  ├─ [SubSystem                ] CT 2000//5 A
+25 VA
+  ├─ [SubSystem                ] I2
+  ├─ [PMIOPort                 ] Conn1
+  ├─ [PMIOPort                 ] Conn2
+  ├─ [Outport                  ] Out1
+├─ [SubSystem                ] CT4
+  ├─ [PMComponent              ] 1ohm
+  ├─ [SubSystem                ] CT 2000//5 A
+25 VA
+  ├─ [SubSystem                ] I2
+  ├─ [PMIOPort                 ] Conn1
+  ├─ [PMIOPort                 ] Conn2
+  ├─ [Outport                  ] Out1
+├─ [SubSystem                ] CT6
+  ├─ [PMComponent              ] 1ohm
+  ├─ [SubSystem                ] CT 2000//5 A
+25 VA
+  ├─ [SubSystem                ] I2
+  ├─ [PMIOPort                 ] Conn1
+  ├─ [PMIOPort                 ] Conn2
+  ├─ [Outport                  ] Out1
+├─ [Demux                    ] Demux4
+├─ [Demux                    ] Demux5
+├─ [Demux                    ] Demux6
+├─ [Demux                    ] Demux7
+├─ [Display                  ] Display1
+├─ [Display                  ] Display2
+├─ [Display                  ] Display4
+├─ [Display                  ] Display5
+├─ [SubSystem                ] External_Fault
+├─ [PMComponent              ] Ground
+├─ [PMComponent              ] Ground1
+├─ [PMComponent              ] Ground2
+├─ [PMComponent              ] Ground3
+├─ [PMComponent              ] Ground4
+├─ [PMComponent              ] Ground5
+├─ [PMComponent              ] Ground6
+├─ [PMComponent              ] Ground7
+├─ [PMComponent              ] Ground8
+├─ [SubSystem                ] Hybrid 87T Relay
+  ├─ [Inport                   ] In1
+  ├─ [Inport                   ] Inport
+  ├─ [Inport                   ] Inport1
+  ├─ [Inport                   ] Inport2
+  ├─ [Inport                   ] Inport3
+  ├─ [Inport                   ] Inport4
+  ├─ [Abs                      ] Abs
+  ├─ [Abs                      ] Abs1
+  ├─ [Abs                      ] Abs2
+  ├─ [DataTypeConversion       ] Data Type Conversion
+  ├─ [Demux                    ] Demux1
+  ├─ [Demux                    ] Demux2
+  ├─ [Display                  ] Display
+  ├─ [Display                  ] Display1
+  ├─ [Display                  ] Display2
+  ├─ [Display                  ] Display3
+  ├─ [Display                  ] Display4
+  ├─ [Display                  ] Display5
+  ├─ [Gain                     ] Gain
+  ├─ [Sum                      ] I_diff
+  ├─ [Sum                      ] I_rest
+  ├─ [SubSystem                ] MATLAB Function
+  ├─ [ManualSwitch             ] Manual Switch
+  ├─ [Mux                      ] Mux
+  ├─ [Mux                      ] Mux1
+  ├─ [Mux                      ] Mux2
+  ├─ [Mux                      ] Mux3
+  ├─ [Constant                 ] OFF
+  ├─ [Constant                 ] RESET
+  ├─ [SubSystem                ] RMS
+  ├─ [SubSystem                ] RMS1
+  ├─ [SubSystem                ] RMS2
+  ├─ [SubSystem                ] RMS3
+  ├─ [SubSystem                ] RMS4
+  ├─ [SubSystem                ] RMS5
+  ├─ [SubSystem                ] S-R
+Latch
+  ├─ [Scope                    ] Scope
+  ├─ [Scope                    ] Scope1
+  ├─ [SubSystem                ] Supervisory Override with Hardware Fallback
+  ├─ [Outport                  ] Trip_Signal
+├─ [SubSystem                ] Internal_Fault1
+├─ [SubSystem                ] Internal_Fault2
+├─ [SubSystem                ] Internal_Fault3
+├─ [Mux                      ] Mux
+├─ [Mux                      ] Mux1
+├─ [SubSystem                ] Noise Merging Unit
+  ├─ [Inport                   ] IA_Prim
+  ├─ [Inport                   ] IB_Prim
+  ├─ [Inport                   ] IC_Prim
+  ├─ [Inport                   ] IA_Sec
+  ├─ [Inport                   ] IB_Sec
+  ├─ [Inport                   ] IC_Sec
+  ├─ [Sum                      ] Add
+  ├─ [Sum                      ] Add1
+  ├─ [Sum                      ] Add2
+  ├─ [Sum                      ] Add3
+  ├─ [Sum                      ] Add4
+  ├─ [Sum                      ] Add5
+  ├─ [SubSystem                ] Band-Limited
+White Noise
+  ├─ [Gain                     ] CT_Gain_Mismatch_1
+  ├─ [Gain                     ] CT_Gain_Mismatch_2
+  ├─ [Gain                     ] CT_Gain_Mismatch_3
+  ├─ [Gain                     ] CT_Gain_Mismatch_4
+  ├─ [Gain                     ] CT_Gain_Mismatch_5
+  ├─ [Gain                     ] CT_Gain_Mismatch_6
+  ├─ [Gain                     ] Noise_Gain_1
+  ├─ [Gain                     ] Noise_Gain_2
+  ├─ [Gain                     ] Noise_Gain_3
+  ├─ [Gain                     ] Noise_Gain_4
+  ├─ [Gain                     ] Noise_Gain_5
+  ├─ [Gain                     ] Noise_Gain_6
+  ├─ [Quantizer                ] Quantizer
+  ├─ [Quantizer                ] Quantizer1
+  ├─ [Quantizer                ] Quantizer2
+  ├─ [Quantizer                ] Quantizer3
+  ├─ [Quantizer                ] Quantizer4
+  ├─ [Quantizer                ] Quantizer5
+  ├─ [Outport                  ] Dig_IA_Prim
+  ├─ [Outport                  ] Dig_IB_Prim
+  ├─ [Outport                  ] Dig_IC_Prim
+  ├─ [Outport                  ] Dig_IA_Sec
+  ├─ [Outport                  ] Dig_IB_Sec
+  ├─ [Outport                  ] Dig_IC_Sec
+├─ [Scope                    ] Primary Current Scope
+├─ [SubSystem                ] Primary_side
+├─ [S-Function               ] RMS3
+├─ [S-Function               ] RMS5
+├─ [S-Function               ] RMS6
+├─ [S-Function               ] RMS7
+├─ [S-Function               ] RMS8
+├─ [Scope                    ] Scope
+├─ [Scope                    ] Scope13
+├─ [Scope                    ] Scope15
+├─ [Scope                    ] Scope3
+├─ [Scope                    ] Scope9
+├─ [Scope                    ] Secondary Current Scope
+├─ [SubSystem                ] Secondary_side
+├─ [PMComponent              ] Series RLC Branch
+├─ [PMComponent              ] Series RLC Branch1
+├─ [PMComponent              ] Series RLC Branch10
+├─ [PMComponent              ] Series RLC Branch11
+├─ [PMComponent              ] Series RLC Branch12
+├─ [PMComponent              ] Series RLC Branch13
+├─ [PMComponent              ] Series RLC Branch14
+├─ [PMComponent              ] Series RLC Branch15
+├─ [PMComponent              ] Series RLC Branch16
+├─ [PMComponent              ] Series RLC Branch17
+├─ [PMComponent              ] Series RLC Branch2
+├─ [PMComponent              ] Series RLC Branch3
+├─ [PMComponent              ] Series RLC Branch4
+├─ [PMComponent              ] Series RLC Branch5
+├─ [PMComponent              ] Series RLC Branch6
+├─ [PMComponent              ] Series RLC Branch7
+├─ [PMComponent              ] Series RLC Branch8
+├─ [PMComponent              ] Series RLC Branch9
+├─ [Step                     ] Step1
+├─ [Step                     ] Step2
+├─ [Step                     ] Step4
+├─ [Step                     ] Step5
+├─ [Step                     ] Step_Evolve2
+├─ [Step                     ] Step_Evolve3
+├─ [SubSystem                ] Step_down_Transformer
+├─ [PMComponent              ] Three-Phase
+Series RLC Branch
+├─ [PMComponent              ] Three-Phase
+Series RLC Load
+├─ [SubSystem                ] Three-Phase Breaker
+├─ [SubSystem                ] Three-Phase Breaker1
+├─ [ToWorkspace              ] To Workspace
+├─ [ToWorkspace              ] To Workspace1
+├─ [Display                  ] VS
+├─ [SubSystem                ] VSa
+├─ [SubSystem                ] VSb
+├─ [SubSystem                ] VSc
+├─ [SubSystem                ] powergui
+
+╔══════════════════════════════════╗
+║ 3. BLOCK PARAMETERS (ALL BLOCKS) ║
+╚══════════════════════════════════╝
+
+
+  ┌─ Before Noise PrimCurr
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 3
+  │    LayoutDimensionsString              = [3 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = on
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -124.7577
+  │    ActiveDisplayYMaximum               = 64.701
+  │    DataLoggingLimitDataPoints          = off
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = off
+  │    DataLoggingDecimation               = 2
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData2
+  │    DataLoggingSaveFormat               = Dataset
+  │  Ports     : Inport×3
+  └─
+
+  ┌─ Before Noise SecCurr
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 3
+  │    LayoutDimensionsString              = [3 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = on
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -0.89868
+  │    ActiveDisplayYMaximum               = 0.89964
+  │    DataLoggingLimitDataPoints          = off
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = off
+  │    DataLoggingDecimation               = 2
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData3
+  │    DataLoggingSaveFormat               = Dataset
+  │  Ports     : Inport×3
+  └─
+
+  ┌─ CT
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    PermitHierarchicalResolution        = All
+  │    TreatAsAtomicUnit                   = off
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = on
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT/1ohm
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 1  ◄
+  │    Inductance                          = []  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = []  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ CT/CT 2000//5 A
+25 VA
+  │  Type     : SubSystem
+  │  Library  : spsSaturableTransformerLib/Saturable Transformer
+  │  Parameters:
+  │    ThreeWindings                       = off  ◄
+  │    Hysteresis                          = off
+  │    DataFile                            = 'hysteresis'
+  │    Measurements                        = Flux and magnetization current ( Imag )
+  │    UNITS                               = pu
+  │    NominalPower                        = [25 50]  ◄
+  │    Winding1                            = [5*1/20 0.001 0.04]  ◄
+  │    Winding2                            = [5 0.001 0.04 ]  ◄
+  │    Winding3                            = [5 0.001 0.04 ]  ◄
+  │    Saturation                          = [0 0 ; 0.01 10 ; 1 10.5]  ◄
+  │    CoreLoss                            = [100]  ◄
+  │    BreakLoop                           = off
+  │    DiscreteSolver                      = Trapezoidal iterative
+  │    DataType                            = off
+  │    InitialFlux                         = -0.000145051785515922  ◄
+  │    TransfoNumber                       = 1
+  │  Ports     : LConn×2 RConn×2
+  └─
+
+  ┌─ CT/I2
+  │  Type     : SubSystem
+  │  Library  : spsCurrentMeasurementLib/Current Measurement
+  │  Parameters:
+  │    PhasorSimulation                    = off
+  │    OutputType                          = Magnitude
+  │    PSBequivalent                       = 0
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT/Conn1
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 1
+  │    Side                                = Left
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT/Conn2
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 2
+  │    Side                                = Right
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT/Out1
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 1
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ CT1
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    PermitHierarchicalResolution        = All
+  │    TreatAsAtomicUnit                   = off
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = on
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT1/1ohm
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 1  ◄
+  │    Inductance                          = []  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = []  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ CT1/CT 2000//5 A
+25 VA
+  │  Type     : SubSystem
+  │  Library  : spsSaturableTransformerLib/Saturable Transformer
+  │  Parameters:
+  │    ThreeWindings                       = on  ◄
+  │    Hysteresis                          = off
+  │    DataFile                            = 'hysteresis'
+  │    Measurements                        = Flux and magnetization current ( Imag )
+  │    UNITS                               = pu
+  │    NominalPower                        = [25 50]  ◄
+  │    Winding1                            = [5*1/20 0.001 0.04]  ◄
+  │    Winding2                            = [5 0.001 0.04 ]  ◄
+  │    Winding3                            = [5 0.001 0.04 ]  ◄
+  │    Saturation                          = [0 0 ; 0.01 10 ; 1 10.5]  ◄
+  │    CoreLoss                            = [100]  ◄
+  │    BreakLoop                           = off
+  │    DiscreteSolver                      = Trapezoidal iterative
+  │    DataType                            = off
+  │    InitialFlux                         = 6.74702885714095e-05  ◄
+  │    TransfoNumber                       = 1
+  │  Ports     : LConn×2 RConn×4
+  └─
+
+  ┌─ CT1/I2
+  │  Type     : SubSystem
+  │  Library  : spsCurrentMeasurementLib/Current Measurement
+  │  Parameters:
+  │    PhasorSimulation                    = off
+  │    OutputType                          = Magnitude
+  │    PSBequivalent                       = 0
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT1/Conn1
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 1
+  │    Side                                = Left
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT1/Conn2
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 2
+  │    Side                                = Right
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT1/Out1
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 1
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ CT2
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    PermitHierarchicalResolution        = All
+  │    TreatAsAtomicUnit                   = off
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = on
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT2/1ohm
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 1  ◄
+  │    Inductance                          = []  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = []  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ CT2/CT 2000//5 A
+25 VA
+  │  Type     : SubSystem
+  │  Library  : spsSaturableTransformerLib/Saturable Transformer
+  │  Parameters:
+  │    ThreeWindings                       = off  ◄
+  │    Hysteresis                          = off
+  │    DataFile                            = 'hysteresis'
+  │    Measurements                        = Flux and magnetization current ( Imag )
+  │    UNITS                               = pu
+  │    NominalPower                        = [25 50]  ◄
+  │    Winding1                            = [5*1/20 0.001 0.04]  ◄
+  │    Winding2                            = [5 0.001 0.04 ]  ◄
+  │    Winding3                            = [5 0.001 0.04 ]  ◄
+  │    Saturation                          = [0 0 ; 0.01 10 ; 1 10.5]  ◄
+  │    CoreLoss                            = [100]  ◄
+  │    BreakLoop                           = off
+  │    DiscreteSolver                      = Trapezoidal iterative
+  │    DataType                            = off
+  │    InitialFlux                         = 7.75814969445124e-05  ◄
+  │    TransfoNumber                       = 1
+  │  Ports     : LConn×2 RConn×2
+  └─
+
+  ┌─ CT2/I2
+  │  Type     : SubSystem
+  │  Library  : spsCurrentMeasurementLib/Current Measurement
+  │  Parameters:
+  │    PhasorSimulation                    = off
+  │    OutputType                          = Magnitude
+  │    PSBequivalent                       = 0
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT2/Conn1
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 1
+  │    Side                                = Left
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT2/Conn2
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 2
+  │    Side                                = Right
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT2/Out1
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 1
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ CT3
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    PermitHierarchicalResolution        = All
+  │    TreatAsAtomicUnit                   = off
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = on
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT3/1ohm
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 1  ◄
+  │    Inductance                          = []  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = []  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ CT3/CT 2000//5 A
+25 VA
+  │  Type     : SubSystem
+  │  Library  : spsSaturableTransformerLib/Saturable Transformer
+  │  Parameters:
+  │    ThreeWindings                       = off  ◄
+  │    Hysteresis                          = off
+  │    DataFile                            = 'hysteresis'
+  │    Measurements                        = Flux and magnetization current ( Imag )
+  │    UNITS                               = pu
+  │    NominalPower                        = [25 50]  ◄
+  │    Winding1                            = [5*1/500 0.001 0.04]  ◄
+  │    Winding2                            = [5 0.001 0.04 ]  ◄
+  │    Winding3                            = [5 0.001 0.04 ]  ◄
+  │    Saturation                          = [0 0 ; 0.01 10 ; 1 10.5]  ◄
+  │    CoreLoss                            = [100]  ◄
+  │    BreakLoop                           = off
+  │    DiscreteSolver                      = Trapezoidal iterative
+  │    DataType                            = off
+  │    InitialFlux                         = 3.88081416677833e-06  ◄
+  │    TransfoNumber                       = 1
+  │  Ports     : LConn×2 RConn×2
+  └─
+
+  ┌─ CT3/I2
+  │  Type     : SubSystem
+  │  Library  : spsCurrentMeasurementLib/Current Measurement
+  │  Parameters:
+  │    PhasorSimulation                    = off
+  │    OutputType                          = Magnitude
+  │    PSBequivalent                       = 0
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT3/Conn1
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 1
+  │    Side                                = Left
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT3/Conn2
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 2
+  │    Side                                = Right
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT3/Out1
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 1
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ CT4
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    PermitHierarchicalResolution        = All
+  │    TreatAsAtomicUnit                   = off
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = on
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT4/1ohm
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 1  ◄
+  │    Inductance                          = []  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = []  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ CT4/CT 2000//5 A
+25 VA
+  │  Type     : SubSystem
+  │  Library  : spsSaturableTransformerLib/Saturable Transformer
+  │  Parameters:
+  │    ThreeWindings                       = off  ◄
+  │    Hysteresis                          = off
+  │    DataFile                            = 'hysteresis'
+  │    Measurements                        = Flux and magnetization current ( Imag )
+  │    UNITS                               = pu
+  │    NominalPower                        = [25 50]  ◄
+  │    Winding1                            = [5*1/500 0.001 0.04]  ◄
+  │    Winding2                            = [5 0.001 0.04 ]  ◄
+  │    Winding3                            = [5 0.001 0.04 ]  ◄
+  │    Saturation                          = [0 0 ; 0.01 10 ; 1 10.5]  ◄
+  │    CoreLoss                            = [100]  ◄
+  │    BreakLoop                           = off
+  │    DiscreteSolver                      = Trapezoidal iterative
+  │    DataType                            = off
+  │    InitialFlux                         = -4.05875152771076e-06  ◄
+  │    TransfoNumber                       = 1
+  │  Ports     : LConn×2 RConn×2
+  └─
+
+  ┌─ CT4/I2
+  │  Type     : SubSystem
+  │  Library  : spsCurrentMeasurementLib/Current Measurement
+  │  Parameters:
+  │    PhasorSimulation                    = off
+  │    OutputType                          = Magnitude
+  │    PSBequivalent                       = 0
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT4/Conn1
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 1
+  │    Side                                = Left
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT4/Conn2
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 2
+  │    Side                                = Right
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT4/Out1
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 1
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ CT6
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    PermitHierarchicalResolution        = All
+  │    TreatAsAtomicUnit                   = off
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = on
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT6/1ohm
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 1  ◄
+  │    Inductance                          = []  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = []  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ CT6/CT 2000//5 A
+25 VA
+  │  Type     : SubSystem
+  │  Library  : spsSaturableTransformerLib/Saturable Transformer
+  │  Parameters:
+  │    ThreeWindings                       = off  ◄
+  │    Hysteresis                          = off
+  │    DataFile                            = 'hysteresis'
+  │    Measurements                        = Flux and magnetization current ( Imag )
+  │    UNITS                               = pu
+  │    NominalPower                        = [25 50]  ◄
+  │    Winding1                            = [5*1/500 0.001 0.04]  ◄
+  │    Winding2                            = [5 0.001 0.04 ]  ◄
+  │    Winding3                            = [5 0.001 0.04 ]  ◄
+  │    Saturation                          = [0 0 ; 0.01 10 ; 1 10.5]  ◄
+  │    CoreLoss                            = [100]  ◄
+  │    BreakLoop                           = off
+  │    DiscreteSolver                      = Trapezoidal iterative
+  │    DataType                            = off
+  │    InitialFlux                         = 1.7793736093241e-07  ◄
+  │    TransfoNumber                       = 1
+  │  Ports     : LConn×2 RConn×2
+  └─
+
+  ┌─ CT6/I2
+  │  Type     : SubSystem
+  │  Library  : spsCurrentMeasurementLib/Current Measurement
+  │  Parameters:
+  │    PhasorSimulation                    = off
+  │    OutputType                          = Magnitude
+  │    PSBequivalent                       = 0
+  │  Ports     : Outport×1 LConn×1 RConn×1
+  └─
+
+  ┌─ CT6/Conn1
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 1
+  │    Side                                = Left
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT6/Conn2
+  │  Type     : PMIOPort
+  │  Parameters:
+  │    Port                                = 2
+  │    Side                                = Right
+  │    ConnectionType                      = Inherit: auto
+  │  Ports     : RConn×1
+  └─
+
+  ┌─ CT6/Out1
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 1
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Demux4
+  │  Type     : Demux
+  │  Parameters:
+  │    Outputs                             = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×1 Outport×3
+  └─
+
+  ┌─ Demux5
+  │  Type     : Demux
+  │  Parameters:
+  │    Outputs                             = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×1 Outport×3
+  └─
+
+  ┌─ Demux6
+  │  Type     : Demux
+  │  Parameters:
+  │    Outputs                             = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×1 Outport×3
+  └─
+
+  ┌─ Demux7
+  │  Type     : Demux
+  │  Parameters:
+  │    Outputs                             = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×1 Outport×3
+  └─
+
+  ┌─ Display1
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Display2
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Display4
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Display5
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ External_Fault
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseFaultLib/Three-Phase Fault
+  │  Parameters:
+  │    InitialStates                       = 0  ◄
+  │    FaultA                              = off  ◄
+  │    FaultB                              = off  ◄
+  │    FaultC                              = off  ◄
+  │    GroundFault                         = off  ◄
+  │    SwitchTimes                         = [1/60  5/60]  ◄
+  │    External                            = on
+  │    SwitchStatus                        = NaN  ◄
+  │    FaultResistance                     = 0.01  ◄
+  │    GroundResistance                    = 0.001  ◄
+  │    SnubberResistance                   = 1e6  ◄
+  │    SnubberCapacitance                  = inf  ◄
+  │    Measurements                        = None
+  │  Ports     : Inport×1 LConn×3
+  └─
+
+  ┌─ Ground
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Ground1
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Ground2
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Ground3
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Ground4
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Ground5
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Ground6
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Ground7
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Ground8
+  │  Type     : PMComponent
+  │  Library  : spsGroundLib/Ground
+  │  [no dialog parameters]
+  │  Ports     : LConn×1
+  └─
+
+  ┌─ Hybrid 87T Relay
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    PermitHierarchicalResolution        = All
+  │    TreatAsAtomicUnit                   = off
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = on
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Inport×6 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/In1
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 1
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Inport
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 2
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Inport1
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 3
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Inport2
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 4
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Inport3
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 5
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Inport4
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 6
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Abs
+  │  Type     : Abs
+  │  Parameters:
+  │    ZeroCross                           = on
+  │    SampleTime                          = -1  ◄
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Same as input
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Abs1
+  │  Type     : Abs
+  │  Parameters:
+  │    ZeroCross                           = on
+  │    SampleTime                          = -1  ◄
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Same as input
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Abs2
+  │  Type     : Abs
+  │  Parameters:
+  │    ZeroCross                           = on
+  │    SampleTime                          = -1  ◄
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Same as input
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Data Type Conversion
+  │  Type     : DataTypeConversion
+  │  Parameters:
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = boolean
+  │    LockScale                           = off
+  │    ConvertRealWorld                    = Real World Value (RWV)
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Demux1
+  │  Type     : Demux
+  │  Parameters:
+  │    Outputs                             = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×1 Outport×3
+  └─
+
+  ┌─ Hybrid 87T Relay/Demux2
+  │  Type     : Demux
+  │  Parameters:
+  │    Outputs                             = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×1 Outport×3
+  └─
+
+  ┌─ Hybrid 87T Relay/Display
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Display1
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Display2
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Display3
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Display4
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Display5
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Gain
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 0.5  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/I_diff
+  │  Type     : Sum
+  │  Parameters:
+  │    IconShape                           = rectangular
+  │    Inputs                              = |+-
+  │    CollapseMode                        = All dimensions
+  │    CollapseDim                         = 1
+  │    InputSameDT                         = off
+  │    AccumDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/I_rest
+  │  Type     : Sum
+  │  Parameters:
+  │    IconShape                           = rectangular
+  │    Inputs                              = |++
+  │    CollapseMode                        = All dimensions
+  │    CollapseDim                         = 1
+  │    InputSameDT                         = off
+  │    AccumDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/MATLAB Function
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    ErrorFcn                            = Stateflow.Translate.translate
+  │    PermitHierarchicalResolution        = ExplicitOnly
+  │    TreatAsAtomicUnit                   = on
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = off
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Inport×2 Outport×2
+  └─
+
+  ┌─ Hybrid 87T Relay/Manual Switch
+  │  Type     : ManualSwitch
+  │  Parameters:
+  │    varsize                             = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Mux
+  │  Type     : Mux
+  │  Parameters:
+  │    Inputs                              = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×3 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Mux1
+  │  Type     : Mux
+  │  Parameters:
+  │    Inputs                              = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×3 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Mux2
+  │  Type     : Mux
+  │  Parameters:
+  │    Inputs                              = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×3 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Mux3
+  │  Type     : Mux
+  │  Parameters:
+  │    Inputs                              = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×3 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/OFF
+  │  Type     : Constant
+  │  Parameters:
+  │    Value                               = -1
+  │    VectorParams1D                      = on
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit from 'Constant value'
+  │    LockScale                           = off
+  │    SampleTime                          = inf  ◄
+  │    FramePeriod                         = inf
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/RESET
+  │  Type     : Constant
+  │  Parameters:
+  │    Value                               = 0
+  │    VectorParams1D                      = on
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = boolean
+  │    LockScale                           = off
+  │    SampleTime                          = inf  ◄
+  │    FramePeriod                         = inf
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/RMS
+  │  Type     : SubSystem
+  │  Library  : spsRMSLib/RMS
+  │  Parameters:
+  │    TrueRMS                             = on
+  │    Freq                                = 50
+  │    RMSInit                             = 0
+  │    Ts                                  = 0.0001
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/RMS1
+  │  Type     : SubSystem
+  │  Library  : spsRMSLib/RMS
+  │  Parameters:
+  │    TrueRMS                             = on
+  │    Freq                                = 50
+  │    RMSInit                             = 0
+  │    Ts                                  = 0.0001
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/RMS2
+  │  Type     : SubSystem
+  │  Library  : spsRMSLib/RMS
+  │  Parameters:
+  │    TrueRMS                             = on
+  │    Freq                                = 50
+  │    RMSInit                             = 0
+  │    Ts                                  = 0.0001
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/RMS3
+  │  Type     : SubSystem
+  │  Library  : spsRMSLib/RMS
+  │  Parameters:
+  │    TrueRMS                             = on
+  │    Freq                                = 50
+  │    RMSInit                             = 0
+  │    Ts                                  = 0.0001
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/RMS4
+  │  Type     : SubSystem
+  │  Library  : spsRMSLib/RMS
+  │  Parameters:
+  │    TrueRMS                             = on
+  │    Freq                                = 50
+  │    RMSInit                             = 0
+  │    Ts                                  = 0.0001
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/RMS5
+  │  Type     : SubSystem
+  │  Library  : spsRMSLib/RMS
+  │  Parameters:
+  │    TrueRMS                             = on
+  │    Freq                                = 50
+  │    RMSInit                             = 0
+  │    Ts                                  = 0.0001
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/S-R
+Latch
+  │  Type     : SubSystem
+  │  Library  : simulink_extras/Flip Flops/S-R
+Flip-Flop
+  │  Parameters:
+  │    initial_condition                   = 0
+  │  Ports     : Inport×2 Outport×2
+  └─
+
+  ┌─ Hybrid 87T Relay/Scope
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 1
+  │    LayoutDimensionsString              = [1 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = off
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -4.7862
+  │    ActiveDisplayYMaximum               = 4.5762
+  │    DataLoggingLimitDataPoints          = off
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = off
+  │    DataLoggingDecimation               = 2
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData2
+  │    DataLoggingSaveFormat               = Dataset
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Scope1
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 1
+  │    LayoutDimensionsString              = [1 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = on
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -4.9037
+  │    ActiveDisplayYMaximum               = 5.1338
+  │    DataLoggingLimitDataPoints          = off
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = off
+  │    DataLoggingDecimation               = 2
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData3
+  │    DataLoggingSaveFormat               = Dataset
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Supervisory Override with Hardware Fallback
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    ErrorFcn                            = Stateflow.Translate.translate
+  │    PermitHierarchicalResolution        = ExplicitOnly
+  │    TreatAsAtomicUnit                   = on
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = off
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Inport×3 Outport×1
+  └─
+
+  ┌─ Hybrid 87T Relay/Trip_Signal
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 1
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Internal_Fault1
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseFaultLib/Three-Phase Fault
+  │  Parameters:
+  │    InitialStates                       = 0  ◄
+  │    FaultA                              = on  ◄
+  │    FaultB                              = off  ◄
+  │    FaultC                              = off  ◄
+  │    GroundFault                         = on  ◄
+  │    SwitchTimes                         = [0.05 1]  ◄
+  │    External                            = on
+  │    SwitchStatus                        = NaN  ◄
+  │    FaultResistance                     = 0.01  ◄
+  │    GroundResistance                    = 0.01  ◄
+  │    SnubberResistance                   = 1e6  ◄
+  │    SnubberCapacitance                  = inf  ◄
+  │    Measurements                        = None
+  │  Ports     : Inport×1 LConn×3
+  └─
+
+  ┌─ Internal_Fault2
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseFaultLib/Three-Phase Fault
+  │  Parameters:
+  │    InitialStates                       = 0  ◄
+  │    FaultA                              = off  ◄
+  │    FaultB                              = on  ◄
+  │    FaultC                              = off  ◄
+  │    GroundFault                         = on  ◄
+  │    SwitchTimes                         = [0.05 1]  ◄
+  │    External                            = on
+  │    SwitchStatus                        = NaN  ◄
+  │    FaultResistance                     = 0.01  ◄
+  │    GroundResistance                    = 0.01  ◄
+  │    SnubberResistance                   = 1e6  ◄
+  │    SnubberCapacitance                  = inf  ◄
+  │    Measurements                        = None
+  │  Ports     : Inport×1 LConn×3
+  └─
+
+  ┌─ Internal_Fault3
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseFaultLib/Three-Phase Fault
+  │  Parameters:
+  │    InitialStates                       = 0  ◄
+  │    FaultA                              = off  ◄
+  │    FaultB                              = off  ◄
+  │    FaultC                              = on  ◄
+  │    GroundFault                         = off  ◄
+  │    SwitchTimes                         = [0.05 1]  ◄
+  │    External                            = on
+  │    SwitchStatus                        = NaN  ◄
+  │    FaultResistance                     = 0.01  ◄
+  │    GroundResistance                    = 0.01  ◄
+  │    SnubberResistance                   = 1e6  ◄
+  │    SnubberCapacitance                  = inf  ◄
+  │    Measurements                        = None
+  │  Ports     : Inport×1 LConn×3
+  └─
+
+  ┌─ Mux
+  │  Type     : Mux
+  │  Parameters:
+  │    Inputs                              = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×3 Outport×1
+  └─
+
+  ┌─ Mux1
+  │  Type     : Mux
+  │  Parameters:
+  │    Inputs                              = 3
+  │    DisplayOption                       = bar
+  │  Ports     : Inport×3 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit
+  │  Type     : SubSystem
+  │  Parameters:
+  │    ShowPortLabels                      = FromPortIcon
+  │    Permissions                         = ReadWrite
+  │    PermitHierarchicalResolution        = All
+  │    TreatAsAtomicUnit                   = off
+  │    ShowSubsystemReinitializePorts      = off
+  │    MinAlgLoopOccurrences               = off
+  │    ScheduleAs                          = Sample time
+  │    SystemSampleTime                    = -1  ◄
+  │    SetExecutionDomain                  = off
+  │    ExecutionDomainType                 = Deduce
+  │    RTWSystemCode                       = Auto
+  │    RTWFcnNameOpts                      = Auto
+  │    RTWFileNameOpts                     = Auto
+  │    FunctionInterfaceSpec               = void_void
+  │    FunctionWithSeparateData            = off
+  │    RTWMemSecFuncInitTerm               = Inherit from model
+  │    RTWMemSecFuncExecute                = Inherit from model
+  │    RTWMemSecDataConstants              = Inherit from model
+  │    RTWMemSecDataInternal               = Inherit from model
+  │    RTWMemSecDataParameters             = Inherit from model
+  │    IsSubsystemVirtual                  = on
+  │    Variant                             = off
+  │    VariantChoices                      = []
+  │    VariantControlMode                  = expression
+  │    VariantActivationTime               = update diagram  ◄
+  │    AllowZeroVariantControls            = off
+  │    PropagateVariantConditions          = off
+  │    TreatAsGroupedWhenPropagatingVariantConditions = on
+  │    Latency                             = 0
+  │    AutoFrameSizeCalculation            = off
+  │    CompiledVariantActivationTime       = update diagram  ◄
+  │  Ports     : Inport×6 Outport×6
+  └─
+
+  ┌─ Noise Merging Unit/IA_Prim
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 1
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/IB_Prim
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 2
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/IC_Prim
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 3
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/IA_Sec
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 4
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/IB_Sec
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 5
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/IC_Sec
+  │  Type     : Inport
+  │  Parameters:
+  │    Port                                = 6
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    LatchByDelayingOutsideSignal        = off
+  │    LatchInputForFeedbackSignals        = off
+  │    Interpolate                         = on
+  │    DataMode                            = inherit
+  │    MessageQueueUseDefaultAttributes    = on  ◄
+  │    MessageQueueCapacity                = 1
+  │    MessageQueueType                    = LIFO
+  │    MessageQueueOverwriting             = on
+  │    EventTriggers                       = []
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Add
+  │  Type     : Sum
+  │  Parameters:
+  │    IconShape                           = rectangular
+  │    Inputs                              = ++
+  │    CollapseMode                        = All dimensions
+  │    CollapseDim                         = 1
+  │    InputSameDT                         = off
+  │    AccumDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Add1
+  │  Type     : Sum
+  │  Parameters:
+  │    IconShape                           = rectangular
+  │    Inputs                              = ++
+  │    CollapseMode                        = All dimensions
+  │    CollapseDim                         = 1
+  │    InputSameDT                         = off
+  │    AccumDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Add2
+  │  Type     : Sum
+  │  Parameters:
+  │    IconShape                           = rectangular
+  │    Inputs                              = ++
+  │    CollapseMode                        = All dimensions
+  │    CollapseDim                         = 1
+  │    InputSameDT                         = off
+  │    AccumDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Add3
+  │  Type     : Sum
+  │  Parameters:
+  │    IconShape                           = rectangular
+  │    Inputs                              = ++
+  │    CollapseMode                        = All dimensions
+  │    CollapseDim                         = 1
+  │    InputSameDT                         = off
+  │    AccumDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Add4
+  │  Type     : Sum
+  │  Parameters:
+  │    IconShape                           = rectangular
+  │    Inputs                              = ++
+  │    CollapseMode                        = All dimensions
+  │    CollapseDim                         = 1
+  │    InputSameDT                         = off
+  │    AccumDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Add5
+  │  Type     : Sum
+  │  Parameters:
+  │    IconShape                           = rectangular
+  │    Inputs                              = ++
+  │    CollapseMode                        = All dimensions
+  │    CollapseDim                         = 1
+  │    InputSameDT                         = off
+  │    AccumDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×2 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Band-Limited
+White Noise
+  │  Type     : SubSystem
+  │  Library  : simulink/Sources/Band-Limited
+White Noise
+  │  Parameters:
+  │    Cov                                 = [0.1]
+  │    Ts                                  = 0.0001
+  │    seed                                = [23341]
+  │    VectorParams1D                      = on
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/CT_Gain_Mismatch_1
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 1.140728  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/CT_Gain_Mismatch_2
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 1.084216  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/CT_Gain_Mismatch_3
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 1.068705  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/CT_Gain_Mismatch_4
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 1.079695  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/CT_Gain_Mismatch_5
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 1.076974  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/CT_Gain_Mismatch_6
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 1.102981  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Noise_Gain_1
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 0.185167  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Noise_Gain_2
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 0.185167  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Noise_Gain_3
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 0.185167  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Noise_Gain_4
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 0.185167  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Noise_Gain_5
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 0.185167  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Noise_Gain_6
+  │  Type     : Gain
+  │  Parameters:
+  │    Gain                                = 0.185167  ◄
+  │    Multiplication                      = Element-wise(K.*u)
+  │    ParamMin                            = []
+  │    ParamMax                            = []
+  │    ParamDataTypeStr                    = Inherit: Inherit via internal rule
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: Inherit via internal rule
+  │    LockScale                           = off
+  │    RndMeth                             = Floor
+  │    SaturateOnIntegerOverflow           = off
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Quantizer
+  │  Type     : Quantizer
+  │  Parameters:
+  │    QuantizationInterval                = 0.01
+  │    LinearizeAsGain                     = on  ◄
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Quantizer1
+  │  Type     : Quantizer
+  │  Parameters:
+  │    QuantizationInterval                = 0.01
+  │    LinearizeAsGain                     = on  ◄
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Quantizer2
+  │  Type     : Quantizer
+  │  Parameters:
+  │    QuantizationInterval                = 0.01
+  │    LinearizeAsGain                     = on  ◄
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Quantizer3
+  │  Type     : Quantizer
+  │  Parameters:
+  │    QuantizationInterval                = 0.01
+  │    LinearizeAsGain                     = on  ◄
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Quantizer4
+  │  Type     : Quantizer
+  │  Parameters:
+  │    QuantizationInterval                = 0.01
+  │    LinearizeAsGain                     = on  ◄
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Quantizer5
+  │  Type     : Quantizer
+  │  Parameters:
+  │    QuantizationInterval                = 0.01
+  │    LinearizeAsGain                     = on  ◄
+  │    SampleTime                          = -1  ◄
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Noise Merging Unit/Dig_IA_Prim
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 1
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Noise Merging Unit/Dig_IB_Prim
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 2
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Noise Merging Unit/Dig_IC_Prim
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 3
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Noise Merging Unit/Dig_IA_Sec
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 4
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Noise Merging Unit/Dig_IB_Sec
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 5
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Noise Merging Unit/Dig_IC_Sec
+  │  Type     : Outport
+  │  Parameters:
+  │    Port                                = 6
+  │    SignalObject                        = []
+  │    StorageClass                        = Auto
+  │    IconDisplay                         = Port number
+  │    OutputFunctionCall                  = off
+  │    OutMin                              = []
+  │    OutMax                              = []
+  │    OutDataTypeStr                      = Inherit: auto
+  │    LockScale                           = off
+  │    BusOutputAsStruct                   = off
+  │    BusVirtuality                       = inherit
+  │    DataMode                            = inherit
+  │    Unit                                = inherit
+  │    PortDimensions                      = -1
+  │    VarSizeSig                          = Inherit
+  │    SampleTime                          = -1  ◄
+  │    SignalType                          = auto
+  │    EnsureOutportIsVirtual              = off
+  │    SourceOfInitialOutputValue          = Dialog
+  │    OutputWhenDisabled                  = held
+  │    InitialOutput                       = []
+  │    MustResolveToSignalObject           = off
+  │    OutputWhenUnConnected               = off
+  │    OutputWhenUnconnectedValue          = 0
+  │    VectorParamsAs1DForOutWhenUnconnected = on
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Primary Current Scope
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 3
+  │    LayoutDimensionsString              = [3 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = on
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -124.6262
+  │    ActiveDisplayYMaximum               = 65.8363
+  │    DataLoggingLimitDataPoints          = off
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = off
+  │    DataLoggingDecimation               = 2
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData1
+  │    DataLoggingSaveFormat               = Dataset
+  │  Ports     : Inport×3
+  └─
+
+  ┌─ Primary_side
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseVIMeasurementLib/Three-Phase
+V-I Measurement
+  │  Parameters:
+  │    VoltageMeasurement                  = phase-to-phase  ◄
+  │    SetLabelV                           = off
+  │    LabelV                              = Vabc
+  │    Vpu                                 = off
+  │    VpuLL                               = off
+  │    CurrentMeasurement                  = yes  ◄
+  │    SetLabelI                           = off
+  │    LabelI                              = Iabc
+  │    Ipu                                 = off
+  │    Pbase                               = 100e6
+  │    Vbase                               = 500e3
+  │    OutputType                          = Complex
+  │    PhasorSimulation                    = off
+  │    PSBequivalent                       = 0
+  │  Ports     : Outport×2 LConn×3 RConn×3
+  └─
+
+  ┌─ RMS3
+  │  Type     : S-Function
+  │  Library  : dspstat3/RMS
+  │  Parameters:
+  │    run                                 = off
+  │    directionMode                       = Each column
+  │    dimension                           = 1
+  │    InputProcessing                     = Columns as channels (frame based)
+  │    reset_popup                         = None
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ RMS5
+  │  Type     : S-Function
+  │  Library  : dspstat3/RMS
+  │  Parameters:
+  │    run                                 = on
+  │    directionMode                       = Each column
+  │    dimension                           = 1
+  │    InputProcessing                     = Columns as channels (frame based)
+  │    reset_popup                         = None
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ RMS6
+  │  Type     : S-Function
+  │  Library  : dspstat3/RMS
+  │  Parameters:
+  │    run                                 = on
+  │    directionMode                       = Each column
+  │    dimension                           = 1
+  │    InputProcessing                     = Columns as channels (frame based)
+  │    reset_popup                         = None
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ RMS7
+  │  Type     : S-Function
+  │  Library  : dspstat3/RMS
+  │  Parameters:
+  │    run                                 = on
+  │    directionMode                       = Each column
+  │    dimension                           = 1
+  │    InputProcessing                     = Columns as channels (frame based)
+  │    reset_popup                         = None
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ RMS8
+  │  Type     : S-Function
+  │  Library  : dspstat3/RMS
+  │  Parameters:
+  │    run                                 = on
+  │    directionMode                       = Each column
+  │    dimension                           = 1
+  │    InputProcessing                     = Columns as channels (frame based)
+  │    reset_popup                         = None
+  │  Ports     : Inport×1 Outport×1
+  └─
+
+  ┌─ Scope
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 1
+  │    LayoutDimensionsString              = [1 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = off
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -0.125
+  │    ActiveDisplayYMaximum               = 1.125
+  │    DataLoggingLimitDataPoints          = off
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = off
+  │    DataLoggingDecimation               = 2
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData1
+  │    DataLoggingSaveFormat               = Dataset
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ Scope13
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 3
+  │    LayoutDimensionsString              = [3 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = off
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -19046.2697
+  │    ActiveDisplayYMaximum               = 19046.4151
+  │    DataLoggingLimitDataPoints          = on
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = on
+  │    DataLoggingDecimation               = 1
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData
+  │    DataLoggingSaveFormat               = Array
+  │  Ports     : Inport×3
+  └─
+
+  ┌─ Scope15
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 3
+  │    LayoutDimensionsString              = [3 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = off
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -406397.6316
+  │    ActiveDisplayYMaximum               = 406535.0016
+  │    DataLoggingLimitDataPoints          = on
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = on
+  │    DataLoggingDecimation               = 1
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData
+  │    DataLoggingSaveFormat               = Array
+  │  Ports     : Inport×3
+  └─
+
+  ┌─ Scope3
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 3
+  │    LayoutDimensionsString              = [3 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Auto
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = off
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -1985.8709
+  │    ActiveDisplayYMaximum               = 259.8358
+  │    DataLoggingLimitDataPoints          = on
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = on
+  │    DataLoggingDecimation               = 1
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData
+  │    DataLoggingSaveFormat               = Array
+  │  Ports     : Inport×3
+  └─
+
+  ┌─ Scope9
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 3
+  │    LayoutDimensionsString              = [3 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = off
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -908.0097
+  │    ActiveDisplayYMaximum               = 908.0215
+  │    DataLoggingLimitDataPoints          = on
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = on
+  │    DataLoggingDecimation               = 1
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData
+  │    DataLoggingSaveFormat               = Array
+  │  Ports     : Inport×3
+  └─
+
+  ┌─ Secondary Current Scope
+  │  Type     : Scope
+  │  Parameters:
+  │    OpenAtSimulationStart               = off
+  │    DisplayFullPath                     = off
+  │    NumInputPorts                       = 3
+  │    LayoutDimensionsString              = [3 1]
+  │    SampleTime                          = -1  ◄
+  │    FrameBasedProcessingString          = Elements as channels (sample based)
+  │    MaximizeAxes                        = Off
+  │    AxesScaling                         = Manual
+  │    AxesScalingNumUpdates               = 10
+  │    TimeSpan                            = Auto  ◄
+  │    TimeSpanOverrunAction               = Wrap  ◄
+  │    TimeUnits                           = None  ◄
+  │    TimeDisplayOffset                   = 0  ◄
+  │    TimeAxisLabels                      = Bottom displays only  ◄
+  │    ShowTimeAxisLabel                   = off  ◄
+  │    ActiveDisplayString                 = 1
+  │    Title                               = %<SignalLabel>
+  │    ShowLegend                          = on
+  │    ShowGrid                            = on
+  │    PlotAsMagnitudePhase                = off
+  │    ActiveDisplayYMinimum               = -3.7637
+  │    ActiveDisplayYMaximum               = 3.9737
+  │    DataLoggingLimitDataPoints          = off
+  │    DataLoggingMaxPoints                = 5000
+  │    DataLoggingDecimateData             = off
+  │    DataLoggingDecimation               = 2
+  │    DataLogging                         = off
+  │    DataLoggingVariableName             = ScopeData2
+  │    DataLoggingSaveFormat               = Dataset
+  │  Ports     : Inport×3
+  └─
+
+  ┌─ Secondary_side
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseVIMeasurementLib/Three-Phase
+V-I Measurement
+  │  Parameters:
+  │    VoltageMeasurement                  = phase-to-phase  ◄
+  │    SetLabelV                           = off
+  │    LabelV                              = Vabc
+  │    Vpu                                 = off
+  │    VpuLL                               = off
+  │    CurrentMeasurement                  = yes  ◄
+  │    SetLabelI                           = off
+  │    LabelI                              = Iabc
+  │    Ipu                                 = off
+  │    Pbase                               = 100e6
+  │    Vbase                               = 500e3
+  │    OutputType                          = Complex
+  │    PhasorSimulation                    = off
+  │    PSBequivalent                       = 0
+  │  Ports     : Outport×2 LConn×3 RConn×3
+  └─
+
+  ┌─ Series RLC Branch
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch1
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch10
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch11
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch12
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = C
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-9  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch13
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = C
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-9  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch14
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = C
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-9  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch15
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = C
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-9  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch16
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = C
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-9  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch17
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = C
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-9  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch2
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch3
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch4
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch5
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch6
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch7
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch8
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Series RLC Branch9
+  │  Type     : PMComponent
+  │  Library  : spsSeriesRLCBranchLib/Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = R
+  │    Resistance                          = 0.5  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    SetiL0                              = off
+  │    InitialCurrent                      = 0  ◄
+  │    Capacitance                         = 1e-6  ◄
+  │    Setx0                               = off
+  │    InitialVoltage                      = 0  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ Step1
+  │  Type     : Step
+  │  Parameters:
+  │    Time                                = 0.050000  ◄
+  │    Before                              = 0  ◄
+  │    After                               = 1  ◄
+  │    OutDataTypeStr                      = double
+  │    SampleTime                          = 0  ◄
+  │    VectorParams1D                      = on
+  │    ZeroCross                           = on
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Step2
+  │  Type     : Step
+  │  Parameters:
+  │    Time                                = 0.050000  ◄
+  │    Before                              = 0  ◄
+  │    After                               = 1  ◄
+  │    OutDataTypeStr                      = double
+  │    SampleTime                          = 0  ◄
+  │    VectorParams1D                      = on
+  │    ZeroCross                           = on
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Step4
+  │  Type     : Step
+  │  Parameters:
+  │    Time                                = 10  ◄
+  │    Before                              = 0  ◄
+  │    After                               = 1  ◄
+  │    OutDataTypeStr                      = double
+  │    SampleTime                          = 0  ◄
+  │    VectorParams1D                      = on
+  │    ZeroCross                           = on
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Step5
+  │  Type     : Step
+  │  Parameters:
+  │    Time                                = 0.05  ◄
+  │    Before                              = 0  ◄
+  │    After                               = 1  ◄
+  │    OutDataTypeStr                      = double
+  │    SampleTime                          = 0  ◄
+  │    VectorParams1D                      = on
+  │    ZeroCross                           = on
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Step_Evolve2
+  │  Type     : Step
+  │  Parameters:
+  │    Time                                = 0.05  ◄
+  │    Before                              = 0  ◄
+  │    After                               = 1  ◄
+  │    OutDataTypeStr                      = double
+  │    SampleTime                          = 0  ◄
+  │    VectorParams1D                      = on
+  │    ZeroCross                           = on
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Step_Evolve3
+  │  Type     : Step
+  │  Parameters:
+  │    Time                                = 0.05  ◄
+  │    Before                              = 0  ◄
+  │    After                               = 1  ◄
+  │    OutDataTypeStr                      = double
+  │    SampleTime                          = 0  ◄
+  │    VectorParams1D                      = on
+  │    ZeroCross                           = on
+  │  Ports     : Outport×1
+  └─
+
+  ┌─ Step_down_Transformer
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseTransformerTwoWindingsLib/Three-Phase
+Transformer
+(Two Windings)
+  │  Parameters:
+  │    Winding1Connection                  = Y  ◄
+  │    Winding2Connection                  = Delta (D1)  ◄
+  │    CoreType                            = Three single-phase transformers
+  │    SetSaturation                       = on  ◄
+  │    Hysteresis                          = off
+  │    DataFile                            = 'hysteresis'
+  │    SetInitialFlux                      = off  ◄
+  │    Measurements                        = Winding voltages
+  │    UNITS                               = pu
+  │    NominalPower                        = [ 300e6 50 ]  ◄
+  │    Winding1                            = [ 230e3 0.0025  0.01 ]  ◄
+  │    Winding2                            = [ 11e3 0.0025 0.01]  ◄
+  │    Rm                                  = 500
+  │    Lm                                  = inf
+  │    L0                                  = 0.5
+  │    Saturation                          = [0 0 ; 0.005 1.2 ; 5.0 1.8]  ◄
+  │    InitialFluxes                       = [-0.999842431491362 0.500274507228811 0.49956792426255]  ◄
+  │    BreakLoop                           = off
+  │    DiscreteSolver                      = Trapezoidal iterative
+  │    DataType                            = off
+  │    TransfoNumber                       = 1
+  │  Ports     : LConn×3 RConn×3
+  └─
+
+  ┌─ Three-Phase
+Series RLC Branch
+  │  Type     : PMComponent
+  │  Library  : spsThreePhaseSeriesRLCBranchLib/Three-Phase
+Series RLC Branch
+  │  Parameters:
+  │    BranchType                          = RLC
+  │    Resistance                          = 0.1  ◄
+  │    Inductance                          = 1e-3  ◄
+  │    Capacitance                         = inf  ◄
+  │    Measurements                        = None
+  │  Ports     : LConn×3 RConn×3
+  └─
+
+  ┌─ Three-Phase
+Series RLC Load
+  │  Type     : PMComponent
+  │  Library  : spsThreePhaseSeriesRLCLoadLib/Three-Phase
+Series RLC Load
+  │  Parameters:
+  │    Configuration                       = Y (grounded)  ◄
+  │    NominalVoltage                      = 11e3  ◄
+  │    Vabc                                = [1e3 1e3 1e3]
+  │    Vabcp                               = [1e3 1e3 1e3]
+  │    NominalFrequency                    = 50  ◄
+  │    UnbalancedPower                     = off  ◄
+  │    ActivePower                         = 10e6  ◄
+  │    InductivePower                      = 100  ◄
+  │    CapacitivePower                     = 0  ◄
+  │    Pabc                                = [10e3 9e3 11e3]
+  │    QLabc                               = [100 90 110]
+  │    QCabc                               = [100 90 110]
+  │    Pabcp                               = [10e3 9e3 11e3]
+  │    QLabcp                              = [100 90 110]
+  │    QCabcp                              = [100 90 110]
+  │    Measurements                        = None
+  │    LoadType                            = constant Z
+  │  Ports     : LConn×3
+  └─
+
+  ┌─ Three-Phase Breaker
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseBreakerLib/Three-Phase Breaker
+  │  Parameters:
+  │    InitialState                        = closed  ◄
+  │    SwitchA                             = on
+  │    SwitchB                             = on
+  │    SwitchC                             = on
+  │    SwitchTimes                         = [1/60  5/60]  ◄
+  │    External                            = on
+  │    BreakerResistance                   = 0.01  ◄
+  │    SnubberResistance                   = 1e6  ◄
+  │    SnubberCapacitance                  = inf  ◄
+  │    Measurements                        = Breaker voltages and currents
+  │  Ports     : Inport×1 LConn×3 RConn×3
+  └─
+
+  ┌─ Three-Phase Breaker1
+  │  Type     : SubSystem
+  │  Library  : spsThreePhaseBreakerLib/Three-Phase Breaker
+  │  Parameters:
+  │    InitialState                        = closed  ◄
+  │    SwitchA                             = on
+  │    SwitchB                             = on
+  │    SwitchC                             = on
+  │    SwitchTimes                         = [1/60  5/60]  ◄
+  │    External                            = on
+  │    BreakerResistance                   = 0.01  ◄
+  │    SnubberResistance                   = 1e6  ◄
+  │    SnubberCapacitance                  = inf  ◄
+  │    Measurements                        = None
+  │  Ports     : Inport×1 LConn×3 RConn×3
+  └─
+
+  ┌─ To Workspace
+  │  Type     : ToWorkspace
+  │  Parameters:
+  │    VariableName                        = I_primary_abc
+  │    MaxDataPoints                       = inf
+  │    Decimation                          = 1
+  │    SaveFormat                          = Array
+  │    Save2DSignal                        = 3-D array (concatenate along third dimension)
+  │    FixptAsFi                           = on
+  │    SampleTime                          = 6.25e-4  ◄
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ To Workspace1
+  │  Type     : ToWorkspace
+  │  Parameters:
+  │    VariableName                        = I_secondary_abc
+  │    MaxDataPoints                       = inf
+  │    Decimation                          = 1
+  │    SaveFormat                          = Array
+  │    Save2DSignal                        = 3-D array (concatenate along third dimension)
+  │    FixptAsFi                           = on
+  │    SampleTime                          = 6.25e-4  ◄
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ VS
+  │  Type     : Display
+  │  Parameters:
+  │    Format                              = short
+  │    Decimation                          = 1
+  │    Floating                            = off
+  │  Ports     : Inport×1
+  └─
+
+  ┌─ VSa
+  │  Type     : SubSystem
+  │  Library  : spsACVoltageSourceLib/AC Voltage Source
+  │  Parameters:
+  │    Amplitude                           = (230e3*sqrt(2))/(sqrt(3))
+  │    Phase                               = 0
+  │    Frequency                           = 50  ◄
+  │    SampleTime                          = 0  ◄
+  │    Measurements                        = None
+  │    BusType                             = swing
+  │    Pref                                = 10e3
+  │    Qref                                = 0
+  │    Qmin                                = -inf
+  │    Qmax                                = +inf
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ VSb
+  │  Type     : SubSystem
+  │  Library  : spsACVoltageSourceLib/AC Voltage Source
+  │  Parameters:
+  │    Amplitude                           = (230e3*sqrt(2))/(sqrt(3))
+  │    Phase                               = -120
+  │    Frequency                           = 50  ◄
+  │    SampleTime                          = 0  ◄
+  │    Measurements                        = None
+  │    BusType                             = swing
+  │    Pref                                = 10e3
+  │    Qref                                = 0
+  │    Qmin                                = -inf
+  │    Qmax                                = +inf
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ VSc
+  │  Type     : SubSystem
+  │  Library  : spsACVoltageSourceLib/AC Voltage Source
+  │  Parameters:
+  │    Amplitude                           = (230e3*sqrt(2))/(sqrt(3))
+  │    Phase                               = 120
+  │    Frequency                           = 50  ◄
+  │    SampleTime                          = 0  ◄
+  │    Measurements                        = None
+  │    BusType                             = swing
+  │    Pref                                = 10e3
+  │    Qref                                = 0
+  │    Qmin                                = -inf
+  │    Qmax                                = +inf
+  │  Ports     : LConn×1 RConn×1
+  └─
+
+  ┌─ powergui
+  │  Type     : SubSystem
+  │  Library  : spspowerguiLib/powergui
+  │  Parameters:
+  │    SimulationMode                      = Discrete
+  │    SampleTime                          = 10e-5  ◄
+  │    frequency                           = 60  ◄
+  │    Iterations                          = 50  ◄
+  │    frequencyindice                     = 50  ◄
+  │    Pbase                               = 100e6
+  │    ErrMax                              = 1e-4
+  │    UnitsV                              = kV
+  │    UnitsW                              = MW
+  │    buscounter                          = 0
+  │    FunctionMessages                    = off
+  │    echomessages                        = off
+  │    EnableUseOfTLC                      = off
+  │    CurrentSourceSwitches               = off  ◄
+  │    DisableSnubberDevices               = off
+  │    DisableRonSwitches                  = off
+  │    DisableVfSwitches                   = off
+  │    DisplayEquations                    = off
+  │    AutomaticDiscreteSolvers            = off
+  │    SolverType                          = Backward Euler
+  │    Interpol                            = off
+  │    ExternalGateDelay                   = off
+  │    methode                             = off
+  │    Ts                                  = 0
+  │    x0status                            = blocks
+  │    SPID                                = off
+  │    SwTol                               = 0
+  │    HookPort                            = off
+  │    NonlinearTolerance                  = 1e-4
+  │    nMaxIteration                       = 100  ◄
+  │    ContinueOnMaxIteration              = off  ◄
+  │    RestoreLinks                        = warning
+  │    ResistiveCurrentMeasurement         = off  ◄
+  │    Frange                              = [0:2:500]
+  │    Ylog                                = off
+  │    Xlog                                = on
+  │    ShowGrid                            = off
+  │    save                                = off
+  │    variable                            = ZData
+  │    structure                           = 0
+  │    ZoomFFT                             = on
+  │    StartTime                           = 0.0  ◄
+  │    cycles                              = 1
+  │    DisplayStyle                        = 1
+  │    fundamental                         = 60
+  │    FreqAxis                            = off
+  │    MaxFrequency                        = 1000  ◄
+  │    frequencyindicesteady               = 1  ◄
+  │    RmsSteady                           = 1
+  │    display                             = off
+  └─
+
+╔═════════════════════════════╗
+║ 4. SIGNAL LINE CONNECTIVITY ║
+╚═════════════════════════════╝
+
+  SOURCE (block:port)                                      DESTINATION (block:port)                                 Signal Name
+  --------------------------------------------------------------------------------------------------------------------------------------------
+
+╔═══════════════════════════════════════════════════════╗
+║ 5. BUS CREATOR / SELECTOR  &  GOTO / FROM CONNECTIONS ║
+╚═══════════════════════════════════════════════════════╝
+
+
+  Bus Creators  : 0
+
+  Bus Selectors : 0
+
+  Goto/From pairs:
+  Block                                     Tag
+  ----------------------------------------------------------------------
+
+╔════════════════════════════════════════════════════════════════════╗
+║ 6. STEP & FAULT BLOCKS  (quick-reference for ControlPanel scripts) ║
+╚════════════════════════════════════════════════════════════════════╝
+
+
+  Step Block                                     Before  After  Time
+  --------------------------------------------------------------------------------
+  Step1                                          0       1      0.050000
+  Step2                                          0       1      0.050000
+  Step4                                          0       1      10
+  Step5                                          0       1      0.05
+  Step_Evolve2                                   0       1      0.05
+  Step_Evolve3                                   0       1      0.05
+
+  Fault Block                                    FaultA  FaultB  FaultC  FaultG  Rf
+  ----------------------------------------------------------------------------------------------------
+  External_Fault                                 off     off     off     off     0.01
+  Internal_Fault1                                on      off     off     on      0.01
+  Internal_Fault2                                off     on      off     on      0.01
+  Internal_Fault3                                off     off     on      off     0.01
+
+╔═════════════════════╗
+║ 7. CIRCUIT BREAKERS ║
+╚═════════════════════╝
+
+
+  Breaker Block                                  InitialState  SwitchingTimes
+  ------------------------------------------------------------------------------------------
+  Three-Phase Breaker                            closed        
+  Three-Phase Breaker1                           closed        
+
+╔═══════════════════════╗
+║ 8. TRANSFORMER BLOCKS ║
+╚═══════════════════════╝
+
+
+  CT/CT 2000//5 A
+25 VA
+    NominalPower                        = [25 50]
+    Winding1                            = [5*1/20 0.001 0.04]
+    Winding2                            = [5 0.001 0.04 ]
+    Winding3                            = [5 0.001 0.04 ]
+
+  CT1/CT 2000//5 A
+25 VA
+    NominalPower                        = [25 50]
+    Winding1                            = [5*1/20 0.001 0.04]
+    Winding2                            = [5 0.001 0.04 ]
+    Winding3                            = [5 0.001 0.04 ]
+
+  CT2/CT 2000//5 A
+25 VA
+    NominalPower                        = [25 50]
+    Winding1                            = [5*1/20 0.001 0.04]
+    Winding2                            = [5 0.001 0.04 ]
+    Winding3                            = [5 0.001 0.04 ]
+
+  CT3/CT 2000//5 A
+25 VA
+    NominalPower                        = [25 50]
+    Winding1                            = [5*1/500 0.001 0.04]
+    Winding2                            = [5 0.001 0.04 ]
+    Winding3                            = [5 0.001 0.04 ]
+
+  CT4/CT 2000//5 A
+25 VA
+    NominalPower                        = [25 50]
+    Winding1                            = [5*1/500 0.001 0.04]
+    Winding2                            = [5 0.001 0.04 ]
+    Winding3                            = [5 0.001 0.04 ]
+
+  CT6/CT 2000//5 A
+25 VA
+    NominalPower                        = [25 50]
+    Winding1                            = [5*1/500 0.001 0.04]
+    Winding2                            = [5 0.001 0.04 ]
+    Winding3                            = [5 0.001 0.04 ]
+
+  Step_down_Transformer
+    NominalPower                        = [ 300e6 50 ]
+    Winding1                            = [ 230e3 0.0025  0.01 ]
+    Winding2                            = [ 11e3 0.0025 0.01]
+    Rm                                  = 500
+    Lm                                  = inf
+    Winding1Connection                  = Y
+    Winding2Connection                  = Delta (D1)
+    CoreType                            = Three single-phase transformers
+
+╔════════════════════════════════╗
+║ 9. MEASUREMENT & OUTPUT BLOCKS ║
+╚════════════════════════════════╝
+
+
+  ToWorkspace  (2)
+    To Workspace                                        I_primary_abc
+    To Workspace1                                       I_secondary_abc
+
+  Scope  (11)
+    Before Noise PrimCurr                               Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData2'),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-124.7577','MaxYLimReal','64.70104','YLabelReal','','MinYLimMag',' 0.00000','MaxYLimMag','124.7577','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.75,'Marker','none','Visible','on'),struct('Visible','on'),struct('Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'CT'}},'ShowContent',true,'Placement',1),struct('MinYLimReal','-124.7577','MaxYLimReal','64.70104','YLabelReal','','MinYLimMag',' 0.00000','MaxYLimMag','118.20001','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'CT'}},'ShowContent',true,'Placement',2),struct('MinYLimReal','-53.20133','MaxYLimReal','99.90795','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','99.90795','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.75,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'CT2'}},'ShowContent',true,'Placement',3)},'DisplayPropertyDefaults',struct('YLabelReal','','AxesColor',[0 0 0],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>'),'DisplayLayoutDimensions',[3 1]),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Position',[2.6 -96.6 1539.2 792])
+    Before Noise SecCurr                                Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData3'),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-0.89868','MaxYLimReal','0.89964','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','0.89964','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.75,'Marker','none','Visible','on'),struct('Visible','on'),struct('Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'CT4'}},'ShowContent',true,'Placement',1),struct('MinYLimReal','-1.3007','MaxYLimReal','1.30551','YLabelReal','','MinYLimMag',' 0.00000','MaxYLimMag','118.20001','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'CT3'}},'ShowContent',true,'Placement',2),struct('MinYLimReal','-1.30535','MaxYLimReal','1.29532','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','0.89917','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.75,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'CT6'}},'ShowContent',true,'Placement',3)},'DisplayPropertyDefaults',struct('YLabelReal','','AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>'),'DisplayLayoutDimensions',[3 1]),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousZoomMode','ZoomOut'),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Position',[9.8 -107 1539.2 792])
+    Hybrid 87T Relay/Scope                              Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData2'),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-4.78625','MaxYLimReal','4.57625','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','4.78625','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'In1'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-4.78625','MaxYLimReal','4.57625','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','4.78625','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a')
+    Hybrid 87T Relay/Scope1                             Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData3'),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-4.90375','MaxYLimReal','5.13375','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','5.13375','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Visible','off'),struct('Visible','off'),struct('Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',3,'LineNames',{{'In1','Inport','Inport1'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-4.90375','MaxYLimReal','5.13375','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','5.13375','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Position',[1 1 1536 788.8])
+    Primary Current Scope                               Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-124.62625','MaxYLimReal','65.83625','YLabelReal','','MinYLimMag',' 0.00000','MaxYLimMag','124.62625','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.75,'Marker','none','Visible','on'),struct('Visible','on'),struct('Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Noise Merging Unit/1'}},'ShowContent',true,'Placement',1),struct('MinYLimReal','-42.245','MaxYLimReal','72.605','YLabelReal','','MinYLimMag',' 0.00000','MaxYLimMag','118.20001','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Noise Merging Unit/2'}},'ShowContent',true,'Placement',2),struct('MinYLimReal','-53.95625','MaxYLimReal','99.90625','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','99.90795','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.75,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Noise Merging Unit/3'}},'ShowContent',true,'Placement',3)},'DisplayPropertyDefaults',struct('YLabelReal','','AxesColor',[0 0 0],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>'),'DisplayLayoutDimensions',[3 1]),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Position',[1 1 1536 788.8])
+    Scope                                               Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-0.125','MaxYLimReal','1.125','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','1.125','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Hybrid 87T Relay'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-0.125','MaxYLimReal','1.125','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','1.125','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Position',[488 203.4 657.8 438.6])
+    Scope13                                             Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingLimitDataPoints',true,'DataLoggingSaveFormat','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-19046.26967','MaxYLimReal','19046.41506','YLabelReal','','MinYLimMag','   0.00000','MaxYLimMag','19046.41506','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux6/1'}},'ShowContent',true,'Placement',1),struct('MinYLimReal','-18892.627','MaxYLimReal','19028.45614','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux6/2'}},'ShowContent',true,'Placement',2),struct('MinYLimReal','-19042.11207','MaxYLimReal','19016.32329','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux6/3'}},'ShowContent',true,'Placement',3)},'DisplayPropertyDefaults',struct('YLabelReal','','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'DisplayLayoutDimensions',[3 1]),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Location',[1 76 1921 1079])
+    Scope15                                             Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingLimitDataPoints',true,'DataLoggingSaveFormat','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-406397.63163','MaxYLimReal','406535.00162','YLabelReal','','MinYLimMag','    0.00000','MaxYLimMag','406535.00162','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux7/1'}},'ShowContent',true,'Placement',1),struct('MinYLimReal','-406424.52325','MaxYLimReal','406557.66111','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux7/2'}},'ShowContent',true,'Placement',2),struct('MinYLimReal','-406536.47724','MaxYLimReal','406406.30472','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux7/3'}},'ShowContent',true,'Placement',3)},'DisplayPropertyDefaults',struct('YLabelReal','','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'DisplayLayoutDimensions',[3 1]),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Location',[1 76 1921 1079])
+    Scope3                                              Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingLimitDataPoints',true,'DataLoggingSaveFormat','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-1985.87085','MaxYLimReal','259.83575','YLabelReal','','MinYLimMag','  0.00000','MaxYLimMag','1985.87085','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux4/1'}},'ShowContent',true,'Placement',1),struct('MinYLimReal','-756.89599','MaxYLimReal','1026.69081','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux4/2'}},'ShowContent',true,'Placement',2),struct('MinYLimReal','-338.07036','MaxYLimReal','1256.27039','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux4/3'}},'ShowContent',true,'Placement',3)},'DisplayPropertyDefaults',struct('YLabelReal','','AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'DisplayLayoutDimensions',[3 1]),extmgr.Configuration('Tools','Plot Navigation',true,'AutoscaleMode','Auto'),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Location',[1 76 1921 1079])
+    Scope9                                              Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingLimitDataPoints',true,'DataLoggingSaveFormat','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-908.00968','MaxYLimReal','908.02151','YLabelReal','','MinYLimMag',' 0.00000','MaxYLimMag','908.02151','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux5/1'}},'ShowContent',true,'Placement',1),struct('MinYLimReal','-908.00603','MaxYLimReal','907.99612','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux5/2'}},'ShowContent',true,'Placement',2),struct('MinYLimReal','-908.05852','MaxYLimReal','908.05708','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Demux5/3'}},'ShowContent',true,'Placement',3)},'DisplayPropertyDefaults',struct('YLabelReal','','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'DisplayLayoutDimensions',[3 1]),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Location',[398 505 1459 1025])
+    Secondary Current Scope                             Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData2'),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','-3.76375','MaxYLimReal','3.97375','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','3.97375','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.75,'Marker','none','Visible','on'),struct('Visible','on'),struct('Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Noise Merging Unit/4'}},'ShowContent',true,'Placement',1),struct('MinYLimReal','-3.76375','MaxYLimReal','3.97375','YLabelReal','','MinYLimMag',' 0.00000','MaxYLimMag','118.20001','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Noise Merging Unit/5'}},'ShowContent',true,'Placement',2),struct('MinYLimReal','-3.76375','MaxYLimReal','3.97375','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','0.89917','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.75,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Noise Merging Unit/6'}},'ShowContent',true,'Placement',3)},'DisplayPropertyDefaults',struct('YLabelReal','','AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>'),'DisplayLayoutDimensions',[3 1]),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Measurements',true,'Version','2023a')),'Version','2023a','Position',[1 1 1536 788.8])
+
+  Outport  (13)
+    CT/Out1                                             
+    CT1/Out1                                            
+    CT2/Out1                                            
+    CT3/Out1                                            
+    CT4/Out1                                            
+    CT6/Out1                                            
+    Hybrid 87T Relay/Trip_Signal                        
+    Noise Merging Unit/Dig_IA_Prim                      
+    Noise Merging Unit/Dig_IB_Prim                      
+    Noise Merging Unit/Dig_IC_Prim                      
+    Noise Merging Unit/Dig_IA_Sec                       
+    Noise Merging Unit/Dig_IB_Sec                       
+    Noise Merging Unit/Dig_IC_Sec                       
+
+╔══════════════════════════════╗
+║ 10. SUBSYSTEM PORT INTERFACE ║
+╚══════════════════════════════╝
+
+
+  [CT]  Inputs: 0  Outputs: 1
+    OUT  Out1
+
+  [CT1]  Inputs: 0  Outputs: 1
+    OUT  Out1
+
+  [CT2]  Inputs: 0  Outputs: 1
+    OUT  Out1
+
+  [CT3]  Inputs: 0  Outputs: 1
+    OUT  Out1
+
+  [CT4]  Inputs: 0  Outputs: 1
+    OUT  Out1
+
+  [CT6]  Inputs: 0  Outputs: 1
+    OUT  Out1
+
+  [External_Fault]  Inputs: 0  Outputs: 0
+
+  [Hybrid 87T Relay]  Inputs: 6  Outputs: 1
+    IN   In1
+    IN   Inport
+    IN   Inport1
+    IN   Inport2
+    IN   Inport3
+    IN   Inport4
+    OUT  Trip_Signal
+
+  [Internal_Fault1]  Inputs: 0  Outputs: 0
+
+  [Internal_Fault2]  Inputs: 0  Outputs: 0
+
+  [Internal_Fault3]  Inputs: 0  Outputs: 0
+
+  [Noise Merging Unit]  Inputs: 6  Outputs: 6
+    IN   IA_Prim
+    IN   IB_Prim
+    IN   IC_Prim
+    IN   IA_Sec
+    IN   IB_Sec
+    IN   IC_Sec
+    OUT  Dig_IA_Prim
+    OUT  Dig_IB_Prim
+    OUT  Dig_IC_Prim
+    OUT  Dig_IA_Sec
+    OUT  Dig_IB_Sec
+    OUT  Dig_IC_Sec
+
+  [Primary_side]  Inputs: 0  Outputs: 0
+
+  [Secondary_side]  Inputs: 0  Outputs: 0
+
+  [Step_down_Transformer]  Inputs: 0  Outputs: 0
+
+  [Three-Phase Breaker]  Inputs: 0  Outputs: 0
+
+  [Three-Phase Breaker1]  Inputs: 0  Outputs: 0
+
+  [VSa]  Inputs: 0  Outputs: 0
+
+  [VSb]  Inputs: 0  Outputs: 0
+
+  [VSc]  Inputs: 0  Outputs: 0
+
+  [powergui]  Inputs: 0  Outputs: 0

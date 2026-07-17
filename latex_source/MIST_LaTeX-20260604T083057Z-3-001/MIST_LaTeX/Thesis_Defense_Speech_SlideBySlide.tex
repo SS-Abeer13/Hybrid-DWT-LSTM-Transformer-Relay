@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setdefaultlanguage{english}
+\setotherlanguage{bengali}
+
+\setmainfont{Times New Roman}
+\newfontfamily\bengalifont[Script=Bengali]{Nirmala UI}
+
+\title{\textbf{Thesis Defense Presentation: Slide-by-Slide Speech \& Q\&A}}
+\author{Md Moinul Haque \& Md Reyaz Uddin}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent\textbf{Note:} This document provides a detailed, slide-by-slide explanation matching the presentation structure, complete with refined Bengali translations.
+
+\section*{Part 1: Slide-by-Slide Defense Speech}
+
+\subsection*{Slide 1: Title Slide}
+\textbf{Speech:} Good morning, respected board members, thesis supervisor, and attendees. My name is Md Moinul Haque, and joining me is my research partner, Md Reyaz Uddin. Today, we present our thesis titled: 'Hybrid Adaptive Transformer Differential Protection: An Intelligent DWT–LSTM Framework.' We express our profound gratitude to our supervisor, Cdre A N M Didarul Alam, for his guidance.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+শুভ সকাল, সম্মানিত বোর্ড সদস্যবৃন্দ, থিসিস সুপারভাইজার এবং উপস্থিত সুধীবৃন্দ। আমার নাম মো. মইনুল হক, এবং আমার সাথে আছেন আমার গবেষণা সহযোগী মো. রিয়াজ উদ্দিন। আজ আমরা আমাদের থিসিস উপস্থাপন করছি, যার শিরোনাম: 'হাইব্রিড অ্যাডাপটিভ ট্রান্সফরমার ডিফারেনশিয়াল প্রোটেকশন: একটি ইন্টেলিজেন্ট DWT-LSTM ফ্রেমওয়ার্ক'। আমরা আমাদের সুপারভাইজার, কমোডোর এ.এন.এম দিদারুল আলমের প্রতি তাঁর দিকনির্দেশনার জন্য গভীর কৃতজ্ঞতা জ্ঞাপন করছি।
+\end{bengali}
+
+\subsection*{Slide 2: Outline}
+\textbf{Speech:} Our presentation today will follow this outline. We will start with the research motivation, review associative literature, and state our objectives. We will then delve into our proposed hybrid framework, our Simulink and ONNX implementation, and our result analysis. Finally, we will justify our Course Outcome achievements and conclude with future prospects.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমাদের আজকের উপস্থাপনার রূপরেখাটি এমন হবে: প্রথমে আমরা গবেষণার প্রেক্ষাপট ও মোটিভেশন নিয়ে আলোচনা করব, এরপর প্রাসঙ্গিক সাহিত্য এবং আমাদের লক্ষ্যগুলো তুলে ধরব। এরপর আমরা আমাদের প্রস্তাবিত ফ্রেমওয়ার্ক, সিমুলিংক ইমপ্লিমেন্টেশন এবং ফলাফল বিশ্লেষণ করব। পরিশেষে কোর্স আউটকাম অর্জন এবং ভবিষ্যতের গবেষণার দিকনির্দেশনা দিয়ে শেষ করব।
+\end{bengali}
+
+\subsection*{Slide 3: Overview of Differential Protection}
+\textbf{Speech:} Let’s briefly review differential protection. The ANSI 87T element operates on Kirchhoff's current law: the current entering the protected zone must equal the current leaving it. We calculate the differential current. If it exceeds the threshold—often adjusted by a dual-slope characteristic to account for high through-currents—the relay trips to prevent transformer damage.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+সংক্ষেপে ডিফারেনশিয়াল প্রোটেকশন সম্পর্কে বলা যায়, এটি কির্চফের কারেন্ট ল'-এর ওপর ভিত্তি করে কাজ করে: ট্রান্সফরমারে যতটুকু কারেন্ট ঢুকবে, ঠিক ততটুকুই বের হবে। আমরা ডিফারেনশিয়াল কারেন্ট হিসাব করি। যদি এটি একটি নির্দিষ্ট সীমা অতিক্রম করে, তবে রিলে ট্রিপ করে। বড় ধরনের থ্রু-কারেন্ট বা এক্সটার্নাল ফল্টের সময় ভুল ট্রিপ এড়াতে ডুয়াল-স্লোপ রেস্ট্রেইন্ট ব্যবহার করা হয়।
+\end{bengali}
+
+\subsection*{Slide 4: Research Motivation}
+\textbf{Speech:} Why is this research critical? Power transformers cost millions of dollars, and a failure can cause cascading grid collapse. However, conventional relays face two major issues: Magnetizing inrush currents cause false trips because they look like internal faults. Modern transformers generate very little 2nd-harmonic during inrush, meaning traditional blocking fails. Furthermore, severe external faults saturate CTs, distorting waveforms and causing further false trips. A data-driven approach is urgently needed.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমাদের এই গবেষণা কেন এত গুরুত্বপূর্ণ? পাওয়ার ট্রান্সফরমার অত্যন্ত মূল্যবান সম্পদ। তবে প্রচলিত রিলেগুলোর দুটি প্রধান সমস্যা রয়েছে: প্রথমত, এনার্জাইজ করার সময় 'ম্যাগনেটাইজিং ইনরাশ কারেন্ট' ভুল ট্রিপ ঘটায়, আর আধুনিক ট্রান্সফরমারে ২য়-হারমোনিক খুব কম থাকায় প্রচলিত ব্লকিং কাজ করে না। দ্বিতীয়ত, এক্সটার্নাল ফল্টের সময় কারেন্ট ট্রান্সফরমার (CT) স্যাচুরেটেড হয়ে যায়, যা ওয়েভফর্ম বিকৃত করে এবং ফলস ট্রিপ ঘটায়। এ কারণেই আমাদের একটি এআই-ভিত্তিক ডেটা-চালিত সমাধান প্রয়োজন।
+\end{bengali}
+
+\subsection*{Slide 5: Comparative Literature}
+\textbf{Speech:} Historically, protection has evolved from fixed harmonics to wavelets and deep learning. Recent works by Afrasiabi and Alhamd have utilized DNNs and LSTMs. However, we identified a critical gap: prior works lack a comprehensive time-frequency feature set combined with temporal sequence modeling, and they entirely ignore the deterministic safety hardware fallback required for industrial deployment.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+ইতিহাস ঘাঁটলে দেখা যায়, প্রোটেকশন সিস্টেম ফিক্সড হারমোনিক থেকে শুরু করে বর্তমানে ডিপ লার্নিং পর্যন্ত এসেছে। সাম্প্রতিক গবেষণায় DNN এবং LSTM ব্যবহার করা হলেও একটি বড় গ্যাপ রয়ে গেছে: আগের গবেষণাগুলোতে পূর্ণাঙ্গ টাইম-ফ্রিকোয়েন্সি ফিচার এবং টেম্পোরাল মডেলিংয়ের অভাব রয়েছে। সবচেয়ে বড় কথা, ইন্ডাস্ট্রিতে ব্যবহারের জন্য যে ডিটারমিনিস্টিক সেফটি বা হার্ডওয়্যার ফলব্যাক প্রয়োজন, তা আগের গবেষণাগুলোতে সম্পূর্ণ উপেক্ষিত হয়েছে।
+\end{bengali}
+
+\subsection*{Slide 6: Research Objectives}
+\textbf{Speech:} Our primary objective is to design and validate a hybrid differential protection scheme. We extract multi-resolution features using DWT, classify them with an LSTM, and supervise the decision with a conventional 87T element. Our specific goals included building a high-fidelity Simulink model, developing the hybrid algorithm, validating its robustness against CT saturation, and benchmarking it against state-of-the-art baselines.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমাদের প্রধান লক্ষ্য হলো একটি হাইব্রিড ডিফারেনশিয়াল প্রোটেকশন স্কিম তৈরি করা। আমরা DWT ব্যবহার করে ফিচার এক্সট্রাক্ট করেছি, LSTM দিয়ে ক্লাসিফাই করেছি এবং একে প্রচলিত 87T রিলের সাথে যুক্ত করেছি। আমাদের সুনির্দিষ্ট লক্ষ্যগুলোর মধ্যে ছিল—একটি হাই-ফিডেলিটি সিমুলিংক মডেল তৈরি করা, হাইব্রিড অ্যালগরিদম তৈরি করা এবং CT স্যাচুরেশনের বিপরীতে এর কার্যকারিতা যাচাই করা।
+\end{bengali}
+
+\subsection*{Slide 7: Proposed Method Framework}
+\textbf{Speech:} Our framework is a six-stage pipeline. We acquire 3-phase currents, apply Yd1 compensation, and extract 37 statistical features per 20ms window using a 5-level Daubechies-4 DWT. These features are fed into a 2-layer LSTM. Crucially, we use a hybrid logic: the system only trips if the conventional 87T picks up AND the LSTM detects a fault. If the differential current is astronomically high, an immediate hardware override trips the breaker unconditionally.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমাদের ফ্রেমওয়ার্কটি মূলত ছয়-স্তরের। আমরা কারেন্ট পরিমাপ করে Yd1 কম্পেনসেশন করি এবং DWT ব্যবহার করে প্রতিটি ২০ মিলিসেকেন্ড উইন্ডো থেকে ৩৭টি ফিচার এক্সট্রাক্ট করি, যা একটি ২-লেয়ার LSTM-এ পাঠানো হয়। সবচেয়ে গুরুত্বপূর্ণ হলো আমাদের হাইব্রিড লজিক: রিলে তখনই ট্রিপ করবে যখন প্রচলিত 87T এবং এআই—উভয়ই ফল্ট শনাক্ত করবে। তবে কারেন্ট যদি চরম মাত্রায় পৌঁছায়, তখন এআই-কে বাইপাস করে সরাসরি হার্ডওয়্যার ট্রিপ সম্পন্ন হবে।
+\end{bengali}
+
+\subsection*{Slide 8: Why LSTM Over Simpler Classifiers?}
+\textbf{Speech:} Why use an LSTM over a CNN or SVM? In a single 20ms snapshot, an inrush current peak and an internal fault look identical. The difference is their temporal evolution: inrush decays over time, whereas a fault persists. The LSTM has a memory sequence of 32 steps, allowing it to learn and recognize these time-decaying signatures perfectly.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমরা CNN বা SVM এর বদলে কেন LSTM ব্যবহার করলাম? একটি মাত্র ২০-মিলিসেকেন্ডের উইন্ডোতে ইনরাশ এবং ফল্ট দেখতে হুবহু একই রকম হতে পারে। এদের মূল পার্থক্য হলো সময়ের সাথে পরিবর্তন: ইনরাশ কারেন্ট সময়ের সাথে কমে যায়, কিন্তু ফল্ট থেকে যায়। LSTM-এর নিজস্ব মেমোরি আছে, যা ৩২টি ধাপের সিকোয়েন্স মনে রাখে এবং এই টাইম-ডিকায়িং সিগনেচারগুলো নিখুঁতভাবে শনাক্ত করতে পারে।
+\end{bengali}
+
+\subsection*{Slide 9: Simulink Plant Model}
+\textbf{Speech:} To generate our data, we built a highly realistic Simulink plant model. It features a 230/11 kV, 300 MVA transformer, realistic source impedances, and rigorously matched current transformers on both the high and low voltage sides.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+ডেটা তৈরি করার জন্য আমরা একটি অত্যন্ত বাস্তবসম্মত সিমুলিংক প্ল্যান্ট মডেল তৈরি করেছি। এতে 230/11 kV, 300 MVA ট্রান্সফরমার এবং হাই ও লো ভোল্টেজ উভয় দিকেই নিখুঁতভাবে ম্যাচ করা কারেন্ট ট্রান্সফরমার ব্যবহার করা হয়েছে।
+\end{bengali}
+
+\subsection*{Slides 10-14: Test Console \& Realism Injection}
+\textbf{Speech:} We didn’t just simulate ideal conditions. We built an automated test harness to simulate normal operations, inrush, external faults, and various internal faults. To ensure our AI performs in the real world, we injected extreme non-idealities: fault resistance sweeping up to 20 ohms, random 360-degree inception angles, up to 7\% Gaussian noise, and CT-gain mismatches.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমরা শুধু আদর্শ অবস্থার সিমুলেশন করিনি। আমরা একটি স্বয়ংক্রিয় টেস্ট সিস্টেম তৈরি করেছি যা স্বাভাবিক অবস্থা, ইনরাশ, এবং বিভিন্ন ফল্ট তৈরি করে। এআই যেন বাস্তব দুনিয়ায় ঠিকমতো কাজ করে, সেজন্য আমরা এতে চরম মাত্রার গসিয়ান নয়েজ, CT গেইন মিসম্যাচ এবং র‍্যান্ডম ইনসেপশন অ্যাঙ্গেল যুক্ত করেছি।
+\end{bengali}
+
+\subsection*{Slide 15: DWT Feature Extraction}
+\textbf{Speech:} For feature extraction, we decomposed the signal using a 5-level DWT. Across the 5 frequency bands, we extracted 7 statistical features including wavelet energy, Shannon entropy, standard deviation, and kurtosis. Combined with instantaneous differential and restraint currents, this yields a robust 37-dimensional feature vector per window.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+ফিচার এক্সট্রাকশনের জন্য আমরা ৫-লেভেলের DWT ব্যবহার করেছি। প্রতিটি ফ্রিকোয়েন্সি ব্যান্ড থেকে আমরা ওয়েভলেট এনার্জি, শ্যানন এনট্রপি এবং কার্টোসিসসহ মোট ৭টি পরিসংখ্যানগত ফিচার নিয়েছি, যা একটি শক্তিশালী ৩৭-মাত্রিক ফিচার ভেক্টর তৈরি করে।
+\end{bengali}
+
+\subsection*{Slides 16-17: Dataset Generation \& Parameter Space}
+\textbf{Speech:} Our automated harness generated a massive dataset of 2,500 unique events. This balanced dataset spans uniform parameter coverage to prevent overfitting, ensuring the model generalizes well to asynchronous timings and high-impedance conditions.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমাদের অটোমেটেড সিস্টেম মোট ২,৫০০টি ইউনিক ইভেন্টের একটি বিশাল ডেটাসেট তৈরি করেছে। এই ব্যালেন্সড ডেটাসেটটি মডেলকে ওভারফিটিং থেকে রক্ষা করে এবং নিশ্চিত করে যে মডেলটি বাস্তব ক্ষেত্রেও কার্যকর হবে।
+\end{bengali}
+
+\subsection*{Slide 18: LSTM Classifier Training}
+\textbf{Speech:} The LSTM network comprises two layers with 128 and 64 hidden units respectively, incorporating dropout to prevent overfitting. It was trained in PyTorch using the Adam optimizer and class-weighted cross-entropy to handle any data imbalances effectively.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমাদের LSTM নেটওয়ার্কটি ১২৮ এবং ৬৪টি হিডেন ইউনিটের দুটি লেয়ার নিয়ে গঠিত। ওভারফিটিং এড়াতে ড্রপআউট ব্যবহার করা হয়েছে। এটি PyTorch-এ অ্যাডাম (Adam) অপ্টিমাইজার দিয়ে ট্রেইন করা হয়েছে।
+\end{bengali}
+
+\subsection*{Slides 19-20: AI Deployment \& Hardware Override}
+\textbf{Speech:} After training, the model was exported via ONNX and deployed directly into Simulink. The logic yields three outcomes: 'IMMEDIATE TRIP' for massive currents, completely bypassing AI; 'TRIP' when both the AI and 87T agree on a fault; and 'BLOCK', where the AI vetoes the 87T to prevent a false trip during inrush or CT saturation.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+ট্রেইনিংয়ের পর, মডেলটিকে ONNX ফরম্যাটের মাধ্যমে সরাসরি সিমুলিংকে ডিপ্লয় করা হয়েছে। আমাদের লজিক ৩টি ফলাফল দেয়: কারেন্ট অত্যন্ত বেশি হলে 'IMMEDIATE TRIP' (এআই বাইপাস করে); যখন এআই ও 87T উভয়েই ফল্ট পায় তখন 'TRIP'; এবং যখন ইনরাশ বা CT স্যাচুরেশন থাকে, তখন এআই 87T-কে 'BLOCK' করে ফলস ট্রিপ প্রতিরোধ করে।
+\end{bengali}
+
+\subsection*{Slides 21-22: Training Results}
+\textbf{Speech:} The training results show exceptional convergence and near-perfect discrimination. The model achieved a 99.2\% mean accuracy on the validation set, with a 99.9\% AUC-ROC. Bootstrap analysis confirmed extremely tight confidence intervals, proving the model is robust and unbiased.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+ট্রেইনিংয়ের ফলাফল অত্যন্ত চমৎকার। ভ্যালিডেশন সেটে মডেলটি ৯৯.২\% গড় নির্ভুলতা এবং ৯৯.৯\% AUC-ROC অর্জন করেছে, যা প্রমাণ করে মডেলটি যেকোনো পরিস্থিতিতে অত্যন্ত কার্যকর ও পক্ষপাতহীন।
+\end{bengali}
+
+\subsection*{Slides 23-24: Trip Behavior \& Robustness}
+\textbf{Speech:} In the trip behavior analysis, the hybrid LSTM completely eliminated the false trips during inrush and CT saturation that plagued the conventional relay. Furthermore, across rigorous stress tests spanning extreme noise and high fault resistances, the system maintained over 99\% dependability and security.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+ট্রিপ বিহেভিয়ার বিশ্লেষণ করে দেখা যায়, ইনরাশ এবং CT স্যাচুরেশনের সময় প্রচলিত রিলের যে ফলস ট্রিপ হতো, আমাদের হাইব্রিড এআই তা পুরোপুরি দূর করেছে। এমনকি চরম নয়েজ এবং হাই-রেজিস্ট্যান্স ফল্টের সময়ও এটি ৯৯\% এর বেশি ডিপেন্ডেবিলিটি ও সিকিউরিটি বজায় রেখেছে।
+\end{bengali}
+
+\subsection*{Slides 25-27: Benchmarks \& Novelty}
+\textbf{Speech:} We benchmarked our model against four recent methodologies, including dual-DNN and wavelet-SVM. Our hybrid DWT-LSTM outperformed them all, achieving zero false positives and a blazing fast 17.2-millisecond average trip time. Our gap analysis highlights our primary novelty: merging a massive 37-dimensional DWT feature set with a temporal LSTM and a deterministic hardware fallback.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমরা আমাদের মডেলকে অন্যান্য ৪টি আধুনিক পদ্ধতির সাথে তুলনা করেছি। আমাদের হাইব্রিড DWT-LSTM সবগুলোকে ছাড়িয়ে গেছে—এর ফলস পজিটিভ রেট শূন্য এবং ট্রিপ টাইম মাত্র ১৭.২ মিলিসেকেন্ড। আমাদের গবেষণার প্রধান অভিনবত্ব হলো: একটি বিশাল ৩৭-মাত্রিক DWT ফিচার সেটের সাথে টেম্পোরাল LSTM এবং হার্ডওয়্যার ফলব্যাকের সফল সমন্বয়।
+\end{bengali}
+
+\subsection*{Slides 28-30: Completion of Aims \& CO Justification}
+\textbf{Speech:} We have successfully delivered on all our specific objectives, from the Simulink plant construction to the benchmark analysis. We mapped these achievements to our Course Outcomes, demonstrating problem formulation, complex engineering solution design, rigorous testing, and an understanding of the profound societal impact reliable power grids have on safety and the economy.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আমরা আমাদের সমস্ত সুনির্দিষ্ট লক্ষ্য সফলভাবে অর্জন করেছি। এই অর্জনগুলো আমাদের কোর্স আউটকামগুলোর (CO) সাথে সম্পূর্ণ সামঞ্জস্যপূর্ণ, যা জটিল ইঞ্জিনিয়ারিং ডিজাইন এবং পাওয়ার গ্রিডের নির্ভরযোগ্যতার মাধ্যমে সমাজে ইতিবাচক প্রভাব ফেলার বিষয়টিকে নিশ্চিত করে।
+\end{bengali}
+
+\subsection*{Slide 31: Conclusion}
+\textbf{Speech:} In conclusion, this thesis presents a highly secure, simulation-validated hybrid AI relay framework. It successfully prevents false trips during complex transients without compromising the tripping speed necessary for safety.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+উপসংহারে বলা যায়, আমাদের এই থিসিস একটি অত্যন্ত সুরক্ষিত এবং সিমুলেশন দ্বারা পরীক্ষিত হাইব্রিড এআই রিলে ফ্রেমওয়ার্ক উপস্থাপন করেছে, যা ট্রিপিং স্পিডের সাথে কোনো আপস না করেই ফলস ট্রিপ প্রতিরোধ করতে সক্ষম।
+\end{bengali}
+
+\subsection*{Slide 32: Future Prospects}
+\textbf{Speech:} Looking forward, our short-term goals include hardware-in-the-loop (HIL) validation using RTDS and deploying the quantized model onto FPGA edge hardware. Long-term research will focus on continuous model adaptation, explainable AI (XAI) for protection engineers, and wide-area protection integration.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+ভবিষ্যতের গবেষণার কথা বিবেচনা করলে, আমাদের পরবর্তী লক্ষ্য হলো RTDS ব্যবহার করে হার্ডওয়্যার-ইন-দ্য-লুপ (HIL) ভ্যালিডেশন করা এবং মডেলটিকে FPGA হার্ডওয়্যারে ডিপ্লয় করা। দীর্ঘমেয়াদী গবেষণায় Explainable AI (XAI) এবং ওয়াইড-এরিয়া প্রোটেকশন নিয়ে কাজ করার সুযোগ রয়েছে।
+\end{bengali}
+
+\subsection*{Slide 33: Q\&A Introduction}
+\textbf{Speech:} Thank you all for your time and attention. Our plant model and code have been fully open-sourced. We now welcome any questions from the committee.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+আপনাদের মূল্যবান সময় ও মনোযোগের জন্য আন্তরিক ধন্যবাদ। আমাদের প্ল্যান্ট মডেল এবং কোড ওপেন সোর্স করা হয়েছে। এখন বোর্ড থেকে যেকোনো প্রশ্নের উত্তর দিতে আমরা প্রস্তুত।
+\end{bengali}
+
+\newpage
+\section*{Part 2: Anticipated Defense Q\&A}
+
+\subsection*{Q1: Computational Cost \& Real-Time Feasibility}
+\textbf{Question:} How do you guarantee that the DWT feature extraction and LSTM inference can be completed within a fraction of a power system cycle (e.g., $<$ 5ms) on actual relay hardware? \\
+\textbf{Defense/Answer:} We designed our architecture with strict hardware deployment in mind. By restricting the LSTM to a fixed 32-step sequence, the matrix multiplications become perfectly predictable and bounded. It does not require a massive GPU; rather, it is highly optimized for edge deployment on an FPGA or DSP. Our Simulink ONNX integration proved that the end-to-end inference executes well within the 20ms (1 cycle) requirement. Furthermore, the hardware override ensures that catastrophic faults bypass the AI entirely, guaranteeing instantaneous protection.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+\textbf{প্রশ্ন:} আপনারা কীভাবে নিশ্চিত করছেন যে DWT ফিচার এক্সট্রাকশন এবং LSTM ইনফারেন্স রিয়েল রিলে হার্ডওয়্যারে একটি পাওয়ার সিস্টেম সাইকেলের ভগ্নাংশের মধ্যে সম্পন্ন করা সম্ভব? \\
+\textbf{উত্তর/যুক্তি:} আমরা আমাদের আর্কিটেকচারটি ডিজাইন করার সময় হার্ডওয়্যার ডিপ্লয়মেন্টের বিষয়টি কঠোরভাবে বিবেচনায় রেখেছি। LSTM-কে ৩২-ধাপের একটি নির্দিষ্ট সিকোয়েন্সে সীমাবদ্ধ করার ফলে এর কম্পিউটেশন পুরোপুরি অনুমানযোগ্য। এর জন্য কোনো বিশাল GPU-এর প্রয়োজন নেই; বরং এটি FPGA বা DSP-তে এজ ডিপ্লয়মেন্টের জন্য খুব ভালোভাবে অপ্টিমাইজ করা। আমাদের হার্ডওয়্যার ওভাররাইড নিশ্চিত করে যে বড় ধরনের ফল্টের ক্ষেত্রে সিস্টেমটি AI-কে পুরোপুরি বাইপাস করে তাৎক্ষণিক সুরক্ষা প্রদান করবে।
+\end{bengali}
+
+\subsection*{Q2: Current Transformer (CT) Saturation}
+\textbf{Question:} During severe external faults, CTs can severely saturate, distorting the secondary current waveform. Will your LSTM misclassify this as an internal fault and cause a false trip? \\
+\textbf{Defense/Answer:} No, it will not. We specifically trained our LSTM on a massive dataset that includes full Jiles-Atherton CT saturation models under varying noise and burden conditions. The DWT-LSTM learns the high-frequency signatures of CT clipping and recognizes it as an external fault. Additionally, our hybrid logic ensures that if the AI is ever unsure, traditional directional or harmonic restraints act as a fast-acting backup to block the trip during severe external faults.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+\textbf{প্রশ্ন:} বড় ধরনের এক্সটার্নাল ফল্টের সময় CT চরমভাবে স্যাচুরেটেড হয়ে যেতে পারে, যা সেকেন্ডারি কারেন্ট ওয়েভফর্মকে বিকৃত করে দেয়। আপনাদের LSTM কি এটিকে ইন্টারনাল ফল্ট হিসেবে ভুল চিনে ফলস ট্রিপ ঘটাবে? \\
+\textbf{উত্তর/যুক্তি:} না, এটি ঘটবে না। আমরা আমাদের LSTM-কে এমন একটি বিশাল ডেটাসেটে ট্রেইন করেছি, যেখানে বিভিন্ন নয়েজ এবং বার্ডেন কন্ডিশনে সম্পূর্ণ Jiles-Atherton CT স্যাচুরেশন মডেল অন্তর্ভুক্ত রয়েছে। DWT-LSTM, CT ক্লিপিংয়ের সিগনেচারগুলো শিখে নেয় এবং সহজেই এটিকে এক্সটার্নাল ফল্ট হিসেবে শনাক্ত করতে পারে।
+\end{bengali}
+
+\subsection*{Q3: Why LSTM over CNN or traditional Second-Harmonic Blocking?}
+\textbf{Question:} CNNs are often computationally lighter than LSTMs. Why use an LSTM? And why not just stick to industry-standard 2nd-harmonic blocking? \\
+\textbf{Defense/Answer:} While CNNs are excellent for spatial features, LSTMs natively capture the \textit{temporal progression} of a signal. Inrush currents decay over time, while internal faults persist. A single-window CNN might confuse an internal fault with a severe inrush peak, but an LSTM tracks the sequence over 32 steps to verify the decay pattern. As for 2nd-harmonic blocking, it is becoming obsolete. Modern transformers use advanced core materials that generate very low 2nd-harmonic components during inrush, causing traditional relays to misoperate. Our DWT-LSTM circumvents this hardware limitation entirely.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+\textbf{প্রশ্ন:} CNN সাধারণত LSTM-এর তুলনায় কম্পিউটেশনালি হালকা হয়ে থাকে। আপনারা কেন LSTM ব্যবহার করলেন? এবং ইন্ডাস্ট্রির প্রথাগত ২য়-হারমোনিক ব্লকিংয়েই কেন সীমাবদ্ধ থাকলেন না? \\
+\textbf{উত্তর/যুক্তি:} যদিও স্পেশিয়াল (spatial) ফিচারের জন্য CNN চমৎকার কাজ করে, কিন্তু একটি সিগন্যালের সময়ের সাথের পরিবর্তন খুব ভালোভাবে ধরতে পারে LSTM। ইনরাশ কারেন্ট সময়ের সাথে কমতে থাকে, কিন্তু ইন্টারনাল ফল্ট বজায় থাকে। একটি CNN ইন্টারনাল ফল্টকে তীব্র ইনরাশ পিক হিসেবে ভুল করতে পারে, কিন্তু একটি LSTM ৩২টি ধাপ ট্র্যাক করে ক্ষয় প্যাটার্ন নিশ্চিত করতে পারে। আর আধুনিক ট্রান্সফরমারগুলো ইনরাশের সময় খুবই কম ২য়-হারমোনিক তৈরি করে, ফলে প্রচলিত রিলেগুলো ভুল সিদ্ধান্ত নেয়।
+\end{bengali}
+
+\subsection*{Q4: Generalizability \& Out-of-Distribution Data}
+\textbf{Question:} Your model was trained on simulated data. How will it perform on real-world fault data with unexpected noise profiles? \\
+\textbf{Defense/Answer:} We acknowledge the simulation-to-reality gap, which is exactly why we injected heavy Gaussian noise (up to 7\% SNR) and $\pm$2\% CT-gain mismatches during training to enforce robust generalization. More importantly, this is the exact reason we implemented the Deterministic Hardware Override. If the AI encounters a completely unseen, adversarial waveform that confuses it, our conventional high-set differential element takes over. We never rely purely on the AI for safety-critical tripping; it acts as a highly sensitive supervisory layer.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+\textbf{প্রশ্ন:} আপনাদের মডেলটি সিমুলেটেড ডেটায় ট্রেইন করা হয়েছে। বাস্তব দুনিয়ার ফল্ট ডেটাতে অপ্রত্যাশিত নয়েজ প্রোফাইল থাকলে এটি কীভাবে কাজ করবে? \\
+\textbf{উত্তর/যুক্তি:} আমরা সিমুলেশন থেকে বাস্তবতার এই ব্যবধানটি স্বীকার করি, আর ঠিক এ কারণেই আমরা ট্রেইনিংয়ের সময় ভারী গসিয়ান নয়েজ এবং CT-গেইন মিসম্যাচ ইনজেক্ট করেছি। এর চেয়েও গুরুত্বপূর্ণ বিষয় হলো, আমরা ডিটারমিনিস্টিক হার্ডওয়্যার ওভাররাইড সিস্টেমটি যুক্ত করেছি। যদি AI এমন কোনো সম্পূর্ণ অজানা ওয়েভফর্মের সম্মুখীন হয় যা তাকে বিভ্রান্ত করে, তখন প্রচলিত ডিফারেনশিয়াল এলিমেন্ট স্বয়ংক্রিয়ভাবে দায়িত্ব গ্রহণ করবে।
+\end{bengali}
+
+\subsection*{Q5: Role of the Hardware Override}
+\textbf{Question:} If you have a hardware override, why use the AI at all? \\
+\textbf{Defense/Answer:} The AI provides significantly faster and much more sensitive detection for marginal, low-current, or high-impedance internal faults where a conventional high-set override would fail to trigger. Additionally, the AI successfully prevents false trips during low-harmonic inrush currents—a scenario where conventional relays either falsely operate or remain dangerously blocked. The hardware override is merely a fallback for extreme edge cases, ensuring we remain 100\% compliant with IEC/IEEE relay standards.
+
+\begin{bengali}
+\textbf{[বাংলা অনুবাদ]} \\
+\textbf{প্রশ্ন:} আপনাদের যদি একটি হার্ডওয়্যার ওভাররাইড থাকেই, তবে AI ব্যবহার করার প্রয়োজনীয়তা কী? \\
+\textbf{উত্তর/যুক্তি:} মার্জিনাল, লো-কারেন্ট অথবা হাই-ইম্পিডেন্স ইন্টারনাল ফল্টের ক্ষেত্রে AI অনেক দ্রুত এবং অত্যন্ত সংবেদনশীল ডিটেকশন প্রদান করে, যেখানে একটি প্রচলিত ওভাররাইড কাজ করতে ব্যর্থ হয়। এছাড়াও, লো-হারমোনিক ইনরাশের সময় AI সফলভাবে ফলস ট্রিপ প্রতিরোধ করে। হার্ডওয়্যার ওভাররাইড হলো কেবলমাত্র চরম পরিস্থিতির জন্য একটি ব্যাকআপ, যা নিশ্চিত করে যে আমরা ১০০\% IEC রিলে স্ট্যান্ডার্ড মেনে চলছি।
+\end{bengali}
+
+\end{document}

@@ -1,0 +1,17 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Binary (Trip/No-Trip) confusion matrix on the 1,800-case test set (accuracy 98.89\%).}}{60}{table.caption.28}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Per-class performance metrics of the DWT-LSTM classifier.}}{60}{table.caption.30}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Comprehensive performance comparison of all evaluated methods.}}{61}{table.caption.32}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsfinish 

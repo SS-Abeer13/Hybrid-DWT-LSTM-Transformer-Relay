@@ -1,0 +1,37 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Comparative synthesis of representative transformer differential protection studies.\relax }}{9}{table.caption.10}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Transformer nameplate and equivalent-circuit parameters.\relax }}{20}{table.caption.18}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Current transformer parameters.\relax }}{21}{table.caption.19}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Deterministic simulation scenarios seeding the augmented dataset.\relax }}{21}{table.caption.20}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Composition of the 2{,}500-case base dataset by event category and protection label.\relax }}{23}{table.caption.22}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Stochastic augmentation parameter ranges.\relax }}{23}{table.caption.23}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Frequency band allocation for the 3-level DWT at 1.6\,kHz.\relax }}{27}{table.caption.29}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Per-inference parameter and operation budget of the DWT--LSTM pipeline.\relax }}{30}{table.caption.33}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Statistical distribution of the six DWT energy features across event classes (mean $\pm $ s.d., $\times 10^{-3}$\,pu$^2$).\relax }}{33}{table.caption.36}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Binary (Trip/No-Trip) confusion matrix on the 1{,}800-case test set. Accuracy $=98.89\%$; F1 $=0.9901$; ROC--AUC $=0.9999$.\relax }}{36}{table.caption.42}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Per-class performance metrics of the DWT--LSTM classifier.\relax }}{37}{table.caption.44}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Five-fold stratified cross-validation results.\relax }}{37}{table.caption.45}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Performance comparison of standalone 87T, standalone LSTM, and hybrid relay.\relax }}{38}{table.caption.46}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces Average fault-clearing time by method.\relax }}{39}{table.caption.48}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Classification accuracy under additive white Gaussian noise.\relax }}{43}{table.caption.53}%
+\contentsline {table}{\numberline {6.8}{\ignorespaces Internal-fault detection rate (recall) versus fault-resistance bin.\relax }}{43}{table.caption.54}%
+\contentsline {table}{\numberline {6.9}{\ignorespaces Comprehensive performance comparison of all evaluated methods.\relax }}{43}{table.caption.55}%
+\contentsline {table}{\numberline {6.10}{\ignorespaces Capability-level comparison against representative prior studies ($\text {$\mathsurround \z@ \mathchar "458$}$ present, $\times $ absent, $\circ $ partial).\relax }}{44}{table.caption.56}%
+\contentsline {table}{\numberline {6.11}{\ignorespaces Ablation study: effect of removing or altering individual components (unified test set).\relax }}{45}{table.caption.57}%
+\contentsline {table}{\numberline {6.12}{\ignorespaces Classification accuracy versus mother wavelet and decomposition level (\%).\relax }}{46}{table.caption.58}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {A.1}{\ignorespaces Daubechies-4 decomposition filter coefficients ($g[n]=(-1)^n h[7-n]$).\relax }}{59}{table.caption.65}%
+\contentsline {table}{\numberline {A.2}{\ignorespaces LSTM hyperparameter search space and selected configuration.\relax }}{59}{table.caption.66}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {C.1}{\ignorespaces Per-category recall of the proposed scheme (internal-fault types: trip recall; non-fault categories: correct no-trip rate).\relax }}{61}{table.caption.67}%
+\contentsline {table}{\numberline {C.2}{\ignorespaces End-to-end clearing-time breakdown of the hybrid relay.\relax }}{61}{table.caption.68}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {D.1}{\ignorespaces Consolidated summary of the principal design parameters of the proposed framework.\relax }}{62}{table.caption.69}%
+\addvspace {10\p@ }

@@ -1,0 +1,35 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Single-line schematic of the transformer differential protection zone.}}{2}{figure.caption.4}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Dual-slope percentage restraint characteristic of the differential relay.}}{10}{figure.caption.6}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Core $B$--$H$ saturation curve and the resulting magnetizing inrush waveform.}}{11}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Current transformer equivalent circuit and saturation-induced secondary distortion.}}{12}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Conceptual feature-space separation of the event classes with cost-asymmetric decision boundaries.}}{13}{figure.caption.9}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the MATLAB/Simulink power-system simulation model (Simulink main panel).}}{14}{figure.caption.10}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Merging-unit signal-conditioning and noise-injection pipeline.}}{17}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Composition of the 2{,}500-case dataset across event categories and train/validation/test subsets.}}{18}{figure.caption.16}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Two-step development and deployment architecture (MATLAB/Simulink $\leftrightarrow $ PyTorch $\leftrightarrow $ ONNX).}}{19}{figure.caption.17}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Hybrid veto/AND-gate decision logic combining the adaptive 87T element and the LSTM classifier.}}{20}{figure.caption.18}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces End-to-end seven-stage signal flow of the proposed protection scheme.}}{20}{figure.caption.19}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Dual sliding-window timing: half-cycle DWT window and full-cycle LSTM buffer.}}{21}{figure.caption.20}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces db4 mother wavelet and the three-level dyadic filter-bank decomposition tree.}}{22}{figure.caption.22}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces DWT--LSTM classifier architecture with global temporal attention.}}{23}{figure.caption.23}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Per-inference computational cost distribution across pipeline stages.}}{24}{figure.caption.25}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Three-phase differential current waveforms for the four operating conditions.}}{25}{figure.caption.26}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Parameter-space coverage / feature distribution across event classes.}}{26}{figure.caption.28}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Statistical verification of the generated dataset.}}{27}{figure.caption.29}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Training and validation loss/accuracy curves for the LSTM classifier (best fold).}}{27}{figure.caption.30}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Five-fold cross-validation performance summary.}}{28}{figure.caption.31}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Confusion-matrix heatmap of the DWT--LSTM classifier (counts and normalized).}}{28}{figure.caption.33}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Comprehensive performance dashboard of the proposed framework.}}{30}{figure.caption.37}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Operational robustness: accuracy vs.\ SNR, zone-level performance, and cumulative detection rate.}}{31}{figure.caption.39}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Ablation sensitivity of classification accuracy to individual design choices.}}{34}{figure.caption.42}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces ROC and precision--recall curves for internal-fault detection (AUC $=0.9999$).}}{34}{figure.caption.43}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Confidence-score distribution for Trip and No-Trip decisions.}}{35}{figure.caption.44}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

@@ -1,0 +1,45 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Single-line diagram of the 300\,MVA, 230/11\,kV Yd1 power transformer and its differential (87T) protection scheme.\relax }}{2}{figure.caption.9}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Dual-slope percentage restraint characteristic of the differential relay.\relax }}{12}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Core $B$--$H$ saturation curve and the resulting magnetizing inrush waveform.\relax }}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Current transformer equivalent circuit and saturation-induced secondary distortion.\relax }}{14}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Conceptual feature-space separation of the event classes with cost-asymmetric decision boundaries.\relax }}{16}{figure.caption.14}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the MATLAB/Simulink power-system simulation model (Simulink main panel).\relax }}{18}{figure.caption.15}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Current-transformer primary (HV-side) subsystem implementing core saturation and remanence.\relax }}{19}{figure.caption.16}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Current-transformer secondary subsystem implementing core saturation and remanence.\relax }}{19}{figure.caption.17}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Merging-unit signal-conditioning and noise-injection pipeline.\relax }}{22}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Composition of the 2{,}500-case dataset across event categories and train/validation/test subsets.\relax }}{23}{figure.caption.24}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Two-step development and deployment architecture (MATLAB/Simulink $\leftrightarrow $ PyTorch $\leftrightarrow $ ONNX).\relax }}{25}{figure.caption.25}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Hybrid veto/AND-gate decision logic combining the adaptive 87T element and the LSTM classifier.\relax }}{25}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces End-to-end seven-stage signal flow of the proposed protection scheme.\relax }}{26}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces DWT feature-extraction pipeline: one-cycle 200-sample window, five-level db4 decomposition, and the resulting 37-dimensional feature vector.\relax }}{26}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Five-level db4 dyadic filter-bank decomposition of the one-cycle (200-sample, 10\,kHz) window into six sub-bands.\relax }}{28}{figure.caption.30}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces DWT--LSTM classifier architecture with global temporal attention.\relax }}{28}{figure.caption.31}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Simulink implementation of the hybrid 87T relay: DWT--LSTM classifier, adaptive 87T element, and AND/veto decision gate.\relax }}{29}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Per-inference computational cost distribution across pipeline stages.\relax }}{30}{figure.caption.34}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Three-phase differential current waveforms for the four operating conditions.\relax }}{33}{figure.caption.35}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Parameter-space coverage / feature distribution across event classes.\relax }}{34}{figure.caption.37}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Statistical verification of the generated dataset.\relax }}{34}{figure.caption.38}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Training and validation loss/accuracy curves for the LSTM classifier (best fold).\relax }}{35}{figure.caption.39}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Validation-accuracy trajectories across all five cross-validation folds.\relax }}{35}{figure.caption.40}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Five-fold cross-validation performance summary.\relax }}{36}{figure.caption.41}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Confusion-matrix heatmap of the DWT--LSTM classifier (counts and normalized).\relax }}{37}{figure.caption.43}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Comprehensive performance dashboard of the proposed framework.\relax }}{39}{figure.caption.47}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Hybrid relay per-category confusion matrix and fault-clearing-time comparison.\relax }}{40}{figure.caption.49}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Before/after comparison: conventional standalone 87T versus the hybrid adaptive 87T\,+\,DWT--LSTM supervisor.\relax }}{41}{figure.caption.50}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Operational robustness: accuracy vs.\ SNR, zone-level performance, and cumulative detection rate.\relax }}{42}{figure.caption.51}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Internal-fault detection-rate heatmap across fault resistance and inception angle.\relax }}{42}{figure.caption.52}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Ablation sensitivity of classification accuracy to individual design choices.\relax }}{46}{figure.caption.59}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces ROC and precision--recall curves for internal-fault detection (AUC $=0.9999$).\relax }}{47}{figure.caption.60}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Confidence-score distribution for Trip and No-Trip decisions.\relax }}{47}{figure.caption.61}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

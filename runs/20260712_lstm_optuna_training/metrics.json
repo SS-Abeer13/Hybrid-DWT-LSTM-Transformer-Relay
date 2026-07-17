@@ -1,0 +1,48 @@
+{
+  "completed_at": "2026-07-12T00:54:13",
+  "dataset": "F:\\Downloads\\Transformer Thesis\\datasets\\LSTM_Features_Combined_20260601_024803.mat",
+  "dataset_shape": [
+    14128,
+    1569,
+    9
+  ],
+  "split_sizes": {
+    "train": 11302,
+    "validation": 1413,
+    "test": 1413
+  },
+  "config": {
+    "input_size": 9,
+    "hidden_size": 128,
+    "num_layers": 3,
+    "dropout": 0.39205535480439513,
+    "bidirectional": false,
+    "sequence_length": 1569,
+    "batch_size": 32,
+    "learning_rate": 0.0004382948470112924,
+    "weight_decay": 1.1053885748371142e-05,
+    "seed": 20260712,
+    "optuna_best_validation_auc": 0.8678257703336216
+  },
+  "best_validation_auc": 0.9845846071772987,
+  "test_metrics": {
+    "loss": 0.138011997524235,
+    "accuracy": 0.9193205944798302,
+    "precision": 0.9691689008042895,
+    "recall": 0.8882063882063882,
+    "f1": 0.926923076923077,
+    "auc_roc": 0.9854384662398018,
+    "confusion_matrix": [
+      [
+        576,
+        23
+      ],
+      [
+        91,
+        723
+      ]
+    ]
+  },
+  "elapsed_seconds": 727.8390326000008,
+  "checkpoint": "runs\\20260712_lstm_optuna_training\\transformer_protection_lstm_best.pth"
+}
