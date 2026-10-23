@@ -703,6 +703,7 @@ def run_benchmarks(args):
         r"\begin{table}[H]\centering",
         r"\caption{Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (3{,}218 traces, grouped 5-fold cross-validation).}\label{tab:lit_benchmark}",
         r"\setlength{\tabcolsep}{4.0pt}\small",
+        r"\resizebox{\textwidth}{!}{%",
         r"\begin{tabular}{@{}llccccccc@{}}\toprule",
         r"\textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Params} & \textbf{Lat.\,(ms)} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule",
         r"\multicolumn{9}{@{}l}{\textit{Panel A: Standalone Literature Operating Mode (Direct Trip with Dwell Persistence)}} \\ \midrule",
@@ -752,7 +753,8 @@ def run_benchmarks(args):
 
     tex_lines.extend([
         r"\bottomrule",
-        r"\end{tabular}",
+        r"\end{tabular}%",
+        r"}",
         r"\end{table}",
     ])
 
