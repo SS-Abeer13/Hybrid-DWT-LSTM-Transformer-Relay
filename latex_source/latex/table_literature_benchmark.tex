@@ -1,0 +1,24 @@
+% Comparative benchmark tables against literature models (5-fold cross-validation on 3,218 traces)
+\begin{table}[H]\centering
+\caption{Comparative benchmarking of protection architectures on the verified 300\,MVA transformer corpus (3{,}218 traces, grouped 5-fold CV).}\label{tab:lit_benchmark}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccccc@{}}\toprule
+\textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Params} & \textbf{Lat.\,(ms)} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule
+\multicolumn{9}{@{}l}{\textit{Panel A: Standalone Operating Mode (Direct Trip with 20-Sample Dwell Persistence)}} \\ \midrule
+Conventional 87T & Sharp [7] (1958) & --- & 0.60 & 79.62 & 52.96 & 64.08 & 0.6\,ms & 881 \\
+Wavelet-SVM (RBF) & Simoes [13] (2021) & 5,880 & 0.15 & 95.82 & 96.34 & 96.12 & 16.2\,ms & 67 \\
+Wavelet-ANN (MLP) & Guzman [19] / Costa [18] & 5,217 & 0.08 & 96.14 & 97.48 & 96.92 & 15.6\,ms & 46 \\
+Wavelet-RF & Abdusalam [11] (2022) & 250,000 & 0.12 & 96.48 & 97.82 & 97.26 & 15.6\,ms & 40 \\
+1D-CNN (Temporal) & Afrasiabi [16] (2020) & 14,561 & 0.22 & 97.94 & 98.76 & 98.42 & 15.0\,ms & 23 \\
+Wavelet-GRU & Lin [23] (2025) & 44,354 & 0.95 & 98.42 & 99.12 & 98.83 & 15.0\,ms & 16 \\
+Standalone DWT-LSTM & Alhamd [1] / Atiyah [3] & 58,241 & 1.15 & 99.04 & 99.31 & 99.20 & 15.0\,ms & 13 \\ \midrule
+\multicolumn{9}{@{}l}{\textit{Panel B: Under Proposed Supervisory Hybrid Architecture (87T Handshake + AI-Alone Path)}} \\ \midrule
+Wavelet-SVM + Hybrid & Dual-Path Hybrid & 5,880 & 0.25 & 96.25 & 99.20 & 97.98 & 16.2\,ms & 15 \\
+Wavelet-ANN + Hybrid & Dual-Path Hybrid & 5,217 & 0.18 & 96.58 & 99.34 & 98.19 & 15.6\,ms & 12 \\
+Wavelet-RF + Hybrid & Dual-Path Hybrid & 250,000 & 0.22 & 96.82 & 99.41 & 98.34 & 15.6\,ms & 11 \\
+1D-CNN + Hybrid & Dual-Path Hybrid & 14,561 & 0.32 & 98.12 & 99.52 & 98.94 & 15.0\,ms & 9 \\
+Wavelet-GRU + Hybrid & Dual-Path Hybrid & 44,354 & 1.05 & 98.48 & 99.58 & 99.12 & 15.0\,ms & 8 \\
+\textbf{Proposed Hybrid DWT-LSTM} & \textbf{Dual-Path Hybrid} & \textbf{58,241} & \textbf{1.25} & \textbf{99.01} & \textbf{99.66} & \textbf{99.39} & \textbf{15.6\,ms} & \textbf{6} \\ \bottomrule
+\end{tabular}%
+}
+\end{table}

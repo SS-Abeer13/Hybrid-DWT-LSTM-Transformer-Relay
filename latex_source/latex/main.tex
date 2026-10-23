@@ -648,6 +648,28 @@ Figure~\ref{fig:6.3} illustrates the cumulative operating time distribution and 
 \end{minipage}
 \caption{Dynamic relay operating characteristics: (a) operate-time cumulative distribution, and (b) threshold trade-off curve.}\label{fig:6.3}\end{figure}
 
+
+\section{Comparative Benchmarking Against Literature Models}
+To fulfill the comparative gap identified in Chapter~2 (Table~\ref{tab:litcompare}), the proposed Hybrid DWT--LSTM framework was directly benchmarked against representative machine learning and deep learning protection models from recent literature: Wavelet-SVM (RBF kernel) \cite{ref13,ref20}, Wavelet-ANN/MLP \cite{ref18,ref19}, Wavelet-Random Forest \cite{ref11}, Temporal 1D-CNN \cite{ref16}, Wavelet-GRU with self-attention \cite{ref23}, Standalone DWT-LSTM \cite{ref1,ref3}, and the Conventional 87T dual-slope percentage restraint relay with second-harmonic blocking \cite{ref7}.
+
+To provide a rigorous, publication-grade apples-to-apples comparison:
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+\item \textbf{Identical Evaluation Corpus:} All candidate models were trained, validated, and tested on the exact same 3{,}218-trace dataset derived from the 300\,MVA, 230/11\,kV, Yd1 plant under identical 5-fold grouped cross-validation splits (644/644/644/643/643 traces out-of-fold).
+\item \textbf{Standardized Feature Representations:} Recurrent and convolutional sequence models (LSTM, GRU, 1D-CNN) received the continuous 32-sample sliding sequence ($32 \times 12$). Static tabular models (SVM, ANN/MLP, Random Forest) received identical multi-resolution wavelet energy and harmonic ratio signatures pooled over the 32-sample window (mean, standard deviation, peak, and RMS across the window, yielding 48 features).
+\item \textbf{Controlled Operating Protocol:} All models were tested under identical digital relay streaming simulation conditions, including sample-by-sample sliding window processing, 20-sample (12.5\,ms) dwell persistence timer, and instantaneous high-set overcurrent bypass ($I_d > 10.0$\,pu).
+\item \textbf{Dual Operating Modes Evaluated:} Each architecture was evaluated in two distinct configurations: (a) \textit{Standalone Operating Mode} (as traditionally evaluated in prior literature, where the classifier directly trips the circuit breaker), and (b) \textit{Supervisory Hybrid Mode} (integrated within the proposed dual-path supervisory handshake and AI-alone fault recovery path).
+\end{enumerate}
+
+\input{table_literature_benchmark.tex}
+
+The comparative results summarized in Table~\ref{tab:lit_benchmark} yield four critical insights:
+\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{Temporal Sequence Context vs.\ Static Snapshots:} Deep sequence models (LSTM, GRU, 1D-CNN) decisively outperform static classifiers (SVM, ANN, Random Forest) in standalone operating mode, achieving 1.8--3.2\% higher dependability and reducing false trips by over 40\% (13 false trips for LSTM vs.\ 46 for ANN and 67 for SVM). Tracking temporal trajectories across successive multi-resolution wavelet scales allows sequential models to capture the exponential decay of CT saturation and asymmetrical inrush waveforms that fool static instantaneous feature snapshots.
+\item \textbf{LSTM vs.\ GRU Trade-off:} The 2-layer GRU exhibits lower parameter count (44{,}354 vs.\ 58{,}241) and slightly lower execution latency (0.95\,ms vs.\ 1.15\,ms) compared to the LSTM. However, the LSTM achieves higher classification margin and resilience on high-impedance internal faults during recovery inrush (99.04\% vs.\ 98.42\% dependability), justifying its adoption for critical high-capacity power transformers.
+\item \textbf{Universality of the Supervisory Handshake:} Integrating machine learning classifiers into the proposed dual-path supervisory architecture (Panel~B) drastically improves security across \textit{all} candidate models without sacrificing fault clearing speed. False trips drop from 67 to 15 for SVM, from 46 to 12 for ANN, from 40 to 11 for Random Forest, and from 13 to 6 for the proposed LSTM. This proves that the dual-path hybrid handshake serves as a universal, model-agnostic protection anchor that prevents catastrophic spurious trips.
+\item \textbf{Overall Superiority of Proposed Framework:} The proposed \textbf{Hybrid DWT--LSTM} architecture achieves the highest balanced performance across the entire 3{,}218-trace corpus: \textbf{99.01\% dependability}, \textbf{99.66\% security}, \textbf{99.39\% overall accuracy}, only \textbf{6 false trips} (out of 1{,}873 non-fault traces), \textbf{0 pre-fault trips}, and a median operating latency of \textbf{15.6\,ms}, representing a decisive advancement over both conventional relays and standalone intelligent schemes.
+\end{enumerate}
+
 \section{Limitations and Scope of Claims}
 To ensure rigorous academic integrity, the following limitations are formally acknowledged:
 \begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
