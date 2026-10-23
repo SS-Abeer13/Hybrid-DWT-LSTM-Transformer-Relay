@@ -70,15 +70,16 @@
 \contentsline {section}{\numberline {6.7}Closed-Loop Simulink Verification and Mirror Parity}{27}{section.6.7}%
 \contentsline {section}{\numberline {6.8}High-Impedance Fault Sensitivity Analysis}{28}{section.6.8}%
 \contentsline {section}{\numberline {6.9}Operating Speed and Threshold Sensitivity}{29}{section.6.9}%
-\contentsline {section}{\numberline {6.10}Limitations and Scope of Claims}{30}{section.6.10}%
-\contentsline {chapter}{\numberline {7}Conclusion and Future Scope}{31}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Conclusion}{31}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Key Findings}{31}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Research Outcomes}{31}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Limitations of the Study}{32}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Recommendations for Future Work}{32}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Concluding Remarks}{32}{section.7.6}%
-\contentsline {chapter}{List of Publications}{33}{chapter*.33}%
-\contentsline {chapter}{References}{34}{chapter*.34}%
-\contentsline {chapter}{\numberline {A}System Parameters and Configuration}{38}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Reproducibility and Standards}{39}{appendix.B}%
+\contentsline {section}{\numberline {6.10}Comparative Benchmarking Against Literature Models}{30}{section.6.10}%
+\contentsline {section}{\numberline {6.11}Limitations and Scope of Claims}{32}{section.6.11}%
+\contentsline {chapter}{\numberline {7}Conclusion and Future Scope}{33}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Conclusion}{33}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Key Findings}{33}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Research Outcomes}{33}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Limitations of the Study}{34}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Recommendations for Future Work}{34}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Concluding Remarks}{34}{section.7.6}%
+\contentsline {chapter}{List of Publications}{35}{chapter*.34}%
+\contentsline {chapter}{References}{36}{chapter*.35}%
+\contentsline {chapter}{\numberline {A}System Parameters and Configuration}{40}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Reproducibility and Standards}{41}{appendix.B}%

@@ -16,8 +16,9 @@
 \contentsline {table}{\numberline {6.4}{\ignorespaces Performance on the Out-of-Distribution (OOD) test corpus (300 traces).}}{27}{table.caption.28}%
 \contentsline {table}{\numberline {6.5}{\ignorespaces Extended closed-loop Simulink co-simulation verification (12 benchmark cases).}}{28}{table.caption.29}%
 \contentsline {table}{\numberline {6.6}{\ignorespaces High-impedance internal fault sensitivity by resistance bin.}}{28}{table.caption.30}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Comparative benchmarking of protection architectures on the verified 300\,MVA transformer corpus (3{,}218 traces, grouped 5-fold CV).}}{31}{table.caption.33}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {A.1}{\ignorespaces Daubechies-4 decomposition filter coefficients ($g[n]=(-1)^n h[7-n]$).}}{38}{table.caption.35}%
-\contentsline {table}{\numberline {A.2}{\ignorespaces LSTM hyperparameter search space and selected configuration.}}{38}{table.caption.36}%
+\contentsline {table}{\numberline {A.1}{\ignorespaces Daubechies-4 decomposition filter coefficients ($g[n]=(-1)^n h[7-n]$).}}{40}{table.caption.36}%
+\contentsline {table}{\numberline {A.2}{\ignorespaces LSTM hyperparameter search space and selected configuration.}}{40}{table.caption.37}%
 \addvspace {10\p@ }
