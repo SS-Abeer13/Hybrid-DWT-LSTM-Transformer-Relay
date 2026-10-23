@@ -4,6 +4,7 @@
 \contentsline {chapter}{LIST OF ABBREVIATIONS}{viii}{table.0.1}%
 \contentsline {chapter}{LIST OF TABLES}{ix}{table.0.2}%
 \contentsline {chapter}{LIST OF FIGURES}{x}{table.0.2}%
+\enlargethispage {2\baselineskip }
 \contentsline {chapter}{CHAPTER \numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}1.1 Background}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}1.2 Research Motivation}{2}{section.1.2}%

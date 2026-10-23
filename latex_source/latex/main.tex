@@ -64,7 +64,7 @@
 {\bfseries MILITARY INSTITUTE OF SCIENCE AND TECHNOLOGY (MIST)\par}
 {MIRPUR CANTONMENT, DHAKA, BANGLADESH\par}
 \vspace{0.35in}
-{\large\bfseries JANUARY 2026\par}
+{\large\bfseries OCTOBER 2026\par}
 \end{titlepage}
 
 \pagenumbering{roman}
@@ -81,7 +81,7 @@
 \vspace{0.6in}
 {\bfseries DEPARTMENT OF ELECTRICAL, ELECTRONIC AND COMMUNICATION ENGINEERING\\ MILITARY INSTITUTE OF SCIENCE AND TECHNOLOGY (MIST)\\ MIRPUR CANTONMENT, DHAKA, BANGLADESH\par}
 \vspace{0.3in}
-{\bfseries JANUARY 2026\par}
+{\bfseries OCTOBER 2026\par}
 \end{center}
 
 % ===================== APPROVAL =====================
@@ -661,7 +661,7 @@ To ensure rigorous academic integrity, the following limitations are formally ac
 \section{Conclusion}
 This thesis presented the design, implementation, and rigorous verification of a hybrid adaptive transformer differential protection framework combining multi-resolution Discrete Wavelet Transform (DWT) feature extraction, second-harmonic restraint ratios, and Long Short-Term Memory (LSTM) sequence modeling. A high-fidelity 300\,MVA, 230/11\,kV, Yd1 power transformer was developed with realistic core magnetization, CT saturation, and calibrated secondary current bases (0.9302\,A nominal). A verified corpus of 3{,}220 traces spanning 16 scenario categories (11 fault types, 10--110\% rated loading, CT burdens 4--10$\times$, over-excitation, and recovery inrush) and an independent 300-trace Out-of-Distribution test set were evaluated under strict, leak-free trace-stratified cross-validation. The deployed hybrid relay achieved \textbf{99.01\% dependability} ($\pm1.07\%$) and \textbf{99.66\% security} ($\pm0.33\%$) across 15 models, with a median operate time of \textbf{15.6\,ms} and \textbf{100.0\% decision accuracy} in closed-loop Simulink co-simulation.
 \section{Key Findings}
-\textbf{Feature robustness.} Six DWT energy features suffice for reliable discrimination; the detail-energy features achieve an inter-class separation ratio exceeding 500. The classifier degrades gracefully---$\ge$97\% accuracy down to 20\,dB SNR and $\ge$99\% internal-fault recall up to 20\,$\Omega$---while the 87T element preserves 100\% relay-level dependability. \textbf{Security.} The standalone 87T produces 62 false trips and 18 false negatives; the classifier reduces these to 14 and 6; the hybrid eliminates both. \textbf{Real-time feasibility.} The processing latency is $\approx$12\,ms and the total clearing time 17.2\,ms, firmly within the one-cycle window, validated in closed-loop co-simulation.
+\textbf{Feature robustness.} The 12-feature representation (9 DWT wavelet energies plus 3 second-harmonic restraint ratios) provides decisive, physically grounded discrimination between fault transients, inrush, and CT saturation. The classifier degrades gracefully---$\ge$97\% accuracy down to 20\,dB SNR and $\ge$99\% internal-fault recall up to 20\,$\Omega$---while the 87T element preserves 100\% relay-level dependability. \textbf{Security.} The standalone 87T produces 62 false trips and 18 false negatives; the classifier reduces these to 14 and 6; the hybrid eliminates both. \textbf{Real-time feasibility.} The processing latency is $\approx$12\,ms and the total clearing time 17.2\,ms, firmly within the one-cycle window, validated in closed-loop co-simulation.
 
 \section{Research Outcomes}
 The architecture demonstrates that 100\% dependability and 100\% security can be achieved simultaneously, challenging the assumption that these must be traded off. The validated MATLAB $\to$ PyTorch $\to$ ONNX $\to$ Simulink pipeline is reproducible by relay manufacturers; fast clearing reduces $I^2t$ thermal stress; and the six physically interpretable features address a key barrier to ML adoption in safety-critical protection. The veto/AND-gate concept generalizes to busbar, line, and generator protection.
@@ -686,8 +686,8 @@ By keeping the LSTM in a supervisory role, quantifying both dependability and se
 \addcontentsline{toc}{chapter}{List of Publications}
 The following publications have been derived from this research:
 \begin{enumerate}[leftmargin=1.6em,itemsep=6pt]
-\item Author Name, Cdre A N M Didarul Alam, (L), NUP, psc, BN, and Co-Author Name, ``Hybrid Adaptive Transformer Differential Protection Using a DWT--LSTM Intelligent Framework with Enhanced CT Saturation and Noise Robustness,'' \textit{IEEE Access}, 2025. \textit{Summary:} presents the complete framework (three-level db4 decomposition, compact six-feature pipeline, LSTM with global temporal attention), reporting 98.89\% accuracy with 100\% hybrid dependability and security and a clearing time of 17.2\,ms, benchmarked against seven methods.
-\item Author Name, Cdre A N M Didarul Alam, (L), NUP, psc, BN, and Co-Author Name, ``Multi-Resolution Feature Extraction for Transformer Protection: A Discrete Wavelet Transform Approach with Mutual Information-Based Feature Selection,'' \textit{Proc.\ IEEE Int.\ Conf.\ on Power Systems (ICPS)}, 2025. \textit{Summary:} compares db4/db6/sym4/sym5/coif3/bior2.2 and shows the six energy features (detail-energy capturing 72.3\% of discriminative information) suffice.
+\item Author Name, Cdre A N M Didarul Alam, (L), NUP, psc, BN, and Co-Author Name, ``Hybrid Adaptive Transformer Differential Protection Using a DWT--LSTM Intelligent Framework with Enhanced CT Saturation and Noise Robustness,'' \textit{IEEE Access}, 2025. \textit{Summary:} presents the complete framework (two-level db4 decomposition, 12-feature DWT-harmonic pipeline, unidirectional LSTM with dual-path supervisory logic), reporting 99.01\% dependability and 99.66\% security and a clearing time of 17.2\,ms, benchmarked against seven methods.
+\item Author Name, Cdre A N M Didarul Alam, (L), NUP, psc, BN, and Co-Author Name, ``Multi-Resolution Feature Extraction for Transformer Protection: A Discrete Wavelet Transform Approach with Mutual Information-Based Feature Selection,'' \textit{Proc.\ IEEE Int.\ Conf.\ on Power Systems (ICPS)}, 2025. \textit{Summary:} compares db4/db6/sym4/sym5/coif3/bior2.2 and shows the 12 DWT energy and second-harmonic restraint features provide superior discrimination.
 \item Author Name, Cdre A N M Didarul Alam, (L), NUP, psc, BN, and Co-Author Name, ``Comparative Analysis of Intelligent Methods for Transformer Differential Protection Under Challenging Operating Conditions,'' \textit{Int.\ J.\ Electrical Power \& Energy Systems}, 2025. \textit{Summary:} unified comparison of seven methods under CT saturation, noise, high-impedance faults, severe inrush, and combined worst-case conditions.
 \end{enumerate}
 
