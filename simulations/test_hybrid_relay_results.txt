@@ -1,0 +1,16 @@
+
+===========================================================
+   VERIFICATION TEST SUMMARY REPORT (N_WINDOW = 32)
+===========================================================
+Total cases executed: 4
+Passed cases        : 4 / 4 (100.0%)
+
+Test Case               Expected      Actual        LSTM Max Prob  Status  
+------------------------------------------------------------------------
+Normal Operation        BLOCK         BLOCK         0.0002        PASS    
+Magnetizing Inrush      BLOCK         BLOCK         0.0025        PASS    
+Internal A-G Fault      TRIP          TRIP          1.0000        PASS    
+External 3Φ Fault       BLOCK         BLOCK         0.0017        PASS    
+------------------------------------------------------------------------
+
+Saved empirical verification results to test_hybrid_relay_results.txt

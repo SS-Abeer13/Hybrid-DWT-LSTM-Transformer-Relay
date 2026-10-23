@@ -1,0 +1,95 @@
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In verify_lstm_feature_parity_plant (line 21)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In verify_lstm_feature_parity_plant (line 21)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a> or the command line Simulink debugger by
+typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In verify_lstm_feature_parity_plant (line 21)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In verify_lstm_feature_parity_plant (line 21)] 
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+[LSTM Debug Step 100] Feature min=0.0001 max=1.0318 mean=0.0774 -> Logit=-9.5911 Prob=0.0001
+[LSTM Debug Step 1000] Feature min=0.0001 max=0.5662 mean=0.0503 -> Logit=-9.5610 Prob=0.0001
+Normal         max |relay - training| = 0 (shift +0)  PASS
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In verify_lstm_feature_parity_plant (line 21)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In verify_lstm_feature_parity_plant (line 21)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a>
+or the command line Simulink debugger by typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the
+MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In verify_lstm_feature_parity_plant (line 21)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In verify_lstm_feature_parity_plant (line 21)] 
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+Loading fresh ONNX model directly: F:\Transformer Thesis\lstm_models\wt_lstm_relay.onnx
+[LSTM Debug Step 100] Feature min=0.0001 max=1.0318 mean=0.0774 -> Logit=-9.5911 Prob=0.0001
+[LSTM Debug Step 1000] Feature min=0.0001 max=0.5662 mean=0.0503 -> Logit=-9.5610 Prob=0.0001
+Internal A-G   max |relay - training| = 0 (shift +0)  PASS
+
+ans = 
+
+  1x2 struct array with fields:
+
+    case
+    maxAbsError
+    bestShift
+    pass
+
+[Warning: Cannot close the model 'TransformerWithCTSaturation' because it has been changed. Use the command 'save_system' to first save the
+model] 

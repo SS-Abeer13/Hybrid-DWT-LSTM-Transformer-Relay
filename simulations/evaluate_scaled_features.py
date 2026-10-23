@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import torch
 import torch.nn as nn
 import numpy as np
@@ -29,8 +30,9 @@ class TransformerProtectionLSTM(nn.Module):
         return self.classifier(ctx).squeeze(-1)
 
 def main():
-    sim_file = r"f:\Downloads\Transformer Thesis\simulations\scaled_features_test.mat"
-    model_path = r"f:\Downloads\Transformer Thesis\runs\20260601_lstm_training\transformer_protection_lstm_best.pth"
+    project_root = Path(__file__).resolve().parent.parent  # simulations/ -> project root
+    sim_file = str(project_root / "simulations" / "scaled_features_test.mat")
+    model_path = str(project_root / "runs" / "20260601_lstm_training" / "transformer_protection_lstm_best.pth")
     
     data = scipy.io.loadmat(sim_file)
     features = data['feat_data'] # shape: (1569, 9, 1601)

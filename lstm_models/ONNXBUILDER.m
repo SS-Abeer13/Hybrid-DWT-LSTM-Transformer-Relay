@@ -12,5 +12,7 @@ disp('2. Packaging for Simulink execution...');
 net = real_net;
 
 save('live_relay_ai.mat', 'net');
+simDir = fullfile(fileparts(mfilename('fullpath')), '..', 'simulations');
+save(fullfile(simDir, 'live_relay_ai.mat'), 'net');
 
-disp('Success! WT-LSTM network saved into live_relay_ai.mat.');
+disp('Success! WT-LSTM network saved into lstm_models and simulations live_relay_ai.mat.');

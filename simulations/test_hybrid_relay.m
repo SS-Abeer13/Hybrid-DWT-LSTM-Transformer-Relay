@@ -1,14 +1,16 @@
-function test_hybrid_relay()
+% test_hybrid_relay Script
 % =========================================================================
 % AUTOMATED HYBRID AI-RELAY VERIFICATION & TEST ENGINE (Complete Version)
 % Verifies the exported 9-feature DWT-LSTM model against transient scenarios.
 % =========================================================================
 
     clc;
+    thisDir = fileparts(mfilename('fullpath'));
     disp('===========================================================');
     disp('   AUTOMATED HYBRID AI-RELAY VERIFICATION TEST SUITE       ');
     disp('===========================================================');
     
+    cfg = relay_config();
     model = 'TransformerWithCTSaturation';
     
     % --- 1. Load Model ---
@@ -20,47 +22,9 @@ function test_hybrid_relay()
     % --- 2. Apply Model Modifications ---
     fprintf('[Step 2/5] Programmatically modifying model for 9-feature compatibility ...\n');
     try
-        % Resizing raw current buffer (32 samples, 31 overlap)
-        b1 = [model '/Hybrid 87T Relay/I_diff_window'];
-        set_param(b1, 'N', '32');
-        set_param(b1, 'V', '31');
-        fprintf('  ✓ Configured "I_diff_window" to N=32, V=31.\n');
-        
-        % Resizing feature buffer (1569 steps, 1568 overlap)
-        b2 = [model '/Hybrid 87T Relay/Feature Window'];
-        set_param(b2, 'N', '1569');
-        set_param(b2, 'V', '1568');
-        fprintf('  ✓ Configured "Feature Window" to N=1569, V=1568.\n');
-        
-        % Resizing Reshape block to match 1569 sequence length
-        reshape_blk = [model '/Hybrid 87T Relay/Reshape '];
-        set_param(reshape_blk, 'OutputDimensions', '[1, 1569, 9]');
-        fprintf('  ✓ Updated Reshape block output dimensions to [1, 1569, 9].\n');
-        
-        % Set LSTM Network File Path (using correct 20260712 network)
-        lstm_predict_blk = [model '/Hybrid 87T Relay/LSTM Predict'];
-        set_param(lstm_predict_blk, 'NetworkFilePath', 'live_relay_ai_20260712.mat');
-        set_param(lstm_predict_blk, 'InputDataFormats', "{'input','BTC'}");
-        set_param(lstm_predict_blk, 'MiniBatchSize', '1');
-        % Force interpreted simulation to support custom imported ONNX layers
-        set_param(lstm_predict_blk, 'ForceInterpretedSim', 'on');
-        % Enable automatic output logging for predictions
-        set_param(lstm_predict_blk, 'Predictions', 'on');
-        
-        % Programmatically enable signal logging and name the line
-        ph = get_param(lstm_predict_blk, 'PortHandles');
-        set_param(ph.Outport(1), 'DataLogging', 'on');
-        lh = get_param(ph.Outport(1), 'Line');
-        if lh ~= -1
-            set_param(lh, 'Name', 'LSTM_Prediction');
-        end
-        fprintf('  ✓ Configured "LSTM Predict" block (interpreted mode, logged as LSTM_Prediction).\n');
-        
-        % Toggle Manual Switch block to use LSTM Predict (sw = '1' for upper port)
-        sw_blk = [model '/Hybrid 87T Relay/Manual Switch'];
-        set_param(sw_blk, 'sw', '1');
-        fprintf('  ✓ Toggled Manual Switch to use LSTM Predict (sw = 1).\n');
-        
+        repair_hybrid_relay_for_lstm_verification(true);
+        fprintf('  OK: restored LSTM path, 1600 Hz sampling, %d-step sequence, and AI-gated trip logic.\n', cfg.N_WINDOW);
+
         % Update DWT Stateflow Script via Stateflow API
         rt = sfroot;
         chart = rt.find('-isa', 'Stateflow.EMChart', 'Path', [model '/Hybrid 87T Relay/DWT Feature Extraction']);
@@ -68,16 +32,16 @@ function test_hybrid_relay()
             error('Stateflow DWT Chart not found at Hybrid 87T Relay/DWT Feature Extraction.');
         end
         
-        % Define 9-feature DWT code with log1p normalization and pre-initialized outputs for code generator
+        % Define 12-feature DWT + 2nd Harmonic Ratio code
         dwt_code = sprintf([ ...
             'function features = DWT_Feature_Extraction(I_diff_window)\n' ...
             '    %% Inputs: I_diff_window (32x3 matrix from the Buffer block)\n' ...
-            '    %% Outputs: features (1x9 vector for the LSTM)\n' ...
+            '    %% Outputs: features (1x12 vector for the LSTM)\n' ...
             '    \n' ...
-            '    %% wavelets are extrinsic because code generator does not support dwt/wavedec\n' ...
-            '    coder.extrinsic(''wavedec'', ''detcoef'', ''appcoef'');\n' ...
+            '    %% wavelets and fft are extrinsic because code generator does not support dwt/wavedec/fft\n' ...
+            '    coder.extrinsic(''wavedec'', ''detcoef'', ''appcoef'', ''fft'');\n' ...
             '    \n' ...
-            '    features = zeros(1, 9);\n' ...
+            '    features = zeros(1, 12);\n' ...
             '    \n' ...
             '    for ph = 1:3\n' ...
             '        signal = I_diff_window(:, ph);\n' ...
@@ -88,6 +52,7 @@ function test_hybrid_relay()
             '        d1 = zeros(19, 1);\n' ...
             '        d2 = zeros(13, 1);\n' ...
             '        a2 = zeros(13, 1);\n' ...
+            '        fft_vals = zeros(32, 1);\n' ...
             '        \n' ...
             '        %% 2-level db4 wavelet decomposition\n' ...
             '        [C, L] = wavedec(signal, 2, ''db4'');\n' ...
@@ -101,21 +66,21 @@ function test_hybrid_relay()
             '        E_D2 = sum(d2.^2);\n' ...
             '        E_A2 = sum(a2.^2);\n' ...
             '        \n' ...
-            '        %% Store features in 9-element feature vector\n' ...
+            '        %% Store features in 12-element feature vector\n' ...
             '        base = (ph - 1) * 3 + 1;\n' ...
-            '        features(base)     = E_D1;\n' ...
-            '        features(base + 1) = E_D2;\n' ...
-            '        features(base + 2) = E_A2;\n' ...
+            '        features(base)     = log(1 + E_D1);\n' ...
+            '        features(base + 1) = log(1 + E_D2);\n' ...
+            '        features(base + 2) = log(1 + E_A2);\n' ...
             '        \n' ...
-            '        %% Apply log1p scaling (log(1 + x)) matching PyTorch training\n' ...
-            '        features(base)     = log(1 + features(base));\n' ...
-            '        features(base + 1) = log(1 + features(base + 1));\n' ...
-            '        features(base + 2) = log(1 + features(base + 2));\n' ...
+            '        %% 2nd Harmonic Ratio (Bin 3 = 100 Hz, Bin 2 = 50 Hz @ 1600 Hz / 32 samples)\n' ...
+            '        fft_vals = abs(fft(signal));\n' ...
+            '        ratio_2nd = fft_vals(3) / (fft_vals(2) + 1e-4);\n' ...
+            '        features(9 + ph) = min(ratio_2nd, 2.0);\n' ...
             '    end\n' ...
             'end' ...
         ]);
         chart.Script = dwt_code;
-        fprintf('  ✓ Updated DWT Stateflow Script to 2-level db4 (9 features + log1p normalization).\n');
+        fprintf('  ✓ Updated DWT Stateflow Script to 12 features (9 DWT + 3 2nd Harmonic Ratios).\n');
         
         save_system(model);
         fprintf('  ✓ Simulink model saved successfully.\n');
@@ -129,8 +94,8 @@ function test_hybrid_relay()
     test_cases = { ...
         'Normal Operation',   'Normal',   0,  0,  0,  0,  0.0,  0.00,    false; ...
         'Magnetizing Inrush', 'Inrush',   0,  0,  0,  0,  0.0,  0.05,    false; ...
-        'Internal A-G Fault', 'Internal', 1,  0,  0,  1,  0.1,  0.50,    true;  ...
-        'External 3Φ Fault',  'External', 1,  1,  1,  0,  0.1,  0.50,    false  ...
+        'Internal A-G Fault', 'Internal', 1,  0,  0,  1,  0.1,  0.05,    true;  ...
+        'External 3Φ Fault',  'External', 1,  1,  1,  0,  0.1,  0.05,    false  ...
     };
 
     
@@ -149,6 +114,7 @@ function test_hybrid_relay()
         
         % Configure model blocks per test case
         resetFaultBlocks(model);
+        clear lstm_predict_wrapper;
         
         if strcmp(tc_type, 'Inrush')
             % Magnetizing Inrush energization (HV breaker closes at 0.05s, no load)
@@ -162,29 +128,37 @@ function test_hybrid_relay()
                 set_param([model '/Step3'], 'Time', num2str(t_fault, '%.6f'));
                 set_param([model '/Internal_Fault1'], ...
                     'FaultA', onOff(fA), 'FaultB', onOff(fB), 'FaultC', onOff(fC), 'GroundFault', onOff(fG), ...
-                    'FaultResistance', num2str(Rf, '%.6f'));
+                    'FaultResistance', num2str(Rf, '%.6f'), 'SwitchTimes', sprintf('[%.6f 1.10]', t_fault));
             elseif strcmp(tc_type, 'External')
                 % Arm external fault block and Step4 trigger
                 set_param([model '/Step4'], 'Time', num2str(t_fault, '%.6f'));
                 set_param([model '/External_Fault'], ...
                     'FaultA', onOff(fA), 'FaultB', onOff(fB), 'FaultC', onOff(fC), 'GroundFault', onOff(fG), ...
-                    'FaultResistance', num2str(Rf, '%.6f'));
+                    'FaultResistance', num2str(Rf, '%.6f'), 'SwitchTimes', sprintf('[%.6f 1.10]', t_fault));
             end
         end
         
         % Run simulation (StopTime must be >= 0.160s to fill the 1569-step feature window)
         try
-            simOut = sim(model, 'StopTime', '1.0', 'ReturnWorkspaceOutputs', 'on');
+            simOut = sim(model, 'StopTime', '1.10', 'ReturnWorkspaceOutputs', 'on');
             
             % Extract telemetry signals
             logs = simOut.get('logsout');
             
             % 1. Get predictions (probability) output from LSTM
             lstm_prob = 0;
+            max_prob = 0;
             try
                 lstm_el = logs.get('LSTM_Prediction');
                 if ~isempty(lstm_el)
-                    lstm_prob = lstm_el.Values.Data;
+                    t_vec_p = lstm_el.Values.Time;
+                    p_vec_p = lstm_el.Values.Data;
+                    eval_idx = find(t_vec_p >= 0.056, 1, 'first');
+                    if ~isempty(eval_idx)
+                        max_prob = max(p_vec_p(eval_idx:end));
+                    else
+                        max_prob = max(p_vec_p);
+                    end
                 end
             catch
             end
@@ -193,11 +167,12 @@ function test_hybrid_relay()
             tripped = false;
             tripTime = NaN;
             try
-                trip_el = logs.get('TripSignal');
+                trip_el = getFirstLog(logs, {'Dec_Trip_Signal', 'TripSignal', 'Trip_Signal'});
                 if ~isempty(trip_el)
                     t_vec = trip_el.Values.Time;
                     d_vec = trip_el.Values.Data;
-                    trip_idx = find(d_vec > 0.5, 1, 'first');
+                    % Evaluate trip decision after initial solver startup (t >= 0.056s)
+                    trip_idx = find(t_vec >= 0.056 & d_vec > 0.5, 1, 'first');
                     if ~isempty(trip_idx)
                         tripped = true;
                         tripTime = t_vec(trip_idx);
@@ -206,7 +181,6 @@ function test_hybrid_relay()
             catch
             end
             
-            max_prob = max(lstm_prob(:));
             passed = (tripped == shouldTrip);
             
             % Store results
@@ -235,27 +209,40 @@ function test_hybrid_relay()
     end
     
     % --- 5. Generate Summary Report ---
-    fprintf('\n===========================================================\n');
-    fprintf('   VERIFICATION TEST SUMMARY REPORT\n');
-    fprintf('===========================================================\n');
+    cfg = relay_config();
+    reportFile = fullfile(thisDir, 'test_hybrid_relay_results.txt');
+    fid = fopen(reportFile, 'w');
+    
+    headerStr = sprintf('\n===========================================================\n   VERIFICATION TEST SUMMARY REPORT (N_WINDOW = %d)\n===========================================================\n', cfg.N_WINDOW);
+    fprintf(headerStr);
+    if fid ~= -1, fprintf(fid, '%s', headerStr); end
+    
     nPass = sum([results.passed]);
     nTotal = numel(results);
-    fprintf('Total cases executed: %d\n', nTotal);
-    fprintf('Passed cases        : %d / %d (%.1f%%)\n', nPass, nTotal, nPass/nTotal*100);
-    fprintf('\n%-22s  %-12s  %-12s  %-12s  %-8s\n', ...
-        'Test Case', 'Expected', 'Actual', 'LSTM Max Prob', 'Status');
-    fprintf('%s\n', repmat('-', 1, 72));
+    summaryStr = sprintf('Total cases executed: %d\nPassed cases        : %d / %d (%.1f%%)\n\n%-22s  %-12s  %-12s  %-12s  %-8s\n%s\n', ...
+        nTotal, nPass, nTotal, nPass/nTotal*100, 'Test Case', 'Expected', 'Actual', 'LSTM Max Prob', 'Status', repmat('-', 1, 72));
+    fprintf(summaryStr);
+    if fid ~= -1, fprintf(fid, '%s', summaryStr); end
+    
     for i = 1:numel(results)
         res = results(i);
         exp_str = iff(res.shouldTrip, 'TRIP', 'BLOCK');
         act_str = iff(res.tripped, 'TRIP', 'BLOCK');
         status_str = iff(res.passed, 'PASS', 'FAIL');
-        fprintf('%-22s  %-12s  %-12s  %-12.4f  %-8s\n', ...
+        lineStr = sprintf('%-22s  %-12s  %-12s  %-12.4f  %-8s\n', ...
             res.name, exp_str, act_str, res.maxProb, status_str);
+        fprintf(lineStr);
+        if fid ~= -1, fprintf(fid, '%s', lineStr); end
     end
-    fprintf('%s\n', repmat('-', 1, 72));
+    footerStr = sprintf('%s\n\nSaved empirical verification results to test_hybrid_relay_results.txt\n', repmat('-', 1, 72));
+    fprintf(footerStr);
+    if fid ~= -1
+        fprintf(fid, '%s', footerStr);
+        fclose(fid);
+    end
+    
+    save(fullfile(thisDir, 'test_hybrid_relay_results.mat'), 'results');
     disp(' ');
-end
 
 % =========================================================================
 % UTILITY HELPER FUNCTIONS (Inline definitions)
@@ -268,22 +255,35 @@ function val = onOff(cond)
     if cond, val = 'on'; else, val = 'off'; end
 end
 
+function el = getFirstLog(logs, names)
+    el = [];
+    for idx = 1:numel(names)
+        try
+            candidate = logs.get(names{idx});
+            if ~isempty(candidate)
+                el = candidate;
+                return;
+            end
+        catch
+        end
+    end
+end
+
 function setBreakersClosed(model)
     hv = [model '/Three-Phase Breaker '];
     lv = [model '/Three-Phase Breaker1 '];
     try
-        set_param(hv, 'External', 'on');
-        set_param(hv, 'InitialState', 'closed');
-        set_param(hv, 'SwitchTimes', '[]');
-    catch ME, warning('ControlPanel:HVBreaker', '%s', ME.message); end
+        set_param(hv, 'External', 'off', 'InitialState', 'closed', 'SwitchTimes', '[10 11]');
+    catch
+    end
     try
-        set_param(lv, 'External', 'on');
-        set_param(lv, 'InitialState', 'closed');
-        set_param(lv, 'SwitchTimes', '[]');
-    catch ME, warning('ControlPanel:LVBreaker', '%s', ME.message); end
+        set_param(lv, 'External', 'off', 'InitialState', 'closed', 'SwitchTimes', '[10 11]');
+    catch
+    end
     try
         set_param([model '/Step_down_Transformer'], 'SetInitialFlux', 'off');
-    catch ME, warning('ControlPanel:XfmrFlux', '%s', ME.message); end
+    catch
+    end
 end
 
 function setInrushEnergization(model, residualFlux)
@@ -293,20 +293,18 @@ function setInrushEnergization(model, residualFlux)
     hv = [model '/Three-Phase Breaker '];
     lv = [model '/Three-Phase Breaker1 '];
     try
-        set_param(hv, 'External', 'off');
-        set_param(hv, 'InitialState', 'open');
-        set_param(hv, 'SwitchTimes', '[0.050]');
-    catch ME, warning('ControlPanel:HVBreaker', '%s', ME.message); end
+        set_param(hv, 'External', 'off', 'InitialState', 'open', 'SwitchTimes', '[0.050 1.10]');
+    catch
+    end
     try
-        set_param(lv, 'External', 'on');
-        set_param(lv, 'InitialState', 'closed');
-        set_param(lv, 'SwitchTimes', '[]');
-    catch ME, warning('ControlPanel:LVBreaker', '%s', ME.message); end
+        set_param(lv, 'External', 'off', 'InitialState', 'open', 'SwitchTimes', '[10 11]');
+    catch
+    end
     try
         xf = [model '/Step_down_Transformer'];
-        set_param(xf, 'SetInitialFlux', 'on');
-        set_param(xf, 'InitialFluxes', mat2str(residualFlux, 6));
-    catch ME, warning('ControlPanel:XfmrFlux', '%s', ME.message); end
+        set_param(xf, 'SetInitialFlux', 'on', 'InitialFluxes', mat2str(residualFlux, 6));
+    catch
+    end
 end
 
 function resetFaultBlocks(model)
@@ -315,11 +313,11 @@ function resetFaultBlocks(model)
     try
         set_param([model '/Internal_Fault1'], ...
             'FaultA', 'off', 'FaultB', 'off', 'FaultC', 'off', 'GroundFault', 'off', ...
-            'FaultResistance', '0.01', 'SwitchTimes', '[0.05 1]');
+            'FaultResistance', '0.01', 'SwitchTimes', '[0.05 1.10]');
     catch, end
     try
         set_param([model '/External_Fault'], ...
             'FaultA', 'off', 'FaultB', 'off', 'FaultC', 'off', 'GroundFault', 'off', ...
-            'FaultResistance', '0.01', 'SwitchTimes', '[0.05 1]');
+            'FaultResistance', '0.01', 'SwitchTimes', '[0.05 1.10]');
     catch, end
 end

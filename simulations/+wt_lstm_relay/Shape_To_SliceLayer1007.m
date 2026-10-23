@@ -19,66 +19,66 @@ classdef Shape_To_SliceLayer1007 < nnet.layer.Layer & nnet.layer.Formattable
         function this = Shape_To_SliceLayer1007(name, onnxParams)
             this.Name = name;
             this.NumOutputs = 4;
-            this.OutputNames = {'x_base_model_lstm_40', 'x_base_model_lstm_Sl', 'x_base_model_lstm_38', 'x_base_model_lstm_39'};
+            this.OutputNames = {'x_lstm_Slice_output_', 'x_lstm_Slice_1_outpu', 'x_lstm_Slice_2_outpu', 'x_lstm_Slice_3_outpu'};
             this.ONNXParams = onnxParams;
             this.onnx__Unsqueeze_24 = onnxParams.Learnables.onnx__Unsqueeze_24;
         end
         
-        function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39] = predict(this, input)
+        function [x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu] = predict(this, input)
             if isdlarray(input)
                 input = stripdims(input);
             end
             inputNumDims = 3;
             onnxParams = this.ONNXParams;
             onnxParams.Learnables.onnx__Unsqueeze_24 = this.onnx__Unsqueeze_24;
-            [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39, x_base_model_lstm_40NumDims, x_base_model_lstm_SlNumDims, x_base_model_lstm_38NumDims, x_base_model_lstm_39NumDims] = Shape_To_SliceFcn(input, inputNumDims, onnxParams, 'Training', false, ...
+            [x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu, x_lstm_Slice_output_NumDims, x_lstm_Slice_1_outpuNumDims, x_lstm_Slice_2_outpuNumDims, x_lstm_Slice_3_outpuNumDims] = Shape_To_SliceFcn(input, inputNumDims, onnxParams, 'Training', false, ...
                 'InputDataPermutation', {[2 3 1], ['as-is']}, ...
                 'OutputDataPermutation', {[3 2 1], [3 2 1], [3 2 1], [3 2 1], ['as-is'], ['as-is'], ['as-is'], ['as-is']});
-            if any(cellfun(@(A)~isnumeric(A), {x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39}))
+            if any(cellfun(@(A)~isnumeric(A), {x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu}))
                 fprintf('Runtime error in network. The custom layer ''%s'' output a non-numeric value.\n', 'Shape_To_SliceLayer1007');
                 error(message('nnet_cnn_onnx:onnx:BadCustomLayerRuntimeOutput', 'Shape_To_SliceLayer1007'));
             end
-            x_base_model_lstm_40 = dlarray(single(x_base_model_lstm_40), 'CB');
-            x_base_model_lstm_Sl = dlarray(single(x_base_model_lstm_Sl), 'CB');
-            x_base_model_lstm_38 = dlarray(single(x_base_model_lstm_38), 'CB');
-            x_base_model_lstm_39 = dlarray(single(x_base_model_lstm_39), 'CB');
+            x_lstm_Slice_output_ = dlarray(single(x_lstm_Slice_output_), 'CB');
+            x_lstm_Slice_1_outpu = dlarray(single(x_lstm_Slice_1_outpu), 'CB');
+            x_lstm_Slice_2_outpu = dlarray(single(x_lstm_Slice_2_outpu), 'CB');
+            x_lstm_Slice_3_outpu = dlarray(single(x_lstm_Slice_3_outpu), 'CB');
             if ~coder.target('MATLAB')
-                x_base_model_lstm_40 = extractdata(x_base_model_lstm_40);
-                x_base_model_lstm_Sl = extractdata(x_base_model_lstm_Sl);
-                x_base_model_lstm_38 = extractdata(x_base_model_lstm_38);
-                x_base_model_lstm_39 = extractdata(x_base_model_lstm_39);
+                x_lstm_Slice_output_ = extractdata(x_lstm_Slice_output_);
+                x_lstm_Slice_1_outpu = extractdata(x_lstm_Slice_1_outpu);
+                x_lstm_Slice_2_outpu = extractdata(x_lstm_Slice_2_outpu);
+                x_lstm_Slice_3_outpu = extractdata(x_lstm_Slice_3_outpu);
             end
         end
         
-        function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39] = forward(this, input)
+        function [x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu] = forward(this, input)
             if isdlarray(input)
                 input = stripdims(input);
             end
             inputNumDims = 3;
             onnxParams = this.ONNXParams;
             onnxParams.Learnables.onnx__Unsqueeze_24 = this.onnx__Unsqueeze_24;
-            [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39, x_base_model_lstm_40NumDims, x_base_model_lstm_SlNumDims, x_base_model_lstm_38NumDims, x_base_model_lstm_39NumDims] = Shape_To_SliceFcn(input, inputNumDims, onnxParams, 'Training', true, ...
+            [x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu, x_lstm_Slice_output_NumDims, x_lstm_Slice_1_outpuNumDims, x_lstm_Slice_2_outpuNumDims, x_lstm_Slice_3_outpuNumDims] = Shape_To_SliceFcn(input, inputNumDims, onnxParams, 'Training', true, ...
                 'InputDataPermutation', {[2 3 1], ['as-is']}, ...
                 'OutputDataPermutation', {[3 2 1], [3 2 1], [3 2 1], [3 2 1], ['as-is'], ['as-is'], ['as-is'], ['as-is']});
-            if any(cellfun(@(A)~isnumeric(A), {x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39}))
+            if any(cellfun(@(A)~isnumeric(A), {x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu}))
                 fprintf('Runtime error in network. The custom layer ''%s'' output a non-numeric value.\n', 'Shape_To_SliceLayer1007');
                 error(message('nnet_cnn_onnx:onnx:BadCustomLayerRuntimeOutput', 'Shape_To_SliceLayer1007'));
             end
-            x_base_model_lstm_40 = dlarray(single(x_base_model_lstm_40), 'CB');
-            x_base_model_lstm_Sl = dlarray(single(x_base_model_lstm_Sl), 'CB');
-            x_base_model_lstm_38 = dlarray(single(x_base_model_lstm_38), 'CB');
-            x_base_model_lstm_39 = dlarray(single(x_base_model_lstm_39), 'CB');
+            x_lstm_Slice_output_ = dlarray(single(x_lstm_Slice_output_), 'CB');
+            x_lstm_Slice_1_outpu = dlarray(single(x_lstm_Slice_1_outpu), 'CB');
+            x_lstm_Slice_2_outpu = dlarray(single(x_lstm_Slice_2_outpu), 'CB');
+            x_lstm_Slice_3_outpu = dlarray(single(x_lstm_Slice_3_outpu), 'CB');
             if ~coder.target('MATLAB')
-                x_base_model_lstm_40 = extractdata(x_base_model_lstm_40);
-                x_base_model_lstm_Sl = extractdata(x_base_model_lstm_Sl);
-                x_base_model_lstm_38 = extractdata(x_base_model_lstm_38);
-                x_base_model_lstm_39 = extractdata(x_base_model_lstm_39);
+                x_lstm_Slice_output_ = extractdata(x_lstm_Slice_output_);
+                x_lstm_Slice_1_outpu = extractdata(x_lstm_Slice_1_outpu);
+                x_lstm_Slice_2_outpu = extractdata(x_lstm_Slice_2_outpu);
+                x_lstm_Slice_3_outpu = extractdata(x_lstm_Slice_3_outpu);
             end
         end
     end
 end
 
-function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39, x_base_model_lstm_40NumDims, x_base_model_lstm_SlNumDims, x_base_model_lstm_38NumDims, x_base_model_lstm_39NumDims, state] = Shape_To_SliceFcn(input, inputNumDims, params, varargin)
+function [x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu, x_lstm_Slice_output_NumDims, x_lstm_Slice_1_outpuNumDims, x_lstm_Slice_2_outpuNumDims, x_lstm_Slice_3_outpuNumDims, state] = Shape_To_SliceFcn(input, inputNumDims, params, varargin)
 %SHAPE_TO_SLICEFCN Function implementing an imported ONNX network.
 %
 % THIS FILE WAS AUTO-GENERATED BY importONNXFunction.
@@ -86,12 +86,12 @@ function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_ba
 %
 % Variable names in this function are taken from the original ONNX file.
 %
-% [X_BASE_MODEL_LSTM_40, X_BASE_MODEL_LSTM_SL, X_BASE_MODEL_LSTM_38, X_BASE_MODEL_LSTM_39] = Shape_To_SliceFcn(INPUT, PARAMS)
+% [X_LSTM_SLICE_OUTPUT_, X_LSTM_SLICE_1_OUTPU, X_LSTM_SLICE_2_OUTPU, X_LSTM_SLICE_3_OUTPU] = Shape_To_SliceFcn(INPUT, PARAMS)
 %			- Evaluates the imported ONNX network SHAPE_TO_SLICEFCN with input(s)
 %			INPUT and the imported network parameters in PARAMS. Returns
-%			network output(s) in X_BASE_MODEL_LSTM_40, X_BASE_MODEL_LSTM_SL, X_BASE_MODEL_LSTM_38, X_BASE_MODEL_LSTM_39.
+%			network output(s) in X_LSTM_SLICE_OUTPUT_, X_LSTM_SLICE_1_OUTPU, X_LSTM_SLICE_2_OUTPU, X_LSTM_SLICE_3_OUTPU.
 %
-% [X_BASE_MODEL_LSTM_40, X_BASE_MODEL_LSTM_SL, X_BASE_MODEL_LSTM_38, X_BASE_MODEL_LSTM_39, STATE] = Shape_To_SliceFcn(INPUT, PARAMS)
+% [X_LSTM_SLICE_OUTPUT_, X_LSTM_SLICE_1_OUTPU, X_LSTM_SLICE_2_OUTPU, X_LSTM_SLICE_3_OUTPU, STATE] = Shape_To_SliceFcn(INPUT, PARAMS)
 %			- Additionally returns state variables in STATE. When training,
 %			use this form and set TRAINING to true.
 %
@@ -140,7 +140,7 @@ function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_ba
 % INPUT
 %			- Input(s) to the ONNX network.
 %			  The input size(s) expected by the ONNX file are:
-%				  INPUT:		[1, sequence_length, 9]				Type: FLOAT
+%				  INPUT:		[batch_size, 32, 9]				Type: FLOAT
 %			  By default, the function will try to permute the input(s)
 %			  into this dimension ordering. If the default is incorrect,
 %			  use the 'InputDataPermutation' argument to control the
@@ -152,13 +152,13 @@ function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_ba
 %
 % Outputs:
 % --------
-% X_BASE_MODEL_LSTM_40, X_BASE_MODEL_LSTM_SL, X_BASE_MODEL_LSTM_38, X_BASE_MODEL_LSTM_39
+% X_LSTM_SLICE_OUTPUT_, X_LSTM_SLICE_1_OUTPU, X_LSTM_SLICE_2_OUTPU, X_LSTM_SLICE_3_OUTPU
 %			- Output(s) of the ONNX network.
 %			  Without permutation, the size(s) of the outputs are:
-%				  X_BASE_MODEL_LSTM_40:		[Unknown, Unknown, Unknown]				Type: FLOAT
-%				  X_BASE_MODEL_LSTM_SL:		[Unknown, Unknown, Unknown]				Type: FLOAT
-%				  X_BASE_MODEL_LSTM_38:		[Unknown, Unknown, Unknown]				Type: FLOAT
-%				  X_BASE_MODEL_LSTM_39:		[Unknown, Unknown, Unknown]				Type: FLOAT
+%				  X_LSTM_SLICE_OUTPUT_:		[Unknown, Unknown, Unknown]				Type: FLOAT
+%				  X_LSTM_SLICE_1_OUTPU:		[Unknown, Unknown, Unknown]				Type: FLOAT
+%				  X_LSTM_SLICE_2_OUTPU:		[Unknown, Unknown, Unknown]				Type: FLOAT
+%				  X_LSTM_SLICE_3_OUTPU:		[Unknown, Unknown, Unknown]				Type: FLOAT
 %			  By default, the function will try to permute the output(s)
 %			  from this dimension ordering into a conventional MATLAB
 %			  ordering. If the default is incorrect, use the
@@ -175,12 +175,12 @@ function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_ba
 % Put all variables into a single struct to implement dynamic scoping:
 [Vars, NumDims] = packageVariables(params, {'input'}, {input}, [inputNumDims]);
 % Call the top-level graph function:
-[x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39, x_base_model_lstm_40NumDims, x_base_model_lstm_SlNumDims, x_base_model_lstm_38NumDims, x_base_model_lstm_39NumDims, state] = Shape_To_SliceGraph1000(input, NumDims.input, Vars, NumDims, Training, params.State);
+[x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu, x_lstm_Slice_output_NumDims, x_lstm_Slice_1_outpuNumDims, x_lstm_Slice_2_outpuNumDims, x_lstm_Slice_3_outpuNumDims, state] = Shape_To_SliceGraph1000(input, NumDims.input, Vars, NumDims, Training, params.State);
 % Postprocess the output data
-[x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39] = postprocessOutput(x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39, outputDataPerms, anyDlarrayInputs, Training, varargin{:});
+[x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu] = postprocessOutput(x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu, outputDataPerms, anyDlarrayInputs, Training, varargin{:});
 end
 
-function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39, x_base_model_lstm_40NumDims1003, x_base_model_lstm_SlNumDims1004, x_base_model_lstm_38NumDims1005, x_base_model_lstm_39NumDims1006, state] = Shape_To_SliceGraph1000(input, inputNumDims1002, Vars, NumDims, Training, state)
+function [x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu, x_lstm_Slice_output_NumDims1003, x_lstm_Slice_1_outpuNumDims1004, x_lstm_Slice_2_outpuNumDims1005, x_lstm_Slice_3_outpuNumDims1006, state] = Shape_To_SliceGraph1000(input, inputNumDims1002, Vars, NumDims, Training, state)
 % Function implementing the graph 'Shape_To_SliceGraph1000'
 % Update Vars and NumDims from the graph's formal input parameters. Note that state variables are already in Vars.
 Vars.input = input;
@@ -188,46 +188,46 @@ NumDims.input = inputNumDims1002;
 
 % Execute the operators:
 % Shape:
-[Vars.x_base_model_lstm_Sh, NumDims.x_base_model_lstm_Sh] = onnxShape(Vars.input, NumDims.input);
+[Vars.x_lstm_Shape_output_, NumDims.x_lstm_Shape_output_] = onnxShape(Vars.input, NumDims.input);
 
 % Gather:
-[Vars.x_base_model_lstm_Ga, NumDims.x_base_model_lstm_Ga] = onnxGather(Vars.x_base_model_lstm_Sh, Vars.x_base_model_lstm_18, 0, NumDims.x_base_model_lstm_Sh, NumDims.x_base_model_lstm_18);
+[Vars.x_lstm_Gather_output, NumDims.x_lstm_Gather_output] = onnxGather(Vars.x_lstm_Shape_output_, Vars.x_lstm_Constant_outp, 0, NumDims.x_lstm_Shape_output_, NumDims.x_lstm_Constant_outp);
 
 % Unsqueeze:
-[shape, NumDims.x_base_model_lstm_Un] = prepareUnsqueezeArgs(Vars.x_base_model_lstm_Ga, Vars.onnx__Unsqueeze_24, NumDims.x_base_model_lstm_Ga);
-Vars.x_base_model_lstm_Un = reshape(Vars.x_base_model_lstm_Ga, shape);
+[shape, NumDims.x_lstm_Unsqueeze_out] = prepareUnsqueezeArgs(Vars.x_lstm_Gather_output, Vars.onnx__Unsqueeze_24, NumDims.x_lstm_Gather_output);
+Vars.x_lstm_Unsqueeze_out = reshape(Vars.x_lstm_Gather_output, shape);
 
 % Concat:
-[Vars.x_base_model_lstm_Co, NumDims.x_base_model_lstm_Co] = onnxConcat(0, {Vars.x_base_model_lstm_9, Vars.x_base_model_lstm_Un, Vars.x_base_model_lstm_10}, [NumDims.x_base_model_lstm_9, NumDims.x_base_model_lstm_Un, NumDims.x_base_model_lstm_10]);
+[Vars.x_lstm_Concat_output, NumDims.x_lstm_Concat_output] = onnxConcat(0, {Vars.x_lstm_Constant_1_ou, Vars.x_lstm_Unsqueeze_out, Vars.x_lstm_Constant_2_ou}, [NumDims.x_lstm_Constant_1_ou, NumDims.x_lstm_Unsqueeze_out, NumDims.x_lstm_Constant_2_ou]);
 
 % ConstantOfShape:
-[Vars.x_base_model_lstm_1, NumDims.x_base_model_lstm_1] = onnxConstantOfShape(Vars.ConstantOfShapeValue1001, Vars.x_base_model_lstm_Co);
+[Vars.x_lstm_ConstantOfSha, NumDims.x_lstm_ConstantOfSha] = onnxConstantOfShape(Vars.ConstantOfShapeValue1001, Vars.x_lstm_Concat_output);
 
 % Slice:
-[Indices, NumDims.x_base_model_lstm_40] = prepareSliceArgs(Vars.x_base_model_lstm_1, Vars.x_base_model_lstm_12, Vars.x_base_model_lstm_13, Vars.x_base_model_lstm_11, '', NumDims.x_base_model_lstm_1);
-Vars.x_base_model_lstm_40 = subsref(Vars.x_base_model_lstm_1, Indices);
+[Indices, NumDims.x_lstm_Slice_output_] = prepareSliceArgs(Vars.x_lstm_ConstantOfSha, Vars.x_lstm_Constant_4_ou, Vars.x_lstm_Constant_5_ou, Vars.x_lstm_Constant_3_ou, '', NumDims.x_lstm_ConstantOfSha);
+Vars.x_lstm_Slice_output_ = subsref(Vars.x_lstm_ConstantOfSha, Indices);
 
 % Slice:
-[Indices, NumDims.x_base_model_lstm_Sl] = prepareSliceArgs(Vars.x_base_model_lstm_1, Vars.x_base_model_lstm_15, Vars.x_base_model_lstm_16, Vars.x_base_model_lstm_14, '', NumDims.x_base_model_lstm_1);
-Vars.x_base_model_lstm_Sl = subsref(Vars.x_base_model_lstm_1, Indices);
+[Indices, NumDims.x_lstm_Slice_1_outpu] = prepareSliceArgs(Vars.x_lstm_ConstantOfSha, Vars.x_lstm_Constant_7_ou, Vars.x_lstm_Constant_8_ou, Vars.x_lstm_Constant_6_ou, '', NumDims.x_lstm_ConstantOfSha);
+Vars.x_lstm_Slice_1_outpu = subsref(Vars.x_lstm_ConstantOfSha, Indices);
 
 % Slice:
-[Indices, NumDims.x_base_model_lstm_38] = prepareSliceArgs(Vars.x_base_model_lstm_1, Vars.x_base_model_lstm_3, Vars.x_base_model_lstm_4, Vars.x_base_model_lstm_2, '', NumDims.x_base_model_lstm_1);
-Vars.x_base_model_lstm_38 = subsref(Vars.x_base_model_lstm_1, Indices);
+[Indices, NumDims.x_lstm_Slice_2_outpu] = prepareSliceArgs(Vars.x_lstm_ConstantOfSha, Vars.x_lstm_Constant_11_o, Vars.x_lstm_Constant_12_o, Vars.x_lstm_Constant_10_o, '', NumDims.x_lstm_ConstantOfSha);
+Vars.x_lstm_Slice_2_outpu = subsref(Vars.x_lstm_ConstantOfSha, Indices);
 
 % Slice:
-[Indices, NumDims.x_base_model_lstm_39] = prepareSliceArgs(Vars.x_base_model_lstm_1, Vars.x_base_model_lstm_6, Vars.x_base_model_lstm_7, Vars.x_base_model_lstm_5, '', NumDims.x_base_model_lstm_1);
-Vars.x_base_model_lstm_39 = subsref(Vars.x_base_model_lstm_1, Indices);
+[Indices, NumDims.x_lstm_Slice_3_outpu] = prepareSliceArgs(Vars.x_lstm_ConstantOfSha, Vars.x_lstm_Constant_14_o, Vars.x_lstm_Constant_15_o, Vars.x_lstm_Constant_13_o, '', NumDims.x_lstm_ConstantOfSha);
+Vars.x_lstm_Slice_3_outpu = subsref(Vars.x_lstm_ConstantOfSha, Indices);
 
 % Set graph output arguments from Vars and NumDims:
-x_base_model_lstm_40 = Vars.x_base_model_lstm_40;
-x_base_model_lstm_40NumDims1003 = NumDims.x_base_model_lstm_40;
-x_base_model_lstm_Sl = Vars.x_base_model_lstm_Sl;
-x_base_model_lstm_SlNumDims1004 = NumDims.x_base_model_lstm_Sl;
-x_base_model_lstm_38 = Vars.x_base_model_lstm_38;
-x_base_model_lstm_38NumDims1005 = NumDims.x_base_model_lstm_38;
-x_base_model_lstm_39 = Vars.x_base_model_lstm_39;
-x_base_model_lstm_39NumDims1006 = NumDims.x_base_model_lstm_39;
+x_lstm_Slice_output_ = Vars.x_lstm_Slice_output_;
+x_lstm_Slice_output_NumDims1003 = NumDims.x_lstm_Slice_output_;
+x_lstm_Slice_1_outpu = Vars.x_lstm_Slice_1_outpu;
+x_lstm_Slice_1_outpuNumDims1004 = NumDims.x_lstm_Slice_1_outpu;
+x_lstm_Slice_2_outpu = Vars.x_lstm_Slice_2_outpu;
+x_lstm_Slice_2_outpuNumDims1005 = NumDims.x_lstm_Slice_2_outpu;
+x_lstm_Slice_3_outpu = Vars.x_lstm_Slice_3_outpu;
+x_lstm_Slice_3_outpuNumDims1006 = NumDims.x_lstm_Slice_3_outpu;
 % Set output state from Vars:
 state = updateStruct(state, Vars);
 end
@@ -270,27 +270,27 @@ input = makeUnlabeledDlarray(input);
 input = permuteInputVar(input, inputDataPerms{1}, 3);
 end
 
-function [x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39] = postprocessOutput(x_base_model_lstm_40, x_base_model_lstm_Sl, x_base_model_lstm_38, x_base_model_lstm_39, outputDataPerms, anyDlarrayInputs, Training, varargin)
+function [x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu] = postprocessOutput(x_lstm_Slice_output_, x_lstm_Slice_1_outpu, x_lstm_Slice_2_outpu, x_lstm_Slice_3_outpu, outputDataPerms, anyDlarrayInputs, Training, varargin)
 % Set output type:
 if ~anyDlarrayInputs && ~Training
-    if isdlarray(x_base_model_lstm_40)
-        x_base_model_lstm_40 = extractdata(x_base_model_lstm_40);
+    if isdlarray(x_lstm_Slice_output_)
+        x_lstm_Slice_output_ = extractdata(x_lstm_Slice_output_);
     end
-    if isdlarray(x_base_model_lstm_Sl)
-        x_base_model_lstm_Sl = extractdata(x_base_model_lstm_Sl);
+    if isdlarray(x_lstm_Slice_1_outpu)
+        x_lstm_Slice_1_outpu = extractdata(x_lstm_Slice_1_outpu);
     end
-    if isdlarray(x_base_model_lstm_38)
-        x_base_model_lstm_38 = extractdata(x_base_model_lstm_38);
+    if isdlarray(x_lstm_Slice_2_outpu)
+        x_lstm_Slice_2_outpu = extractdata(x_lstm_Slice_2_outpu);
     end
-    if isdlarray(x_base_model_lstm_39)
-        x_base_model_lstm_39 = extractdata(x_base_model_lstm_39);
+    if isdlarray(x_lstm_Slice_3_outpu)
+        x_lstm_Slice_3_outpu = extractdata(x_lstm_Slice_3_outpu);
     end
 end
 % Permute outputs if requested:
-x_base_model_lstm_40 = permuteOutputVar(x_base_model_lstm_40, outputDataPerms{1}, 3);
-x_base_model_lstm_Sl = permuteOutputVar(x_base_model_lstm_Sl, outputDataPerms{2}, 3);
-x_base_model_lstm_38 = permuteOutputVar(x_base_model_lstm_38, outputDataPerms{3}, 3);
-x_base_model_lstm_39 = permuteOutputVar(x_base_model_lstm_39, outputDataPerms{4}, 3);
+x_lstm_Slice_output_ = permuteOutputVar(x_lstm_Slice_output_, outputDataPerms{1}, 3);
+x_lstm_Slice_1_outpu = permuteOutputVar(x_lstm_Slice_1_outpu, outputDataPerms{2}, 3);
+x_lstm_Slice_2_outpu = permuteOutputVar(x_lstm_Slice_2_outpu, outputDataPerms{3}, 3);
+x_lstm_Slice_3_outpu = permuteOutputVar(x_lstm_Slice_3_outpu, outputDataPerms{4}, 3);
 end
 
 

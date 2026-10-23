@@ -17,7 +17,10 @@ from pathlib import Path
 
 import h5py
 import numpy as np
-import optuna
+try:
+    import optuna
+except ImportError:
+    optuna = None
 import torch
 import torch.nn as nn
 from sklearn.metrics import (
@@ -72,23 +75,44 @@ def set_seed(seed: int) -> None:
     torch.backends.cudnn.benchmark = False
 
 
-def load_dataset(path: Path) -> tuple[np.ndarray, np.ndarray]:
-    """Load MATLAB v7.3 arrays and validate their expected dimensions."""
+def load_dataset(path: Path, target_seq_len: int = 32, stride: int = 16) -> tuple[np.ndarray, np.ndarray]:
+    """Load MATLAB v7.3 arrays and slice into 32-frame sliding feature windows matching deployment."""
     with h5py.File(path, "r") as handle:
         raw_x = handle["X_LSTM"]
         raw_y = handle["Y_LSTM"]
-        if raw_x.shape[:2] != (9, 1569):
-            raise ValueError(f"Unexpected MATLAB X_LSTM layout: {raw_x.shape}")
+        if raw_x.shape[0] not in (9, 12):
+            raise ValueError(f"Unexpected MATLAB X_LSTM layout (expected 9 or 12 features): {raw_x.shape}")
         # MATLAB saves dimensions in reverse order for this HDF5 dataset.
         x = np.transpose(raw_x[...], (2, 1, 0)).astype(np.float32, copy=False)
         y = np.asarray(raw_y[...]).reshape(-1).astype(np.float32, copy=False)
 
-    if x.shape != (len(y), 1569, 9):
-        raise ValueError(f"X/Y shape mismatch: X={x.shape}, Y={y.shape}")
+    num_traces, full_seq_len, num_features = x.shape
     if not np.isfinite(x).all():
         raise ValueError("X_LSTM contains NaN or Inf values")
     if not np.isin(y, [0.0, 1.0]).all():
         raise ValueError("Y_LSTM must contain only binary labels")
+    
+    if full_seq_len > target_seq_len:
+        print(f"Slicing {num_traces} traces (full length={full_seq_len}) into {target_seq_len}-step deployment windows (stride={stride})...")
+        sub_x = []
+        sub_y = []
+        for i in range(num_traces):
+            trace = x[i]
+            trace_should_trip = (y[i] == 1.0)
+            for start in range(0, full_seq_len - target_seq_len + 1, stride):
+                window = trace[start : start + target_seq_len]
+                # A window is TRIP (1.0) ONLY if the trace is an internal fault AND the window contains active fault energy!
+                if trace_should_trip and window.max() > 0.05:
+                    w_label = 1.0
+                else:
+                    w_label = 0.0
+                sub_x.append(window)
+                sub_y.append(w_label)
+        x = np.array(sub_x, dtype=np.float32)
+        y = np.array(sub_y, dtype=np.float32)
+
+    seq_len = x.shape[1]
+    print(f"Loaded dataset: {x.shape[0]} deployment windows, sequence length={seq_len}, features={x.shape[2]}")
     return x, y
 
 
@@ -222,11 +246,18 @@ def tune_with_optuna(
 
 def main() -> None:
     project_root = Path(__file__).resolve().parent.parent
+    datasets_dir = project_root / "datasets"
+    default_data = datasets_dir / "LSTM_Features_Combined_600.mat"
+    if not default_data.exists():
+        found = list(datasets_dir.glob("LSTM_Features_Combined_*.mat"))
+        if found:
+            default_data = max(found, key=lambda p: p.stat().st_mtime)
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--data",
         type=Path,
-        default=project_root / "datasets" / "LSTM_Features_Combined_20260601_024803.mat",
+        default=default_data,
     )
     parser.add_argument("--output-dir", type=Path, default=None)
     parser.add_argument("--epochs", type=int, default=30)
@@ -245,19 +276,19 @@ def main() -> None:
     set_seed(args.seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     run_dir = args.output_dir or project_root / "runs" / f"{datetime.now():%Y%m%d}_lstm_training"
-    run_dir.mkdir(parents=True, exist_ok=False)
+    run_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Device: {device}")
     if device.type == "cuda":
         print(f"GPU: {torch.cuda.get_device_name(0)}")
-    print(f"Loading: {args.data}")
+    print(f"Loading dataset: {args.data}")
     x, y = load_dataset(args.data)
-    print(f"Dataset: X={x.shape}, positive={int(y.sum())}, negative={int(len(y) - y.sum())}")
+    print(f"Dataset shape: X={x.shape}, positive={int(y.sum())}, negative={int(len(y) - y.sum())}")
 
     indices = np.arange(len(y))
     train_idx, temp_idx = train_test_split(indices, test_size=0.20, stratify=y, random_state=args.seed)
     val_idx, test_idx = train_test_split(temp_idx, test_size=0.50, stratify=y[temp_idx], random_state=args.seed)
-    print(f"Split: train={len(train_idx)}, validation={len(val_idx)}, test={len(test_idx)}")
+    print(f"Stratified Split: Train={len(train_idx)}, Validation={len(val_idx)}, Test={len(test_idx)}")
 
     x_tensor = torch.from_numpy(x)
     y_tensor = torch.from_numpy(y)
@@ -266,12 +297,12 @@ def main() -> None:
     full_dataset = TensorDataset(x_tensor, y_tensor)
 
     config: dict[str, int | float | bool] = {
-        "input_size": 9,
+        "input_size": int(x_tensor.shape[2]),
         "hidden_size": 64,
         "num_layers": 2,
         "dropout": 0.22137852035542321,
         "bidirectional": False,
-        "sequence_length": 1569,
+        "sequence_length": x_tensor.shape[1],
         "batch_size": args.batch_size,
         "learning_rate": args.learning_rate,
         "weight_decay": 1e-4,
@@ -352,7 +383,7 @@ def main() -> None:
     result = {
         "completed_at": datetime.now().isoformat(timespec="seconds"),
         "dataset": str(args.data),
-        "dataset_shape": [14128, 1569, 9],
+        "dataset_shape": list(x_tensor.shape),
         "split_sizes": {"train": len(train_idx), "validation": len(val_idx), "test": len(test_idx)},
         "config": config,
         "best_validation_auc": best_auc,

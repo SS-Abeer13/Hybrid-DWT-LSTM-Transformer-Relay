@@ -1,0 +1,33 @@
+Self-test v3 (A8), 2026-10-21 02:09, generate_stress_dataset_v3.m version v3-2026-10-21-A8; part 1 = cases 1-9, part 2 = cases 10-18
+
+=== SELF-TEST (nothing is saved) ===
+Expect: AB / HiZ_AB / SOTF visible and timed; Internal_AG on the delta winding: visible 0, faultDiff ~0.
+Normal                 OK  | load  25% (real  25%) burden 2.0x CTerr NaN% | event - det - visible NaN | energised 0.000s | noise 0.0177/0.0174 A | faultDiff NaN pu | checks OK
+Internal_AB            OK  | load  58% (real  56%) burden 1.6x CTerr  94% | event 0.463s det 0.465s visible 1 | energised 0.000s | noise 0.0067/0.0060 A | faultDiff 7.015 pu | checks OK
+Internal_HiZ_AB        OK  | load  94% (real  95%) burden 2.6x CTerr   3% | event 0.388s det 0.389s visible 1 | energised 0.000s | noise 0.0081/0.0062 A | faultDiff 0.816 pu | checks OK
+Internal_AG            OK  | load  22% (real  22%) burden 1.4x CTerr   3% | event 0.694s det 0.695s visible 1 | energised 0.000s | noise 0.0093/0.0093 A | faultDiff 0.633 pu | checks OK
+Inrush_NoLoad          OK  | load 103% (real NaN%) burden 1.9x CTerr  89% | event 0.404s det 0.410s visible 1 | energised 0.408s | noise NaN/NaN A | faultDiff NaN pu | checks OK
+Inrush_Loaded          OK  | load  88% (real NaN%) burden 1.0x CTerr  80% | event 0.470s det 0.477s visible 1 | energised 0.471s | noise NaN/NaN A | faultDiff NaN pu | checks OK
+External_ABC           OK  | load  89% (real  88%) burden 1.4x CTerr   2% | event 0.730s det - visible 0 | energised 0.000s | noise 0.0089/0.0076 A | faultDiff 0.000 pu | checks OK
+Internal_SOTF_AB       OK  | load  32% (real NaN%) burden 2.0x CTerr  88% | event 0.669s det 0.675s visible 1 | energised 0.669s | noise NaN/NaN A | faultDiff 0.674 pu | checks OK
+Internal_Evolving      OK  | load  14% (real  14%) burden 2.6x CTerr  68% | event 0.382s det 0.383s visible 1 | energised 0.000s | noise 0.0064/0.0062 A | faultDiff 3.414 pu | checks OK
+SELF-TEST PASSED. Run: run_stress_v3_generate.bat 3040
+Stress_ExtCTSat_ABC    OK  | load  67% (real  65%) burden 5.9x CTerr  49% | event 0.704s det 0.709s visible 1 | energised 0.000s | noise 0.0245/0.0264 A | faultDiff 0.467 pu | checks OK
+Stress_ExtCTSat_AG     OK  | load  77% (real  73%) burden 4.2x CTerr   4% | event 0.529s det - visible 0 | energised 0.000s | noise 0.0401/0.0438 A | faultDiff 0.002 pu | checks OK
+Stress_CTSat_Int_AB    OK  | load  62% (real  64%) burden 4.0x CTerr  87% | event 0.326s det 0.329s visible 1 | energised 0.000s | noise 0.0434/0.0436 A | faultDiff 2.224 pu | checks OK
+InternalHV_AG          OK  | load  26% (real  26%) burden 1.8x CTerr 100% | event 0.473s det 0.478s visible 1 | energised 0.000s | noise 0.0080/0.0081 A | faultDiff 9.708 pu | checks OK
+InternalHV_AB          OK  | load  28% (real  29%) burden 2.7x CTerr 100% | event 0.386s det 0.386s visible 1 | energised 0.000s | noise 0.0079/0.0079 A | faultDiff 13.609 pu | checks OK
+Overexcitation         OK  | load  41% (real  54%) burden 1.5x CTerr NaN% | event - det - visible NaN | energised 0.000s | noise 0.0213/0.0062 A | faultDiff NaN pu | checks OK
+      over-excitation: source 1.31 pu, differential 0.368 pu rms, 5th/1st harmonic 0.63
+Recovery_Inrush        OK  | load  10% (real  10%) burden 2.5x CTerr   5% | event 0.364s det - visible 1 | energised 0.000s | noise 0.0047/0.0060 A | faultDiff NaN pu | checks OK
+      recovery inrush: HV-bus fault 0.307 -> 0.364 s (Rf 0.15 ohm), peak differential after clearing 0.006 pu, 2nd/1st harmonic 0.19
+Stress_FaultInInrush   OK  | load  83% (real NaN%) burden 2.6x CTerr  85% | event 0.333s det 0.338s visible 1 | energised 0.247s | noise NaN/NaN A | faultDiff 1.062 pu | checks OK
+Stress_ExtInInrush     CHK | load  76% (real NaN%) burden 1.1x CTerr  95% | event 0.444s det 0.468s visible 1 | energised 0.338s | noise NaN/NaN A | faultDiff 0.083 pu | FAILED: TIMING
+SELF-TEST: some checks failed. Send this output to Claude before generating.
+
+---- Re-run after widening the event-timing tolerance for the two in-inrush kinds to 30 ms (cases 17-18; first run: Stress_ExtInInrush failed TIMING, 24 ms late, because the fault edge is masked by the inrush) ----
+=== SELF-TEST (nothing is saved) ===
+Expect: AB / HiZ_AB / SOTF visible and timed; Internal_AG on the delta winding: visible 0, faultDiff ~0.
+Stress_FaultInInrush   OK  | load  83% (real NaN%) burden 2.6x CTerr  85% | event 0.333s det 0.338s visible 1 | energised 0.247s | noise NaN/NaN A | faultDiff 1.062 pu | checks OK
+Stress_ExtInInrush     OK  | load  76% (real NaN%) burden 1.1x CTerr  95% | event 0.444s det 0.468s visible 1 | energised 0.338s | noise NaN/NaN A | faultDiff 0.083 pu | checks OK
+SELF-TEST PASSED. Run: run_stress_v3_generate.bat 3040

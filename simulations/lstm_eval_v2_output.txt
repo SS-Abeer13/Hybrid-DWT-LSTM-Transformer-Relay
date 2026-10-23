@@ -1,0 +1,15 @@
+=== PROVENANCE ===
+  training features : LSTM_Features_Combined_20260601_024803.mat  (built 2026-06-01)
+  test features     : simulated_test_features.mat  (built 2026-07-17)
+  model checkpoint  : transformer_protection_lstm_best.pth  (trained 2026-06-01)
+  NOTE: for a valid comparison, training features and test features
+        must come from the SAME calibration/pipeline.
+
+threshold = 0.5617   config = hidden64 layers2 bidirFalse
+
+Case                   Exp  | p(final-seq) decision status | p(max-roll)
+------------------------------------------------------------------------------
+Normal_Operation       BLOCK | 1.0000       TRIP     FAIL   | 1.0000     
+Magnetizing_Inrush     BLOCK | 0.0038       BLOCK    PASS   | 0.1028     
+Internal_A_G_Fault     TRIP | 1.0000       TRIP     PASS   | 1.0000     
+External_3_Fault       BLOCK | 1.0000       TRIP     FAIL   | 1.0000     

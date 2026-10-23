@@ -1,0 +1,17 @@
+Closed-loop validation (d4ood2), LSTM active, relay trip logic of the saved model, 21-Oct-2026 19:53:02
+case                                 expect   actual   max prob  delay ms   status  
+--------------------------------------------------------------------------------------
+InternalHV_AG #114                   TRIP     TRIP     1.0000    13.1       PASS    
+Stress_ExtCTSat_AB #133              BLOCK    BLOCK    0.0084    NaN        PASS    
+Stress_ExtCTSat_AB #139              BLOCK    BLOCK    0.0207    NaN        PASS    
+Stress_ExtCTSat_AG #150              BLOCK    BLOCK    0.0072    NaN        PASS    
+Inrush_NoLoad #195                   BLOCK    BLOCK    0.0812    NaN        PASS    
+Inrush_NoLoad #197                   BLOCK    BLOCK    0.0264    NaN        PASS    
+Internal_AB #212                     TRIP     TRIP     1.0000    32.1       FAIL    
+Internal_SOTF_AB #226                TRIP     TRIP     1.0000    14.4       PASS    
+Internal_SOTF_AB #228                TRIP     TRIP     1.0000    25.3       PASS    
+Normal #242                          BLOCK    BLOCK    0.0001    NaN        PASS    
+Normal #243                          BLOCK    BLOCK    0.0000    NaN        PASS    
+InternalHV_AB #294                   TRIP     TRIP     1.0000    10.6       PASS    
+--------------------------------------------------------------------------------------
+Passed 11 / 12 (trip decisions correct; internal faults must trip within 30 ms of the fault / energisation)

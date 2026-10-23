@@ -1,0 +1,15 @@
+HiZ sensitivity (corrected differential, base 0.9302 A; no noise; burden 1x)
+
+type    Rf@1pu   Rf@0.30   Rf@0.05  Rf@0.015 | load spread (max/min) of Rf@0.30, Rf@0.05 | monotonic
+AB        0.34      1.14      6.63     20.64 | 1.01, 1.02 | True
+ABC       0.40      1.31      7.50     22.34 | 1.00, 1.00 | True
+AC        0.34      1.14      6.63     20.29 | 1.01, 1.01 | True
+AG        0.21      1.08      7.08     21.12 | 1.33, 1.03 | True
+BC        0.34      1.14      6.63     20.77 | 1.01, 1.01 | True
+
+Bins (ohm, log-uniform):
+  AB   visible 0.34-1.14 | ai_only 1.14-6.63 | undetect 6.63-20.64
+  ABC  visible 0.40-1.31 | ai_only 1.31-7.50 | undetect 7.50-22.34
+  AC   visible 0.34-1.14 | ai_only 1.14-6.63 | undetect 6.63-20.29
+  AG   visible 0.21-1.08 | ai_only 1.08-7.08 | undetect 7.08-21.12
+  BC   visible 0.34-1.14 | ai_only 1.14-6.63 | undetect 6.63-20.77

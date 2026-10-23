@@ -1,0 +1,545 @@
+[Wed Oct 21 13:25:20 BST 2026] OOD run 20261021_132520, N=300
+[Wed Oct 21 13:25:20 BST 2026] launch 1
+=== Stress dataset v3 | set OOD | run 20261021_132520 | 300 samples | 72 scenarios | start at 1 | chunk 100 ===
+  Normal                       28
+  Inrush_NoLoad                 6
+  Inrush_Loaded                33
+  Recovery_Inrush               6
+  Overexcitation               12
+  Internal_Evolving             0
+  Internal_SOTF_AB             10
+  Internal_SOTF_ABC             0
+  External_HiZ_AB               0
+  External_HiZ_ABC              0
+  Stress_FaultInInrush         10
+  Stress_ExtInInrush            0
+  Internal_AG                   7
+  InternalHV_AG                10
+  External_AG                   0
+  Stress_ExtCTSat_AG           10
+  Stress_CTSat_Int_AG          10
+  Internal_BG                   0
+  InternalHV_BG                 0
+  External_BG                   0
+  Stress_ExtCTSat_BG            0
+  Stress_CTSat_Int_BG           0
+  Internal_CG                   0
+  InternalHV_CG                 0
+  External_CG                   0
+  Stress_ExtCTSat_CG            0
+  Stress_CTSat_Int_CG           0
+  Internal_AB                  38
+  InternalHV_AB                17
+  External_AB                   7
+  Stress_ExtCTSat_AB           10
+  Stress_CTSat_Int_AB          10
+  Internal_BC                   0
+  InternalHV_BC                 0
+  External_BC                   0
+  Stress_ExtCTSat_BC            0
+  Stress_CTSat_Int_BC           0
+  Internal_AC                   0
+  InternalHV_AC                 0
+  External_AC                   0
+  Stress_ExtCTSat_AC            0
+  Stress_CTSat_Int_AC           0
+  Internal_ABG                  0
+  InternalHV_ABG                0
+  External_ABG                  0
+  Stress_ExtCTSat_ABG           0
+  Stress_CTSat_Int_ABG          0
+  Internal_BCG                  0
+  InternalHV_BCG                0
+  External_BCG                  0
+  Stress_ExtCTSat_BCG           0
+  Stress_CTSat_Int_BCG          0
+  Internal_ACG                  0
+  InternalHV_ACG                0
+  External_ACG                  0
+  Stress_ExtCTSat_ACG           0
+  Stress_CTSat_Int_ACG          0
+  Internal_ABC                 28
+  InternalHV_ABC                0
+  External_ABC                 28
+  Stress_ExtCTSat_ABC          10
+  Stress_CTSat_Int_ABC         10
+  Internal_ABCG                 0
+  InternalHV_ABCG               0
+  External_ABCG                 0
+  Stress_ExtCTSat_ABCG          0
+  Stress_CTSat_Int_ABCG         0
+  Internal_HiZ_AB               0
+  Internal_HiZ_BC               0
+  Internal_HiZ_AC               0
+  Internal_HiZ_ABC              0
+  Internal_HiZ_AG               0
+[   1/ 300] Normal                     OK   | load    6% (real    7%) pf 0.93 noise 0.05% burden 2.4x CTerr NaN% | event      - det      - | checks OK | ETA 56 min
+[   2/ 300] Normal                     OK   | load  128% (real  131%) pf 0.92 noise 0.52% burden 1.3x CTerr NaN% | event      - det      - | checks OK | ETA 40 min
+[   3/ 300] Normal                     OK   | load  129% (real  132%) pf 0.89 noise 0.63% burden 2.4x CTerr NaN% | event      - det      - | checks OK | ETA 34 min
+[   4/ 300] Normal                     OK   | load    9% (real    9%) pf 0.81 noise 0.98% burden 1.3x CTerr NaN% | event      - det      - | checks OK | ETA 31 min
+[   5/ 300] Normal                     OK   | load    3% (real    3%) pf 0.91 noise 0.14% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 29 min
+[   6/ 300] Normal                     OK   | load    3% (real    3%) pf 0.83 noise 0.07% burden 2.1x CTerr NaN% | event      - det      - | checks OK | ETA 27 min
+[   7/ 300] Normal                     OK   | load    9% (real    9%) pf 0.95 noise 0.57% burden 2.4x CTerr NaN% | event      - det      - | checks OK | ETA 26 min
+[   8/ 300] Normal                     OK   | load    3% (real    3%) pf 0.85 noise 0.06% burden 2.7x CTerr NaN% | event      - det      - | checks OK | ETA 25 min
+[   9/ 300] External_ABC               OK   | load  121% (real  123%) pf 0.86 noise 0.38% burden 2.9x CTerr   4% | event 0.411s det      - | checks OK | ETA 25 min
+[  10/ 300] External_ABC               OK   | load    8% (real    9%) pf 0.97 noise 0.49% burden 1.4x CTerr   2% | event 0.589s det 0.589s | checks OK | ETA 24 min
+[  11/ 300] External_ABC               OK   | load    7% (real    7%) pf 0.88 noise 0.27% burden 1.2x CTerr   2% | event 0.717s det 0.718s | checks OK | ETA 24 min
+[  12/ 300] External_ABC               OK   | load  111% (real  111%) pf 0.98 noise 0.54% burden 1.2x CTerr   2% | event 0.631s det      - | checks OK | ETA 23 min
+[  13/ 300] External_ABC               OK   | load  115% (real  113%) pf 0.82 noise 0.07% burden 2.3x CTerr   3% | event 0.653s det      - | checks OK | ETA 23 min
+[  14/ 300] External_ABC               CHK  | load    2% (real    2%) pf 0.80 noise 0.08% burden 2.4x CTerr   4% | event 0.452s det 0.453s | FAILED: TIMING | ETA 23 min
+[  15/ 300] External_ABC               OK   | load    5% (real    5%) pf 0.88 noise 0.34% burden 1.0x CTerr   4% | event 0.503s det 0.504s | checks OK | ETA 22 min
+[  16/ 300] External_ABC               OK   | load  122% (real  125%) pf 0.93 noise 0.86% burden 1.2x CTerr   2% | event 0.356s det      - | checks OK | ETA 22 min
+[  17/ 300] External_AB                OK   | load  114% (real  113%) pf 0.92 noise 0.67% burden 2.6x CTerr   4% | event 0.455s det 0.456s | checks OK | ETA 22 min
+[  18/ 300] External_AB                OK   | load    4% (real    4%) pf 0.85 noise 0.11% burden 2.0x CTerr  11% | event 0.627s det      - | checks OK | ETA 22 min
+[  19/ 300] External_AB                OK   | load  123% (real  120%) pf 0.81 noise 0.47% burden 1.9x CTerr   3% | event 0.660s det      - | checks OK | ETA 21 min
+[  20/ 300] External_AB                OK   | load  121% (real  116%) pf 0.95 noise 0.22% burden 2.5x CTerr   3% | event 0.384s det      - | checks OK | ETA 21 min
+[  21/ 300] External_AB                OK   | load  117% (real  117%) pf 0.85 noise 0.10% burden 1.7x CTerr   2% | event 0.607s det      - | checks OK | ETA 21 min
+[  22/ 300] External_AB                OK   | load    7% (real    7%) pf 0.81 noise 0.70% burden 2.3x CTerr  12% | event 0.410s det      - | checks OK | ETA 21 min
+[  23/ 300] External_AB                OK   | load  130% (real  136%) pf 0.94 noise 0.09% burden 2.9x CTerr   3% | event 0.525s det      - | checks OK | ETA 21 min
+[  24/ 300] Inrush_Loaded              OK   | load  119% (real  NaN%) pf 0.82 noise 0.88% burden 2.8x CTerr  93% | event 0.657s det 0.663s | checks OK | ETA 21 min
+[  25/ 300] Inrush_Loaded              OK   | load    8% (real  NaN%) pf 0.97 noise 0.97% burden 1.9x CTerr  86% | event 0.568s det 0.574s | checks OK | ETA 20 min
+[  26/ 300] Inrush_Loaded              OK   | load  128% (real  NaN%) pf 0.82 noise 0.17% burden 2.3x CTerr  87% | event 0.570s det 0.577s | checks OK | ETA 20 min
+[  27/ 300] Inrush_Loaded              OK   | load    5% (real  NaN%) pf 0.98 noise 0.98% burden 1.3x CTerr  77% | event 0.218s det 0.225s | checks OK | ETA 20 min
+[  28/ 300] Inrush_Loaded              OK   | load  125% (real  NaN%) pf 0.82 noise 0.37% burden 2.0x CTerr  89% | event 0.472s det 0.480s | checks OK | ETA 20 min
+[  29/ 300] Inrush_Loaded              OK   | load  113% (real  NaN%) pf 0.89 noise 0.09% burden 1.9x CTerr  87% | event 0.317s det 0.323s | checks OK | ETA 20 min
+[  30/ 300] Inrush_Loaded              OK   | load    1% (real  NaN%) pf 0.85 noise 0.69% burden 1.8x CTerr  90% | event 0.516s det 0.522s | checks OK | ETA 20 min
+[  31/ 300] Internal_AB                OK   | load   10% (real   10%) pf 0.85 noise 0.06% burden 1.8x CTerr  92% | event 0.688s det 0.690s | checks OK | ETA 20 min
+[  32/ 300] Internal_AB                OK   | load  119% (real  122%) pf 0.84 noise 0.67% burden 2.4x CTerr  17% | event 0.387s det 0.392s | checks OK | ETA 20 min
+[  33/ 300] Internal_AB                OK   | load    9% (real    9%) pf 0.97 noise 0.25% burden 1.5x CTerr  86% | event 0.307s det 0.307s | checks OK | ETA 20 min
+[  34/ 300] Internal_AB                CHK  | load    2% (real    2%) pf 0.95 noise 0.83% burden 1.1x CTerr  73% | event 0.679s det 0.680s | FAILED: TIMING | ETA 20 min
+[  35/ 300] Internal_AB                OK   | load    7% (real    7%) pf 0.83 noise 0.20% burden 1.5x CTerr  43% | event 0.436s det 0.438s | checks OK | ETA 19 min
+[  36/ 300] Internal_AB                OK   | load    6% (real    6%) pf 0.88 noise 0.11% burden 1.9x CTerr  95% | event 0.734s det 0.736s | checks OK | ETA 19 min
+[  37/ 300] Internal_AB                OK   | load    4% (real    4%) pf 0.98 noise 0.16% burden 1.5x CTerr  11% | event 0.684s det 0.685s | checks OK | ETA 19 min
+[  38/ 300] Internal_AB                OK   | load    4% (real    4%) pf 0.93 noise 0.39% burden 3.0x CTerr  26% | event 0.500s det 0.503s | checks OK | ETA 19 min
+[  39/ 300] Internal_ABC               CHK  | load    4% (real    3%) pf 0.99 noise 0.99% burden 1.8x CTerr  32% | event 0.516s det 0.517s | FAILED: TIMING | ETA 19 min
+[  40/ 300] Internal_ABC               OK   | load  122% (real  126%) pf 0.95 noise 0.22% burden 1.3x CTerr  84% | event 0.744s det 0.745s | checks OK | ETA 19 min
+[  41/ 300] Internal_ABC               OK   | load  120% (real  122%) pf 0.92 noise 0.07% burden 3.0x CTerr   7% | event 0.613s det 0.613s | checks OK | ETA 19 min
+[  42/ 300] Internal_ABC               OK   | load    6% (real    7%) pf 1.00 noise 0.26% burden 2.1x CTerr  97% | event 0.427s det 0.428s | checks OK | ETA 19 min
+[  43/ 300] Internal_ABC               OK   | load    8% (real    8%) pf 0.89 noise 0.40% burden 2.3x CTerr   8% | event 0.320s det 0.320s | checks OK | ETA 19 min
+[  44/ 300] Internal_ABC               CHK  | load    2% (real    2%) pf 1.00 noise 0.88% burden 2.3x CTerr  84% | event 0.386s det 0.386s | FAILED: TIMING | ETA 19 min
+[  45/ 300] Internal_ABC               OK   | load    6% (real    6%) pf 0.99 noise 0.06% burden 2.2x CTerr   6% | event 0.362s det 0.362s | checks OK | ETA 19 min
+[  46/ 300] Internal_ABC               OK   | load  129% (real  126%) pf 0.85 noise 0.05% burden 2.1x CTerr   3% | event 0.321s det 0.321s | checks OK | ETA 19 min
+[  47/ 300] InternalHV_AB              OK   | load    8% (real    8%) pf 0.97 noise 0.94% burden 2.2x CTerr  99% | event 0.587s det 0.599s | checks OK | ETA 18 min
+[  48/ 300] InternalHV_AB              OK   | load  123% (real  121%) pf 0.94 noise 0.11% burden 2.3x CTerr 100% | event 0.491s det 0.501s | checks OK | ETA 18 min
+[  49/ 300] InternalHV_AB              OK   | load  125% (real  120%) pf 0.82 noise 0.14% burden 1.3x CTerr 100% | event 0.606s det 0.615s | checks OK | ETA 18 min
+[  50/ 300] InternalHV_AB              OK   | load    5% (real    4%) pf 0.92 noise 0.23% burden 1.6x CTerr  99% | event 0.652s det 0.656s | checks OK | ETA 18 min
+[  51/ 300] InternalHV_AB              OK   | load    6% (real    7%) pf 0.86 noise 0.70% burden 2.3x CTerr 100% | event 0.541s det 0.541s | checks OK | ETA 18 min
+[  52/ 300] InternalHV_AB              OK   | load  112% (real  114%) pf 0.81 noise 0.09% burden 1.7x CTerr  99% | event 0.581s det 0.581s | checks OK | ETA 18 min
+[  53/ 300] InternalHV_AB              OK   | load  128% (real  131%) pf 0.86 noise 0.19% burden 1.9x CTerr 100% | event 0.590s det 0.591s | checks OK | ETA 18 min
+[  54/ 300] Internal_AG                OK   | load  116% (real  120%) pf 0.83 noise 0.07% burden 2.7x CTerr   4% | event 0.699s det 0.699s | checks OK | ETA 18 min
+[  55/ 300] Internal_AG                OK   | load    7% (real    7%) pf 0.93 noise 0.25% burden 2.4x CTerr   6% | event 0.304s det 0.309s | checks OK | ETA 18 min
+[  56/ 300] Internal_AG                OK   | load   10% (real    9%) pf 0.94 noise 0.31% burden 2.1x CTerr   5% | event 0.438s det 0.440s | checks OK | ETA 18 min
+[  57/ 300] Internal_AG                OK   | load    3% (real    3%) pf 0.89 noise 0.39% burden 2.3x CTerr  14% | event 0.551s det 0.560s | checks OK | ETA 18 min
+[  58/ 300] Internal_AG                OK   | load  118% (real  112%) pf 0.93 noise 0.78% burden 2.0x CTerr   4% | event 0.383s det 0.384s | checks OK | ETA 17 min
+[  59/ 300] Internal_AG                OK   | load  117% (real  120%) pf 0.89 noise 0.07% burden 1.1x CTerr   2% | event 0.461s det 0.465s | checks OK | ETA 17 min
+[  60/ 300] Internal_AG                OK   | load  112% (real  108%) pf 0.97 noise 0.16% burden 2.8x CTerr   4% | event 0.521s det 0.522s | checks OK | ETA 17 min
+[  61/ 300] Normal                     OK   | load   22% (real   23%) pf 0.95 noise 0.84% burden 2.1x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  62/ 300] Normal                     OK   | load   25% (real   26%) pf 0.93 noise 0.32% burden 3.0x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  63/ 300] Normal                     OK   | load  105% (real  103%) pf 0.99 noise 0.18% burden 2.8x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  64/ 300] Normal                     OK   | load   82% (real   81%) pf 0.89 noise 0.21% burden 2.9x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  65/ 300] Normal                     OK   | load   69% (real   68%) pf 0.83 noise 0.15% burden 3.0x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  66/ 300] Normal                     OK   | load   91% (real   86%) pf 0.94 noise 0.08% burden 2.8x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  67/ 300] Normal                     OK   | load   25% (real   24%) pf 0.92 noise 0.05% burden 2.6x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  68/ 300] Normal                     OK   | load   70% (real   73%) pf 0.86 noise 0.74% burden 1.7x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  69/ 300] Normal                     OK   | load  110% (real  111%) pf 0.80 noise 0.58% burden 2.4x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  70/ 300] Normal                     OK   | load   32% (real   30%) pf 0.87 noise 0.46% burden 2.5x CTerr NaN% | event      - det      - | checks OK | ETA 17 min
+[  71/ 300] External_ABC               OK   | load   31% (real   30%) pf 0.94 noise 0.18% burden 1.1x CTerr   2% | event 0.432s det 0.433s | checks OK | ETA 16 min
+[  72/ 300] External_ABC               OK   | load   96% (real  100%) pf 0.98 noise 0.62% burden 2.8x CTerr   4% | event 0.363s det 0.364s | checks OK | ETA 16 min
+[  73/ 300] External_ABC               OK   | load   61% (real   58%) pf 0.85 noise 0.50% burden 2.9x CTerr   3% | event 0.620s det 0.621s | checks OK | ETA 16 min
+[  74/ 300] External_ABC               OK   | load   59% (real   57%) pf 0.91 noise 0.37% burden 1.5x CTerr   3% | event 0.742s det      - | checks OK | ETA 16 min
+[  75/ 300] External_ABC               OK   | load  102% (real  102%) pf 0.87 noise 0.18% burden 2.0x CTerr   3% | event 0.396s det 0.396s | checks OK | ETA 16 min
+[  76/ 300] External_ABC               OK   | load  107% (real  111%) pf 0.98 noise 0.20% burden 2.1x CTerr   3% | event 0.422s det      - | checks OK | ETA 16 min
+[  77/ 300] External_ABC               OK   | load  108% (real  109%) pf 0.87 noise 0.22% burden 2.0x CTerr   3% | event 0.589s det      - | checks OK | ETA 16 min
+[  78/ 300] External_ABC               OK   | load  105% (real  107%) pf 0.98 noise 0.11% burden 1.1x CTerr   2% | event 0.653s det 0.654s | checks OK | ETA 16 min
+[  79/ 300] External_ABC               OK   | load   20% (real   20%) pf 0.87 noise 0.31% burden 1.9x CTerr   3% | event 0.704s det 0.704s | checks OK | ETA 16 min
+[  80/ 300] External_ABC               OK   | load   51% (real   50%) pf 0.95 noise 0.42% burden 2.1x CTerr   3% | event 0.519s det      - | checks OK | ETA 16 min
+[  81/ 300] Inrush_Loaded              OK   | load   11% (real  NaN%) pf 0.83 noise 0.11% burden 2.4x CTerr  92% | event 0.131s det 0.137s | checks OK | ETA 16 min
+[  82/ 300] Inrush_Loaded              OK   | load   15% (real  NaN%) pf 0.81 noise 0.53% burden 1.7x CTerr  88% | event 0.639s det 0.646s | checks OK | ETA 16 min
+[  83/ 300] Inrush_Loaded              OK   | load   92% (real  NaN%) pf 0.89 noise 0.17% burden 1.7x CTerr  81% | event 0.626s det 0.632s | checks OK | ETA 16 min
+[  84/ 300] Inrush_Loaded              OK   | load   12% (real  NaN%) pf 0.93 noise 0.12% burden 1.6x CTerr  90% | event 0.419s det 0.425s | checks OK | ETA 15 min
+[  85/ 300] Inrush_Loaded              OK   | load  103% (real  NaN%) pf 0.91 noise 0.44% burden 1.1x CTerr  77% | event 0.437s det 0.444s | checks OK | ETA 15 min
+[  86/ 300] Inrush_Loaded              OK   | load   42% (real  NaN%) pf 0.95 noise 0.12% burden 1.6x CTerr  87% | event 0.642s det 0.648s | checks OK | ETA 15 min
+[  87/ 300] Inrush_Loaded              OK   | load  110% (real  NaN%) pf 0.99 noise 0.38% burden 1.2x CTerr  84% | event 0.493s det 0.500s | checks OK | ETA 15 min
+[  88/ 300] Inrush_Loaded              OK   | load   56% (real  NaN%) pf 0.88 noise 0.07% burden 2.4x CTerr  92% | event 0.692s det 0.698s | checks OK | ETA 15 min
+[  89/ 300] Inrush_Loaded              OK   | load   17% (real  NaN%) pf 0.86 noise 0.14% burden 2.6x CTerr  90% | event 0.622s det 0.628s | checks OK | ETA 15 min
+[  90/ 300] Inrush_Loaded              OK   | load   14% (real  NaN%) pf 0.81 noise 0.05% burden 3.0x CTerr  93% | event 0.224s det 0.230s | checks OK | ETA 15 min
+[  91/ 300] Internal_AB                OK   | load   33% (real   35%) pf 0.97 noise 0.21% burden 2.7x CTerr  75% | event 0.617s det 0.620s | checks OK | ETA 15 min
+[  92/ 300] Internal_AB                OK   | load  109% (real  113%) pf 0.93 noise 0.40% burden 2.5x CTerr  13% | event 0.525s det 0.529s | checks OK | ETA 15 min
+[  93/ 300] Internal_AB                OK   | load   13% (real   13%) pf 0.89 noise 0.34% burden 2.2x CTerr   4% | event 0.734s det 0.734s | checks OK | ETA 15 min
+[  94/ 300] Internal_AB                OK   | load   68% (real   71%) pf 0.89 noise 0.14% burden 1.0x CTerr  74% | event 0.429s det 0.430s | checks OK | ETA 15 min
+[  95/ 300] Internal_AB                OK   | load   17% (real   17%) pf 0.98 noise 0.56% burden 1.1x CTerr   5% | event 0.548s det 0.548s | checks OK | ETA 15 min
+[  96/ 300] Internal_AB                OK   | load   98% (real   99%) pf 0.80 noise 0.07% burden 1.9x CTerr  66% | event 0.667s det 0.669s | checks OK | ETA 15 min
+[  97/ 300] Internal_AB                OK   | load   60% (real   60%) pf 0.93 noise 0.17% burden 2.6x CTerr  95% | event 0.636s det 0.637s | checks OK | ETA 14 min
+[  98/ 300] Internal_AB                OK   | load  101% (real  100%) pf 1.00 noise 0.11% burden 1.0x CTerr   2% | event 0.341s det 0.344s | checks OK | ETA 14 min
+[  99/ 300] Internal_AB                OK   | load   45% (real   44%) pf 0.93 noise 0.39% burden 2.0x CTerr   3% | event 0.466s det 0.467s | checks OK | ETA 14 min
+[ 100/ 300] Internal_AB                OK   | load   55% (real   56%) pf 0.93 noise 0.49% burden 1.7x CTerr   3% | event 0.622s det 0.623s | checks OK | ETA 14 min
+CHUNK_DONE at sample 100 of 300 (run 20261021_132520). Restart MATLAB with the same Run id to continue.
+
+ans =
+
+  0x0 empty char array
+
+[Wed Oct 21 13:32:59 BST 2026] launch 2
+=== Stress dataset v3 | set OOD | run 20261021_132520 | 300 samples | 72 scenarios | start at 101 | chunk 100 ===
+  Normal                       28
+  Inrush_NoLoad                 6
+  Inrush_Loaded                33
+  Recovery_Inrush               6
+  Overexcitation               12
+  Internal_Evolving             0
+  Internal_SOTF_AB             10
+  Internal_SOTF_ABC             0
+  External_HiZ_AB               0
+  External_HiZ_ABC              0
+  Stress_FaultInInrush         10
+  Stress_ExtInInrush            0
+  Internal_AG                   7
+  InternalHV_AG                10
+  External_AG                   0
+  Stress_ExtCTSat_AG           10
+  Stress_CTSat_Int_AG          10
+  Internal_BG                   0
+  InternalHV_BG                 0
+  External_BG                   0
+  Stress_ExtCTSat_BG            0
+  Stress_CTSat_Int_BG           0
+  Internal_CG                   0
+  InternalHV_CG                 0
+  External_CG                   0
+  Stress_ExtCTSat_CG            0
+  Stress_CTSat_Int_CG           0
+  Internal_AB                  38
+  InternalHV_AB                17
+  External_AB                   7
+  Stress_ExtCTSat_AB           10
+  Stress_CTSat_Int_AB          10
+  Internal_BC                   0
+  InternalHV_BC                 0
+  External_BC                   0
+  Stress_ExtCTSat_BC            0
+  Stress_CTSat_Int_BC           0
+  Internal_AC                   0
+  InternalHV_AC                 0
+  External_AC                   0
+  Stress_ExtCTSat_AC            0
+  Stress_CTSat_Int_AC           0
+  Internal_ABG                  0
+  InternalHV_ABG                0
+  External_ABG                  0
+  Stress_ExtCTSat_ABG           0
+  Stress_CTSat_Int_ABG          0
+  Internal_BCG                  0
+  InternalHV_BCG                0
+  External_BCG                  0
+  Stress_ExtCTSat_BCG           0
+  Stress_CTSat_Int_BCG          0
+  Internal_ACG                  0
+  InternalHV_ACG                0
+  External_ACG                  0
+  Stress_ExtCTSat_ACG           0
+  Stress_CTSat_Int_ACG          0
+  Internal_ABC                 28
+  InternalHV_ABC                0
+  External_ABC                 28
+  Stress_ExtCTSat_ABC          10
+  Stress_CTSat_Int_ABC         10
+  Internal_ABCG                 0
+  InternalHV_ABCG               0
+  External_ABCG                 0
+  Stress_ExtCTSat_ABCG          0
+  Stress_CTSat_Int_ABCG         0
+  Internal_HiZ_AB               0
+  Internal_HiZ_BC               0
+  Internal_HiZ_AC               0
+  Internal_HiZ_ABC              0
+  Internal_HiZ_AG               0
+[ 101/ 300] Internal_ABC               OK   | load  107% (real  105%) pf 0.88 noise 0.32% burden 1.1x CTerr   2% | event 0.646s det 0.646s | checks OK | ETA 34 min
+[ 102/ 300] Internal_ABC               OK   | load   27% (real   27%) pf 0.96 noise 0.30% burden 1.8x CTerr  95% | event 0.522s det 0.522s | checks OK | ETA 25 min
+[ 103/ 300] Internal_ABC               OK   | load   41% (real   40%) pf 0.93 noise 0.90% burden 1.1x CTerr   3% | event 0.720s det 0.720s | checks OK | ETA 22 min
+[ 104/ 300] Internal_ABC               OK   | load   44% (real   43%) pf 0.96 noise 0.16% burden 1.3x CTerr   3% | event 0.585s det 0.586s | checks OK | ETA 20 min
+[ 105/ 300] Internal_ABC               OK   | load   80% (real   81%) pf 0.83 noise 0.14% burden 2.1x CTerr   3% | event 0.418s det 0.418s | checks OK | ETA 19 min
+[ 106/ 300] Internal_ABC               OK   | load   59% (real   58%) pf 0.97 noise 0.17% burden 2.8x CTerr  96% | event 0.458s det 0.459s | checks OK | ETA 18 min
+[ 107/ 300] Internal_ABC               OK   | load  105% (real  105%) pf 0.88 noise 0.28% burden 2.5x CTerr  97% | event 0.420s det 0.421s | checks OK | ETA 18 min
+[ 108/ 300] Internal_ABC               OK   | load  108% (real  108%) pf 0.89 noise 0.17% burden 2.7x CTerr   4% | event 0.371s det 0.371s | checks OK | ETA 17 min
+[ 109/ 300] Internal_ABC               OK   | load   91% (real   95%) pf 0.82 noise 0.13% burden 2.5x CTerr  95% | event 0.321s det 0.323s | checks OK | ETA 17 min
+[ 110/ 300] Internal_ABC               OK   | load   96% (real   95%) pf 1.00 noise 0.09% burden 2.0x CTerr   3% | event 0.735s det 0.735s | checks OK | ETA 16 min
+[ 111/ 300] InternalHV_AG              OK   | load   30% (real   31%) pf 0.81 noise 0.67% burden 2.5x CTerr 100% | event 0.674s det 0.676s | checks OK | ETA 16 min
+[ 112/ 300] InternalHV_AG              OK   | load   50% (real   52%) pf 0.84 noise 0.23% burden 1.7x CTerr  99% | event 0.716s det 0.716s | checks OK | ETA 16 min
+[ 113/ 300] InternalHV_AG              OK   | load   20% (real   19%) pf 0.94 noise 0.60% burden 1.4x CTerr  99% | event 0.405s det 0.406s | checks OK | ETA 15 min
+[ 114/ 300] InternalHV_AG              OK   | load   28% (real   29%) pf 0.90 noise 0.18% burden 2.9x CTerr 100% | event 0.507s det 0.507s | checks OK | ETA 15 min
+[ 115/ 300] InternalHV_AG              OK   | load   13% (real   13%) pf 0.91 noise 0.77% burden 1.7x CTerr 100% | event 0.660s det 0.661s | checks OK | ETA 15 min
+[ 116/ 300] InternalHV_AG              OK   | load   15% (real   15%) pf 0.90 noise 0.22% burden 1.9x CTerr  99% | event 0.739s det 0.739s | checks OK | ETA 15 min
+[ 117/ 300] InternalHV_AG              OK   | load   85% (real   85%) pf 0.82 noise 0.13% burden 2.1x CTerr  99% | event 0.659s det 0.659s | checks OK | ETA 15 min
+[ 118/ 300] InternalHV_AG              OK   | load   95% (real   98%) pf 0.92 noise 0.61% burden 2.5x CTerr 100% | event 0.474s det 0.474s | checks OK | ETA 15 min
+[ 119/ 300] InternalHV_AG              OK   | load   90% (real   91%) pf 0.82 noise 0.29% burden 2.3x CTerr 100% | event 0.644s det 0.645s | checks OK | ETA 14 min
+[ 120/ 300] InternalHV_AG              CHK  | load   41% (real   39%) pf 0.90 noise 0.11% burden 2.8x CTerr 100% | event 0.307s det 0.320s | FAILED: TIMING | ETA 14 min
+[ 121/ 300] Stress_ExtCTSat_ABC        OK   | load   71% (real   74%) pf 0.98 noise 2.76% burden 15.9x CTerr  88% | event 0.544s det 0.545s | checks OK | ETA 14 min
+[ 122/ 300] Stress_ExtCTSat_ABC        OK   | load   63% (real   65%) pf 0.96 noise 1.17% burden 12.9x CTerr  84% | event 0.746s det 0.748s | checks OK | ETA 14 min
+[ 123/ 300] Stress_ExtCTSat_ABC        OK   | load   85% (real   89%) pf 0.82 noise 1.62% burden 15.0x CTerr  89% | event 0.647s det 0.648s | checks OK | ETA 14 min
+[ 124/ 300] Stress_ExtCTSat_ABC        CHK  | load  105% (real  103%) pf 0.91 noise 1.09% burden 12.0x CTerr  83% | event 0.301s det 0.303s | FAILED: NOISE | ETA 14 min
+[ 125/ 300] Stress_ExtCTSat_ABC        CHK  | load   98% (real  103%) pf 0.88 noise 1.27% burden 13.9x CTerr  85% | event 0.636s det 0.637s | FAILED: NOISE | ETA 14 min
+[ 126/ 300] Stress_ExtCTSat_ABC        OK   | load   94% (real   94%) pf 0.83 noise 1.68% burden 12.9x CTerr  82% | event 0.422s det 0.424s | checks OK | ETA 14 min
+[ 127/ 300] Stress_ExtCTSat_ABC        OK   | load   86% (real   85%) pf 1.00 noise 1.33% burden 13.1x CTerr  85% | event 0.508s det 0.510s | checks OK | ETA 14 min
+[ 128/ 300] Stress_ExtCTSat_ABC        OK   | load   85% (real   85%) pf 0.97 noise 1.87% burden 15.7x CTerr  87% | event 0.369s det 0.370s | checks OK | ETA 14 min
+[ 129/ 300] Stress_ExtCTSat_ABC        OK   | load   86% (real   82%) pf 0.96 noise 2.28% burden 15.9x CTerr  85% | event 0.522s det 0.523s | checks OK | ETA 14 min
+[ 130/ 300] Stress_ExtCTSat_ABC        OK   | load   90% (real   90%) pf 0.94 noise 1.19% burden 14.6x CTerr  85% | event 0.448s det 0.452s | checks OK | ETA 13 min
+[ 131/ 300] Stress_ExtCTSat_AB         OK   | load   92% (real   91%) pf 0.91 noise 2.55% burden 15.4x CTerr  88% | event 0.516s det 0.519s | checks OK | ETA 13 min
+[ 132/ 300] Stress_ExtCTSat_AB         OK   | load   63% (real   62%) pf 0.81 noise 2.77% burden 15.5x CTerr  87% | event 0.324s det 0.328s | checks OK | ETA 13 min
+[ 133/ 300] Stress_ExtCTSat_AB         OK   | load   70% (real   71%) pf 0.84 noise 2.13% burden 14.2x CTerr  84% | event 0.496s det 0.501s | checks OK | ETA 13 min
+[ 134/ 300] Stress_ExtCTSat_AB         OK   | load  104% (real   99%) pf 0.90 noise 1.65% burden 12.1x CTerr  79% | event 0.638s det 0.642s | checks OK | ETA 13 min
+[ 135/ 300] Stress_ExtCTSat_AB         OK   | load   81% (real   84%) pf 0.81 noise 1.77% burden 13.7x CTerr  81% | event 0.384s det 0.385s | checks OK | ETA 13 min
+[ 136/ 300] Stress_ExtCTSat_AB         OK   | load   72% (real   69%) pf 0.92 noise 1.17% burden 12.9x CTerr  80% | event 0.322s det 0.327s | checks OK | ETA 13 min
+[ 137/ 300] Stress_ExtCTSat_AB         OK   | load   85% (real   86%) pf 0.95 noise 2.59% burden 12.8x CTerr  80% | event 0.468s det 0.471s | checks OK | ETA 13 min
+[ 138/ 300] Stress_ExtCTSat_AB         OK   | load   66% (real   69%) pf 0.95 noise 1.25% burden 14.8x CTerr  84% | event 0.501s det 0.501s | checks OK | ETA 13 min
+[ 139/ 300] Stress_ExtCTSat_AB         OK   | load   93% (real   95%) pf 0.84 noise 2.84% burden 16.0x CTerr  87% | event 0.385s det 0.386s | checks OK | ETA 13 min
+[ 140/ 300] Stress_ExtCTSat_AB         OK   | load   75% (real   74%) pf 0.94 noise 1.12% burden 14.6x CTerr  82% | event 0.504s det 0.508s | checks OK | ETA 13 min
+[ 141/ 300] Stress_ExtCTSat_AG         OK   | load  101% (real  101%) pf 0.83 noise 1.41% burden 15.6x CTerr  81% | event 0.380s det 0.381s | checks OK | ETA 13 min
+[ 142/ 300] Stress_ExtCTSat_AG         OK   | load   63% (real   61%) pf 0.95 noise 1.15% burden 12.0x CTerr  63% | event 0.517s det 0.521s | checks OK | ETA 13 min
+[ 143/ 300] Stress_ExtCTSat_AG         OK   | load   82% (real   79%) pf 0.95 noise 1.39% burden 13.5x CTerr  75% | event 0.417s det 0.419s | checks OK | ETA 13 min
+[ 144/ 300] Stress_ExtCTSat_AG         CHK  | load  108% (real  105%) pf 0.83 noise 1.74% burden 14.9x CTerr  82% | event 0.346s det      - | FAILED: NOISE | ETA 13 min
+[ 145/ 300] Stress_ExtCTSat_AG         OK   | load  107% (real  105%) pf 0.91 noise 1.58% burden 13.7x CTerr  83% | event 0.535s det 0.539s | checks OK | ETA 13 min
+[ 146/ 300] Stress_ExtCTSat_AG         OK   | load   73% (real   70%) pf 0.82 noise 1.48% burden 14.3x CTerr  70% | event 0.364s det 0.366s | checks OK | ETA 13 min
+[ 147/ 300] Stress_ExtCTSat_AG         OK   | load   66% (real   66%) pf 0.95 noise 1.03% burden 14.2x CTerr  72% | event 0.412s det 0.416s | checks OK | ETA 13 min
+[ 148/ 300] Stress_ExtCTSat_AG         OK   | load   78% (real   81%) pf 0.90 noise 1.42% burden 13.3x CTerr  74% | event 0.472s det 0.475s | checks OK | ETA 12 min
+[ 149/ 300] Stress_ExtCTSat_AG         OK   | load  108% (real  112%) pf 0.90 noise 2.81% burden 12.4x CTerr  83% | event 0.358s det      - | checks OK | ETA 12 min
+[ 150/ 300] Stress_ExtCTSat_AG         OK   | load   88% (real   89%) pf 0.91 noise 1.95% burden 14.2x CTerr  78% | event 0.417s det 0.423s | checks OK | ETA 12 min
+[ 151/ 300] Stress_CTSat_Int_AB        OK   | load  108% (real  112%) pf 0.99 noise 2.11% burden 13.6x CTerr 100% | event 0.611s det 0.613s | checks OK | ETA 12 min
+[ 152/ 300] Stress_CTSat_Int_AB        OK   | load   94% (real   91%) pf 0.92 noise 1.68% burden 14.9x CTerr  99% | event 0.375s det 0.376s | checks OK | ETA 12 min
+[ 153/ 300] Stress_CTSat_Int_AB        OK   | load   70% (real   68%) pf 0.99 noise 2.40% burden 13.5x CTerr 100% | event 0.597s det 0.598s | checks OK | ETA 12 min
+[ 154/ 300] Stress_CTSat_Int_AB        OK   | load   61% (real   59%) pf 0.90 noise 1.56% burden 15.4x CTerr  98% | event 0.502s det 0.505s | checks OK | ETA 12 min
+[ 155/ 300] Stress_CTSat_Int_AB        CHK  | load  104% (real  102%) pf 0.94 noise 1.67% burden 14.0x CTerr  99% | event 0.703s det 0.706s | FAILED: NOISE | ETA 12 min
+[ 156/ 300] Stress_CTSat_Int_AB        OK   | load   81% (real   78%) pf 0.80 noise 1.86% burden 12.2x CTerr 100% | event 0.443s det 0.444s | checks OK | ETA 12 min
+[ 157/ 300] Stress_CTSat_Int_AB        CHK  | load   95% (real   96%) pf 0.97 noise 1.52% burden 14.6x CTerr 100% | event 0.534s det 0.534s | FAILED: NOISE | ETA 12 min
+[ 158/ 300] Stress_CTSat_Int_AB        OK   | load   64% (real   65%) pf 0.83 noise 1.71% burden 15.5x CTerr  99% | event 0.731s det 0.733s | checks OK | ETA 12 min
+[ 159/ 300] Stress_CTSat_Int_AB        OK   | load  106% (real  101%) pf 0.90 noise 1.80% burden 15.8x CTerr 100% | event 0.436s det 0.438s | checks OK | ETA 12 min
+[ 160/ 300] Stress_CTSat_Int_AB        OK   | load   91% (real   90%) pf 0.82 noise 1.02% burden 14.5x CTerr  99% | event 0.716s det 0.716s | checks OK | ETA 11 min
+[ 161/ 300] Stress_CTSat_Int_ABC       OK   | load   89% (real   90%) pf 0.97 noise 1.81% burden 13.7x CTerr  97% | event 0.381s det 0.382s | checks OK | ETA 11 min
+[ 162/ 300] Stress_CTSat_Int_ABC       OK   | load  101% (real  100%) pf 0.84 noise 1.02% burden 15.7x CTerr  99% | event 0.723s det 0.724s | checks OK | ETA 11 min
+[ 163/ 300] Stress_CTSat_Int_ABC       CHK  | load  101% (real  100%) pf 0.92 noise 1.52% burden 14.5x CTerr 100% | event 0.715s det 0.716s | FAILED: NOISE | ETA 11 min
+[ 164/ 300] Stress_CTSat_Int_ABC       OK   | load   66% (real   67%) pf 0.97 noise 1.83% burden 13.5x CTerr 100% | event 0.725s det 0.726s | checks OK | ETA 11 min
+[ 165/ 300] Stress_CTSat_Int_ABC       OK   | load   67% (real   65%) pf 0.88 noise 1.53% burden 15.8x CTerr 100% | event 0.346s det 0.346s | checks OK | ETA 11 min
+[ 166/ 300] Stress_CTSat_Int_ABC       OK   | load  108% (real  109%) pf 0.82 noise 1.44% burden 13.7x CTerr 100% | event 0.529s det 0.534s | checks OK | ETA 11 min
+[ 167/ 300] Stress_CTSat_Int_ABC       OK   | load   95% (real   98%) pf 0.82 noise 1.77% burden 12.1x CTerr 100% | event 0.311s det 0.311s | checks OK | ETA 11 min
+[ 168/ 300] Stress_CTSat_Int_ABC       OK   | load   71% (real   68%) pf 0.96 noise 2.16% burden 12.5x CTerr  99% | event 0.455s det 0.456s | checks OK | ETA 11 min
+[ 169/ 300] Stress_CTSat_Int_ABC       OK   | load   90% (real   88%) pf 0.97 noise 2.29% burden 13.1x CTerr 100% | event 0.411s det 0.412s | checks OK | ETA 11 min
+[ 170/ 300] Stress_CTSat_Int_ABC       OK   | load  103% (real  107%) pf 0.84 noise 1.71% burden 13.8x CTerr 100% | event 0.675s det 0.675s | checks OK | ETA 11 min
+[ 171/ 300] Stress_CTSat_Int_AG        OK   | load   90% (real   90%) pf 0.87 noise 2.87% burden 12.8x CTerr  85% | event 0.609s det 0.611s | checks OK | ETA 11 min
+[ 172/ 300] Stress_CTSat_Int_AG        OK   | load   88% (real   90%) pf 0.90 noise 1.86% burden 15.6x CTerr  91% | event 0.370s det 0.372s | checks OK | ETA 11 min
+[ 173/ 300] Stress_CTSat_Int_AG        OK   | load   98% (real   97%) pf 0.88 noise 2.08% burden 14.4x CTerr  89% | event 0.385s det 0.387s | checks OK | ETA 10 min
+[ 174/ 300] Stress_CTSat_Int_AG        CHK  | load   95% (real   98%) pf 0.87 noise 1.06% burden 13.6x CTerr  88% | event 0.735s det 0.739s | FAILED: NOISE | ETA 10 min
+[ 175/ 300] Stress_CTSat_Int_AG        OK   | load   81% (real   78%) pf 0.90 noise 1.66% burden 12.5x CTerr  86% | event 0.635s det 0.639s | checks OK | ETA 10 min
+[ 176/ 300] Stress_CTSat_Int_AG        OK   | load   82% (real   78%) pf 0.91 noise 1.11% burden 13.7x CTerr  88% | event 0.415s det 0.418s | checks OK | ETA 10 min
+[ 177/ 300] Stress_CTSat_Int_AG        OK   | load   77% (real   73%) pf 0.84 noise 1.41% burden 14.2x CTerr  88% | event 0.307s det 0.311s | checks OK | ETA 10 min
+[ 178/ 300] Stress_CTSat_Int_AG        CHK  | load   83% (real   87%) pf 0.85 noise 1.06% burden 14.0x CTerr  90% | event 0.712s det 0.716s | FAILED: NOISE | ETA 10 min
+[ 179/ 300] Stress_CTSat_Int_AG        OK   | load   84% (real   81%) pf 0.81 noise 2.56% burden 15.1x CTerr  88% | event 0.311s det 0.314s | checks OK | ETA 10 min
+[ 180/ 300] Stress_CTSat_Int_AG        OK   | load   63% (real   64%) pf 0.88 noise 1.01% burden 13.3x CTerr  85% | event 0.327s det 0.331s | checks OK | ETA 10 min
+[ 181/ 300] Overexcitation             OK   | load   51% (real   77%) pf 0.85 noise 0.28% burden 1.8x CTerr NaN% | event      - det      - | checks OK | ETA 10 min
+[ 182/ 300] Overexcitation             OK   | load   92% (real  139%) pf 0.88 noise 0.10% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 10 min
+[ 183/ 300] Overexcitation             OK   | load   63% (real   96%) pf 0.96 noise 0.08% burden 2.7x CTerr NaN% | event      - det      - | checks OK | ETA 10 min
+[ 184/ 300] Overexcitation             OK   | load   60% (real   94%) pf 0.82 noise 0.63% burden 2.4x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 185/ 300] Overexcitation             OK   | load   56% (real   84%) pf 0.96 noise 0.09% burden 2.6x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 186/ 300] Overexcitation             OK   | load   41% (real   63%) pf 0.96 noise 0.09% burden 2.2x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 187/ 300] Overexcitation             OK   | load   28% (real   43%) pf 1.00 noise 0.06% burden 2.8x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 188/ 300] Overexcitation             OK   | load   48% (real   72%) pf 0.85 noise 0.57% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 189/ 300] Overexcitation             OK   | load   94% (real  147%) pf 0.91 noise 0.80% burden 1.7x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 190/ 300] Overexcitation             OK   | load   92% (real  138%) pf 0.90 noise 0.17% burden 1.4x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 191/ 300] Overexcitation             OK   | load   94% (real  146%) pf 0.94 noise 0.64% burden 1.6x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 192/ 300] Overexcitation             OK   | load   12% (real   18%) pf 0.84 noise 0.49% burden 1.3x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[ 193/ 300] Inrush_NoLoad              OK   | load  107% (real  NaN%) pf 0.80 noise 0.08% burden 2.3x CTerr  87% | event 0.638s det 0.644s | checks OK | ETA 9 min
+[ 194/ 300] Inrush_NoLoad              OK   | load   25% (real  NaN%) pf 0.85 noise 0.06% burden 1.2x CTerr  77% | event 0.211s det 0.217s | checks OK | ETA 9 min
+[ 195/ 300] Inrush_NoLoad              OK   | load   53% (real  NaN%) pf 0.95 noise 0.43% burden 1.8x CTerr  83% | event 0.466s det 0.472s | checks OK | ETA 9 min
+[ 196/ 300] Inrush_NoLoad              OK   | load   93% (real  NaN%) pf 0.81 noise 0.15% burden 2.2x CTerr  90% | event 0.553s det 0.559s | checks OK | ETA 9 min
+[ 197/ 300] Inrush_NoLoad              OK   | load   99% (real  NaN%) pf 0.99 noise 0.35% burden 2.2x CTerr  90% | event 0.345s det 0.351s | checks OK | ETA 8 min
+[ 198/ 300] Inrush_NoLoad              OK   | load   68% (real  NaN%) pf 0.99 noise 0.24% burden 2.8x CTerr  94% | event 0.150s det 0.156s | checks OK | ETA 8 min
+[ 199/ 300] Inrush_Loaded              OK   | load  105% (real  NaN%) pf 0.90 noise 0.90% burden 2.2x CTerr  91% | event 0.360s det 0.367s | checks OK | ETA 8 min
+[ 200/ 300] Inrush_Loaded              OK   | load   85% (real  NaN%) pf 0.98 noise 0.15% burden 2.9x CTerr  95% | event 0.306s det 0.312s | checks OK | ETA 8 min
+CHUNK_DONE at sample 200 of 300 (run 20261021_132520). Restart MATLAB with the same Run id to continue.
+
+ans =
+
+  0x0 empty char array
+
+[Wed Oct 21 13:41:42 BST 2026] launch 3
+=== Stress dataset v3 | set OOD | run 20261021_132520 | 300 samples | 72 scenarios | start at 201 | chunk 100 ===
+  Normal                       28
+  Inrush_NoLoad                 6
+  Inrush_Loaded                33
+  Recovery_Inrush               6
+  Overexcitation               12
+  Internal_Evolving             0
+  Internal_SOTF_AB             10
+  Internal_SOTF_ABC             0
+  External_HiZ_AB               0
+  External_HiZ_ABC              0
+  Stress_FaultInInrush         10
+  Stress_ExtInInrush            0
+  Internal_AG                   7
+  InternalHV_AG                10
+  External_AG                   0
+  Stress_ExtCTSat_AG           10
+  Stress_CTSat_Int_AG          10
+  Internal_BG                   0
+  InternalHV_BG                 0
+  External_BG                   0
+  Stress_ExtCTSat_BG            0
+  Stress_CTSat_Int_BG           0
+  Internal_CG                   0
+  InternalHV_CG                 0
+  External_CG                   0
+  Stress_ExtCTSat_CG            0
+  Stress_CTSat_Int_CG           0
+  Internal_AB                  38
+  InternalHV_AB                17
+  External_AB                   7
+  Stress_ExtCTSat_AB           10
+  Stress_CTSat_Int_AB          10
+  Internal_BC                   0
+  InternalHV_BC                 0
+  External_BC                   0
+  Stress_ExtCTSat_BC            0
+  Stress_CTSat_Int_BC           0
+  Internal_AC                   0
+  InternalHV_AC                 0
+  External_AC                   0
+  Stress_ExtCTSat_AC            0
+  Stress_CTSat_Int_AC           0
+  Internal_ABG                  0
+  InternalHV_ABG                0
+  External_ABG                  0
+  Stress_ExtCTSat_ABG           0
+  Stress_CTSat_Int_ABG          0
+  Internal_BCG                  0
+  InternalHV_BCG                0
+  External_BCG                  0
+  Stress_ExtCTSat_BCG           0
+  Stress_CTSat_Int_BCG          0
+  Internal_ACG                  0
+  InternalHV_ACG                0
+  External_ACG                  0
+  Stress_ExtCTSat_ACG           0
+  Stress_CTSat_Int_ACG          0
+  Internal_ABC                 28
+  InternalHV_ABC                0
+  External_ABC                 28
+  Stress_ExtCTSat_ABC          10
+  Stress_CTSat_Int_ABC         10
+  Internal_ABCG                 0
+  InternalHV_ABCG               0
+  External_ABCG                 0
+  Stress_ExtCTSat_ABCG          0
+  Stress_CTSat_Int_ABCG         0
+  Internal_HiZ_AB               0
+  Internal_HiZ_BC               0
+  Internal_HiZ_AC               0
+  Internal_HiZ_ABC              0
+  Internal_HiZ_AG               0
+[ 201/ 300] Inrush_Loaded              OK   | load   87% (real  NaN%) pf 0.80 noise 0.26% burden 1.8x CTerr  88% | event 0.240s det 0.246s | checks OK | ETA 23 min
+[ 202/ 300] Inrush_Loaded              OK   | load   97% (real  NaN%) pf 0.86 noise 0.44% burden 1.4x CTerr  79% | event 0.508s det 0.514s | checks OK | ETA 16 min
+[ 203/ 300] Inrush_Loaded              OK   | load   17% (real  NaN%) pf 0.89 noise 0.06% burden 1.3x CTerr  86% | event 0.631s det 0.637s | checks OK | ETA 13 min
+[ 204/ 300] Inrush_Loaded              OK   | load   17% (real  NaN%) pf 0.90 noise 0.24% burden 2.8x CTerr  94% | event 0.655s det 0.661s | checks OK | ETA 12 min
+[ 205/ 300] Recovery_Inrush            OK   | load   62% (real   62%) pf 1.00 noise 0.14% burden 2.7x CTerr  58% | event 0.371s det 0.378s | checks OK | ETA 11 min
+[ 206/ 300] Recovery_Inrush            OK   | load  103% (real  108%) pf 0.86 noise 0.32% burden 2.8x CTerr  84% | event 0.412s det 0.443s | checks OK | ETA 11 min
+[ 207/ 300] Recovery_Inrush            OK   | load   11% (real   11%) pf 0.99 noise 0.06% burden 2.8x CTerr  23% | event 0.355s det 0.364s | checks OK | ETA 10 min
+[ 208/ 300] Recovery_Inrush            OK   | load  104% (real  104%) pf 0.97 noise 0.98% burden 1.9x CTerr   3% | event 0.481s det 0.482s | checks OK | ETA 10 min
+[ 209/ 300] Recovery_Inrush            OK   | load   93% (real   93%) pf 1.00 noise 0.06% burden 2.2x CTerr  52% | event 0.430s det 0.461s | checks OK | ETA 9 min
+[ 210/ 300] Recovery_Inrush            OK   | load   80% (real   78%) pf 0.95 noise 0.32% burden 1.7x CTerr   3% | event 0.498s det 0.499s | checks OK | ETA 9 min
+[ 211/ 300] Internal_AB                OK   | load   16% (real   16%) pf 0.97 noise 0.14% burden 1.6x CTerr   4% | event 0.505s det 0.507s | checks OK | ETA 9 min
+[ 212/ 300] Internal_AB                OK   | load   21% (real   20%) pf 0.87 noise 0.11% burden 1.2x CTerr   3% | event 0.539s det 0.539s | checks OK | ETA 9 min
+[ 213/ 300] Internal_AB                OK   | load   81% (real   84%) pf 0.86 noise 0.40% burden 2.2x CTerr   3% | event 0.538s det 0.538s | checks OK | ETA 8 min
+[ 214/ 300] Internal_AB                OK   | load   50% (real   50%) pf 0.94 noise 0.49% burden 2.9x CTerr  80% | event 0.656s det 0.659s | checks OK | ETA 8 min
+[ 215/ 300] Internal_AB                OK   | load   63% (real   63%) pf 0.94 noise 0.44% burden 2.4x CTerr  81% | event 0.563s det 0.566s | checks OK | ETA 8 min
+[ 216/ 300] Internal_AB                OK   | load   33% (real   33%) pf 0.84 noise 0.36% burden 1.4x CTerr  91% | event 0.686s det 0.688s | checks OK | ETA 8 min
+[ 217/ 300] Internal_AB                OK   | load   67% (real   65%) pf 0.87 noise 0.94% burden 1.4x CTerr  94% | event 0.562s det 0.562s | checks OK | ETA 8 min
+[ 218/ 300] Internal_AB                OK   | load   61% (real   62%) pf 0.87 noise 0.19% burden 2.7x CTerr  91% | event 0.398s det 0.399s | checks OK | ETA 8 min
+[ 219/ 300] Internal_AB                OK   | load   11% (real   11%) pf 0.83 noise 0.18% burden 2.2x CTerr   4% | event 0.483s det 0.486s | checks OK | ETA 7 min
+[ 220/ 300] Internal_AB                OK   | load   41% (real   39%) pf 0.84 noise 0.95% burden 1.5x CTerr  23% | event 0.460s det 0.460s | checks OK | ETA 7 min
+[ 221/ 300] Internal_SOTF_AB           OK   | load  103% (real  NaN%) pf 0.84 noise 0.28% burden 2.0x CTerr  89% | event 0.535s det 0.541s | checks OK | ETA 7 min
+[ 222/ 300] Internal_SOTF_AB           OK   | load   83% (real  NaN%) pf 0.98 noise 0.91% burden 1.5x CTerr  93% | event 0.287s det 0.292s | checks OK | ETA 7 min
+[ 223/ 300] Internal_SOTF_AB           OK   | load   28% (real  NaN%) pf 0.94 noise 0.32% burden 2.7x CTerr  82% | event 0.549s det 0.551s | checks OK | ETA 7 min
+[ 224/ 300] Internal_SOTF_AB           OK   | load  101% (real  NaN%) pf 0.82 noise 0.47% burden 1.9x CTerr  92% | event 0.222s det 0.224s | checks OK | ETA 7 min
+[ 225/ 300] Internal_SOTF_AB           OK   | load   51% (real  NaN%) pf 0.93 noise 0.18% burden 2.0x CTerr  85% | event 0.504s det 0.507s | checks OK | ETA 7 min
+[ 226/ 300] Internal_SOTF_AB           OK   | load   58% (real  NaN%) pf 0.93 noise 0.69% burden 2.7x CTerr  98% | event 0.515s det 0.519s | checks OK | ETA 7 min
+[ 227/ 300] Internal_SOTF_AB           OK   | load  102% (real  NaN%) pf 0.99 noise 0.95% burden 2.1x CTerr  91% | event 0.608s det 0.614s | checks OK | ETA 7 min
+[ 228/ 300] Internal_SOTF_AB           OK   | load  109% (real  NaN%) pf 0.92 noise 0.21% burden 2.5x CTerr  91% | event 0.384s det 0.384s | checks OK | ETA 7 min
+[ 229/ 300] Internal_SOTF_AB           OK   | load  101% (real  NaN%) pf 0.93 noise 0.54% burden 2.9x CTerr  81% | event 0.344s det 0.347s | checks OK | ETA 7 min
+[ 230/ 300] Internal_SOTF_AB           OK   | load   28% (real  NaN%) pf 0.89 noise 0.46% burden 1.1x CTerr  87% | event 0.649s det 0.649s | checks OK | ETA 7 min
+[ 231/ 300] Stress_FaultInInrush       OK   | load   69% (real  NaN%) pf 0.81 noise 0.08% burden 2.0x CTerr  96% | event 0.641s det 0.647s | checks OK | ETA 6 min
+[ 232/ 300] Stress_FaultInInrush       OK   | load   48% (real  NaN%) pf 0.94 noise 0.33% burden 2.8x CTerr  98% | event 0.538s det      - | checks OK | ETA 6 min
+[ 233/ 300] Stress_FaultInInrush       OK   | load   85% (real  NaN%) pf 0.93 noise 0.38% burden 2.4x CTerr  62% | event 0.292s det 0.295s | checks OK | ETA 6 min
+[ 234/ 300] Stress_FaultInInrush       OK   | load   30% (real  NaN%) pf 0.81 noise 0.98% burden 2.1x CTerr  94% | event 0.495s det 0.498s | checks OK | ETA 6 min
+[ 235/ 300] Stress_FaultInInrush       OK   | load  108% (real  NaN%) pf 0.98 noise 0.64% burden 2.7x CTerr  72% | event 0.366s det      - | checks OK | ETA 6 min
+[ 236/ 300] Stress_FaultInInrush       OK   | load   62% (real  NaN%) pf 0.87 noise 0.18% burden 1.3x CTerr  81% | event 0.377s det 0.378s | checks OK | ETA 6 min
+[ 237/ 300] Stress_FaultInInrush       OK   | load   99% (real  NaN%) pf 0.90 noise 0.08% burden 2.4x CTerr  63% | event 0.380s det 0.386s | checks OK | ETA 6 min
+[ 238/ 300] Stress_FaultInInrush       OK   | load   57% (real  NaN%) pf 0.95 noise 0.59% burden 2.7x CTerr  97% | event 0.592s det 0.606s | checks OK | ETA 6 min
+[ 239/ 300] Stress_FaultInInrush       OK   | load   82% (real  NaN%) pf 0.89 noise 0.62% burden 2.5x CTerr  87% | event 0.477s det      - | checks OK | ETA 6 min
+[ 240/ 300] Stress_FaultInInrush       OK   | load  104% (real  NaN%) pf 0.95 noise 0.75% burden 2.7x CTerr  91% | event 0.455s det 0.456s | checks OK | ETA 6 min
+[ 241/ 300] Normal                     OK   | load   41% (real   40%) pf 0.97 noise 5.11% burden 2.7x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[ 242/ 300] Normal                     OK   | load   77% (real   76%) pf 0.91 noise 4.69% burden 2.5x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 243/ 300] Normal                     OK   | load  110% (real  106%) pf 0.96 noise 4.98% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 244/ 300] Normal                     OK   | load   62% (real   59%) pf 0.81 noise 5.47% burden 1.9x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 245/ 300] Normal                     OK   | load   76% (real   76%) pf 0.98 noise 4.92% burden 2.9x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 246/ 300] Normal                     OK   | load   82% (real   83%) pf 0.88 noise 4.04% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 247/ 300] Normal                     OK   | load   50% (real   49%) pf 0.96 noise 4.06% burden 1.6x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 248/ 300] Normal                     OK   | load  101% (real   96%) pf 0.91 noise 5.80% burden 1.3x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 249/ 300] Normal                     OK   | load   80% (real   81%) pf 0.98 noise 4.30% burden 1.9x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 250/ 300] Normal                     OK   | load   22% (real   23%) pf 0.99 noise 4.55% burden 1.9x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[ 251/ 300] External_ABC               OK   | load   98% (real   99%) pf 0.91 noise 5.90% burden 2.9x CTerr  10% | event 0.702s det      - | checks OK | ETA 5 min
+[ 252/ 300] External_ABC               OK   | load   95% (real   95%) pf 0.83 noise 4.56% burden 2.6x CTerr   7% | event 0.379s det      - | checks OK | ETA 5 min
+[ 253/ 300] External_ABC               OK   | load   64% (real   64%) pf 0.87 noise 4.57% burden 1.2x CTerr   9% | event 0.361s det      - | checks OK | ETA 4 min
+[ 254/ 300] External_ABC               OK   | load   30% (real   30%) pf 0.92 noise 5.11% burden 1.5x CTerr   7% | event 0.672s det 0.673s | checks OK | ETA 4 min
+[ 255/ 300] External_ABC               OK   | load   36% (real   34%) pf 0.82 noise 5.74% burden 1.4x CTerr  18% | event 0.425s det      - | checks OK | ETA 4 min
+[ 256/ 300] External_ABC               OK   | load   48% (real   46%) pf 0.81 noise 4.70% burden 1.3x CTerr  10% | event 0.560s det      - | checks OK | ETA 4 min
+[ 257/ 300] External_ABC               OK   | load   18% (real   18%) pf 0.82 noise 4.74% burden 2.3x CTerr  20% | event 0.321s det      - | checks OK | ETA 4 min
+[ 258/ 300] External_ABC               OK   | load  106% (real  106%) pf 0.88 noise 4.91% burden 2.7x CTerr  10% | event 0.667s det      - | checks OK | ETA 4 min
+[ 259/ 300] External_ABC               OK   | load   51% (real   49%) pf 0.86 noise 5.92% burden 2.1x CTerr  14% | event 0.444s det      - | checks OK | ETA 4 min
+[ 260/ 300] External_ABC               OK   | load  101% (real  103%) pf 0.80 noise 4.44% burden 2.1x CTerr  10% | event 0.478s det      - | checks OK | ETA 4 min
+[ 261/ 300] Inrush_Loaded              OK   | load   93% (real  NaN%) pf 0.85 noise 4.31% burden 1.9x CTerr  86% | event 0.370s det 0.377s | checks OK | ETA 4 min
+[ 262/ 300] Inrush_Loaded              OK   | load   25% (real  NaN%) pf 0.98 noise 5.39% burden 1.0x CTerr  79% | event 0.600s det 0.607s | checks OK | ETA 4 min
+[ 263/ 300] Inrush_Loaded              OK   | load   46% (real  NaN%) pf 0.92 noise 5.49% burden 2.6x CTerr  93% | event 0.644s det 0.651s | checks OK | ETA 3 min
+[ 264/ 300] Inrush_Loaded              OK   | load   48% (real  NaN%) pf 1.00 noise 5.47% burden 2.9x CTerr  95% | event 0.410s det 0.416s | checks OK | ETA 3 min
+[ 265/ 300] Inrush_Loaded              OK   | load   22% (real  NaN%) pf 0.90 noise 5.57% burden 1.2x CTerr  85% | event 0.493s det 0.499s | checks OK | ETA 3 min
+[ 266/ 300] Inrush_Loaded              OK   | load  109% (real  NaN%) pf 0.88 noise 5.87% burden 2.6x CTerr  89% | event 0.488s det 0.495s | checks OK | ETA 3 min
+[ 267/ 300] Inrush_Loaded              OK   | load   19% (real  NaN%) pf 0.94 noise 5.58% burden 2.2x CTerr  90% | event 0.660s det 0.666s | checks OK | ETA 3 min
+[ 268/ 300] Inrush_Loaded              OK   | load   93% (real  NaN%) pf 0.84 noise 5.83% burden 2.2x CTerr  90% | event 0.127s det 0.133s | checks OK | ETA 3 min
+[ 269/ 300] Inrush_Loaded              OK   | load   21% (real  NaN%) pf 0.97 noise 5.14% burden 2.8x CTerr  93% | event 0.101s det 0.107s | checks OK | ETA 3 min
+[ 270/ 300] Inrush_Loaded              OK   | load   63% (real  NaN%) pf 0.96 noise 5.13% burden 1.5x CTerr  89% | event 0.582s det 0.588s | checks OK | ETA 3 min
+[ 271/ 300] Internal_AB                OK   | load   73% (real   74%) pf 0.88 noise 5.32% burden 1.3x CTerr  71% | event 0.303s det 0.304s | checks OK | ETA 3 min
+[ 272/ 300] Internal_AB                OK   | load   63% (real   65%) pf 0.90 noise 4.14% burden 2.3x CTerr   8% | event 0.630s det 0.631s | checks OK | ETA 3 min
+[ 273/ 300] Internal_AB                OK   | load   92% (real   89%) pf 0.93 noise 5.17% burden 2.9x CTerr  94% | event 0.474s det 0.475s | checks OK | ETA 2 min
+[ 274/ 300] Internal_AB                OK   | load   96% (real   99%) pf 0.94 noise 5.17% burden 2.8x CTerr  83% | event 0.549s det 0.553s | checks OK | ETA 2 min
+[ 275/ 300] Internal_AB                CHK  | load   18% (real   17%) pf 0.93 noise 4.85% burden 2.0x CTerr  31% | event 0.446s det      - | FAILED: TIMING | ETA 2 min
+[ 276/ 300] Internal_AB                OK   | load   42% (real   40%) pf 0.96 noise 4.74% burden 2.6x CTerr  86% | event 0.412s det 0.415s | checks OK | ETA 2 min
+[ 277/ 300] Internal_AB                OK   | load   16% (real   16%) pf 0.87 noise 4.08% burden 2.3x CTerr  27% | event 0.705s det 0.706s | checks OK | ETA 2 min
+[ 278/ 300] Internal_AB                OK   | load  106% (real  107%) pf 0.85 noise 4.92% burden 1.2x CTerr   9% | event 0.509s det 0.509s | checks OK | ETA 2 min
+[ 279/ 300] Internal_AB                OK   | load  108% (real  110%) pf 0.88 noise 5.70% burden 2.5x CTerr  76% | event 0.573s det 0.574s | checks OK | ETA 2 min
+[ 280/ 300] Internal_AB                OK   | load  106% (real  103%) pf 0.93 noise 5.57% burden 2.4x CTerr   7% | event 0.696s det      - | checks OK | ETA 2 min
+[ 281/ 300] Internal_ABC               OK   | load   45% (real   46%) pf 0.93 noise 4.69% burden 1.5x CTerr  22% | event 0.616s det 0.616s | checks OK | ETA 2 min
+[ 282/ 300] Internal_ABC               OK   | load   57% (real   57%) pf 0.88 noise 4.12% burden 1.8x CTerr  10% | event 0.552s det      - | checks OK | ETA 2 min
+[ 283/ 300] Internal_ABC               OK   | load   17% (real   17%) pf 0.94 noise 4.52% burden 2.4x CTerr  33% | event 0.692s det 0.693s | checks OK | ETA 2 min
+[ 284/ 300] Internal_ABC               OK   | load   19% (real   18%) pf 0.95 noise 4.95% burden 1.3x CTerr  30% | event 0.657s det      - | checks OK | ETA 1 min
+[ 285/ 300] Internal_ABC               OK   | load   83% (real   84%) pf 0.87 noise 4.19% burden 1.6x CTerr   9% | event 0.517s det      - | checks OK | ETA 1 min
+[ 286/ 300] Internal_ABC               OK   | load   31% (real   32%) pf 0.97 noise 5.77% burden 1.7x CTerr  93% | event 0.745s det 0.746s | checks OK | ETA 1 min
+[ 287/ 300] Internal_ABC               OK   | load   18% (real   19%) pf 0.94 noise 4.08% burden 2.6x CTerr  25% | event 0.538s det 0.538s | checks OK | ETA 1 min
+[ 288/ 300] Internal_ABC               OK   | load   17% (real   18%) pf 0.93 noise 5.03% burden 1.7x CTerr  31% | event 0.302s det 0.302s | checks OK | ETA 1 min
+[ 289/ 300] Internal_ABC               OK   | load   30% (real   29%) pf 0.81 noise 4.17% burden 2.1x CTerr  87% | event 0.719s det 0.720s | checks OK | ETA 1 min
+[ 290/ 300] Internal_ABC               CHK  | load   11% (real   11%) pf 0.86 noise 5.69% burden 2.4x CTerr  58% | event 0.429s det 0.429s | FAILED: TIMING | ETA 1 min
+[ 291/ 300] InternalHV_AB              OK   | load   84% (real   80%) pf 0.96 noise 5.08% burden 2.5x CTerr 168% | event 0.598s det 0.598s | checks OK | ETA 1 min
+[ 292/ 300] InternalHV_AB              OK   | load   70% (real   69%) pf 0.82 noise 5.89% burden 2.3x CTerr 100% | event 0.419s det 0.419s | checks OK | ETA 1 min
+[ 293/ 300] InternalHV_AB              OK   | load   92% (real   89%) pf 0.84 noise 4.20% burden 1.7x CTerr 100% | event 0.653s det 0.654s | checks OK | ETA 1 min
+[ 294/ 300] InternalHV_AB              OK   | load   35% (real   36%) pf 0.87 noise 4.72% burden 2.4x CTerr 100% | event 0.479s det 0.481s | checks OK | ETA 1 min
+[ 295/ 300] InternalHV_AB              OK   | load   87% (real   83%) pf 0.99 noise 4.77% burden 1.1x CTerr 100% | event 0.681s det 0.686s | checks OK | ETA 0 min
+[ 296/ 300] InternalHV_AB              OK   | load   50% (real   48%) pf 0.96 noise 4.81% burden 1.8x CTerr 100% | event 0.427s det 0.427s | checks OK | ETA 0 min
+[ 297/ 300] InternalHV_AB              OK   | load   99% (real   96%) pf 0.96 noise 5.96% burden 2.5x CTerr 137% | event 0.681s det 0.693s | checks OK | ETA 0 min
+[ 298/ 300] InternalHV_AB              OK   | load  104% (real  102%) pf 1.00 noise 4.52% burden 1.5x CTerr 100% | event 0.571s det 0.571s | checks OK | ETA 0 min
+[ 299/ 300] InternalHV_AB              OK   | load  105% (real  110%) pf 0.85 noise 4.64% burden 1.3x CTerr 100% | event 0.513s det 0.513s | checks OK | ETA 0 min
+[ 300/ 300] InternalHV_AB              OK   | load   93% (real   94%) pf 0.83 noise 4.18% burden 2.3x CTerr 100% | event 0.462s det 0.466s | checks OK | ETA 0 min
+
+Saved ONE file: F:\Transformer Thesis\datasets\StressDataset_v3OOD_20261021_132520.mat
+Checks passed: 285 / 300  (failed samples are kept but flagged; training skips them)
+Duplicate waveforms: 0 | timing failures: 7 | events too small to see: 33 | sim errors: 0
+
+ans =
+
+    'F:\Transformer Thesis\datasets\StressDataset_v3OOD_20261021_132520.mat'
+
+[Wed Oct 21 13:51:49 BST 2026] OOD finished: datasets/StressDataset_v3OOD_20261021_132520.mat

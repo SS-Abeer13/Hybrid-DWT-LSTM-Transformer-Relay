@@ -91,9 +91,9 @@ doc.add_page_break()
 doc.add_paragraph().paragraph_format.space_before = Pt(24)
 add_centered_para(doc, "HYBRID ADAPTIVE TRANSFORMER DIFFERENTIAL PROTECTION:\nAN INTELLIGENT DWT-LSTM FRAMEWORK", 14, bold=True, space_after=54)
 
-add_centered_para(doc, "Md Moinul Haque (ID: 202216206) & Md Reyaz Uddin (ID: 202216211)", 12, bold=True, space_after=54)
+add_centered_para(doc, "Md Moinul Haque (ID: <STUDENT_ID_1>) & Md Reyaz Uddin (ID: <STUDENT_ID_2>)", 12, bold=True, space_after=54)
 
-add_centered_para(doc, "A Thesis Submitted in Partial Fulfillment of the Requirements for the\nDegree of Bachelor of Science in Port and Shipping Management", 12, italic=True, space_after=72)
+add_centered_para(doc, "A Thesis Submitted in Partial Fulfillment of the Requirements for the\nDegree of Bachelor of Science in Electrical, Electronic and Communication Engineering", 12, italic=True, space_after=72)
 
 add_centered_para(doc, "FACULTY OF MARITIME BUSINESS STUDIES\nBANGLADESH MARITIME UNIVERSITY\nDHAKA, BANGLADESH", 12, bold=True, space_after=72)
 
@@ -111,11 +111,11 @@ p_cert.runs[0].font.italic = True
 
 add_centered_para(doc, "“Hybrid Adaptive Transformer Differential Protection:\nAn Intelligent DWT-LSTM Framework”", 13, bold=True, space_after=18)
 
-add_body_para(doc, "submitted by Md Moinul Haque (ID: 202216206) & Md Reyaz Uddin (ID: 202216211) to the Faculty of Maritime Business Studies, Bangladesh Maritime University (BMU), Dhaka, Bangladesh, in partial fulfillment of the requirements for the degree of Bachelor of Science in Port and Shipping Management, has been accepted as satisfactory for the award of the degree and approved by the undersigned examiners.", space_after=18)
+add_body_para(doc, "submitted by Md Moinul Haque (ID: <STUDENT_ID_1>) & Md Reyaz Uddin (ID: <STUDENT_ID_2>) to the Department of Electrical, Electronic and Communication Engineering, Military Institute of Science and Technology (MIST), Mirpur Cantonment, Dhaka, Bangladesh, in partial fulfillment of the requirements for the degree of Bachelor of Science in Electrical, Electronic and Communication Engineering, has been accepted as satisfactory for the award of the degree and approved by the undersigned examiners.", space_after=18)
 
 # Examiner signatures
 add_sig_block(doc, "Supervisor:", "Cdre A N M Didarul Alam, (L), NUP, psc, BN", "Dean, Faculty of Maritime Business Studies, Bangladesh Maritime University", space_before=18)
-add_sig_block(doc, "Head of the Department:", "Head of Department Name", "Faculty of Maritime Business Studies, BMU", space_before=14)
+add_sig_block(doc, "Head of the Department:", "Head of the Department", "Department of EECE, MIST", space_before=14)
 add_sig_block(doc, "Internal Examiner:", "Internal Examiner Name", "Associate Professor, Department of EEE, University", space_before=14)
 add_sig_block(doc, "External Examiner:", "External Examiner Name", "Professor, Department of EEE, Other University, City, Bangladesh", space_before=14)
 
@@ -137,7 +137,7 @@ p_decl.runs[0].font.italic = True
 
 add_centered_para(doc, "“Hybrid Adaptive Transformer Differential Protection:\nAn Intelligent DWT-LSTM Framework”", 13, bold=True, space_after=18)
 
-add_body_para(doc, "submitted to the Faculty of Maritime Business Studies, Bangladesh Maritime University, Dhaka, Bangladesh, in partial fulfillment of the requirements for the degree of Bachelor of Science in Port and Shipping Management, is a record of original work carried out by me under the supervision of Cdre A N M Didarul Alam, (L), NUP, psc, BN, Dean, Faculty of Maritime Business Studies, Bangladesh Maritime University. I hereby affirm that:", space_after=12)
+add_body_para(doc, "submitted to the Department of Electrical, Electronic and Communication Engineering, Military Institute of Science and Technology (MIST), Mirpur Cantonment, Dhaka, Bangladesh, in partial fulfillment of the requirements for the degree of Bachelor of Science in Electrical, Electronic and Communication Engineering, is a record of original work carried out by me under the supervision of Cdre A N M Didarul Alam, (L), NUP, psc, BN, Dean, Faculty of Maritime Business Studies, Bangladesh Maritime University. I hereby affirm that:", space_after=12)
 
 # Checklist items
 checklist = [
@@ -145,7 +145,7 @@ checklist = [
     "The work presented herein is entirely the original research and intellectual contribution of the candidate, except where explicit reference has been made to the work of other researchers.",
     "Proper acknowledgment has been made in the text to all other materials used, and all sources of information have been duly cited following the IEEE referencing format.",
     "No part of this thesis has been fabricated, plagiarized, or misrepresented in any manner, and the results presented are accurate to the best of my knowledge and belief.",
-    "I have complied with all ethical guidelines and academic integrity standards set forth by the Bangladesh Maritime University."
+    "I have complied with all ethical guidelines and academic integrity standards set forth by the Military Institute of Science and Technology."
 ]
 
 for item in checklist:
@@ -169,7 +169,7 @@ run_names.font.name = 'Times New Roman'
 run_names.font.size = Pt(11)
 run_names.font.bold = True
 
-run_ids = p_sig.add_run("Student IDs: 202216206 & 202216211\n\n")
+run_ids = p_sig.add_run("Student IDs: <STUDENT_ID_1> & <STUDENT_ID_2>\n\n")
 run_ids.font.name = 'Times New Roman'
 run_ids.font.size = Pt(11)
 

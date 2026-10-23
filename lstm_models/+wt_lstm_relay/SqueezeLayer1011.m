@@ -8,7 +8,7 @@ classdef SqueezeLayer1011 < nnet.layer.Layer & nnet.layer.Formattable
     %#ok<*VARARG>
     
     properties (Learnable)
-        x_base_model_lstm_17
+        x_lstm_Constant_9_ou
     end
     
     properties
@@ -18,54 +18,54 @@ classdef SqueezeLayer1011 < nnet.layer.Layer & nnet.layer.Formattable
     methods
         function this = SqueezeLayer1011(name, onnxParams)
             this.Name = name;
-            this.OutputNames = {'x_base_model_lstm_45'};
+            this.OutputNames = {'x_lstm_Squeeze_outpu'};
             this.ONNXParams = onnxParams;
-            this.x_base_model_lstm_17 = onnxParams.Learnables.x_base_model_lstm_17;
+            this.x_lstm_Constant_9_ou = onnxParams.Learnables.x_lstm_Constant_9_ou;
         end
         
-        function [x_base_model_lstm_45] = predict(this, x_base_model_lstm__4)
-            if isdlarray(x_base_model_lstm__4)
-                x_base_model_lstm__4 = stripdims(x_base_model_lstm__4);
+        function [x_lstm_Squeeze_outpu] = predict(this, x_lstm_LSTM_output_0)
+            if isdlarray(x_lstm_LSTM_output_0)
+                x_lstm_LSTM_output_0 = stripdims(x_lstm_LSTM_output_0);
             end
-            x_base_model_lstm__4NumDims = 4;
+            x_lstm_LSTM_output_0NumDims = 4;
             onnxParams = this.ONNXParams;
-            onnxParams.Learnables.x_base_model_lstm_17 = this.x_base_model_lstm_17;
-            [x_base_model_lstm_45, x_base_model_lstm_45NumDims] = SqueezeFcn(x_base_model_lstm__4, x_base_model_lstm__4NumDims, onnxParams, 'Training', false, ...
+            onnxParams.Learnables.x_lstm_Constant_9_ou = this.x_lstm_Constant_9_ou;
+            [x_lstm_Squeeze_outpu, x_lstm_Squeeze_outpuNumDims] = SqueezeFcn(x_lstm_LSTM_output_0, x_lstm_LSTM_output_0NumDims, onnxParams, 'Training', false, ...
                 'InputDataPermutation', {[3 4 2 1], ['as-is']}, ...
                 'OutputDataPermutation', {[3 2 1], ['as-is']});
-            if any(cellfun(@(A)~isnumeric(A), {x_base_model_lstm_45}))
+            if any(cellfun(@(A)~isnumeric(A), {x_lstm_Squeeze_outpu}))
                 fprintf('Runtime error in network. The custom layer ''%s'' output a non-numeric value.\n', 'SqueezeLayer1011');
                 error(message('nnet_cnn_onnx:onnx:BadCustomLayerRuntimeOutput', 'SqueezeLayer1011'));
             end
-            x_base_model_lstm_45 = dlarray(single(x_base_model_lstm_45), 'CBT');
+            x_lstm_Squeeze_outpu = dlarray(single(x_lstm_Squeeze_outpu), 'CBT');
             if ~coder.target('MATLAB')
-                x_base_model_lstm_45 = extractdata(x_base_model_lstm_45);
+                x_lstm_Squeeze_outpu = extractdata(x_lstm_Squeeze_outpu);
             end
         end
         
-        function [x_base_model_lstm_45] = forward(this, x_base_model_lstm__4)
-            if isdlarray(x_base_model_lstm__4)
-                x_base_model_lstm__4 = stripdims(x_base_model_lstm__4);
+        function [x_lstm_Squeeze_outpu] = forward(this, x_lstm_LSTM_output_0)
+            if isdlarray(x_lstm_LSTM_output_0)
+                x_lstm_LSTM_output_0 = stripdims(x_lstm_LSTM_output_0);
             end
-            x_base_model_lstm__4NumDims = 4;
+            x_lstm_LSTM_output_0NumDims = 4;
             onnxParams = this.ONNXParams;
-            onnxParams.Learnables.x_base_model_lstm_17 = this.x_base_model_lstm_17;
-            [x_base_model_lstm_45, x_base_model_lstm_45NumDims] = SqueezeFcn(x_base_model_lstm__4, x_base_model_lstm__4NumDims, onnxParams, 'Training', true, ...
+            onnxParams.Learnables.x_lstm_Constant_9_ou = this.x_lstm_Constant_9_ou;
+            [x_lstm_Squeeze_outpu, x_lstm_Squeeze_outpuNumDims] = SqueezeFcn(x_lstm_LSTM_output_0, x_lstm_LSTM_output_0NumDims, onnxParams, 'Training', true, ...
                 'InputDataPermutation', {[3 4 2 1], ['as-is']}, ...
                 'OutputDataPermutation', {[3 2 1], ['as-is']});
-            if any(cellfun(@(A)~isnumeric(A), {x_base_model_lstm_45}))
+            if any(cellfun(@(A)~isnumeric(A), {x_lstm_Squeeze_outpu}))
                 fprintf('Runtime error in network. The custom layer ''%s'' output a non-numeric value.\n', 'SqueezeLayer1011');
                 error(message('nnet_cnn_onnx:onnx:BadCustomLayerRuntimeOutput', 'SqueezeLayer1011'));
             end
-            x_base_model_lstm_45 = dlarray(single(x_base_model_lstm_45), 'CBT');
+            x_lstm_Squeeze_outpu = dlarray(single(x_lstm_Squeeze_outpu), 'CBT');
             if ~coder.target('MATLAB')
-                x_base_model_lstm_45 = extractdata(x_base_model_lstm_45);
+                x_lstm_Squeeze_outpu = extractdata(x_lstm_Squeeze_outpu);
             end
         end
     end
 end
 
-function [x_base_model_lstm_45, x_base_model_lstm_45NumDims, state] = SqueezeFcn(x_base_model_lstm__4, x_base_model_lstm__4NumDims, params, varargin)
+function [x_lstm_Squeeze_outpu, x_lstm_Squeeze_outpuNumDims, state] = SqueezeFcn(x_lstm_LSTM_output_0, x_lstm_LSTM_output_0NumDims, params, varargin)
 %SQUEEZEFCN Function implementing an imported ONNX network.
 %
 % THIS FILE WAS AUTO-GENERATED BY importONNXFunction.
@@ -73,16 +73,16 @@ function [x_base_model_lstm_45, x_base_model_lstm_45NumDims, state] = SqueezeFcn
 %
 % Variable names in this function are taken from the original ONNX file.
 %
-% [X_BASE_MODEL_LSTM_45] = SqueezeFcn(X_BASE_MODEL_LSTM__4, PARAMS)
+% [X_LSTM_SQUEEZE_OUTPU] = SqueezeFcn(X_LSTM_LSTM_OUTPUT_0, PARAMS)
 %			- Evaluates the imported ONNX network SQUEEZEFCN with input(s)
-%			X_BASE_MODEL_LSTM__4 and the imported network parameters in PARAMS. Returns
-%			network output(s) in X_BASE_MODEL_LSTM_45.
+%			X_LSTM_LSTM_OUTPUT_0 and the imported network parameters in PARAMS. Returns
+%			network output(s) in X_LSTM_SQUEEZE_OUTPU.
 %
-% [X_BASE_MODEL_LSTM_45, STATE] = SqueezeFcn(X_BASE_MODEL_LSTM__4, PARAMS)
+% [X_LSTM_SQUEEZE_OUTPU, STATE] = SqueezeFcn(X_LSTM_LSTM_OUTPUT_0, PARAMS)
 %			- Additionally returns state variables in STATE. When training,
 %			use this form and set TRAINING to true.
 %
-% [__] = SqueezeFcn(X_BASE_MODEL_LSTM__4, PARAMS, 'NAME1', VAL1, 'NAME2', VAL2, ...)
+% [__] = SqueezeFcn(X_LSTM_LSTM_OUTPUT_0, PARAMS, 'NAME1', VAL1, 'NAME2', VAL2, ...)
 %			- Specifies additional name-value pairs described below:
 %
 % 'Training'
@@ -124,10 +124,10 @@ function [x_base_model_lstm_45, x_base_model_lstm_45NumDims, state] = SqueezeFcn
 %
 % Inputs:
 % -------
-% X_BASE_MODEL_LSTM__4
+% X_LSTM_LSTM_OUTPUT_0
 %			- Input(s) to the ONNX network.
 %			  The input size(s) expected by the ONNX file are:
-%				  X_BASE_MODEL_LSTM__4:		[Unknown, Unknown, Unknown, Unknown]				Type: FLOAT
+%				  X_LSTM_LSTM_OUTPUT_0:		[Unknown, Unknown, Unknown, Unknown]				Type: FLOAT
 %			  By default, the function will try to permute the input(s)
 %			  into this dimension ordering. If the default is incorrect,
 %			  use the 'InputDataPermutation' argument to control the
@@ -139,10 +139,10 @@ function [x_base_model_lstm_45, x_base_model_lstm_45NumDims, state] = SqueezeFcn
 %
 % Outputs:
 % --------
-% X_BASE_MODEL_LSTM_45
+% X_LSTM_SQUEEZE_OUTPU
 %			- Output(s) of the ONNX network.
 %			  Without permutation, the size(s) of the outputs are:
-%				  X_BASE_MODEL_LSTM_45:		[Unknown, Unknown, Unknown]				Type: FLOAT
+%				  X_LSTM_SQUEEZE_OUTPU:		[Unknown, Unknown, Unknown]				Type: FLOAT
 %			  By default, the function will try to permute the output(s)
 %			  from this dimension ordering into a conventional MATLAB
 %			  ordering. If the default is incorrect, use the
@@ -155,43 +155,43 @@ function [x_base_model_lstm_45, x_base_model_lstm_45NumDims, state] = SqueezeFcn
 %  See also importONNXFunction
 
 % Preprocess the input data and arguments:
-[x_base_model_lstm__4, Training, outputDataPerms, anyDlarrayInputs] = preprocessInput(x_base_model_lstm__4, params, varargin{:});
+[x_lstm_LSTM_output_0, Training, outputDataPerms, anyDlarrayInputs] = preprocessInput(x_lstm_LSTM_output_0, params, varargin{:});
 % Put all variables into a single struct to implement dynamic scoping:
-[Vars, NumDims] = packageVariables(params, {'x_base_model_lstm__4'}, {x_base_model_lstm__4}, [x_base_model_lstm__4NumDims]);
+[Vars, NumDims] = packageVariables(params, {'x_lstm_LSTM_output_0'}, {x_lstm_LSTM_output_0}, [x_lstm_LSTM_output_0NumDims]);
 % Call the top-level graph function:
-[x_base_model_lstm_45, x_base_model_lstm_45NumDims, state] = SqueezeGraph1008(x_base_model_lstm__4, NumDims.x_base_model_lstm__4, Vars, NumDims, Training, params.State);
+[x_lstm_Squeeze_outpu, x_lstm_Squeeze_outpuNumDims, state] = SqueezeGraph1008(x_lstm_LSTM_output_0, NumDims.x_lstm_LSTM_output_0, Vars, NumDims, Training, params.State);
 % Postprocess the output data
-[x_base_model_lstm_45] = postprocessOutput(x_base_model_lstm_45, outputDataPerms, anyDlarrayInputs, Training, varargin{:});
+[x_lstm_Squeeze_outpu] = postprocessOutput(x_lstm_Squeeze_outpu, outputDataPerms, anyDlarrayInputs, Training, varargin{:});
 end
 
-function [x_base_model_lstm_45, x_base_model_lstm_45NumDims1010, state] = SqueezeGraph1008(x_base_model_lstm__4, x_base_model_lstm__4NumDims1009, Vars, NumDims, Training, state)
+function [x_lstm_Squeeze_outpu, x_lstm_Squeeze_outpuNumDims1010, state] = SqueezeGraph1008(x_lstm_LSTM_output_0, x_lstm_LSTM_output_0NumDims1009, Vars, NumDims, Training, state)
 % Function implementing the graph 'SqueezeGraph1008'
 % Update Vars and NumDims from the graph's formal input parameters. Note that state variables are already in Vars.
-Vars.x_base_model_lstm__4 = x_base_model_lstm__4;
-NumDims.x_base_model_lstm__4 = x_base_model_lstm__4NumDims1009;
+Vars.x_lstm_LSTM_output_0 = x_lstm_LSTM_output_0;
+NumDims.x_lstm_LSTM_output_0 = x_lstm_LSTM_output_0NumDims1009;
 
 % Execute the operators:
 % Squeeze:
-[Vars.x_base_model_lstm_45, NumDims.x_base_model_lstm_45] = onnxSqueeze(Vars.x_base_model_lstm__4, Vars.x_base_model_lstm_17, NumDims.x_base_model_lstm__4);
+[Vars.x_lstm_Squeeze_outpu, NumDims.x_lstm_Squeeze_outpu] = onnxSqueeze(Vars.x_lstm_LSTM_output_0, Vars.x_lstm_Constant_9_ou, NumDims.x_lstm_LSTM_output_0);
 
 % Set graph output arguments from Vars and NumDims:
-x_base_model_lstm_45 = Vars.x_base_model_lstm_45;
-x_base_model_lstm_45NumDims1010 = NumDims.x_base_model_lstm_45;
+x_lstm_Squeeze_outpu = Vars.x_lstm_Squeeze_outpu;
+x_lstm_Squeeze_outpuNumDims1010 = NumDims.x_lstm_Squeeze_outpu;
 % Set output state from Vars:
 state = updateStruct(state, Vars);
 end
 
-function [inputDataPerms, outputDataPerms, Training] = parseInputs(x_base_model_lstm__4, numDataOutputs, params, varargin)
+function [inputDataPerms, outputDataPerms, Training] = parseInputs(x_lstm_LSTM_output_0, numDataOutputs, params, varargin)
 % Function to validate inputs to SqueezeFcn:
 p = inputParser;
 isValidArrayInput = @(x)isnumeric(x) || isstring(x);
 isValidONNXParameters = @(x)isa(x, 'ONNXParameters');
-addRequired(p, 'x_base_model_lstm__4', isValidArrayInput);
+addRequired(p, 'x_lstm_LSTM_output_0', isValidArrayInput);
 addRequired(p, 'params', isValidONNXParameters);
 addParameter(p, 'InputDataPermutation', 'auto');
 addParameter(p, 'OutputDataPermutation', 'auto');
 addParameter(p, 'Training', false);
-parse(p, x_base_model_lstm__4, params, varargin{:});
+parse(p, x_lstm_LSTM_output_0, params, varargin{:});
 inputDataPerms = p.Results.InputDataPermutation;
 outputDataPerms = p.Results.OutputDataPermutation;
 Training = p.Results.Training;
@@ -209,25 +209,25 @@ if isstring(outputDataPerms) && isscalar(outputDataPerms) || ischar(outputDataPe
 end
 end
 
-function [x_base_model_lstm__4, Training, outputDataPerms, anyDlarrayInputs] = preprocessInput(x_base_model_lstm__4, params, varargin)
+function [x_lstm_LSTM_output_0, Training, outputDataPerms, anyDlarrayInputs] = preprocessInput(x_lstm_LSTM_output_0, params, varargin)
 % Parse input arguments
-[inputDataPerms, outputDataPerms, Training] = parseInputs(x_base_model_lstm__4, 1, params, varargin{:});
-anyDlarrayInputs = any(cellfun(@(x)isa(x, 'dlarray'), {x_base_model_lstm__4}));
+[inputDataPerms, outputDataPerms, Training] = parseInputs(x_lstm_LSTM_output_0, 1, params, varargin{:});
+anyDlarrayInputs = any(cellfun(@(x)isa(x, 'dlarray'), {x_lstm_LSTM_output_0}));
 % Make the input variables into unlabelled dlarrays:
-x_base_model_lstm__4 = makeUnlabeledDlarray(x_base_model_lstm__4);
+x_lstm_LSTM_output_0 = makeUnlabeledDlarray(x_lstm_LSTM_output_0);
 % Permute inputs if requested:
-x_base_model_lstm__4 = permuteInputVar(x_base_model_lstm__4, inputDataPerms{1}, 4);
+x_lstm_LSTM_output_0 = permuteInputVar(x_lstm_LSTM_output_0, inputDataPerms{1}, 4);
 end
 
-function [x_base_model_lstm_45] = postprocessOutput(x_base_model_lstm_45, outputDataPerms, anyDlarrayInputs, Training, varargin)
+function [x_lstm_Squeeze_outpu] = postprocessOutput(x_lstm_Squeeze_outpu, outputDataPerms, anyDlarrayInputs, Training, varargin)
 % Set output type:
 if ~anyDlarrayInputs && ~Training
-    if isdlarray(x_base_model_lstm_45)
-        x_base_model_lstm_45 = extractdata(x_base_model_lstm_45);
+    if isdlarray(x_lstm_Squeeze_outpu)
+        x_lstm_Squeeze_outpu = extractdata(x_lstm_Squeeze_outpu);
     end
 end
 % Permute outputs if requested:
-x_base_model_lstm_45 = permuteOutputVar(x_base_model_lstm_45, outputDataPerms{1}, 3);
+x_lstm_Squeeze_outpu = permuteOutputVar(x_lstm_Squeeze_outpu, outputDataPerms{1}, 3);
 end
 
 

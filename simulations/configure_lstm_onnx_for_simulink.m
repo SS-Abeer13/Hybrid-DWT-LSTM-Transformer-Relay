@@ -33,9 +33,10 @@ predictBlock = [model '/Hybrid 87T Relay/LSTM Predict'];
 % First stage: a 32-current-sample DWT window with a one-sample hop.
 set_param(iDiffBuffer, 'N', '32', 'V', '31');
 
-% Second stage: the complete 1,569-step feature sequence used in training.
-set_param(featureBuffer, 'N', '1569', 'V', '1568');
-set_param(reshapeBlock, 'OutputDimensions', '[1, 1569, 9]');
+T = '1729';
+% Second stage: the complete T-step feature sequence used in training.
+set_param(featureBuffer, 'N', T, 'V', '1728');
+set_param(reshapeBlock, 'OutputDimensions', ['[1, ', T, ', 9]']);
 
 set_param(predictBlock, 'NetworkFilePath', networkFile);
 set_param(predictBlock, 'InputDataFormats', "{'input','BTC'}");
@@ -51,7 +52,7 @@ if lineHandle ~= -1
 end
 
 assert(strcmp(get_param(iDiffBuffer, 'N'), '32') && strcmp(get_param(iDiffBuffer, 'V'), '31'));
-assert(strcmp(get_param(featureBuffer, 'N'), '1569') && strcmp(get_param(featureBuffer, 'V'), '1568'));
+assert(strcmp(get_param(featureBuffer, 'N'), T) && strcmp(get_param(featureBuffer, 'V'), '1728'));
 assert(strcmp(get_param(reshapeBlock, 'OutputDimensions'), '[1, 1569, 9]'));
 
 if saveChanges

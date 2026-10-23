@@ -1,5 +1,5 @@
 % Step 1: Set working directory to your thesis folder
-cd('F:\Downloads\Transformer Thesis')
+cd(fileparts(fileparts(mfilename('fullpath')))) % project root = one level above this script
 
 % Step 2: Generate live_relay_ai.mat from your ONNX model
 run('ONNXBUILDER.m')

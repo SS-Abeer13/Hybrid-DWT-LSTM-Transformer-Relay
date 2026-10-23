@@ -1,0 +1,2 @@
+Normal         max |relay - training| = 0 (shift +0)  PASS
+Internal A-G   max |relay - training| = 0 (shift +0)  PASS

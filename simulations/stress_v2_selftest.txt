@@ -1,0 +1,344 @@
+
+=== SELF-TEST (nothing is saved) ===
+Expect: AB / HiZ_AB / SOTF visible and timed; Internal_AG on the delta winding: visible 0, faultDiff ~0.
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a> or the command line Simulink debugger by
+typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Normal            OK  | load  64% | event - det - visible NaN | energised 0.000s | noise 0.0052/0.0062 A | faultDiff NaN pu | checks OK
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a>
+or the command line Simulink debugger by typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the
+MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Internal_AB       OK  | load  50% | event 0.330s det 0.331s visible 1 | energised 0.000s | noise 0.0158/0.0156 A | faultDiff 2.861 pu | checks OK
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a>
+or the command line Simulink debugger by typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the
+MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Internal_HiZ_AB   OK  | load  41% | event 0.730s det 0.734s visible 1 | energised 0.000s | noise 0.0273/0.0264 A | faultDiff 0.068 pu | checks OK
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a>
+or the command line Simulink debugger by typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the
+MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Internal_AG       OK  | load  61% | event 0.332s det 0.333s visible 1 | energised 0.000s | noise 0.0046/0.0064 A | faultDiff 0.554 pu | checks OK
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a>
+or the command line Simulink debugger by typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the
+MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Inrush_NoLoad     OK  | load  91% | event 0.263s det 0.269s visible 1 | energised 0.268s | noise NaN/NaN A | faultDiff NaN pu | checks OK
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a>
+or the command line Simulink debugger by typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the
+MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+External_ABC      OK  | load 100% | event 0.337s det 0.338s visible 1 | energised 0.000s | noise 0.0131/0.0129 A | faultDiff 0.708 pu | checks OK
+[Warning: 'Input Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: 'Output Port 1' of 'TransformerWithCTSaturation/Hybrid 87T Relay/Manual Switch' is not connected.] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Unconnected output line found on 'TransformerWithCTSaturation/Hybrid 87T Relay' (output port: 1)] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+[Warning: Block diagram 'TransformerWithCTSaturation' contains 1 algebraic loop(s). To see more details about the loops use the command <a
+href="matlab:Simulink.BlockDiagram.getAlgebraicLoops(bdroot);">Simulink.BlockDiagram.getAlgebraicLoops('TransformerWithCTSaturation') </a>
+or the command line Simulink debugger by typing <a href="matlab:sldebug(bdroot);">sldebug('TransformerWithCTSaturation') </a> in the
+MATLAB command window. To eliminate this message, set Algebraic loop to "none".] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Found algebraic loop containing: 
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/1-D Lookup Table
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/1-D Lookup Table
+TransformerWithCTSaturation/powergui/EquivalentModel1/State-Space
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete3/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete2/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/Step_down_Transformer/Model/Discrete1/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT6/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT4/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT3/CT 92000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT2/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT1/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+TransformerWithCTSaturation/CT/CT 2000//5 A 25 VA/Model/Discrete-Time Integrator (algebraic variable) (discontinuity)
+[Warning: Discontinuities detected within algebraic loop(s), may have trouble solving] 
+[> In generate_stress_dataset_v2>simulateAndCheck (line 431)
+In generate_stress_dataset_v2>runSelfTest (line 581)
+In generate_stress_dataset_v2 (line 78)] 
+Internal_SOTF_AB  OK  | load  31% | event 0.453s det 0.454s visible 1 | energised 0.454s | noise NaN/NaN A | faultDiff 4.818 pu | checks OK
+SELF-TEST PASSED. Run: generate_stress_dataset_v2(1200)
+
+ans =
+
+  0x0 empty char array
+

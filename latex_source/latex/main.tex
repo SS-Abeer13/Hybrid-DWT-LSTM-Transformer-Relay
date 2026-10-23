@@ -22,7 +22,7 @@
 \captionsetup[table]{position=above,skip=4pt}
 \captionsetup[figure]{position=below,skip=6pt}
 
-% ---- chapter heading: "CHAPTER N" / TITLE, centered (BMU style) ----
+% ---- chapter heading: "CHAPTER N" / TITLE, centered (MIST style) ----
 \titleformat{\chapter}[display]
   {\centering\normalfont\bfseries}
   {\Large CHAPTER \thechapter}{6pt}{\Large\MakeUppercase}
@@ -60,9 +60,9 @@
 \vspace{0.5in}
 {\large B.Sc. ENGINEERING THESIS\par}
 \vfill
-{\bfseries FACULTY OF MARITIME BUSINESS STUDIES\par}
-{\bfseries BANGLADESH MARITIME UNIVERSITY\par}
-{DHAKA, BANGLADESH\par}
+{\bfseries DEPARTMENT OF ELECTRICAL, ELECTRONIC AND COMMUNICATION ENGINEERING\par}
+{\bfseries MILITARY INSTITUTE OF SCIENCE AND TECHNOLOGY (MIST)\par}
+{MIRPUR CANTONMENT, DHAKA, BANGLADESH\par}
 \vspace{0.35in}
 {\large\bfseries JANUARY 2026\par}
 \end{titlepage}
@@ -77,9 +77,9 @@
 \vspace{0.5in}
 {\bfseries Md Moinul Haque (ID: 202216206) \& Md Reyaz Uddin (ID: 202216211)\par}
 \vspace{0.4in}
-\textit{A Thesis Submitted in Partial Fulfillment of the Requirements for the\\ Degree of Bachelor of Science in Port and Shipping Management}\par
+\textit{A Thesis Submitted in Partial Fulfillment of the Requirements for the\\ Degree of Bachelor of Science in Electrical, Electronic and Communication Engineering}\par
 \vspace{0.6in}
-{\bfseries FACULTY OF MARITIME BUSINESS STUDIES\\ BANGLADESH MARITIME UNIVERSITY\\ DHAKA, BANGLADESH\par}
+{\bfseries DEPARTMENT OF ELECTRICAL, ELECTRONIC AND COMMUNICATION ENGINEERING\\ MILITARY INSTITUTE OF SCIENCE AND TECHNOLOGY (MIST)\\ MIRPUR CANTONMENT, DHAKA, BANGLADESH\par}
 \vspace{0.3in}
 {\bfseries JANUARY 2026\par}
 \end{center}
@@ -125,21 +125,21 @@ First and foremost, all praises are due to Almighty Allah for His infinite bless
 
 I would like to express my deepest gratitude to my thesis supervisor, Cdre A N M Didarul Alam, (L), NUP, psc, BN, Professor, Department of Electrical and Electronic Engineering, for his invaluable guidance, continuous encouragement, and unwavering support throughout every phase of this research. His profound expertise in power system protection, insightful suggestions, and patient mentorship have been instrumental in shaping the direction and quality of this work.
 
-My sincere thanks go to Head of Department Name, Head of the Department of Electrical and Electronic Engineering, BMU, for providing the necessary academic facilities, laboratory resources, and an excellent research environment. I am also grateful to all faculty members of the Department of EEE at BMU whose teachings in power systems, signal processing, and machine learning directly contributed to the interdisciplinary nature of this research.
+My sincere thanks go to the Head of the Department, Department of Electrical, Electronic and Communication Engineering, MIST, for providing the necessary academic facilities, laboratory resources, and an excellent research environment. I am also grateful to all faculty members of the Department of EECE at MIST whose teachings in power systems, signal processing, and machine learning directly contributed to the interdisciplinary nature of this research.
 
-I extend my heartfelt appreciation to my fellow classmates and laboratory mates at BMU for their camaraderie, technical assistance with MATLAB/Simulink simulations, and willingness to share knowledge in deep learning and signal processing. I am profoundly indebted to my parents, whose sacrifices and unconditional love have been the bedrock of my educational pursuits, and to my siblings, extended family, and close friends for their constant support.
+I extend my heartfelt appreciation to my fellow classmates and laboratory mates at MIST for their camaraderie, technical assistance with MATLAB/Simulink simulations, and willingness to share knowledge in deep learning and signal processing. I am profoundly indebted to my parents, whose sacrifices and unconditional love have been the bedrock of my educational pursuits, and to my siblings, extended family, and close friends for their constant support.
 
-Finally, I acknowledge with gratitude the infrastructure and computational resources provided by BMU, as well as the open-source contributors and researchers whose published works in power system protection, wavelet analysis, and deep learning have served as the foundational pillars upon which this research is built.
+Finally, I acknowledge with gratitude the infrastructure and computational resources provided by MIST, as well as the open-source contributors and researchers whose published works in power system protection, wavelet analysis, and deep learning have served as the foundational pillars upon which this research is built.
 
 \vspace{18pt}\noindent Date:\hfill Md Moinul Haque \& Md Reyaz Uddin
 
 % ===================== ABSTRACT =====================
 \frontchap{ABSTRACT}
-Power transformers constitute the most critical and capital-intensive components of electrical power transmission and distribution networks, making their reliable and rapid protection a paramount concern for the continuity and stability of electric power supply~[4]. Differential protection has long been the primary scheme for safeguarding power transformers against internal faults, comparing the currents entering and leaving the protected zone~[5]. However, the conventional percentage differential relay struggles to distinguish genuine internal faults from non-fault transients such as magnetizing inrush, sympathetic inrush, and external faults with current transformer (CT) saturation~[3]. The second-harmonic restraint method suffers reduced sensitivity in modern transformers with high-permeability cores~[4].
+Power transformers constitute the most critical and capital-intensive components of electrical power transmission and distribution networks, making their reliable and rapid protection a paramount concern for the continuity and stability of electric power supply~[4]. Differential protection has long been the primary scheme for safeguarding power transformers against internal faults, comparing the currents entering and leaving the protected zone~[5]. However, conventional percentage differential relays struggle to distinguish genuine internal faults from non-fault transients such as magnetizing inrush, sympathetic and recovery inrush, over-excitation, and external through-faults accompanied by current transformer (CT) saturation~[3]. Furthermore, harmonic-restraint methods suffer reduced sensitivity in modern transformers with low-loss, high-permeability core steels~[4].
 
-This thesis proposes a hybrid adaptive protection framework that integrates the multi-resolution feature extraction of the Discrete Wavelet Transform (DWT) with the temporal classification power of Long Short-Term Memory (LSTM) networks. A three-level Daubechies-4 (db4) decomposition extracts six energy features per time step (approximation and detail energy for each of the three phases) over a half-cycle sliding window of 16 samples at 1.6\,kHz (32 samples/cycle at 50\,Hz). The trained model is exported to ONNX (Opset 14) and integrated into MATLAB/Simulink via the Deep Learning Predict block. A two-layer LSTM (128--64 hidden units) with global temporal attention discriminates four operating conditions---normal, external fault, magnetizing inrush, and internal fault---mapped to a binary protection decision (Trip versus No-Trip). A hybrid decision handshake makes the LSTM a supervisory veto (AND) gate for the classical adaptive 87T element: the relay trips only when both the 87T element operates and the LSTM confirms an internal fault with confidence above a threshold.
+This thesis proposes a hybrid adaptive differential protection framework that integrates multi-resolution Discrete Wavelet Transform (DWT) feature extraction and second-harmonic restraint ratios with the temporal sequence modeling of Long Short-Term Memory (LSTM) neural networks. A two-level Daubechies-4 (db4) decomposition extracts nine wavelet energy features across three phases ($E_{D1}, E_{D2}, E_{A2}$), complemented by three phase-wise second-harmonic ratios ($I_{d,2nd}/I_{d,fund}$) to form a compact 12-dimensional feature vector over a 32-sample sliding window (one cycle at 50\,Hz and 1.6\,kHz sampling). A two-layer unidirectional LSTM (64 hidden units per layer) is trained strictly under a leak-free, trace-stratified partitioning protocol with waveform-measured onset detection. The exported ONNX model is integrated into MATLAB/Simulink for real-time closed-loop co-simulation. The hybrid relay combines an instantaneous high-set overcurrent bypass with a dual-path supervisory architecture: an 87T-gated path requiring both conventional restraint pickup and confirmed AI trip probability ($\ge 0.99$), and an autonomous AI-alone path ($\ge 0.998$) dedicated to detecting high-impedance internal faults below the conventional 87T pickup threshold, subject to a 20-sample (12.5\,ms) persistence dwell timer.
 
-A comprehensive simulation model of a 300\,MVA, 230/11\,kV, Yd1 power transformer is developed in MATLAB/Simulink with Simscape Electrical, using a 10\,\textmu s discrete solver to capture high-frequency transients. A base dataset of 2{,}500 cases spanning fault types, inception angles, locations, resistances, loading, CT saturation, and remanent flux is generated and augmented; the held-out test set comprises 1{,}800 cases. The standalone DWT--LSTM classifier attains 98.89\% accuracy (F1\,=\,0.9901, ROC--AUC\,=\,0.9999), and the hybrid veto logic eliminates the 62 false trips otherwise issued by the standalone adaptive 87T relay, achieving 100\% dependability and 100\% security with an average fault-clearing time of 17.2\,ms (a 2.6$\times$ speedup over conventional harmonic restraint). The framework degrades gracefully under CT remanent-flux mismatch, frequency deviation (47--53\,Hz), and noise down to 20\,dB SNR.
+A high-fidelity electromagnetic-transient simulation model of a 300\,MVA, 230/11\,kV, Yd1 power transformer was developed with realistic core non-linearities, calibrated CT secondary bases (0.9302\,A nominal), and six independent measurement noise channels. A rigorously verified stress dataset of 3{,}220 traces spanning 16 scenario categories (11 fault types, 10--110\% rated current loading, CT burdens 4--10$\times$, over-excitation, and recovery inrush) was compiled, alongside an independent 300-trace Out-of-Distribution (OOD) test set. In 5-fold cross-validation across 15 models (3 random seeds), the deployed hybrid relay achieved \textbf{99.01\% dependability} ($\pm1.07\%$) and \textbf{99.66\% security} ($\pm0.33\%$) with zero pre-fault trips, a median operate time of \textbf{15.6\,ms} (96.9\% within two cycles), and \textbf{100.0\% decision agreement} in closed-loop Simulink co-simulation. The supervisory framework successfully eliminates false trips during inrush, recovery inrush, over-excitation, and CT saturation while reliably detecting challenging high-impedance internal faults.
 
 \vspace{4pt}\noindent\textbf{Keywords:} Transformer differential protection, Discrete Wavelet Transform (DWT), Long Short-Term Memory (LSTM), MATLAB/Simulink, magnetizing inrush current, CT saturation, ONNX, real-time relay, fault classification, deep learning, hybrid adaptive protection.
 
@@ -396,48 +396,53 @@ Magnetizing branch $R_m$, $L_m$ & 500\,pu, 5\,pu\\ \bottomrule
 
 \section{Power System Network and CT Model}
 The external system is represented by Th\'evenin equivalents: $Z_{th,HV}=0.5+j15.0\,\Omega$ (SCL 3524\,MVA) and $Z_{th,LV}=0.01+j0.10\,\Omega$ (SCL 1204\,MVA), giving available fault currents of 8.84\,kA (HV) and 63.2\,kA (LV). Breakers use $R_{on}=0.001\,\Omega$ with RC snubbers; the LV load is 240\,MVA at 0.85 pf (80\% loading). CTs on both sides use a saturable core (Table~\ref{tab:4.2}).
-\begin{table}[H]\centering\caption{Current transformer parameters.}\label{tab:4.2}
+\begin{table}[H]\centering\caption{Calibrated current transformer parameters.}\label{tab:4.2}
 \begin{tabular}{@{}lcc@{}}\toprule \textbf{Parameter} & \textbf{HV Side} & \textbf{LV Side}\\ \midrule
-CT ratio & 20:1 & 20:1\\
+Effective CT ratio & 809.6 : 1 & 16,925 : 1\\
+Rated secondary current $I_{nom,sec}$ & 0.9302\,A & 0.9302\,A\\
+Secondary rated current base & 0.9302\,A & 0.9302\,A\\
 Accuracy class & 5P20 & 5P20\\
-Rated primary current & 753.1\,A & 15{,}746\,A\\
-Secondary resistance $R_s$ & 0.5\,$\Omega$ & 0.3\,$\Omega$\\
-Burden impedance $Z_b$ & 1.5\,$\Omega$ & 1.0\,$\Omega$\\
-Core relative permeability & 2000 & 2000\\ \bottomrule
+Rated primary line current & 753.1\,A & 15{,}746\,A\\
+Nominal burden impedance & 1.5\,$\Omega$ (swept 1--10$\times$) & 1.0\,$\Omega$ (swept 1--10$\times$)\\
+Core model & Saturable with hysteresis & Saturable with hysteresis\\ \bottomrule
 \end{tabular}\end{table}
 
 \section{Fault and Event Scenarios}
 Internal faults are simulated at five winding taps (5--95\%) for four fault types (SLG, LL, LLG, 3LG) with three inception angles and three fault resistances ($Z_{fault}(p)=p^2 Z_k+R_f$), giving 720 deterministic cases. External faults on both buses, including evolving faults and asymmetric CT saturation, give 540 cases. Inrush is generated by sweeping switching angle ($0$--$180^\circ$) and residual flux ($-0.8$ to $+0.8$\,pu), with sympathetic inrush via two parallel transformers, giving 189 cases. CT-saturation stress cases (108) vary burden, fault current, and remanent flux. Normal operation (270 cases) covers six load levels, three taps, five voltages, and three power factors.
 
-\section{Signal Conditioning and Dataset Summary}
-Each record passes through a merging-unit chain emulating IEC 61850-9-2: a 4th-order Butterworth anti-alias filter (800\,Hz), 16-bit quantization, and AWGN at 20/30/40\,dB SNR, decimated to 1.6\,kHz. The base corpus comprises 2{,}500 simulated cases with 100\% simulation success and an internal-fault (Trip) prevalence of 41.4\%; a No-Trip positive-class weight of 1.4155 is used in the weighted loss. The fault-resistance range spans 0.001--99\,$\Omega$, inception angle 0--360$^\circ$, and eleven fault types are represented.
-\begin{figure}[H]\centering\includegraphics[width=0.7\textwidth]{fig_4_2.png}
-\caption{Merging-unit signal-conditioning and noise-injection pipeline.}\label{fig:4.2}\end{figure}
-Table~\ref{tab:4.3} summarizes the dataset by event category; the four categories map to a binary protection label (internal $\to$ Trip; external, inrush, normal $\to$ No-Trip). After augmentation and stratified 70/15/15 splitting, the held-out test set comprises 1{,}800 cases.
-\begin{table}[H]\centering\caption{Composition of the 2{,}500-case base dataset by event category and protection label.}\label{tab:4.3}
-\begin{tabular}{@{}lccc@{}}\toprule \textbf{Event category} & \textbf{Count} & \textbf{Share (\%)} & \textbf{Protection label}\\ \midrule
-Internal fault & 1{,}035 & 41.4 & Trip\\
-External fault & 578 & 23.1 & No-Trip\\
-Magnetizing inrush & 500 & 20.0 & No-Trip\\
-Normal operation & 387 & 15.5 & No-Trip\\ \midrule
-Total & 2{,}500 & 100.0 & 1{,}035 Trip / 1{,}465 No-Trip\\ \bottomrule
+\section{Signal Conditioning and Verified Dataset Compilation}
+Each record passes through a merging-unit chain emulating IEC 61850-9-2: a 4th-order Butterworth anti-alias filter (800\,Hz), 16-bit quantization (0.01\,A resolution), and six independent measurement noise channels at 0.05--1\% of rated secondary current (1--3\% under stress conditions), decimated to 1.6\,kHz. The comprehensive corpus comprises 3{,}220 full-duration traces (3{,}040 main set plus 180 top-ups) across 16 scenario categories, alongside a completely isolated 300-trace Out-of-Distribution (OOD) test set. 
+
+\begin{figure}[H]\centering\includegraphics[width=0.75\textwidth]{fig_coverage.png}
+\caption{Parameter-space coverage and event-class distribution across the 16 scenario categories and load bins in the verified dataset.}\label{fig:4.2}\end{figure}
+
+Table~\ref{tab:4.3} summarizes the dataset composition across the 16 categories, classified under their protection ground-truth label. Undetectable internal faults ($<$0.05\,pu differential rise) are tracked and segregated to ensure honest, leak-free evaluation.
+
+\begin{table}[H]\centering\caption{Composition of the 3{,}220-trace verified dataset across the 16 scenario categories.}\label{tab:4.3}
+\small\begin{tabular}{@{}llcc@{}}\toprule
+\textbf{Operating Group} & \textbf{Scenario Category} & \textbf{Trace Count} & \textbf{Expected Decision}\\ \midrule
+\textbf{Healthy (No-Trip)} & Normal operation (load sweep 10--110\%) & 302 & BLOCK\\
+& Magnetizing inrush (no load) & 200 & BLOCK\\
+& Magnetizing inrush (loaded) & 240 & BLOCK\\
+& Recovery inrush (HV bus fault cleared) & 80 & BLOCK\\
+& Over-excitation (1.15--1.45\,pu) & 210 & BLOCK\\
+& External solid faults (11 types) & 440 & BLOCK\\
+& External high-impedance faults & 60 & BLOCK\\
+& External faults with severe CT saturation & 241 & BLOCK\\
+& External fault during inrush & 100 & BLOCK\\ \midrule
+\textbf{Faults (Trip)} & Internal LV solid faults (11 types) & 506 & TRIP\\
+& Internal HV-side terminal faults & 198 & TRIP\\
+& Internal high-impedance faults ($R_f = 0.3$--21\,$\Omega$) & 153 & TRIP\\
+& Evolving faults & 80 & TRIP\\
+& Switch-on-to-fault (SOTF) & 80 & TRIP\\
+& Internal faults with severe CT saturation & 121 & TRIP\\
+& Internal fault during magnetizing inrush & 113 & TRIP\\ \midrule
+\textbf{Total Usable Traces} & \multicolumn{2}{l}{\textbf{3,218 traces} (1,873 Healthy / 1,345 Faults)} & ---\\ \bottomrule
 \end{tabular}\end{table}
-\begin{table}[H]\centering\caption{Stochastic augmentation parameter ranges.}\label{tab:4.5}
-\begin{tabular}{@{}lll@{}}\toprule \textbf{Parameter} & \textbf{Distribution} & \textbf{Range}\\ \midrule
-Fault inception angle & Uniform & 0--360$^\circ$\\
-Fault resistance & Log-uniform & 0.001--99\,$\Omega$\\
-Source impedance variation & Uniform & $\pm5\%$\\
-Fault location (winding) & Uniform & 2--98\%\\
-Residual flux & Uniform & $-0.8$ to $+0.8$\,pu\\
-Loading level & Uniform & 0--110\% rated\\ \bottomrule
-\end{tabular}\end{table}
-\begin{figure}[H]\centering\includegraphics[width=0.7\textwidth]{fig_4_3.png}
-\caption{Composition of the 2{,}500-case dataset across event categories and train/validation/test subsets.}\label{fig:4.3}\end{figure}
 
 \chapter{Proposed DWT--LSTM Methodology}
 \section{Introduction}
-This chapter presents the hybrid adaptive DWT--LSTM framework, which combines MATLAB/Simulink physical modeling and real-time deployment with Python/PyTorch deep-learning training. Differential currents are decomposed by a three-level db4 DWT, yielding two energy features per phase (a compact six-dimensional vector) accumulated over a 32-sample full-cycle buffer. A two-layer LSTM with global temporal attention processes the resulting $[1,32,6]$ tensor; the LSTM acts as a supervisory veto within a hybrid decision engine.
-
+This chapter presents the hybrid adaptive DWT--LSTM differential protection framework, integrating MATLAB/Simulink physical modeling and online execution with PyTorch deep-learning sequence modeling. Differential currents are processed through a two-level db4 Discrete Wavelet Transform, extracting nine wavelet energy features across three phases ($E_{D1}, E_{D2}, E_{A2}$), combined with three second-harmonic restraint ratios ($I_{d,2nd}/I_{d,fund}$) to form a 12-dimensional feature vector. A 32-sample full-cycle sliding window ($W = 32$, 20\,ms at 1.6\,kHz) forms an input tensor of dimension $[1, 32, 12]$ feeding a two-layer unidirectional LSTM neural network. The neural network acts within a dual-path supervisory architecture that preserves conventional 87T dependability while providing decisive security vetoes against non-fault transients and autonomous clearance for high-impedance internal faults.
 \section{Framework Architecture}
 \textbf{Step 1 (MATLAB/Simulink).} A detailed EMT model generates labeled three-phase differential currents at 1.6\,kHz (1601 steps per 1.0\,s), exported to \texttt{.mat}. \textbf{Step 2 (Python/PyTorch).} A DWT engine (PyWavelets) computes approximation and detail energy from 16-sample half-cycle windows; the $[1,32,6]$ tensors train a PyTorch LSTM with global temporal attention using the Adam optimizer and weighted cross-entropy, exported to ONNX at Opset 14 via \texttt{torch.onnx.export}. \textbf{Step 2b (Simulink).} The ONNX model is loaded via the Deep Learning Toolbox Predict block for real-time inference feeding the hybrid decision engine.
 \begin{figure}[H]\centering\includegraphics[width=0.95\textwidth]{fig_5_1.png}
@@ -507,176 +512,154 @@ Total & 125{,}476 & $\approx$1.31\,M & 100\\ \bottomrule
 Three complementary strategies are used: AWGN augmentation (20/30/40\,dB, with 15/50\,dB for stress) exploiting the inherent noise resilience of frequency-localized energy features; dropout regularization (0.3) between LSTM layers; and out-of-distribution stress testing across switching angle, frequency (47--53\,Hz), remanent flux ($\pm0.9 B_{sat}$), and CT ratio errors ($\pm5\%$), processed end-to-end through the Simulink-embedded ONNX model.
 
 \chapter{Results, Analysis and Discussion}
-\section{Introduction}
-This chapter evaluates the proposed Hybrid Adaptive Transformer Differential Protection (HATDP) framework, in which a DWT--LSTM classifier supervises a conventional 87T relay. All data were generated for a 300\,MVA, 230/11\,kV, Yd1 transformer at 1.6\,kHz. A dataset of 2{,}500 base cases (Table~\ref{tab:4.3}) was augmented and split 70/15/15, yielding an 1{,}800-case held-out test set. For protection evaluation the four categories are mapped to a binary decision (Trip vs.\ No-Trip).
+\section{Introduction and Evaluation Protocol}
+This chapter presents the empirical evaluation of the proposed Hybrid Adaptive Transformer Differential Protection (HATDP) framework. The evaluation follows a strict, leak-free evaluation protocol:
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+\item \textbf{Trace-level partitioning:} Data splits are conducted strictly by waveform trace (never across rolling windows), preventing cross-window information leakage.
+\item \textbf{Waveform-measured onset detection:} Window labels transition from healthy (BLOCK) to fault (TRIP) only after fault inception is physically detected from the differential waveform using a cycle-difference filter.
+\item \textbf{Exact pipeline parity:} Features extracted in Python and in MATLAB/Simulink share exact numerical equivalence (verified maximum parity error $= 0.0$).
+\item \textbf{Dual-path supervisory decision logic:} The relay operating decision combines:
+\begin{equation}
+\text{TRIP} = \text{HighSet} \ \vee\ (\text{87T\_Vote} \ \wedge\ p_{\text{AI,conf}} \ge 0.99) \ \vee\ (p_{\text{AI,conf}} \ge 0.998)
+\end{equation}
+where $p_{\text{AI,conf}} = \min_{k=0}^{19} p_{\text{AI}}(t - k)$ imposes a 20-sample (12.5\,ms) persistence dwell timer.
+\end{enumerate}
 
-\section{Data Generation and Preprocessing}
-Figure~\ref{fig:6.1} shows representative three-phase differential current waveforms: normal load below 0.02\,pu; external faults decaying within one cycle; inrush with 5--8\,pu asymmetric peaks; and internal faults with sustained high-magnitude, high-frequency content. Severe CT saturation produced 34.7\% THD and 18.2\% second-harmonic content, consistent with IEEE C37.110.
-\begin{figure}[H]\centering\includegraphics[width=0.55\textwidth]{fig_6_1.png}
-\caption{Three-phase differential current waveforms for the four operating conditions.}\label{fig:6.1}\end{figure}
-The six energy features---approximation energy $E_A$ (0--100\,Hz) and detail energy $E_D$ (100--800\,Hz) per phase---separate the classes strongly, the Phase-C detail energy showing an inter-class separation ratio of $502\times$ between internal faults and normal operation (Table~\ref{tab:6.1}). Mutual-information analysis confirms the detail-energy features dominate (72.3\% of total MI); an ablation gives 98.83\% for detail-only, 91.24\% for approximation-only, and 98.89\% for the full set.
-\begin{table}[H]\centering\caption{Statistical distribution of the six DWT energy features across event classes (mean $\pm$ s.d., $\times10^{-3}$\,pu$^2$).}\label{tab:6.1}
-\small\begin{tabular}{@{}lcccc@{}}\toprule \textbf{Feature} & \textbf{Normal} & \textbf{External} & \textbf{Inrush} & \textbf{Internal}\\ \midrule
-$E_A$ -- Phase A & $0.08\pm0.03$ & $0.42\pm0.18$ & $1.85\pm0.72$ & $3.27\pm1.14$\\
-$E_A$ -- Phase B & $0.07\pm0.02$ & $0.39\pm0.16$ & $1.72\pm0.68$ & $3.15\pm1.08$\\
-$E_A$ -- Phase C & $0.09\pm0.03$ & $0.44\pm0.19$ & $1.91\pm0.75$ & $3.41\pm1.21$\\
-$E_D$ -- Phase A & $0.01\pm0.005$ & $0.15\pm0.08$ & $0.52\pm0.21$ & $4.86\pm1.92$\\
-$E_D$ -- Phase B & $0.01\pm0.004$ & $0.13\pm0.07$ & $0.48\pm0.19$ & $4.71\pm1.85$\\
-$E_D$ -- Phase C & $0.01\pm0.006$ & $0.16\pm0.09$ & $0.55\pm0.23$ & $5.02\pm2.01$\\ \bottomrule
-\end{tabular}\end{table}
-\begin{figure}[H]\centering\includegraphics[width=0.62\textwidth]{fig_6_2.png}
-\caption{Parameter-space coverage / feature distribution across event classes.}\label{fig:6.2}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=0.62\textwidth]{fig_6_3.png}
-\caption{Statistical verification of the generated dataset.}\label{fig:6.3}\end{figure}
+\section{Representative Waveforms and Feature Signatures}
+Figure~\ref{fig:6.1} illustrates representative three-phase differential current waveforms under key operating regimes generated by the verified simulation model. Inrush waveforms exhibit pronounced second-harmonic unbalance and deep unipolar notches; external faults with CT saturation manifest severe waveshape distortion with secondary zero-intervals; and internal faults generate sustained, high-energy differential currents.
+\begin{figure}[H]\centering\includegraphics[width=0.95\textwidth]{fig_example_waveforms.png}
+\caption{Representative three-phase differential current waveforms across major operating categories under realistic loading and CT burden.}\label{fig:6.1}\end{figure}
 
-\section{LSTM Classification Performance}
-\subsection{Training and Validation}
-The LSTM (two layers, 128 and 64 units, dropout 0.3, attention) was trained in PyTorch with Adam ($\alpha=0.001$) and weighted cross-entropy (positive-class weight 1.4155) using 5-fold cross-validation; the best fold (Fold~3) is shown in Figure~\ref{fig:6.4}. Loss decreases smoothly below 0.05 over $\sim$60 epochs and accuracy converges near 99\% with negligible divergence, indicating minimal overfitting.
-\begin{figure}[H]\centering\includegraphics[width=0.95\textwidth]{fig_6_4.png}
-\caption{Training and validation loss/accuracy curves for the LSTM classifier (best fold).}\label{fig:6.4}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=0.95\textwidth]{fig_6_5.png}
-\caption{Five-fold cross-validation performance summary.}\label{fig:6.5}\end{figure}
-\subsection{Confusion Matrix}
-The protection decision is a binary discrimination between Trip (internal fault) and No-Trip (external, inrush, normal). On the 1{,}800-case test set, the classifier correctly identifies 1{,}002 of 1{,}008 Trip events and 778 of 792 No-Trip events (Table~\ref{tab:6.3}, Figure~\ref{fig:6.6}), giving 98.89\% accuracy, a Trip recall (dependability) of 99.40\%, and a No-Trip recall (security) of 98.23\%. The residual 6 false negatives and 14 false positives concentrate in high-resistance internal faults and deep-CT-saturation external events---precisely the regimes the hybrid 87T handshake secures.
-\begin{table}[H]\centering\caption{Binary (Trip/No-Trip) confusion matrix on the 1{,}800-case test set. Accuracy $=98.89\%$; F1 $=0.9901$; ROC--AUC $=0.9999$.}\label{tab:6.3}
-\begin{tabular}{@{}lccc@{}}\toprule
-\textbf{True $\downarrow$ / Pred.\ $\rightarrow$} & \textbf{No-Trip (0)} & \textbf{Trip (1)} & \textbf{Recall (\%)}\\ \midrule
-No-Trip (0) & 778 & 14 & 98.23\\
-Trip (1) & 6 & 1{,}002 & 99.40\\ \midrule
-Overall accuracy & \multicolumn{3}{c}{98.89}\\ \bottomrule
-\end{tabular}\end{table}
-\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{fig_6_6.png}
-\caption{Confusion-matrix heatmap of the DWT--LSTM classifier (counts and normalized).}\label{fig:6.6}\end{figure}
-\subsection{Per-Class Metrics and Cross-Validation}
-The Trip class attains 99.40\% recall at 98.62\% precision; the No-Trip class 98.23\% recall at 99.23\% precision (Table~\ref{tab:6.4}). Five-fold cross-validation (Table~\ref{tab:6.5}) gives a mean accuracy of $98.16\pm0.26\%$, dependability $98.36\pm0.28\%$, security $97.86\pm0.28\%$, and F1 $98.25\pm0.29\%$.
-\begin{table}[H]\centering\caption{Per-class performance metrics of the DWT--LSTM classifier.}\label{tab:6.4}
-\begin{tabular}{@{}lcccc@{}}\toprule \textbf{Class} & \textbf{Precision (\%)} & \textbf{Recall (\%)} & \textbf{F1 (\%)} & \textbf{Support}\\ \midrule
-No-Trip (0) & 99.23 & 98.23 & 98.73 & 792\\
-Trip (1) & 98.62 & 99.40 & 99.01 & 1{,}008\\ \midrule
-Overall / weighted & 98.88 & 98.89 & 98.88 & 1{,}800\\ \bottomrule
-\end{tabular}\end{table}
-\begin{table}[H]\centering\caption{Five-fold stratified cross-validation results.}\label{tab:6.5}
-\begin{tabular}{@{}lcccc@{}}\toprule \textbf{Metric} & \textbf{Mean} & \textbf{Std.\ Dev.} & \textbf{Min} & \textbf{Max}\\ \midrule
-Accuracy (\%) & 98.16 & 0.26 & 97.75 & 98.49\\
-Precision / Security (\%) & 97.86 & 0.28 & 97.42 & 98.17\\
-Recall / Dependability (\%) & 98.36 & 0.28 & 98.03 & 98.87\\
-F1-Score (\%) & 98.25 & 0.29 & 97.89 & 98.67\\ \bottomrule
+\section{Grouped 5-Fold Cross-Validation and Architecture Ablation}
+To assess generalization and architectural contributions, a 5-fold grouped cross-validation was conducted across three independent random seeds (15 models total, each testing all 3,218 traces out-of-fold). Table~\ref{tab:6.1} presents the pooled out-of-fold performance comparison among four relay architectures.
+
+\begin{table}[H]\centering\caption{Ablation and main performance summary (grouped 5-fold CV, 3 repetitions, 15 models total).}\label{tab:6.1}
+\setlength{\tabcolsep}{4.5pt}\small\begin{tabular}{@{}lccccc@{}}\toprule
+\textbf{Protection Architecture} & \textbf{Dep.\ (\%)} & \textbf{Sec.\ (\%)} & \textbf{Median $T_{op}$ (ms)} & \textbf{$\le$ 2 Cycles (\%)} & \textbf{Pre-Fault Trips}\\ \midrule
+Conventional 87T Alone & 79.62 $\pm$ 0.00 & 52.96 $\pm$ 0.00 & 0.6 & 100.0 & 124.0\\
+Standalone LSTM Alone & 99.31 $\pm$ 0.28 & 99.56 $\pm$ 0.22 & 15.4 & 97.1 & 0.0\\
+Hybrid (87T-Gate Only) & 89.40 $\pm$ 0.05 & 99.79 $\pm$ 0.14 & 15.2 & 97.3 & 0.0\\
+\textbf{Hybrid + AI-Alone Path (Proposed)} & \textbf{99.01 $\pm$ 0.48} & \textbf{99.66 $\pm$ 0.24} & \textbf{15.6} & \textbf{96.9} & \textbf{0.0}\\ \bottomrule
 \end{tabular}\end{table}
 
-\section{Real-Time Hybrid Relay Validation}
-The model was exported to ONNX (Opset 14) via \texttt{torch.onnx.export} and imported into Simulink for closed-loop co-simulation. Measured ONNX inference latency averaged 0.44\,ms (max 0.74\,ms), within the 0.625\,ms relay step when pipelined.
-\subsection{Hybrid Decision Logic}
-The hybrid relay trips only when the 87T element and the LSTM agree on an internal fault. On the validation set (Table~\ref{tab:6.7}) the hybrid achieves 100\% dependability and 100\% security---zero false negatives and zero false trips---whereas the standalone DWT--LSTM classifier alone produces 6 false negatives and 14 false trips, and the standalone adaptive 87T relay produces 18 false negatives and 62 false trips. The handshake eliminates the 62 false trips of the standalone 87T while the 87T element recovers the high-resistance internal faults occasionally missed by the classifier.
-\begin{table}[H]\centering\caption{Performance comparison of standalone 87T, standalone LSTM, and hybrid relay.}\label{tab:6.7}
-\begin{tabular}{@{}lccc@{}}\toprule \textbf{Metric} & \textbf{Standalone 87T} & \textbf{Standalone LSTM} & \textbf{Hybrid (87T+LSTM)}\\ \midrule
-Dependability (\%) & 96.25 & 99.40 & 100.00\\
-Security (\%) & 95.63 & 98.23 & 100.00\\
-False trip count (FP) & 62 & 14 & 0\\
-False negative count (FN) & 18 & 6 & 0\\
-Overall accuracy (\%) & 95.83 & 98.89 & 100.00\\ \bottomrule
-\end{tabular}\end{table}
-\begin{figure}[H]\centering\includegraphics[width=0.6\textwidth]{fig_6_8.png}
-\caption{Comprehensive performance dashboard of the proposed framework.}\label{fig:6.8}\end{figure}
-\subsection{Clearing Time}
-The average fault-clearing time is 17.2\,ms (Table~\ref{tab:6.8}), within the one-cycle window at 50\,Hz (20\,ms)---a $2.6\times$ speedup over conventional harmonic restraint (45.5\,ms) and an improvement over the standalone LSTM relay (28.0\,ms). The relay processing latency itself is $\approx$12\,ms, the balance being breaker and pickup time.
-\begin{table}[H]\centering\caption{Average fault-clearing time by method.}\label{tab:6.8}
-\begin{tabular}{@{}lcc@{}}\toprule \textbf{Method} & \textbf{Avg.\ clearing time (ms)} & \textbf{Relative to HR}\\ \midrule
-Conventional harmonic restraint & 45.5 & 1.0$\times$\\
-Standalone DWT--LSTM relay & 28.0 & 1.6$\times$ faster\\
-Proposed hybrid relay & 17.2 & 2.6$\times$ faster\\ \bottomrule
+The conventional 87T relay alone exhibits severe vulnerability to non-fault transients, securing only 52.96\% of healthy traces due to false tripping on inrush, over-excitation, and CT saturation. Conversely, the 87T-gated hybrid achieves near-perfect security (99.79\%) but sacrifices 10\% dependability on high-impedance internal faults. The proposed \textbf{Hybrid + AI-Alone Path} successfully bridges this gap, attaining \textbf{99.01\% dependability} and \textbf{99.66\% security} with zero pre-fault trips and a median operating latency of \textbf{15.6\,ms}.
+
+\section{Category-Level Performance Breakdown}
+Table~\ref{tab:6.2} provides the detailed performance breakdown across all 16 scenario categories for the deployed hybrid relay, alongside 95\% Wilson confidence intervals and comparative baselines.
+
+\begin{table}[H]\centering\caption{Performance breakdown across all 16 scenario categories (Hybrid + AI-Alone Path).}\label{tab:6.2}
+\setlength{\tabcolsep}{3.5pt}\footnotesize\begin{tabular}{@{}lcccccc@{}}\toprule
+\textbf{Scenario Category} & \textbf{Traces ($n$)} & \textbf{Expected} & \textbf{Rep.\ 1 [95\% CI]} & \textbf{Mean (3 Rep)} & \textbf{LSTM Alone} & \textbf{87T Alone}\\ \midrule
+Normal Operation & 302 & BLOCK & 100.0 [98.7, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
+Magnetizing Inrush (No-Load) & 200 & BLOCK & 99.5 [97.2, 99.9] & 99.8\% & 99.8\% & 0.0\%\\
+Magnetizing Inrush (Loaded) & 240 & BLOCK & 100.0 [98.4, 100.0] & 99.9\% & 99.9\% & 0.0\%\\
+Recovery Inrush (HV Bus Fault) & 80 & BLOCK & 93.8 [86.2, 97.3] & 97.5\% & 97.5\% & 23.8\%\\
+Over-Excitation (1.15--1.45\,pu) & 210 & BLOCK & 100.0 [98.2, 100.0] & 100.0\% & 100.0\% & 41.9\%\\
+External Solid Faults & 440 & BLOCK & 99.8 [98.7, 100.0] & 99.9\% & 99.8\% & 100.0\%\\
+External High-Impedance Faults & 60 & BLOCK & 100.0 [94.0, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
+External Fault + CT Saturation & 241 & BLOCK & 98.8 [96.4, 99.6] & 99.2\% & 98.5\% & 34.4\%\\
+External Fault in Inrush & 100 & BLOCK & 99.0 [94.6, 99.8] & 98.7\% & 98.7\% & 0.0\%\\ \midrule
+Internal LV Solid Faults & 506 & TRIP & 100.0 [99.2, 100.0] & 100.0\% & 100.0\% & 88.5\%\\
+Internal HV-Side Faults & 198 & TRIP & 100.0 [98.1, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
+Internal High-Impedance Faults & 153 & TRIP & 89.5 [83.7, 93.5] & 93.0\% & 95.2\% & 52.3\%\\
+Evolving Faults & 80 & TRIP & 100.0 [95.4, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
+Switch-On-To-Fault (SOTF) & 80 & TRIP & 97.5 [91.3, 99.3] & 97.9\% & 98.3\% & 100.0\%\\
+Internal Fault + CT Saturation & 121 & TRIP & 100.0 [96.9, 100.0] & 100.0\% & 100.0\% & 90.9\%\\
+Internal Fault in Inrush & 113 & TRIP & 100.0 [96.7, 100.0] & 100.0\% & 100.0\% & 0.0\%\\ \bottomrule
 \end{tabular}\end{table}
 
-\section{Stress Testing and Out-of-Distribution Robustness}
-Figure~\ref{fig:6.7} summarizes operational robustness. Accuracy degrades gracefully with noise (Table~\ref{tab:6.12}), from 99.3\% clean to 98.6\% at 20\,dB and 97.1\% at 0\,dB SNR; the DWT half-cycle energy integration provides inherent filtering. Internal-fault recall (Table~\ref{tab:6.13}) remains $\ge$99\% up to 20\,$\Omega$, declining to 94.4\% (50--80\,$\Omega$) and 88.0\% ($>$80\,$\Omega$), for an overall recall of 99.40\%; the hybrid 87T element recovers high-resistance cases.
-\begin{figure}[H]\centering\includegraphics[width=0.95\textwidth]{fig_6_7.png}
-\caption{Operational robustness: accuracy vs.\ SNR, zone-level performance, and cumulative detection rate.}\label{fig:6.7}\end{figure}
+\section{Impact of Verified Dataset Retraining}
+Table~\ref{tab:6.3} contrasts the baseline model trained on light-load data against the model retrained on the verified v3 dataset. Exposure to realistic load variations, independent noise, and CT saturation dramatically elevates relay security under severe transients.
+
+\begin{table}[H]\centering\caption{Retraining impact: performance on realistic stress cases.}\label{tab:6.3}
+\begin{tabular}{@{}lcc@{}}\toprule
+\textbf{Scenario Category} & \textbf{Light-Load Baseline Model (\%)} & \textbf{Retrained v3 Model (\%)}\\ \midrule
+External Fault with CT Saturation & 60.2 & \textbf{99.2}\\
+Over-Excitation (V/f saturation) & 41.4 & \textbf{100.0}\\
+Recovery Inrush & 65.0 & \textbf{97.5}\\
+Loaded Magnetizing Inrush & 86.7 & \textbf{99.9}\\
+Internal Fault during Inrush & 84.1 & \textbf{100.0}\\ \midrule
+\textbf{Overall Security} & \textbf{84.1\% (298 false trips)} & \textbf{99.7\% (6 false trips)}\\ \bottomrule
+\end{tabular}\end{table}
+
+\section{Out-of-Distribution (OOD) Stress Robustness}
+To verify generalization beyond the training parameter boundaries, an isolated 300-trace Out-of-Distribution dataset was evaluated without re-tuning. Table~\ref{tab:6.4} demonstrates that the hybrid relay maintains \textbf{100.0\% security} across all stress regimes, with graceful degradation observed only under extreme CT burdens.
+
+\begin{table}[H]\centering\caption{Performance on the Out-of-Distribution (OOD) test corpus (300 traces).}\label{tab:6.4}
+\begin{tabular}{@{}llcccc@{}}\toprule
+\textbf{Block} & \textbf{Stress Dimension Tested} & \textbf{Faults} & \textbf{Dep.\ (\%)} & \textbf{Healthy} & \textbf{Sec.\ (\%)}\\ \midrule
+1 & Extreme loading (1--10\%, 110--130\%) & 30 & 96.7 & 30 & 100.0\\
+2 & Weak source ($3\times Z_s$) \& frequency ($\pm0.5$\,Hz) & 30 & 100.0 & 30 & 100.0\\
+3 & Extreme CT burden (12--16$\times$ nominal) & 25 & 68.0 & 27 & 100.0\\
+4 & Severe over-excitation (1.5--1.6\,pu) \& 0.9\,pu flux & 30 & 93.3 & 30 & 100.0\\
+5 & Heavy noise (5\%) \& CT mismatch ($\pm8\%$) & 29 & 100.0 & 30 & 100.0\\ \midrule
+\textbf{Total} & \textbf{Overall OOD Generalization} & \textbf{144} & \textbf{92.4\%} & \textbf{147} & \textbf{100.0\%}\\ \bottomrule
+\end{tabular}\end{table}
+
+\section{Closed-Loop Simulink Verification and Mirror Parity}
+The deployed network was embedded in Simulink and evaluated in full closed-loop co-simulation across a 12-case benchmark suite (Table~\ref{tab:6.5}). All 12 operating decisions were correctly executed (100.0\% decision accuracy).
+
+\begin{table}[H]\centering\caption{Extended closed-loop Simulink co-simulation verification (12 benchmark cases).}\label{tab:6.5}
+\setlength{\tabcolsep}{4.5pt}\small\begin{tabular}{@{}lccccc@{}}\toprule
+\textbf{Test Case Description} & \textbf{Expected} & \textbf{Actual} & \textbf{Max AI Prob.} & \textbf{Trip Latency} & \textbf{Status}\\ \midrule
+Normal Operation, 30\% load & BLOCK & BLOCK & 0.0004 & --- & PASS\\
+Normal Operation, 100\% load & BLOCK & BLOCK & 0.0001 & --- & PASS\\
+Inrush (0.8\,pu remanence, $0^\circ$ angle) & BLOCK & BLOCK & 0.0673 & --- & PASS\\
+Recovery Inrush (50\,ms HV fault) & BLOCK & BLOCK & 0.0306 & --- & PASS\\
+Over-Excitation (1.30\,pu) & BLOCK & BLOCK & 0.0000 & --- & PASS\\
+External 3-Phase Solid Fault & BLOCK & BLOCK & 0.0000 & --- & PASS\\
+External A-G + CT Saturation (8$\times$) & BLOCK & BLOCK & 0.0002 & --- & PASS\\
+Internal A-G Solid Fault (LV side) & TRIP & TRIP & 1.0000 & 15.0\,ms & PASS\\
+Internal A-B Fault (HV side) & TRIP & TRIP & 1.0000 & 0.6\,ms & PASS\\
+Internal HiZ A-B (AI-only bin, $R_f = 3\,\Omega$) & TRIP & TRIP & 1.0000 & 47.5\,ms & PASS$^\dagger$\\
+Switch-On-To-Fault (A-B) & TRIP & TRIP & 1.0000 & 13.8\,ms & PASS\\
+Internal Fault during Inrush (A-B-G) & TRIP & TRIP & 1.0000 & 41.3\,ms & PASS$^\dagger$\\ \bottomrule
+\end{tabular}\\
+\footnotesize{$^\dagger$Tripped correctly via the AI-alone path; latency reflects confidence accumulation for masked/low-energy faults.}
+\end{table}
+
+Furthermore, statistical validation on 50 randomly sampled traces (25 validation traces and 25 OOD traces) against the standalone Python relay mirror demonstrated \textbf{50 / 50 (100.0\%) decision agreement} with a median trip-time divergence of \textbf{0.00\,ms} ($\text{mean} = 0.82$\,ms).
+
+\section{High-Impedance Fault Sensitivity Analysis}
+Table~\ref{tab:6.6} and Figure~\ref{fig:6.2} examine relay dependability across fault resistance bins. While conventional 87T relays fail to pick up above $R_f \approx 1.2\,\Omega$, the proposed AI-alone path maintains 71.2\% dependability in the AI-only zone ($1.2$--$7.0\,\Omega$), successfully recovering weak internal faults that elude percentage restraint.
+
+\begin{table}[H]\centering\caption{High-impedance internal fault sensitivity by resistance bin.}\label{tab:6.6}
+\setlength{\tabcolsep}{6pt}\small\begin{tabular}{@{}lcccc@{}}\toprule
+\textbf{Resistance Bin ($R_f$)} & \textbf{Median $I_{diff}$ (pu)} & \textbf{87T Alone (\%)} & \textbf{Hybrid 87T-Gate (\%)} & \textbf{Proposed Hybrid (\%)}\\ \midrule
+87T-Visible (0.3--1.2\,$\Omega$) & 0.529 & 96.2 & 96.2 & \textbf{100.0}\\
+AI-Only Zone (1.2--7.0\,$\Omega$) & 0.115 & 3.8 & 3.8 & \textbf{71.2}\\
+Below Detection Limit (7--21\,$\Omega$) & 0.026 & 0.0 & 0.0 & \textbf{0.0}\\ \bottomrule
+\end{tabular}\end{table}
+
+\begin{figure}[H]\centering\includegraphics[width=0.75\textwidth]{fig_hiz_sensitivity.png}
+\caption{Empirical fault differential current versus fault resistance across all internal fault types, delineating the 87T-visible and AI-alone detection boundaries.}\label{fig:6.2}\end{figure}
+
+\section{Operating Speed and Threshold Sensitivity}
+Figure~\ref{fig:6.3} illustrates the cumulative operating time distribution and the threshold trade-off curve. Over 96.9\% of all internal faults are cleared within two fundamental cycles (40\,ms), with 77.1\% cleared within a single cycle. The chosen threshold operating point ($\theta_{\text{AI}} = 0.99$, $\theta_{\text{solo}} = 0.998$) provides optimal security margin while maximizing fault-clearing velocity.
+
+\begin{figure}[H]\centering
 \begin{minipage}{0.48\textwidth}\centering
-\captionof{table}{Accuracy under AWGN.}\label{tab:6.12}
-\begin{tabular}{@{}cc@{}}\toprule \textbf{SNR (dB)} & \textbf{Accuracy (\%)}\\ \midrule
-50 & 99.3\\ 40 & 99.2\\ 30 & 99.0\\ 20 & 98.6\\ 10 & 97.9\\ 0 & 97.1\\ \bottomrule
-\end{tabular}\end{minipage}\hfill
+\includegraphics[width=\textwidth]{fig_operate_time_cdf.png}
+\caption{Empirical CDF of relay operate time.}\label{fig:6.3a}
+\end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}\centering
-\captionof{table}{Recall vs.\ fault resistance.}\label{tab:6.13}
-\begin{tabular}{@{}cc@{}}\toprule \textbf{Resistance bin} & \textbf{Recall}\\ \midrule
-$<1\,\Omega$ & 100.0\%\\ $1$--$5\,\Omega$ & 99.8\%\\ $5$--$10\,\Omega$ & 99.5\%\\ $10$--$20\,\Omega$ & 99.2\%\\ $20$--$50\,\Omega$ & 97.6\%\\ $50$--$80\,\Omega$ & 94.4\%\\ $>80\,\Omega$ & 88.0\%\\ \bottomrule
-\end{tabular}\end{minipage}
+\includegraphics[width=\textwidth]{fig_threshold_tradeoff.png}
+\caption{Dependability vs.\ security trade-off.}\label{fig:6.3b}
+\end{minipage}
+\caption{Dynamic relay operating characteristics: (a) operate-time cumulative distribution, and (b) threshold trade-off curve.}\label{fig:6.3}\end{figure}
 
-\section{Comparative Benchmarking}
-Table~\ref{tab:6.14} compares all evaluated methods on the unified dataset. The proposed hybrid is the only method achieving simultaneous 100\% dependability, 100\% security, and the fastest clearing time (17.2\,ms). Conventional methods suffer dependability--security trade-offs, and AI-only methods produce both false negatives and false trips; the hybrid AND gate eliminates both failure modes.
-\begin{table}[H]\centering\caption{Comprehensive performance comparison of all evaluated methods.}\label{tab:6.14}
-\small\begin{tabular}{@{}lcccccc@{}}\toprule
-\textbf{Method} & \textbf{Acc.} & \textbf{Dep.} & \textbf{Sec.} & \textbf{FN} & \textbf{FP} & \textbf{Time (ms)}\\ \midrule
-HR (15\% threshold) & 93.54 & 94.58 & 92.92 & 26 & 102 & 38.5\\
-HR (cross-blocking) & 95.21 & 94.58 & 95.42 & 26 & 70 & 38.5\\
-Wavelet-ANN (36 feat.) & 98.65 & 99.79 & 98.13 & 1 & 20 & 0.18\\
-Wavelet-ANN (6 feat.) & 96.56 & 99.17 & 95.42 & 4 & 42 & 0.12\\
-Wavelet-SVM (RBF) & 98.23 & 99.17 & 97.92 & 4 & 29 & 0.08\\
-Wavelet-CNN & 98.85 & 99.58 & 98.54 & 2 & 15 & 0.35\\
-Wavelet-PNN & 97.44 & 98.75 & 97.08 & 6 & 38 & 0.06\\
-Standalone 87T & 95.83 & 96.25 & 95.63 & 18 & 62 & 0.10\\
-Standalone 87T (optimized) & 96.67 & 97.08 & 96.46 & 14 & 51 & 0.10\\
-Standalone DWT--LSTM & 98.89 & 99.40 & 98.23 & 6 & 14 & 0.44\\
-\textbf{Proposed Hybrid} & \textbf{100.00} & \textbf{100.00} & \textbf{100.00} & \textbf{0} & \textbf{0} & 17.2\\ \bottomrule
-\end{tabular}\end{table}
-
-\section{Detailed Comparison with Prior Published Work}
-Table~\ref{tab:6.15} broadens the comparison to the cited literature, examining capabilities that determine field viability. Wavelet-plus-shallow-learning studies [6,9,13,18,19,20] treat each window independently and do not integrate with a conventional relay; the LSTM-based works [1,2,3,23] model temporal dependencies and report the highest standalone accuracies but issue the trip from the network alone with a static threshold and unquantified security. The proposed framework is the only scheme that simultaneously provides explicit temporal modeling, an adaptive threshold, a quantified security figure, and a supervisory handshake with a certified 87T element.
-\begin{table}[H]\centering\caption{Capability-level comparison against representative prior studies ($\checkmark$ present, $\times$ absent, $\circ$ partial).}\label{tab:6.15}
-\small\begin{tabular}{@{}clcccc c@{}}\toprule
-\textbf{Ref.} & \textbf{Method} & \textbf{Temporal} & \textbf{Adapt.\ thr.} & \textbf{Sec.\ quant.} & \textbf{87T hybrid} & \textbf{Acc.(\%)}\\ \midrule
-{[6]} & db4 DWT + thresholds & $\times$ & $\times$ & $\times$ & $\times$ & $\sim$97\\
-{[18]} & Wavelet stats + ANN & $\times$ & $\times$ & $\circ$ & $\times$ & 99.1\\
-{[13]} & Wavelet + SVM & $\times$ & $\times$ & $\circ$ & $\times$ & 98.2\\
-{[16]} & Accelerated DNN (CNN) & $\circ$ & $\times$ & $\circ$ & $\times$ & 98.7\\
-{[3]} & Wavelet + LSTM & $\checkmark$ & $\times$ & $\circ$ & $\times$ & 99.3\\
-{[1,2]} & Improved wavelet + LSTM & $\checkmark$ & $\times$ & $\circ$ & $\times$ & $\sim$99.5\\
-{[23]} & Dual DNN (2-class) & $\checkmark$ & $\times$ & $\circ$ & $\times$ & $\sim$99.4\\
-{[21]} & Multi-region adaptive relay & $\times$ & $\checkmark$ & $\circ$ & $\times$ & ---\\
-\textbf{This work} & DWT energy + LSTM + 87T & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & 98.9/100\\ \bottomrule
-\end{tabular}\end{table}
-
-\section{Ablation and Sensitivity Studies}
-Removing the attention layer reduces accuracy by 0.71\,pp; a single 64-unit layer costs 1.34\,pp; and the approximation-only feature set collapses to 91.24\% (Table~\ref{tab:6.16}). No configuration retaining the detail-energy features falls below 99\% Trip recall. A wavelet/level grid search (Table~\ref{tab:6.17}) confirms db4 at three levels as the best accuracy--compactness trade-off, corroborating [6,14].
-\begin{minipage}{0.52\textwidth}\centering
-\captionof{table}{Ablation study (unified test set).}\label{tab:6.16}
-\footnotesize\begin{tabular}{@{}lcc@{}}\toprule \textbf{Configuration} & \textbf{Acc.\ (\%)} & \textbf{$\Delta$ (pp)}\\ \midrule
-Full model & 98.89 & ---\\
-No attention & 98.18 & $-0.71$\\
-Single LSTM (64) & 97.55 & $-1.34$\\
-Detail-only feat. & 98.45 & $-0.44$\\
-Approx.-only feat. & 91.24 & $-7.65$\\
-No $z$-normalization & 96.02 & $-2.87$\\
-2-level DWT & 98.33 & $-0.56$\\ \bottomrule
-\end{tabular}\end{minipage}\hfill
-\begin{minipage}{0.44\textwidth}\centering
-\captionof{table}{Wavelet/level sensitivity.}\label{tab:6.17}
-\footnotesize\begin{tabular}{@{}lccc@{}}\toprule \textbf{Wavelet} & \textbf{2-lvl} & \textbf{3-lvl} & \textbf{4-lvl}\\ \midrule
-Haar & 95.10 & 96.02 & 95.88\\
-db4 & 98.71 & \textbf{98.89} & 98.40\\
-db6 & 98.33 & 99.04 & 98.27\\
-sym4 & 98.20 & 98.96 & 98.31\\
-coif3 & 98.05 & 98.77 & 98.19\\ \bottomrule
-\end{tabular}\end{minipage}
-\begin{figure}[H]\centering\includegraphics[width=0.8\textwidth]{fig_6_9.png}
-\caption{Ablation sensitivity of classification accuracy to individual design choices.}\label{fig:6.9}\end{figure}
-
-\section{ROC and Confidence-Threshold Analysis}
-A receiver-operating-characteristic analysis gives an AUC of 0.9999 (Figure~\ref{fig:6.10}); the selected operating point $\theta_{conf}=0.85$ lies on the flat upper-left knee where performance is insensitive to small threshold perturbations. The confidence distribution (Figure~\ref{fig:6.11}) is sharply bimodal, separating confident Trip and No-Trip decisions, with predictive entropy flagging the few ambiguous events for conservative handling.
-\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{fig_6_10.png}
-\caption{ROC and precision--recall curves for internal-fault detection (AUC $=0.9999$).}\label{fig:6.10}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{fig_6_11.png}
-\caption{Confidence-score distribution for Trip and No-Trip decisions.}\label{fig:6.11}\end{figure}
-
-\section{Discussion of Results}
-The hybrid DWT--LSTM + adaptive 87T architecture achieves zero false negatives (100\% dependability), zero false trips (100\% security), and the fastest clearing time (17.2\,ms), while the standalone classifier attains 98.89\% accuracy (F1 $=0.9901$, ROC--AUC $=0.9999$). The compact six-feature representation provides robust, interpretable discrimination, with detail energy as the primary fault signature. Several limitations are acknowledged: the model was trained on a single 300\,MVA, 230/11\,kV, Yd1 transformer; inter-turn faults are not included; and all validation is simulation-based. Despite these, the complementary design resolves the dependability--security trade-off that limits existing methods.
-
-\section{Threats to Validity}
-\textbf{Internal:} information leakage is prevented by splitting at the case level (never the window level) and computing normalization statistics on the training subset only; the zero-variance internal recall across folds argues against a fortunate split. \textbf{External:} the simulation-to-field gap is mitigated by physically grounded core/CT models, a realistic merging-unit chain, and a five-axis stress programme, though field-recorded and HIL validation remain essential. \textbf{Construct/statistical:} the adopted metrics map directly to protection requirements, and the 1{,}800-case test set yields narrow confidence intervals; cited external accuracies are flagged as non-commensurable.
+\section{Limitations and Scope of Claims}
+To ensure rigorous academic integrity, the following limitations are formally acknowledged:
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+\item \textbf{Single Plant Model:} Simulations were conducted on a single 300\,MVA, 230/11\,kV, Yd1 transformer. Generalization across diverse vector groups and ratings warrants further validation.
+\item \textbf{CT Dynamics:} CT saturation in this study arises from burden, DC offset, and fault magnitude; remanence decays within $\sim$25\,ms due to core losses.
+\item \textbf{Weak Through-Faults:} Series resistors in the plant's LV network limit external fault currents to $\approx$1.5\,pu rms at the CTs, requiring burden elevation to assess extreme saturation.
+\item \textbf{AI-Only Zone Latency:} High-impedance faults ($R_f > 1.2\,\Omega$) require 40--50\,ms of confidence accumulation, reflecting the physical time needed to discriminate subtle signatures from background load unbalance.
+\end{enumerate}
 
 \chapter{Conclusion and Future Scope}
 \section{Conclusion}
-This thesis presented the design, development, and evaluation of a hybrid adaptive transformer differential protection (HATDP) framework combining a DWT--LSTM classifier with a conventional 87T relay. A detailed 300\,MVA, 230/11\,kV, Yd1 model was built in MATLAB/Simulink with realistic magnetization, CT saturation, and remanence; a 2{,}500-case base dataset was generated across four operating conditions. A three-level db4 DWT on 16-sample half-cycle windows yields six per-phase energy features; a two-layer LSTM (128--64) with global temporal attention, trained in PyTorch, attains 98.89\% accuracy (F1 $=0.9901$, ROC--AUC $=0.9999$) on the 1{,}800-case test set and is exported to ONNX (Opset 14) for Simulink deployment. The hybrid veto/AND-gate achieves 100\% dependability and 100\% security on the validation set with an average clearing time of 17.2\,ms (a $2.6\times$ speedup over harmonic restraint), resolving the dependability--security trade-off.
-
+This thesis presented the design, implementation, and rigorous verification of a hybrid adaptive transformer differential protection framework combining multi-resolution Discrete Wavelet Transform (DWT) feature extraction, second-harmonic restraint ratios, and Long Short-Term Memory (LSTM) sequence modeling. A high-fidelity 300\,MVA, 230/11\,kV, Yd1 power transformer was developed with realistic core magnetization, CT saturation, and calibrated secondary current bases (0.9302\,A nominal). A verified corpus of 3{,}220 traces spanning 16 scenario categories (11 fault types, 10--110\% rated loading, CT burdens 4--10$\times$, over-excitation, and recovery inrush) and an independent 300-trace Out-of-Distribution test set were evaluated under strict, leak-free trace-stratified cross-validation. The deployed hybrid relay achieved \textbf{99.01\% dependability} ($\pm1.07\%$) and \textbf{99.66\% security} ($\pm0.33\%$) across 15 models, with a median operate time of \textbf{15.6\,ms} and \textbf{100.0\% decision accuracy} in closed-loop Simulink co-simulation.
 \section{Key Findings}
 \textbf{Feature robustness.} Six DWT energy features suffice for reliable discrimination; the detail-energy features achieve an inter-class separation ratio exceeding 500. The classifier degrades gracefully---$\ge$97\% accuracy down to 20\,dB SNR and $\ge$99\% internal-fault recall up to 20\,$\Omega$---while the 87T element preserves 100\% relay-level dependability. \textbf{Security.} The standalone 87T produces 62 false trips and 18 false negatives; the classifier reduces these to 14 and 6; the hybrid eliminates both. \textbf{Real-time feasibility.} The processing latency is $\approx$12\,ms and the total clearing time 17.2\,ms, firmly within the one-cycle window, validated in closed-loop co-simulation.
 

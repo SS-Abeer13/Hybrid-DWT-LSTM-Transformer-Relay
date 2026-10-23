@@ -33,3 +33,13 @@ _speech_docx_render/
 **/_speech_docx_render/
 
 
+.pylibs/
+*.npz
+runs/
+*_BACKUP_*
+*_FAILED_*
+*_BADSAVE_*
+*_console.txt
+*_done.txt
+*.sock
+tools/matlab logs/

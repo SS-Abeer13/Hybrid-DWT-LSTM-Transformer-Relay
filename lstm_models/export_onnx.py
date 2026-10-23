@@ -62,14 +62,14 @@ def main() -> None:
     parser.add_argument(
         "--checkpoint",
         type=Path,
-        default=project_root / "runs" / "20260712_lstm_optuna_training" / "transformer_protection_lstm_best.pth",
+        default=project_root / "runs" / "20260725_lstm_training" / "transformer_protection_lstm_best.pth",
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=project_root / "lstm_models" / "wt_lstm_relay_20260712.onnx",
+        default=project_root / "lstm_models" / "wt_lstm_relay.onnx",
     )
-    parser.add_argument("--sequence-length", type=int, default=1569)
+    parser.add_argument("--sequence-length", type=int, default=32)
     args = parser.parse_args()
 
     if args.sequence_length < 1:
@@ -83,8 +83,8 @@ def main() -> None:
     missing = required - set(config)
     if missing:
         raise KeyError(f"Checkpoint config is missing: {sorted(missing)}")
-    if config["input_size"] != 9 or config["sequence_length"] != args.sequence_length:
-        raise ValueError(f"Checkpoint expects [*, {config['sequence_length']}, {config['input_size']}], not [*, {args.sequence_length}, 9]")
+    if config["input_size"] not in (9, 12):
+        raise ValueError(f"Checkpoint expects input size 9 or 12, got {config['input_size']}")
 
     base = TransformerProtectionLSTM(
         input_size=int(config["input_size"]),
@@ -108,14 +108,13 @@ def main() -> None:
         output_names=["probability"],
         opset_version=14,
         do_constant_folding=True,
-        dynamo=False,
     )
 
     exported = onnx.load(args.output)
     onnx.checker.check_model(exported)
     input_shape = [dim.dim_value for dim in exported.graph.input[0].type.tensor_type.shape.dim]
     output_shape = [dim.dim_value for dim in exported.graph.output[0].type.tensor_type.shape.dim]
-    if input_shape != [1, args.sequence_length, 9] or output_shape != [1, 1]:
+    if input_shape != [1, args.sequence_length, int(config["input_size"])] or output_shape != [1, 1]:
         raise RuntimeError(f"Unexpected ONNX interface: input={input_shape}, output={output_shape}")
 
     try:

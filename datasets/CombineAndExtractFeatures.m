@@ -236,18 +236,19 @@ fprintf('   Phases              : %d\n\n', numPhases);
 WindowSize   = 32;                    % 1 cycle @ 1600 Hz (50 Hz × 32 = 20 ms)
 nLevels      = 2;
 wname        = 'db4';
-numFeatures  = numPhases * 3;         % 9 = [E_D1, E_D2, E_A2] × 3 phases
+numFeatures  = numPhases * 4;         % 12 = [E_D1, E_D2, E_A2, Ratio_2nd] × 3 phases
 numTimeSteps = numSteps - WindowSize; % 1601 - 32 = 1569
 
 featureNames = {'E_D1_A','E_D2_A','E_A2_A', ...
                 'E_D1_B','E_D2_B','E_A2_B', ...
-                'E_D1_C','E_D2_C','E_A2_C'};
+                'E_D1_C','E_D2_C','E_A2_C', ...
+                'Ratio_2nd_A','Ratio_2nd_B','Ratio_2nd_C'};
 
 disp(' Feature extraction settings:');
 fprintf('   Wavelet       : %s  (Daubechies-4)\n', wname);
 fprintf('   Window size   : %d samples  (1 cycle @ 1600 Hz)\n', WindowSize);
 fprintf('   Decomp levels : %d  →  D1(400-800 Hz) D2(200-400 Hz) A2(0-200 Hz)\n', nLevels);
-fprintf('   Features/step : %d\n', numFeatures);
+fprintf('   Features/step : %d (9 DWT + 3 2nd Harmonic Ratio)\n', numFeatures);
 fprintf('   Time steps    : %d\n\n', numTimeSteps);
 
 %% ═══════════════════════════════════════════════════════════════════════
@@ -357,11 +358,18 @@ for i = 1:numSamples
     % ── Differential current ─────────────────────────────────────────────
     if isfield(combined,'diffCurrent') && ~isempty(combined.diffCurrent{i})
         I_diff = combined.diffCurrent{i};
+        if size(I_diff, 1) ~= numSteps
+            if size(I_diff, 2) == numSteps
+                I_diff = I_diff';
+            else
+                I_diff = Ip - Is;
+            end
+        end
     else
         I_diff = Ip - Is;
     end
 
-    % ── Sliding-window 2-level DWT ────────────────────────────────────────
+    % ── Sliding-window 2-level DWT + 2nd Harmonic Ratio ───────────────────
     for t = (WindowSize+1) : numSteps
         outIdx     = t - WindowSize;
         sig_window = I_diff((t-WindowSize+1):t, :);   % [32 × 3]
@@ -373,9 +381,14 @@ for i = 1:numSamples
             E_D2     = sum(detcoef(C,L,2).^2);
             E_A2     = sum(appcoef(C,L,wname,2).^2);
             base     = (ph-1)*3 + 1;
-            feat(base)   = E_D1;
-            feat(base+1) = E_D2;
-            feat(base+2) = E_A2;
+            feat(base)   = log(1 + E_D1);
+            feat(base+1) = log(1 + E_D2);
+            feat(base+2) = log(1 + E_A2);
+
+            % 2nd Harmonic Ratio (Bin 3 = 100 Hz, Bin 2 = 50 Hz @ 1600 Hz / 32 samples)
+            fft_vals = abs(fft(sig_window(:, ph)));
+            ratio_2nd = fft_vals(3) / (fft_vals(2) + 1e-4);
+            feat(9 + ph) = min(ratio_2nd, 2.0);
         end
         X_LSTM(validIdx, outIdx, :) = feat;
     end

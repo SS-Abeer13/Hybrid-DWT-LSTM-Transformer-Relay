@@ -1,0 +1,43 @@
+{
+ "files": [
+  "StressDataset_v3_20261021_021053.mat",
+  "StressDataset_v3Only_topup_inrush_loaded.mat",
+  "StressDataset_v3Only_topup_overexc.mat"
+ ],
+ "n": 3220,
+ "n_ok": 3218,
+ "criteria": {
+  "1 load-bin cells": {
+   "pass": true,
+   "detail": "all cells >= minimum"
+  },
+  "2 inrush cells": {
+   "pass": true,
+   "detail": "all 24 cells >= 10"
+  },
+  "3 HiZ bins and bands": {
+   "pass": true,
+   "detail": "bins [80, 80, 80], bands [75, 79, 86] (each >= 40 required)"
+  },
+  "4 External CT-sat saturation": {
+   "pass": true,
+   "detail": "87 % (>= 70 % required)"
+  },
+  "4 Internal CT-sat saturation": {
+   "pass": true,
+   "detail": "100 % (>= 70 % required)"
+  },
+  "5 over-excitation harmonics": {
+   "pass": true,
+   "detail": "85 % (>= 80 % required)"
+  },
+  "6 realised load": {
+   "pass": true,
+   "detail": "100.0 % (>= 95 % required)"
+  },
+  "7 generator checks": {
+   "pass": true,
+   "detail": "overall 99.9 %, worst scenario 95 %, duplicates 0"
+  }
+ }
+}

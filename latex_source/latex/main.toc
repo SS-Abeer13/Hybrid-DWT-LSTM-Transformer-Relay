@@ -49,42 +49,36 @@
 \contentsline {section}{\numberline {4.3}Transformer Model Parameters}{15}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Power System Network and CT Model}{15}{section.4.4}%
 \contentsline {section}{\numberline {4.5}Fault and Event Scenarios}{16}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Signal Conditioning and Dataset Summary}{16}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Proposed DWT--LSTM Methodology}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduction}{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Framework Architecture}{19}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}The Hybrid Decision Handshake}{20}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Signal Flow}{20}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Data Preprocessing and Sampling}{21}{section.5.3}%
-\contentsline {section}{\numberline {5.4}DWT Engine and Feature Extraction}{21}{section.5.4}%
-\contentsline {section}{\numberline {5.5}LSTM Architecture and Training}{22}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Real-Time Implementation and Latency}{23}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Robustness Enhancement}{24}{section.5.7}%
-\contentsline {chapter}{\numberline {6}Results, Analysis and Discussion}{25}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction}{25}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Data Generation and Preprocessing}{25}{section.6.2}%
-\contentsline {section}{\numberline {6.3}LSTM Classification Performance}{27}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Training and Validation}{27}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Confusion Matrix}{28}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Per-Class Metrics and Cross-Validation}{29}{subsection.6.3.3}%
-\contentsline {section}{\numberline {6.4}Real-Time Hybrid Relay Validation}{29}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Hybrid Decision Logic}{29}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Clearing Time}{30}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}Stress Testing and Out-of-Distribution Robustness}{31}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Comparative Benchmarking}{32}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Detailed Comparison with Prior Published Work}{32}{section.6.7}%
-\contentsline {section}{\numberline {6.8}Ablation and Sensitivity Studies}{33}{section.6.8}%
-\contentsline {section}{\numberline {6.9}ROC and Confidence-Threshold Analysis}{34}{section.6.9}%
-\contentsline {section}{\numberline {6.10}Discussion of Results}{35}{section.6.10}%
-\contentsline {section}{\numberline {6.11}Threats to Validity}{35}{section.6.11}%
-\contentsline {chapter}{\numberline {7}Conclusion and Future Scope}{36}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Conclusion}{36}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Key Findings}{36}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Research Outcomes}{36}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Limitations of the Study}{37}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Recommendations for Future Work}{37}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Concluding Remarks}{37}{section.7.6}%
-\contentsline {chapter}{List of Publications}{38}{chapter*.45}%
-\contentsline {chapter}{References}{39}{chapter*.46}%
-\contentsline {chapter}{\numberline {A}System Parameters and Configuration}{43}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Reproducibility and Standards}{44}{appendix.B}%
+\contentsline {section}{\numberline {4.6}Signal Conditioning and Verified Dataset Compilation}{16}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Proposed DWT--LSTM Methodology}{18}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduction}{18}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Framework Architecture}{18}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}The Hybrid Decision Handshake}{19}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Signal Flow}{19}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Data Preprocessing and Sampling}{20}{section.5.3}%
+\contentsline {section}{\numberline {5.4}DWT Engine and Feature Extraction}{20}{section.5.4}%
+\contentsline {section}{\numberline {5.5}LSTM Architecture and Training}{21}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Real-Time Implementation and Latency}{22}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Robustness Enhancement}{23}{section.5.7}%
+\contentsline {chapter}{\numberline {6}Results, Analysis and Discussion}{24}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction and Evaluation Protocol}{24}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Representative Waveforms and Feature Signatures}{24}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Grouped 5-Fold Cross-Validation and Architecture Ablation}{25}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Category-Level Performance Breakdown}{26}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Impact of Verified Dataset Retraining}{26}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Out-of-Distribution (OOD) Stress Robustness}{27}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Closed-Loop Simulink Verification and Mirror Parity}{27}{section.6.7}%
+\contentsline {section}{\numberline {6.8}High-Impedance Fault Sensitivity Analysis}{28}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Operating Speed and Threshold Sensitivity}{29}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Limitations and Scope of Claims}{30}{section.6.10}%
+\contentsline {chapter}{\numberline {7}Conclusion and Future Scope}{31}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Conclusion}{31}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Key Findings}{31}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Research Outcomes}{31}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Limitations of the Study}{32}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Recommendations for Future Work}{32}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Concluding Remarks}{32}{section.7.6}%
+\contentsline {chapter}{List of Publications}{33}{chapter*.33}%
+\contentsline {chapter}{References}{34}{chapter*.34}%
+\contentsline {chapter}{\numberline {A}System Parameters and Configuration}{38}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Reproducibility and Standards}{39}{appendix.B}%
