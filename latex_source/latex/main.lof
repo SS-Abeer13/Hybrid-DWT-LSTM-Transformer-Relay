@@ -4,8 +4,8 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Dual-slope percentage restraint characteristic of the differential relay.}}{10}{figure.caption.15}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Magnetizing inrush phenomena: (a) core flux trajectory, and (b) asymmetric current waveform.}}{11}{figure.caption.16}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Current transformer equivalent circuit and saturation-induced secondary distortion.}}{12}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Conceptual feature-space separation of event classes with cost-asymmetric decision boundaries.}}{13}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Current transformer equivalent circuit and saturation-induced secondary distortion.}}{13}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Conceptual feature-space separation of event classes with cost-asymmetric decision boundaries.}}{14}{figure.caption.18}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the MATLAB/Simulink power-system simulation model (Simulink main panel).}}{15}{figure.caption.19}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Parameter-space coverage and event-class distribution across the 16 scenario categories and load bins in the verified dataset.}}{18}{figure.caption.22}%
@@ -19,7 +19,7 @@
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Per-inference computational cost distribution across pipeline stages ($\approx $1.71\,MFLOPs total).}}{26}{figure.caption.32}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {6.1}{\ignorespaces Representative three-phase differential current waveforms across major operating categories under realistic loading and CT burden.}}{28}{figure.caption.33}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Empirical fault differential current versus fault resistance across all internal fault types, delineating the 87T-visible and AI-alone detection boundaries.}}{32}{figure.caption.40}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Empirical fault differential current versus fault resistance across all internal fault types, delineating the 87T-visible and AI-alone detection boundaries.}}{33}{figure.caption.40}%
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Dynamic relay operating characteristics: (a) operate-time cumulative distribution (legend sample counts denote tripped detectable faults out of 1,251 in Repetition~1), and (b) threshold trade-off curve.}}{33}{figure.caption.41}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

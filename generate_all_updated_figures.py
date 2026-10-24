@@ -165,15 +165,20 @@ def generate_fig_3_1():
     ax.fill_between(Ir, Id_op, 4.0, color="#FFCDD2", alpha=0.5, label="TRIP (Operate) Region")
     ax.fill_between(Ir, 0, Id_op, color="#E8F5E9", alpha=0.6, label="BLOCK (Restraint) Region")
     
-    # Annotate points
+    # Annotate points with exact drop lines
     ax.plot([0, Ir1], [I_pickup, I_pickup], "k--", lw=1.2)
-    ax.plot([Ir_rest, Ir_rest], [0, I_pickup + S1 * (Ir_rest - Ir1)], "k--", lw=1.2)
+    ax.plot([Ir1, Ir1], [0, I_pickup], "k--", lw=1.2) # Drop line at Ir1
+    ax.plot(Ir1, I_pickup, "ro", ms=6)
+    
+    ax.plot([Ir_rest, Ir_rest], [0, I_pickup + S1 * (Ir_rest - Ir1)], "k--", lw=1.2) # Drop line at Ir_rest
     ax.plot(Ir_rest, I_pickup + S1 * (Ir_rest - Ir1), "ro", ms=7)
     
-    ax.text(Ir1/2, I_pickup + 0.12, r"$I_{\mathrm{pickup}} = 0.30\,\mathrm{pu}$" + f"\n({I_pickup:.3f} A sec)", 
+    ax.text(Ir1/2, I_pickup + 0.14, r"$I_{\mathrm{pickup}} = 0.30\,\mathrm{pu}$" + f"\n({I_pickup:.3f} A sec)", 
             ha="center", fontsize=9, fontweight="bold", color="#B71C1C")
-    ax.text(Ir_rest + 0.15, I_pickup + S1 * (Ir_rest - Ir1) - 0.12, 
-            r"Knee Point $(I_{\mathrm{rest}} = 2.0\,\mathrm{A})$", fontsize=9, fontweight="bold")
+    ax.text(Ir1 + 0.08, 0.15, r"Break $I_{r1} = 0.67\,\mathrm{A}$" + "\n(0.72 pu)", 
+            fontsize=8, fontweight="bold", color="#B71C1C")
+    ax.text(Ir_rest + 0.15, I_pickup + S1 * (Ir_rest - Ir1) - 0.14, 
+            r"Knee Point $(I_{\mathrm{rest}} = 2.0\,\mathrm{A})$" + "\n(2.15 pu)", fontsize=8.5, fontweight="bold")
     
     # Slope annotations
     ax.text(1.3, 0.48, r"Slope $S_1 = 15\%$", fontsize=9.5, fontweight="bold", color="#0D47A1", rotation=12)
@@ -237,7 +242,7 @@ def generate_fig_3_2():
     ax2.axhline(0, color="black", lw=0.8)
     
     # Clean callouts
-    ax2.annotate("High Unidirectional Peak\n(5--15 pu rms)", xy=(10, i_inrush[125]), xytext=(22, 11),
+    ax2.annotate("High Unidirectional Peak\n(5--15 pu peak)", xy=(10, i_inrush[125]), xytext=(22, 11),
                  arrowprops=dict(arrowstyle="->", color="purple", lw=1.5), fontsize=8.5, fontweight="bold")
     ax2.annotate(r"Dead-Angle Interval" + "\n" + r"(Non-conduction $i \approx 0$)", xy=(25, 0.0), xytext=(35, 4),
                  arrowprops=dict(arrowstyle="->", color="darkgreen", lw=1.5), fontsize=8.5, fontweight="bold")
@@ -276,12 +281,12 @@ def generate_fig_3_3():
     ax1.plot([1.5, 1.5, 8.5], [2.5, 1.5, 1.5], "k-", lw=2)
     
     # Magnetizing branch (Nonlinear Lm)
-    rect_lm = patches.Rectangle((4.3, 2.3), 1.4, 1.4, edgecolor="#C62828", facecolor="#FFEBEE", lw=2)
+    rect_lm = patches.Rectangle((4.2, 2.2), 1.6, 1.6, edgecolor="#C62828", facecolor="#FFEBEE", lw=2)
     ax1.add_patch(rect_lm)
-    ax1.text(5.0, 3.2, "Nonlinear Core\nMagnetization", ha="center", va="center", fontsize=8.5, fontweight="bold", color="#C62828")
-    ax1.text(5.0, 2.6, r"$i_e(\lambda) = A(e^{B|\lambda|}-1)$", ha="center", va="center", fontsize=7.5, color="#C62828")
-    ax1.plot([5.0, 5.0], [4.5, 3.7], "k-", lw=2)
-    ax1.plot([5.0, 5.0], [2.3, 1.5], "k-", lw=2)
+    ax1.text(5.0, 3.25, "Nonlinear Core\nMagnetization", ha="center", va="center", fontsize=8.5, fontweight="bold", color="#C62828")
+    ax1.text(5.0, 2.55, r"$i_e(\lambda) = A(e^{B|\lambda|}-1)$", ha="center", va="center", fontsize=7.5, color="#C62828")
+    ax1.plot([5.0, 5.0], [4.5, 3.8], "k-", lw=2)
+    ax1.plot([5.0, 5.0], [2.2, 1.5], "k-", lw=2)
     
     # Burden Zb
     rect_zb = patches.Rectangle((7.8, 2.3), 1.4, 1.4, edgecolor="#0D47A1", facecolor="#E3F2FD", lw=2)
@@ -296,7 +301,7 @@ def generate_fig_3_3():
     ax1.annotate("", xy=(5.0, 4.0), xytext=(5.0, 4.2), arrowprops=dict(arrowstyle="->", lw=2, color="#C62828"))
     ax1.text(5.3, 4.0, r"$i_e(t)$", color="#C62828", fontweight="bold", fontsize=9)
     ax1.annotate("", xy=(6.8, 4.5), xytext=(6.3, 4.5), arrowprops=dict(arrowstyle="->", lw=2, color="#0D47A1"))
-    ax1.text(6.8, 4.8, r"$i_s(t) = i_p' - i_e$", color="#0D47A1", fontweight="bold", fontsize=9)
+    ax1.text(6.8, 4.8, r"$i_s(t) = i_p'(t) - i_e(t)$", color="#0D47A1", fontweight="bold", fontsize=9)
     
     # Subplot (b): Waveforms
     t = np.linspace(0, 0.06, 600)
@@ -363,9 +368,9 @@ def generate_fig_3_4():
     ax.plot(x_grid, y_sym, "k--", lw=1.8, label="Standard Symmetric Boundary")
     ax.plot(x_grid, y_asym, "r-", lw=2.5, label=r"Cost-Asymmetric Boundary ($L_{\mathrm{FN}} \gg L_{\mathrm{FP}}$)")
     
-    # Annotation
+    # Annotation cleanly positioned in open white space
     ax.annotate("Dependability-Biased Shift\n(Prevents Missed Faults)",
-                xy=(1.5, -0.95), xytext=(2.2, -1.8),
+                xy=(1.5, -0.95), xytext=(2.6, -2.0),
                 arrowprops=dict(arrowstyle="->", color="red", lw=1.8),
                 fontsize=8.5, fontweight="bold", color="red")
     
@@ -489,7 +494,7 @@ def generate_fig_5_2():
     
     # AI Solo path (Direct to OR)
     ax.plot([12.4, 13.5, 13.5], [1.8, 1.8, 5.0], "k-", lw=1.8)
-    ax.text(13.0, 2.1, r"Solo $\geq 0.998$", fontsize=7.5, color="#1B5E20")
+    ax.text(12.3, 2.2, r"Solo $\geq 0.998$", fontsize=7.5, fontweight="bold", color="#1B5E20")
     
     # Final OR Gate
     r_or = patches.Rectangle((13.0, 5.0), 1.4, 1.6, edgecolor="black", facecolor="#FFE0B2", lw=2)
@@ -559,20 +564,19 @@ def generate_fig_5_4():
     ax.plot(t, current, "k-", lw=1.5, label="Differential Current Waveform")
     ax.axvline(20.0, color="red", lw=2, ls="--", label="Fault Inception ($t_{\mathrm{fault}} = 20\,\mathrm{ms}$)")
     
-    # 32-sample sliding window (20 ms)
-    # Window 1: 10 to 30 ms
-    rect_w1 = patches.Rectangle((10, -5), 20, 16, edgecolor="#1976D2", facecolor="#BBDEFB", alpha=0.35, lw=2, label="Window $W(t)$ (32 samples, 20 ms)")
+    # 32-sample sliding window (20 ms): spans from t = 20.0 to 40.0 ms
+    rect_w1 = patches.Rectangle((20.0, -5), 20.0, 16, edgecolor="#1976D2", facecolor="#BBDEFB", alpha=0.35, lw=2, label="Window $W(t)$ (32 samples, 20 ms)")
     ax.add_patch(rect_w1)
     
-    # Window 2: 15 to 35 ms
-    rect_w2 = patches.Rectangle((15, -5), 20, 16, edgecolor="#388E3C", facecolor="#C8E6C9", alpha=0.35, lw=2, ls=":", label="Next Window $W(t+\Delta t)$ (Update Step $\Delta t = 0.625\,\mathrm{ms}$)")
+    # Next Window: offset by update step Delta t = 0.625 ms (visualized at 23.0 to 43.0 ms for clarity)
+    rect_w2 = patches.Rectangle((23.0, -5), 20.0, 16, edgecolor="#388E3C", facecolor="#C8E6C9", alpha=0.35, lw=2, ls=":", label="Next Window $W(t+\Delta t)$ (Step $\Delta t = 0.625\,\mathrm{ms}$)")
     ax.add_patch(rect_w2)
     
-    ax.text(20, 9.5, "Single 32-Sample Full-Cycle Window\n(Feature Vector $f(t) \in \mathbb{R}^{12}$ Computed Per Step)", ha="center", fontsize=8.5, fontweight="bold", color="#1976D2")
+    ax.text(30.0, 9.5, "Single 32-Sample Full-Cycle Window\n(Feature Vector $f(t) \in \mathbb{R}^{12}$ Computed Per Step)", ha="center", fontsize=8.5, fontweight="bold", color="#1976D2")
     
-    # Historical lookback across 32 sequence buffer steps
-    ax.annotate("", xy=(30, -3.5), xytext=(0, -3.5), arrowprops=dict(arrowstyle="<->", lw=2, color="#6A1B9A"))
-    ax.text(15, -3.0, "Total Sequence Buffer Lookback Horizon: 63 samples (39.375 ms)", ha="center", fontsize=8.5, fontweight="bold", color="#6A1B9A")
+    # Historical lookback across 32 sequence buffer steps: exactly 39.375 ms (from 0.625 ms to 40.0 ms)
+    ax.annotate("", xy=(40.0, -3.5), xytext=(0.625, -3.5), arrowprops=dict(arrowstyle="<->", lw=2, color="#6A1B9A"))
+    ax.text(20.3, -3.0, "Total Sequence Buffer Lookback Horizon: 63 samples (39.375 ms)", ha="center", fontsize=8.5, fontweight="bold", color="#6A1B9A")
     
     ax.set_xlim(0, 60)
     ax.set_ylim(-6, 12)
@@ -673,9 +677,9 @@ def generate_fig_5_6():
         ("LSTM Layer 1", "64 Hidden Units, Unidirectional, LayerNorm(64)\nParams: 4 * 64 * (12 + 64 + 1) = 19,712", "#E3F2FD", "#1565C0", 6.8),
         ("Dropout Regularization", "Dropout rate p = 0.22", "#FFF9C4", "#F57F17", 5.6),
         ("LSTM Layer 2", "64 Hidden Units, Unidirectional, LayerNorm(64)\nParams: 4 * 64 * (64 + 64 + 1) = 33,024", "#E3F2FD", "#1565C0", 4.4),
-        ("Temporal Self-Attention", "Global temporal pooling: a_t = softmax(v^T tanh(W h_t + b))\nParams: LayerNorm(64) [128] + Linear(64, 1) [65] = 193", "#E8F5E9", "#2E7D32", 3.0),
-        ("Dense Classifier Head", "Dense(64, 64) [4,160] + ReLU + Dropout(0.22) + Dense(64, 1) [65]\nTotal Head Parameters: 5,312", "#EDE7F6", "#512DA8", 1.6),
-        ("Sigmoid Output", "Scalar Internal Fault Probability p_AI(t) in [0, 1]", "#FFEBEE", "#C62828", 0.4)
+        ("Temporal Self-Attention", r"Global temporal pooling: $\alpha_t = \mathrm{softmax}(w_a^\top h_t + b_a)$" + "\nParams: LayerNorm(64) [128] + Linear(64, 1) [65] = 193", "#E8F5E9", "#2E7D32", 3.0),
+        ("Dense Classifier Head", "Dense(64, 64) [4,160] + ReLU + Dropout(0.22) + Dense(64, 1) [65] + Aux Adapter [1,087]\nTotal Head Parameters: 5,312", "#EDE7F6", "#512DA8", 1.6),
+        ("Sigmoid Output", r"Scalar Internal Fault Probability $p_{\mathrm{AI}}(t) \in [0, 1]$", "#FFEBEE", "#C62828", 0.4)
     ]
     
     for title, desc, bg, border, y in layers:
@@ -709,16 +713,27 @@ def generate_fig_5_7():
     colors = ["#1976D2", "#0D47A1", "#7B1FA2", "#388E3C", "#F57C00"]
     explode = (0.02, 0.02, 0.08, 0.12, 0.15)
     
-    # Donut chart
-    wedges, texts, autotexts = ax1.pie(flops, labels=None, autopct="%1.1f%%",
+    # Donut chart with non-overlapping percentages (filter out < 3% for clean display)
+    def autopct_filter(pct):
+        return f"{pct:.1f}%" if pct > 3.0 else ""
+        
+    wedges, texts, autotexts = ax1.pie(flops, labels=None, autopct=autopct_filter,
                                        startangle=140, colors=colors, explode=explode,
                                        pctdistance=0.75, wedgeprops=dict(width=0.45, edgecolor="white", lw=2))
     for at in autotexts:
         at.set_fontsize(8.5)
         at.set_fontweight("bold")
         
-    ax1.set_title("(a) Computational Complexity Breakdown\n(~1.71 MFLOPs / inference)", fontweight="bold", fontsize=10.5)
-    ax1.legend(wedges, labels, loc="center left", bbox_to_anchor=(-0.2, -0.15), ncol=2, fontsize=8)
+    ax1.set_title(r"(a) Computational Complexity Breakdown" + "\n" + r"($\approx 1.71$ MFLOPs / inference)", fontweight="bold", fontsize=10.5)
+    
+    legend_labels = [
+        "LSTM Layer 1 (12->64): 36.8% (0.63 M)",
+        "LSTM Layer 2 (64->64): 62.0% (1.06 M)",
+        "Dense Classifier: 1.0% (17.5 k)",
+        "Temporal Attention: 0.1% (2.1 k)",
+        "DWT Front End: 0.1% (1.8 k)"
+    ]
+    ax1.legend(wedges, legend_labels, loc="center left", bbox_to_anchor=(-0.25, -0.18), ncol=2, fontsize=7.5)
     
     # Bar chart
     stages = ["LSTM 1", "LSTM 2", "Dense", "Attn", "DWT"]
