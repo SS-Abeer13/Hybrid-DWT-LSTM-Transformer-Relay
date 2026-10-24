@@ -1,24 +1,24 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Comparative synthesis of representative transformer differential protection studies.}}{8}{table.caption.5}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces Comparative synthesis of representative transformer differential protection studies.}}{8}{table.caption.14}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Transformer nameplate and equivalent-circuit parameters.}}{16}{table.caption.11}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Calibrated current transformer parameters.}}{17}{table.caption.12}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Composition of the 3{,}220-trace verified dataset across the 16 scenario categories.}}{18}{table.caption.14}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces Transformer nameplate and equivalent-circuit parameters.}}{16}{table.caption.20}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Calibrated current transformer parameters.}}{17}{table.caption.21}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Composition of the 3{,}220-trace verified dataset across the 16 scenario categories.}}{19}{table.caption.23}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Frequency band allocation for the 2-level DWT at 1.6\,kHz.}}{22}{table.caption.19}%
-\contentsline {table}{\numberline {5.2}{\ignorespaces Per-inference parameter and operation budget of the DWT--LSTM pipeline.}}{24}{table.caption.22}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces Frequency band allocation for the 2-level DWT at 1.6\,kHz.}}{24}{table.caption.28}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Per-inference parameter and numerical budget of the DWT--LSTM pipeline.}}{26}{table.caption.31}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Ablation and main performance summary (grouped 5-fold CV, 3 repetitions, 15 models total).}}{26}{table.caption.25}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Performance breakdown across all 16 scenario categories (Hybrid + AI-Alone Path).}}{27}{table.caption.26}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces Retraining impact: performance on realistic stress cases.}}{28}{table.caption.27}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces Performance on the Out-of-Distribution (OOD) test corpus (291 usable traces).}}{28}{table.caption.28}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces Extended closed-loop Simulink co-simulation verification (12 benchmark cases).}}{29}{table.caption.29}%
-\contentsline {table}{\numberline {6.6}{\ignorespaces High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}}{30}{table.caption.30}%
-\contentsline {table}{\numberline {6.7}{\ignorespaces Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (3{,}218 traces, grouped 5-fold cross-validation).}}{32}{table.caption.33}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Ablation and main performance summary (grouped 5-fold CV, 3 repetitions, 15 models total, $N_{\text {eval}} = 3{,}124$).}}{28}{table.caption.34}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Performance breakdown across all 16 scenario categories (Hybrid + AI-Alone Path, $N_{\text {eval}} = 3{,}124$).}}{29}{table.caption.35}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Retraining impact: performance on realistic stress cases.}}{30}{table.caption.36}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Performance on the Out-of-Distribution (OOD) test corpus (291 usable traces).}}{30}{table.caption.37}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Extended closed-loop Simulink co-simulation verification (12 benchmark cases).}}{31}{table.caption.38}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}}{31}{table.caption.39}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (Repetition~1, grouped 5-fold cross-validation across $N_{\text {eval}} = 3{,}124$ evaluated traces: $N_{\text {fault,det}} = 1{,}251$ detectable faults and $N_{\text {healthy}} = 1{,}873$ healthy traces, with 94 sub-noise-floor faults segregated).}}{34}{table.caption.42}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {A.1}{\ignorespaces Daubechies-4 decomposition filter coefficients ($g[n]=(-1)^n h[7-n]$).}}{42}{table.caption.36}%
-\contentsline {table}{\numberline {A.2}{\ignorespaces LSTM hyperparameter configuration of the deployed v3 relay.}}{43}{table.caption.37}%
+\contentsline {table}{\numberline {A.1}{\ignorespaces Daubechies-4 (db4) low-pass and high-pass decomposition filter coefficients ($L=8$).}}{44}{table.caption.45}%
+\contentsline {table}{\numberline {A.2}{\ignorespaces Deployed neural network architecture hyperparameters and execution budget.}}{45}{table.caption.46}%
 \addvspace {10\p@ }

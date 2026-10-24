@@ -1,26 +1,26 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Single-line schematic of the transformer differential protection zone.}}{2}{figure.caption.4}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Single-line schematic of the 300\,MVA, 230/11\,kV, Yd1 power transformer differential protection zone with calibrated CT ratios ($809.6:1$ HV and $16{,}925:1$ LV).}}{2}{figure.caption.13}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Dual-slope percentage restraint characteristic of the differential relay.}}{10}{figure.caption.6}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Core $B$--$H$ saturation curve and the resulting magnetizing inrush waveform.}}{11}{figure.caption.7}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Current transformer equivalent circuit and saturation-induced secondary distortion.}}{12}{figure.caption.8}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Conceptual feature-space separation of event classes with cost-asymmetric decision boundaries.}}{13}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Dual-slope percentage restraint characteristic of the differential relay.}}{10}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Magnetizing inrush phenomena: (a) core flux trajectory, and (b) asymmetric current waveform.}}{11}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Current transformer equivalent circuit and saturation-induced secondary distortion.}}{12}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Conceptual feature-space separation of event classes with cost-asymmetric decision boundaries.}}{13}{figure.caption.18}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the MATLAB/Simulink power-system simulation model (Simulink main panel).}}{15}{figure.caption.10}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Parameter-space coverage and event-class distribution across the 16 scenario categories and load bins in the verified dataset.}}{18}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the MATLAB/Simulink power-system simulation model (Simulink main panel).}}{15}{figure.caption.19}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Parameter-space coverage and event-class distribution across the 16 scenario categories and load bins in the verified dataset.}}{18}{figure.caption.22}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Two-step development and deployment architecture (MATLAB/Simulink $\leftrightarrow $ PyTorch $\leftrightarrow $ ONNX).}}{20}{figure.caption.15}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Dual-path supervisory decision logic combining the adaptive 87T element, persistence dwell timer, and the LSTM classifier.}}{21}{figure.caption.16}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces End-to-end seven-stage signal flow of the proposed protection scheme.}}{21}{figure.caption.17}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Sliding-window timing and sample-by-sample update cadence.}}{22}{figure.caption.18}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces db4 mother wavelet and two-level dyadic filter-bank decomposition tree.}}{23}{figure.caption.20}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces DWT--LSTM classifier architecture with global temporal attention.}}{23}{figure.caption.21}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Per-inference computational cost distribution across pipeline stages.}}{24}{figure.caption.23}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces End-to-end workflow of the proposed hybrid adaptive transformer protection framework.}}{21}{figure.caption.24}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Detailed block diagram of the proposed hybrid adaptive differential protection architecture.}}{22}{figure.caption.25}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Seven-stage signal-processing and supervisory decision flowchart.}}{23}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Sliding-window timing and sample-by-sample update cadence.}}{23}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces db4 mother wavelet and two-level dyadic filter-bank decomposition tree.}}{24}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Deployed DWT--LSTM classifier architecture with global temporal attention (58{,}241 parameters).}}{25}{figure.caption.30}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Per-inference computational cost distribution across pipeline stages (~1.71 MFLOPs total).}}{26}{figure.caption.32}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Representative three-phase differential current waveforms across major operating categories under realistic loading and CT burden.}}{26}{figure.caption.24}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Empirical fault differential current versus fault resistance across all internal fault types, delineating the 87T-visible and AI-alone detection boundaries.}}{30}{figure.caption.31}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Dynamic relay operating characteristics: (a) operate-time cumulative distribution, and (b) threshold trade-off curve.}}{31}{figure.caption.32}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Representative three-phase differential current waveforms across major operating categories under realistic loading and CT burden.}}{28}{figure.caption.33}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Empirical fault differential current versus fault resistance across all internal fault types, delineating the 87T-visible and AI-alone detection boundaries.}}{32}{figure.caption.40}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Dynamic relay operating characteristics: (a) operate-time cumulative distribution (legend sample counts denote tripped detectable faults out of 1,251 in Repetition~1), and (b) threshold trade-off curve.}}{32}{figure.caption.41}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

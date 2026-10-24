@@ -1,12 +1,12 @@
 % Auto-generated literature benchmark tables for Chapter 6
 \begin{table}[H]\centering
-\caption{Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (3{,}218 traces, grouped 5-fold cross-validation).}\label{tab:lit_benchmark}
+\caption{Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (Repetition~1, grouped 5-fold cross-validation across $N_{\text{eval}} = 3{,}124$ evaluated traces: $N_{\text{fault,det}} = 1{,}251$ detectable faults and $N_{\text{healthy}} = 1{,}873$ healthy traces, with 94 sub-noise-floor faults segregated).}\label{tab:lit_benchmark}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}llccccccc@{}}\toprule
 \textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Params} & \textbf{Lat.\,(ms)} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule
 \multicolumn{9}{@{}l}{\textit{Panel A: Standalone Literature Operating Mode (Direct Trip with Dwell Persistence)}} \\ \midrule
 Conventional 87T & Sharp \cite{ref7} (1958) & --- & 0.60 & 79.62 & 52.96 & 63.64 & 0.6\,ms & 881 \\
-Wavelet-SVM & Simoes \cite{ref13} (2021) & 5,880 & 0.15 & 88.25 & 91.94 & 90.46 & 30.6\,ms & 151 \\
+Wavelet-SVM & Sim\~{o}es \cite{ref13} (2021) & 5,880 & 0.15 & 88.25 & 91.94 & 90.46 & 30.6\,ms & 151 \\
 Wavelet-ANN & Ngaopitakkul \cite{ref19} / Costa \cite{ref18} & 5,441 & 0.08 & 98.32 & 99.57 & 99.07 & 16.9\,ms & 8 \\
 Wavelet-RF & Abdusalam \cite{ref11} (2022) & 250,000 & 0.12 & 98.64 & 99.89 & 99.39 & 18.1\,ms & 2 \\
 1D-CNN & Afrasiabi \cite{ref16} (2020) & 14,561 & 0.22 & 98.96 & 99.36 & 99.20 & 16.2\,ms & 12 \\
@@ -23,4 +23,6 @@ Wavelet-GRU & Dual-Path Hybrid & 44,354 & 0.95 & 97.92 & 99.57 & 98.91 & 15.6\,m
 \bottomrule
 \end{tabular}%
 }
+\vspace{4pt}
+\raggedright\footnotesize\textit{Note:} Lat.\,(ms) denotes the per-window feature extraction and model inference computational latency on CPU; Med.\,$T_{op}$ denotes the end-to-end median physical fault-clearing operating time from fault inception (including waveform lookback, feature extraction, and dwell persistence filter).
 \end{table}

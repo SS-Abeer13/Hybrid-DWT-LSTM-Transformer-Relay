@@ -1,0 +1,506 @@
+<USER_REQUEST>
+# HIGH LEVEL SUMMARY
+
+---
+
+## Summary
+
+This B.Sc. engineering thesis presents a Hybrid Adaptive Transformer Differential Protection (HATDP) framework that integrates multi-resolution Discrete Wavelet Transform (DWT) feature extraction and second-harmonic restraint ratios with a Long Short-Term Memory (LSTM) sequence classifier. Specifically, the authors extract nine log-compressed two-level Daubechies-4 (`db4`) wavelet energy features and three phase-wise second-harmonic restraint ratios over a 32-sample sliding window to drive a two-layer unidirectional attention-LSTM network embedded within a dual-path supervisory relay architecture (combining an instantaneous high-set element, an 87T-gated handshake, and a 20-sample dwell-filtered autonomous AI path). Evaluated across 3,218 simulated electromagnetic-transient (EMT) traces on a 300 MVA, 230/11 kV, Yd1 transformer model and an out-of-distribution (OOD) stress suite, the framework reconciles high security against magnetizing inrush and current transformer (CT) saturation with improved dependability on sub-pickup high-impedance internal faults, while verifying closed-loop software co-simulation parity in MATLAB/Simulink via ONNX.
+
+
+
+## Strengths
+
+* **Pragmatic Dual-Path Supervisory Relay Architecture:** Rather than deploying the neural network as an unanchored black-box trip element or a purely serial veto that sacrifices sensitivity on weak faults, the proposed dual-path Boolean handshake pairs an ANSI/IEEE 87T percentage-restraint confirmation path with a persistence-filtered autonomous AI path ($\theta_{\text{solo}} \ge 0.998$ over a 12.5 ms dwell timer), recovering 71.2% of high-impedance internal faults in the 87T-invisible zone ($R_f = 1.2\text{--}7.0\,\Omega$) while preserving 99.66% security.
+
+* **Physically Grounded Feature Fusion and Compact Sequence Modeling:** Embedding domain-specific second-harmonic restraint ratios alongside log-compressed two-level `db4` sub-band energies into a compact 58,241-parameter attention-LSTM (~1.71 MFLOPs/inference) provides physically interpretable transient trajectory tracking across successive windows within sub-cycle computational budgets.
+
+* **Rigorous Evaluation Protocol and Closed-Loop Co-Simulation Parity:** The study enforces leak-free trace-level cross-validation, segregates physically undetectable sub-noise-floor faults ($<0.05\text{ pu}$) to avoid metric inflation, evaluates out-of-distribution stress conditions, and verifies bit-exact closed-loop execution parity between Python/PyTorch and MATLAB/Simulink via ONNX.
+
+
+
+## Weaknesses
+
+* **Internal Contradictions in Reported Metrics and Architectural Specifications:** Please consider reconciling the discrepancies between the main text/Table 6.1 (reporting 99.01% dependability, 99.66% security, and 6 false trips from the 3-repetition mean) and Table 6.7 Panel B (reporting 98.56% dependability, 99.41% security, and 11 false trips from Repetition 1), correcting the narrative in Section 6.10 where cited false-trip reductions do not match Table 6.7, and updating Figures 5.1–5.7 so they reflect the deployed 12-feature, 64/64-unit, 58,241-parameter binary network rather than an earlier 6-feature, 128/64-unit, 125,476-parameter 4-class prototype.
+
+* **Artificial Current Limiting of External Through-Faults and 87T Restraint Bias:** Inserting a $0.05\,\Omega$ series limiting resistor in the external LV network (Section 4.4) to cap external through-fault currents at $\approx 1.5\text{ pu}$ rms while inducing CT saturation via extreme burden sweeps ($4\times\text{--}16\times$ nominal) dampens the natural primary $L/R$ DC time constant and restricts the conventional 87T relay to operating below its $2.0\text{ A}$ knee point in the sensitive Slope 1 region ($15\%$), denying it the high-restraint Slope 2 region ($40\%$) intended by industry standards and biasing the baseline security evaluation (Reference Paper: IEEE Guide for Protecting Power Transformers (IEEE Std C37.91-2021), IEEE Power and Energy Society, 2021).
+
+* **Incremental Algorithmic Novelty of the Feature-LSTM Pipeline:** Because combining Fourier/harmonic indices with DWT features for machine learning classifiers and feeding multi-resolution wavelet features with relay quantities into LSTM or 1D-CNN/LSTM networks under CT saturation are well-established in recent literature, the authors might consider framing the core contribution more explicitly around the dual-path supervisory handshake and closed-loop verification rather than the feature-LSTM pipeline alone (Reference Paper: A New Hybrid Machine Learning Method for Detecting Faults in Power Transformers, M. Abdusalam, K. F. Ali, and W. M. El-Hawary, 2022; Reference Paper: A Novel Approach for Diagnosing Transformer Internal Defects and Inrush Current Based on 1DCNN and LSTM Deep Learning, W. A. Atiyah, S. Karimi, and M. Moradi, 2023; Reference Paper: Advanced Fault Detection in Power Transformers Using Improved Wavelet Analysis and LSTM Networks Considering Current Transformer Saturation and Uncertainties, Q. Alhamd, M. Saniei, S. G. Seifossadat, and E. Mashhour, 2024).
+
+* **Omission of Modern Deterministic Wavelet Baselines:** In Table 6.7, static classifiers (Wavelet-ANN and Wavelet-RF) already capture most of the accuracy gain over the legacy 1958 harmonic-restraint relay, so the authors might consider adding a modern deterministic wavelet-domain baseline—such as the Boundary Discrete Wavelet Transform (BDWT) or Clarke-wavelet schemes already cited in Section 2.3—to isolate the benefit of the LSTM sequence model from the wavelet representation itself (Reference Paper: A new approach to transformer differential protection, R. L. Sharp and W. E. Glassburn, 1958; Reference Paper: Power transformer differential protection using the boundary discrete wavelet transform, R. P. Medeiros, F. B. Costa, and K. M. Silva, 2016; Reference Paper: A Clarke-Wavelet-Based Time-Domain Power Transformer Differential Protection, R. P. Medeiros, F. B. Costa, K. M. Silva, J. J. Chavez, J. R. Lima Junior, and M. Popov, 2022).
+
+* **Single-Plant Software Simulation Scope vs. Hardware-in-the-Loop Validation:** While closed-loop ONNX co-simulation in Simulink is a commendable software-in-the-loop verification step using standard vendor tools, all evaluations are confined to virtual simulation time on a single synthetic 300 MVA plant; validating across multi-topology benchmarks and discussing physical Hardware-in-the-Loop (HIL) testing on RTDS/OPAL-RT platforms would strengthen claims of industrial real-time readiness (Reference Paper: Interoperability Between Deep Learning Toolbox, TensorFlow, PyTorch, and ONNX, The MathWorks, Inc., 2024; Reference Paper: Integration of Accelerated Deep Neural Network into Power Transformer Differential Protection, S. Afrasiabi, M. Afrasiabi, B. Parang, and M. Mohammadi, 2020; Reference Paper: A Clarke-Wavelet-Based Time-Domain Power Transformer Differential Protection, R. P. Medeiros, F. B. Costa, K. M. Silva, J. J. Chavez, J. R. Lima Junior, and M. Popov, 2022).
+
+* **Bibliographic and Citation Integrity Discrepancies:** Several in-text citations in Chapter 2 do not match the methods of their referenced bibliography entries (e.g., citing microgrid EWT and energy-tracking papers for core flux equations, or WPT/ANN papers for DFT limitations), multiple bibliography entries contain inaccurate metadata (venue names, volume/page numbers, or author lists), and nine listed references are never cited in the text; a thorough audit of all 40 references and the List of Publications is recommended.
+
+
+
+## Potential Issues And Suggestions
+
+### [Front Matter, Abstract, and Chapter 1: Introduction] (Pages: 1-23)
+
+#### Potential Mistakes and Improvements
+
+
+
+1. **Physical Unit Discrepancy for Log-Compressed Wavelet Energy Features ($E_A, E_D$)**
+
+   - **Location:** List of Symbols / Notations (Page ix, PDF page 10) and Chapter 3, Section 3.6.1 (Page 13, PDF page 32).
+
+   - **Potential Concern:** In the List of Symbols, the approximation and detail sub-band energy features ($E_A, E_D$) are assigned the physical unit $\text{pu}^2$. This raises two potential consistency concerns when compared against the rest of the thesis:
+
+     - First, according to the Abstract (Page vii, PDF page 8) and Chapter 4 (Section 4.4, Table 4.2, p. 17), the relay signal-processing chain operates on CT secondary currents scaled to a calibrated secondary base of $I_{\text{nom,sec}} = 0.9302\text{ A}$ (where differential and restraint currents $I_d$ and $I_r$ are expressed in secondary Amperes in the List of Symbols).
+
+     - Second, and more importantly, Section 3.6.1 defines the level-$k$ wavelet detail energy as the uncompressed sum of squares $E_{Dk} = \sum_n |d_k[n]|^2$ (which carries squared current units), Figure 3.4 plots $\log_{10}(E_A)$ and $\log_{10}(E_D)$, and Chapter 5 (Section 5.4, p. 22) explicitly defines the actual extracted wavelet sub-band features fed into the neural network using natural-log compression: $E = \ln\left(1 + \sum |c[k]|^2\right)$. Because the natural logarithm $\ln(1 + \cdot)$ is applied to the squared coefficient sum, the resulting feature $E$ is mathematically dimensionless rather than carrying units of $\text{pu}^2$. Clarifying in the symbol table and Section 3.6.1 whether $E_A, E_D$ denote the raw unlogged sub-band energies or the dimensionless logarithmically compressed features fed into the LSTM would improve mathematical consistency between Chapters 3 and 5.
+
+
+
+2. **Three-Phase Yd1 Vector Group Phase-Shift and CT Ratio Representation in Equation (1.1) and Figure 1.1**
+
+   - **Location:** Chapter 1, Section 1.1 (Page 1, PDF page 20) and Figure 1.1 (Page 2, PDF page 21).
+
+   - **Potential Concern:** 
+
+     - In Section 1.1, Equation (1.1) introduces the ideal differential current balance as $I_{\text{primary}} - \frac{I_{\text{secondary}}}{n} \approx 0$ using scalar/magnitude notation and the power transformer turns ratio $n$. While acceptable as an intuitive single-phase illustration of Kirchhoff's Current Law, for the three-phase $300\text{ MVA}$, $230/11\text{ kV}$, Yd1 (wye–delta) transformer studied in this thesis, the primary and secondary line currents exhibit a $-30^\circ$ phase displacement in addition to the turns ratio. As properly formalized later in Equations (3.1) and (4.1), differential relays sum the vector-group-compensated and CT-scaled secondary currents ($\mathbf{I}_d = |\dot{\mathbf{I}}_{\text{HV}}' + \dot{\mathbf{I}}_{\text{LV}}'|$). Briefly noting in Section 1.1 that Equation (1.1) represents a simplified single-phase scalar idealization prior to three-phase vector-group compensation would prevent confusion when comparing it with Figure 1.1 and Chapter 3.
+
+     - In Figure 1.1 (Page 2, PDF page 21), the single-line schematic labels the primary and secondary current transformers as $\text{CT}_{\text{HV}}$ ($230\text{ kV} / 1\text{ A}$) and $\text{CT}_{\text{LV}}$ ($11\text{ kV} / 1\text{ A}$). Current transformer ratios are physically current-to-current transformations (specified in Table 4.2, p. 17 as $809.6:1$ on the HV side and $16,925:1$ on the LV side, yielding a calibrated nominal secondary current of $0.9302\text{ A}$), rather than voltage-to-current ratios ($\text{kV}/\text{A}$). Updating the CT labels in Figure 1.1 to reflect their current transformation ratios would align the schematic with standard relaying notation and Table 4.2.
+
+
+
+---
+
+
+
+#### Minor Corrections and Typos
+
+
+
+1. **Page ii (PDF page 3), Approval Certificate:** At the end of the main certification paragraph, the heading *"Supervisor (Chairman):"* runs directly into the paragraph text on the same line (`"...approved by the undersigned examiners. Supervisor (Chairman):"`). Placing *"Supervisor (Chairman):"* on a new line—consistent with *"Head of the Department (Member, Ex-officio):"*, *"Internal Examiner (Member):"*, and *"External Examiner (Member):"* below it—will fix the layout.
+
+2. **Page ii (PDF page 3) & Page iv (PDF page 5) vs. Page vi (PDF page 7), Supervisor Affiliation:** On the Approval Certificate (p. ii) and Declaration (p. iv), the thesis supervisor (Cdre A N M Didarul Alam) is listed as *"Dean, Faculty of Maritime Business Studies, Bangladesh Maritime University"*, whereas in the Acknowledgements (p. vi, second paragraph) he is listed as *"Professor, Department of Electrical, Electronic and Communication Engineering"*. Verify that his formal title and institutional affiliation are consistent across all front-matter pages.
+
+3. **Page vii (PDF page 8), Abstract:** Numbered bibliographic bracket citations (`[4]`, `[3]`) are included in the first paragraph of the Abstract (with `[4]` cited three times in four sentences). Standard thesis and IEEE guidelines generally require abstracts to be self-contained without numbered bibliographic references.
+
+4. **Page 1 (PDF page 20), Section 1.1 vs. Page xi (PDF page 12), List of Abbreviations:** In Section 1.1, the text introduces the abbreviation `"harmonic restraint (HR)"` (which is not used again in the document), whereas the List of Abbreviations defines `CHR` for `"Current Harmonic Restraint"`. Aligning the abbreviation across both locations is recommended.
+
+5. **Page 2 (PDF page 21), Figure 1.1:** Several text annotations inside the schematic diagram and its legend (such as the internal winding fault percentage labels and legend descriptions) are rendered at a very small font size relative to the page width and are difficult to read without high magnification. Increasing the font size of the internal diagram annotations would improve visual clarity.
+
+
+
+### [Chapter 2: Literature Review and Bibliography] (Pages: 24-27, 57-60)
+
+#### Potential Mistakes and Improvements
+
+
+
+- **Mismatched In-Text Citations and Methodological Descriptions in Sections 2.2.2, 2.3, and Table 2.1:** Several in-text citations in Chapter 2 do not correspond to the methods or topics of the referenced entries in the Bibliography, which is a potential concern for citation integrity and accuracy of attribution:
+
+  - In **Section 2.2.2** (p. 6, PDF p. 25), the text discusses equivalent-circuit methods that *"detect internal faults when terminal measurements violate core magnetic flux equations [29], but require high-accuracy voltage transducers and detailed manufacturer design constants [30]."* However, in the Bibliography (p. 40, PDF p. 59), Ref. `[29]` (Bukhari et al., 2022) is an Empirical Wavelet Transform (EWT) and LSTM protection scheme for microgrids, and Ref. `[30]` (Murugan et al., 2017) is an energy feature tracking approach for transformer differential protection; neither work develops core magnetic flux or equivalent-circuit equations.
+
+  - In **Section 2.3** (p. 6, PDF p. 25), the text states that *"The Discrete Fourier Transform provides frequency resolution at the expense of time localization, limiting its ability to capture transient inrush and fault waveforms [31, 32]."* In the Bibliography (p. 40, PDF p. 59), Ref. `[31]` (Hegazy and Salama, 2020) is a wavelet packet transform (WPT) scheme and Ref. `[32]` (Kasztenny and Rosolowski, 2018) is an adaptive neural network protection scheme, rather than references on Discrete Fourier Transform limitations.
+
+  - In **Section 2.3** (p. 6, PDF p. 25) and **Table 2.1** (p. 8, PDF p. 27), Ref. `[6]` (Ozgonenel and Karagol, 2013) is cited as an example of *"Daubechies-4 (db4) wavelets"* and listed in Table 2.1 under the approach *"db4 DWT"*. However, the bibliographic entry for `[6]` (p. 38, PDF p. 57) is titled *"A new transformer differential protection scheme based on hyperbolic S-transform."* (Note: Ozgonenel and Karagol published a separate paper on wavelet-based transformer differential protection in *Electric Power Systems Research* in 2014, which may have been conflated with their 2013 hyperbolic S-transform paper). The authors should verify which paper is intended and align the narrative, Table 2.1, and the bibliography entry accordingly.
+
+
+
+- **Bibliographic Accuracy and Verification of Reference Metadata:** Several entries in the Bibliography (pp. 38–41, PDF pp. 57–60) contain metadata discrepancies (such as venue names, volume/page numbers, or author lists) when cross-checked against standard bibliographic records, which is a potential concern for reproducibility and citation verifiability:
+
+  - **Ref. `[1]`** (p. 38, PDF p. 57): Listed as published in *IEEE Access*, vol. 12, pp. 13450–13465, 2024; this title by Q. Alhamd, M. Saniei, S. G. Seifossadat, and E. Mashhour was published in *Algorithms* (MDPI), vol. 17, no. 9, art. 397, 2024 (DOI: `10.3390/a17090397`).
+
+  - **Ref. `[3]`** (p. 38, PDF p. 57): Listed as published in *Energies*, vol. 16, no. 8, p. 3521, 2023; this paper by W. A. Atiyah, S. Karimi, and M. Moradi was published in *Journal of Electrical Systems*, vol. 20, pp. 2557–2572, 2024 (DOI: `10.52783/jes.3163`).
+
+  - **Ref. `[24]`** (p. 40, PDF p. 59): Listed as A. Oztekin, O. Kilic, and S. Bircan, *"Power transformer differential protection with wavelet transform and difference function," Energy Sci. Technol. Int. J.*, vol. 13, no. 1, pp. 45–58, 2025; the corresponding 2025 paper on transformer differential protection with wavelet transform and difference function is authored by M. Oztekin, S. Karagol, and O. Ozgonenel.
+
+  - **Ref. `[28]`** (p. 40, PDF p. 59): Listed with authors *"S. Hayder, K. S. R. Rao, and S. S. Yadav"* and pp. 1976–1983; the 2008 *IEEE Trans. Power Del.* (vol. 23, pp. 568–575) paper *"Universal adaptive differential protection for regulating transformers"* was authored by T. Hayder, U. Schaerli, K. Feser, and L. Schiel.
+
+  - **Ref. `[29]`** (p. 40, PDF p. 59): Listed with authors *"M. Bukhari, M. Asghar, and A. Ahmad"* and issue 14, p. 5095; the 2022 *Energies* paper with this exact title was authored by S. B. A. Bukhari, A. Wadood, T. Khurshaid, K. K. Mehmood, et al.
+
+  - Several other entries (including Refs. `[2]`, `[11]`, `[12]`, `[23]`, `[30]`, `[31]`, `[32]`, and `[33]`) also exhibit mismatched or unverifiable volume, page, or author metadata. The authors should audit all 40 bibliography entries against their original publisher records/DOIs.
+
+
+
+- **Uncited Bibliography Entries and Scope of the Literature Synthesis:** Out of the 40 references listed in the Bibliography (pp. 38–41, PDF pp. 57–60), a substantial subset—specifically Refs. `[10]`, `[22]`, `[24]`, `[25]`, `[26]`, `[27]`, `[28]`, `[33]`, and `[34]`—are never cited anywhere in Chapter 2 or the rest of the thesis (and Refs. `[14]` and `[17]` are cited only briefly in Chapter 1). Furthermore, while Section 2.3 (p. 6, PDF p. 25) highlights the Boundary Discrete Wavelet Transform (BDWT) and Clarke-wavelet time-domain formulations by Medeiros et al. `[38, 39]` as important advances addressing window-edge distortion, neither `[38, 39]` nor the statistical/waveform methods `[35–37]` (Section 2.5.2) are included in the comparative synthesis in Table 2.1 (p. 8, PDF p. 27). Integrating the uncited bibliography works (or removing unused entries) and including modern deterministic wavelet baselines `[38, 39]` in Table 2.1 is a potential improvement that would strengthen the literature synthesis.
+
+
+
+- **Inconsistent Characterization of Reference `[23]` Across Section 2.5.1, Table 2.1, and Chapter 6:** In Section 2.5.1 (p. 7, PDF p. 26), Ref. `[23]` (Lin et al., 2025, *"Dual deep neural network for discriminating internal faults and inrush currents..."*) is cited solely to support the statement that *"comparisons of RNN/GRU/LSTM favor the LSTM for complex transients [23]."* However, in Section 6.10 (p. 31, PDF p. 50) and Table 6.7 (p. 32, PDF p. 51), Ref. `[23]` is implemented and benchmarked specifically as a `"Wavelet-GRU with self-attention"` baseline. Additionally, in Table 2.1 (p. 8, PDF p. 27), the `Approach` and `Classifier / method` columns for `[23]` are listed as `"Dual DNN"` and `"Inrush vs. internal"` (which states the classification task rather than the classifier architecture, reversing the column convention used in the rest of the table). Clarifying the specific architecture of `[23]` consistently across Section 2.5.1 and Table 2.1 (and similarly noting in Section 2.5.1 that Ref. `[3]` combines 1D-CNN and LSTM, as stated in its bibliography title) would improve cross-chapter consistency.
+
+
+
+- **Unlabeled Metric Pair in Table 2.1 for the Proposed Work:** In Table 2.1 (p. 8, PDF p. 27), the performance column header is labeled `Acc. (%)`, and all prior literature rows report a single overall classification accuracy figure. However, the bottom row (`This work`) reports `99.01 / 99.66` without specifying in the table or a table footnote that these two numbers represent **Dependability (%) / Security (%)** rather than overall accuracy (which is reported as `99.39%` or `99.07%` in Chapter 6). Adding an explicit label or footnote in Table 2.1 is recommended so readers do not misinterpret the two values.
+
+
+
+#### Minor Corrections and Typos
+
+
+
+- **Page 5 (PDF p. 24), Section 2.2.1, Equation (2.1):** In Equation (2.1), the fundamental and second-harmonic differential current components are denoted as $I_1$ and $I_2$, and the threshold as $k_{threshold}$, whereas the List of Symbols (p. ix, PDF p. 10) and subsequent chapters define these quantities as $I_{d,fund}$, $I_{d,2nd}$, and $k_2 = I_{d,2nd}/I_{d,fund}$ (further noting in Section 5.4, p. 22, that the neural network feature $k_{2,\varphi} = |I_{d,2nd}|/(|I_{d,fund}| + 10^{-4})$ uses the unscaled ratio in $[0, 2.0]$ rather than a percentage). Aligning the notation across these sections with the global symbol table would improve consistency.
+
+
+
+- **Page 38 (PDF p. 57), Section Heading Mismatch:** The heading on page 38 reads `BIBLIOGRAPHY`, whereas the Table of Contents (p. xvi, PDF p. 17) lists this section as `References`.
+
+
+
+### [Chapter 3: Mathematical Modeling and Theoretical Framework] (Pages: 28-33)
+
+#### Potential Mistakes and Improvements
+
+
+
+1. **Reference Base, Dimensional Consistency, and Impedance Quadrature in the Maximum Detectable Fault Resistance Derivation (Section 3.2.3, Equations 3.3–3.4, Page 10 [PDF Page 29]):**
+
+   In Section 3.2.3, the symmetrical-component single-line-to-ground (SLG) fault current is written as
+
+   $$I_f = \frac{3V_f}{|Z_1 + Z_2 + Z_0 + 3R_f|} \quad (3.3)$$
+
+   and the maximum fault resistance detectable by conventional percentage differential protection is approximated by setting $I_d = I_{\text{pickup}}$:
+
+   $$R_{f,\max} \approx \frac{V_f}{I_{\text{pickup}}} - \frac{|Z_1 + Z_2 + Z_0|}{3}, \quad (3.4)$$
+
+   followed by the conclusion that $R_f \ge 1.2\,\Omega$ in the $300\text{ MVA}$ plant leaves the fault undetectable by standard 87T elements ($I_d < I_{\text{pickup}}$). There are three potential mathematical and physical concerns with this derivation as written:
+
+   - **Primary vs. Secondary / Per-Unit Scaling and Winding Reference Frame:** In the List of Symbols (Page ix [PDF Page 10]) and Figure 3.1 (Page 10 [PDF Page 29]), $I_{\text{pickup}}$ is specified in CT secondary amperes ($I_{\text{pickup}} = 0.3\text{ A}$, or $0.30\text{ pu}$ of the $0.9302\text{ A}$ rated secondary base in Figure 6.2 and Table 4.2), whereas $V_f$, $Z_1, Z_2, Z_0$, and $R_f$ in Equations (3.3)–(3.4) are primary phase-to-ground voltage and ohmic impedance quantities in a dual-voltage ($230\text{ kV} / 11\text{ kV}$) transformer. Specifically, the stated limit $R_{f,\max} \approx 1.2\,\Omega$ only holds when evaluated on the $11\text{ kV}$ low-voltage (LV) primary base ($V_{f,\text{LV}} = 11\text{ kV}/\sqrt{3} \approx 6{,}351\text{ V}$, $Z_{\text{base,LV}} = 0.4033\,\Omega$, $I_{\text{FLA,LV}} = 15{,}746\text{ A}$, where a $0.30\text{ pu}$ pickup corresponds to $I_{\text{pickup,LV}} \approx 4{,}724\text{ A}$ primary and $V_{f,\text{LV}} / I_{\text{pickup,LV}} \approx 1.34\,\Omega$; on the $230\text{ kV}$ HV side, $Z_{\text{base,HV}} = 176.33\,\Omega$, scaling the ohmic threshold by $(230/11)^2 \approx 437\times$). Furthermore, passing from the numerator $3V_f$ in Equation (3.3) to $V_f / I_{\text{pickup}}$ in Equation (3.4) implicitly equates $I_{\text{pickup}}$ to $I_f / 3$ (the sequence current $I_{a1} = I_{a2} = I_{a0}$) rather than the total fault current $I_f$, without accounting for the CT turns ratio $N_{CT}$ or the $1/\sqrt{3}$ Clarke delta-to-wye compensation matrix applied to the LV line currents (Equation 4.1, Page 16 [PDF Page 35]).
+
+   - **Delta-Connected LV Winding Zero-Sequence Topology:** Because the $11\text{ kV}$ LV winding of the $\text{Yd1}$ transformer is delta-connected, the zero-sequence network is isolated ($Z_0 \to \infty$) for ungrounded internal LV single-line-to-ground faults, whereas phase-to-phase faults on the delta winding (such as those plotted in Figure 6.2) follow $I_f = \sqrt{3}V_f / |Z_1 + Z_2 + R_f|$.
+
+   - **Collinear Impedance Approximation:** Passing from Equation (3.3) to Equation (3.4) replaces $|Z_1 + Z_2 + Z_0 + 3R_f|$ with the scalar sum $|Z_1 + Z_2 + Z_0| + 3R_f$. Because the system and transformer sequence impedances $Z_1, Z_2, Z_0$ are predominantly inductive ($jX_{\Sigma}$) while $3R_f$ is purely resistive, they add in quadrature: $\sqrt{(R_{\Sigma} + 3R_f)^2 + X_{\Sigma}^2}$.
+
+   - **Suggested Improvement:** Explicitly state the per-unit / primary-referred conversion and the winding side ($11\text{ kV}$ LV base) used to obtain $R_{f,\max} \approx 1.2\,\Omega$, clarify the mapping between primary fault current $I_f$ and compensated relay differential current $I_d$, and note the high-$R_f$ collinear approximation.
+
+
+
+2. **Missing Explicit Piecewise Formulation of the Dual-Slope Operating Characteristic and Graphical / Unit Alignment (Section 3.2.2 and Figure 3.1, Pages 9–10 [PDF Pages 28–29]):**
+
+   - **Potential Concern:** Section 3.2.2 states that the dual-slope restraint characteristic defines the operating threshold $I_{op}(I_r)$ with initial slope $S_1 = 15\%$ and second slope $S_2 = 40\%$ (Figure 3.1) and generates an 87T trip vote when $I_d > I_{op}(I_r)$, but omits the explicit piecewise mathematical equation for $I_{op}(I_r)$ in terms of $I_{\text{pickup}}$, $S_1$, $S_2$, and the knee-point restraint current ($I_{\text{rest}} = 2.0\text{ A}$). In Figure 3.1, the plotted boundary starts at $(I_r = 0, I_d = 0.3\text{ A})$, passes through the knee point at $(I_r = 2.0\text{ A}, I_d = 0.5\text{ A})$, and reaches $(I_r = 6.0\text{ A}, I_d = 2.1\text{ A})$. While the second segment has a slope of $(2.1 - 0.5)/(6.0 - 2.0) = 0.40$ ($S_2 = 40\%$), the first sloped segment as drawn reaching $0.5\text{ A}$ at $I_r = 2.0\text{ A}$ does not match a $15\%$ slope starting from $0.3\text{ A}$ at $I_r = 0$ (which would reach $0.6\text{ A}$ at $I_r = 2.0\text{ A}$, or $0.45\text{ A}$ if flat up to $I_r = 1.0\text{ A}$). Furthermore, Figure 3.1 labels the pickup in secondary amperes ($I_{\text{pickup}} = 0.3\text{ A}$, which equals $0.3 / 0.9302 = 0.3225\text{ pu}$ on the calibrated CT secondary base in Table 4.2), whereas Figure 6.2 (Page 30 [PDF Page 49]) labels the threshold as `87T pickup 0.30 pu` ($0.279\text{ A}$ secondary).
+
+   - **Suggested Improvement:** Provide the explicit piecewise mathematical function for $I_{op}(I_r)$ in Section 3.2.2, align the plotted knee-point ordinate in Figure 3.1 with $S_1 = 15\%$, and clarify whether $0.30$ is enforced in per-unit of $I_{\text{nom,sec}}$ ($0.9302\text{ A}$) or directly in secondary amperes.
+
+
+
+3. **Turn-Fraction Fault Impedance Notation and Autotransformer Voltage Scaling in Internal Winding Faults (Section 3.5, Equation 3.8, Page 12 [PDF Page 31]):**
+
+   - **Potential Concern:** Section 3.5 states that when an internal fault occurs at turn fraction $p \in (0, 1]$ of the winding, the fault impedance scales quadratically with the shorted turns as
+
+     $$Z_{\text{fault}}(p) = p^2 Z_t + R_f, \quad (3.8)$$
+
+     and immediately follows with: *"Using symmetrical components, an SLG fault yields $I_{a1} = I_{a2} = I_{a0} = V_f / (Z_1 + Z_2 + Z_0 + 3Z_f)$."* This formulation presents two ambiguities:
+
+     1. *Undefined and Inconsistent Impedance Symbols:* The transformer winding impedance symbol $Z_t$ in Equation (3.8) and the fault impedance symbol $Z_f$ in the inline equation are not defined in the text or the List of Symbols, leaving it ambiguous whether $Z_f \equiv R_f$ (matching Equation 3.3, where $Z_1, Z_2, Z_0$ already contain the winding impedance) or $Z_f \equiv Z_{\text{fault}}(p)$ (which would double-count the transformer impedance if $Z_1, Z_2, Z_0$ also include it).
+
+     2. *Turn-Fraction Driving Voltage and Lumped-Parameter Scope:* While the self-impedance of a shorted winding section scales approximately as $p^2 Z_t$, an internal turn-to-ground fault at fraction $p$ of a grounded winding acts as an autotransformer where the pre-fault driving voltage at the fault point also scales with $p$ ($V_f(p) = p V_{\text{terminal}}$) and the resulting fault current referred to the terminal CTs scales by the turns ratio. Substituting $Z_f = p^2 Z_t + R_f$ into $V_f / (Z_1 + Z_2 + Z_0 + 3Z_f)$ with an unscaled terminal voltage $V_f$ would imply a non-vanishing fault current $V_f / (Z_1 + Z_2 + Z_0 + 3R_f)$ even as $p \to 0$. Moreover, as noted in Sections 1.5.1 and 7.4, inter-turn faults are excluded from the two-winding lumped-parameter model in Chapter 4 (where simulated internal faults are terminal faults with $p = 1$).
+
+   - **Suggested Improvement:** Define $Z_t$ and $Z_f$ explicitly, clarify how the turn fraction $p$ scales both the driving voltage and the referred terminal current, and note that $p = 1$ applies to the terminal fault scenarios simulated in Chapter 4.
+
+
+
+4. **Exponential Decay Applied to Remanent Core Flux in Equation (3.5) and Continuity of the Nonlinear CT Excitation Curve in Equation (3.6) (Sections 3.3.1 and 3.4, Pages 10–11 [PDF Pages 29–30]):**
+
+   - **Core Flux Decay and Peak Flux Approximation (Equation 3.5):** Under sinusoidal excitation $v(t) = V_m \sin(\omega t + \alpha)$, Equation (3.5) expresses the instantaneous core flux as
+
+     $$\phi(t) = -\Phi_m \cos(\omega t + \alpha) + \Phi_m \cos(\alpha)e^{-t/\tau} + \phi_r e^{-t/\tau}. \quad (3.5)$$
+
+     In ideal Faraday integration $\phi(t) = \phi_r + \frac{1}{N}\int_0^t v(u)\,du$, the remanent flux $\phi_r$ enters as a static initial magnetic condition prior to core saturation, while the circuit $L/R$ damping factor $e^{-t/\tau}$ governs the decay of the total DC flux offset $(\Phi_m \cos\alpha + \phi_r)e^{-t/\tau}$ once the core saturates and draws magnetizing current through the primary winding resistance. Furthermore, on Page 11 [PDF Page 30], the worst-case peak flux ($\alpha = 0, \phi_r = +\Phi_m$) is written as $\phi_{\text{peak}} = 2\Phi_m + \phi_r = 3\Phi_m$. Obtaining this exact expression from Equation (3.5) requires evaluating $\phi(t)$ one half-cycle after energization ($\omega t = \pi$, or $t = 10\text{ ms}$ at $50\text{ Hz}$) under the lightly damped approximation $e^{-\pi/(\omega\tau)} \approx 1$ ($\tau \gg T/2$). Stating this half-cycle lightly damped condition explicitly is recommended.
+
+   - **Origin Discontinuity in the CT Excitation Model (Equation 3.6):** Equation (3.6) models the nonlinear CT magnetizing current as a function of flux linkage $\lambda = N_2 \phi$:
+
+     $$i_e(\lambda) = A e^{B|\lambda|}\operatorname{sign}(\lambda) + C\lambda. \quad (3.6)$$
+
+     Because $e^{B|\lambda|} \to 1$ as $\lambda \to 0$, this formula has a step discontinuity of $2A$ at the origin ($\lim_{\lambda \to 0^{\pm}} i_e(\lambda) = \pm A$ for $A \neq 0$). If an anhysteretic single-valued saturation curve passing continuously through the origin ($i_e(0) = 0$) is intended, the standard exponential form is $i_e(\lambda) = A(e^{B|\lambda|} - 1)\operatorname{sign}(\lambda) + C\lambda$; conversely, if $A$ is intended to represent a coercive hysteresis offset, this should be stated explicitly along with the units of the fitting parameters $A, B, C$.
+
+
+
+5. **Loss Weighting Rationale and Adaptive Pickup Notation (Section 3.6, Pages 13–14 [PDF Pages 32–33]):**
+
+   - **Positive-Class Loss Weighting (Section 3.6.1):** Briefly stating how the positive-class weight $w = 1.4155$ in Equation (3.9) is computed from the training class ratio ($N_{\text{healthy}} / N_{\text{fault}}$) and asymmetric Bayes cost ($L_{FN} \gg L_{FP}$) would improve transparency.
+
+   - **Adaptive Thresholding Terminology and Symbol Collision (Section 3.6.3):** In the adaptive pickup expression $I_{\text{pickup}}(t) = I_{p0} + k_1 I_r(t) + k_2 \hat{\sigma}_d(t)$ on Page 14 [PDF Page 33], $\hat{\sigma}_d(t)$ is described in the text as the "differential current variance" rather than the standard deviation (which is required for dimensional consistency with amperes), and the coefficient $k_2$ reuses the symbol already assigned to the second-harmonic restraint ratio $k_2$ in the List of Symbols (Page ix [PDF Page 10]) and Section 3.3.2.
+
+
+
+---
+
+
+
+#### Minor Corrections and Typos
+
+
+
+1. **Page 11 [PDF Page 30], Figure 3.2(b):** In the right subplot ("Asymmetric Magnetizing Inrush Waveform"), the text annotations `"High Peak (Unidirectional offset)"` and `"Dead-Angle Block"` overlap with the vertical lines of the plotted inrush current waveform.
+
+2. **Pages 11–12 [PDF Pages 30–31], Section 3.4 (Notation and Undefined Parameters in Equations 3.6–3.7):** The text preceding Equation (3.6) writes $I_s = I'_p - I_e$ in uppercase (phasor/RMS notation) before switching to lowercase instantaneous quantities $i_e(\lambda)$ and $i_p(t)$ in Equations (3.6)–(3.7). Additionally, the parameters $I_m$ (peak primary fault current), $\alpha$ (fault inception angle, listed as $\varphi_i$ on Page x [PDF Page 11]), $\varphi$ (fault impedance angle), and $\tau_f$ (fault DC time constant) in Equation (3.7) are not defined in the accompanying text.
+
+3. **Page 12 [PDF Page 31], Figure 3.3:** In subplot (a) ("CT Equivalent Electrical Circuit"), the text inside the red `"Nonlinear Core (B-H)"` and blue `"Burden Z_b"` blocks overflows the rectangular borders and overlaps the circuit lines, and the label $i_{\text{primary}}(I_p)$ overlaps the primary resistance $R_p$. In subplot (b), the annotation `"Severe Saturation Clipping"` overlaps the blue secondary current curve.
+
+4. **Page 13 [PDF Page 32], Figure 3.4:**
+
+   - In the legend, the red boundary label renders raw uncompiled LaTeX code: `Dependability-Biased Boundary (\lambda_{FN} \gg \lambda_{FP})` instead of $(\lambda_{\text{FN}} \gg \lambda_{\text{FP}})$, and uses $\lambda_{FN}, \lambda_{FP}$ whereas Section 3.6.1 uses $L_{FN}, L_{FP}$.
+
+   - In the plot area, the annotations `"Dependability-Biased Shift"` and `"Internal Fault (Expanded Trip Zone)"` overlap directly with the scatter data points and decision boundaries.
+
+   - The axis labels read `log_{10}(E_A) (pu^2)` and `log_{10}(E_D) (pu^2)`; because a logarithm is dimensionless, this is more accurately written as $\log_{10}(E_A / \text{pu}^2)$ or `"Log10 Approximation-Energy Feature (E_A in pu^2)"`.
+
+
+
+### [Chapter 4: Power System Simulation Model and Verified Dataset Compilation] (Pages: 34-37)
+
+#### Verification Summary of Electrical Parameters
+
+
+
+The fundamental power-system calculations in Chapter 4 (Sections 4.2–4.4 and Tables 4.1–4.2) were verified and found to be mathematically consistent:
+
+
+
+- **Transformer Ratings & Base Quantities (Section 4.3, Table 4.1):** For $S_{\text{nom}} = 300\text{ MVA}$, $V_{\text{HV}} = 230\text{ kV}$, and $V_{\text{LV}} = 11\text{ kV}$, the full-load line currents $I_{\text{FLA,HV}} = \frac{300\times 10^6}{\sqrt{3}\times 230\times 10^3} = 753.07\text{ A}$ ($\approx 753.1\text{ A}$) and $I_{\text{FLA,LV}} = \frac{300\times 10^6}{\sqrt{3}\times 11\times 10^3} = 15,745.9\text{ A}$ ($\approx 15,746\text{ A}$), as well as the base impedances $Z_{\text{base,HV}} = \frac{230^2}{300} = 176.33\,\Omega$ and $Z_{\text{base,LV}} = \frac{11^2}{300} = 0.4033\,\Omega$, are exact.
+
+
+
+- **Thévenin Equivalents & Short-Circuit Levels (Section 4.4):** On the HV side ($Z_{\text{th,HV}} = 0.5 + j15.0\,\Omega$, $|Z_{\text{th,HV}}| = 15.0083\,\Omega$), the short-circuit level is $\text{SCL}_{\text{HV}} = \frac{230^2}{15.0083} = 3,524.7\text{ MVA}$ ($\approx 3,524\text{ MVA}$) and the available fault current is $I_{\text{sc,HV}} = \frac{230\text{ kV}}{\sqrt{3}\times 15.0083\,\Omega} = 8.848\text{ kA}$ ($\approx 8.84\text{ kA}$). On the LV side ($Z_{\text{th,LV}} = 0.01 + j0.10\,\Omega$, $|Z_{\text{th,LV}}| = 0.1005\,\Omega$), $\text{SCL}_{\text{LV}} = \frac{11^2}{0.1005} = 1,204.0\text{ MVA}$ and $I_{\text{sc,LV}} = \frac{11\text{ kV}}{\sqrt{3}\times 0.1005\,\Omega} = 63.195\text{ kA}$ ($\approx 63.2\text{ kA}$).
+
+
+
+- **CT Ratios and Secondary Base (Table 4.2):** The effective CT ratios ($809.6:1$ HV and $16,925:1$ LV) map the respective full-load primary line currents to an identical nominal secondary base current: $I_{\text{nom,sec}} = \frac{753.07}{809.6} = \frac{15,745.9}{16,925} = 0.9302\text{ A}$. Because the $1/\sqrt{3}$ scaling in Equation (4.1) has unit positive-sequence gain ($|\frac{1}{\sqrt{3}}(1 - e^{-j120^\circ})| = 1$), applying Equation (4.1) numerically to the LV CT secondary currents preserves the $0.9302\text{ A}$ nominal magnitude.
+
+
+
+---
+
+
+
+#### Potential Mistakes and Improvements
+
+
+
+1. **Inconsistent Dataset Accounting Between Individual Fault Category Counts, Segregated Undetectable Faults, and Figure 4.2 (Abstract, Sections 4.5–4.6, Figure 4.2, Table 4.3, and Section 6.8)**
+
+   A substantive accounting discrepancy exists between the individual fault category counts and the stated dataset totals across the Abstract (page vii / PDF page 8), Section 4.5 (page 17 / PDF page 36), Section 4.6 (pages 17–18 / PDF pages 36–37), Figure 4.2 (page 18 / PDF page 37), Table 4.3 (page 18 / PDF page 37), and Section 6.8 (page 29 / PDF page 48):
+
+   - **Fault Category Sum vs. Stated Total (Definitive Discrepancy):** The Abstract and Section 4.6 state that the 3,218 usable traces evaluated in 5-fold cross-validation comprise 1,873 healthy traces, 1,251 detectable internal faults, and 94 segregated undetectable faults ($< 0.05\text{ pu}$), summing to $1,251 + 94 = 1,345$ total internal fault traces. In Section 4.5 and Table 4.3, the individual trace counts listed for the nine Healthy (No-Trip) scenario categories sum to $302 + 200 + 240 + 80 + 210 + 440 + 60 + 241 + 100 = 1,873$, which matches the stated Healthy total. However, the individual trace counts listed for the seven Faults (Trip) scenario categories in Section 4.5, Table 4.3, and Table 6.2 sum to:
+
+     $$506 + 198 + 153 + 80 + 80 + 121 + 113 = 1,251\text{ traces},$$
+
+     which is 94 traces fewer than the stated Faults total of $1,345$ in the Section 4.5 heading ("Internal Fault Regimes (1,345 traces)") and the summary row of Table 4.3 ("3,218 traces (1,873 Healthy / 1,345 Faults)"). Thus, the 16 rows in Table 4.3 and Table 6.2 actually sum to $1,873 + 1,251 = 3,124\text{ traces}$, not $3,218$. The missing 94 traces correspond to the 94 internal faults segregated as physically undetectable ($\Delta I_d < 0.05\text{ pu}$, noted in Section 4.6). In Table 4.3, the row "Internal high-impedance faults ($R_f = 0.3\text{–}21\,\Omega$)" already reports the post-segregation count ($153$ detectable traces), while the table footer still sums to the pre-segregation total ($1,345$ Faults / $3,218$ Usable Traces). Adding a separate row in Table 4.3 for the 94 segregated undetectable traces (or listing both the $1,251$ detectable subtotal and $1,345$ total fault traces) is needed to make the table arithmetically self-consistent.
+
+   - **Origin of the 94 vs. 87 Segregated Undetectable Traces (Potential Concern):** Section 4.6 and the Abstract state that 94 internal faults exhibit a differential rise $< 0.05\text{ pu}$ and are segregated. However, when the high-impedance fault category ($R_f = 0.3\text{–}21\,\Omega$) is detailed in Section 6.8 (page 29) and plotted in Figure 4.2 (`Internal_HiZ` showing $60 \times 4 = 240$ traces), 240 internal high-impedance faults were simulated in total, yielding 153 detectable traces ($\ge 0.05\text{ pu}$) and 87 undetectable traces ($240 - 153 = 87$). This leaves $94 - 87 = 7$ segregated undetectable internal fault traces unaccounted for among the remaining six internal fault categories (as well as the specific categories of the 2 failed initialization traces out of $3,220$). Clarifying which categories originally contained the other 7 undetectable traces and the 2 failed initialization traces would ensure complete dataset provenance.
+
+   - **Mismatch Between Figure 4.2 and Table 4.3 Counts (Potential Concern):** In the left panel of Figure 4.2 (page 18), the bar counts across the four load bins appear to reflect the pre-top-up corpus ($3,040$ traces) rather than the final $3,218$-trace verified dataset in Table 4.3. For instance, in Figure 4.2, `Internal HiZ` sums to $60 \times 4 = 240$ (including the 87 undetectable traces excluded from Table 4.3), `External HiZ` sums to $14 \times 4 = 56$ (vs. 60 in Table 4.3), `External in inrush` sums to $23 \times 4 = 92$ (vs. 100), and `Normal` sums to $74 \times 4 = 296$ (vs. 302). Explicitly noting in Section 4.6 or the caption of Figure 4.2 how the 180 top-up traces and 94 segregated traces map between Figure 4.2 and Table 4.3 would prevent confusion.
+
+
+
+2. **Physical Explanation of the External LV Series Limiting Resistance $R_{\text{series}} = 0.05\,\Omega$ (Section 4.4)**
+
+   - **Potential Concern:** Section 4.4 (page 16 / PDF page 35) states: *"A series limiting resistance of $R_{\text{series}} = 0.05\,\Omega$ is inserted in the external LV bus network, limiting external through-fault currents to $\approx 1.5\text{ pu rms}$ to reflect stiff utility-feeder current limits..."* On the $300\text{ MVA}$, $11\text{ kV}$ LV base ($Z_{\text{base,LV}} = 0.4033\,\Omega$), a resistance of $R_{\text{series}} = 0.05\,\Omega$ corresponds to only $\frac{0.05}{0.4033} \approx 0.124\text{ pu}$. Combined with the HV Thévenin source impedance ($Z_{\text{th,HV}} = \frac{0.5 + j15.0}{176.33} \approx 0.0028 + j0.085\text{ pu}$) and the transformer leakage impedance ($Z_T = 0.0055 + j0.16\text{ pu}$), a solid three-phase external fault on the $11\text{ kV}$ bus fed through the transformer behind $R_{\text{series}}$ would see a total impedance of:
+
+     $$|Z_{\text{total}}| = |(0.0028 + 0.0055 + 0.124) + j(0.085 + 0.16)| = |0.1323 + j0.245| \approx 0.2785\text{ pu},$$
+
+     drawing an external through-fault current of $I_{\text{fault,pu}} \approx \frac{1.0}{0.2785} \approx 3.59\text{ pu rms}$. Limiting the external through-fault current to $\approx 1.5\text{ pu rms}$ requires a total path impedance of $\approx 0.67\text{ pu}$ ($\approx 0.27\,\Omega$ on the $11\text{ kV}$ base). Clarifying the exact topological placement of $R_{\text{series}}$ in Figure 4.1 (e.g., whether it operates in series with additional load/feeder impedance or a specific fault-branch topology) is needed so that readers can reproduce the stated $\approx 1.5\text{ pu rms}$ through-fault current.
+
+
+
+3. **Decimation Rate and Oversampling Factor vs. Solver Fixed Time Step (Sections 4.2 and 4.6)**
+
+   - **Potential Concern:** Section 4.2 (page 15 / PDF page 34) specifies that the discrete-time solver runs at a fixed step of $\Delta t = 1 \times 10^{-5}\text{ s}$ ($10\,\mu\text{s}$), corresponding to a simulation sampling rate of $f_{\text{sim}} = \frac{1}{\Delta t} = 100\text{ kHz}$ and a Nyquist frequency of $f_{\text{Nyquist}} = \frac{1}{2\Delta t} = 50\text{ kHz}$. First, Section 4.2 refers to $f_{\text{Nyquist}} = 50\text{ kHz}$ as a "$50\times$ oversampling margin over the $1.6\text{ kHz}$ relay rate," whereas the ratio of sampling frequencies ($100\text{ kHz} / 1.6\text{ kHz}$) and Nyquist frequencies ($50\text{ kHz} / 0.8\text{ kHz}$) is $62.5\times$. Second, Section 4.6 (page 17 / PDF page 36) states that the signal is "decimated from $100\text{ kHz}$ to $1.6\text{ kHz}$." Because $\frac{100,000}{1,600} = 62.5$ is a non-integer factor, uniform integer-factor decimation from a $10\,\mu\text{s}$ grid cannot directly yield a $1.6\text{ kHz}$ ($\Delta t_{\text{relay}} = 625\,\mu\text{s}$) sample stream without polyphase rational resampling ($2/125$), fractional-step interpolation, or a base solver step that evenly divides $625\,\mu\text{s}$ (such as $12.5\,\mu\text{s}$ or $6.25\,\mu\text{s}$). Briefly clarifying how the $62.5\times$ rate conversion from $100\text{ kHz}$ to $1.6\text{ kHz}$ is implemented in Simulink/MATLAB would improve the reproducibility of the preprocessing pipeline.
+
+
+
+4. **Phase-Displacement Polarity Convention and Terminology in Equation (4.1) (Section 4.3)**
+
+   - **Potential Concern:** Section 4.3 (page 16 / PDF page 35) states that the transformer has a Yd1 vector group ($-30^\circ$ lag displacement of LV behind HV) and introduces Equation (4.1) as a "Clarke-based transformation of the LV-side CT currents":
+
+     $$\begin{bmatrix} I'_A \\ I'_B \\ I'_C \end{bmatrix}_{\text{LV}} = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ -1 & 0 & 1 \end{bmatrix}\begin{bmatrix} I_a \\ I_b \\ I_c \end{bmatrix}_{\text{LV}}$$
+
+     For balanced positive-sequence LV currents ($I_a = I_m\angle 0^\circ$, $I_b = I_m\angle -120^\circ$, $I_c = I_m\angle +120^\circ$), this matrix yields $I'_A = \frac{1}{\sqrt{3}}(I_a - I_b) = I_a e^{+j30^\circ}$, advancing the LV current by $+30^\circ$ to bring it into phase ($0^\circ$) with the HV primary current while filtering zero-sequence currents. However, because Equation (3.1) in Chapter 3 defines the differential current as the phasor sum $\mathbf{I}_d = |\dot{\mathbf{I}}'_{\text{HV}} + \dot{\mathbf{I}}'_{\text{LV}}|$ (requiring $\dot{\mathbf{I}}'_{\text{HV}} \approx -\dot{\mathbf{I}}'_{\text{LV}}$, i.e., $180^\circ$ opposition under healthy through-load), achieving zero differential current depends on the assumed CT secondary polarity orientation (entering vs. leaving the protection zone) and whether an accompanying zero-sequence trap is applied on the grounded-wye HV side. Furthermore, referring to Equation (4.1) as a "Clarke-based transformation" is imprecise, as the Clarke ($\alpha\beta 0$) transform maps three-phase quantities onto orthogonal stationary axes rather than performing a $1/\sqrt{3}$ delta–wye phase and zero-sequence compensation. Explicitly stating the CT polarity convention and terming Equation (4.1) a delta–wye phase and zero-sequence compensation matrix would improve clarity and reproducibility.
+
+
+
+---
+
+
+
+#### Minor Corrections and Typos
+
+
+
+- **Page 15 (PDF page 34), Figure 4.1:** The text and block labels inside the Simulink schematic diagram (Figure 4.1) are rendered at a very low resolution and are illegible even when magnified. Exporting Figure 4.1 as a vector graphic (PDF/EPS) or high-DPI image is recommended.
+
+
+
+- **Page 18 (PDF page 37), Figure 4.2:** The axis labels and numerical cell counts inside Figure 4.2 ("Traces per scenario group and load bin" and "Inrush cells: closing angle x residual flux") are rendered at a very small font size and low resolution, making the individual bin numbers difficult to read. Increasing the font size and exporting in vector format is recommended.
+
+
+
+### [Chapter 5: Proposed DWT–LSTM Methodology and Appendix A] (Pages: 38-43, 61-62)
+
+#### Potential Mistakes and Improvements
+
+
+
+1. **Systematic Discrepancies Between Figures 5.1–5.7 and the Deployed Methodology in the Text and Tables (Pages 39–43, 62):**
+
+   A primary concern affecting internal consistency and reproducibility in Chapter 5 is that Figures 5.1 through 5.7 depict an earlier prototype of the protection pipeline rather than the deployed "v3" architecture described in the prose, equations, and Tables 5.1, 5.2, and A.2. While the Dual-Path Hybrid Decision Handshake in Equation (5.1) and the Daubechies-4 (`db4`, $L = 8$) quadrature mirror filter coefficients in Table A.1 are mathematically sound, the following definitive discrepancies exist between the figures and the text:
+
+   - **Figure 5.6 (p. 23, PDF p. 42) vs. Section 5.5, Table 5.2, and Table A.2:** Figure 5.6 illustrates an input tensor of `[B, 32, 6]` ("feature vector = 6 DWT energy features per step"), `LSTM 1` with `128 units`, `LSTM 2` with `64 units`, `Dropout` with `p = 0.3`, a `Dense` layer with `32 units, ReLU`, an `Output` layer with `4 units, softmax` (multi-class classification), and `Total trainable parameters: 125,476`. Conversely, Section 5.5, Table 5.2, and Table A.2 specify a 12-dimensional input tensor `[B, 32, 12]` (9 DWT sub-band energies + 3 second-harmonic ratios), `64 units` in both `LSTM-1` and `LSTM-2`, dropout of `0.22`, a dense classifier `Linear(64, 64)` (`Dense(64, 64)`), a single-unit binary sigmoid output `Linear(64, 1)` (`Dense(64, 1)`), and a total trainable parameter count of `58,241`.
+
+   - **Figure 5.7 (p. 24, PDF p. 43) vs. Table 5.2 (p. 24, PDF p. 43):** Figure 5.7 plots the computational complexity budget for the 128/64-unit softmax architecture rather than the 64/64-unit binary architecture in Table 5.2. Specifically, Figure 5.7 reports `LSTM Layer 1 (128): 65.34% (856.1 k FLOPs)`, `LSTM Layer 2 (64): 32.52% (426.0 k FLOPs)`, `Temporal Attention: 1.88% (24.6 k FLOPs)`, `Dense & Softmax: 0.16% (2.1 k FLOPs)`, and `DWT Front End: 0.10% (1.4 k FLOPs)` (summing to $\approx 1.31\text{ MFLOPs}$). This directly contradicts Table 5.2 immediately above it, which reports `LSTM layer 1 (12 -> 64): ~0.63 M (36.8%)`, `LSTM layer 2 (64 -> 64): ~1.06 M (62.0%)`, `Attention + LayerNorm: ~2.1 k (0.1%)`, `Dense Classifier (64 -> 64 -> 1): ~17.5 k (1.0%)`, and `DWT Front End: ~1.8 k (0.1%)` (summing to $\approx 1.71\text{ MFLOPs}$).
+
+   - **Figures 5.1, 5.2, 5.3, and 5.4 (pp. 20–22, PDF pp. 39–41) vs. Sections 5.1–5.4:**
+
+     - **Figure 5.1** lists `Compacted 56,898 params` in Step 2b and `13.1 ms clearing time` in Step 3, whereas the text reports `58,241` parameters and a `15.6 ms` median operating latency.
+
+     - **Figure 5.2** depicts a 4-level DWT decomposition, a 6-feature sequence builder (`W = 16`, `[6, 128 x 1]`), a `Dense / Softmax Output (4-class probability logic)`, and a single serial `Dual-Key AND-Gate` without the instantaneous `HighSet` bypass ($\max_\varphi I_{d,\varphi}(t) > 10.0\text{ pu}$), the autonomous AI-alone path ($\theta_{\text{solo}} = 0.998$), or the 20-sample persistence dwell timer defined in Equation (5.1).
+
+     - **Figure 5.3** states `16-sample window / 6 energy features` in Stage 3, `Parallel 87T Restraint / AND handshake veto` in Stage 6, and `13.1 ms clearing time` in Stage 7, contradicting the 32-sample window, 12-element feature vector, dual-path handshake, and 15.6 ms latency in Section 5.2.2.
+
+     - **Figure 5.4** is titled `Dual Sliding-Window Temporal Buffering Cadence` and plots a `DWT Sliding Window (16 samples, 10 ms)` separate from an `LSTM Buffer (32 steps, 20 ms)`, contradicting Section 5.3, which specifies a single sliding window of 32 samples (20 ms).
+
+   - **Figure 5.5 (p. 23, PDF p. 42) vs. Caption, Section 5.4, and Table 5.1:** While the caption of Figure 5.5 reads *"db4 mother wavelet and two-level dyadic filter-bank decomposition tree"* and Section 5.4 and Table 5.1 specify a 2-level DWT yielding $d_1, d_2, a_2$, panel (b) of Figure 5.5 is titled `(b) 3-Level Dyadic Filter Bank Decomposition Tree` and illustrates a 3-level decomposition terminating in `Detail d_3[n]` and `Approx a_3[n]`.
+
+
+
+2. **Parameter Count Breakdown and Layer Accounting in Section 5.5, Table 5.2, and Table A.2 (Pages 42–43, 62):**
+
+   While the trainable parameter counts for `LSTM layer 1 (12 -> 64)` (`19,712`, i.e., $4 \times 64 \times (12 + 64 + 1) = 19,712$ assuming a single bias vector per gate rather than PyTorch's default two bias vectors `bias_ih` and `bias_hh`) and `LSTM layer 2 (64 -> 64)` (`33,024`, i.e., $4 \times 64 \times (64 + 64 + 1) = 33,024$) are internally consistent, a potential concern for architectural reproducibility arises in the remaining stages of Table 5.2 relative to Section 5.5 and Table A.2:
+
+   - **Attention + LayerNorm (`193` parameters) vs. Equation (5.3) and LSTM LayerNorm Placement:** Equation (5.3) defines a two-stage Bahdanau-style additive alignment attention mechanism:
+
+     $$\alpha_t = \frac{\exp(v^\top \tanh(W_a h_t + b_a))}{\sum_{t'=1}^{32} \exp(v^\top \tanh(W_a h_{t'} + b_a))}$$
+
+     For hidden states $h_t \in \mathbb{R}^{64}$, a full weight matrix $W_a \in \mathbb{R}^{d_a \times 64}$, bias $b_a \in \mathbb{R}^{d_a}$, and context vector $v \in \mathbb{R}^{d_a}$ with $d_a = 64$ would require $64 \times 64 + 64 + 64 = 4,224$ parameters. However, Table 5.2 reports that the combined `Attention + LayerNorm` stage has `193` trainable parameters. A count of `193` parameters corresponds precisely to a single 64-unit `LayerNorm(64)` layer ($2 \times 64 = 128$ affine scale and shift parameters $\gamma, \beta$) plus a scalar linear scoring projection $\text{Linear}(64, 1)$ ($64 \text{ weights} + 1 \text{ bias} = 65$ parameters; $128 + 65 = 193$), matching Table A.2's description `Global temporal self-attention pooling (64 -> 1)`. Furthermore, Section 5.5 states that both `LSTM-1` and `LSTM-2` include `LayerNorm` (which would require $2 \times 128 = 256$ parameters), whereas only a single 128-parameter `LayerNorm` is accounted for in the 193-parameter budget.
+
+   - **Dense Classifier (`5,312` parameters reported vs. `4,225` calculated):** Section 5.5 and Table A.2 define the classifier head after the 64-dimensional context vector $c \in \mathbb{R}^{64}$ as `Linear(64, 64)` + ReLU + Dropout(0.22) + `Linear(64, 1)`. With standard weights and biases, `Linear(64, 64)` has $64 \times 64 + 64 = 4,160$ parameters and `Linear(64, 1)` has $64 \times 1 + 1 = 65$ parameters, totaling $4,225$ parameters—leaving an unexplained difference of $1,087$ parameters compared to the `5,312` reported in Table 5.2 (for example, if an intermediate attention bottleneck $W_a \in \mathbb{R}^{16 \times 64}$, $b_a \in \mathbb{R}^{16}$, and $v \in \mathbb{R}^{16}$ from Equation (5.3) totaling $1,056$ parameters were grouped into the dense head count). Clarifying the exact dimensions of $W_a$, $b_a$, and $v$, the LSTM bias convention, where `LayerNorm` is placed, and how the `5,312` parameters in the dense classifier are allocated would ensure complete architectural reproducibility.
+
+   - **MACs vs. FLOPs per Inference in Table 5.2:** In Table 5.2, the column header is labeled `FLOPs/step`, while the caption discusses the per-inference operation budget across the 32-step window. Specifically, the reported values for `LSTM layer 1 (12 -> 64)` ($\approx 0.63\text{ M}$) and `LSTM layer 2 (64 -> 64)` ($\approx 1.06\text{ M}$) equal $32 \times 19,712 = 630,784$ and $32 \times 33,024 = 1,056,768$, which correspond to counting $1\text{ MAC} = 1\text{ FLOP}$ across all 32 sequence steps of a full inference window (whereas counting $2\text{ FLOPs/MAC}$ yields $\approx 1.26\text{ M}$ and $\approx 2.11\text{ M}$ FLOPs). Additionally, for the `Dense Classifier (64 -> 64 -> 1)` applied once after global attention pooling, `~17.5 k` does not match $1\times$ or $2\times$ the `5,312` parameters. Clarifying the MAC/FLOP counting convention and renaming the column header from `FLOPs/step` to `FLOPs/inference` (or `MACs/inference`) would improve table precision.
+
+
+
+3. **Wavelet Coefficient Count at Decomposition Level 2 Under Symmetric Boundary Extension (Section 5.4, Table 5.1, Page 41):**
+
+   In Section 5.4 (p. 22, PDF p. 41), the text states that a two-level Daubechies-4 (`db4`, filter length $L = 8$) decomposition is applied to a $W = 32$-sample window using symmetric reflection boundary extension (`mode='symmetric'`), and Table 5.1 reports `# Coeff. = 19` at Level 1 ($d_1$) and `# Coeff. = 11` at Level 2 ($a_2$ and $d_2$). Under standard dyadic convolution and downsampling with symmetric boundary extension (e.g., PyWavelets `pywt.wavedec(x, 'db4', mode='symmetric', level=2)`), each decomposition level on an input of length $N_{j-1}$ with filter length $L = 8$ produces $N_j = \lfloor (N_{j-1} + L - 1)/2 \rfloor$ coefficients:
+
+   - Level 1 ($N_0 = 32, L = 8$): $N_1 = \lfloor (32 + 8 - 1)/2 \rfloor = 19$ coefficients (matching `19` for $d_1$ in Table 5.1).
+
+   - Level 2 ($N_1 = 19, L = 8$): $N_2 = \lfloor (19 + 8 - 1)/2 \rfloor = 13$ coefficients for $d_2$ and $a_2$, whereas Table 5.1 lists `11` coefficients for both $a_2$ and $d_2$ (a count of `11` corresponds to $\lfloor (16 + 8 - 1)/2 \rfloor = 11$ from a 16-sample input window, or trimming two boundary coefficients prior to Level 2).
+
+   Because the sub-band energy feature $E = \ln(1 + \sum |c[k]|^2)$ is an unnormalized sum over $k$ and therefore depends directly on the number of coefficients summed, clarifying whether `# Coeff.` at Level 2 in Table 5.1 should be `13` or whether boundary coefficients are trimmed at Level 2 is important for exact feature replicability.
+
+
+
+4. **Ambiguity in Sliding-Window Buffer Accumulation vs. Single-Window Horizon and Feature Normalization (Sections 5.1–5.4, Pages 38–41):**
+
+   Two methodological details regarding how the `[1, 32, 12]` input tensor is constructed and scaled could be stated more explicitly to prevent ambiguity during reimplementation:
+
+   - **Cascaded Window and Sequence Buffer Horizon:** Sections 5.1 and 5.2 state that a 32-sample full-cycle sliding window ($W = 32$, $20\text{ ms}$ at $1.6\text{ kHz}$) forms an input tensor of dimension `[1, 32, 12]`. Meanwhile, Sections 5.2.2 (Stages 2–4), 5.3, and 5.4 explain that at each sample step $t$ ($\Delta t = 0.625\text{ ms}$), a 32-sample window is used to compute one 12-dimensional feature vector $f(t) \in \mathbb{R}^{12}$, which is then *"accumulated over the full-cycle buffer into $X(t) \in \mathbb{R}^{32 \times 12}$."* Because stacking 32 consecutive window-level feature vectors $[f(t-31), \dots, f(t)]^\top$—each computed over a 32-sample raw current window—spans a total historical lookback of $32 + 32 - 1 = 63$ raw samples ($39.375\text{ ms}$) once fully populated, explicitly stating this total lookback span and specifying how the sequence buffer is initialized during the first 31 feature steps (e.g., edge-replication or zero-padding of $f(t)$) would remove any ambiguity.
+
+   - **Input Current Units and Feature Standardization:** Figure 5.1 (Step 1b) mentions `Z-score normalization`, whereas Section 5.4 defines the log-compressed wavelet energies $E = \ln(1 + \sum |c[k]|^2)$ and capped second-harmonic ratios $k_{2,\varphi} \in [0, 2.0]$ without mentioning subsequent z-score standardization. Furthermore, because $\ln(1 + \sum |c[k]|^2)$ is non-linear and scale-dependent due to the additive constant $1$, explicitly stating whether the raw differential current fed into the DWT filter bank is in per-unit ($\text{pu}$, relative to $I_{\text{nom,sec}} = 0.9302\text{ A}$) or secondary Amperes, and whether z-score standardization using training-fold statistics is applied to $f(t)$ prior to `LSTM-1`, would ensure exact numerical replicability.
+
+
+
+---
+
+
+
+#### Minor Corrections and Typos
+
+
+
+- **Page 19 (PDF p. 38), Section 5.2, line 5:** The text states that *"the `[1, 32, 12]` tensors train a PyTorch LSTM... using Adam and weighted cross-entropy"*, whereas Section 5.5 and Table A.2 specify a training mini-batch size of $B = 128$ (`[128, 32, 12]` during training, and `[1, 32, 12]` during single-stream ONNX inference).
+
+
+
+- **Page 22 (PDF p. 41), Figure 5.4 Legend:** The plot legend contains eleven unedited default MATLAB placeholder entries (`data1`, `data2`, ..., `data11`) alongside the two descriptive window entries; these placeholder entries should be removed.
+
+
+
+### [Chapters 6 & 7: Results, Benchmarking, Discussion, Conclusion, and Back Matter] (Pages: 44-56, 63)
+
+#### Potential Mistakes and Improvements
+
+
+
+1. **Direct Contradictions Between Tabulated Metrics in Table 6.7 and the Accompanying Narrative Analysis (Section 6.10, pp. 51–52, and Section 7.2, p. 53)**
+
+   A critical concern in Section 6.10 is that the numerical metrics cited in the four numbered analytical insights on pages 51–52 do not match the values actually tabulated in Table 6.7 (page 51), and comparative conclusions are drawn that conflict with the printed table entries:
+
+   - **False-Trip Counts and Dependability Gains (Insights 1 & 3 vs. Table 6.7):** In Insight 1 (p. 51), the text states: *"achieving 1.8–3.2% higher dependability and reducing false trips by over 40% (13 false trips for LSTM vs. 46 for ANN and 67 for SVM)."* Similarly, Insight 3 (pp. 51–52) states: *"False trips drop from 67 to 15 for SVM, from 46 to 12 for ANN, from 40 to 11 for Random Forest, and from 13 to 6 for the proposed LSTM."* However, moving from Panel A (Standalone) to Panel B (Supervisory Hybrid) in Table 6.7, the actual tabulated `False Trips` change from **151 to 7** for Wavelet-SVM (not 67 to 15), from **8 to 2** for Wavelet-ANN (not 46 to 12), from **2 to 1** for Wavelet-RF (not 40 to 11), and from **13 to 11** for the Proposed Hybrid DWT–LSTM (not 13 to 6). Furthermore, in Panel A of Table 6.7, Wavelet-RF ($98.64\%$) and Wavelet-ANN ($98.32\%$) are within $0.32\%\text{--}0.88\%$ of the sequence models' dependability ($98.96\%\text{--}99.20\%$), rather than $1.8\%\text{--}3.2\%$.
+
+   - **LSTM vs. GRU Dependability (Insight 2 vs. Table 6.7):** Insight 2 (p. 51) states that the LSTM outperforms the GRU in dependability (*"99.04% vs. 98.42% dependability"*). In Table 6.7, however, Wavelet-GRU has a higher dependability (**99.20%**) than Standalone LSTM (**99.04%**) in Panel A, and **97.92%** vs. **98.56%** in Panel B. The value $98.42\%$ does not appear in Table 6.7.
+
+   - **Proposed Model Ranking (Insight 4 vs. Table 6.7):** Insight 4 (p. 52) claims that the Proposed Hybrid DWT–LSTM achieves *"99.01% dependability, 99.66% security, 99.39% overall accuracy, only 6 false trips (out of 1,873 non-fault traces)"*, and asserts that it achieves the *"highest balanced performance"* in the benchmark. Yet in Table 6.7 (Panel B), the row for `Proposed Hybrid DWT-LSTM` reports **98.56%** dependability, **99.41%** security, **99.07%** overall accuracy, and **11** false trips. Moreover, under the numbers printed in Table 6.7 (Panel B), `1D-CNN` achieves the same overall accuracy ($99.07\%$) with higher security ($99.95\%$, 1 false trip vs. 11 false trips), while `Wavelet-RF` ($99.95\%$ security, 1 false trip), `Wavelet-ANN` ($99.89\%$ security, 2 false trips), `Wavelet-SVM` ($99.63\%$ security, 7 false trips), and `Wavelet-GRU` ($99.57\%$ security, 8 false trips) all exhibit fewer false trips than the proposed model in Panel B, and `Standalone LSTM` in Panel A ($99.20\%$ Acc.) achieves higher overall accuracy than the Proposed Hybrid in Panel B ($99.07\%$ Acc.).
+
+
+
+2. **Cross-Table Discrepancies Between Single-Repetition Metrics (Table 6.7) and 3-Repetition Mean Metrics (Tables 6.1–6.3 and Chapter 7)**
+
+   A related concern is that the performance metrics for the same architectures—evaluated on the same dataset under 5-fold grouped cross-validation—differ across Table 6.1 (p. 45), Table 6.2 (p. 46), Table 6.7 (p. 51), and Section 7.2 (p. 53) because single-repetition results and 3-repetition mean results are mixed without distinction:
+
+   - **Proposed Hybrid DWT–LSTM:** Table 6.1 (p. 45), Table 6.3 (p. 47), Insight 4 (p. 52), and Sections 7.1–7.2 (p. 53) report the 3-repetition mean across 15 models: **99.01%** dependability ($\approx 1,238.6 / 1,251$ detectable faults) and **99.66%** security ($\approx 1,866.6 / 1,873$ healthy traces, or $\approx 6$ false trips). In contrast, Table 6.7 (Panel B, p. 51) reports **98.56%** dependability ($1,233 / 1,251$) and **99.41%** security ($1,862 / 1,873$, or **11** false trips). Checking the weighted average of the `Rep. 1` column in Table 6.2 (p. 46) across the 9 healthy categories and 7 fault categories yields $1,862 / 1,873 = \mathbf{99.41\%}$ security and $1,233 / 1,251 = \mathbf{98.56\%}$ dependability (matching `Hybrid + AI-alone path (n=1233)` in the legend of Figure 6.3a on p. 50, which is labeled *"out-of-fold, repetition 1"*).
+
+   - **Standalone LSTM:** Table 6.1 (p. 45) reports **99.31%** dependability, **99.56%** security ($\approx 8.2$ false trips), and a median $T_{\text{op}}$ of **15.4 ms** (matching the category-weighted mean of the `LSTM Alone` column in Table 6.2: $1,242.3 / 1,251 = 99.30\%$ dependability and $1,864.6 / 1,873 = 99.55\%$ security). However, Table 6.7 (Panel A, p. 51) and Section 7.2 (p. 53) report **99.04%** dependability ($1,239 / 1,251$, matching `LSTM alone (n=1239)` in Figure 6.3a), **99.31%** security ($1,860 / 1,873$, or 13 false trips), and a median $T_{\text{op}}$ of **15.0 ms**. Notice that the number $99.31\%$ appears as *dependability* in Table 6.1 but as *security* in Table 6.7 and Section 7.2. Furthermore, Section 7.2 (p. 53, under *"Security and dependability reconciliation"*) mixes the Repetition 1 figures from Table 6.7 for Standalone LSTM ($99.04\%$ dependability, $99.31\%$ security, 13 false trips) with the 3-repetition mean figures from Table 6.1 for the Proposed Hybrid ($99.01\%$ dependability, $99.66\%$ security, 6 false trips).
+
+   - Reconciling Table 6.7, Table 6.1, Section 6.10, and Section 7.2 so that all comparisons use a consistent evaluation basis (ideally the 3-repetition mean across all 15 models, or clearly labeled single-seed vs. 3-seed figures) is essential for internal consistency.
+
+
+
+3. **Denominator Definitions Across Tables 6.1, 6.2, 6.6, and 6.7 (pp. 45–53)**
+
+   There is an unstated shift in how the evaluation denominators are reported across Chapter 6 and Chapter 7 after segregating the 94 physically undetectable internal fault traces ($\Delta I_d < 0.05\text{ pu}$):
+
+   - **Denominator for Dependability and Overall Accuracy in Tables 6.1 and 6.7 (`3,124` vs. `3,218`):** Every dependability, missed-fault, and overall accuracy figure in Table 6.1 (p. 45), Table 6.7 (p. 51), and Section 7.2 (p. 53) is mathematically computed over the **1,251 detectable faults** and **3,124 total detectable/healthy traces** ($1,873 + 1,251$), even though the captions of Table 6.1 and Table 6.7 and item 1 of Section 6.10 (p. 50) state that metrics are evaluated across **3,218 traces** (with 5-fold splits of $644/644/644/643/643 = 3,218$):
+
+     $$\text{Acc.} = \frac{1,251 \times \text{Dep.} + 1,873 \times \text{Sec.}}{3,124}$$
+
+     For example, for Conventional 87T Alone, summing the tripped fault traces in Table 6.2 gives $506(0.885) + 198(1.0) + 153(0.523) + 80(1.0) + 80(1.0) + 121(0.909) + 113(0.0) \approx 996$ tripped faults (matching `n=996` in Figure 6.3a), which yields $996 / 1,251 = \mathbf{79.62\%}$ dependability, $1,251 - 996 = \mathbf{255}$ missed faults (matching Section 7.2, p. 53), and $(996\text{ TP} + 992\text{ TN}) / 3,124 = \mathbf{63.64\%}$ overall accuracy in Table 6.7. Explicitly stating in the captions of Tables 6.1, 6.2, and 6.7 that performance metrics use $N_{\text{fault,det}} = 1,251$ and $N_{\text{eval}} = 3,124$ as denominators (after segregating the 94 sub-noise-floor traces) will prevent confusion when readers verify the arithmetic.
+
+   - **Denominator Mismatch Between Table 6.6 (p. 49) and Table 6.2 (p. 46) for HiZ Bins:** Section 6.8 (p. 48) notes that out of 80 simulated traces per resistance bin, Bin 1 has 80 detectable traces ($\ge 0.05\text{ pu}$), Bin 2 has 72 detectable traces, and Bin 3 has 1 detectable trace (totaling 153). In Table 6.6 (p. 49), the header specifies `(n = 80 traces per bin)`, and `Proposed Hybrid` achieves $100.0\%$ in Bin 1 ($80/80$), $71.2\%$ in Bin 2 ($57/80 = 71.25\%$), and $0.0\%$ in Bin 3 ($0/80$), while `87T Alone` achieves $96.2\%$ in Bin 1 ($77/80$) and $3.8\%$ in Bin 2 ($3/80 = 3.75\%$). Notice that $80 + 57 + 0 = \mathbf{137}$ tripped traces for Proposed Hybrid and $77 + 3 + 0 = \mathbf{80}$ tripped traces for 87T Alone. When those exact same counts (137 and 80) are carried into Table 6.2 (p. 46), they are divided by the $n = 153$ detectable traces to give $137 / 153 = \mathbf{89.5\%}$ (`Rep. 1`) and $80 / 153 = \mathbf{52.3\%}$ (`87T Alone`). Because Table 6.6 includes the 8 undetectable traces in Bin 2 in its $n = 80$ denominator ($57 / 80 = 71.2\%$, whereas among the 72 *physically detectable* traces in Bin 2 the recall is $57 / 72 = \mathbf{79.2\%}$) and reports Repetition 1 results rather than the 3-repetition mean ($93.0\%$ in Table 6.2), clarifying both denominators in Section 6.8 would make the relationship between Table 6.6 and Table 6.2 transparent.
+
+
+
+4. **Explanation of Conventional 87T Inrush Security ($0.0\%$) and Omission of a Deterministic Wavelet Baseline (Sections 1.4, 1.5, 6.4 & 6.10, pp. 3–4, 46, 50–51)**
+
+   - **Conventional 87T Inrush Security ($0.0\%$):** In Table 6.2 (p. 46), the `87T Alone` baseline achieves **0.0%** security across all inrush categories (`Magnetizing Inrush (No-Load)` with $n=200$, `Magnetizing Inrush (Loaded)` with $n=240$, and `External Fault in Inrush` with $n=100$), as well as **0.0%** dependability on `Internal Fault in Inrush` ($n=113$). Since the conventional 87T baseline is described as including second-harmonic restraint/blocking (p. 39, p. 50) and standard silicon-steel no-load magnetizing inrush typically generates $I_{d,2nd}/I_{d,fund} > 15\text{--}20\%$, readers may question why the harmonic-restrained 87T element failed to block *any* of the 440 inrush traces while simultaneously blocking $100\%$ of `Internal Fault in Inrush`. Briefly explaining the specific algorithmic or physical mechanism causing this behavior in Section 6.4 (e.g., whether transient drops in $I_{d,2nd}/I_{d,fund}$ during the initial post-energization samples or an unrestrained instantaneous high-set element caused premature tripping on no-load inrush while cross-phase harmonic blocking restrained internal faults during inrush) is important for establishing baseline validity.
+
+   - **Deterministic Wavelet Baseline:** The research objectives and contributions in Chapter 1 (Section 1.4 Objective 4, Section 1.5.1, and Section 1.6 Contribution 3) as well as the experimental benchmarking in Chapter 6 (Section 6.3 Table 6.1, and Section 6.10 Table 6.7) specify benchmarking the proposed hybrid DWT–LSTM framework against conventional 87T harmonic restraint and six machine-learning/deep-learning baselines (SVM, ANN, Random Forest, 1D-CNN, GRU, standalone LSTM). While Chapter 2 (Section 2.3, p. 6; Table 2.1, p. 8) discusses modern deterministic wavelet-domain protection methods (such as db4 DWT threshold logic [6] and Boundary Discrete Wavelet Transform / Clarke-wavelet time-domain relays [38, 39]) designed to overcome window-edge distortion and low second-harmonic inrush without neural networks, the benchmarking suite relies solely on the legacy 1958 Sharp & Glassburn harmonic-restraint algorithm [7] as its non-ML baseline. Because every ML/DL model in Table 6.7 uses the 2-level db4 DWT + second-harmonic feature set, evaluating a deterministic wavelet-energy threshold baseline in the ablation study (or explicitly acknowledging its exclusion in Sections 1.5 and 6.10/6.11) would clarify how much of the security gain from $52.96\%$ to $99.66\%$ stems from the LSTM sequence classifier versus the multi-resolution wavelet representation itself.
+
+
+
+5. **Physical Explanation of Out-of-Distribution (OOD) Degradation Under Extreme CT Burden (Section 6.6, Table 6.4, p. 47)**
+
+   In Table 6.4 (p. 47), the overall OOD dependability of $92.4\%$ ($133 / 144$ faults tripped, $11$ missed) is driven primarily by Block 3 (*"Extreme CT burden (12–16$\times$ nominal)"*), where dependability drops to **68.0%** ($17 / 25$ tripped, accounting for $8$ of the $11$ missed OOD faults) and where $8$ of the $9$ physical sanity-check failures also occur ($25$ fault and $27$ healthy usable traces out of $30$ each). Expanding Section 6.6 with a brief physical explanation of why 12–16$\times$ CT burden causes these $8$ missed faults—specifically, whether deep bilateral CT saturation collapses the secondary differential energy or generates sufficient artificial second-harmonic content ($I_{d,2nd}/I_{d,fund}$) to suppress $p_{\text{AI,conf}}$ below $\theta_{\text{AI}} = 0.99$ during the 20-sample dwell window—would strengthen the OOD analysis.
+
+
+
+6. **Unexplained Inference Latency Differences Across Chapters 6 and 7 (Section 6.10, p. 51 vs. Section 7.2, p. 54)**
+
+   In Table 6.7 (p. 51), the per-step execution latency (`Lat. (ms)`) is listed as **1.15 ms** for `Standalone LSTM` (Panel A) and **1.25 ms** for `Proposed Hybrid DWT-LSTM` (Panel B), despite both using the identical 58,241-parameter network. Meanwhile, Section 7.2 (p. 54, under *Real-time feasibility*) states that the per-inference computational cost has *"an inference latency of 0.44–1.15 ms."* Clarifying the source of the $0.44\text{ ms}$ lower bound and explaining whether the additional $0.10\text{ ms}$ in Table 6.7 Panel B represents the parallel 87T restraint and supervisory handshake overhead would improve precision.
+
+
+
+7. **Incomplete Bibliographic Metadata or Submission Status in the List of Publications (p. 56)**
+
+   The List of Publications (p. 56) lists three journal and conference papers dated `2025` (in *IEEE Access*, *Proc. IEEE Int. Conf. on Power Systems (ICPS)*, and *Int. J. Electrical Power & Energy Systems*), whereas the thesis is dated `OCTOBER 2026`, and none of the entries include volume, issue, page numbers, article IDs, DOIs, or publication status indicators (e.g., *"Published"*, *"Accepted"*, *"Under Review"*, or *"Submitted"*). Furthermore, the first and third listed papers report the exact metrics from the retrained v3 dataset (*"99.01% dependability and 99.66% security and a median operating latency of 15.6 ms"*) and the seven-model benchmark from Chapter 6. Providing complete bibliographic details for published works or explicitly stating the current submission/review status for manuscripts in preparation or under review is important for academic record accuracy.
+
+
+
+#### Minor Corrections and Typos
+
+
+
+- **Page 44, Section 6.1 (Item 3):** The text states *"Features extracted in Python and in MATLAB/Simulink share exact numerical equivalence (verified maximum parity error = 0.0)."* Because IEEE 754 floating-point DWT and FFT operations across Python and MATLAB typically exhibit differences on the order of machine epsilon ($\sim 10^{-16}\text{ to }10^{-7}$) unless rounded or exported prior to comparison, specifying whether `0.0` refers to decision-level parity or a specific numerical precision/rounding tolerance would be more exact.
+
+
+
+- **Page 45, Figure 6.1 & Page 50, Figure 6.3:** The subplot titles (which include raw internal variable strings in brackets such as `[Stress_ExtCTSat_AB]`), axis tick labels, and legend entries in Figure 6.1 and Figure 6.3(a)–(b) are rendered at a very small font size that is difficult to read without high magnification. Enlarging the typography and noting in the caption of Figure 6.3(a) that the legend counts (`n=996`, `n=1239`, `n=1118`, `n=1233`) represent tripped detectable faults out of 1,251 in Repetition 1 would improve legibility and clarity.
+
+
+
+- **Page 51, Table 6.7:** In Panel A, Row 2, `"Simoes [13] (2021)"` omits the tilde over the 'o' (`"Simões [13] (2021)"`, as spelled on pp. 6 and 39). Additionally, defining `Lat. (ms)` (per-window compute latency) versus `Med. Top` (median fault-clearing operating time) in a brief table footnote would prevent reader confusion.
+
+
+
+- **Pages 53–54, Section 7.2 ("High-impedance fault recovery"):** The sentence spanning pages 53–54 reads: *"...extending relay sensitivity to high-resistance faults below physical detection limits (7 $\Omega$)."* Because faults *below* the physical $0.05\text{ pu}$ detection limit occur *above* $7.0\,\Omega$ (where recall is $0.0\%$), this should be phrased as: *"...extending relay sensitivity to high-resistance faults below the conventional 87T pickup threshold down to the physical detection limit (up to $7.0\,\Omega$)."*
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-24T18:42:58+06:00.
+</ADDITIONAL_METADATA>

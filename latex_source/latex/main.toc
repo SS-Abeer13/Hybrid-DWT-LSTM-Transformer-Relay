@@ -1,30 +1,28 @@
-\contentsline {chapter}{APPROVAL CERTIFICATE}{ii}{Doc-Start}%
-\contentsline {chapter}{DECLARATION}{iv}{Doc-Start}%
-\contentsline {chapter}{DEDICATION}{v}{Doc-Start}%
-\contentsline {chapter}{ACKNOWLEDGEMENTS}{vi}{Doc-Start}%
-\contentsline {chapter}{ABSTRACT}{vii}{Doc-Start}%
-\contentsline {chapter}{LIST OF SYMBOLS / NOTATIONS}{ix}{Doc-Start}%
-\contentsline {chapter}{LIST OF ABBREVIATIONS}{xi}{table.0.1}%
+\contentsline {chapter}{APPROVAL CERTIFICATE}{ii}{section*.1}%
+\contentsline {chapter}{DECLARATION}{iv}{section*.2}%
+\contentsline {chapter}{ACKNOWLEDGEMENTS}{v}{section*.3}%
+\contentsline {chapter}{ABSTRACT}{vi}{section*.4}%
+\contentsline {chapter}{Contents}{viii}{section*.5}%
+\contentsline {chapter}{List of Figures}{xii}{section*.7}%
+\contentsline {chapter}{List of Tables}{xiv}{section*.9}%
+\contentsline {chapter}{LIST OF SYMBOLS / NOTATIONS}{xv}{section*.11}%
+\contentsline {chapter}{LIST OF ABBREVIATIONS}{xvii}{section*.12}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Research Motivation}{2}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Problem Statement}{2}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Research Objectives}{3}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Scope and Limitations}{3}{section.1.5}%
-\contentsline {subsection}{\numberline {1.5.1}Scope}{3}{subsection.1.5.1}%
-\contentsline {subsection}{\numberline {1.5.2}Limitations}{4}{subsection.1.5.2}%
-\contentsline {section}{\numberline {1.6}Contributions of This Work}{4}{section.1.6}%
+\contentsline {section}{\numberline {1.6}Contributions of This Work}{3}{section.1.6}%
 \contentsline {section}{\numberline {1.7}Thesis Organization}{4}{section.1.7}%
 \contentsline {chapter}{\numberline {2}Literature Review}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Introduction}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Conventional Differential Protection Methods}{5}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Harmonic Restraint Methods}{5}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Waveform-Based and Equivalent-Circuit Methods}{5}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.2}Waveform-Based and Equivalent-Circuit Methods}{6}{subsection.2.2.2}%
 \contentsline {section}{\numberline {2.3}Signal Processing Techniques}{6}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Machine Learning Approaches}{6}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Deep Learning Approaches}{7}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}CNN, RNN, and LSTM Architectures}{7}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Advanced Waveform and Volatility Formulations}{7}{subsection.2.5.2}%
 \contentsline {section}{\numberline {2.6}Comparative Synthesis of the Literature}{7}{section.2.6}%
 \contentsline {section}{\numberline {2.7}Research Gaps}{8}{section.2.7}%
 \contentsline {chapter}{\numberline {3}Mathematical Modeling and Theoretical Framework}{9}{chapter.3}%
@@ -33,15 +31,14 @@
 \contentsline {subsection}{\numberline {3.2.1}Differential and Restraint Currents}{9}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Operating Characteristics}{9}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Pickup Current and Fault Resistance Limits}{10}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Magnetizing Inrush Current}{10}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Core Saturation Theory}{10}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Factors and Harmonics}{11}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Recovery Inrush}{11}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Current Transformer Saturation}{11}{section.3.4}%
+\contentsline {section}{\numberline {3.3}Magnetizing Inrush Current}{11}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Core Saturation Theory}{11}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Harmonic Characterization}{11}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Current Transformer Saturation}{12}{section.3.4}%
 \contentsline {section}{\numberline {3.5}Internal Fault Characteristics}{12}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Mathematical Framework for Classification}{13}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}Feature Space and Bayes-Optimal Decision}{13}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Performance Metrics}{13}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.2}Performance Metrics}{14}{subsection.3.6.2}%
 \contentsline {subsection}{\numberline {3.6.3}Adaptive Thresholding vs.\ Dual-Path Logic}{14}{subsection.3.6.3}%
 \contentsline {chapter}{\numberline {4}Power System Simulation Model Using MATLAB/Simulink}{15}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Introduction}{15}{section.4.1}%
@@ -50,36 +47,38 @@
 \contentsline {section}{\numberline {4.4}Power System Network and CT Model}{16}{section.4.4}%
 \contentsline {section}{\numberline {4.5}Fault and Event Scenarios}{17}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Signal Conditioning and Verified Dataset Compilation}{17}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Proposed DWT--LSTM Methodology}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduction}{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Framework Architecture}{19}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}The Dual-Path Hybrid Decision Handshake}{20}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Signal Flow}{21}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Data Preprocessing and Sampling}{21}{section.5.3}%
-\contentsline {section}{\numberline {5.4}DWT Engine and Feature Extraction}{22}{section.5.4}%
-\contentsline {section}{\numberline {5.5}LSTM Architecture and Training}{23}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Real-Time Implementation and Latency}{24}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Robustness Enhancement}{24}{section.5.7}%
-\contentsline {chapter}{\numberline {6}Results, Analysis and Discussion}{25}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction and Evaluation Protocol}{25}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Representative Waveforms and Feature Signatures}{25}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Grouped 5-Fold Cross-Validation and Architecture Ablation}{26}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Category-Level Performance Breakdown}{27}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Impact of Verified Dataset Retraining}{27}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Out-of-Distribution (OOD) Stress Robustness}{28}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Closed-Loop Simulink Verification and Mirror Parity}{28}{section.6.7}%
-\contentsline {section}{\numberline {6.8}High-Impedance Fault Sensitivity Analysis}{29}{section.6.8}%
-\contentsline {section}{\numberline {6.9}Operating Speed and Threshold Sensitivity}{30}{section.6.9}%
-\contentsline {section}{\numberline {6.10}Comparative Benchmarking Against Literature Models}{31}{section.6.10}%
-\contentsline {section}{\numberline {6.11}Limitations and Scope of Claims}{33}{section.6.11}%
-\contentsline {chapter}{\numberline {7}Conclusion and Future Scope}{34}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Conclusion}{34}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Key Findings}{34}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Research Outcomes}{35}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Limitations of the Study}{35}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Recommendations for Future Work}{35}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Concluding Remarks}{36}{section.7.6}%
-\contentsline {chapter}{List of Publications}{37}{chapter*.34}%
-\contentsline {chapter}{References}{38}{chapter*.35}%
-\contentsline {chapter}{\numberline {A}System Parameters and Configuration}{42}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Reproducibility and Standards}{44}{appendix.B}%
+\contentsline {chapter}{\numberline {5}Proposed DWT--LSTM Methodology}{20}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduction}{20}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Framework Architecture}{20}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Online Relay Processing Pipeline}{21}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Dual-Path Supervisory Decision Handshake}{22}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Data Preprocessing and Sampling}{23}{section.5.3}%
+\contentsline {section}{\numberline {5.4}DWT Engine and Feature Extraction}{23}{section.5.4}%
+\contentsline {section}{\numberline {5.5}LSTM Architecture and Training}{24}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Real-Time Implementation and Latency}{25}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Robustness Enhancement}{26}{section.5.7}%
+\contentsline {chapter}{\numberline {6}Results, Analysis and Discussion}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction and Evaluation Protocol}{27}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Representative Waveforms and Feature Signatures}{27}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Grouped 5-Fold Cross-Validation and Architecture Ablation}{28}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Category-Level Performance Breakdown}{29}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Impact of Verified Dataset Retraining}{29}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Out-of-Distribution (OOD) Stress Robustness}{30}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Closed-Loop Simulink Verification and Mirror Parity}{31}{section.6.7}%
+\contentsline {section}{\numberline {6.8}High-Impedance Fault Sensitivity Analysis}{31}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Operating Speed and Threshold Sensitivity}{32}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Comparative Benchmarking Against Literature Models}{33}{section.6.10}%
+\contentsline {section}{\numberline {6.11}Limitations and Scope of Claims}{35}{section.6.11}%
+\contentsline {chapter}{\numberline {7}Conclusion and Future Scope}{36}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Conclusion}{36}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Key Findings}{36}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Research Outcomes}{37}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Limitations of the Study}{37}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Recommendations for Future Work}{37}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Concluding Remarks}{38}{section.7.6}%
+\contentsline {chapter}{List of Publications}{39}{chapter*.43}%
+\contentsline {chapter}{References}{40}{chapter*.44}%
+\contentsline {chapter}{\numberline {A}System Parameters and Configuration}{44}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Reproducibility and Standards}{46}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Computational Environment and Software Dependencies}{46}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Standards Compliance}{46}{section.B.2}%
