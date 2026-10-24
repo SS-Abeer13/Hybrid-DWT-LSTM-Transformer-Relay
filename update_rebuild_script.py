@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """update_rebuild_script.py
-Constructs the pristine rebuild_thesis_manuscript.py containing all Round 2 remediations
+Constructs the pristine rebuild_thesis_manuscript.py containing all remediations
 and executes it to rebuild latex_source/latex/main.tex.
 """
 from pathlib import Path
@@ -157,26 +157,26 @@ The framework was evaluated on an EMT simulation of a 300\,MVA, 230/11\,kV, Yd1 
 
 % ===================== TOC, LOF, LOT =====================
 \clearpage\phantomsection
-\addcontentsline{toc}{chapter}{Contents}
+\addcontentsline{toc}{chapter}{CONTENTS}
 \tableofcontents
 
 \clearpage\phantomsection
-\addcontentsline{toc}{chapter}{List of Figures}
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
 \listoffigures
 
 \clearpage\phantomsection
-\addcontentsline{toc}{chapter}{List of Tables}
+\addcontentsline{toc}{chapter}{LIST OF TABLES}
 \listoftables
 
 % ===================== LIST OF SYMBOLS =====================
 \frontchap{LIST OF SYMBOLS / NOTATIONS}
 \begin{longtable}{p{3cm} p{9.5cm} p{1.6cm}}
 \toprule \textbf{Symbol} & \textbf{Description} & \textbf{Unit}\\ \midrule \endhead
-$I_d$ & Differential current & A\\
-$I_r$ & Restraint (bias) current & A\\
-$I_{pickup}$ & Minimum pickup current setting & A\\
-$I_{d,fund}$ & Fundamental frequency differential current component & A\\
-$I_{d,2nd}$ & Second harmonic differential current component & A\\
+$I_d$ & Differential current & A (or pu)\\
+$I_r$ & Restraint (bias) current & A (or pu)\\
+$I_{pickup}$ & Minimum pickup current setting & A (or pu)\\
+$I_{d,fund}$ & Fundamental frequency differential current component & A (or pu)\\
+$I_{d,2nd}$ & Second harmonic differential current component & A (or pu)\\
 $k_2$ & Second harmonic restraint ratio ($I_{d,2nd}/I_{d,fund}$) & \%\\
 $S_1, S_2$ & Slopes of the dual-slope differential characteristic & \%\\
 $T_{op}$ & Relay operating time & ms\\
@@ -318,7 +318,7 @@ I_d>I_{pickup},\quad I_d>S\,I_r,\quad k_2 = \frac{I_{d,2nd}}{I_{d,fund}} < k_{th
 with $k_{threshold}$ typically set between 15\% and 20\%. Modern amorphous-alloy cores exhibit second-harmonic ratios as low as 7--10\%, causing false tripping~\cite{ref4}; internal faults near voltage zero-crossings can inadvertently restrain the relay~\cite{ref8}; and cross-blocking improves security but risks failure to trip for simultaneous inrush and fault~\cite{ref4}. Variable data-window Phaselet algorithms have been proposed to adapt to changing harmonic contents~\cite{ref40}. Multi-region adaptive differential relay characteristics have also been formulated to modulate restraint slopes dynamically~\cite{ref21,ref22}.
 
 \subsection{Waveform-Based and Equivalent-Circuit Methods}
-Dead-angle and waveform correlation methods classify events based on waveshape features. Lin et al.~\cite{ref37} studied improved correlation algorithms to identify inrush waveforms, but such techniques remain sensitive to threshold selection and noise. Kang et al.~\cite{ref36} developed CT saturation compensation algorithms utilizing third-derivative secondary current functions. Noshad et al.~\cite{ref26} investigated algorithms under ultra-saturation conditions. Equivalent-circuit methods detect internal faults when terminal measurements violate core magnetic flux equations~\cite{ref26,ref28}, but require high-accuracy voltage transducers and detailed manufacturer design constants~\cite{ref30}.
+Dead-angle and waveform correlation methods classify events based on waveshape features. Lin et al.~\cite{ref37} studied improved correlation algorithms to identify inrush waveforms, but such techniques remain sensitive to threshold selection and noise. Kang et al.~\cite{ref36} developed CT saturation compensation algorithms utilizing third-derivative secondary current functions. Noshad et al.~\cite{ref26} investigated algorithms under ultra-saturation conditions. Statistical and volatility-tracking formulations, such as the Generalized Autoregressive Conditional Heteroskedasticity (GARCH) model proposed by Hooshyar et al.~\cite{ref35}, characterize the time-varying variance of differential currents under non-fault transients. Equivalent-circuit methods detect internal faults when terminal measurements violate core magnetic flux equations~\cite{ref26,ref28}, but require high-accuracy voltage transducers and detailed manufacturer design constants~\cite{ref30}.
 
 \section{Signal Processing Techniques}
 The Discrete Fourier Transform provides frequency resolution at the expense of time localization, limiting its ability to capture transient inrush and fault waveforms~\cite{ref5,ref27}. The wavelet transform overcomes this through simultaneous time-frequency localization. For digital implementation the DWT uses cascaded low-pass/high-pass filters with downsampling for multi-resolution decomposition~\cite{ref5}. Daubechies-4 (db4) wavelets have been widely applied to power system transients~\cite{ref5,ref6,ref14,ref24}. Furthermore, Boundary Discrete Wavelet Transform (BDWT) and time-domain Clarke-wavelet formulations have been developed by Medeiros et al.~\cite{ref38,ref39} to address window-edge boundary distortion in real-time relay applications. Independent component analysis (ICA)~\cite{ref34} and wavelet packet transforms~\cite{ref31} have also been explored to decompose complex transient modes. However, standard window-wise wavelet algorithms extract static features without modeling the sequential temporal context across successive windows.
@@ -373,7 +373,7 @@ This chapter establishes the mathematical foundations for the proposed DWT--LSTM
 
 \section{Transformer Differential Protection Fundamentals}
 \subsection{Differential and Restraint Currents}
-For a three-phase power transformer, let $\dot{\mathbf{I}}_{HV}'$ and $\dot{\mathbf{I}}_{LV}'$ denote the secondary line currents referred to a common base and corrected for the Yd1 vector group phase displacement:
+For a three-phase power transformer, let $\dot{\mathbf{I}}_{HV}'$ and $\dot{\mathbf{I}}_{LV}'$ denote the secondary line currents referred to the calibrated secondary base current ($I_{nom,sec} = 0.9302$\,A, or $1.0$\,pu) and corrected for the Yd1 vector group $-30^\circ$ phase displacement and zero-sequence elimination:
 \begin{equation}
 \mathbf{I}_d = \left|\dot{\mathbf{I}}_{HV}' + \dot{\mathbf{I}}_{LV}'\right|,\qquad
 \mathbf{I}_r = \frac{1}{2}\left(\left|\dot{\mathbf{I}}_{HV}'\right| + \left|\dot{\mathbf{I}}_{LV}'\right|\right).
@@ -487,7 +487,7 @@ Magnetizing branch $R_m$, $L_m$ & 500\,pu, 5\,pu\\ \bottomrule
 \end{tabular}\end{table}
 
 \section{Power System Network and CT Model}
-The external system is represented by Th\'evenin equivalents: $Z_{th,HV}=0.5+j15.0\,\Omega$ (SCL 3524\,MVA) and $Z_{th,LV}=0.01+j0.10\,\Omega$ (SCL 1204\,MVA), giving available fault currents of 8.84\,kA (HV) and 63.2\,kA (LV). A series limiting resistance of $R_{series} = 0.05\,\Omega$ is inserted in the external LV bus feeder network, capping external through-fault currents to $\approx 1.5$\,pu rms ($23.6$\,kA primary) to reflect stiff utility-feeder current limits and ensure that CT saturation is rigorously driven by burden and remanence sweeps. CTs on both sides use a saturable core (Table~\ref{tab:4.2}).
+The external system is represented by Th\'evenin equivalents: $Z_{th,HV}=0.5+j15.0\,\Omega$ (SCL 3524\,MVA) and $Z_{th,LV}=0.01+j0.10\,\Omega$ (SCL 1204\,MVA), giving available fault currents of 8.84\,kA (HV) and 63.2\,kA (LV). A series limiting resistance of $R_{series} = 0.05\,\Omega$ is inserted in the external LV bus feeder network in series with the downstream utility branch impedance ($Z_{feeder} \approx 0.03 + j0.25\,\Omega$), establishing an effective through-fault path impedance of $\approx 0.67$\,pu ($0.27\,\Omega$ primary). This caps external through-fault currents to $\approx 1.5$\,pu rms ($23.6$\,kA primary line current) to reflect stiff utility-feeder current limits and ensure that CT saturation is rigorously driven by burden ($4\times\text{--}16\times$) and remanence sweeps rather than uncontrolled primary overcurrent. CTs on both sides use a saturable core (Table~\ref{tab:4.2}).
 \begin{table}[H]\centering\caption{Calibrated current transformer parameters.}\label{tab:4.2}
 \begin{tabular}{@{}lcc@{}}\toprule \textbf{Parameter} & \textbf{HV Side} & \textbf{LV Side}\\ \midrule
 Effective CT ratio & 809.6 : 1 & 16,925 : 1\\
@@ -629,7 +629,7 @@ Dense Classifier ($64\to64\to1$) & 5{,}312 & $\approx$17.5\,k & 1.0\\ \midrule
 Total & 58{,}241 & $\approx$1.71\,M & 100\\ \bottomrule
 \end{tabular}\end{table}
 \begin{figure}[H]\centering\includegraphics[width=0.8\textwidth]{fig_5_7.png}
-\caption{Per-inference computational cost distribution across pipeline stages (~1.71 MFLOPs total).}\label{fig:5.7}\end{figure}
+\caption{Per-inference computational cost distribution across pipeline stages ($\approx$1.71\,MFLOPs total).}\label{fig:5.7}\end{figure}
 
 \section{Robustness Enhancement}
 Three complementary strategies are used: independent AWGN measurement noise injection across all six CT channels; dropout regularization (0.22) preventing feature co-adaptation; and out-of-distribution stress testing across extreme load, severe CT saturation, frequency deviation ($\pm0.5$\,Hz), and source impedance variations.
@@ -705,12 +705,14 @@ Table~\ref{tab:6.3} contrasts the baseline model trained on light-load data agai
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcc@{}}\toprule
 \textbf{Scenario Category} & \textbf{Light-Load Baseline Model (\%)} & \textbf{Retrained v3 Model (\%)}\\ \midrule
+\multicolumn{3}{@{}l}{\textit{Panel A: Non-Fault Transient Security (Healthy Regimes, Expected BLOCK)}} \\ \midrule
 External Fault with CT Saturation & 60.2 & \textbf{99.2}\\
 Over-Excitation (V/f saturation) & 41.4 & \textbf{100.0}\\
 Recovery Inrush & 65.0 & \textbf{97.5}\\
-Loaded Magnetizing Inrush & 86.7 & \textbf{99.9}\\
-Internal Fault during Inrush & 84.1 & \textbf{100.0}\\ \midrule
-\textbf{Overall Security} & \textbf{84.1\% (298 false trips)} & \textbf{99.7\% (6 false trips)}\\ \bottomrule
+Loaded Magnetizing Inrush & 86.7 & \textbf{99.9}\\ \midrule
+\textbf{Overall Security} & \textbf{84.1\% (298 false trips)} & \textbf{99.7\% (6 false trips)}\\ \midrule
+\multicolumn{3}{@{}l}{\textit{Panel B: Internal Fault Dependability (Fault Regimes, Expected TRIP)}} \\ \midrule
+Internal Fault during Inrush & 84.1 & \textbf{100.0}\\ \bottomrule
 \end{tabular}%
 }
 \end{table}
@@ -758,7 +760,7 @@ Switch-On-To-Fault (SOTF, $0^\circ$ angle) & TRIP & TRIP & 1.0000 & 15.0\,ms & P
 \end{table}
 
 \section{High-Impedance Fault Sensitivity Analysis}
-In the simulation sweep of internal high-impedance faults ($R_f = 0.3$--$21\,\Omega$), 240 traces were simulated across three resistance bins (80 traces per bin). Exactly 153 traces produce a differential current rise $\ge 0.05$\,pu (80 in Bin~1, 72 in Bin~2, and 1 in Bin~3), which constitute the 153 evaluated traces in Table~\ref{tab:4.3} and Table~\ref{tab:6.2}. The remaining 87 traces produce differential current below the 0.05\,pu physical noise threshold and are tracked separately. Table~\ref{tab:6.6} and Figure~\ref{fig:6.2} examine relay dependability across the three resistance bins. While conventional 87T relays fail to pick up above $R_f \approx 1.2\,\Omega$, the proposed AI-alone path maintains 71.2\% dependability in the AI-only zone ($1.2$--$7.0\,\Omega$), successfully recovering weak internal faults that elude percentage restraint.
+In the simulation sweep of internal high-impedance faults ($R_f = 0.3$--$21\,\Omega$), 240 traces were simulated across three resistance bins (80 traces per bin). Exactly 153 traces produce a differential current rise $\ge 0.05$\,pu (80 in Bin~1, 72 in Bin~2, and 1 in Bin~3), which constitute the 153 evaluated detectable traces in Table~\ref{tab:4.3} and Table~\ref{tab:6.2}. The remaining 87 traces produce differential current below the 0.05\,pu physical noise threshold and are segregated to avoid artificial metric distortion. Table~\ref{tab:6.6} and Figure~\ref{fig:6.2} examine relay dependability across the three resistance bins evaluated on Repetition~1 across all $n=80$ simulated traces per bin. In Bin~1 ($0.3\text{--}1.2\,\Omega$), all 80 traces are detectable, and the Proposed Hybrid achieves 100.0\% ($80/80$) while 87T alone achieves 96.2\% ($77/80$). In Bin~2 ($1.2\text{--}7.0\,\Omega$), where 72 of the 80 traces are physically detectable, the Proposed Hybrid trips 57 traces, achieving 71.2\% dependability across all 80 traces (or 79.2\% among detectable traces), whereas 87T alone trips only 3 traces (3.8\% across all traces, or 4.2\% of detectable traces). In Bin~3 ($7.0\text{--}21.0\,\Omega$), 79 of 80 traces are sub-noise floor ($<0.05$\,pu), yielding 0.0\% across all methods. Summing the tripped traces across the 153 detectable events gives $80 + 57 + 0 = 137$ trips for the Proposed Hybrid (matching $137/153 = 89.5\%$ in Repetition~1 in Table~\ref{tab:6.2}, with a 3-repetition mean of 93.0\%) and $77 + 3 + 0 = 80$ trips for 87T alone (matching $80/153 = 52.3\%$).
 
 \begin{table}[H]\centering\caption{High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}\label{tab:6.6}
 \resizebox{\textwidth}{!}{%
@@ -851,7 +853,7 @@ By wedding deterministic differential protection principles with multi-resolutio
 
 % ===================== PUBLICATIONS =====================
 \chapter*{List of Publications}
-\addcontentsline{toc}{chapter}{List of Publications}
+\addcontentsline{toc}{chapter}{LIST OF PUBLICATIONS}
 The following publications have been derived from this research:
 \begin{enumerate}[leftmargin=1.6em,itemsep=6pt]
 \item Md Moinul Haque, Md Reyaz Uddin, and Cdre A N M Didarul Alam, (L), NUP, psc, BN, ``Hybrid Adaptive Transformer Differential Protection Using a DWT--LSTM Intelligent Framework with Enhanced CT Saturation and Noise Robustness,'' \textit{IEEE Access}, 2026 (Under Review, Manuscript ID: Access-2026-HATDP). \textit{Summary:} presents the complete framework (two-level db4 decomposition, 12-feature DWT-harmonic pipeline, unidirectional LSTM with dual-path supervisory logic), reporting 99.01\% dependability and 99.66\% security and a median operating latency of 15.6\,ms, benchmarked against seven literature methods.
@@ -861,8 +863,8 @@ The following publications have been derived from this research:
 
 % ===================== REFERENCES =====================
 \begin{thebibliography}{99}
-\addcontentsline{toc}{chapter}{References}
-\bibitem{ref1} Q. Alhamd, M. Saniei, S. G. Seifossadat, and E. Mashhour, ``A novel transformer differential protection based on deep learning and wavelet transform,'' \textit{Algorithms}, vol.~17, no.~9, art.~397, 2024.
+\addcontentsline{toc}{chapter}{REFERENCES}
+\bibitem{ref1} Q. Alhamd, M. Saniei, S. G. Seifossadat, and E. Mashhour, ``Advanced fault detection in power transformers using improved wavelet analysis and LSTM networks considering current transformer saturation and uncertainties,'' \textit{Algorithms}, vol.~17, no.~9, art.~397, 2024.
 \bibitem{ref2} Q. Alhamd, M. Saniei, and S. G. Seifossadat, ``Intelligent differential protection of power transformers based on wavelet packet transform and deep sequence learning,'' \textit{Int.\ J.\ Electr.\ Power Energy Syst.}, vol.~155, p.~109567, 2024.
 \bibitem{ref3} W. A. Atiyah, S. Karimi, and M. Moradi, ``A novel approach for diagnosing transformer internal defects and inrush current based on 1DCNN and LSTM deep learning,'' \textit{J.\ Electr.\ Syst.}, vol.~20, no.~3, pp.~2557--2572, 2024.
 \bibitem{ref4} P. M. Anderson, \textit{Power System Protection}. New York, NY: IEEE Press / McGraw-Hill, 1999.
@@ -872,9 +874,9 @@ The following publications have been derived from this research:
 \bibitem{ref8} Z. Huang, S. Chen, S. Guo, and H. Yin, ``Transformer differential protection based on self-adaptive biased characteristic curve,'' \textit{Power Syst.\ Prot.\ Control}, vol.~44, no.~16, pp.~11--17, 2016.
 \bibitem{ref9} M. Tripathy, R. P. Maheshwari, and H. K. Verma, ``Power transformer differential protection based on optimal probabilistic neural network,'' \textit{IEEE Trans.\ Power Del.}, vol.~25, no.~1, pp.~102--112, Jan. 2010.
 \bibitem{ref10} A. Prataprao, S. Khedkar, and S. Barve, ``A review on fault classification methodologies in power transformer,'' \textit{Int.\ J.\ Eng.\ Adv.\ Technol.}, vol.~9, no.~1, pp.~7102--7109, 2019.
-\bibitem{ref11} M. Abdusalam, K. F. Ali, and W. M. El-Hawary, ``A new hybrid machine learning method for detecting faults in power transformers,'' \textit{Energies}, vol.~15, no.~5, p.~1672, 2022.
-\bibitem{ref12} J. Wang, Y. Liu, Z. Li, and B. Wang, ``Deep reinforcement learning for early classification of power transformer transients,'' \textit{Expert Syst.\ Appl.}, vol.~258, p.~124521, 2025.
-\bibitem{ref13} L. D. Sim\~{o}es, H. J. D. Costa, M. N. O. Aires, R. P. Medeiros, F. B. Costa, and A. S. Bretas, ``Transformer differential protection using support vector machine and wavelet transform,'' \textit{Electr.\ Power Syst.\ Res.}, vol.~197, p.~107307, Aug. 2021.
+\bibitem{ref11} M. Abdusalam, K. F. Ali, and W. M. El-Hawary, ``A new hybrid machine learning method for detecting faults in power transformers,'' \textit{Energies}, vol.~15, no.~18, art.~6758, 2022.
+\bibitem{ref12} J. Wang, Y. Liu, Z. Li, and B. Wang, ``Early classification for power transformer fault detection using reinforcement learning,'' \textit{Expert Syst.\ Appl.}, vol.~240, art.~122550, 2024.
+\bibitem{ref13} L. D. Sim\~{o}es, H. J. D. Costa, M. N. O. Aires, R. P. Medeiros, F. B. Costa, and A. S. Bretas, ``A power transformer differential protection based on support vector machine and wavelet transform,'' \textit{Electr.\ Power Syst.\ Res.}, vol.~197, art.~107297, Aug. 2021.
 \bibitem{ref14} S. Suliman, A. Mohamed, and H. Shareef, ``Discrimination between inrush current and internal fault in power transformer using discrete wavelet transform,'' \textit{Indones.\ J.\ Electron.}, vol.~3, no.~2, pp.~59--65, 2021.
 \bibitem{ref15} W. Rebizant, J. Szafran, and A. Wiszniewski, ``Transformer differential protection with neural network based inrush stabilization,'' \textit{WSEAS Trans.\ Circuits Syst.}, vol.~6, no.~4, pp.~537--544, 2007.
 \bibitem{ref16} S. Afrasiabi, M. Afrasiabi, B. Parang, and M. Mohammadi, ``Integration of accelerated deep neural network into power transformer differential protection,'' \textit{IEEE Trans.\ Ind.\ Informat.}, vol.~16, no.~2, pp.~865--876, Feb. 2020.
@@ -885,22 +887,22 @@ The following publications have been derived from this research:
 \bibitem{ref21} H. Dashti and M. Sanaye-Pasand, ``A multi-region adaptive differential relay for power transformer protection,'' \textit{IEEE Trans.\ Power Del.}, vol.~29, no.~5, pp.~2165--2174, 2014.
 \bibitem{ref22} A. Shahbazi, A. A. Samad, and P. R. Sharma, ``A self-adaptive biased characteristic curve method for power transformer differential protection,'' \textit{Int.\ J.\ Comput.\ Theory Appl.}, vol.~11, no.~4, pp.~321--331, 2022.
 \bibitem{ref23} Y. Lin, Z. Li, X. Wang, and L. Chen, ``Dual deep neural network for discriminating internal faults and inrush currents in power transformer differential protection,'' \textit{IEEE Access}, vol.~13, pp.~11234--11246, 2025.
-\bibitem{ref24} M. Oztekin, S. Karagol, and O. Ozgonenel, ``Power transformer differential protection with wavelet transform and difference function,'' \textit{Electr.\ Power Syst.\ Res.}, vol.~238, p.~111158, 2025.
-\bibitem{ref25} P. Chiradeja, A. Ngaopitakkul, and C. Pothisarn, ``Probabilistic neural network with wavelet transform for transformer protection using high-frequency components,'' \textit{Appl.\ Sci.}, vol.~11, no.~6, p.~2633, 2021.
+\bibitem{ref24} M. Oztekin, S. Karagol, and O. Ozgonenel, ``Power transformer differential protection with wavelet transform and difference function,'' \textit{Eng.\ Sci.\ Technol.\ Int.\ J.}, vol.~70, art.~102144, 2025.
+\bibitem{ref25} P. Chiradeja, C. Pothisarn, and A. Ngaopitakkul, ``Identification of inrush current and internal faults in power transformers using probabilistic neural network and discrete wavelet transform,'' \textit{Appl.\ Sci.}, vol.~11, no.~22, art.~10619, 2021.
 \bibitem{ref26} H. Noshad, M. Razaz, and S. G. Seifossadat, ``A new algorithm considering ultra-saturation phenomenon for differential protection of power transformers,'' \textit{Int.\ J.\ Electron.\ Electr.\ Power}, vol.~7, no.~2, pp.~51--61, 2019.
 \bibitem{ref27} Y. Yubo, C. Deshu, X. Zhenyu, and O. P. Malik, ``Adaptive variable window algorithm for power transformer differential protection,'' \textit{IEEE Trans.\ Power Del.}, vol.~20, no.~3, pp.~1790--1798, 2005.
 \bibitem{ref28} T. Hayder, U. Schaerli, K. Feser, and L. Schiel, ``Universal adaptive differential protection for regulating transformers,'' \textit{IEEE Trans.\ Power Del.}, vol.~23, no.~2, pp.~568--575, Apr. 2008.
-\bibitem{ref29} S. B. A. Bukhari, A. Wadood, T. Khurshaid, K. K. Mehmood, S. Rhee, and C. H. Kim, ``Empirical wavelet transform based intelligent protection scheme for microgrids,'' \textit{Energies}, vol.~15, no.~14, art.~5095, 2022.
+\bibitem{ref29} S. B. A. Bukhari, A. Wadood, T. Khurshaid, K. K. Mehmood, S. Rhee, and C. H. Kim, ``Empirical wavelet transform based intelligent protection scheme for microgrids,'' \textit{Energies}, vol.~15, no.~21, art.~7995, 2022.
 \bibitem{ref30} S. Murugan, S. Simon, K. Venkatesh, and N. K. Sharma, ``An efficient approach for power transformer differential protection using energy feature tracking,'' \textit{IEEE Trans.\ Power Del.}, vol.~32, no.~4, pp.~1850--1859, 2017.
 \bibitem{ref31} K. Hegazy and M. M. A. Salama, ``Advanced differential protection scheme for power transformers based on wavelet packet transform,'' \textit{IEEE Trans.\ Power Del.}, vol.~35, no.~5, pp.~2345--2356, 2020.
 \bibitem{ref32} B. Kasztenny and E. Rosolowski, ``Adaptive neural network-based protection of power transformers,'' \textit{Electr.\ Power Syst.\ Res.}, vol.~155, pp.~368--379, 2018.
-\bibitem{ref33} Z. Gajic, I. Brnivic, and R. Gojko, ``Differential protection of power transformers using ICT and smart processing,'' \textit{Int.\ J.\ Electr.\ Power Energy Syst.}, vol.~110, pp.~582--592, 2019.
+\bibitem{ref33} Z. Gajic, I. Brn\v{c}i\'{c}, and R. Gojko, ``Differential protection of power transformers using ICT and smart processing,'' \textit{Int.\ J.\ Electr.\ Power Energy Syst.}, vol.~110, pp.~582--592, 2019.
 \bibitem{ref34} D. R. Oliveira, A. S. Bretas, and L. U. Iurinic, ``Transformers differential protection using independent component analysis,'' \textit{IEEE Trans.\ Power Del.}, vol.~34, no.~2, pp.~738--747, 2019.
-\bibitem{ref35} A. Hooshyar, M. A. Azzouz, and E. F. El-Saadany, ``Transformer differential protection based on GARCH modelling of differential current,'' \textit{IEEE Trans.\ Power Del.}, vol.~31, no.~1, pp.~127--136, 2016.
+\bibitem{ref35} A. Hooshyar, M. Sanaye-Pasand, and M. Davarpanah, ``GARCH differential current modeling for power transformer protection,'' \textit{IEEE Trans.\ Power Del.}, vol.~31, no.~2, pp.~642--652, Apr. 2016.
 \bibitem{ref36} Y. C. Kang, B. E. Lee, and S. H. Kang, ``A CT saturation detection algorithm using the secondary current third-derivative function,'' \textit{IEEE Trans.\ Power Del.}, vol.~26, no.~4, pp.~2863--2871, 2011.
 \bibitem{ref37} X. Lin, P. Liu, and O. P. Malik, ``Studies for identification of the inrush based on improved correlation algorithm,'' \textit{IEEE Trans.\ Power Del.}, vol.~17, no.~4, pp.~901--907, 2002.
-\bibitem{ref38} R. P. Medeiros, F. B. Costa, and K. M. Silva, ``Power transformer differential protection using the boundary discrete wavelet transform,'' \textit{IEEE Trans.\ Power Del.}, vol.~31, no.~5, pp.~2083--2092, Oct. 2016.
-\bibitem{ref39} R. P. Medeiros, F. B. Costa, K. M. Silva, J. J. Chavez, J. R. Lima Junior, and M. Popov, ``A Clarke-wavelet-based time-domain power transformer differential protection,'' \textit{IEEE Trans.\ Power Del.}, vol.~37, no.~4, pp.~2971--2981, Aug. 2022.
+\bibitem{ref38} R. P. Medeiros, F. B. Costa, and K. M. Silva, ``Power transformer differential protection using the boundary discrete wavelet transform,'' \textit{IEEE Trans.\ Power Del.}, vol.~31, no.~5, pp.~2083--2095, Oct. 2016.
+\bibitem{ref39} R. P. Medeiros, F. B. Costa, K. M. Silva, J. J. Chavez, J. R. Lima Junior, and M. Popov, ``A Clarke-wavelet-based time-domain power transformer differential protection,'' \textit{IEEE Trans.\ Power Del.}, vol.~37, no.~1, pp.~317--328, Feb. 2022.
 \bibitem{ref40} Y. Wang, X. Yin, H. Zhang, and D. Chen, ``Variable data-window Phaselet algorithm based transformer differential protection,'' \textit{IEEE Trans.\ Power Del.}, vol.~26, no.~4, pp.~2648--2656, Oct. 2011.
 \end{thebibliography}
 
@@ -915,13 +917,13 @@ The verified 300\,MVA plant parameters, current transformer data, and Daubechies
 \begin{tabular}{@{}ccc@{}}\toprule
 $n$ & Low-pass filter $h[n]$ & High-pass filter $g[n] = (-1)^n h[7-n]$\\ \midrule
 0 & $+0.230377813308896$ & $-0.010597401785069$\\
-1 & $+0.714846570552915$ & $+0.032883011666885$\\
+1 & $+0.714846570552915$ & $-0.032883011666885$\\
 2 & $+0.630880767937402$ & $+0.030841381835561$\\
-3 & $-0.027983769416860$ & $-0.187034811719093$\\
+3 & $-0.027983769416860$ & $+0.187034811719093$\\
 4 & $-0.187034811719093$ & $-0.027983769416860$\\
-5 & $+0.030841381835561$ & $+0.630880767937402$\\
-6 & $+0.032883011666885$ & $-0.714846570552915$\\
-7 & $-0.010597401785069$ & $+0.230377813308896$\\ \bottomrule
+5 & $+0.030841381835561$ & $-0.630880767937402$\\
+6 & $+0.032883011666885$ & $+0.714846570552915$\\
+7 & $-0.010597401785069$ & $-0.230377813308896$\\ \bottomrule
 \end{tabular}\end{table}
 
 \begin{table}[H]\centering\caption{Deployed neural network architecture hyperparameters and execution budget.}\label{tab:A.2}
@@ -963,7 +965,7 @@ The modeling, protection algorithms, and evaluation protocols comply with applic
 \begin{itemize}[leftmargin=1.4em,itemsep=2pt]
 \item \textbf{IEEE Std C37.91-2021:} \textit{IEEE Guide for Protecting Power Transformers}.
 \item \textbf{IEEE Std C37.110-2007:} \textit{IEEE Guide for the Application of Current Transformers Used for Protective Relaying Purposes}.
-\item \textbf{IEC 60255-149:2013:} \textit{Measuring Relays and Protection Equipment -- Part 149: Functional Requirements for Thermal Electrical Relays}.
+\item \textbf{IEC 60255-187-1:2021:} \textit{Measuring Relays and Protection Equipment -- Part 187-1: Functional Requirements for Differential Protection -- AC Motors, Generators and Transformers}.
 \item \textbf{IEC 61850-9-2:} \textit{Specific Communication Service Mapping (SCSM) -- Sampled Values over ISO/IEC 8802-3}.
 \end{itemize}
 
@@ -979,5 +981,9 @@ if __name__ == "__main__":
     main()
 '''
 
-OUT_FILE.write_text(script_content, encoding="utf-8")
-print(f"Successfully wrote {OUT_FILE} ({len(script_content)} bytes).")
+def main():
+    OUT_FILE.write_text(script_content, encoding="utf-8")
+    print(f"Updated {OUT_FILE} successfully.")
+
+if __name__ == "__main__":
+    main()

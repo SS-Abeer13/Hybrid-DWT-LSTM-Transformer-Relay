@@ -13,6 +13,12 @@ import matplotlib.patches as patches
 
 OUT_DIR = Path(r"F:\Transformer Thesis\latex_source\latex")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
+MIST_DIR = Path(r"F:\Transformer Thesis\figures\MIST_LaTeX")
+MIST_DIR.mkdir(parents=True, exist_ok=True)
+
+def save_fig(fig, filename):
+    fig.savefig(OUT_DIR / filename, dpi=300)
+    fig.savefig(MIST_DIR / filename, dpi=300)
 
 plt.rcParams.update({
     "font.family": "serif",
@@ -123,7 +129,7 @@ def generate_fig_1_1():
     ax.text(5.0, 0.8, "Trip Signal", color="#B71C1C", fontweight="bold", fontsize=8.5, rotation=-30)
 
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_1_1.png", dpi=300)
+    save_fig(fig, "fig_1_1.png")
     plt.close(fig)
     print("Generated fig_1_1.png")
 
@@ -188,7 +194,7 @@ def generate_fig_3_1():
     ax2.set_ylabel(r"Differential Current $I_d$ (per-unit, $\mathrm{pu}$)")
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_3_1.png", dpi=300)
+    save_fig(fig, "fig_3_1.png")
     plt.close(fig)
     print("Generated fig_3_1.png")
 
@@ -244,7 +250,7 @@ def generate_fig_3_2():
     ax2.set_ylim(-1, 16)
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_3_2.png", dpi=300)
+    save_fig(fig, "fig_3_2.png")
     plt.close(fig)
     print("Generated fig_3_2.png")
 
@@ -321,7 +327,7 @@ def generate_fig_3_3():
     ax2.set_ylim(-8, 16)
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_3_3.png", dpi=300)
+    save_fig(fig, "fig_3_3.png")
     plt.close(fig)
     print("Generated fig_3_3.png")
 
@@ -355,7 +361,7 @@ def generate_fig_3_4():
     y_asym = -0.7 * x_grid + 0.1 # Shifted toward healthy class to never miss faults
     
     ax.plot(x_grid, y_sym, "k--", lw=1.8, label="Standard Symmetric Boundary")
-    ax.plot(x_grid, y_asym, "r-", lw=2.5, label=r"Cost-Asymmetric Boundary ($\lambda_{\mathrm{FN}} \gg \lambda_{\mathrm{FP}}$)")
+    ax.plot(x_grid, y_asym, "r-", lw=2.5, label=r"Cost-Asymmetric Boundary ($L_{\mathrm{FN}} \gg L_{\mathrm{FP}}$)")
     
     # Annotation
     ax.annotate("Dependability-Biased Shift\n(Prevents Missed Faults)",
@@ -372,7 +378,7 @@ def generate_fig_3_4():
     ax.legend(loc="upper left", fontsize=8, frameon=True)
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_3_4.png", dpi=300)
+    save_fig(fig, "fig_3_4.png")
     plt.close(fig)
     print("Generated fig_3_4.png")
 
@@ -411,7 +417,7 @@ def generate_fig_5_1():
     ax.text(12.4, 1.6, "99.01% Dep. / 99.66% Sec.", ha="center", fontsize=8.5, fontweight="bold", color="#C62828")
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_5_1.png", dpi=300)
+    save_fig(fig, "fig_5_1.png")
     plt.close(fig)
     print("Generated fig_5_1.png")
 
@@ -499,7 +505,7 @@ def generate_fig_5_2():
     ax.text(15.6, 5.8, "TRIP\nCOMMAND", va="center", fontweight="bold", fontsize=10.5, color="#B71C1C")
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_5_2.png", dpi=300)
+    save_fig(fig, "fig_5_2.png")
     plt.close(fig)
     print("Generated fig_5_2.png")
 
@@ -533,7 +539,7 @@ def generate_fig_5_3():
                         arrowprops=dict(arrowstyle="->", lw=2, color="#1565C0"))
             
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_5_3.png", dpi=300)
+    save_fig(fig, "fig_5_3.png")
     plt.close(fig)
     print("Generated fig_5_3.png")
 
@@ -577,7 +583,7 @@ def generate_fig_5_4():
     ax.legend(loc="upper right", fontsize=8.5, frameon=True)
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_5_4.png", dpi=300)
+    save_fig(fig, "fig_5_4.png")
     plt.close(fig)
     print("Generated fig_5_4.png")
 
@@ -649,7 +655,7 @@ def generate_fig_5_5():
     ax2.text(9.2, 1.0, r"$\mathbf{a_2[k]}$ (0--200 Hz)" + "\n(13 coeffs)", ha="center", va="center", fontweight="bold", fontsize=7.5, color="#1976D2")
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_5_5.png", dpi=300)
+    save_fig(fig, "fig_5_5.png")
     plt.close(fig)
     print("Generated fig_5_5.png")
 
@@ -684,7 +690,7 @@ def generate_fig_5_6():
                         arrowprops=dict(arrowstyle="<-", lw=1.8, color="#37474F"))
             
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_5_6.png", dpi=300)
+    save_fig(fig, "fig_5_6.png")
     plt.close(fig)
     print("Generated fig_5_6.png")
 
@@ -729,7 +735,7 @@ def generate_fig_5_7():
     ax2.set_ylim(0, 1.25)
     
     plt.tight_layout()
-    fig.savefig(OUT_DIR / "fig_5_7.png", dpi=300)
+    save_fig(fig, "fig_5_7.png")
     plt.close(fig)
     print("Generated fig_5_7.png")
 

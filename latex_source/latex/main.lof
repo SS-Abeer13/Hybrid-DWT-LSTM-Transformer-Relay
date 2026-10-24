@@ -16,11 +16,11 @@
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Sliding-window timing and sample-by-sample update cadence.}}{23}{figure.caption.27}%
 \contentsline {figure}{\numberline {5.5}{\ignorespaces db4 mother wavelet and two-level dyadic filter-bank decomposition tree.}}{24}{figure.caption.29}%
 \contentsline {figure}{\numberline {5.6}{\ignorespaces Deployed DWT--LSTM classifier architecture with global temporal attention (58{,}241 parameters).}}{25}{figure.caption.30}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Per-inference computational cost distribution across pipeline stages (~1.71 MFLOPs total).}}{26}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Per-inference computational cost distribution across pipeline stages ($\approx $1.71\,MFLOPs total).}}{26}{figure.caption.32}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {6.1}{\ignorespaces Representative three-phase differential current waveforms across major operating categories under realistic loading and CT burden.}}{28}{figure.caption.33}%
 \contentsline {figure}{\numberline {6.2}{\ignorespaces Empirical fault differential current versus fault resistance across all internal fault types, delineating the 87T-visible and AI-alone detection boundaries.}}{32}{figure.caption.40}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Dynamic relay operating characteristics: (a) operate-time cumulative distribution (legend sample counts denote tripped detectable faults out of 1,251 in Repetition~1), and (b) threshold trade-off curve.}}{32}{figure.caption.41}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Dynamic relay operating characteristics: (a) operate-time cumulative distribution (legend sample counts denote tripped detectable faults out of 1,251 in Repetition~1), and (b) threshold trade-off curve.}}{33}{figure.caption.41}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -2,9 +2,9 @@
 \contentsline {chapter}{DECLARATION}{iv}{section*.2}%
 \contentsline {chapter}{ACKNOWLEDGEMENTS}{v}{section*.3}%
 \contentsline {chapter}{ABSTRACT}{vi}{section*.4}%
-\contentsline {chapter}{Contents}{viii}{section*.5}%
-\contentsline {chapter}{List of Figures}{xii}{section*.7}%
-\contentsline {chapter}{List of Tables}{xiv}{section*.9}%
+\contentsline {chapter}{CONTENTS}{viii}{section*.5}%
+\contentsline {chapter}{LIST OF FIGURES}{xii}{section*.7}%
+\contentsline {chapter}{LIST OF TABLES}{xiv}{section*.9}%
 \contentsline {chapter}{LIST OF SYMBOLS / NOTATIONS}{xv}{section*.11}%
 \contentsline {chapter}{LIST OF ABBREVIATIONS}{xvii}{section*.12}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
@@ -46,7 +46,7 @@
 \contentsline {section}{\numberline {4.3}Transformer Model Parameters}{16}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Power System Network and CT Model}{16}{section.4.4}%
 \contentsline {section}{\numberline {4.5}Fault and Event Scenarios}{17}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Signal Conditioning and Verified Dataset Compilation}{17}{section.4.6}%
+\contentsline {section}{\numberline {4.6}Signal Conditioning and Verified Dataset Compilation}{18}{section.4.6}%
 \contentsline {chapter}{\numberline {5}Proposed DWT--LSTM Methodology}{20}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Introduction}{20}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Framework Architecture}{20}{section.5.2}%
@@ -76,8 +76,8 @@
 \contentsline {section}{\numberline {7.4}Limitations of the Study}{37}{section.7.4}%
 \contentsline {section}{\numberline {7.5}Recommendations for Future Work}{37}{section.7.5}%
 \contentsline {section}{\numberline {7.6}Concluding Remarks}{38}{section.7.6}%
-\contentsline {chapter}{List of Publications}{39}{chapter*.43}%
-\contentsline {chapter}{References}{40}{chapter*.44}%
+\contentsline {chapter}{LIST OF PUBLICATIONS}{39}{chapter*.43}%
+\contentsline {chapter}{REFERENCES}{40}{chapter*.44}%
 \contentsline {chapter}{\numberline {A}System Parameters and Configuration}{44}{appendix.A}%
 \contentsline {chapter}{\numberline {B}Reproducibility and Standards}{46}{appendix.B}%
 \contentsline {section}{\numberline {B.1}Computational Environment and Software Dependencies}{46}{section.B.1}%
