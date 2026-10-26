@@ -17,29 +17,49 @@ __pycache__/
 .jupyter-data/
 .jupyter-runtime/
 
-# Large dataset files and binary formats (over GitHub 100MB limit)
+# Large dataset files and binary formats
 *.mat
 *.exe
 *.zip
 *.pth
 *.onnx
+*.npz
 
-# Temporary profile/profile logging files
+# Third-party binaries
+*.mcpb
+tools/*.mcpb
+
+# Diagnostics and heavy logs
+simulations/lstm_diagnostics.txt
+*.diagnostics.txt
+*diagnostics*.txt
+*_console.txt
+*_done.txt
+
+# Temporary profile and simulation artifacts
 *.log
 *.asv
+*.sock
 slprj/
 **/slprj/
-_speech_docx_render/
-**/_speech_docx_render/
+tools/matlab logs/
 
+# MiKTeX local caches & document render profiles
+_miktex_local*
+**/_miktex_local*
+_speech_docx_render*
+**/_speech_docx_render*
 
+# Python libraries and run scratch
 .pylibs/
-*.npz
 runs/
 *_BACKUP_*
 *_FAILED_*
 *_BADSAVE_*
-*_console.txt
-*_done.txt
-*.sock
-tools/matlab logs/
+
+# Copyrighted reference PDFs (refer to REFERENCE_DOWNLOAD_SHEET.md)
+documents/Reference Papers/*.pdf
+latex_source/**/Reference papers/*.pdf
+latex_source/**/Reference Papers/*.pdf
+latex_source/MIST_LaTeX*/**/*.pdf
+latex_source/MIST_LaTeX*/**/~*.docx
