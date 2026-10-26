@@ -431,6 +431,18 @@
   - Updated `lstm_models/relay87t.py` with multi-mode `analyse_harmonic(mode='per_phase'|'cross_active'|'as_coded')`.
   - Added Re-check section R1–R3 to `REVIEW_FIXES_2026-10-26.md` and updated Table 6.7 note.
 
+- **2026-10-26 21:05** — ✅ **Re-check 2 & R3 Execution & Data-Driven Baseline Finalization:**
+  - **Automated evaluation script & saved result files:** implemented `tools/evaluate_harmonic87t.py` to evaluate unrestrained 87T and all three harmonic restraint configurations (R1 `as_coded`, R2 `cross_active`, R3 `per_phase`) across both 5-fold cross-validation ($N_{\text{eval}} = 3{,}124$) and the Out-of-Distribution stress suite ($N_{\text{eval}} = 291$).
+  - **Result persistence:** saved exact metrics to `runs/20261026_harmonic87t/summary.json` and `runs/20261026_harmonic87t/summary.txt`:
+    - R3 (`per_phase` commercial practice): CV pooled dependability **84.33%**, security **97.97%**, 38 false trips, median $T_{\text{op}}$ **18.12 ms**; 5-fold CV mean dep **84.32 $\pm$ 1.40%**, sec **97.97 $\pm$ 0.80%**; OOD overall dep **84.72%**, sec **87.07%**, 19 false trips.
+    - Baseline unrestrained 87T: CV pooled dep 79.62%, sec 52.96%, 881 false trips; OOD dep 79.17%, sec 43.54%, 83 false trips.
+  - **Dynamic table & macro integration:** updated `generate_thesis_tables_and_macros.py` to dynamically load `runs/20261026_harmonic87t/summary.json` without hardcoded numbers in Table 6.7 note; added macros `\HarmonicBaselineDep`, `\HarmonicBaselineSec`, `\HarmonicBaselineFalseTrips`, `\HarmonicBaselineMedOperate`, `\HarmonicBaselineOODDep`, `\HarmonicBaselineOODSec`, `\HarmonicBaselineOODFalseTrips` to `thesis_results_macros.tex`.
+  - **R3 leftovers resolved:**
+    - Fixed `main.tex` line 691 and rebuild scripts to describe conventional 87T baseline without harmonic blocking and cite dedicated phase-independent harmonic restraint comparison.
+    - Replaced "maximizing fault-clearing velocity" with "minimising relay operate time" at `main.tex` line 676 and rebuild scripts.
+    - Cleaned `benchmark_literature_models.py` and `runs/literature_benchmark/literature_benchmark_summary.json` to purge invented `latency_ms` constants and update Random Forest complexity to actual tree representation (`100 trees (nodes variable)`).
+  - **Recompilation & audit verification:** recompiled `main.tex` via XeLaTeX with exit code 0, verifying exactly 64 pages (16 front-matter + 48 main-matter); marked all remaining checkboxes in `REVIEW_FIXES_2026-10-26.md` as `[x] Done`.
+
 ---
 
 ## Next steps (for publication and thesis defense)

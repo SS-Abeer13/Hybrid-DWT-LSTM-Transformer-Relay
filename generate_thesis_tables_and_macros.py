@@ -308,12 +308,26 @@ def main() -> None:
         ft = f"{b}{s['false_trips']}{be}"
         t67_lines.append(f"{label} & {ref} & {p} & {dep} & {sec} & {acc} & {med_op} & {ft} \\\\")
         
+    # Load harmonic baseline results
+    harm_path = ROOT / "runs" / "20261026_harmonic87t" / "summary.json"
+    harm_data = json.loads(harm_path.read_text(encoding="utf-8"))
+    harm_r3 = harm_data["variants"]["per_phase"]["main_pooled"]
+    harm_dep = harm_r3["dependability_pct"]
+    harm_sec = harm_r3["security_pct"]
+    harm_ft = harm_r3["false_trips"]
+    harm_med = harm_r3["operate"]["median_ms"]
+    harm_ood = harm_data["variants"]["per_phase"]["ood_overall"]
+    harm_ood_dep = harm_ood["dependability_pct"]
+    harm_ood_sec = harm_ood["security_pct"]
+    harm_ood_ft = harm_ood["false_trips"]
+    prop = lit_summaries["Proposed Hybrid DWT-LSTM"]["hybrid"]
+
     t67_lines.extend([
         r"\bottomrule",
         r"\end{tabular}%",
         r"}",
         r"\vspace{2pt}",
-        r"\raggedright\footnotesize\textit{Note:} Med.\,$T_{op}$ is median relay operate time (breaker opening not modelled). Baseline 87T lacks harmonic restraint. For comparison, a conventional 87T with phase-independent harmonic restraint ($k_2 \le 15\%$, $k_5 \le 35\%$) attains 84.33\% dep.\ and 97.97\% sec.\ (38 false trips), while the Proposed Hybrid achieves 98.56\% dep.\ and 99.41\% sec.\ (11 false trips).",
+        f"\\raggedright\\footnotesize\\textit{{Note:}} Med.\\,$T_{{op}}$ is median relay operate time (breaker opening not modelled). Baseline 87T lacks harmonic restraint. For comparison, a conventional 87T with phase-independent harmonic restraint ($k_2 \\le 15\\%$, $k_5 \\le 35\\%$) attains {harm_dep:.2f}\\% dep.\\ and {harm_sec:.2f}\\% sec.\\ ({harm_ft} false trips), while the Proposed Hybrid achieves {prop['dependability_pct']:.2f}\\% dep.\\ and {prop['security_pct']:.2f}\\% sec.\\ ({prop['false_trips']} false trips).",
         r"\end{table}"
     ])
     (TEX_DIR / "table_literature_benchmark.tex").write_text("\n".join(t67_lines), encoding="utf-8")
@@ -344,6 +358,13 @@ def main() -> None:
         f"\\newcommand{{\\LitRepOneMedOperate}}{{{lit_summaries['Proposed Hybrid DWT-LSTM']['hybrid']['operate']['median_ms']:.1f}}}",
         f"\\newcommand{{\\LitRFStandaloneAcc}}{{{lit_summaries['Wavelet-RF']['standalone']['accuracy_pct']:.2f}}}",
         f"\\newcommand{{\\LitRFStandaloneFalseTrips}}{{{lit_summaries['Wavelet-RF']['standalone']['false_trips']}}}",
+        f"\\newcommand{{\\HarmonicBaselineDep}}{{{harm_dep:.2f}}}",
+        f"\\newcommand{{\\HarmonicBaselineSec}}{{{harm_sec:.2f}}}",
+        f"\\newcommand{{\\HarmonicBaselineFalseTrips}}{{{harm_ft}}}",
+        f"\\newcommand{{\\HarmonicBaselineMedOperate}}{{{harm_med:.1f}}}",
+        f"\\newcommand{{\\HarmonicBaselineOODDep}}{{{harm_ood_dep:.2f}}}",
+        f"\\newcommand{{\\HarmonicBaselineOODSec}}{{{harm_ood_sec:.2f}}}",
+        f"\\newcommand{{\\HarmonicBaselineOODFalseTrips}}{{{harm_ood_ft}}}",
     ]
     (TEX_DIR / "thesis_results_macros.tex").write_text("\n".join(macros), encoding="utf-8")
     print("Successfully generated all tables and results macros in", TEX_DIR)

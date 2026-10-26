@@ -1,0 +1,50 @@
+================================================================================
+Harmonic-Restrained 87T Relay Variants vs Unrestrained Baseline Evaluation
+================================================================================
+Evaluation Date: 2026-10-26 | Dwell: 20 samples (12.5 ms) | k2: 15% | k5: 35%
+
+Variant: UNRESTRAINED - Classical dual-slope percentage restraint, no harmonic blocking
+  [Main CV Pooled] Dep: 79.62% (n=1251), Sec: 52.96% (n=1873), Acc: 63.64%, False Trips: 881, Med T_op: 0.62 ms
+  [Main 5-Fold CV] Dep: 79.61 +/- 1.27%, Sec: 52.96 +/- 1.16%, Total False Trips: 881
+  [OOD Overall]    Dep: 79.17% (n=144), Sec: 43.54% (n=147), Acc: 61.17%, False Trips: 83, Pre-fault: 25, Med T_op: 0.62 ms
+  OOD Blocks:
+    Block 1 (extreme load (1-10 %, 110-130 %)): Dep: 90.0% (30), Sec: 76.7% (30), Missed: 3, False: 7
+    Block 2 (weak source 3x + 49.5/50.5 Hz): Dep: 96.7% (30), Sec: 66.7% (30), Missed: 1, False: 10
+    Block 3 (CT burden 12-16x): Dep: 40.0% (25), Sec: 0.0% (27), Missed: 15, False: 27
+    Block 4 (over-excitation 1.5-1.6 pu + residual flux 0.9 pu): Dep: 66.7% (30), Sec: 3.3% (30), Missed: 10, False: 29
+    Block 5 (noise 5 % + CT mismatch +/-8 %): Dep: 96.6% (29), Sec: 66.7% (30), Missed: 1, False: 10
+
+Variant: AS_CODED - R1: Unselective cross-blocking (any phase k2>15% or k5>35% blocks all)
+  [Main CV Pooled] Dep: 55.24% (n=1251), Sec: 100.00% (n=1873), Acc: 82.07%, False Trips: 0, Med T_op: 19.38 ms
+  [Main 5-Fold CV] Dep: 55.23 +/- 2.62%, Sec: 100.00 +/- 0.00%, Total False Trips: 0
+  [OOD Overall]    Dep: 48.61% (n=144), Sec: 91.84% (n=147), Acc: 70.45%, False Trips: 12, Pre-fault: 1, Med T_op: 18.75 ms
+  OOD Blocks:
+    Block 1 (extreme load (1-10 %, 110-130 %)): Dep: 80.0% (30), Sec: 100.0% (30), Missed: 6, False: 0
+    Block 2 (weak source 3x + 49.5/50.5 Hz): Dep: 53.3% (30), Sec: 100.0% (30), Missed: 14, False: 0
+    Block 3 (CT burden 12-16x): Dep: 0.0% (25), Sec: 100.0% (27), Missed: 25, False: 0
+    Block 4 (over-excitation 1.5-1.6 pu + residual flux 0.9 pu): Dep: 26.7% (30), Sec: 60.0% (30), Missed: 22, False: 12
+    Block 5 (noise 5 % + CT mismatch +/-8 %): Dep: 75.9% (29), Sec: 100.0% (30), Missed: 7, False: 0
+
+Variant: CROSS_ACTIVE - R2: Active cross-blocking (only phases with Id > 0.30 pu cross-block)
+  [Main CV Pooled] Dep: 61.71% (n=1251), Sec: 99.95% (n=1873), Acc: 84.64%, False Trips: 1, Med T_op: 18.75 ms
+  [Main 5-Fold CV] Dep: 61.71 +/- 2.91%, Sec: 99.95 +/- 0.12%, Total False Trips: 1
+  [OOD Overall]    Dep: 55.56% (n=144), Sec: 91.84% (n=147), Acc: 73.88%, False Trips: 12, Pre-fault: 1, Med T_op: 18.75 ms
+  OOD Blocks:
+    Block 1 (extreme load (1-10 %, 110-130 %)): Dep: 86.7% (30), Sec: 100.0% (30), Missed: 4, False: 0
+    Block 2 (weak source 3x + 49.5/50.5 Hz): Dep: 60.0% (30), Sec: 100.0% (30), Missed: 12, False: 0
+    Block 3 (CT burden 12-16x): Dep: 0.0% (25), Sec: 100.0% (27), Missed: 25, False: 0
+    Block 4 (over-excitation 1.5-1.6 pu + residual flux 0.9 pu): Dep: 43.3% (30), Sec: 60.0% (30), Missed: 17, False: 12
+    Block 5 (noise 5 % + CT mismatch +/-8 %): Dep: 79.3% (29), Sec: 100.0% (30), Missed: 6, False: 0
+
+Variant: PER_PHASE - R3: Phase-independent restraint (standard industrial commercial practice)
+  [Main CV Pooled] Dep: 84.33% (n=1251), Sec: 97.97% (n=1873), Acc: 92.51%, False Trips: 38, Med T_op: 18.12 ms
+  [Main 5-Fold CV] Dep: 84.32 +/- 1.40%, Sec: 97.97 +/- 0.80%, Total False Trips: 38
+  [OOD Overall]    Dep: 84.72% (n=144), Sec: 87.07% (n=147), Acc: 85.91%, False Trips: 19, Pre-fault: 1, Med T_op: 18.12 ms
+  OOD Blocks:
+    Block 1 (extreme load (1-10 %, 110-130 %)): Dep: 90.0% (30), Sec: 93.3% (30), Missed: 3, False: 2
+    Block 2 (weak source 3x + 49.5/50.5 Hz): Dep: 76.7% (30), Sec: 100.0% (30), Missed: 7, False: 0
+    Block 3 (CT burden 12-16x): Dep: 64.0% (25), Sec: 88.9% (27), Missed: 9, False: 3
+    Block 4 (over-excitation 1.5-1.6 pu + residual flux 0.9 pu): Dep: 93.3% (30), Sec: 53.3% (30), Missed: 2, False: 14
+    Block 5 (noise 5 % + CT mismatch +/-8 %): Dep: 96.6% (29), Sec: 100.0% (30), Missed: 1, False: 0
+
+Completed in 59.39 seconds.

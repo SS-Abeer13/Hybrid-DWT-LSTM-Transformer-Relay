@@ -364,9 +364,9 @@ def run_benchmarks(args):
         all_results["Standalone LSTM"]["standalone"].extend(f["rows"]["LSTM alone"])
         all_results["Proposed Hybrid DWT-LSTM"]["hybrid"].extend(f["rows"]["Hybrid + AI-alone path"])
 
-    model_meta["Conventional 87T"] = {"params": 0, "type": "Physics-based Relay", "latency_ms": 0.6}
-    model_meta["Standalone LSTM"] = {"params": 58241, "type": "Recurrent Sequence", "latency_ms": 1.15}
-    model_meta["Proposed Hybrid DWT-LSTM"] = {"params": 58241, "type": "Hybrid Neuro-Physical", "latency_ms": 1.25}
+    model_meta["Conventional 87T"] = {"params": 0, "type": "Physics-based Relay"}
+    model_meta["Standalone LSTM"] = {"params": 58241, "type": "Recurrent Sequence"}
+    model_meta["Proposed Hybrid DWT-LSTM"] = {"params": 58241, "type": "Hybrid Neuro-Physical"}
 
     t_start = time.time()
 
@@ -432,7 +432,7 @@ def run_benchmarks(args):
             torch.save(mlp.state_dict(), ckpt_path)
             print(f"[{m_name}] Trained in {time.time() - t0:.1f}s, Best Val AUC: {best_auc:.4f}")
 
-        fold_meta[m_name] = {"params": count_parameters(mlp), "type": "Shallow Neural Network", "latency_ms": 0.08}
+        fold_meta[m_name] = {"params": count_parameters(mlp), "type": "Shallow Neural Network"}
         model_meta[m_name] = fold_meta[m_name]
 
         print(f"[{m_name}] Generating streaming probabilities...")
@@ -463,7 +463,7 @@ def run_benchmarks(args):
             torch.save(cnn.state_dict(), ckpt_path)
             print(f"[{m_name}] Trained in {time.time() - t0:.1f}s, Best Val AUC: {best_auc:.4f}")
 
-        fold_meta[m_name] = {"params": count_parameters(cnn), "type": "Convolutional Network", "latency_ms": 0.22}
+        fold_meta[m_name] = {"params": count_parameters(cnn), "type": "Convolutional Network"}
         model_meta[m_name] = fold_meta[m_name]
 
         print(f"[{m_name}] Generating streaming probabilities...")
@@ -494,7 +494,7 @@ def run_benchmarks(args):
             torch.save(gru.state_dict(), ckpt_path)
             print(f"[{m_name}] Trained in {time.time() - t0:.1f}s, Best Val AUC: {best_auc:.4f}")
 
-        fold_meta[m_name] = {"params": count_parameters(gru), "type": "Recurrent Sequence", "latency_ms": 0.95}
+        fold_meta[m_name] = {"params": count_parameters(gru), "type": "Recurrent Sequence"}
         model_meta[m_name] = fold_meta[m_name]
 
         print(f"[{m_name}] Generating streaming probabilities...")
@@ -522,7 +522,7 @@ def run_benchmarks(args):
         rf.fit(xtr_pool[sub_idx], ytr[sub_idx].astype(np.int64))
         print(f"[{m_name}] Fitted in {time.time() - t0:.1f}s")
 
-        fold_meta[m_name] = {"params": 100 * 2500, "type": "Ensemble Trees", "latency_ms": 0.12}
+        fold_meta[m_name] = {"params": sum(tree.tree_.node_count for tree in rf.estimators_), "type": "Ensemble Trees"}
         model_meta[m_name] = fold_meta[m_name]
 
         print(f"[{m_name}] Generating streaming probabilities...")
@@ -553,7 +553,7 @@ def run_benchmarks(args):
         svm.fit(xtr_pool[sub_idx_svm], ytr[sub_idx_svm].astype(np.int64))
         print(f"[{m_name}] Fitted in {time.time() - t0:.1f}s")
 
-        fold_meta[m_name] = {"params": 120 * 48 + 120, "type": "Kernel Machine", "latency_ms": 0.15}
+        fold_meta[m_name] = {"params": 120 * 48 + 120, "type": "Kernel Machine"}
         model_meta[m_name] = fold_meta[m_name]
 
         print(f"[{m_name}] Generating streaming probabilities...")
@@ -637,8 +637,8 @@ def run_benchmarks(args):
         "",
         "In this mode, each AI classifier directly issues the trip signal once persistence is fulfilled, exactly as evaluated in prior literature.",
         "",
-        "| Architecture | Reference / Paradigm | Model Category | Parameters | Latency (ms) | Dependability (%) | Security (%) | Overall Accuracy (%) | Median $T_{op}$ (ms) | $\\le$ 2 Cycles (%) | False Trips |",
-        "| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
+        "| Architecture | Reference / Paradigm | Model Category | Parameters | Dependability (%) | Security (%) | Overall Accuracy (%) | Median $T_{op}$ (ms) | $\\le$ 2 Cycles (%) | False Trips |",
+        "| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
     ]
 
     for m in ordered_models:
@@ -656,8 +656,9 @@ def run_benchmarks(args):
                 "Standalone LSTM": "Alhamd [1] / Atiyah [3]",
                 "Proposed Hybrid DWT-LSTM": "This Work",
             }.get(m, "Literature")
+            param_str = f"{meta['params']:,}" if meta.get('params') is not None and meta['params'] > 0 else "---"
             md_lines.append(
-                f"| **{m}** | {ref_str} | {meta['type']} | {meta['params']:,} | {meta['latency_ms']:.2f} | "
+                f"| **{m}** | {ref_str} | {meta['type']} | {param_str} | "
                 f"{s['dependability_pct']:.2f}% | {s['security_pct']:.2f}% | {s['accuracy_pct']:.2f}% | "
                 f"{o['median_ms']:.1f} | {o['within_2_cycles_pct']:.1f}% | {s['false_trips']} |"
             )
@@ -704,9 +705,9 @@ def run_benchmarks(args):
         r"\caption{Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (3{,}218 traces, grouped 5-fold cross-validation).}\label{tab:lit_benchmark}",
         r"\setlength{\tabcolsep}{4.0pt}\small",
         r"\resizebox{\textwidth}{!}{%",
-        r"\begin{tabular}{@{}llccccccc@{}}\toprule",
-        r"\textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Params} & \textbf{Lat.\,(ms)} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule",
-        r"\multicolumn{9}{@{}l}{\textit{Panel A: Standalone Literature Operating Mode (Direct Trip with Dwell Persistence)}} \\ \midrule",
+        r"\begin{tabular}{@{}llcccccc@{}}\toprule",
+        r"\textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Params} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule",
+        r"\multicolumn{8}{@{}l}{\textit{Panel A: Standalone Literature Operating Mode (Direct Trip with Dwell Persistence)}} \\ \midrule",
     ]
 
     for m in ordered_models:
@@ -724,17 +725,17 @@ def run_benchmarks(args):
                 "Standalone LSTM": "Alhamd [1] / Atiyah [3]",
                 "Proposed Hybrid DWT-LSTM": "This Work (Standalone)",
             }.get(m, "Literature")
-            param_str = f"{meta['params']:,}" if meta['params'] > 0 else "---"
+            param_str = f"{meta['params']:,}" if meta.get('params') is not None and meta['params'] > 0 else "---"
             med_top = f"{o['median_ms']:.1f}\,ms" if o['median_ms'] is not None else "---"
             tex_lines.append(
-                f"{m} & {ref_str} & {param_str} & {meta['latency_ms']:.2f} & "
+                f"{m} & {ref_str} & {param_str} & "
                 f"{s['dependability_pct']:.2f} & {s['security_pct']:.2f} & {s['accuracy_pct']:.2f} & "
                 f"{med_top} & {s['false_trips']} \\\\"
             )
 
     tex_lines.extend([
         r"\midrule",
-        r"\multicolumn{9}{@{}l}{\textit{Panel B: Under Proposed Supervisory Hybrid Architecture (87T Handshake + AI-Alone Path)}} \\ \midrule",
+        r"\multicolumn{8}{@{}l}{\textit{Panel B: Under Proposed Supervisory Hybrid Architecture (87T Handshake + AI-Alone Path)}} \\ \midrule",
     ])
 
     for m in ordered_models:
@@ -742,11 +743,11 @@ def run_benchmarks(args):
             s = summaries[m]["hybrid"]
             o = s["operate"]
             meta = model_meta[m]
-            param_str = f"{meta['params']:,}" if meta['params'] > 0 else "---"
+            param_str = f"{meta['params']:,}" if meta.get('params') is not None and meta['params'] > 0 else "---"
             med_top = f"{o['median_ms']:.1f}\,ms" if o['median_ms'] is not None else "---"
             name_str = rf"\textbf{{{m}}}" if m == "Proposed Hybrid DWT-LSTM" else m
             tex_lines.append(
-                f"{name_str} & Dual-Path Hybrid & {param_str} & {meta['latency_ms']:.2f} & "
+                f"{name_str} & Dual-Path Hybrid & {param_str} & "
                 f"{s['dependability_pct']:.2f} & {s['security_pct']:.2f} & {s['accuracy_pct']:.2f} & "
                 f"{med_top} & {s['false_trips']} \\\\"
             )

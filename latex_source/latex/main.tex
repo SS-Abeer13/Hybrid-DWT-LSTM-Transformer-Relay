@@ -673,7 +673,7 @@ In the simulation sweep of internal high-impedance faults ($R_f = 0.3$--$21\,\Om
 \caption{Empirical fault differential current versus fault resistance across all internal fault types, delineating the 87T-visible and AI-alone detection boundaries.}\label{fig:6.2}\end{figure}
 
 \section{Operating Speed and Threshold Sensitivity}
-Figure~\ref{fig:6.3} illustrates the cumulative operating time distribution and threshold trade-off curve. Over 96.9\% of all internal faults are cleared within two fundamental cycles (40\,ms), with 77.1\% cleared within a single cycle. The chosen threshold operating point ($\theta_{\text{AI}} = 0.99$, $\theta_{\text{solo}} = 0.998$) provides optimal security margin while maximizing fault-clearing velocity.
+Figure~\ref{fig:6.3} illustrates the cumulative operating time distribution and threshold trade-off curve. Over 96.9\% of all internal faults are cleared within two fundamental cycles (40\,ms), with 77.1\% cleared within a single cycle. The chosen threshold operating point ($\theta_{\text{AI}} = 0.99$, $\theta_{\text{solo}} = 0.998$) provides optimal security margin while minimising relay operate time.
 
 \begin{figure}[H]\centering
 \begin{minipage}{0.48\textwidth}\centering
@@ -688,7 +688,7 @@ Figure~\ref{fig:6.3} illustrates the cumulative operating time distribution and 
 \end{figure}
 
 \section{Comparative Benchmarking Against Literature Models}
-To fulfill the comparative gap identified in Chapter~2 (Table~\ref{tab:litcompare}), the proposed Hybrid DWT--LSTM framework was directly benchmarked against representative machine learning and deep learning protection models from recent literature: Wavelet-SVM (RBF kernel)~\cite{ref13,ref20}, Wavelet-ANN/MLP~\cite{ref18,ref19}, Wavelet-Random Forest~\cite{ref11}, Temporal 1D-CNN~\cite{ref16}, Wavelet-GRU with self-attention~\cite{ref23}, Standalone DWT-LSTM~\cite{ref1,ref3}, and the Conventional 87T dual-slope percentage restraint relay with second-harmonic blocking~\cite{ref7}.
+To fulfill the comparative gap identified in Chapter~2 (Table~\ref{tab:litcompare}), the proposed Hybrid DWT--LSTM framework was directly benchmarked against representative machine learning and deep learning protection models from recent literature: Wavelet-SVM (RBF kernel)~\cite{ref13,ref20}, Wavelet-ANN/MLP~\cite{ref18,ref19}, Wavelet-Random Forest~\cite{ref11}, Temporal 1D-CNN~\cite{ref16}, Wavelet-GRU with self-attention~\cite{ref23}, Standalone DWT-LSTM~\cite{ref1,ref3}, and the Conventional 87T dual-slope percentage restraint relay~\cite{ref7} (alongside a dedicated comparison with phase-independent harmonic restraint).
 
 To provide a rigorous, publication-grade apples-to-apples comparison:
 \begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
