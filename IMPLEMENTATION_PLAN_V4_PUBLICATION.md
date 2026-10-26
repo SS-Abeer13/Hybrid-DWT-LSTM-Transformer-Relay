@@ -42,16 +42,16 @@
 - The measured effective CT ratios (HV 809.6:1, LV 16,925:1) are **2.024×** the nameplate winding ratios. That is consistent with the CT primary sharing current with another branch instead of carrying the full line current.
 
 ### Steps
-- [ ] **1.1 Confirm the topology.** In MATLAB, list the physical connections (`get_param(<block>,'PortConnectivity')`, or `find_system` + `LineHandles`) of CT1–CT6 and the three LV series resistors. Write the result to `simulations/ct_topology_v4.txt`.
+- [x] **1.1 Confirm the topology.** In MATLAB, list the physical connections (`get_param(<block>,'PortConnectivity')`, or `find_system` + `LineHandles`) of CT1–CT6 and the three LV series resistors. Write the result to `simulations/ct_topology_v4.txt`.
   - **Hypothesis to confirm:** each CT primary (Conn1–Conn2) is connected **in parallel** with a 0.5 Ω series resistor. The CT then sees only the current share through its own primary impedance. That would explain the 2.024× ratio, the weak through-faults and why lowering R starved the CT.
   - Record what you actually find before changing anything.
-- [ ] **1.2 Re-wire the CTs in series** (in the v4 copy only). Each CT primary must carry the **full line current**: put Conn1 → Conn2 in series with the phase conductor, as in the MathWorks "current transformer saturation" example. Then remove the parallel 0.5 Ω resistors, or set them to a negligible series value (≤ 1 mΩ) if the solver needs a branch. Do it for all six CTs, so the HV and LV sides are treated the same.
-- [ ] **1.3 Re-calibrate.** Re-run `probe_ct_truth.m` (true line current vs CT secondary) on the v4 model:
+- [x] **1.2 Re-wire the CTs in series** (in the v4 copy only). Each CT primary must carry the **full line current**: put Conn1 → Conn2 in series with the phase conductor, as in the MathWorks "current transformer saturation" example. Then remove the parallel 0.5 Ω resistors, or set them to a negligible series value (≤ 1 mΩ) if the solver needs a branch. Do it for all six CTs, so the HV and LV sides are treated the same.
+- [x] **1.3 Re-calibrate.** Re-run `probe_ct_truth.m` (true line current vs CT secondary) on the v4 model:
   - Expect effective ratios close to nameplate: HV 400:1 and LV 92000/11 ÷ 5 → 1,672.7:1, for 5 A-class secondaries. Record the measured values.
   - Rated CT-secondary current changes accordingly. Expect ≈ 1.88 A at nameplate; **use the measured value**.
   - Update the base in `relay87t.py` (`CT_RATIO_*`, `I_NOM`), the Simulink `Yd1_Compensation` chart, `relay_config.m` (`cfg.I_RATED_SEC`) and the generator noise base. Re-check the plant matrix M on healthy traces. Write the results to `simulations/ct_calibration_v4.txt`.
-- [ ] **1.4 Normalise the LSTM input to per unit.** Divide the plant-compensated differential by the rated secondary current **before** feature extraction, in **both** `features12.py` and the Simulink `DWT_Feature_Extraction` path. With the new ratios the current-amp scale changes ~2×, and per-unit inputs are needed anyway for Phase 3. Re-run the feature-parity check (`verify_lstm_feature_parity_plant.m`); max error must be 0.
-- [ ] **1.5 Check the plant physics:**
+- [x] **1.4 Normalise the LSTM input to per unit.** Divide the plant-compensated differential by the rated secondary current **before** feature extraction, in **both** `features12.py` and the Simulink `DWT_Feature_Extraction` path. With the new ratios the current-amp scale changes ~2×, and per-unit inputs are needed anyway for Phase 3. Re-run the feature-parity check (`verify_lstm_feature_parity_plant.m`); max error must be 0.
+- [x] **1.5 Check the plant physics:**
   - External 3-phase solid fault at the LV bus: **5–20 pu** RMS at the CTs, with a realistic X/R (DC time constant 30–100 ms). If it's too low, reduce the external source / feeder impedance. If it's too high, add feeder impedance.
   - LV bus voltage at 100 % load: ≥ 0.95 pu (the old model sagged to 0.35 pu).
   - CT saturation now appears **naturally** on large DC-offset through-faults at **nominal** burden. Record the ratio error vs fault current.

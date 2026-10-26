@@ -55,7 +55,7 @@ def main() -> None:
         r["bins"]["ai_only"] = [r["median"]["rf_pickup"], r["median"]["rf_limit"]]
         r["bins"]["undetect"] = [r["median"]["rf_limit"], r["median"]["rf_lower"]]
     (SIM / "hiz_bins.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
-    lines = ["HiZ sensitivity (corrected differential, base 0.9302 A; no noise; burden 1x)", "",
+    lines = ["HiZ sensitivity (corrected differential, base 1.8610 A; no noise; burden 1x)", "",
              f"{'type':5s} {'Rf@1pu':>8s} {'Rf@0.30':>9s} {'Rf@0.05':>9s} {'Rf@0.015':>9s} | load spread (max/min) of Rf@0.30, Rf@0.05 | monotonic"]
     for t, r in res.items():
         m = r["median"]

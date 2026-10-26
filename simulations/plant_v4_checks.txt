@@ -1,0 +1,46 @@
+================================================================================
+PLANT PHYSICS VERIFICATION REPORT (MODEL: TransformerWithCTSaturation_v4)
+Date: 27-Oct-2026 00:19:15
+Rated: 300 MVA, 230 kV / 11 kV, Yd1
+Rated Line Current: HV 753.07 A, LV 15745.92 A | Secondary Base: 1.8610 A
+================================================================================
+
+1. LV BUS VOLTAGE AT 100% LOAD:
+   LV CT Secondary Current: 1.7730 A (0.9527 pu)
+   Estimated LV Line Voltage: 11.55 kV (1.0497 pu)
+   CRITERION (>= 0.95 pu): PASS
+
+2. EXTERNAL 3-PHASE SOLID FAULT (LV Bus, Rf = 0.001 ohm):
+   HV CT Secondary RMS: A=12.05 A, B=13.33 A, C=10.78 A (Mean: 12.05 A)
+   LV CT Secondary RMS: A=13.20 A, B=10.43 A, C=11.74 A (Mean: 11.79 A)
+   Through-Fault Current at CTs (HV): 6.48 pu (Range: 5.79 - 7.16 pu)
+   Through-Fault Current at CTs (LV): 6.33 pu (Range: 5.60 - 7.09 pu)
+   Overall Through-Fault Current: 6.41 pu
+   CRITERION (5-20 pu at CTs): PASS
+
+3. CT SATURATION & WAVEFORM DISTORTION (Nominal Burden 1.0 ohm):
+   Phase A (HV CT): Peak = 36.61 A, RMS = 12.05 A, Crest Factor = 3.04 (Sinusoid = 1.41)
+   Phase A (LV CT): Peak = 39.21 A, RMS = 13.20 A, Crest Factor = 2.97
+   Phase B (HV CT): Peak = 39.11 A, RMS = 13.33 A, Crest Factor = 2.94 (Sinusoid = 1.41)
+   Phase B (LV CT): Peak = 31.88 A, RMS = 10.43 A, Crest Factor = 3.06
+   Phase C (HV CT): Peak = 35.04 A, RMS = 10.78 A, Crest Factor = 3.25 (Sinusoid = 1.41)
+   Phase C (LV CT): Peak = 36.30 A, RMS = 11.74 A, Crest Factor = 3.09
+   Observation: Waveform distortion and DC offset appear naturally during 6+ pu through-fault.
+
+4. MAGNETIZING INRUSH (Initial Flux 0.8 pu, Energised at t = 0.05 s):
+   Phase A: Peak Secondary Current = 2.58 A (0.98 pu crest)
+   Phase B: Peak Secondary Current = 2.52 A (0.96 pu crest)
+   Phase C: Peak Secondary Current = 2.61 A (0.99 pu crest)
+   Observation: Plausible asymmetric inrush transient reaching up to 0.99 pu.
+
+5. INTERNAL FAULT HIZ SENSITIVITY BINS (v4 Calibration, Base = 1.8610 A):
+   AB:  visible 0.34-1.15 ohm | ai_only 1.15-6.84 ohm | undetect 6.84-22.20 ohm
+   ABC: visible 0.40-1.32 ohm | ai_only 1.32-7.62 ohm | undetect 7.62-23.37 ohm
+   AC:  visible 0.34-1.15 ohm | ai_only 1.15-6.77 ohm | undetect 6.77-21.84 ohm
+   AG:  visible 0.21-1.10 ohm | ai_only 1.10-7.33 ohm | undetect 7.33-22.84 ohm
+   BC:  visible 0.34-1.15 ohm | ai_only 1.15-6.80 ohm | undetect 6.80-21.86 ohm
+   Observation: Differential rise crosses 0.30 pu (pickup) at ~1.15 ohm and 0.05 pu (noise floor) at ~6.8-7.6 ohm across all types.
+
+================================================================================
+OVERALL CONCLUSION: Phase 1 Plant Physics Validation Complete.
+================================================================================

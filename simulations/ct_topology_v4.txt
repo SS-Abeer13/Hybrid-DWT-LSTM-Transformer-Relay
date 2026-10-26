@@ -1,0 +1,514 @@
+
+================================================================================
+EXECUTIVE SUMMARY & TOPOLOGY CONFIRMATION (PHASE 1.1)
+================================================================================
+HYPOTHESIS CONFIRMED:
+Each of the 6 CT primaries in TransformerWithCTSaturation.slx is connected in a
+current-divider bridge circuit with parallel and series 0.5 ohm resistors.
+
+1. High-Voltage (HV) Side:
+   - Phase A: Line current from Primary_side splits into two parallel branches:
+       Branch A1: 'Series RLC Branch3' (0.5 ohm) -> Step_down_Transformer Port 1
+       Branch A2: 'CT' (primary Conn1->Conn2) in series with 'Series RLC Branch6' (0.5 ohm) -> Step_down_Transformer Port 1
+   - Phase B: Line current from Primary_side splits into:
+       Branch B1: 'Series RLC Branch4' (0.5 ohm) -> Step_down_Transformer Port 2
+       Branch B2: 'CT1' (primary Conn1->Conn2) in series with 'Series RLC Branch7' (0.5 ohm) -> Step_down_Transformer Port 2
+   - Phase C: Line current from Primary_side splits into:
+       Branch C1: 'Series RLC Branch5' (0.5 ohm) -> Step_down_Transformer Port 3
+       Branch C2: 'CT2' (primary Conn1->Conn2) in series with 'Series RLC Branch8' (0.5 ohm) -> Step_down_Transformer Port 3
+
+2. Low-Voltage (LV) Side:
+   - Phase A: Current from Step_down_Transformer Port 4 splits into:
+       Branch a1: 'Series RLC Branch' (0.5 ohm) -> Secondary_side Port 3
+       Branch a2: 'Series RLC Branch11' (0.5 ohm) in series with 'CT4' (primary Conn1->Conn2) -> Secondary_side Port 3
+   - Phase B: Current from Step_down_Transformer Port 5 splits into:
+       Branch b1: 'Series RLC Branch1' (0.5 ohm) -> Secondary_side Port 4
+       Branch b2: 'Series RLC Branch10' (0.5 ohm) in series with 'CT3' (primary Conn1->Conn2) -> Secondary_side Port 4
+   - Phase C: Current from Step_down_Transformer Port 6 splits into:
+       Branch c1: 'Series RLC Branch2' (0.5 ohm) -> Secondary_side Port 5
+       Branch c2: 'Series RLC Branch9' (0.5 ohm) in series with 'CT6' (primary Conn1->Conn2) -> Secondary_side Port 5
+
+PHYSICAL CONSEQUENCES:
+- In each phase, the CT primary branch has ~0.5 ohm + Z_CT, while the bypass branch has 0.5 ohm.
+- The CT primary carries almost exactly 50% of the true phase conductor current (1 / 2.024).
+- Effective CT ratios measured in probe_ct_truth.m (HV 809.6:1, LV 16,925:1) are exactly 2.024x
+  the nameplate transformer winding ratios (HV 400:1, LV 92000/11 / 5 = 1,672.7:1).
+- The equivalent per-phase impedance (0.25 ohm net series resistance) chokes low-voltage
+  through-faults to ~1.5 pu and causes the LV bus voltage to sag under full load.
+
+ACTION FOR PHASE 1.2:
+- In TransformerWithCTSaturation_v4.slx, re-wire all 6 CTs so each CT primary carries 100% of the
+  phase line current in direct series:
+    HV: Primary_side -> CT primary (Conn1->Conn2) -> Step_down_Transformer
+    LV: Step_down_Transformer -> CT primary (Conn1->Conn2) -> Secondary_side
+- Delete or bypass the 0.5 ohm parallel/series resistor pairs:
+    HV: delete/bypass Series RLC Branch 3, 4, 5, 6, 7, 8
+    LV: delete/bypass Series RLC Branch, 1, 2, 9, 10, 11
+- Keep shunt ground capacitance branches (Branch 12, 13, 14, 15, 16, 17) intact if needed.
+================================================================================
+
+================================================================================
+CT and Series Resistor Topology Inspection (Model: TransformerWithCTSaturation_v4)
+Date: 26-Oct-2026 23:46:20
+================================================================================
+
+================================================================================
+1. CT BLOCKS (CT, CT1, CT2 on HV; CT3, CT4, CT6 on LV)
+================================================================================
+
+--------------------------------------------------------------------------------
+BLOCK: TransformerWithCTSaturation_v4/CT
+  BlockType: SubSystem
+  Port Connectivity (3 ports):
+    Port 1 (Type: 1):
+      -> Dst: Noise Merging Unit (Port 0)
+      -> Dst: Before Noise PrimCurr (Port 1)
+      -> Dst: Before Noise PrimCurr (Port 0)
+      -> Dst: RMS3 (Port 0)
+    Port 2 (Type: LConn1):
+      -> Dst: Primary_side (Port 5.390001e+02)
+      -> Dst: Series RLC Branch3 (Port 6.150001e+02)
+    Port 3 (Type: RConn1):
+      -> Dst: Series RLC Branch6 (Port 6.240001e+02)
+  Internal Subsystem Contents (7 elements):
+    - 1ohm (PMComponent)
+        Resistance: 1
+    - CT 2000/5 A
+25 VA (SubSystem)
+    - I2 (SubSystem)
+    - Conn1 (PMIOPort)
+    - Conn2 (PMIOPort)
+    - Out1 (Outport)
+
+--------------------------------------------------------------------------------
+BLOCK: TransformerWithCTSaturation_v4/CT1
+  BlockType: SubSystem
+  Port Connectivity (3 ports):
+    Port 1 (Type: 1):
+      -> Dst: Noise Merging Unit (Port 1)
+    Port 2 (Type: LConn1):
+      -> Dst: Primary_side (Port 5.400001e+02)
+      -> Dst: Series RLC Branch4 (Port 6.180001e+02)
+    Port 3 (Type: RConn1):
+      -> Dst: Series RLC Branch7 (Port 6.270001e+02)
+  Internal Subsystem Contents (7 elements):
+    - 1ohm (PMComponent)
+        Resistance: 1
+    - CT 2000/5 A
+25 VA (SubSystem)
+    - I2 (SubSystem)
+    - Conn1 (PMIOPort)
+    - Conn2 (PMIOPort)
+    - Out1 (Outport)
+
+--------------------------------------------------------------------------------
+BLOCK: TransformerWithCTSaturation_v4/CT2
+  BlockType: SubSystem
+  Port Connectivity (3 ports):
+    Port 1 (Type: 1):
+      -> Dst: Noise Merging Unit (Port 2)
+      -> Dst: Before Noise PrimCurr (Port 2)
+    Port 2 (Type: LConn1):
+      -> Dst: Primary_side (Port 5.410001e+02)
+      -> Dst: Series RLC Branch5 (Port 6.210001e+02)
+    Port 3 (Type: RConn1):
+      -> Dst: Series RLC Branch8 (Port 6.300001e+02)
+  Internal Subsystem Contents (7 elements):
+    - 1ohm (PMComponent)
+        Resistance: 1
+    - CT 2000/5 A
+25 VA (SubSystem)
+    - I2 (SubSystem)
+    - Conn1 (PMIOPort)
+    - Conn2 (PMIOPort)
+    - Out1 (Outport)
+
+--------------------------------------------------------------------------------
+BLOCK: TransformerWithCTSaturation_v4/CT3
+  BlockType: SubSystem
+  Port Connectivity (3 ports):
+    Port 1 (Type: 1):
+      -> Dst: Noise Merging Unit (Port 4)
+      -> Dst: Before Noise SecCurr (Port 1)
+    Port 2 (Type: LConn1):
+      -> Dst: Series RLC Branch10 (Port 5.890001e+02)
+    Port 3 (Type: RConn1):
+      -> Dst: Secondary_side (Port 5.760001e+02)
+      -> Dst: Series RLC Branch1 (Port 5.860001e+02)
+  Internal Subsystem Contents (7 elements):
+    - 1ohm (PMComponent)
+        Resistance: 1
+    - CT 92000/5 A
+25 VA (SubSystem)
+    - I2 (SubSystem)
+    - Conn1 (PMIOPort)
+    - Conn2 (PMIOPort)
+    - Out1 (Outport)
+
+--------------------------------------------------------------------------------
+BLOCK: TransformerWithCTSaturation_v4/CT4
+  BlockType: SubSystem
+  Port Connectivity (3 ports):
+    Port 1 (Type: 1):
+      -> Dst: Before Noise SecCurr (Port 0)
+      -> Dst: Noise Merging Unit (Port 3)
+    Port 2 (Type: LConn1):
+      -> Dst: Series RLC Branch11 (Port 5.920001e+02)
+    Port 3 (Type: RConn1):
+      -> Dst: Secondary_side (Port 5.750001e+02)
+      -> Dst: Series RLC Branch (Port 5.830001e+02)
+  Internal Subsystem Contents (7 elements):
+    - 1ohm (PMComponent)
+        Resistance: 1
+    - CT 92000/5 A
+25 VA (SubSystem)
+    - I2 (SubSystem)
+    - Conn1 (PMIOPort)
+    - Conn2 (PMIOPort)
+    - Out1 (Outport)
+
+--------------------------------------------------------------------------------
+BLOCK: TransformerWithCTSaturation_v4/CT6
+  BlockType: SubSystem
+  Port Connectivity (3 ports):
+    Port 1 (Type: 1):
+      -> Dst: Noise Merging Unit (Port 5)
+      -> Dst: Before Noise SecCurr (Port 2)
+    Port 2 (Type: LConn1):
+      -> Dst: Series RLC Branch9 (Port 6.340001e+02)
+    Port 3 (Type: RConn1):
+      -> Dst: Series RLC Branch2 (Port 6.130001e+02)
+      -> Dst: Secondary_side (Port 5.770001e+02)
+  Internal Subsystem Contents (7 elements):
+    - 1ohm (PMComponent)
+        Resistance: 1
+    - CT 92000/5 A
+25 VA (SubSystem)
+    - I2 (SubSystem)
+    - Conn1 (PMIOPort)
+    - Conn2 (PMIOPort)
+    - Out1 (Outport)
+
+================================================================================
+2. ALL SERIES RLC BRANCH BLOCKS IN MODEL
+================================================================================
+
+BLOCK: Series RLC Branch
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.450001e+02)
+      -> Dst: Internal_Fault3 (Port 4.280001e+02)
+      -> Dst: Internal_Fault2 (Port 4.230001e+02)
+      -> Dst: Internal_Fault1 (Port 4.180001e+02)
+      -> Dst: Series RLC Branch11 (Port 5.910001e+02)
+      -> Dst: Series RLC Branch17 (Port 6.090001e+02)
+    Port 2 (RConn1):
+      -> Dst: CT4 (Port 1.110001e+02)
+      -> Dst: Secondary_side (Port 5.750001e+02)
+
+BLOCK: Series RLC Branch1
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.460001e+02)
+      -> Dst: Internal_Fault3 (Port 4.290001e+02)
+      -> Dst: Internal_Fault2 (Port 4.240001e+02)
+      -> Dst: Internal_Fault1 (Port 4.190001e+02)
+      -> Dst: Series RLC Branch15 (Port 6.030001e+02)
+      -> Dst: Series RLC Branch10 (Port 5.880001e+02)
+    Port 2 (RConn1):
+      -> Dst: CT3 (Port 8.600012e+01)
+      -> Dst: Secondary_side (Port 5.760001e+02)
+
+BLOCK: Series RLC Branch10
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.460001e+02)
+      -> Dst: Internal_Fault3 (Port 4.290001e+02)
+      -> Dst: Internal_Fault2 (Port 4.240001e+02)
+      -> Dst: Internal_Fault1 (Port 4.190001e+02)
+      -> Dst: Series RLC Branch15 (Port 6.030001e+02)
+      -> Dst: Series RLC Branch1 (Port 5.850001e+02)
+    Port 2 (RConn1):
+      -> Dst: CT3 (Port 8.500012e+01)
+
+BLOCK: Series RLC Branch11
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.450001e+02)
+      -> Dst: Internal_Fault3 (Port 4.280001e+02)
+      -> Dst: Internal_Fault2 (Port 4.230001e+02)
+      -> Dst: Internal_Fault1 (Port 4.180001e+02)
+      -> Dst: Series RLC Branch (Port 5.820001e+02)
+      -> Dst: Series RLC Branch17 (Port 6.090001e+02)
+    Port 2 (RConn1):
+      -> Dst: CT4 (Port 1.100001e+02)
+
+BLOCK: Series RLC Branch12
+  BranchType: C, R: 0.5, L: 1e-3, C: 1e-9
+    Port 1 (LConn1):
+      -> Dst: Series RLC Branch7 (Port 6.280001e+02)
+      -> Dst: Series RLC Branch4 (Port 6.190001e+02)
+      -> Dst: Step_down_Transformer (Port 6.430001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.340001e+02)
+    Port 2 (RConn1):
+      -> Dst: Ground5 (Port 1.870001e+02)
+
+BLOCK: Series RLC Branch13
+  BranchType: C, R: 0.5, L: 1e-3, C: 1e-9
+    Port 1 (LConn1):
+      -> Dst: Series RLC Branch5 (Port 6.220001e+02)
+      -> Dst: Series RLC Branch8 (Port 6.310001e+02)
+      -> Dst: Step_down_Transformer (Port 6.440001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.350001e+02)
+    Port 2 (RConn1):
+      -> Dst: Ground4 (Port 1.850001e+02)
+
+BLOCK: Series RLC Branch14
+  BranchType: C, R: 0.5, L: 1e-3, C: 1e-9
+    Port 1 (LConn1):
+      -> Dst: Series RLC Branch3 (Port 6.160001e+02)
+      -> Dst: Series RLC Branch6 (Port 6.250001e+02)
+      -> Dst: Step_down_Transformer (Port 6.420001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.330001e+02)
+    Port 2 (RConn1):
+      -> Dst: Ground3 (Port 1.830001e+02)
+
+BLOCK: Series RLC Branch15
+  BranchType: C, R: 0.5, L: 1e-3, C: 1e-9
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.460001e+02)
+      -> Dst: Internal_Fault3 (Port 4.290001e+02)
+      -> Dst: Internal_Fault2 (Port 4.240001e+02)
+      -> Dst: Internal_Fault1 (Port 4.190001e+02)
+      -> Dst: Series RLC Branch1 (Port 5.850001e+02)
+      -> Dst: Series RLC Branch10 (Port 5.880001e+02)
+    Port 2 (RConn1):
+      -> Dst: Ground7 (Port 1.910001e+02)
+
+BLOCK: Series RLC Branch16
+  BranchType: C, R: 0.5, L: 1e-3, C: 1e-9
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.470001e+02)
+      -> Dst: Internal_Fault3 (Port 4.300001e+02)
+      -> Dst: Internal_Fault2 (Port 4.250001e+02)
+      -> Dst: Internal_Fault1 (Port 4.200001e+02)
+      -> Dst: Series RLC Branch9 (Port 6.330001e+02)
+      -> Dst: Series RLC Branch2 (Port 6.120001e+02)
+    Port 2 (RConn1):
+      -> Dst: Ground6 (Port 1.890001e+02)
+
+BLOCK: Series RLC Branch17
+  BranchType: C, R: 0.5, L: 1e-3, C: 1e-9
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.450001e+02)
+      -> Dst: Internal_Fault3 (Port 4.280001e+02)
+      -> Dst: Internal_Fault2 (Port 4.230001e+02)
+      -> Dst: Internal_Fault1 (Port 4.180001e+02)
+      -> Dst: Series RLC Branch (Port 5.820001e+02)
+      -> Dst: Series RLC Branch11 (Port 5.910001e+02)
+    Port 2 (RConn1):
+      -> Dst: Ground8 (Port 1.930001e+02)
+
+BLOCK: Series RLC Branch2
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.470001e+02)
+      -> Dst: Internal_Fault3 (Port 4.300001e+02)
+      -> Dst: Internal_Fault2 (Port 4.250001e+02)
+      -> Dst: Internal_Fault1 (Port 4.200001e+02)
+      -> Dst: Series RLC Branch9 (Port 6.330001e+02)
+      -> Dst: Series RLC Branch16 (Port 6.060001e+02)
+    Port 2 (RConn1):
+      -> Dst: CT6 (Port 1.360001e+02)
+      -> Dst: Secondary_side (Port 5.770001e+02)
+
+BLOCK: Series RLC Branch3
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Primary_side (Port 5.390001e+02)
+      -> Dst: CT (Port 1.000012e+01)
+    Port 2 (RConn1):
+      -> Dst: Series RLC Branch14 (Port 6.000001e+02)
+      -> Dst: Series RLC Branch6 (Port 6.250001e+02)
+      -> Dst: Step_down_Transformer (Port 6.420001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.330001e+02)
+
+BLOCK: Series RLC Branch4
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Primary_side (Port 5.400001e+02)
+      -> Dst: CT1 (Port 3.500012e+01)
+    Port 2 (RConn1):
+      -> Dst: Series RLC Branch7 (Port 6.280001e+02)
+      -> Dst: Step_down_Transformer (Port 6.430001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.340001e+02)
+      -> Dst: Series RLC Branch12 (Port 5.940001e+02)
+
+BLOCK: Series RLC Branch5
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Primary_side (Port 5.410001e+02)
+      -> Dst: CT2 (Port 6.000012e+01)
+    Port 2 (RConn1):
+      -> Dst: Series RLC Branch8 (Port 6.310001e+02)
+      -> Dst: Series RLC Branch13 (Port 5.970001e+02)
+      -> Dst: Step_down_Transformer (Port 6.440001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.350001e+02)
+
+BLOCK: Series RLC Branch6
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: CT (Port 1.100012e+01)
+    Port 2 (RConn1):
+      -> Dst: Series RLC Branch14 (Port 6.000001e+02)
+      -> Dst: Series RLC Branch3 (Port 6.160001e+02)
+      -> Dst: Step_down_Transformer (Port 6.420001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.330001e+02)
+
+BLOCK: Series RLC Branch7
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: CT1 (Port 3.600012e+01)
+    Port 2 (RConn1):
+      -> Dst: Series RLC Branch4 (Port 6.190001e+02)
+      -> Dst: Step_down_Transformer (Port 6.430001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.340001e+02)
+      -> Dst: Series RLC Branch12 (Port 5.940001e+02)
+
+BLOCK: Series RLC Branch8
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: CT2 (Port 6.100012e+01)
+    Port 2 (RConn1):
+      -> Dst: Series RLC Branch5 (Port 6.220001e+02)
+      -> Dst: Series RLC Branch13 (Port 5.970001e+02)
+      -> Dst: Step_down_Transformer (Port 6.440001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.350001e+02)
+
+BLOCK: Series RLC Branch9
+  BranchType: R, R: 0.5, L: 1e-3, C: 1e-6
+    Port 1 (LConn1):
+      -> Dst: Step_down_Transformer (Port 6.470001e+02)
+      -> Dst: Internal_Fault3 (Port 4.300001e+02)
+      -> Dst: Internal_Fault2 (Port 4.250001e+02)
+      -> Dst: Internal_Fault1 (Port 4.200001e+02)
+      -> Dst: Series RLC Branch16 (Port 6.060001e+02)
+      -> Dst: Series RLC Branch2 (Port 6.120001e+02)
+    Port 2 (RConn1):
+      -> Dst: CT6 (Port 1.350001e+02)
+
+BLOCK: Three-Phase
+Series RLC Branch 
+  BranchType: RLC, R: 0.1, L: 1e-3, C: inf
+    Port 1 (LConn1):
+      -> Dst: VSa (Port 6.800001e+02)
+    Port 2 (LConn2):
+      -> Dst: VSb (Port 6.830001e+02)
+    Port 3 (LConn3):
+      -> Dst: VSc (Port 6.860001e+02)
+    Port 4 (RConn1):
+      -> Dst: Three-Phase Breaker  (Port 6.610001e+02)
+      -> Dst: External_Fault_HV (Port 1.730001e+02)
+    Port 5 (RConn2):
+      -> Dst: Three-Phase Breaker  (Port 6.620001e+02)
+      -> Dst: External_Fault_HV (Port 1.740001e+02)
+    Port 6 (RConn3):
+      -> Dst: Three-Phase Breaker  (Port 6.630001e+02)
+      -> Dst: External_Fault_HV (Port 1.750001e+02)
+
+BLOCK: Three-Phase
+Series RLC Load 
+    Port 1 (LConn1):
+      -> Dst: Three-Phase Breaker1  (Port 6.720001e+02)
+      -> Dst: External_Fault (Port 1.680001e+02)
+    Port 2 (LConn2):
+      -> Dst: Three-Phase Breaker1  (Port 6.730001e+02)
+      -> Dst: External_Fault (Port 1.690001e+02)
+    Port 3 (LConn3):
+      -> Dst: Three-Phase Breaker1  (Port 6.740001e+02)
+      -> Dst: External_Fault (Port 1.700001e+02)
+
+================================================================================
+3. THREE-PHASE TRANSFORMER & TERMINAL BUSES
+================================================================================
+
+BLOCK: Step_down_Transformer
+    Port 1 (LConn1):
+      -> Dst: Series RLC Branch14 (Port 6.000001e+02)
+      -> Dst: Series RLC Branch3 (Port 6.160001e+02)
+      -> Dst: Series RLC Branch6 (Port 6.250001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.330001e+02)
+    Port 2 (LConn2):
+      -> Dst: Series RLC Branch7 (Port 6.280001e+02)
+      -> Dst: Series RLC Branch4 (Port 6.190001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.340001e+02)
+      -> Dst: Series RLC Branch12 (Port 5.940001e+02)
+    Port 3 (LConn3):
+      -> Dst: Series RLC Branch5 (Port 6.220001e+02)
+      -> Dst: Series RLC Branch8 (Port 6.310001e+02)
+      -> Dst: Series RLC Branch13 (Port 5.970001e+02)
+      -> Dst: Internal_Fault_HV (Port 4.350001e+02)
+    Port 4 (RConn1):
+      -> Dst: Internal_Fault3 (Port 4.280001e+02)
+      -> Dst: Internal_Fault2 (Port 4.230001e+02)
+      -> Dst: Internal_Fault1 (Port 4.180001e+02)
+      -> Dst: Series RLC Branch (Port 5.820001e+02)
+      -> Dst: Series RLC Branch11 (Port 5.910001e+02)
+      -> Dst: Series RLC Branch17 (Port 6.090001e+02)
+    Port 5 (RConn2):
+      -> Dst: Internal_Fault3 (Port 4.290001e+02)
+      -> Dst: Internal_Fault2 (Port 4.240001e+02)
+      -> Dst: Internal_Fault1 (Port 4.190001e+02)
+      -> Dst: Series RLC Branch15 (Port 6.030001e+02)
+      -> Dst: Series RLC Branch1 (Port 5.850001e+02)
+      -> Dst: Series RLC Branch10 (Port 5.880001e+02)
+    Port 6 (RConn3):
+      -> Dst: Internal_Fault3 (Port 4.300001e+02)
+      -> Dst: Internal_Fault2 (Port 4.250001e+02)
+      -> Dst: Internal_Fault1 (Port 4.200001e+02)
+      -> Dst: Series RLC Branch9 (Port 6.330001e+02)
+      -> Dst: Series RLC Branch16 (Port 6.060001e+02)
+      -> Dst: Series RLC Branch2 (Port 6.120001e+02)
+
+BLOCK: Primary_side
+    Port 1 (1):
+      -> Dst: Demux7 (Port 0)
+    Port 2 (2):
+      -> Dst: Demux4 (Port 0)
+    Port 3 (LConn1):
+      -> Dst: Three-Phase Breaker  (Port 6.640001e+02)
+    Port 4 (LConn2):
+      -> Dst: Three-Phase Breaker  (Port 6.650001e+02)
+    Port 5 (LConn3):
+      -> Dst: Three-Phase Breaker  (Port 6.660001e+02)
+    Port 6 (RConn1):
+      -> Dst: Series RLC Branch3 (Port 6.150001e+02)
+      -> Dst: CT (Port 1.000012e+01)
+    Port 7 (RConn2):
+      -> Dst: Series RLC Branch4 (Port 6.180001e+02)
+      -> Dst: CT1 (Port 3.500012e+01)
+    Port 8 (RConn3):
+      -> Dst: Series RLC Branch5 (Port 6.210001e+02)
+      -> Dst: CT2 (Port 6.000012e+01)
+
+BLOCK: Secondary_side
+    Port 1 (1):
+      -> Dst: Demux6 (Port 0)
+    Port 2 (2):
+      -> Dst: Demux5 (Port 0)
+    Port 3 (LConn1):
+      -> Dst: CT4 (Port 1.110001e+02)
+      -> Dst: Series RLC Branch (Port 5.830001e+02)
+    Port 4 (LConn2):
+      -> Dst: CT3 (Port 8.600012e+01)
+      -> Dst: Series RLC Branch1 (Port 5.860001e+02)
+    Port 5 (LConn3):
+      -> Dst: CT6 (Port 1.360001e+02)
+      -> Dst: Series RLC Branch2 (Port 6.130001e+02)
+    Port 6 (RConn1):
+      -> Dst: Three-Phase Breaker1  (Port 6.690001e+02)
+    Port 7 (RConn2):
+      -> Dst: Three-Phase Breaker1  (Port 6.700001e+02)
+    Port 8 (RConn3):
+      -> Dst: Three-Phase Breaker1  (Port 6.710001e+02)
+

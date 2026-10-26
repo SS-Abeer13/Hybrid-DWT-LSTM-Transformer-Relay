@@ -32,7 +32,11 @@ def trace_features(i_diff: np.ndarray) -> np.ndarray:
 
 
 # ---- Yd1-compensated, per-unit differential (what the relay's 87T path uses) ----------------
-# Mirrors the "Yd1 Compensation" chart in the Simulink relay (300 MVA, 230/11 kV, CT 2000/5 and 92000/5).
+# Rated CT-secondary bases: v3 thesis was 0.9302 A; v4 (series CT wiring) is 1.8610 A (probe_ct_truth_v4.m).
+I_NOM_SEC_V3 = 0.9302
+I_NOM_SEC_V4 = 1.8610
+I_NOM_SEC = I_NOM_SEC_V4
+
 _S, _VHV, _VLV, _CTHV, _CTLV = 300e6, 230e3, 11e3, 2000 / 5, 92000 / 5
 I_NOM_HV = _S / (np.sqrt(3) * _VHV) / _CTHV
 I_NOM_LV = _S / (np.sqrt(3) * _VLV) / _CTLV
@@ -46,10 +50,15 @@ def compensated_diff(primary: np.ndarray, secondary: np.ndarray) -> np.ndarray:
     return lv - hv
 
 
-def plant_compensated_diff(primary: np.ndarray, secondary: np.ndarray) -> np.ndarray:
-    """Differential in raw CT-secondary amps with the Yd1 mapping that this PLANT actually obeys.
+def plant_compensated_diff(primary: np.ndarray, secondary: np.ndarray, i_nom: float = I_NOM_SEC) -> np.ndarray:
+    """Differential in per-unit CT-secondary current with the Yd1 mapping that this PLANT actually obeys.
 
-    Fitted on healthy traces (2026-10-20): LV_amps ~= (1/sqrt3) [[1,0,-1],[-1,1,0],[0,-1,1]] @ HV_amps (residual ~2.5 % of
-    load, vs 51 % for the uncompensated Ip - Is). This is the TRANSPOSE of the relay's M_YD1 and needs no per-unit scaling.
+    Fitted on healthy traces (2026-10-20): LV_amps ~= (1/sqrt3) [[1,0,-1],[-1,1,0],[0,-1,1]] @ HV_amps.
+    Divided by i_nom so the LSTM input is normalised to per-unit (Step 1.4 / Phase 3 scale invariance).
     """
-    return secondary - primary @ M_YD1
+    return (secondary - primary @ M_YD1) / i_nom
+
+
+def plant_compensated_diff_pu(primary: np.ndarray, secondary: np.ndarray, i_nom: float = I_NOM_SEC) -> np.ndarray:
+    """Explicit alias for per-unit plant-compensated differential."""
+    return plant_compensated_diff(primary, secondary, i_nom=i_nom)

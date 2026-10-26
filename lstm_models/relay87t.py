@@ -16,8 +16,17 @@ import numpy as np
 
 FS = 1600
 W = 32
-CT_RATIO_HV, CT_RATIO_LV = 809.6, 16925.0            # effective ratios measured against the true line currents
-I_NOM = 300e6 / (np.sqrt(3) * 230e3) / CT_RATIO_HV   # = 0.9302 A; LV: 300e6/(sqrt3*11e3)/16925 = 0.9303 A
+# v3 baseline values (thesis model with 0.5 ohm series resistors)
+CT_RATIO_HV_V3, CT_RATIO_LV_V3 = 809.6, 16925.0
+I_NOM_V3 = 300e6 / (np.sqrt(3) * 230e3) / CT_RATIO_HV_V3   # = 0.9302 A
+
+# v4 calibrated values (series CT wiring, simulations/ct_calibration_v4.txt)
+CT_RATIO_HV_V4, CT_RATIO_LV_V4 = 404.7288, 8460.0372
+I_NOM_V4 = 1.8610                                         # = 1.8610 A
+
+# Active calibration default (v4)
+CT_RATIO_HV, CT_RATIO_LV = CT_RATIO_HV_V4, CT_RATIO_LV_V4
+I_NOM = I_NOM_V4
 M_PLANT = (1 / np.sqrt(3)) * np.array([[1, 0, -1], [-1, 1, 0], [0, -1, 1]])   # column-vector form
 I_PICKUP, I_HIGH_SET, SLOPE_1, SLOPE_2, BREAKPOINT = 0.30, 10.0, 0.25, 0.60, 3.0   # unchanged chart settings
 
@@ -30,11 +39,11 @@ def sliding_rms(x: np.ndarray) -> np.ndarray:
     return out
 
 
-def analyse(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP) -> dict:
+def analyse(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP, i_nom: float = I_NOM) -> dict:
     """primary/secondary: [T x 3] CT-secondary amps (HV, LV). Returns per-sample boolean 'vote' (any-phase 87T trip
     condition), 'highset' (Id > 10 pu, bypasses the AI) and the per-phase Id/Ir RMS in pu."""
-    hv = (primary / I_NOM) @ M_PLANT.T
-    lv = secondary / I_NOM
+    hv = (primary / i_nom) @ M_PLANT.T
+    lv = secondary / i_nom
     idr = sliding_rms(lv - hv)
     irr = sliding_rms(0.5 * (np.abs(hv) + np.abs(lv)))
     dyn = np.where(irr <= BREAKPOINT, SLOPE_1 * irr, SLOPE_2 * (irr - BREAKPOINT) + SLOPE_1 * BREAKPOINT)
@@ -45,9 +54,9 @@ def analyse(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP
             "idiff_rms": idr, "irest_rms": irr}
 
 
-def fault_rise_pu(primary: np.ndarray, secondary: np.ndarray, onset: int) -> float:
+def fault_rise_pu(primary: np.ndarray, secondary: np.ndarray, onset: int, i_nom: float = I_NOM) -> float:
     """Detectability: rise of the per-phase differential RMS (pu) 40-60 ms after the fault vs 10-30 ms before (as the generator did)."""
-    d = (secondary / I_NOM) - (primary / I_NOM) @ M_PLANT.T
+    d = (secondary / i_nom) - (primary / i_nom) @ M_PLANT.T
     a = slice(onset + 64, onset + 96)
     b = slice(max(onset - 48, 0), max(onset - 16, 1))
     if a.stop > len(d):
@@ -56,7 +65,8 @@ def fault_rise_pu(primary: np.ndarray, secondary: np.ndarray, onset: int) -> flo
 
 
 def analyse_harmonic(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP,
-                     k2_thresh: float = 0.15, k5_thresh: float = 0.35, mode: str = "per_phase") -> dict:
+                     k2_thresh: float = 0.15, k5_thresh: float = 0.35, mode: str = "per_phase",
+                     i_nom: float = I_NOM) -> dict:
     """Conventional 87T dual-slope characteristic WITH 2nd and 5th harmonic restraint.
     Computes sliding 32-sample FFT harmonic ratios k2 = |I_100Hz| / |I_50Hz| and k5 = |I_250Hz| / |I_50Hz|.
     
@@ -66,9 +76,9 @@ def analyse_harmonic(primary: np.ndarray, secondary: np.ndarray, pickup: float =
       - 'cross_active': cross-blocking active only from phases whose differential RMS exceeds pickup.
       - 'as_coded' (unselective cross-block): ANY phase with k2>15% or k5>35% blocks all phases.
     """
-    res = analyse(primary, secondary, pickup=pickup)
-    hv = (primary / I_NOM) @ M_PLANT.T
-    lv = secondary / I_NOM
+    res = analyse(primary, secondary, pickup=pickup, i_nom=i_nom)
+    hv = (primary / i_nom) @ M_PLANT.T
+    lv = secondary / i_nom
     diff = lv - hv  # [T x 3]
     T_len = diff.shape[0]
     

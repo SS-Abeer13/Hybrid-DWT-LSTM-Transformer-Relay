@@ -1,0 +1,41 @@
+================================================================================
+CT TRUTH & CALIBRATION REPORT (MODEL: TransformerWithCTSaturation_v4)
+Date: 26-Oct-2026 23:51:31
+Rated Plant Parameters: 300 MVA, 230 kV / 11 kV, Yd1
+Rated Line Current HV: 753.07 A, LV: 15745.92 A
+================================================================================
+
+--- Knob 0.10 (10.0% Load, S = 30.0 MVA) ---
+  True HV Line: 77.22 A, CT Sec HV: 0.1908 A -> Ratio HV: 404.65 : 1
+  True LV Line: 1561.12 A, CT Sec LV: 0.1846 A -> Ratio LV: 8458.08 : 1
+  True Voltages: HV = 398.28 kV (1.732 pu), LV = 19.02 kV (1.729 pu)
+
+--- Knob 0.50 (50.0% Load, S = 150.0 MVA) ---
+  True HV Line: 370.23 A, CT Sec HV: 0.9141 A -> Ratio HV: 405.04 : 1
+  True LV Line: 7688.48 A, CT Sec LV: 0.9080 A -> Ratio LV: 8467.75 : 1
+  True Voltages: HV = 398.10 kV (1.731 pu), LV = 18.91 kV (1.719 pu)
+
+--- Knob 1.00 (100.0% Load, S = 300.0 MVA) ---
+  True HV Line: 724.38 A, CT Sec HV: 1.7898 A -> Ratio HV: 404.73 : 1
+  True LV Line: 15093.59 A, CT Sec LV: 1.7841 A -> Ratio LV: 8460.04 : 1
+  True Voltages: HV = 397.88 kV (1.730 pu), LV = 18.78 kV (1.707 pu)
+
+--- Knob 1.50 (150.0% Load, S = 450.0 MVA) ---
+  True HV Line: 1065.68 A, CT Sec HV: 2.6328 A -> Ratio HV: 404.77 : 1
+  True LV Line: 22230.21 A, CT Sec LV: 2.6263 A -> Ratio LV: 8464.36 : 1
+  True Voltages: HV = 397.66 kV (1.729 pu), LV = 18.65 kV (1.696 pu)
+
+--- Knob 2.00 (200.0% Load, S = 600.0 MVA) ---
+  True HV Line: 1394.82 A, CT Sec HV: 3.4457 A -> Ratio HV: 404.80 : 1
+  True LV Line: 29112.25 A, CT Sec LV: 3.4400 A -> Ratio LV: 8462.99 : 1
+  True Voltages: HV = 397.45 kV (1.728 pu), LV = 18.53 kV (1.684 pu)
+
+================================================================================
+CALIBRATED BASE CONSTANTS FOR V4:
+================================================================================
+Effective CT Ratio HV: 404.7288 : 1 (Nameplate: 400 : 1)
+Effective CT Ratio LV: 8460.0372 : 1 (Nameplate: 1672.73 : 1)
+Rated CT-Secondary Current HV: 1.8607 A
+Rated CT-Secondary Current LV: 1.8612 A
+LV Bus Voltage at Rated Load: 1.707 pu (Threshold >= 0.95 pu: PASS)
+================================================================================

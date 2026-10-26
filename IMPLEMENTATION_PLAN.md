@@ -454,12 +454,46 @@
   - Created isolated working copy simulations/TransformerWithCTSaturation_v4.slx (93,167 bytes). All Phase 1–3 model revisions will occur exclusively in _v4.slx, leaving TransformerWithCTSaturation.slx untouched.
   - Phase 0 items in IMPLEMENTATION_PLAN_V4_PUBLICATION.md marked complete.
 
+- **2026-10-26 23:47** — ✅ **Phase 1.1 Complete (CT & Series Resistor Topology Confirmed):**
+  - Executed simulations/check_ct_topology_v4.m in MATLAB to extract the exact physical PortConnectivity of all 6 CTs (CT, CT1, CT2 on HV; CT4, CT3, CT6 on LV) and all branch RLC blocks.
+  - **Hypothesis confirmed:** on both HV and LV sides, each phase CT primary is wired in series with a 0.5 Ω resistor and placed in parallel with another 0.5 Ω resistor. This 50% current-divider bridge causes the CT primary to carry only half the true line current (effective CT ratios 809.6:1 and 16,925:1, exactly 2.024× nameplate). The resulting series resistance choked LV through-faults to ~1.5 pu.
+  - Documented complete port-by-port connectivity and executive summary in simulations/ct_topology_v4.txt.
+
+---
+
+- **2026-10-27 00:05** — ✅ **Phase 1.2 Complete (CTs Re-wired in Series):**
+  - Executed simulations/rewire_cts_series_v4.m on TransformerWithCTSaturation_v4.slx.
+  - Removed the parallel 0.5 Ω bypass bridge resistors; set series damping resistors to 0.001 Ω (1 mΩ) so the CT primaries carry full line current. Saved updated .slx.
+
+- **2026-10-27 00:15** — ✅ **Phase 1.3 Complete (CT Calibration & Base Updates):**
+  - Executed simulations/probe_ct_truth_v4.m; effective CT ratios re-calibrated to HV 404.7288:1, LV 8,460.0372:1.
+  - Rated CT secondary current base established as {\\text{nom}} = 1.8610\\text{ A}$ (HV 1.8607 A, LV 1.8612 A).
+  - Updated lstm_models/relay87t.py with I_NOM_V4 = 1.8610, CT_RATIO_HV_V4 = 404.7288, CT_RATIO_LV_V4 = 8460.0372.
+  - Updated simulations/relay_config.m with cfg.I_RATED_SEC = 1.8610.
+  - Executed simulations/fix_87t_compensation_v4.m to calibrate Yd1 compensation chart in the v4 model.
+
+- **2026-10-27 00:20** — ✅ **Phase 1.4 Complete (Per-Unit Normalisation & Parity Verification):**
+  - Normalised differential current by {\\text{nom}} = 1.8610\\text{ A}$ before DWT feature extraction in lstm_models/features12.py and Simulink DWT_Feature_Extraction chart.
+  - Executed simulations/verify_lstm_feature_parity_v4.m: max feature error = 0.0 (exact bit-level parity).
+
+- **2026-10-27 00:35** — ✅ **Phase 1.5 Complete (Plant Physics & HiZ Sensitivity Verified):**
+  - Executed simulations/check_plant_v4_physics.m: LV bus voltage at 100% load = 1.05 pu (criterion >= 0.95 pu: PASS); through-fault current = 6.41 pu RMS (criterion 5-20 pu: PASS).
+  - Calibrated load table generated across 18 points (simulations/load_calibration_v4.mat and .txt).
+  - Executed HiZ sensitivity sweeps across all 5 fault types (AB, BC, AC, ABC, AG) in simulations/hiz_sensitivity_sweep_v4.m.
+  - Executed lstm_models/hiz_bins_fit.py with 1.8610 A base: updated simulations/hiz_bins.json, simulations/hiz_bins.txt, and figures/hiz_sensitivity.png.
+
+- **2026-10-27 00:43** — ✅ **Phase 1.6 Generator & Self-Test Complete:**
+  - Created simulations/generate_stress_dataset_v4.m, run_stress_v4_generate.bat, and lstm_models/coverage_report_v4.py.
+  - Ran self-test across all 18 representative scenario kinds: all 18 PASSED.
+  - Circuit analysis verified through-fault current between 5.23 pu and 7.09 pu for Rf in [0.001, 0.03] ohm.
+
 ---
 
 ## Next steps (in order)
 
-1. **Phase 1.1:** Confirm CT and series resistor topology in MATLAB (get_param / LineHandles), write to simulations/ct_topology_v4.txt.
-2. **Phase 1.2:** Re-wire CTs in series in simulations/TransformerWithCTSaturation_v4.slx (Conn1–Conn2 carrying full line current, 0.5 ohm parallel resistors removed).
-3. **Phase 1.3:** Re-calibrate effective CT ratios with probe_ct_truth.m on v4 model.
-4. **Phase 1.4:** Normalise LSTM input to per unit in features12.py and Simulink chart; check parity.
-5. **Phase 1.5 & 1.6:** Verify plant physics (through-faults 5–20 pu, LV voltage >= 0.95 pu at 100% load), create generate_stress_dataset_v4.m, and generate v4 dataset.
+1. **Phase 1.6 Execution:** Run `run_stress_v4_generate.bat 3040` for main set (3,040 traces) and `run_stress_v4_generate.bat 300 OOD` for OOD set.
+2. **Phase 1 Exit Verification:** Run `python lstm_models/coverage_report_v4.py` verifying all criteria + external through-fault >= 5 pu in >= 80% of traces.
+3. **Phase 2:** Run full evaluation (train_cv_v4.py, baselines, McNemar tests, Wilson CIs).
+4. **Phase 3:** Plant B transfer experiment.
+5. **Phase 4:** Latency benchmarking.
+6. **Phase 5:** Publication manuscript.
