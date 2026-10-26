@@ -1,0 +1,21 @@
+\begin{table}[H]\centering\caption{Extended closed-loop Simulink co-simulation verification (12 benchmark cases, saved run 21-Oct-2026).}\label{tab:6.5}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}\toprule
+\textbf{Test Case Description} & \textbf{Expected} & \textbf{Actual} & \textbf{Max AI Prob.} & \textbf{Trip Latency} & \textbf{Status}\\ \midrule
+Normal Operation, 30\% load & BLOCK & BLOCK & 0.0004 & --- & PASS\\
+Normal Operation, 100\% load & BLOCK & BLOCK & 0.0001 & --- & PASS\\
+Inrush (0.8\,pu remanence, $0^\circ$ angle) & BLOCK & BLOCK & 0.0673 & --- & PASS\\
+Recovery Inrush (HV bus, 50\,ms fault) & BLOCK & BLOCK & 0.0306 & --- & PASS\\
+Over-Excitation (1.30\,pu) & BLOCK & BLOCK & 0.0000 & --- & PASS\\
+External 3-Phase Fault (normal CT) & BLOCK & BLOCK & 0.0000 & --- & PASS\\
+External A-G + CT Saturation ($8\times$ burden) & BLOCK & BLOCK & 0.0002 & --- & PASS\\
+Internal A-G Solid (LV side) & TRIP & TRIP & 1.0000 & 15.0\,ms & PASS\\
+Internal A-B Fault (HV terminal) & TRIP & TRIP & 1.0000 & 0.6\,ms & PASS\\
+Internal HiZ A-B Fault (AI-only bin, $R_f = 3\,\Omega$) & TRIP & TRIP & 1.0000 & 47.5\,ms & FAIL$^\dagger$\\
+Switch-On-To-Fault (SOTF, A-B) & TRIP & TRIP & 1.0000 & 13.8\,ms & PASS\\
+Internal Fault during Inrush (Phase A-B-G) & TRIP & TRIP & 1.0000 & 41.3\,ms & FAIL$^\dagger$\\
+\bottomrule
+\end{tabular}%
+}
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} $^\dagger$All 12/12 operating trip decisions are correct (TRIP vs.\ BLOCK). The FAIL status denotes that operate latency exceeded the pre-defined 30\,ms ($\le 1.5$ cycle) speed benchmark. Both the high-impedance internal fault ($R_f=3\,\Omega$, 47.5\,ms) and internal fault during inrush (41.3\,ms) trip correctly via the persistence-filtered AI path, but require additional cycles for multi-window confidence accumulation under low signal-to-restraint ratios. Thus, 12/12 trip decisions are correct, and 10/12 meet the $\le 30$\,ms speed criterion.
+\end{table}

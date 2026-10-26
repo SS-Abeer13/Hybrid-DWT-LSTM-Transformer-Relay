@@ -1,0 +1,14 @@
+\begin{table}[H]\centering\caption{Performance on the Out-of-Distribution (OOD) test corpus (291 usable traces).}\label{tab:6.4}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llcccc@{}}\toprule
+\textbf{Block} & \textbf{Stress Dimension Tested} & \textbf{Faults} & \textbf{Dep.\ (\%)} & \textbf{Healthy} & \textbf{Sec.\ (\%)}\\ \midrule
+1 & Extreme loading (1--10\%, 110--130\%) & 30 & 96.7 & 30 & 100.0\\
+2 & Weak source ($3\times Z_s$) \& frequency ($\pm0.5$\,Hz) & 30 & 100.0 & 30 & 100.0\\
+3 & Extreme CT burden (12--16$\times$ nominal) & 25 & 68.0 & 27 & 100.0\\
+4 & Severe over-excitation (1.5--1.6\,pu) \& 0.9\,pu flux & 30 & 93.3 & 30 & 100.0\\
+5 & Heavy noise (5\%) \& CT mismatch ($\pm8\%$) & 29 & 100.0 & 30 & 100.0\\
+\midrule
+\textbf{Total} & \textbf{Overall OOD Generalization} & \textbf{144} & \textbf{92.4\%} & \textbf{147} & \textbf{100.0\%}\\ \bottomrule
+\end{tabular}%
+}
+\end{table}

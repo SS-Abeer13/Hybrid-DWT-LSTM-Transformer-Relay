@@ -53,3 +53,39 @@ def fault_rise_pu(primary: np.ndarray, secondary: np.ndarray, onset: int) -> flo
     if a.stop > len(d):
         return float("nan")
     return float(np.max(np.sqrt((d[a] ** 2).mean(0)) - np.sqrt((d[b] ** 2).mean(0))))
+
+
+def analyse_harmonic(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP,
+                     k2_thresh: float = 0.15, k5_thresh: float = 0.35, cross_block: bool = True) -> dict:
+    """Conventional 87T dual-slope characteristic WITH 2nd and 5th harmonic restraint / cross-blocking.
+    Computes sliding 32-sample FFT harmonic ratios k2 = |I_100Hz| / |I_50Hz| and k5 = |I_250Hz| / |I_50Hz|.
+    Blocks tripping when k2 > k2_thresh (15% inrush) or k5 > k5_thresh (35% over-excitation).
+    """
+    res = analyse(primary, secondary, pickup=pickup)
+    hv = (primary / I_NOM) @ M_PLANT.T
+    lv = secondary / I_NOM
+    diff = lv - hv  # [T x 3]
+    T_len = diff.shape[0]
+    blocked = np.zeros(T_len, dtype=bool)
+    if T_len >= W:
+        win = np.lib.stride_tricks.sliding_window_view(diff, W, axis=0)  # [T-W+1, 3, W]
+        spec = np.abs(np.fft.fft(win, axis=-1))
+        fund = spec[..., 1] + 1e-4
+        k2 = spec[..., 2] / fund
+        k5 = spec[..., 5] / fund
+        if cross_block:
+            is_blocked = (k2 > k2_thresh).any(-1) | (k5 > k5_thresh).any(-1)
+        else:
+            is_blocked = ((k2 > k2_thresh) | (k5 > k5_thresh)).all(-1)
+        blocked[W - 1:] = is_blocked
+    v_restrained = res["vote"] & (~blocked)
+    return {
+        "vote": (v_restrained | res["highset"]).astype(bool),
+        "vote_restrained": v_restrained.astype(bool),
+        "vote_unrestrained": res["vote"],
+        "highset": res["highset"],
+        "blocked": blocked,
+        "idiff_rms": res["idiff_rms"],
+        "irest_rms": res["irest_rms"]
+    }
+

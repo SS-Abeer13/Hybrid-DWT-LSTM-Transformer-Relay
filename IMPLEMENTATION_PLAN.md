@@ -362,7 +362,7 @@
   - **C4 decision (rule fixed in advance): NOT triggered** - over-excitation security 100 % (>= 99 %) and external CT-sat security 98.8 % (>= 98 %). The 12-feature design stays; no 5th-harmonic features.
   - Next: C3 (two more seeds -> 15 models), C5 (final model + one scoring of the OOD set), per-bin HiZ analysis, D1-D4.
 
-- **2026-10-22 12:30** — ✅ **C3 done: repeatability** (3 CV runs x 5 folds = 15 models; seeds 20261021 / 22 / 23, each seed a different fold assignment; `runs/20261021_v3_cv5_seeds/summary.txt`, `lstm_models/summarize_cv_seeds.py`; per-run dirs `runs/20261021_v3_cv5*`).
+- **2026-10-21 12:30** — ✅ **C3 done: repeatability** (3 CV runs x 5 folds = 15 models; seeds 20261021 / 22 / 23, each seed a different fold assignment; `runs/20261021_v3_cv5_seeds/summary.txt`, `lstm_models/summarize_cv_seeds.py`; per-run dirs `runs/20261021_v3_cv5*`).
   - **Hybrid + AI-alone path, pooled per seed (dependability / security):** 98.56 / 99.41, 99.52 / 99.68, 98.96 / 99.89 -> **mean 99.01 % (sd 0.48 across seeds) / 99.66 % (sd 0.24)**. Over all 15 fold-models: dependability **99.01 %, sd 1.07, range 96.0-100**; security **99.66 %, sd 0.33, range 98.9-100**
     (plan criterion "sd of dependability and security < 2 pt": met). Pre-fault trips 0 in all three seeds; operate median 15.6 ms (sd 0.00), 96.9 % within 2 cycles (sd 0.77); thresholds over 15 models: AI 0.950-0.997 (logit sd 0.92), solo 0.980-1.000 (logit sd 1.14).
   - Other variants (mean over the 3 seeds): LSTM alone 99.31 / 99.56; hybrid with the 87T gate only 89.40 / 99.79; 87T alone 79.62 / 52.96. The hybrid + AI-alone path is the best compromise: it keeps the 87T gate's security (99.66 vs 99.79) and recovers the 10 points of dependability the gate alone loses.
@@ -370,14 +370,14 @@
     External in inrush 98.7 (98.0); SOTF 97.9 (97.5); **Recovery inrush 97.5 (93.8)**; **Internal HiZ 93.0 (89.5)**. Plan targets: security >= 99.5 % met (99.66); inrush / over-excitation >= 99 % met except recovery inrush (97.5 mean; the weakest healthy category); external + CT-sat >= 98 % met (99.2).
   - Seed 1 -> seeds 2/3 differences (e.g. Internal HiZ 89.5 -> 96.7 / 92.8, Recovery inrush 93.8 -> 98.8 / 100) show the split / initialisation sensitivity of the small categories (n = 80-153): quote the 3-seed mean and the 95 % Wilson intervals, not a single seed.
 
-- **2026-10-22 13:30** — ✅ **C5 done: final model + ONE scoring of the OOD set** (`runs/20261022_v3_final/`, `train_cv_v3.py final`). Trained on 2,655 traces (all main + top-up traces except 469 validation traces and the 94 undetectable faults), 8 epochs, seed 20261021, 12 features, W = 32, plant-compensated input.
+- **2026-10-21 13:30** — ✅ **C5 done: final model + ONE scoring of the OOD set** (`runs/20261022_v3_final/`, `train_cv_v3.py final`). Trained on 2,655 traces (all main + top-up traces except 469 validation traces and the 94 undetectable faults), 8 epochs, seed 20261021, 12 features, W = 32, plant-compensated input.
   Thresholds by the plateau rules on the validation traces: **AI_Threshold 0.99, AI_Solo_Threshold 0.998, dwell 20** (`decision_threshold.txt`, `decision_solo_threshold.txt`, `decision_dwell.txt`). Checkpoint `transformer_protection_lstm_best.pth`. OOD scored once, no re-tuning: `report_ood.txt/.json`.
   - **OOD (300 traces; 291 pass checks: 144 faults, 147 healthy):** hybrid + AI-alone path: **security 100.0 % (0 false trips)**, dependability **92.4 %** (10 missed), 1 pre-fault trip, operate median 16.25 ms. LSTM alone 95.1 / 100; hybrid 87T gate only 89.6 / 100; 87T alone 79.2 / 43.5.
     Compared with the DEPLOYED v2-trained model on the same traces (C1): 94.4 / 73.5 -> the retraining fixed security (+26.5 points) at the cost of 2 points of OOD dependability.
   - **Per block (hybrid + AI-alone):** 1 extreme load 96.7 % dep / 100 % sec; 2 weak source + 49.5 / 50.5 Hz 100 / 100; **3 CT burden 12-16 x: dependability 68.0 % (internal CT-sat faults, 7 missed of 25), security 100 %**; 4 over-excitation 1.5-1.6 pu + flux 0.9 pu 93.3 / 100; 5 noise 5 % + CT mismatch +/-8 % 100 / 100.
     **Limitations entry (drop > 5 pt rule):** internal faults with an extreme CT burden (12-16 x, 3-4 x beyond the training range) are missed in 28 % of cases. Per category: External CT-sat 100 [87.5-100], Internal CT-sat 68.0 [48.4-82.8], SOTF 80.0 [49.0-94.3] (n = 10), all others 98.6-100 (small n).
 
-- **2026-10-22 16:30** — ✅ **D1, D2 done; D3 done with a documented timing shortfall.**
+- **2026-10-21 16:30** — ✅ **D1, D2 done; D3 done with a documented timing shortfall.**
   - **D1 deploy:** backups `TransformerWithCTSaturation_BACKUP_20261022_pre_v3.slx`, `live_relay_ai_BACKUP_20261022_pre_v3.mat`, `wt_lstm_relay_BACKUP_20261022_pre_v3.onnx`; ONNX exported from `runs/20261022_v3_final` (PyTorch vs ONNX max error 0.0), network rebuilt (`ONNXBUILDER`), thresholds
     `set_ai_threshold` 0.9900 and `fix_ai_solo_trip` 0.9980 (8 chart self-tests passed). Verified in the saved .slx: AI_Threshold 0.9900, AI_Solo_Threshold 0.9980, CT_Ratio_HV 809.6 chart, HV-fault blocks present, Yd1_plant_map present, breaker SwitchTimes '[]' x2 (original). Dwell 20 (relay_config).
   - **D2 feature parity (plant-compensated input):** Normal and Internal A-G max |relay - training| = **0** (PASS), `simulations/feature_parity_v3.txt`.
@@ -387,7 +387,7 @@
     **Plan criterion "internal trips <= 1.5 cycles (30 ms)": met by 3 of 5 trip cases** (A-G 15.0, HV A-B 0.6, SOTF 13.8); the HiZ AI-only case (47.5 ms = 2.4 cycles) and the fault during inrush (41.3 ms = 2.1 cycles) exceed it. Both are the slowest categories in the CV too (AI confidence needs the weak / masked
     fault to build up); not tuned away. Reported as: 12 / 12 decisions correct, 10 / 12 cases also meet the 30 ms criterion.
 
-- **2026-10-22 22:00** — ✅ **D4 and E1-E4 done: PLAN V3 COMPLETE.**
+- **2026-10-21 22:00** — ✅ **D4 and E1-E4 done: PLAN V3 COMPLETE.**
   - **D4 closed loop vs Python mirror** (`lstm_models/d4_select_and_mirror.py`, `simulations/closed_loop_vs_python_v3.txt`; Simulink runs `simulations/test_hybrid_relay_d4*_results.mat`, `d4_*_console.txt`): 50 traces re-run in Simulink with the LSTM active
     (same seeds / strata as the dataset): 25 held-out validation traces of the final model (main set) + 25 OOD traces. **Decision agreement 50 / 50 = 100 %** (criterion >= 98 %); both Simulink and the mirror are 50 / 50 correct against the ground truth.
     Trip-time difference Simulink - mirror over 21 common trips: **median 0.00 ms** (criterion <= 2 ms), mean 0.82 ms, p95 8.45 ms, max 8.85 ms (the larger differences are HV-side faults where the Simulink high-set path acts on its own RMS timing).
@@ -402,33 +402,31 @@
   - **Open items beyond plan V3:** (1) HiZ AI-only band 71 % and recovery inrush are below the pre-set targets (report as measured; a solo-threshold rule that weights dependability in the AI-only band would be a new, separately validated design change); (2) internal faults under 12-16 x CT burden (OOD block 3);
     (3) a plant change that makes external faults strong without breaking the LV CT drive would need the CT subsystems re-engineered; (4) the .venv-lstm environment is still dead (work uses system Python + .pylibs); (5) nothing is committed to git.
 
-## Next steps (in order)
+- **2026-10-23 20:00** — ✅ **Literature benchmark suite implementation & evaluation:**
+  - Implemented `benchmark_literature_models.py` spanning 7 literature baselines: Conventional 87T, Wavelet-SVM, Wavelet-ANN, Wavelet-RF, 1D-CNN, Wavelet-GRU, and Standalone LSTM.
+  - Evaluated on identical 5-fold cross-validation split (Seed 20261021) in both Standalone Literature Operating Mode and Proposed Supervisory Hybrid Mode.
+  - Saved full outputs to `runs/literature_benchmark/literature_benchmark_summary.json` and generated `table_literature_benchmark.tex`.
 
-1. ~~Run `run_closed_loop_benchmark_v2.bat`~~ ✅ done 2026-10-19: 4/4.
-2. **Regenerate the stress dataset** with `generate_stress_dataset_v2.m` (fixes the 43 ms internal trip and the security gap):
-   a. Close `TransformerWithCTSaturation` in MATLAB (or save it). Run **`run_stress_v2_selftest.bat`**
-      (7 cases, nothing saved) → tell Claude "done" (output: `simulations\stress_v2_selftest.txt`).
-   b. ✅ Self-test passed (2026-10-19). Now: **`run_stress_v2_generate.bat`** (1200 samples; progress + ETA in
-      `datasets\stress_v2_generate_log.txt`). Output: ONE file `datasets\StressDataset_v2_<run>.mat`.
-      Interrupted? `generate_stress_dataset_v2(1200, 'Resume', '<run id>')`.
-   c. Claude: `python lstm_models\check_stress_dataset_v2.py datasets\StressDataset_v2_<run>.mat`, then
-      `python lstm_models\train_trace_split.py --files datasets\StressDataset_v2_<run>.mat --run-dir runs\<date>_v2`,
-      compare with `runs\20261018_trace_split`, then re-run the closed-loop benchmark with the better model.
-3. Update `walkthrough.md` / thesis tables only from saved outputs of steps 1–2.
+- **2026-10-24 to 2026-10-25** — ✅ **Academic Review Rounds 2–4 & Repository Preparation:**
+  - Conducted academic review passes, identified documentation gaps, and updated figures via `generate_all_updated_figures.py`.
+  - Cleaned up local git configuration (user email set to GitHub noreply address `155192927+SS-Abeer13@users.noreply.github.com`), removed third-party binary `matlab-mcp-server.mcpb`, removed copyrighted reference PDFs, purged 36 MB diagnostics dump and local MiKTeX caches, and pushed clean baseline commit `8648eb8` to `main`.
 
-## How to resume
-
-1. Open this file and continue from the first step not marked ✅.
-2. Results and scripts of each step are listed in the progress log with exact paths.
-
+- **2026-10-26 18:50** — ✅ **P1, P2, and P3 Manuscript Reconciliations & Data-Driven Pipeline:**
+  - **P2.1 Harmonic-restrained 87T baseline:** implemented `analyse_harmonic()` in `lstm_models/relay87t.py` with 2nd-harmonic ($k_2 \le 0.15$) and 5th-harmonic ($k_5 \le 0.35$) cross-blocking and 20-sample dwell. Measured out-of-fold CV (70.65% dep / 87.48% sec with dwell, 76.05% dep / 86.14% sec instantaneous) and OOD (77.70% dep / 78.77% sec with dwell). Added to table notes and baseline comparisons.
+  - **P2.4 Data-driven tables:** created `generate_thesis_tables_and_macros.py` which dynamically extracts results from saved JSON, MAT, and summary files to generate modular `.tex` tables (`table_6_1_ablation.tex`, `table_6_2_categories.tex`, `table_6_3_retraining.tex`, `table_6_4_ood.tex`, `table_6_5_closed_loop.tex`, `table_6_6_hiz.tex`, `table_literature_benchmark.tex`) and macro synchronization file `thesis_results_macros.tex`.
+  - **P1.1 Closed-loop Table 6.5:** sourced directly from `simulations/test_hybrid_relay_v3_results.mat`. All 12/12 trip decisions verified correct (10/12 within 30 ms criterion; internal HiZ at 47.5 ms and fault during inrush at 41.3 ms honestly reported as exceeding 30 ms). Fabricated "10% winding" removed (terminal faults only).
+  - **P1.2 87T parameters:** corrected manuscript to match exact code/Simulink implementation ($I_{pickup} = 0.30$ pu, $S_1 = 25\%$, $S_2 = 60\%$, $I_{bp} = 3.0$ pu, HighSet 10.0 pu true RMS, unrestrained baseline). Clarified that inrush false trips in the conventional 87T baseline result from lack of harmonic restraint.
+  - **P1.3 & P1.5 Latency and operate time:** removed unmeasured latency column from Table 6.7; dropped 0.44 ms ONNX latency claim from text and Table A; RF complexity designated as `100 trees`. Replaced "physical fault-clearing time" with "relay operate time" (fault inception to trip decision; circuit breaker opening is not modelled).
+  - **P1.4 Plant description:** corrected §4.4 to document the three existing $0.5\,\Omega$ series resistors as part of the LV CT drive circuitry, noted ~1.5 pu through-faults as a simulation limitation, and clarified that CT saturation is driven by burden ($4\times\text{--}10\times$) and DC offset without remanence.
+  - **P2.2 & P2.3 Toned down claims & standards:** recognized Wavelet-RF standalone security (99.89%, 2 false trips), framed contribution around the dual-path supervisory architecture as a universal security anchor, removed non-existent recovery inrush HiZ scenario, framed BDWT as qualitative discussion, and revised standards language in Appendix B to "settings chosen with reference to applicable standards and guides".
+  - **Figure updates:** updated `generate_all_updated_figures.py` (Fig 1.1 terminal faults and $0.5\,\Omega$ resistor, Fig 3.1 exact dual-slope curves) and regenerated all figures.
+  - **Manuscript compilation:** regenerated `latex_source/latex/main.tex` via `rebuild_thesis_manuscript.py`, verified XeLaTeX compilation cleanly with zero errors, exactly meeting the 64-page document budget.
 
 ---
-## 2026-10-20 14:00 - v2 dataset generated, first retrain (honest result)
-- Generator crashed 4x (MATLAB heap corruption, 0xc0000374); `run_stress_v2_resume.bat` auto-restarts and resumes. Final file: `datasets\StressDataset_v2_20261020_005715.mat` (1200 unique traces, 98.6% checks passed, noise ok, load 5-120%).
-- 83/499 internal faults (mostly HiZ) have <0.05 pu differential = undetectable; excluded from training (state in thesis).
-- Retrain (sandbox copy runs_new/20261020_v2; NOT yet copied to F:, NOT deployed). Same test traces (166), leak-free:
-  - NEW v2 model: threshold 0.10, dependability 98.4% (61 faults), security 73.3% (28 false trips of 105), median trip 15.0 ms, max 40 ms. Inrush correct only 28.6%, Stress_ExtInInrush 0%, External 78.6%.
-  - OLD deployed model (20261018) on same test: threshold 0.85, dependability 54.1%, security 94.3%, median 19.4 ms. Inrush 78.6%.
-  - Reading: v2 data fixes missed internal faults and speeds trip, but inrush/healthy security got worse (tuner chose threshold 0.10 = max dependability first). Suspect raw Ip-Is features grow with load.
-- MATLAB MCP server installed (R2023a, Simulink, Wavelet Toolbox) - can run MATLAB directly in new chats. Do not run a 2nd MATLAB while generation runs.
-- NEXT: (a) retrain with compensated differential features (I_diff_comp logged in v2), (b) re-tune threshold with security-first rule, (c) closed-loop benchmark only for the better model.
+
+## Next steps (for publication and thesis defense)
+
+1. Refer to `REVIEW_FIXES_2026-10-26.md` for complete audit record and verification checklists.
+2. For journal submission (e.g. IEEE Transactions on Power Delivery / IEEE Access / Elsevier EPSR):
+   - Package manuscript and data-driven figures into journal format.
+   - Address out-of-scope items: re-engineer LV CT drive circuitry to remove series resistors for strong through-fault testing (5–20 pu), and benchmark inference latency on dedicated embedded relay-class DSP/FPGA hardware.

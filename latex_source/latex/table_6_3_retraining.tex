@@ -1,0 +1,18 @@
+\begin{table}[H]\centering\caption{Retraining impact: performance on realistic stress cases.}\label{tab:6.3}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcc@{}}\toprule
+\textbf{Scenario Category} & \textbf{Light-Load Baseline Model (\%)} & \textbf{Retrained v3 Model (\%)}\\ \midrule
+\multicolumn{3}{@{}l}{\textit{Panel A: Non-Fault Transient Security (Healthy Regimes, Expected BLOCK)}} \\ \midrule
+External Fault with CT Saturation & 60.2 & \textbf{99.2}\\
+Over-Excitation (V/f saturation) & 41.4 & \textbf{100.0}\\
+Recovery Inrush & 65.0 & \textbf{97.5}\\
+Loaded Magnetizing Inrush & 86.7 & \textbf{99.9}\\
+\midrule
+\textbf{Overall Security} & \textbf{84.1\% (298 false trips)} & \textbf{99.7\% (6.3 false trips mean)}\\ \midrule
+\multicolumn{3}{@{}l}{\textit{Panel B: Internal Fault Dependability (Fault Regimes, Expected TRIP)}} \\ \midrule
+Internal Fault during Inrush & 84.1 & \textbf{100.0}\\
+\bottomrule
+\end{tabular}%
+}
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Retrained v3 Model incurs an average of 6.3 false trips across 3 repetitions (11 false trips in Repetition~1, achieving 99.41\% security in Repetition~1 and 99.66\% multi-repetition mean across all 1,873 healthy traces).
+\end{table}

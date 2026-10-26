@@ -81,4 +81,4 @@
 \contentsline {chapter}{\numberline {A}System Parameters and Configuration}{45}{appendix.A}%
 \contentsline {chapter}{\numberline {B}Reproducibility and Standards}{47}{appendix.B}%
 \contentsline {section}{\numberline {B.1}Computational Environment and Software Dependencies}{47}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Standards Compliance}{47}{section.B.2}%
+\contentsline {section}{\numberline {B.2}Applicable Standards and Engineering Guides}{47}{section.B.2}%

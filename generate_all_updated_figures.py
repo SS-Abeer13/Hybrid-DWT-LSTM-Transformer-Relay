@@ -84,7 +84,7 @@ def generate_fig_1_1():
 
     # Internal Fault markers
     ax.plot(7.8, 3.1, "rx", ms=9, mew=2.5)
-    ax.text(7.8, 2.5, "Internal Faults\n(10%, 50%, 90%)\n" + r"$R_f = 0.3\text{--}21\,\Omega$", ha="center", fontsize=7.5, color="red", fontweight="bold")
+    ax.text(7.8, 2.5, "Internal Terminal Faults\n(A-G, B-G, A-B, 3-Phase)\n" + r"$R_f = 0.3\text{--}21\,\Omega$", ha="center", fontsize=7.5, color="red", fontweight="bold")
 
     # LV CT
     circ_lv1 = patches.Circle((10.0, 3.5), 0.3, edgecolor="#1B5E20", facecolor="none", lw=2.2)
@@ -102,7 +102,7 @@ def generate_fig_1_1():
     rect_r = patches.Rectangle((12.7, 3.3), 0.6, 0.4, edgecolor="#E65100", facecolor="#FFE0B2", lw=1.8)
     ax.add_patch(rect_r)
     ax.text(13.0, 3.5, r"$R_s$", ha="center", va="center", fontsize=8.5, fontweight="bold", color="#E65100")
-    ax.text(13.0, 4.1, r"$R_{\mathrm{series}} = 0.05\,\Omega$" + "\n(Capping Ext. Fault)", ha="center", fontsize=7.5, color="#E65100", fontweight="bold")
+    ax.text(13.0, 4.1, r"$R_{\mathrm{series}} = 0.5\,\Omega$" + "\n(LV CT drive resistors)", ha="center", fontsize=7.5, color="#E65100", fontweight="bold")
     ax.plot([13.3, 14.2], [3.5, 3.5], "k-", lw=2)
     ax.text(14.3, 3.5, "LV Load\n(10--110%)", va="center", fontsize=8.5)
 
@@ -134,56 +134,47 @@ def generate_fig_1_1():
     print("Generated fig_1_1.png")
 
 def generate_fig_3_1():
-    """Dual-Slope Percentage Restraint Characteristic with exact piecewise equation."""
+    """Dual-Slope Percentage Restraint Characteristic matching relay87t.py settings."""
     fig, ax = plt.subplots(figsize=(7, 5))
     
-    # Restraint current range
-    Ir = np.linspace(0, 7.0, 700)
+    I_base = 0.9302
+    Ir = np.linspace(0, 6.5, 700) # A secondary
+    Ir_pu = Ir / I_base
     
-    # Relay parameters:
-    # I_pickup = 0.30 pu (0.279 A secondary base 0.9302 A)
-    # S1 = 15%, S2 = 40%, Knee point Ir_rest = 2.0 A, Ir1 = 0.67 A
-    I_pickup = 0.279
-    Ir1 = 0.67
-    Ir_rest = 2.0
-    S1 = 0.15
-    S2 = 0.40
+    I_pickup_pu = 0.30
+    I_pickup = I_pickup_pu * I_base # 0.279 A
+    S1 = 0.25
+    S2 = 0.60
+    I_bp_pu = 3.0
+    I_bp = I_bp_pu * I_base # 2.791 A
     
-    Id_op = np.zeros_like(Ir)
-    for i, r in enumerate(Ir):
-        if r <= Ir1:
-            Id_op[i] = I_pickup
-        elif r <= Ir_rest:
-            Id_op[i] = I_pickup + S1 * (r - Ir1)
-        else:
-            Id_op[i] = I_pickup + S1 * (Ir_rest - Ir1) + S2 * (r - Ir_rest)
-            
-    # Plot curve
+    dyn_pu = np.where(Ir_pu <= I_bp_pu, S1 * Ir_pu, S2 * (Ir_pu - I_bp_pu) + S1 * I_bp_pu)
+    Id_op_pu = np.maximum(I_pickup_pu, dyn_pu)
+    Id_op = Id_op_pu * I_base
+    
     ax.plot(Ir, Id_op, "r-", lw=2.8, label=r"Operating Boundary $I_{op}(I_r)$")
-    
-    # Shading
-    ax.fill_between(Ir, Id_op, 4.0, color="#FFCDD2", alpha=0.5, label="TRIP (Operate) Region")
+    ax.fill_between(Ir, Id_op, 3.5, color="#FFCDD2", alpha=0.5, label="TRIP (Operate) Region")
     ax.fill_between(Ir, 0, Id_op, color="#E8F5E9", alpha=0.6, label="BLOCK (Restraint) Region")
     
-    # Annotate points with exact drop lines
-    ax.plot([0, Ir1], [I_pickup, I_pickup], "k--", lw=1.2)
-    ax.plot([Ir1, Ir1], [0, I_pickup], "k--", lw=1.2) # Drop line at Ir1
-    ax.plot(Ir1, I_pickup, "ro", ms=6)
+    Ir_knee1 = (I_pickup_pu / S1) * I_base
+    ax.plot([0, Ir_knee1], [I_pickup, I_pickup], "k--", lw=1.2)
+    ax.plot([Ir_knee1, Ir_knee1], [0, I_pickup], "k--", lw=1.2)
+    ax.plot(Ir_knee1, I_pickup, "ro", ms=6)
     
-    ax.plot([Ir_rest, Ir_rest], [0, I_pickup + S1 * (Ir_rest - Ir1)], "k--", lw=1.2) # Drop line at Ir_rest
-    ax.plot(Ir_rest, I_pickup + S1 * (Ir_rest - Ir1), "ro", ms=7)
+    Id_bp = (S1 * I_bp_pu) * I_base
+    ax.plot([I_bp, I_bp], [0, Id_bp], "k--", lw=1.2)
+    ax.plot(I_bp, Id_bp, "ro", ms=7)
     
-    ax.text(Ir1/2, I_pickup + 0.14, r"$I_{\mathrm{pickup}} = 0.30\,\mathrm{pu}$" + f"\n({I_pickup:.3f} A sec)", 
+    ax.text(Ir_knee1 / 2, I_pickup + 0.12, r"$I_{\mathrm{pickup}} = 0.30\,\mathrm{pu}$" + f"\n({I_pickup:.3f} A sec)", 
             ha="center", fontsize=9, fontweight="bold", color="#B71C1C")
-    ax.text(Ir1 + 0.08, 0.15, r"Break $I_{r1} = 0.67\,\mathrm{A}$" + "\n(0.72 pu)", 
+    ax.text(Ir_knee1 + 0.08, 0.12, r"Pickup knee" + f"\n({Ir_knee1/I_base:.2f} pu)", 
             fontsize=8, fontweight="bold", color="#B71C1C")
-    ax.text(Ir_rest + 0.15, I_pickup + S1 * (Ir_rest - Ir1) - 0.14, 
-            r"Knee Point $(I_{\mathrm{rest}} = 2.0\,\mathrm{A})$" + "\n(2.15 pu)", fontsize=8.5, fontweight="bold")
+    ax.text(I_bp + 0.12, Id_bp - 0.12, 
+            r"Breakpoint $I_{bp} = 3.0\,\mathrm{pu}$" + f"\n({I_bp:.2f} A, 0.75 pu)", fontsize=8.5, fontweight="bold")
     
-    # Slope annotations
-    ax.text(1.3, 0.48, r"Slope $S_1 = 15\%$", fontsize=9.5, fontweight="bold", color="#0D47A1", rotation=12)
-    ax.text(4.2, 1.7, r"Slope $S_2 = 40\%$" + "\n(High CT Saturation Restraint)", 
-            fontsize=9.5, fontweight="bold", color="#0D47A1", rotation=28)
+    ax.text(1.8, 0.55, r"Slope $S_1 = 25\%$", fontsize=9.5, fontweight="bold", color="#0D47A1", rotation=16)
+    ax.text(4.2, 1.8, r"Slope $S_2 = 60\%$" + "\n(CT Saturation Restraint)", 
+            fontsize=9.5, fontweight="bold", color="#0D47A1", rotation=36)
     
     ax.set_xlim(0, 6.5)
     ax.set_ylim(0, 3.5)
@@ -193,9 +184,8 @@ def generate_fig_3_1():
     ax.grid(True, ls=":", alpha=0.7)
     ax.legend(loc="upper left", frameon=True)
     
-    # Secondary axis in per-unit
     ax2 = ax.twinx()
-    ax2.set_ylim(0 / 0.9302, 3.5 / 0.9302)
+    ax2.set_ylim(0 / I_base, 3.5 / I_base)
     ax2.set_ylabel(r"Differential Current $I_d$ (per-unit, $\mathrm{pu}$)")
     
     plt.tight_layout()

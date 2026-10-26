@@ -14,8 +14,8 @@
 \contentsline {table}{\numberline {6.2}{\ignorespaces Performance breakdown across all 16 scenario categories (Hybrid + AI-Alone Path, $N_{\text {eval}} = 3{,}124$).}}{29}{table.caption.35}%
 \contentsline {table}{\numberline {6.3}{\ignorespaces Retraining impact: performance on realistic stress cases.}}{30}{table.caption.36}%
 \contentsline {table}{\numberline {6.4}{\ignorespaces Performance on the Out-of-Distribution (OOD) test corpus (291 usable traces).}}{31}{table.caption.37}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces Extended closed-loop Simulink co-simulation verification (12 benchmark cases).}}{31}{table.caption.38}%
-\contentsline {table}{\numberline {6.6}{\ignorespaces High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}}{32}{table.caption.39}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Extended closed-loop Simulink co-simulation verification (12 benchmark cases, saved run 21-Oct-2026).}}{32}{table.caption.38}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}}{33}{table.caption.39}%
 \contentsline {table}{\numberline {6.7}{\ignorespaces Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (Repetition~1, grouped 5-fold cross-validation across $N_{\text {eval}} = 3{,}124$ evaluated traces: $N_{\text {fault,det}} = 1{,}251$ detectable faults and $N_{\text {healthy}} = 1{,}873$ healthy traces, with 94 sub-noise-floor faults segregated).}}{35}{table.caption.42}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

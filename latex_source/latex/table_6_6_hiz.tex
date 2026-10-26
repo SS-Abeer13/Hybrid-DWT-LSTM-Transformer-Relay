@@ -1,0 +1,12 @@
+\begin{table}[H]\centering\caption{High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}\label{tab:6.6}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}\toprule
+\textbf{Resistance Bin ($R_f$)} & \textbf{Median $I_{diff}$ (pu)} & \textbf{87T Alone (\%)} & \textbf{Hybrid 87T-Gate (\%)} & \textbf{Proposed Hybrid (\%)}\\ \midrule
+87T-Visible (0.3--1.2\,$\Omega$) & 0.529 & 96.2 & 96.2 & \textbf{100.0}\\
+AI-Only Zone (1.2--7.0\,$\Omega$) & 0.115 & 3.8 & 3.8 & \textbf{71.2}\\
+Below Detection Limit (7--21\,$\Omega$) & 0.026 & 0.0 & 0.0 & \textbf{0.0}\\
+\bottomrule
+\end{tabular}%
+}
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Bin dependability percentages use all $n = 80$ simulated traces in each bin as the denominator. In Bin~1, all 80 traces are detectable ($100.0\% = 80/80$ for Proposed Hybrid, $96.2\% = 77/80$ for 87T). In Bin~2, 72 of 80 traces are detectable, and Proposed Hybrid trips 57 traces ($71.2\% = 57/80$ across all simulated traces, or $79.2\% = 57/72$ among detectable traces), while 87T trips 3 traces ($3.8\% = 3/80$ or $4.2\% = 3/72$). In Bin~3, 79 of 80 traces are below the $0.05$\,pu detection floor, yielding $0.0\%$ ($0/80$).
+\end{table}

@@ -26,6 +26,7 @@ TEX_CONTENT = r"""\documentclass[12pt,a4paper,oneside]{report}
 \usepackage[hidelinks]{hyperref}
 \usepackage{ragged2e}
 \usepackage{microtype}
+\input{thesis_results_macros.tex}
 
 % ---- caption style (figure caption below, table caption above) ----
 \captionsetup{labelfont=bf,font=small,justification=centering,labelsep=colon}
@@ -290,7 +291,7 @@ The primary contributions include:
 \item \textbf{A compact 12-element feature fusion pipeline} combining nine db4 wavelet energy features across two levels with three phase-wise second-harmonic restraint ratios.
 \item \textbf{An optimized two-layer unidirectional LSTM network} (58{,}241 parameters) with global temporal attention, achieving high accuracy with low computational burden (1.71\,MFLOPs/inference, 1.15--1.25\,ms relay cycle).
 \item \textbf{A dual-path supervisory handshake architecture} that reconciles dependability (99.01\%) and security (99.66\%) by pairing 87T restraint confirmation with an autonomous AI path with dwell timer for high-impedance faults ($R_f = 1.2$--$7.0\,\Omega$).
-\item \textbf{Complete closed-loop verification in MATLAB/Simulink} via ONNX runtime, demonstrating 100\% decision accuracy across 12 benchmark test cases.
+\item \textbf{Complete closed-loop verification in MATLAB/Simulink} via ONNX runtime, demonstrating 100\% decision correctness across 12 benchmark test cases (10/12 meeting the $\le 30$\,ms operate speed criterion).
 \item \textbf{Systematic benchmarking against seven literature models} on an identical 3{,}218-trace corpus under 5-fold cross-validation.
 \end{enumerate}
 
@@ -384,7 +385,7 @@ I_{pickup} + S_1 (I_r - I_{r1}), & I_{r1} < I_r \le I_{rest} \\
 I_{pickup} + S_1 (I_{rest} - I_{r1}) + S_2 (I_r - I_{rest}), & I_r > I_{rest}
 \end{cases}
 \end{equation}
-where $I_{pickup} = 0.30$\,pu ($0.279$\,A on the $I_{\text{nom,sec}} = 0.9302$\,A secondary base), $S_1 = 15\%$, $S_2 = 40\%$, knee point $I_{rest} = 2.0$\,A ($2.15$\,pu), and breakpoint $I_{r1} = 0.67$\,A ($0.72$\,pu) (Figure~\ref{fig:3.1}). In Figure~\ref{fig:3.1}, the dual vertical axes explicitly calibrate secondary Amperes against per-unit quantities normalized by $I_{\text{nom,sec}} = 0.9302$\,A (such that $3.5$\,A secondary corresponds to $3.76$\,pu). The relay generates an 87T trip vote when $I_d > I_{op}(I_r)$.
+where $I_{pickup} = 0.30$\,pu ($0.279$\,A on the $I_{\text{nom,sec}} = 0.9302$\,A secondary base), initial slope $S_1 = 25\%$, second slope $S_2 = 60\%$, and breakpoint $I_{bp} = 3.0$\,pu (Figure~\ref{fig:3.1}). In the relay logic, the operating boundary is implemented as $I_{op}(I_r) = S_1 I_r$ for $I_r \le I_{bp}$ and $I_{op}(I_r) = S_1 I_{bp} + S_2(I_r - I_{bp})$ for $I_r > I_{bp}$, with tripping enabled when $I_d > I_{pickup}$ and $I_d > I_{op}(I_r)$. The baseline conventional 87T relay evaluated in this study operates as an unaugmented dual-slope percentage differential element without harmonic restraint or startup delay filters (a comparative harmonic-restrained scheme is benchmarked separately in Section~6.10).
 \begin{figure}[H]\centering\includegraphics[width=0.6\textwidth]{fig_3_1.png}
 \caption{Dual-slope percentage restraint characteristic of the differential relay.}\label{fig:3.1}\end{figure}
 \subsection{Pickup Current and Fault Resistance Limits}
@@ -476,7 +477,7 @@ Magnetizing branch $R_m$, $L_m$ & 500\,pu, 5\,pu\\ \bottomrule
 \end{tabular}\end{table}
 
 \section{Power System Network and CT Model}
-The external system is represented by Th\'evenin equivalents: $Z_{th,HV}=0.5+j15.0\,\Omega$ (SCL 3524\,MVA) and $Z_{th,LV}=0.01+j0.10\,\Omega$ (SCL 1204\,MVA), giving available fault currents of 8.84\,kA (HV) and 63.2\,kA (LV). A series limiting resistance of $R_{series} = 0.05\,\Omega$ is inserted in the external LV bus feeder network in series with the downstream utility branch impedance ($Z_{feeder} \approx 0.03 + j0.25\,\Omega$), establishing an effective through-fault path impedance of $\approx 0.67$\,pu ($0.27\,\Omega$ primary). This caps external through-fault currents to $\approx 1.5$\,pu rms ($23.6$\,kA primary line current) to reflect stiff utility-feeder current limits and ensure that CT saturation is rigorously driven by burden ($4\times\text{--}16\times$) and remanence sweeps rather than uncontrolled primary overcurrent. CTs on both sides use a saturable core (Table~\ref{tab:4.2}).
+The external system is represented by Th\'evenin equivalents: $Z_{th,HV}=0.5+j15.0\,\Omega$ (SCL 3524\,MVA) and $Z_{th,LV}=0.01+j0.10\,\Omega$ (SCL 1204\,MVA), giving available fault currents of 8.84\,kA (HV) and 63.2\,kA (LV). In the LV feeder model, three $0.5\,\Omega$ series resistors are present between the transformer secondary terminals and the load/CT node; these resistors form an integral part of the LV CT excitation drive in the simulation plant (reducing them in earlier tuning attempts distorted the LV CT secondary outputs and was reverted). Consequently, external through-fault currents at the CTs are limited to approximately $1.5$\,pu RMS, and the LV bus voltage experiences load-dependent voltage sag. This constitutes a known modeling limitation of the simulation plant. To rigorously evaluate relay security under CT saturation, CT saturation is driven by scaling the secondary burden impedance ($4\times\text{--}10\times$ nominal) and introducing DC offset transients. (Residual flux/remanence is rapidly decayed within $\approx 25$\,ms by the CT core-loss branch and is thus not a dominant saturation driver in these runs). CT parameters are summarized in Table~\ref{tab:4.2}.
 \begin{table}[H]\centering\caption{Calibrated current transformer parameters.}\label{tab:4.2}
 \begin{tabular}{@{}lcc@{}}\toprule \textbf{Parameter} & \textbf{HV Side} & \textbf{LV Side}\\ \midrule
 Effective CT ratio & 809.6 : 1 & 16,925 : 1\\
@@ -567,8 +568,8 @@ The overall trip command combines three deterministic and intelligent paths:
 \end{equation}
 where:
 \begin{itemize}[leftmargin=1.4em,itemsep=2pt]
-\item $\text{HighSet}(t) = 1$ if the fundamental-frequency differential current phasor magnitude exceeds pickup, $\max_\varphi I_{d,\text{fund},\varphi}(t) > 10.0$\,pu (sub-cycle instantaneous trip). Crucially, HighSet is evaluated on the fundamental phasor magnitude extracted over the sliding window rather than raw instantaneous unipolar peaks. During magnetizing inrush, instantaneous unipolar current spikes can reach $10\text{--}15$\,pu, but their fundamental-frequency component remains bounded between $1.5\text{--}4.5$\,pu RMS (as shown in Figure~\ref{fig:6.1}); hence, HighSet never false-trips during inrush. It trips exclusively on severe terminal bolted internal faults ($I_{d,\text{fund}} > 10.0$\,pu).
-\item $\text{87T\_Trip}(t) = 1$ if $I_d(t) > I_{op}(I_r(t))$ and $k_2(t) < 15\%$ (confirmed by $p_{\text{AI,conf}} \ge 0.99$).
+\item $\text{HighSet}(t) = 1$ if the one-cycle sliding true RMS of differential current exceeds pickup, $\max_\varphi I_{d,\varphi,\text{rms}}(t) > 10.0$\,pu (sub-cycle instantaneous trip). Crucially, HighSet is evaluated on the sliding true RMS over 32 samples rather than raw instantaneous peak spikes. During magnetizing inrush, instantaneous spikes can reach peak values, but their sliding true RMS remains safely below $10.0$\,pu; hence, HighSet never false-trips during inrush (verified with 0 false trips across all inrush traces in the corpus). It trips exclusively on severe bolted internal faults ($I_{d,\text{rms}} > 10.0$\,pu).
+\item $\text{87T\_Trip}(t) = 1$ if $I_d(t) > I_{op}(I_r(t))$ and $I_d(t) > I_{pickup}$ (confirmed by $p_{\text{AI,conf}} \ge 0.99$). Tripping does not require classical harmonic blocking in the 87T path because the parallel sequence AI network extracts harmonic and multi-resolution wavelet features directly.
 \item $p_{\text{AI,conf}}(t) = \min_{k=0}^{19} p_{\text{AI}}(t - k)$ imposes a 20-sample (12.5\,ms) persistence dwell timer, enabling autonomous tripping for high-impedance internal faults ($R_f \le 7\,\Omega$) without 87T pickup.
 \end{itemize}
 \begin{figure}[H]\centering\includegraphics[width=0.88\textwidth]{fig_5_3.png}
@@ -646,123 +647,36 @@ Figure~\ref{fig:6.1} illustrates representative three-phase differential current
 \section{Grouped 5-Fold Cross-Validation and Architecture Ablation}
 To assess generalization and architectural contributions, a 5-fold grouped cross-validation was conducted across three independent random seeds (15 models total, each testing all 3,218 traces out-of-fold). Table~\ref{tab:6.1} presents the pooled out-of-fold performance comparison among four relay architectures across the $N_{\text{eval}} = 3{,}124$ evaluated traces ($1{,}873$ healthy and $1{,}251$ detectable faults).
 
-\begin{table}[H]\centering\caption{Ablation and main performance summary (grouped 5-fold CV, 3 repetitions, 15 models total, $N_{\text{eval}} = 3{,}124$).}\label{tab:6.1}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lccccc@{}}\toprule
-\textbf{Protection Architecture} & \textbf{Dep.\ (\%)} & \textbf{Sec.\ (\%)} & \textbf{Median $T_{op}$ (ms)} & \textbf{$\le$ 2 Cycles (\%)} & \textbf{Pre-Fault Trips}\\ \midrule
-Conventional 87T Alone & 79.62 $\pm$ 0.00 & 52.96 $\pm$ 0.00 & 0.6 & 100.0 & 124.0\\
-Standalone LSTM Alone & 99.31 $\pm$ 0.28 & 99.56 $\pm$ 0.22 & 15.4 & 97.1 & 0.0\\
-Hybrid (87T-Gate Only) & 89.40 $\pm$ 0.05 & 99.79 $\pm$ 0.14 & 15.2 & 97.3 & 0.0\\
-\textbf{Hybrid + AI-Alone Path (Proposed)} & \textbf{99.01 $\pm$ 0.48} & \textbf{99.66 $\pm$ 0.24} & \textbf{15.6} & \textbf{96.9} & \textbf{0.0}\\ \bottomrule
-\end{tabular}%
-}
-\end{table}
+\input{table_6_1_ablation.tex}
 
-The conventional 87T relay alone exhibits severe vulnerability to non-fault transients, securing only 52.96\% of healthy traces due to false tripping on inrush, over-excitation, and CT saturation (881 false trips across 1,873 healthy traces). This vulnerability stems directly from its classical 1958 implementation: evaluating the dual-slope boundary sample-by-sample without startup dwell delay or filter settling allows transient sub-cycle dips in the sliding FFT harmonic ratio $k_2(t)$ during the first half-cycle to violate restraint. In particular, during loaded inrush, the conventional 87T trips on 100\% of cases (0.0\% security) because transient harmonic dips occur before the 2nd-harmonic filter stabilizes, while lack of 5th-harmonic restraint causes 41.9\% false trips on over-excitation. Crucially, HighSet is evaluated on the fundamental-frequency differential current phasor magnitude ($I_{d,\text{fund}} > 10.0$\,pu) over the sliding cycle rather than raw unipolar peaks, so HighSet never trips during inrush ($I_{d,\text{fund}} < 4.5$\,pu fundamental RMS); it is the unaugmented dual-slope 87T element that generates the premature trip. Conversely, the 87T-gated hybrid achieves near-perfect security (99.79\%) but sacrifices 10\% dependability on high-impedance internal faults. The proposed \textbf{Hybrid + AI-Alone Path} successfully bridges this gap, attaining \textbf{99.01\% dependability} and \textbf{99.66\% security} with zero pre-fault trips and a median operating latency of \textbf{15.6\,ms}.
+The conventional 87T relay alone exhibits severe vulnerability to non-fault transients, securing only 52.96\% of healthy traces due to false tripping on inrush, over-excitation, and CT saturation (881 false trips across 1,873 healthy traces). This vulnerability stems directly from its unaugmented baseline implementation: without harmonic restraint or blocking, the large differential currents generated during magnetizing inrush and over-excitation immediately exceed the dual-slope restraint boundary, causing false tripping on 100\% of loaded inrush traces and 41.9\% of over-excitation traces. Furthermore, because HighSet is evaluated on the one-cycle sliding true RMS of differential current rather than raw instantaneous spikes, HighSet itself never trips during inrush ($I_{d,\text{rms}} < 10.0$\,pu); all inrush false trips originate from the unrestrained dual-slope 87T element. Conversely, the 87T-gated hybrid achieves near-perfect security (99.79\%) but sacrifices 10\% dependability on high-impedance internal faults. The proposed \textbf{Hybrid + AI-Alone Path} successfully bridges this gap, attaining \textbf{99.01\% dependability} and \textbf{99.66\% security} with zero pre-fault trips and a median operating latency of \textbf{15.6\,ms}.
 
 \section{Category-Level Performance Breakdown}
 Table~\ref{tab:6.2} provides the detailed performance breakdown across all 16 scenario categories for the deployed hybrid relay, alongside 95\% Wilson confidence intervals and comparative baselines.
 
-\begin{table}[H]\centering\caption{Performance breakdown across all 16 scenario categories (Hybrid + AI-Alone Path, $N_{\text{eval}} = 3{,}124$).}\label{tab:6.2}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lcccccc@{}}\toprule
-\textbf{Scenario Category} & \textbf{Traces ($n$)} & \textbf{Expected} & \textbf{Rep.\ 1 [95\% CI]} & \textbf{Mean (3 Rep)} & \textbf{LSTM Alone} & \textbf{87T Alone}\\ \midrule
-Normal Operation & 302 & BLOCK & 100.0 [98.7, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
-Magnetizing Inrush (No-Load) & 200 & BLOCK & 99.5 [97.2, 99.9] & 99.8\% & 99.8\% & 0.0\%\\
-Magnetizing Inrush (Loaded) & 240 & BLOCK & 100.0 [98.4, 100.0] & 99.9\% & 99.9\% & 0.0\%\\
-Recovery Inrush (HV Bus Fault) & 80 & BLOCK & 93.8 [86.2, 97.3] & 97.5\% & 97.5\% & 23.8\%\\
-Over-Excitation (1.15--1.45\,pu) & 210 & BLOCK & 100.0 [98.2, 100.0] & 100.0\% & 100.0\% & 41.9\%\\
-External Solid Faults & 440 & BLOCK & 99.8 [98.7, 100.0] & 99.9\% & 99.8\% & 100.0\%\\
-External High-Impedance Faults & 60 & BLOCK & 100.0 [94.0, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
-External Fault + CT Saturation & 241 & BLOCK & 98.8 [96.4, 99.6] & 99.2\% & 98.5\% & 34.4\%\\
-External Fault in Inrush & 100 & BLOCK & 99.0 [94.6, 99.8] & 98.7\% & 98.7\% & 0.0\%\\ \midrule
-Internal LV Solid Faults & 506 & TRIP & 100.0 [99.2, 100.0] & 100.0\% & 100.0\% & 88.5\%\\
-Internal HV-Side Faults & 198 & TRIP & 100.0 [98.1, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
-Internal High-Impedance Faults & 153 & TRIP & 89.5 [83.7, 93.5] & 93.0\% & 95.2\% & 52.3\%\\
-Evolving Faults & 80 & TRIP & 100.0 [95.4, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
-Switch-On-To-Fault (SOTF) & 80 & TRIP & 97.5 [91.3, 99.3] & 97.9\% & 98.3\% & 100.0\%\\
-Internal Fault + CT Saturation & 121 & TRIP & 100.0 [96.9, 100.0] & 100.0\% & 100.0\% & 81.0\%\\
-Internal Fault in Inrush & 113 & TRIP & 100.0 [96.7, 100.0] & 100.0\% & 100.0\% & 87.6\%\\ \bottomrule
-\end{tabular}%
-}
-\end{table}
+\input{table_6_2_categories.tex}
 
 \section{Impact of Verified Dataset Retraining}
 Table~\ref{tab:6.3} contrasts the baseline model trained on light-load data against the model retrained on the verified v3 dataset. Exposure to realistic load variations, independent noise, and CT saturation dramatically elevates relay security under severe transients.
 
-\begin{table}[H]\centering\caption{Retraining impact: performance on realistic stress cases.}\label{tab:6.3}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lcc@{}}\toprule
-\textbf{Scenario Category} & \textbf{Light-Load Baseline Model (\%)} & \textbf{Retrained v3 Model (\%)}\\ \midrule
-\multicolumn{3}{@{}l}{\textit{Panel A: Non-Fault Transient Security (Healthy Regimes, Expected BLOCK)}} \\ \midrule
-External Fault with CT Saturation & 60.2 & \textbf{99.2}\\
-Over-Excitation (V/f saturation) & 41.4 & \textbf{100.0}\\
-Recovery Inrush & 65.0 & \textbf{97.5}\\
-Loaded Magnetizing Inrush & 86.7 & \textbf{99.9}\\ \midrule
-\textbf{Overall Security} & \textbf{84.1\% (298 false trips)} & \textbf{99.7\% (6.3 false trips mean)}\\ \midrule
-\multicolumn{3}{@{}l}{\textit{Panel B: Internal Fault Dependability (Fault Regimes, Expected TRIP)}} \\ \midrule
-Internal Fault during Inrush & 84.1 & \textbf{100.0}\\ \bottomrule
-\end{tabular}%
-}
-\vspace{3pt}\raggedright\footnotesize\textit{Note:} Retrained v3 Model incurs an average of 6.3 (approx.\ 6) false trips across 3 repetitions (11 false trips in Repetition~1, achieving 99.41\% security in Repetition~1 and 99.66\% multi-repetition mean across all 1,873 healthy traces).
-\end{table}
+\input{table_6_3_retraining.tex}
 
 \section{Out-of-Distribution (OOD) Stress Robustness}
 To verify generalization beyond the training parameter boundaries, an isolated 300-trace Out-of-Distribution dataset was evaluated without re-tuning. Of the 300 compiled cases, 9 cases failed generator physical sanity checks under extreme CT saturation, yielding 291 evaluated usable traces (144 faults and 147 healthy non-fault traces). Table~\ref{tab:6.4} demonstrates that the hybrid relay maintains \textbf{100.0\% security} across all stress regimes, with graceful degradation observed only under extreme CT burdens.
 
-\begin{table}[H]\centering\caption{Performance on the Out-of-Distribution (OOD) test corpus (291 usable traces).}\label{tab:6.4}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}llcccc@{}}\toprule
-\textbf{Block} & \textbf{Stress Dimension Tested} & \textbf{Faults} & \textbf{Dep.\ (\%)} & \textbf{Healthy} & \textbf{Sec.\ (\%)}\\ \midrule
-1 & Extreme loading (1--10\%, 110--130\%) & 30 & 96.7 & 30 & 100.0\\
-2 & Weak source ($3\times Z_s$) \& frequency ($\pm0.5$\,Hz) & 30 & 100.0 & 30 & 100.0\\
-3 & Extreme CT burden (12--16$\times$ nominal) & 25 & 68.0 & 27 & 100.0\\
-4 & Severe over-excitation (1.5--1.6\,pu) \& 0.9\,pu flux & 30 & 93.3 & 30 & 100.0\\
-5 & Heavy noise (5\%) \& CT mismatch ($\pm8\%$) & 29 & 100.0 & 30 & 100.0\\ \midrule
-\textbf{Total} & \textbf{Overall OOD Generalization} & \textbf{144} & \textbf{92.4\%} & \textbf{147} & \textbf{100.0\%}\\ \bottomrule
-\end{tabular}%
-}
-\end{table}
+\input{table_6_4_ood.tex}
 
 In Block~3 (extreme CT burden, 12--16$\times$ nominal), dependability drops to 68.0\% (17/25 tripped, accounting for 8 of the 11 missed OOD faults). Physically, this degradation occurs because severe bilateral CT saturation collapses secondary differential current amplitude down toward the noise floor and distorts the waveform, suppressing $p_{\text{AI,conf}}$ below $\theta_{\text{AI}} = 0.99$ during the 20-sample dwell window.
 
 \section{Closed-Loop Simulink Verification and Mirror Parity}
-The deployed network was embedded in Simulink and evaluated in full closed-loop co-simulation across a 12-case benchmark suite (Table~\ref{tab:6.5}). All 12 operating decisions were correctly executed (100.0\% decision accuracy).
+The deployed network was embedded in Simulink and evaluated in full closed-loop co-simulation across a 12-case benchmark suite (Table~\ref{tab:6.5}). All 12 operating decisions were correctly executed (12/12 trip decisions correct, 100.0\% decision accuracy; 10/12 within the 30\,ms operate time criterion).
 
-\begin{table}[H]\centering\caption{Extended closed-loop Simulink co-simulation verification (12 benchmark cases).}\label{tab:6.5}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lccccc@{}}\toprule
-\textbf{Test Case Description} & \textbf{Expected} & \textbf{Actual} & \textbf{Max AI Prob.} & \textbf{Trip Latency} & \textbf{Status}\\ \midrule
-Normal Operation, 30\% load & BLOCK & BLOCK & 0.0004 & --- & PASS\\
-Normal Operation, 100\% load & BLOCK & BLOCK & 0.0001 & --- & PASS\\
-Inrush (0.8\,pu remanence, $0^\circ$ angle) & BLOCK & BLOCK & 0.0673 & --- & PASS\\
-Recovery Inrush (50\,ms HV fault) & BLOCK & BLOCK & 0.0306 & --- & PASS\\
-Over-Excitation (1.30\,pu) & BLOCK & BLOCK & 0.0000 & --- & PASS\\
-External 3-Phase Fault (normal CT) & BLOCK & BLOCK & 0.0001 & --- & PASS\\
-External Fault + Severe CT Saturation & BLOCK & BLOCK & 0.0249 & --- & PASS\\
-Internal LV Solid Fault (Phase A-B-G) & TRIP & TRIP & 1.0000 & 15.6\,ms & PASS\\
-Internal HV Fault (Phase A-G, 10\% winding) & TRIP & TRIP & 1.0000 & 15.0\,ms & PASS\\
-Internal HiZ Fault ($R_f = 2.0\,\Omega$) & TRIP & TRIP & 0.9994 & 16.2\,ms & PASS\\
-Internal Fault during Loaded Inrush & TRIP & TRIP & 0.9998 & 15.6\,ms & PASS\\
-Switch-On-To-Fault (SOTF, $0^\circ$ angle) & TRIP & TRIP & 1.0000 & 15.0\,ms & PASS\\ \bottomrule
-\end{tabular}%
-}
-\end{table}
+\input{table_6_5_closed_loop.tex}
 
 \section{High-Impedance Fault Sensitivity Analysis}
 In the simulation sweep of internal high-impedance faults ($R_f = 0.3$--$21\,\Omega$), 240 traces were simulated across three resistance bins (80 traces per bin). Exactly 153 traces produce a differential current rise $\ge 0.05$\,pu (80 in Bin~1, 72 in Bin~2, and 1 in Bin~3), which constitute the 153 evaluated detectable traces in Table~\ref{tab:4.3} and Table~\ref{tab:6.2}. The remaining 87 traces produce differential current below the 0.05\,pu physical noise threshold and are segregated to avoid artificial metric distortion. Table~\ref{tab:6.6} and Figure~\ref{fig:6.2} examine relay dependability across the three resistance bins evaluated on Repetition~1 across all $n=80$ simulated traces per bin. In Bin~1 ($0.3\text{--}1.2\,\Omega$), all 80 traces are detectable, and the Proposed Hybrid achieves 100.0\% ($80/80$) while 87T alone achieves 96.2\% ($77/80$). In Bin~2 ($1.2\text{--}7.0\,\Omega$), where 72 of the 80 traces are physically detectable, the Proposed Hybrid trips 57 traces, achieving 71.2\% dependability across all 80 traces (or 79.2\% among detectable traces), whereas 87T alone trips only 3 traces (3.8\% across all traces, or 4.2\% of detectable traces). In Bin~3 ($7.0\text{--}21.0\,\Omega$), 79 of 80 traces are sub-noise floor ($<0.05$\,pu), yielding 0.0\% across all methods. Summing the tripped traces across the 153 detectable events gives $80 + 57 + 0 = 137$ trips for the Proposed Hybrid (matching $137/153 = 89.5\%$ in Repetition~1 in Table~\ref{tab:6.2}, with a 3-repetition mean of 93.0\%) and $77 + 3 + 0 = 80$ trips for 87T alone (matching $80/153 = 52.3\%$).
 
-\begin{table}[H]\centering\caption{High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}\label{tab:6.6}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lcccc@{}}\toprule
-\textbf{Resistance Bin ($R_f$)} & \textbf{Median $I_{diff}$ (pu)} & \textbf{87T Alone (\%)} & \textbf{Hybrid 87T-Gate (\%)} & \textbf{Proposed Hybrid (\%)}\\ \midrule
-87T-Visible (0.3--1.2\,$\Omega$) & 0.529 & 96.2 & 96.2 & \textbf{100.0}\\
-AI-Only Zone (1.2--7.0\,$\Omega$) & 0.115 & 3.8 & 3.8 & \textbf{71.2}\\
-Below Detection Limit (7--21\,$\Omega$) & 0.026 & 0.0 & 0.0 & \textbf{0.0}\\ \bottomrule
-\end{tabular}%
-}
-\vspace{3pt}\raggedright\footnotesize\textit{Note:} Bin dependability percentages use all $n = 80$ simulated traces in each bin as the denominator. In Bin~1, all 80 traces are detectable ($100.0\% = 80/80$ for Proposed Hybrid, $96.2\% = 77/80$ for 87T). In Bin~2, 72 of 80 traces are detectable, and Proposed Hybrid trips 57 traces ($71.2\% = 57/80$ across all simulated traces, or $79.2\% = 57/72$ among detectable traces), while 87T trips 3 traces ($3.8\% = 3/80$ or $4.2\% = 3/72$). In Bin~3, 79 of 80 traces are below the $0.05$\,pu detection floor, yielding $0.0\%$ ($0/80$).
-\end{table}
+\input{table_6_6_hiz.tex}
 
 \begin{figure}[H]\centering\includegraphics[width=0.75\textwidth]{fig_hiz_sensitivity.png}
 \caption{Empirical fault differential current versus fault resistance across all internal fault types, delineating the 87T-visible and AI-alone detection boundaries.}\label{fig:6.2}\end{figure}
@@ -795,21 +709,21 @@ To provide a rigorous, publication-grade apples-to-apples comparison:
 
 \input{table_literature_benchmark.tex}
 
-The comparative results summarized in Table~\ref{tab:lit_benchmark} (evaluated on Repetition~1) yield four critical insights:
-\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
-\item \textbf{Temporal Sequence Context vs.\ Static Snapshots:} Deep sequence models (LSTM, GRU, 1D-CNN) decisively outperform static classifiers in standalone operating mode. While static classifiers attain 88.25--98.64\% dependability, sequence models attain 98.96--99.20\% dependability by tracking transient trajectories across successive multi-resolution wavelet scales, capturing the exponential decay of CT saturation and asymmetrical inrush waveforms that fool instantaneous static snapshots.
-\item \textbf{LSTM vs.\ GRU Trade-off:} The 2-layer GRU exhibits lower parameter count (44{,}354 vs.\ 58{,}241) and lower inference latency (0.95\,ms vs.\ 1.15\,ms) compared to the LSTM, and in standalone mode achieves 99.20\% dependability vs.\ 99.04\% for standalone LSTM. However, under the proposed supervisory hybrid architecture (Panel~B), the Proposed Hybrid DWT--LSTM achieves higher dependability (98.56\% in Repetition~1, and 99.01\% 3-repetition mean) compared to 97.92\% for Wavelet-GRU, while maintaining lower operating time dispersion and superior resilience on high-impedance internal faults during recovery inrush.
-\item \textbf{Universality of the Supervisory Handshake:} Integrating machine learning classifiers into the proposed dual-path supervisory architecture (Panel~B) dramatically improves security across \textit{all} candidate models. Spurious trips drop from 151 to 7 for Wavelet-SVM, from 8 to 2 for Wavelet-ANN, from 2 to 1 for Wavelet-RF, from 12 to 1 for 1D-CNN, and from 20 to 8 for Wavelet-GRU. This proves that the dual-path hybrid handshake serves as a universal, model-agnostic protection anchor that suppresses catastrophic spurious trips under severe CT saturation and inrush.
-\item \textbf{Balanced Performance of the Proposed Framework:} The proposed \textbf{Hybrid DWT--LSTM} architecture achieves the highest balanced performance across the entire corpus. In Repetition~1 (Table~\ref{tab:lit_benchmark}), it achieves \textbf{98.56\% dependability}, \textbf{99.41\% security}, \textbf{99.07\% overall accuracy}, 11 false trips, 0 pre-fault trips, and a median operating latency of \textbf{15.6\,ms}. Averaged across the 3-repetition multi-seed suite (Table~\ref{tab:6.1}), it attains \textbf{99.01\% dependability}, \textbf{99.66\% security}, \textbf{99.39\% overall accuracy}, and only \textbf{6.3 false trips} out of 1{,}873 non-fault traces.
-\item \textbf{Comparison with Deterministic Wavelet Schemes:} In comparison to deterministic wavelet relays—such as the Boundary Discrete Wavelet Transform (BDWT) method by Medeiros et al.~\cite{ref38} and the Clarke-wavelet time-domain scheme~\cite{ref39}—which rely on fixed heuristic energy or modal thresholds that remain susceptible to severe CT saturation and threshold tuning across varying grid X/R ratios, the proposed DWT--LSTM framework learns temporal trajectory dynamics from multi-resolution wavelet energies. Crucially, embedding the sequence classifier within the dual-path supervisory architecture guarantees deterministic 87T security while achieving superior sensitivity on sub-pickup high-impedance internal faults.
+The comparative results summarized in Table~\ref{tab:lit_benchmark} (evaluated on Repetition~1) yield five critical insights:
+\begin{enumerate}[leftmargin=1.4em,itemsep=1.5pt,topsep=2pt,parsep=0pt]
+\item \textbf{Temporal Sequence Context vs.\ Static Classifiers:} Deep sequence models (LSTM, GRU, 1D-CNN) achieve slightly higher dependability in standalone operating mode (98.96--99.20\% vs.\ 98.64\% for Wavelet-RF and 88.25\% for Wavelet-SVM) by tracking temporal transient trajectories across successive multi-resolution wavelet scales. In contrast, static models like Random Forest achieve exceptionally high standalone security (99.89\% with only 2 false trips), whereas standalone neural networks incur 12--20 false trips before supervisory anchoring.
+\item \textbf{LSTM vs.\ GRU Trade-off:} The 2-layer GRU features fewer parameters (44{,}354 vs.\ 58{,}241) and attains 99.20\% standalone dependability (vs.\ 99.04\% for standalone LSTM). However, under the proposed supervisory hybrid architecture (Panel~B), the Proposed Hybrid DWT--LSTM achieves higher dependability (98.56\% in Repetition~1, and 99.01\% 3-repetition mean) compared to 97.92\% for Wavelet-GRU, while maintaining lower operating time dispersion and faster fault response.
+\item \textbf{Universality of the Supervisory Handshake:} The primary architectural contribution is the dual-path supervisory handshake. Integrating machine learning classifiers into this hybrid framework (Panel~B) dramatically improves security across \textit{all} candidate models: false trips drop from 151 to 7 for Wavelet-SVM, from 8 to 2 for Wavelet-ANN, from 2 to 1 for Wavelet-RF, from 12 to 1 for 1D-CNN, and from 20 to 8 for Wavelet-GRU. This confirms that the supervisory handshake serves as a universal, model-agnostic protection anchor that suppresses spurious trips under CT saturation and non-fault transients.
+\item \textbf{Balanced Performance of the Proposed Framework:} Under the supervisory hybrid architecture (Panel~B), the proposed \textbf{Hybrid DWT--LSTM} achieves the highest hybrid dependability (\textbf{98.56\%} in Repetition~1, and \textbf{99.01\%} multi-repetition mean) and fastest median operate time (\textbf{15.6\,ms}). The price of this enhanced sensitivity to sub-pickup faults is a slight increase in AI-alone false trips (11 false trips in Repetition~1 vs.\ 1 for RF and 1D-CNN; multi-repetition mean 6.3 false trips out of 1{,}873 healthy traces, corresponding to \textbf{99.66\% security}).
+\item \textbf{Qualitative Comparison with Deterministic Wavelet Schemes:} Unlike deterministic wavelet schemes—such as Boundary DWT~\cite{ref38} and Clarke-wavelet energy ratios~\cite{ref39}—that rely on heuristic energy thresholds sensitive to CT saturation and grid X/R variations, the proposed framework learns temporal trajectory dynamics directly from multi-resolution wavelet energies and harmonic restraint ratios.
 \end{enumerate}
 
 \section{Limitations and Scope of Claims}
 While the proposed framework demonstrates superior dependability and security, several engineering limitations must be recognized:
-\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+\begin{enumerate}[leftmargin=1.4em,itemsep=1.5pt,topsep=2pt,parsep=0pt]
 \item \textbf{Simulation-to-Reality Gap:} All findings are based on high-fidelity EMT simulation in MATLAB/Simulink. Physical substation trials on real transformer hardware will be essential before commercial utility commissioning.
 \item \textbf{CT Burden Limits:} As revealed by OOD Block~3, relay dependability degrades when CT secondary burdens exceed 12$\times$ nominal under deep bilateral saturation.
-\item \textbf{High-Impedance Physical Limit:} Faults with contact resistance exceeding 7.0\,$\Omega$ generate differential current rises below 0.05\,pu and cannot be physically detected by differential CT measurements alone.
+\item \textbf{High-Impedance Physical Limit:} Faults with contact resistance $R_f > 7.0\,\Omega$ produce differential current rises below the $0.05$\,pu noise threshold and cannot be detected by differential CT measurements alone.
 \end{enumerate}
 
 % ===================== CHAPTER 7 =====================
@@ -824,7 +738,7 @@ This thesis presented the design, implementation, and rigorous verification of a
 
 \textbf{High-impedance fault recovery.} In the AI-only zone ($R_f = 1.2$--$7.0\,\Omega$) where conventional 87T relays fail (3.8\% recall), the proposed autonomous AI path recovers 71.2\% of faults, extending relay sensitivity to high-resistance faults below the conventional 87T pickup threshold down to the physical detection limit (up to $7.0\,\Omega$).
 
-\textbf{Real-time feasibility.} The per-inference computational cost is 1.71\,MFLOPs with an ONNX neural model execution latency of 0.44\,ms on CPU, and a full per-window relay processing cycle of 1.15--1.25\,ms (including sliding-window DWT decomposition, FFT harmonic ratio extraction, parallel 87T restraint evaluation, and supervisory Boolean handshake logic), well within the 20\,ms power cycle. The median end-to-end physical fault-clearing time is 15.6\,ms (with 96.9\% cleared within two cycles).
+\textbf{Real-time feasibility.} The per-inference computational cost is 1.71\,MFLOPs for the deep sequence network, executing well within the 20\,ms power cycle. The median end-to-end relay operate time is 15.6\,ms (fault inception to trip decision; circuit breaker opening is not modelled, with 96.9\% of detectable faults operating within two cycles).
 
 \section{Research Outcomes}
 The architecture demonstrates that high dependability (99.01\%) and high security (99.66\%) can be achieved simultaneously by coupling deterministic 87T principles with deep sequence intelligence via a dual-path handshake. The validated MATLAB $\to$ PyTorch $\to$ ONNX $\to$ Simulink pipeline is reproducible by relay manufacturers; fast clearing of high-current faults preserves transformer lifetime and reduces asset replacement risks.
@@ -938,8 +852,6 @@ Dwell persistence timer & 20 samples (12.5\,ms)\\
 Handshake confidence threshold & $\theta_{\text{AI}} = 0.99$\\
 AI-alone confidence threshold & $\theta_{\text{solo}} = 0.998$\\
 Instantaneous high-set threshold & $\max_\varphi I_{d,\varphi} > 10.0$\,pu\\
-ONNX execution latency & 0.44\,ms on CPU\\
-Full relay cycle latency & 1.15--1.25\,ms on CPU\\
 Per-inference computation budget & 1.71\,MFLOPs (0.855\,MMACs, incl.\ 1.2\,kFLOPs sliding FFT)\\ \bottomrule
 \end{tabular}\end{table}
 
@@ -952,8 +864,8 @@ Simulation and analysis were executed on a workstation with an Intel Core i7-127
 \item Git version control with atomic commit history across all development phases.
 \end{itemize}
 
-\section{Standards Compliance}
-The modeling, protection algorithms, and evaluation protocols comply with applicable IEEE and IEC standards:
+\section{Applicable Standards and Engineering Guides}
+The modeling, protection parameters, and evaluation protocols were established with reference to applicable IEEE and IEC standards and guides:
 \begin{itemize}[leftmargin=1.4em,itemsep=2pt]
 \item \textbf{IEEE Std C37.91-2021:} \textit{IEEE Guide for Protecting Power Transformers}.
 \item \textbf{IEEE Std C37.110-2023:} \textit{IEEE Guide for the Application of Current Transformers Used for Protective Relaying Purposes}.
