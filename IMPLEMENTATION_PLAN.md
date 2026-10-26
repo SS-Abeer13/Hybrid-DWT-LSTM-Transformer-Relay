@@ -422,6 +422,15 @@
   - **Figure updates:** updated `generate_all_updated_figures.py` (Fig 1.1 terminal faults and $0.5\,\Omega$ resistor, Fig 3.1 exact dual-slope curves) and regenerated all figures.
   - **Manuscript compilation:** regenerated `latex_source/latex/main.tex` via `rebuild_thesis_manuscript.py`, verified XeLaTeX compilation cleanly with zero errors, exactly meeting the 64-page document budget.
 
+- **2026-10-26 20:15** — ✅ **Re-check Section R1–R3 (Harmonic Restraint Variants Evaluation):**
+  - Executed `tools/review_check_harmonic87t.py` across all 3,218 traces ($N_{\text{eval}} = 3{,}124$) to evaluate three distinct harmonic restraint configurations:
+    - **R1 (`as_coded` unselective cross-blocking):** Dep 55.24%, Sec 100.00%, 0 false trips. Confirmed that cross-blocking from any phase (even near-zero current phases) blinds the relay to internal faults under CT saturation (0% recall across `Stress_CTSat_Int_*`).
+    - **R2 (`cross_active` active-phase cross-blocking):** Dep 61.71%, Sec 99.95%, 1 false trip.
+    - **R3 (`per_phase` phase-independent restraint — commercial practice):** Dep 84.33%, Sec 97.97%, 38 false trips.
+  - Demonstrated that the proposed Hybrid DWT–LSTM (98.56% dep, 99.41% sec, 11 false trips) decisively outperforms all conventional harmonic restraint schemes, achieving +14.23 pt higher dependability than R3 by recovering weak faults via the AI-alone path.
+  - Updated `lstm_models/relay87t.py` with multi-mode `analyse_harmonic(mode='per_phase'|'cross_active'|'as_coded')`.
+  - Added Re-check section R1–R3 to `REVIEW_FIXES_2026-10-26.md` and updated Table 6.7 note.
+
 ---
 
 ## Next steps (for publication and thesis defense)

@@ -56,36 +56,58 @@ def fault_rise_pu(primary: np.ndarray, secondary: np.ndarray, onset: int) -> flo
 
 
 def analyse_harmonic(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP,
-                     k2_thresh: float = 0.15, k5_thresh: float = 0.35, cross_block: bool = True) -> dict:
-    """Conventional 87T dual-slope characteristic WITH 2nd and 5th harmonic restraint / cross-blocking.
+                     k2_thresh: float = 0.15, k5_thresh: float = 0.35, mode: str = "per_phase") -> dict:
+    """Conventional 87T dual-slope characteristic WITH 2nd and 5th harmonic restraint.
     Computes sliding 32-sample FFT harmonic ratios k2 = |I_100Hz| / |I_50Hz| and k5 = |I_250Hz| / |I_50Hz|.
-    Blocks tripping when k2 > k2_thresh (15% inrush) or k5 > k5_thresh (35% over-excitation).
+    
+    Modes:
+      - 'per_phase' (recommended / standard industrial practice): each phase's trip vote is restrained
+        only by its own harmonics, avoiding cross-phase blinding under CT saturation.
+      - 'cross_active': cross-blocking active only from phases whose differential RMS exceeds pickup.
+      - 'as_coded' (unselective cross-block): ANY phase with k2>15% or k5>35% blocks all phases.
     """
     res = analyse(primary, secondary, pickup=pickup)
     hv = (primary / I_NOM) @ M_PLANT.T
     lv = secondary / I_NOM
     diff = lv - hv  # [T x 3]
     T_len = diff.shape[0]
-    blocked = np.zeros(T_len, dtype=bool)
+    
+    idr = res["idiff_rms"]
+    irr = res["irest_rms"]
+    dyn = np.where(irr <= BREAKPOINT, SLOPE_1 * irr, SLOPE_2 * (irr - BREAKPOINT) + SLOPE_1 * BREAKPOINT)
+    with np.errstate(invalid="ignore"):
+        vph = (idr > pickup) & (idr > dyn)
+    vph = np.nan_to_num(vph).astype(bool)
+    
+    full_blocked = np.zeros((T_len, 3), dtype=bool)
     if T_len >= W:
         win = np.lib.stride_tricks.sliding_window_view(diff, W, axis=0)  # [T-W+1, 3, W]
         spec = np.abs(np.fft.fft(win, axis=-1))
         fund = spec[..., 1] + 1e-4
         k2 = spec[..., 2] / fund
         k5 = spec[..., 5] / fund
-        if cross_block:
-            is_blocked = (k2 > k2_thresh).any(-1) | (k5 > k5_thresh).any(-1)
-        else:
-            is_blocked = ((k2 > k2_thresh) | (k5 > k5_thresh)).all(-1)
-        blocked[W - 1:] = is_blocked
-    v_restrained = res["vote"] & (~blocked)
+        ph_blocked = (k2 > k2_thresh) | (k5 > k5_thresh)  # [T-W+1, 3]
+        full_blocked[W - 1:] = ph_blocked
+        
+    if mode == "as_coded":
+        b = full_blocked.any(1)
+        v = vph.any(1) & (~b)
+    elif mode == "cross_active":
+        act = np.nan_to_num(idr > pickup).astype(bool)
+        b = (full_blocked & act).any(1)
+        v = vph.any(1) & (~b)
+    else:  # 'per_phase'
+        v = (vph & (~full_blocked)).any(1)
+        
+    v_total = (v | res["highset"]).astype(bool)
     return {
-        "vote": (v_restrained | res["highset"]).astype(bool),
-        "vote_restrained": v_restrained.astype(bool),
+        "vote": v_total,
+        "vote_restrained": v,
         "vote_unrestrained": res["vote"],
         "highset": res["highset"],
-        "blocked": blocked,
-        "idiff_rms": res["idiff_rms"],
-        "irest_rms": res["irest_rms"]
+        "blocked": full_blocked.any(1),
+        "blocked_per_phase": full_blocked,
+        "idiff_rms": idr,
+        "irest_rms": irr
     }
 

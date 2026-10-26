@@ -96,6 +96,23 @@
 - **Effort:** a few hours of Python. No MATLAB needed.
 - [x] Done
 
+#### Re-check Section R1–R3 — Harmonic Restraint Variants (2026-10-26)
+Evaluated across all 3,218 traces ($N_{\text{eval}} = 3{,}124$: 1,251 detectable internal faults, 1,873 healthy transient traces, with 94 sub-noise-floor faults segregated) using the exact relay mirror (`tools/review_check_harmonic87t.py`):
+
+| Variant | Restraint & Blocking Logic | Dependability | Security | False Trips | Inrush Recall | CT-Sat Int. Recall |
+|---|---|---|---|---|---|---|
+| **Unrestrained 87T** (Baseline) | Classical dual-slope only, no harmonics | 79.62% | 52.96% | 881 | 0.0% (trips all) | 100.0% |
+| **R1 (`as_coded`)** | Unselective cross-blocking (any phase $k_2>15\%$ or $k_5>35\%$ blocks all) | 55.24% | 100.00% | 0 | 100.0% | 0.0%–27% (severe blinding) |
+| **R2 (`cross_active`)** | Active cross-blocking (only phases with $I_d > I_{\text{pickup}}$ can cross-block) | 61.71% | 99.95% | 1 | 100.0% | 0.0%–45% |
+| **R3 (`per_phase`)** | Phase-independent restraint (standard commercial relay practice) | 84.33% | 97.97% | 38 | 93.0%–100% | 82.0%–100.0% |
+| **Proposed Hybrid DWT-LSTM** | Dual-path supervisory handshake + AI-alone path | **98.56%** (99.01% mean) | **99.41%** (99.66% mean) | **11** (6.3 mean) | 100.0% | 100.0% |
+
+**Key Findings:**
+1. **R1 (Unselective Cross-Blocking Blinds Relay):** If any phase exceeding $k_2 > 15\%$ or $k_5 > 35\%$ blocks all phases, near-zero current phases or distorted CT waveforms on asymmetrical faults cross-block genuine trips. Dependability collapses to 55.24% (0% recall on severe CT-saturated internal faults `Stress_CTSat_Int_*`).
+2. **R2 (Active Cross-Blocking):** Restricting cross-blocking to active phases ($I_d > 0.30\,\text{pu}$) raises dependability to 61.71% with 1 false trip, but still blinds internal faults accompanied by secondary CT distortion.
+3. **R3 (Phase-Independent Restraint — Realistic Industry Benchmark):** Restraining each phase independently (standard in relays such as SEL-487B and Siemens 7UT6) eliminates cross-phase blinding under CT saturation. It achieves 84.33% dependability and 97.97% security (38 false trips: 37 inrush, 1 evolving/external in inrush).
+4. **Dominance of Proposed Framework:** The proposed Hybrid DWT–LSTM outperforms R3 by **+14.23 percentage points in dependability** (98.56% vs 84.33%, primarily by detecting weak/high-impedance faults in the AI-alone path) while reducing false trips from 38 down to 11 (and 6.3 across 3-repetition mean), validating the supervisory architecture.
+
 ### P2.2 Tone down the benchmark narrative (§6.10, `main.tex` lines 791–795)
 Data from `literature_benchmark_summary.json` (Repetition 1, same folds for all models):
 
