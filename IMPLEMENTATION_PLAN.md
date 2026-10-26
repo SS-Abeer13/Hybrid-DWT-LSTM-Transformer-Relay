@@ -445,9 +445,21 @@
 
 ---
 
-## Next steps (for publication and thesis defense)
+- **2026-10-26 23:41** — ✅ **Phase 0 Complete (Safety & Baseline Freeze for Publication Plan v4):**
+  - Created git tag thesis-final-2026-10-26 on commit 8f5ee2a (thesis final freeze commit).
+  - Created safety backups:
+    - simulations/TransformerWithCTSaturation_BACKUP_20261026_pre_v4.slx (93,167 bytes)
+    - simulations/live_relay_ai_BACKUP_20261026_pre_v4.mat (243,633 bytes)
+    - lstm_models/wt_lstm_relay_BACKUP_20261026_pre_v4.onnx (240,516 bytes)
+  - Created isolated working copy simulations/TransformerWithCTSaturation_v4.slx (93,167 bytes). All Phase 1–3 model revisions will occur exclusively in _v4.slx, leaving TransformerWithCTSaturation.slx untouched.
+  - Phase 0 items in IMPLEMENTATION_PLAN_V4_PUBLICATION.md marked complete.
 
-1. Refer to `REVIEW_FIXES_2026-10-26.md` for complete audit record and verification checklists.
-2. For journal submission (e.g. IEEE Transactions on Power Delivery / IEEE Access / Elsevier EPSR):
-   - Package manuscript and data-driven figures into journal format.
-   - Address out-of-scope items: re-engineer LV CT drive circuitry to remove series resistors for strong through-fault testing (5–20 pu), and benchmark inference latency on dedicated embedded relay-class DSP/FPGA hardware.
+---
+
+## Next steps (in order)
+
+1. **Phase 1.1:** Confirm CT and series resistor topology in MATLAB (get_param / LineHandles), write to simulations/ct_topology_v4.txt.
+2. **Phase 1.2:** Re-wire CTs in series in simulations/TransformerWithCTSaturation_v4.slx (Conn1–Conn2 carrying full line current, 0.5 ohm parallel resistors removed).
+3. **Phase 1.3:** Re-calibrate effective CT ratios with probe_ct_truth.m on v4 model.
+4. **Phase 1.4:** Normalise LSTM input to per unit in features12.py and Simulink chart; check parity.
+5. **Phase 1.5 & 1.6:** Verify plant physics (through-faults 5–20 pu, LV voltage >= 0.95 pu at 100% load), create generate_stress_dataset_v4.m, and generate v4 dataset.
