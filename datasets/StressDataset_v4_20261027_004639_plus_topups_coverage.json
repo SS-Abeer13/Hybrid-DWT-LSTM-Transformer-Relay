@@ -1,0 +1,48 @@
+{
+ "files": [
+  "StressDataset_v4_20261027_004639.mat",
+  "StressDataset_v4Only_20261027_160424.mat",
+  "StressDataset_v4Only_20261027_161105.mat",
+  "StressDataset_v4Only_20261027_161440.mat"
+ ],
+ "n": 3175,
+ "n_ok": 3167,
+ "criteria": {
+  "1 load-bin cells": {
+   "pass": true,
+   "detail": "all cells >= minimum"
+  },
+  "2 inrush cells": {
+   "pass": true,
+   "detail": "all 24 cells >= 10"
+  },
+  "3 HiZ bins and bands": {
+   "pass": true,
+   "detail": "bins [80, 80, 80], bands [76, 76, 88] (each >= 40 required)"
+  },
+  "4 External CT-sat saturation": {
+   "pass": true,
+   "detail": "99 % (>= 70 % required)"
+  },
+  "4 Internal CT-sat saturation": {
+   "pass": true,
+   "detail": "98 % (>= 70 % required)"
+  },
+  "5 over-excitation harmonics": {
+   "pass": true,
+   "detail": "83 % (>= 80 % required)"
+  },
+  "6 realised load": {
+   "pass": true,
+   "detail": "100.0 % (>= 95 % required)"
+  },
+  "7 generator checks": {
+   "pass": true,
+   "detail": "overall 99.7 %, worst scenario 91 %, duplicates 0"
+  },
+  "8 external through-fault >= 5 pu": {
+   "pass": true,
+   "detail": "99.2 % (>= 80 % required)"
+  }
+ }
+}

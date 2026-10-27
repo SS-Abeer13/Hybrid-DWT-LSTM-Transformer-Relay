@@ -11,6 +11,7 @@ Saves full metrics into:
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import time
@@ -38,8 +39,8 @@ def wilson_interval(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     return (100.0 * max(0.0, c - h), 100.0 * min(1.0, c + h))
 
 
-def load_main_dataset() -> list[dict]:
-    mat_files = [
+def load_main_dataset(files: list[str | Path] | None = None) -> list[dict]:
+    mat_files = [Path(f) for f in files] if files else [
         ROOT / "datasets" / "StressDataset_v3_20261021_021053.mat",
         ROOT / "datasets" / "StressDataset_v3Only_topup_inrush_loaded.mat",
         ROOT / "datasets" / "StressDataset_v3Only_topup_overexc.mat",
@@ -59,19 +60,23 @@ def load_main_dataset() -> list[dict]:
     return list(raw_traces.values())
 
 
-def load_ood_dataset() -> list[dict]:
-    ood_file = ROOT / "datasets" / "StressDataset_v3OOD_20261021_132520.mat"
-    traces = load_traces(ood_file)
-    kept = []
-    for t in traces:
-        if "checkPassed" in t and not relaxed_ok_trace(t):
-            continue
-        t["onset"] = int(round(t["inceptionTime"] * FS)) if t["should_trip"] else -1
-        t["category"] = T.category(t["scenarioName"])
-        t["fault_pu"] = R.fault_rise_pu(t["primary"], t["secondary"], t["onset"]) if t["onset"] >= 0 else np.nan
-        t["undetectable"] = bool(t["should_trip"] and np.isfinite(t["fault_pu"]) and t["fault_pu"] < 0.05)
-        kept.append(t)
-    return kept
+def load_ood_dataset(ood_files: list[str | Path] | None = None) -> list[dict]:
+    mat_files = [Path(f) for f in ood_files] if ood_files else [
+        ROOT / "datasets" / "StressDataset_v3OOD_20261021_132520.mat",
+    ]
+    raw_traces: dict[str, dict] = {}
+    for mf in mat_files:
+        for t in load_traces(mf):
+            if t["fingerprint"] in raw_traces:
+                continue
+            if "checkPassed" in t and not relaxed_ok_trace(t):
+                continue
+            t["onset"] = int(round(t["inceptionTime"] * FS)) if t["should_trip"] else -1
+            t["category"] = T.category(t["scenarioName"])
+            t["fault_pu"] = R.fault_rise_pu(t["primary"], t["secondary"], t["onset"]) if t["onset"] >= 0 else np.nan
+            t["undetectable"] = bool(t["should_trip"] and np.isfinite(t["fault_pu"]) and t["fault_pu"] < 0.05)
+            raw_traces[t["fingerprint"]] = t
+    return list(raw_traces.values())
 
 
 def evaluate_traces(traces: list[dict], mode: str | None, dwell: int = 20) -> list[dict]:
@@ -174,25 +179,38 @@ def summarize_rows(rows: list[dict]) -> dict:
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Evaluate Harmonic Restrained 87T Relay Variants")
+    parser.add_argument("--files", nargs="*", default=None, help="Main dataset MAT files")
+    parser.add_argument("--ood", nargs="*", default=None, help="OOD dataset MAT files")
+    parser.add_argument("--cv-dir", default=None, help="CV fold results directory")
+    parser.add_argument("--output-dir", default="runs/20261026_harmonic87t", help="Output directory")
+    args = parser.parse_args()
+
     t_start = time.time()
-    out_dir = ROOT / "runs" / "20261026_harmonic87t"
+    out_dir = Path(args.output_dir) if Path(args.output_dir).is_absolute() else ROOT / args.output_dir
     out_dir.mkdir(parents=True, exist_ok=True)
     
-    print("Loading main dataset (3,218 traces)...", flush=True)
-    main_traces = load_main_dataset()
+    print("Loading main dataset...", flush=True)
+    main_traces = load_main_dataset(args.files)
     print(f"Loaded {len(main_traces)} main traces ({sum(t['undetectable'] for t in main_traces)} undetectable).", flush=True)
     
-    print("Loading OOD dataset (300 traces)...", flush=True)
-    ood_traces = load_ood_dataset()
+    print("Loading OOD dataset...", flush=True)
+    ood_traces = load_ood_dataset(args.ood)
     print(f"Loaded {len(ood_traces)} OOD traces ({sum(t['undetectable'] for t in ood_traces)} undetectable).", flush=True)
     
-    # Load 5-fold CV test trace partition from runs/20261021_v3_cv5
-    cv_dir = ROOT / "runs" / "20261021_v3_cv5"
+    # Load 5-fold CV test trace partition
+    cv_dir = Path(args.cv_dir) if args.cv_dir else ROOT / "runs" / "20261021_v3_cv5"
     folds_indices = []
-    for k in range(1, 6):
-        fold_res = json.loads((cv_dir / f"fold{k}" / "result.json").read_text(encoding="utf-8"))
-        idx = [r["trace"] for r in fold_res["rows"]["87T alone"]]
-        folds_indices.append(idx)
+    if (cv_dir / "fold1" / "result.json").is_file():
+        for k in range(1, 6):
+            fold_res = json.loads((cv_dir / f"fold{k}" / "result.json").read_text(encoding="utf-8"))
+            idx = [r["trace"] for r in fold_res["rows"]["87T alone"]]
+            folds_indices.append(idx)
+    elif (cv_dir / "seed_20261021" / "fold1" / "result.json").is_file():
+        for k in range(1, 6):
+            fold_res = json.loads((cv_dir / "seed_20261021" / f"fold{k}" / "result.json").read_text(encoding="utf-8"))
+            idx = [r["trace"] for r in fold_res["rows"]["87T alone"]]
+            folds_indices.append(idx)
     
     modes = [
         ("unrestrained", None, "Classical dual-slope percentage restraint, no harmonic blocking"),

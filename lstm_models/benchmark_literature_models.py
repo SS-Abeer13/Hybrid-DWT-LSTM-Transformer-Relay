@@ -319,8 +319,11 @@ def run_benchmarks(args):
     print("=" * 100)
 
     # 1. Load Traces
-    print(f"Loading cached traces from: {CACHE_FILE}")
-    data = np.load(CACHE_FILE, allow_pickle=True)
+    cache_path = Path(args.cache_file) if args.cache_file else CACHE_FILE
+    if not cache_path.is_absolute():
+        cache_path = ROOT / cache_path
+    print(f"Loading cached traces from: {cache_path}")
+    data = np.load(cache_path, allow_pickle=True)
     raw_traces = data["traces"]
     traces = []
     for t in raw_traces:
@@ -338,7 +341,7 @@ def run_benchmarks(args):
     T.SEC_TOLERANCE = 1.0
     T.category = group_of
 
-    out_dir = ROOT / args.output_dir
+    out_dir = Path(args.output_dir) if Path(args.output_dir).is_absolute() else ROOT / args.output_dir
     out_dir.mkdir(parents=True, exist_ok=True)
     device = torch.device("cpu")
 
@@ -357,8 +360,13 @@ def run_benchmarks(args):
     model_meta = {}
 
     # Extract existing LSTM and 87T results from cv5
-    print("\nLoading established baseline results from 20261021_v3_cv5...")
-    cv5_folds = [json.load(open(CV5_DIR / f"fold{k}" / "result.json")) for k in range(1, 6)]
+    cv_dir = Path(args.cv_dir) if args.cv_dir else CV5_DIR
+    if not cv_dir.is_absolute():
+        cv_dir = ROOT / cv_dir
+    if (cv_dir / "seed_20261021" / "fold1" / "result.json").is_file():
+        cv_dir = cv_dir / "seed_20261021"
+    print(f"\nLoading established baseline results from {cv_dir}...")
+    cv5_folds = [json.load(open(cv_dir / f"fold{k}" / "result.json")) for k in range(1, 6)]
     for f in cv5_folds:
         all_results["Conventional 87T"]["standalone"].extend(f["rows"]["87T alone"])
         all_results["Standalone LSTM"]["standalone"].extend(f["rows"]["LSTM alone"])
@@ -766,6 +774,8 @@ def run_benchmarks(args):
 def main():
     parser = argparse.ArgumentParser(description="Benchmark Literature Models on Transformer Dataset")
     parser.add_argument("--output-dir", default="runs/literature_benchmark")
+    parser.add_argument("--cache-file", default=None, help="Path to traces cache NPZ file")
+    parser.add_argument("--cv-dir", default=None, help="Path to CV fold results directory")
     parser.add_argument("--seed", type=int, default=20261021)
     parser.add_argument("--folds", type=int, default=5)
     parser.add_argument("--train-stride", type=int, default=8)
