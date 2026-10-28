@@ -276,7 +276,7 @@ def generate_table_6_6_latency():
     lines += [
         r"\bottomrule",
         r"\end{tabular}",
-        r"\vspace{3pt}\raggedright\footnotesize\textit{Note:} Real-time sampling period at 1{,}600\,Hz: 625.0\,$\mu$s. Median execution times occupy 32.8\% (ONNX) and 30.7\% (ANSI C) of the sample budget, leaving $> 67\%$ idle headroom.",
+        r"\vspace{3pt}\raggedright\footnotesize\textit{Note:} Real-time sampling period at 1{,}600\,Hz: 625.0\,$\mu$s. Median execution times occupy 32.8\% (ONNX) and 30.7\% (ANSI C) of the sample budget. The C source is hand-written (emitted by a Python script), not MATLAB Coder or Embedded Coder output, and was timed on the development PC, not on a relay processor.",
         r"\end{table}",
     ]
     out_file = LATEX_DIR / "table_6_6_latency.tex"

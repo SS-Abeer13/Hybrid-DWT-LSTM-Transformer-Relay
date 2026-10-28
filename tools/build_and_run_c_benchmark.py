@@ -1,8 +1,11 @@
-"""Standalone Generated C Code Latency Benchmark for Transformer Differential Relay.
+"""Standalone hand-written ANSI C latency benchmark for the transformer differential relay.
+
+IMPORTANT: the C source is WRITTEN BY HAND (as Python string templates in this file) and emitted to tools/relay_c/ by this script. It is NOT MATLAB Coder /
+Embedded Coder output and has not been through any certified code generator; it mirrors the Python pipeline and is verified against it by a parity test.
 
 Phase 4.2 of IMPLEMENTATION_PLAN_V4_PUBLICATION.md:
 - Pure self-contained ANSI C / C99 relay pipeline (feature extraction + 2-layer LSTM + attention + classifier).
-- Compiled with Microsoft Visual C++ (cl.exe /O2 /arch:AVX2) for native x64 execution.
+- Compiled with MinGW-w64 GCC (-O3 -mavx2 -mfma) for native x64 execution on the development PC (not an embedded target).
 - Verifies numerical parity against PyTorch model (max diff < 1e-4).
 - Benchmarks 100 warm-up calls + 10,000 timed calls using high-precision Windows QueryPerformanceCounter (QPC).
 - Compares against 625.0 us real-time sampling deadline at 1,600 Hz.
@@ -643,7 +646,7 @@ def compile_and_run_benchmark():
         json.dump(results, f, indent=2)
 
     with open(txt_path, "w", encoding="utf-8") as f:
-        f.write("STANDALONE GENERATED C CODE LATENCY BENCHMARK (Phase 4.2)\n")
+        f.write("STANDALONE HAND-WRITTEN ANSI C LATENCY BENCHMARK (Phase 4.2; C source emitted by tools/build_and_run_c_benchmark.py, not MATLAB Coder output)\n")
         f.write("=" * 80 + "\n\n")
         f.write(f"CPU Model:        {results['metadata']['cpu_model']}\n")
         f.write(f"Compiler:         {results['metadata']['compiler']}\n")
@@ -662,7 +665,7 @@ def compile_and_run_benchmark():
         f.write(f"  Verdict:               REAL-TIME CAPABLE (PASS)\n")
 
     print("=" * 80)
-    print("STANDALONE GENERATED C CODE LATENCY BENCHMARK RESULTS (Phase 4.2):")
+    print("STANDALONE HAND-WRITTEN ANSI C LATENCY BENCHMARK RESULTS (Phase 4.2):")
     print(f"  Feature Extraction: median = {dwt_stats['median_us']:.2f} us | p99 = {dwt_stats['p99_us']:.2f} us")
     print(f"  LSTM Inference:     median = {lstm_stats['median_us']:.2f} us | p99 = {lstm_stats['p99_us']:.2f} us")
     print(f"  Combined Pipeline:  median = {relay_stats['median_us']:.2f} us | p99 = {relay_stats['p99_us']:.2f} us | max = {relay_stats['max_us']:.2f} us")

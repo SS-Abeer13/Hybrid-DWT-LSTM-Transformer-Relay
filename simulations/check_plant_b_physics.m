@@ -72,8 +72,8 @@ Ilv_pu = I_lv_sec_rms / I_sec_nom;
 
 % Measurement from Secondary_side
 ls = out.get('logsout');
-s_v = get_signal(ls, 'Secondary_out1');
-V_lv_true = mean(rms(s_v(ss, :)));
+[s_v, t_sv] = get_signal(ls, 'Secondary_out1');            % V-I block time base differs from the 1600 Hz relay samples
+V_lv_true = mean(rms(s_v(t_sv >= 0.4 & t_sv <= 0.6, :)));
 Vlv_pu = V_lv_true / V_lv;
 
 fprintf(fid, '1. LV BUS VOLTAGE AT 100%% LOAD:\n');
@@ -106,10 +106,15 @@ f_idx = (t_f >= 0.32 & t_f <= 0.45);
 Ip_rms = rms(Ip_f(f_idx, :));
 Is_rms = rms(Is_f(f_idx, :));
 
+ls_f = out_fault.get('logsout');
+[s_i_true, t_true] = get_signal(ls_f, 'Secondary_out2');   % true LV line current (V-I block, own time base)
+[p_i_true, t_true_p] = get_signal(ls_f, 'Primary_out2');   % true HV line current
+ft = (t_true >= 0.32 & t_true <= 0.45); ftp = (t_true_p >= 0.32 & t_true_p <= 0.45);
+Is_true_rms = rms(s_i_true(ft, :)); Ip_true_rms = rms(p_i_true(ftp, :));
 I_hv_pu_at_ct = Ip_rms / I_sec_nom;
 I_lv_pu_at_ct = Is_rms / I_sec_nom;
 mean_tf_pu = mean([I_hv_pu_at_ct, I_lv_pu_at_ct]);
-peak_tf_pu = max(max(abs(Ip_f(f_idx, :))), max(abs(Is_f(f_idx, :)))) / (I_sec_nom * sqrt(2));
+peak_tf_pu = max([max(abs(Ip_f(f_idx, :)), [], 'all'), max(abs(Is_f(f_idx, :)), [], 'all')]) / (I_sec_nom * sqrt(2));   % scalar
 
 fprintf(fid, '2. EXTERNAL 3-PHASE SOLID FAULT (LV Bus, Rf = 0.001 ohm):\n');
 fprintf(fid, '   HV CT Secondary RMS: A=%.2f A, B=%.2f A, C=%.2f A (Mean: %.2f A)\n', ...
@@ -121,38 +126,45 @@ fprintf(fid, '     HV Side: A=%.2f pu, B=%.2f pu, C=%.2f pu (Mean: %.2f pu)\n', 
     I_hv_pu_at_ct(1), I_hv_pu_at_ct(2), I_hv_pu_at_ct(3), mean(I_hv_pu_at_ct));
 fprintf(fid, '     LV Side: A=%.2f pu, B=%.2f pu, C=%.2f pu (Mean: %.2f pu)\n', ...
     I_lv_pu_at_ct(1), I_lv_pu_at_ct(2), I_lv_pu_at_ct(3), mean(I_lv_pu_at_ct));
-fprintf(fid, '     Overall Mean RMS: %.2f pu | Max Symmetrical Peak: %.2f pu\n', mean_tf_pu, peak_tf_pu);
+fprintf(fid, '     Overall mean RMS at the CTs: %.2f pu\n', mean_tf_pu);
+fprintf(fid, '     Peak (crest) at the CTs, in units of the rated PEAK current: %.2f pu\n', peak_tf_pu);
+fprintf(fid, '   TRUE line current in the same window (V-I blocks, own time base): HV %.1f A (%.2f pu), LV %.1f A (%.2f pu)\n', ...
+    mean(Ip_true_rms), mean(Ip_true_rms) / I_rated_hv, mean(Is_true_rms), mean(Is_true_rms) / I_rated_lv);
 
-if mean_tf_pu >= 5.0 && mean_tf_pu <= 20.0
-    fprintf(fid, '   CRITERION (5-20 pu RMS): PASS (%.2f pu)\n\n', mean_tf_pu);
-    fprintf('   Through-fault: %.2f pu -> PASS\n', mean_tf_pu);
+true_tf_pu = mean([mean(Ip_true_rms) / I_rated_hv, mean(Is_true_rms) / I_rated_lv]);
+if true_tf_pu >= 5.0 && true_tf_pu <= 20.0
+    fprintf(fid, '   CRITERION (TRUE through-fault current 5-20 pu RMS): PASS (%.2f pu; the CT secondaries read %.2f pu RMS)\n\n', true_tf_pu, mean_tf_pu);
+    fprintf('   True through-fault %.2f pu -> PASS\n', true_tf_pu);
 else
-    fprintf(fid, '   CRITERION (5-20 pu RMS): FAIL (%.2f pu)\n\n', mean_tf_pu);
-    fprintf('   Through-fault: %.2f pu -> FAIL\n', mean_tf_pu);
+    fprintf(fid, '   CRITERION (TRUE through-fault current 5-20 pu RMS): FAIL (%.2f pu; the CT secondaries read only %.2f pu RMS because the CTs saturate)\n\n', true_tf_pu, mean_tf_pu);
+    fprintf('   True through-fault %.2f pu -> FAIL\n', true_tf_pu);
 end
 
-%% --- CHECK 3: Natural CT Saturation on High-Current Through-Fault ---
-fprintf('--- Check 3: CT Saturation on Through-Fault at Nominal Burden ---\n');
-ls_f = out_fault.get('logsout');
-s_i_true = get_signal(ls_f, 'Secondary_out2');
-Is_true_rms = rms(s_i_true(f_idx, :));
-ratio_lv_tf = Is_true_rms ./ Is_rms;
-ratio_err_pct = abs(ratio_lv_tf - 808.88) ./ 808.88 * 100;
+%% --- CHECK 3: CT behaviour on the high-current through-fault (true current from the V-I block, SAME time window) ---
+fprintf('--- Check 3: CT behaviour on the through-fault at nominal burden ---\n');
+ratio_lv_tf = Is_true_rms ./ Is_rms;            % effective ratio during the fault, per phase
+ratio_hv_tf = Ip_true_rms ./ Ip_rms;
+name_lv = 800; name_hv = 200;                   % nameplate ratios of plant B (calibration: simulations/ct_calibration_plant_b.txt)
+dev_lv = (ratio_lv_tf - 808.88) ./ 808.88 * 100;   % > 0: the CT secondary UNDER-reads (saturation); < 0: it OVER-reads (wiring / scaling error)
+dev_hv = (ratio_hv_tf - 202.01) ./ 202.01 * 100;
 
-fprintf(fid, '3. NATURAL CT SATURATION AT NOMINAL BURDEN (2.5 ohm):\n');
-fprintf(fid, '   True LV Line Current RMS: A=%.1f A, B=%.1f A, C=%.1f A\n', ...
-    Is_true_rms(1), Is_true_rms(2), Is_true_rms(3));
-fprintf(fid, '   Effective CT Ratio:       A=%.1f:1, B=%.1f:1, C=%.1f:1 (Nameplate: 800:1)\n', ...
-    ratio_lv_tf(1), ratio_lv_tf(2), ratio_lv_tf(3));
-fprintf(fid, '   Ratio Error:              A=%.1f%%, B=%.1f%%, C=%.1f%%\n', ...
-    ratio_err_pct(1), ratio_err_pct(2), ratio_err_pct(3));
-if any(ratio_err_pct > 1.0)
-    fprintf(fid, '   CRITERION (Natural CT Saturation Error > 1%%): PASS\n\n');
-    fprintf('   CT Saturation Error: max %.1f%% -> PASS\n', max(ratio_err_pct));
+fprintf(fid, '3. CT BEHAVIOUR ON THE THROUGH-FAULT (nominal burden 2.5 ohm; calibrated ratios HV 202.01:1, LV 808.88:1):\n');
+fprintf(fid, '   Effective ratio true/CT during the fault, LV: A=%.1f:1, B=%.1f:1, C=%.1f:1  (deviation from calibrated: %+.1f%%, %+.1f%%, %+.1f%%)\n', ...
+    ratio_lv_tf(1), ratio_lv_tf(2), ratio_lv_tf(3), dev_lv(1), dev_lv(2), dev_lv(3));
+fprintf(fid, '   Effective ratio true/CT during the fault, HV: A=%.1f:1, B=%.1f:1, C=%.1f:1  (deviation from calibrated: %+.1f%%, %+.1f%%, %+.1f%%)\n', ...
+    ratio_hv_tf(1), ratio_hv_tf(2), ratio_hv_tf(3), dev_hv(1), dev_hv(2), dev_hv(3));
+fprintf(fid, '   A positive deviation means the CT secondary under-reads (saturation); a NEGATIVE deviation would mean it over-reads, which is not saturation and would indicate a wiring or scaling error.\n');
+if any([dev_lv dev_hv] < -5)
+    fprintf(fid, '   CRITERION (CT must not over-read the true current by more than 5 %%): FAIL (min deviation %+.1f%%)\n\n', min([dev_lv dev_hv]));
+    fprintf('   CT over-reads: min deviation %+.1f%% -> FAIL\n', min([dev_lv dev_hv]));
+elseif any([dev_lv dev_hv] > 2)
+    fprintf(fid, '   CRITERION (CT must not over-read; natural saturation visible if > +2 %% on some phase): PASS, natural saturation visible (max deviation %+.1f%%)\n\n', max([dev_lv dev_hv]));
+    fprintf('   Natural CT saturation visible: max deviation %+.1f%% -> PASS\n', max([dev_lv dev_hv]));
 else
-    fprintf(fid, '   CRITERION (Natural CT Saturation Error > 1%%): FAIL\n\n');
-    fprintf('   CT Saturation Error: max %.1f%% -> FAIL\n', max(ratio_err_pct));
+    fprintf(fid, '   CRITERION (CT must not over-read; natural saturation visible if > +2 %% on some phase): PASS, CT linear in this fault (max deviation %+.1f%%)\n\n', max([dev_lv dev_hv]));
+    fprintf('   CT linear: max deviation %+.1f%% -> PASS (no saturation)\n', max([dev_lv dev_hv]));
 end
+ratio_err_pct = abs([dev_lv dev_hv]);
 
 %% --- CHECK 4: Normal Steady-State Differential Residual ---
 fprintf('--- Check 4: Normal Steady-State Differential Current ---\n');
@@ -185,7 +197,7 @@ fclose(fid);
 fprintf('Report saved to %s\n', fullfile(thisDir, 'plant_b_checks.txt'));
 type(fullfile(thisDir, 'plant_b_checks.txt'));
 
-res = struct('lv_voltage_pu', Vlv_pu, 'mean_tf_pu', mean_tf_pu, 'peak_tf_pu', peak_tf_pu, ...
+res = struct('lv_voltage_pu', Vlv_pu, 'true_tf_pu', true_tf_pu, 'mean_tf_pu', mean_tf_pu, 'peak_tf_pu', peak_tf_pu, ...
              'ratio_err_max', max(ratio_err_pct), 'idiff_rms_max', max(Idiff_rms));
 end
 
@@ -227,7 +239,7 @@ set_param(extFault, 'FaultA', 'off', 'FaultB', 'off', 'FaultC', 'off', 'GroundFa
 set_param(extStep, 'Time', '10');
 end
 
-function v = get_signal(ls, name)
+function [v, tt] = get_signal(ls, name)
 el = ls.get(name);
 if isa(el, 'Simulink.SimulationData.Dataset'), el = el{1}; end
 v = squeeze(double(el.Values.Data));

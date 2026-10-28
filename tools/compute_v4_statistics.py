@@ -133,6 +133,9 @@ def compute_statistics(args):
     head_87t = [r for r in traces_87t if not r.get("undetectable")]
     head_lstm = [r for r in traces_lstm if not r.get("undetectable")]
 
+    assert [r["trace"] for r in head_87t] == [r["trace"] for r in head_hybrid], "87T-alone rows are not the same traces as the hybrid rows"
+    if head_lstm:
+        assert [r["trace"] for r in head_lstm] == [r["trace"] for r in head_hybrid], "LSTM-alone rows are not the same traces as the hybrid rows"
     y_true = np.array([1 if r["should_trip"] else 0 for r in head_hybrid])
     y_hybrid = np.array([1 if r["tripped"] and not r.get("tripped_before_fault") else 0 for r in head_hybrid])
     y_87t = np.array([1 if r["tripped"] and not r.get("tripped_before_fault") else 0 for r in head_87t])
@@ -148,11 +151,17 @@ def compute_statistics(args):
     mcnemar_dep_harm = None
     mcnemar_sec_harm = None
     if harm_data and "per_phase" in harm_data.get("variants", {}) and "rows" in harm_data["variants"]["per_phase"]:
-        harm_rows = [r for r in harm_data["variants"]["per_phase"]["rows"] if not r.get("undetectable")]
-        if len(harm_rows) == len(head_hybrid):
-            y_harm = np.array([1 if r["tripped"] and not r.get("early") else 0 for r in harm_rows])
-            mcnemar_dep_harm = mcnemar_test(y_true, y_hybrid, y_harm, subset_condition=True)
-            mcnemar_sec_harm = mcnemar_test(y_true, y_hybrid, y_harm, subset_condition=False)
+        # PAIR BY TRACE IDENTITY, NOT BY POSITION: the CV rows are concatenated in fold order, the harmonic rows are in trace order.
+        # (A positional pairing of the two lists gave harmonic 41.6 % / 63.7 % instead of its true 81.7 % / 91.7 %: fixed 2026-10-28.)
+        harm_by_idx = {r["trace_idx"]: r for r in harm_data["variants"]["per_phase"]["rows"]}
+        missing = [r["trace"] for r in head_hybrid if r["trace"] not in harm_by_idx]
+        assert not missing, f"{len(missing)} CV traces have no harmonic-87T row (first: {missing[:5]})"
+        harm_rows = [harm_by_idx[r["trace"]] for r in head_hybrid]
+        for h, r in zip(harm_rows, head_hybrid):
+            assert h["scenario"] == r["scenario"] and int(h["should_trip"]) == int(r["should_trip"]), f"trace {r['trace']}: harmonic row is a different trace"
+        y_harm = np.array([1 if r["tripped"] and not r.get("early") else 0 for r in harm_rows])
+        mcnemar_dep_harm = mcnemar_test(y_true, y_hybrid, y_harm, subset_condition=True)
+        mcnemar_sec_harm = mcnemar_test(y_true, y_hybrid, y_harm, subset_condition=False)
 
     # Multi-seed fold-model statistics (Mean +/- SD)
     metrics_summary = {}

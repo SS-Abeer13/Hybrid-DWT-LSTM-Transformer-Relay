@@ -1,0 +1,12 @@
+Independent plant A (v4) measurement with the V-I blocks, 28-Oct-2026 10:00:31
+(script: simulations/probe_plant_a_truth_v4.m; every signal on its own time base)
+
+1. 100 % LOAD (P = 300 MW, pf 1.0), steady state t >= 0.4 s
+   TRUE LV bus voltage 10.907 kV = 0.9915 pu | TRUE LV line current 15235.1 A = 0.9676 pu | LV CT secondary 1.7730 A = 0.9527 pu
+
+2. EXTERNAL 3-PHASE SOLID FAULT (LV bus, Rf 0.001 ohm), window 0.32-0.45 s
+   TRUE line current RMS : HV 18002.7 A = 23.91 pu | LV 376379.0 A = 23.90 pu
+   TRUE line current PEAK: HV 23.91 | LV 23.90  (in units of the rated PEAK current)
+   CT secondary RMS      : HV 12.054 A = 6.48 pu | LV 11.789 A = 6.33 pu  (peak 14.90 of rated peak)
+   CT secondary / (true / nominal ratio): HV 0.271, LV 0.265   (< 1 = CT under-reads = saturation; > 1 would be a scaling error)
+   Plan criterion 1.5: 5-20 pu RMS at the CTs. TRUE RMS = 23.90 pu, CT RMS = 6.41 pu. The old check accepted anything up to 25 pu while printing 5-20 pu.

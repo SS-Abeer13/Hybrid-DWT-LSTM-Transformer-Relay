@@ -20,7 +20,7 @@
 |---|---|---|
 | G1 | External through-faults reach only ~1.5 pu at the CTs (real: 5–20 pu). CT saturation had to be forced with 4–10× burden. The classic 87T security test is therefore soft. | Phase 1: re-wire the CT measurement so the plant can deliver strong through-faults |
 | G2 | One simulated transformer only. Do the results generalise? | Phase 3: a second, different transformer (rating, vector group, CT class); zero-shot and retrained tests |
-| G3 | No measured computation time. | Phase 4: measured latency (Python, ONNX Runtime, MATLAB generated C code) |
+| G3 | No measured computation time. | Phase 4: measured latency (Python + ONNX Runtime; hand-written ANSI C / C99 as embedded proxy) |
 | G4 | The feature-LSTM idea is known; the novelty must be clear. | Phase 5: paper framed around the dual-path supervisory logic and the leak-free evaluation protocol |
 | G5 | Claims must be statistically defensible. | Phase 2.5: paired significance tests and confidence intervals |
 
@@ -28,9 +28,9 @@
 
 ## Phase 0 — Safety and baseline freeze (≈ 0.5 h)
 
-- [x] **0.1** Create a git tag `thesis-final-2026-10-26` on the current commit, so the thesis version can always be rebuilt.
-- [x] **0.2** Back up `simulations/TransformerWithCTSaturation.slx`, `simulations/live_relay_ai.mat` and `lstm_models/wt_lstm_relay.onnx` as `*_BACKUP_<date>_pre_v4.*`.
-- [x] **0.3** Do all Phase 1–3 model changes in a **copy**: `simulations/TransformerWithCTSaturation_v4.slx`. The thesis model stays untouched.
+- [ ] **0.1** Create a git tag `thesis-final-2026-10-26` on the current commit, so the thesis version can always be rebuilt.
+- [ ] **0.2** Back up `simulations/TransformerWithCTSaturation.slx`, `simulations/live_relay_ai.mat` and `lstm_models/wt_lstm_relay.onnx` as `*_BACKUP_<date>_pre_v4.*`.
+- [ ] **0.3** Do all Phase 1–3 model changes in a **copy**: `simulations/TransformerWithCTSaturation_v4.slx`. The thesis model stays untouched.
 
 ---
 
@@ -42,16 +42,16 @@
 - The measured effective CT ratios (HV 809.6:1, LV 16,925:1) are **2.024×** the nameplate winding ratios. That is consistent with the CT primary sharing current with another branch instead of carrying the full line current.
 
 ### Steps
-- [x] **1.1 Confirm the topology.** In MATLAB, list the physical connections (`get_param(<block>,'PortConnectivity')`, or `find_system` + `LineHandles`) of CT1–CT6 and the three LV series resistors. Write the result to `simulations/ct_topology_v4.txt`.
+- [ ] **1.1 Confirm the topology.** In MATLAB, list the physical connections (`get_param(<block>,'PortConnectivity')`, or `find_system` + `LineHandles`) of CT1–CT6 and the three LV series resistors. Write the result to `simulations/ct_topology_v4.txt`.
   - **Hypothesis to confirm:** each CT primary (Conn1–Conn2) is connected **in parallel** with a 0.5 Ω series resistor. The CT then sees only the current share through its own primary impedance. That would explain the 2.024× ratio, the weak through-faults and why lowering R starved the CT.
   - Record what you actually find before changing anything.
-- [x] **1.2 Re-wire the CTs in series** (in the v4 copy only). Each CT primary must carry the **full line current**: put Conn1 → Conn2 in series with the phase conductor, as in the MathWorks "current transformer saturation" example. Then remove the parallel 0.5 Ω resistors, or set them to a negligible series value (≤ 1 mΩ) if the solver needs a branch. Do it for all six CTs, so the HV and LV sides are treated the same.
-- [x] **1.3 Re-calibrate.** Re-run `probe_ct_truth.m` (true line current vs CT secondary) on the v4 model:
+- [ ] **1.2 Re-wire the CTs in series** (in the v4 copy only). Each CT primary must carry the **full line current**: put Conn1 → Conn2 in series with the phase conductor, as in the MathWorks "current transformer saturation" example. Then remove the parallel 0.5 Ω resistors, or set them to a negligible series value (≤ 1 mΩ) if the solver needs a branch. Do it for all six CTs, so the HV and LV sides are treated the same.
+- [ ] **1.3 Re-calibrate.** Re-run `probe_ct_truth.m` (true line current vs CT secondary) on the v4 model:
   - Expect effective ratios close to nameplate: HV 400:1 and LV 92000/11 ÷ 5 → 1,672.7:1, for 5 A-class secondaries. Record the measured values.
   - Rated CT-secondary current changes accordingly. Expect ≈ 1.88 A at nameplate; **use the measured value**.
   - Update the base in `relay87t.py` (`CT_RATIO_*`, `I_NOM`), the Simulink `Yd1_Compensation` chart, `relay_config.m` (`cfg.I_RATED_SEC`) and the generator noise base. Re-check the plant matrix M on healthy traces. Write the results to `simulations/ct_calibration_v4.txt`.
-- [x] **1.4 Normalise the LSTM input to per unit.** Divide the plant-compensated differential by the rated secondary current **before** feature extraction, in **both** `features12.py` and the Simulink `DWT_Feature_Extraction` path. With the new ratios the current-amp scale changes ~2×, and per-unit inputs are needed anyway for Phase 3. Re-run the feature-parity check (`verify_lstm_feature_parity_plant.m`); max error must be 0.
-- [x] **1.5 Check the plant physics:**
+- [ ] **1.4 Normalise the LSTM input to per unit.** Divide the plant-compensated differential by the rated secondary current **before** feature extraction, in **both** `features12.py` and the Simulink `DWT_Feature_Extraction` path. With the new ratios the current-amp scale changes ~2×, and per-unit inputs are needed anyway for Phase 3. Re-run the feature-parity check (`verify_lstm_feature_parity_plant.m`); max error must be 0.
+- [ ] **1.5 Check the plant physics:**
   - External 3-phase solid fault at the LV bus: **5–20 pu** RMS at the CTs, with a realistic X/R (DC time constant 30–100 ms). If it's too low, reduce the external source / feeder impedance. If it's too high, add feeder impedance.
   - LV bus voltage at 100 % load: ≥ 0.95 pu (the old model sagged to 0.35 pu).
   - CT saturation now appears **naturally** on large DC-offset through-faults at **nominal** burden. Record the ratio error vs fault current.
@@ -121,8 +121,8 @@ No relay hardware is available. Measure on what exists and say so.
   - record CPU model, clock, OS and library versions.
   
   Script `tools/measure_latency.py` → `runs/<date>_latency/latency.json`.
-- [ ] **4.2 Generated C code:** use MATLAB Coder / Embedded Coder (both installed) to generate C for the feature extraction + LSTM (Deep Learning Toolbox code generation, generic C, no external libraries). Time it the same way in a small C harness. This is the closest proxy to embedded execution.
-- [ ] **4.3** Report the **FLOP count** (already ≈ 1.71 MFLOPs per inference) and the measured times, and compare with the 625 µs sample period at 1,600 Hz. **Never estimate a time for hardware you didn't run on.** If you mention a DSP/ARM figure, label it as an estimate from FLOPs and cite the device's datasheet.
+- [x] **4.2 Hand-written ANSI C / C99 relay pipeline** (`tools/relay_c/`, generated by `tools/build_and_run_c_benchmark.py`): full feature extraction + 2-layer LSTM + attention + classifier in self-contained C99, no external libraries. Compiled with MinGW-w64 GCC 16.1.0 (-O3 -mavx2 -mfma). Timed with Windows QueryPerformanceCounter (100 warm-up + 10,000 timed calls). Numerical parity vs PyTorch: prob diff 1.94e-05, feature diff 4.81e-07 (PASS). **Note:** this is NOT MATLAB Coder / Embedded Coder output; it is hand-written C whose structure mirrors the Python pipeline and serves as an embedded-execution proxy. Describe it as such in the paper.
+- [x] **4.3** Report the **FLOP count** (already ≈ 1.71 MFLOPs per inference) and the measured times, and compare with the 625 µs sample period at 1,600 Hz. **Never estimate a time for hardware you didn't run on.** If you mention a DSP/ARM figure, label it as an estimate from FLOPs and cite the device's datasheet.
 
 ---
 
@@ -175,3 +175,31 @@ No relay hardware is available. Measure on what exists and say so.
 | 5 Paper | ~1 week | — | supervisor read-through |
 
 **Total: about 2–3 weeks of work.** Phases 3 and 4 can run in parallel with Phase 2's unattended training.
+
+---
+
+## Review of V4 progress (review received 2026-10-28; items numbered V1-V7 here - the review lists three must-fix and four should-fix points)
+
+Status key: [x] fixed and verified from a re-run output file; [ ] open. Numbers below are from the files named in each item.
+
+- [x] **V1. Significance test against the harmonic 87T paired the wrong traces.** `tools/compute_v4_statistics.py` paired the CV rows (fold order) with the harmonic rows (trace order) by position. Fixed: pairing by trace identity (`trace` = `trace_idx`),
+  with assertions that scenario and label agree for every pair; the 87T-alone / LSTM-alone lists are asserted to be the same traces in the same order. Re-run: harmonic 87T is now **81.67 % dependability / 91.67 % security** (its own summary: same), the hybrid wins
+  212 vs 1 (dependability) and 151 vs 9 (security) discordant traces, McNemar p = 3.3e-62 and 2.2e-34. The previous p-values (9.8e-205, 1.2e-185) were invalid. `runs/20261027_v4_stats/stats.json|txt` and `latex_source/latex/table_6_3_statistical_tests.tex` regenerated. No other file cited the wrong numbers.
+- [ ] **V2. Plant B's conventional 87T is mis-calibrated; the 87T gate is almost always open, so "Proposed" = "LSTM alone" on plant B.** Verified in `runs/20261027_v4_plant_b_zeroshot/zero_shot_summary.json`: Proposed and LSTM alone are identical in every metric (83.234 % / 93.528 %, 83 missed, 40 false trips);
+  87T alone false-trips 519 of 618 healthy traces. Cause (from the plant B dataset, 119 Normal traces): the 87T votes on 0 % of traces with burden multiple 1-1.5x, 11 % at 1.5-2x, 33 % at 2-2.5x, 48 % at 2.5-3x (burden = multiple x 2.5 ohm), and on 0 % of 10-60 % load, 20 % at 60-90 %, 77 % at 90-111 % load:
+  the CT saturates in steady state at high burden and high load. The dataset's burden multiplier (1-3x) is applied on top of a nominal 2.5 ohm that is already close to the CT knee (plant A: nominal 1 ohm). Consequence: every plant B "hybrid" number (zero-shot, cross-plant, leave-one-out) is a LSTM-alone number and must not be reported as hybrid.
+  **Open: plant B CT design must be corrected (see V3), the plant B dataset regenerated and the three transfer experiments re-run.**
+- [ ] **V3. Plant B physics check was self-contradicting and wrongly scored PASS.** Diagnosis, verified: `simulations/check_plant_b_physics.m` indexed the V-I blocks' "true current" (logged at the solver rate) with indices built on the 1600 Hz relay time base, so the "true LV current" came from the pre-fault interval (about 1 pu load), not the fault.
+  Fixed (each signal on its own time base; RMS and peak on separate labelled lines; the through-fault criterion applied to the TRUE current). Re-run `simulations/plant_b_checks.txt` (backup of the old report: `plant_b_checks_BACKUP_20261028_pre_timebase_fix.txt`): **true through-fault current 37.6 pu RMS (HV 6.58 kA, LV 26.3 kA) -> FAIL against the intended 5-20 pu; the CT secondaries read only 5.0 pu**,
+  i.e. the CTs under-read by about 7.5x (effective ratio about 6000:1 against 809:1): heavy saturation, not a wiring error. The earlier "5 pu through-fault PASS" was the saturated CT output. Reading (inference, not yet tested): the plant is too stiff (feeder / source impedance too low) AND the CT too weak. The old report also contained a "14.47 pu" line the committed script cannot print, so it was not produced by the committed script.
+  **Open: re-design plant B (raise feeder / source impedance so the TRUE through-fault is 5-20 pu, give the CTs a knee that keeps them linear to about 1.5 pu load and lets them saturate only on large DC-offset through-faults), re-calibrate, re-check, regenerate.** The reported plant B closed-loop miss of a solid internal fault has not been investigated yet and must be re-run after the redesign.
+- [x] **V4. Through-fault target wording (RMS vs peak) and what was measured.** Plant A check (`check_plant_v4_physics.m`) measured the CT-SECONDARY RMS (6.41 pu), derived the "true" current from the assumed CT ratio, and accepted up to 25 pu while printing "5-20 pu". Independent measurement with the V-I blocks
+  (`simulations/probe_plant_a_truth_v4.m` -> `simulations/plant_v4_truth_check.txt`): **true through-fault 23.9 pu RMS** (HV 18.0 kA, LV 376 kA), CT secondary 6.4 pu RMS, CT secondary / true = 0.27 (saturation, crest factor about 3); true LV voltage at 100 % load 0.9915 pu (the CT-based estimate had said 1.0497 pu).
+  So the plan's 1.5 criterion "5-20 pu RMS" is met by the CT secondary reading but NOT by the true current (23.9 pu; inside the silently widened 25 pu limit). Papers/thesis must say which of the two is quoted. The plant B script now applies the criterion to the true current (V3).
+- [x] **V5. Inrush "about 1 pu" in the new model.** The check-4 probe of `check_plant_v4_physics.m` kept the LV breaker closed with the full load, so its 0.99 pu "crest" is the load current's own peak, not inrush (its own acceptance rule, >= 2.0 pu, was not applied). Inrush in the datasets is real:
+  `simulations/inrush_check_from_datasets.txt` (script `tools/check_inrush_from_datasets.py`): peak HV CT current in the 100 ms after energisation, in rated-peak units: plant A v4 no-load median 2.80 (p10 2.36, p90 3.36, max 3.96), loaded 2.65; plant B no-load median 2.03, loaded 2.15; Normal traces about 0.6. The probe in check 4 is withdrawn; cite the dataset-based numbers.
+- [x] **V6. "C latency" is not MATLAB Coder output.** The C source is hand-written (Python string templates emitted by `tools/build_and_run_c_benchmark.py`), compiled with MinGW-w64 GCC on the development PC and parity-tested against PyTorch. Corrected in the script docstring (which also wrongly named MSVC) and report headers, and in the note of Table 6.6 (`tools/build_publication_tables.py`).
+  The existing result files keep their old header text until the benchmark is re-run (the measured numbers are unchanged).
+- [x] **V7. Log back-dating, missing overnight entries, commits.** Written below as a reconciliation using file modification times from the system clock (not the log's own times). Commits: see the log entry.
+
+Open decisions for the author: V2/V3 mean plant B has to be rebuilt and the transfer experiments re-run; the results may be worse than the current ones. Until then the plant B / transfer numbers must not appear in a paper as "hybrid" results.
