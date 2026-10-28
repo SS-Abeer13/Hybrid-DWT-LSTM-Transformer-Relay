@@ -2,11 +2,12 @@
 
 Phase 2.5 of IMPLEMENTATION_PLAN_V4_PUBLICATION.md:
 - Paired McNemar tests on identical test traces:
-    Proposed Hybrid vs Conventional Harmonic 87T (per-phase)
-    Proposed Hybrid vs Best Literature Models (1D-CNN, Wavelet-GRU, Wavelet-RF, etc.)
+    1. Proposed Hybrid vs Conventional Unrestrained 87T
+    2. Proposed Hybrid vs Per-Phase Harmonic Restrained 87T (R3)
+    3. Proposed Hybrid vs Literature Models (when available)
   for Dependability and Security separately.
 - Wilson 95% confidence intervals per scenario category and overall.
-- Multi-seed fold-model statistics (Mean +/- SD over the 15 fold-models).
+- Multi-seed fold-model statistics (Mean +/- SD over available fold-models).
 - Saves results to runs/<date>_v4_stats/stats.json and stats.txt.
 """
 from __future__ import annotations
@@ -96,41 +97,64 @@ def compute_statistics(args):
     print("COMPUTING STATISTICAL SIGNIFICANCE & CONFIDENCE INTERVALS (v4)")
     print("=" * 80)
 
-    # 1. Load CV summary and fold results
+    # 1. Load CV summary or dynamic fold results
     cv_summary_file = cv_dir / "summary.json"
-    if not cv_summary_file.is_file():
-        raise FileNotFoundError(f"Missing CV summary: {cv_summary_file}")
-    cv_data = json.loads(cv_summary_file.read_text(encoding="utf-8"))
+    if cv_summary_file.is_file():
+        cv_data = json.loads(cv_summary_file.read_text(encoding="utf-8"))
+        fold_summs = cv_data.get("fold_summaries", [])
+        seed1_dir = cv_dir / f"seed_{cv_data['seeds'][0]}" if "seeds" in cv_data and len(cv_data["seeds"]) > 1 else cv_dir
+    else:
+        # Discover all available fold result files
+        all_res_files = sorted(cv_dir.glob("**/fold*/result.json"))
+        if not all_res_files:
+            raise FileNotFoundError(f"No fold results found in {cv_dir}")
+        fold_summs = [json.loads(f.read_text(encoding="utf-8"))["summary"] for f in all_res_files]
+        seed1_files = [f for f in all_res_files if "seed_20261021" in str(f) or "seed_" not in str(f)]
+        seed1_dir = seed1_files[0].parent.parent if seed1_files else all_res_files[0].parent.parent
+        cv_data = {"fold_summaries": fold_summs}
 
-    # Load fold results for Seed 1 (or pooled)
-    seed1_dir = cv_dir / f"seed_{cv_data['seeds'][0]}" if "seeds" in cv_data and len(cv_data["seeds"]) > 1 else cv_dir
+    # Load fold results for Seed 1
     fold_files = sorted(seed1_dir.glob("fold*/result.json"))
+    if not fold_files:
+        fold_files = sorted(cv_dir.glob("fold*/result.json"))
 
     traces_hybrid = []
     traces_87t = []
+    traces_lstm = []
     for f in fold_files:
         fd = json.loads(f.read_text(encoding="utf-8"))
         traces_hybrid.extend(fd["rows"]["Hybrid + AI-alone path"])
         traces_87t.extend(fd["rows"]["87T alone"])
-
-    # Load Harmonic 87T summary
-    harm_summary_file = harmonic_dir / "summary.json"
-    harm_data = json.loads(harm_summary_file.read_text(encoding="utf-8")) if harm_summary_file.is_file() else None
+        if "LSTM alone" in fd["rows"]:
+            traces_lstm.extend(fd["rows"]["LSTM alone"])
 
     # Align rows
     head_hybrid = [r for r in traces_hybrid if not r.get("undetectable")]
     head_87t = [r for r in traces_87t if not r.get("undetectable")]
+    head_lstm = [r for r in traces_lstm if not r.get("undetectable")]
 
     y_true = np.array([1 if r["should_trip"] else 0 for r in head_hybrid])
     y_hybrid = np.array([1 if r["tripped"] and not r.get("tripped_before_fault") else 0 for r in head_hybrid])
     y_87t = np.array([1 if r["tripped"] and not r.get("tripped_before_fault") else 0 for r in head_87t])
+    y_lstm = np.array([1 if r["tripped"] and not r.get("tripped_before_fault") else 0 for r in head_lstm]) if head_lstm else None
 
-    # McNemar tests
+    # McNemar tests against Unrestrained 87T
     mcnemar_dep_87t = mcnemar_test(y_true, y_hybrid, y_87t, subset_condition=True)
     mcnemar_sec_87t = mcnemar_test(y_true, y_hybrid, y_87t, subset_condition=False)
 
+    # McNemar tests against Harmonic 87T per-phase (if rows are available)
+    harm_summary_file = harmonic_dir / "summary.json"
+    harm_data = json.loads(harm_summary_file.read_text(encoding="utf-8")) if harm_summary_file.is_file() else None
+    mcnemar_dep_harm = None
+    mcnemar_sec_harm = None
+    if harm_data and "per_phase" in harm_data.get("variants", {}) and "rows" in harm_data["variants"]["per_phase"]:
+        harm_rows = [r for r in harm_data["variants"]["per_phase"]["rows"] if not r.get("undetectable")]
+        if len(harm_rows) == len(head_hybrid):
+            y_harm = np.array([1 if r["tripped"] and not r.get("early") else 0 for r in harm_rows])
+            mcnemar_dep_harm = mcnemar_test(y_true, y_hybrid, y_harm, subset_condition=True)
+            mcnemar_sec_harm = mcnemar_test(y_true, y_hybrid, y_harm, subset_condition=False)
+
     # Multi-seed fold-model statistics (Mean +/- SD)
-    fold_summs = cv_data["fold_summaries"]
     metrics_summary = {}
     for var in ("87T alone", "LSTM alone", "Hybrid (87T gate)", "Hybrid + AI-alone path"):
         deps = [f["variants"][var]["dependability_pct"] for f in fold_summs if f["variants"][var]["dependability_pct"] is not None]
@@ -145,31 +169,38 @@ def compute_statistics(args):
         }
 
     # Category Wilson Intervals for Hybrid + AI-alone path
-    by_cat = cv_data["pooled"]["Hybrid + AI-alone path"]["by_category"]
+    cats = defaultdict(list)
+    for r in head_hybrid:
+        cats[r["category"]].append(r)
     category_cis = {}
-    for cat_name, cinfo in sorted(by_cat.items()):
+    for cat_name, c_rows in sorted(cats.items()):
+        k_correct = sum(1 for r in c_rows if r["correct"])
+        n_c = len(c_rows)
+        lo, hi = wilson_interval(k_correct, n_c)
         category_cis[cat_name] = {
-            "n": cinfo["n"],
-            "correct": cinfo["correct"],
-            "accuracy_pct": cinfo["correct_pct"],
-            "ci95": cinfo["ci95"],
-            "should_trip": cinfo["should_trip"],
+            "n": n_c,
+            "correct": k_correct,
+            "accuracy_pct": 100.0 * k_correct / n_c if n_c > 0 else 0.0,
+            "ci95": [lo, hi],
+            "should_trip": bool(c_rows[0]["should_trip"]),
         }
 
     # Compare against Literature if available
     lit_dir = Path(args.lit_dir) if args.lit_dir and Path(args.lit_dir).is_absolute() else (ROOT / args.lit_dir if args.lit_dir else None)
     lit_comparisons = {}
-    if lit_dir and (lit_dir / "benchmark_summary.json").is_file():
-        lit_data = json.loads((lit_dir / "benchmark_summary.json").read_text(encoding="utf-8"))
-        for m_name, m_info in lit_data.get("models", {}).items():
-            if m_name in ("Proposed Hybrid DWT-LSTM", "Conventional 87T"):
-                continue
-            # Compare metrics
-            lit_comparisons[m_name] = {
-                "dependability_pct": m_info.get("standalone", {}).get("dependability_pct"),
-                "security_pct": m_info.get("standalone", {}).get("security_pct"),
-                "accuracy_pct": m_info.get("standalone", {}).get("accuracy_pct"),
-            }
+    if lit_dir:
+        summary_f = lit_dir / "literature_benchmark_summary.json" if (lit_dir / "literature_benchmark_summary.json").is_file() else (lit_dir / "benchmark_summary.json")
+        if summary_f.is_file():
+            lit_data = json.loads(summary_f.read_text(encoding="utf-8"))
+            models_dict = lit_data.get("summaries", lit_data.get("models", {}))
+            for m_name, m_info in models_dict.items():
+                if m_name in ("Proposed Hybrid DWT-LSTM", "Conventional 87T"):
+                    continue
+                lit_comparisons[m_name] = {
+                    "dependability_pct": m_info.get("standalone", {}).get("dependability_pct"),
+                    "security_pct": m_info.get("standalone", {}).get("security_pct"),
+                    "accuracy_pct": m_info.get("standalone", {}).get("accuracy_pct"),
+                }
 
     results = {
         "mcnemar": {
@@ -177,8 +208,12 @@ def compute_statistics(args):
                 "dependability": mcnemar_dep_87t,
                 "security": mcnemar_sec_87t,
             },
+            "proposed_vs_harmonic_87t_per_phase": {
+                "dependability": mcnemar_dep_harm,
+                "security": mcnemar_sec_harm,
+            } if mcnemar_dep_harm else None,
         },
-        "multi_seed_15_fold_models": metrics_summary,
+        "multi_seed_fold_models": metrics_summary,
         "category_wilson_95ci": category_cis,
         "literature_comparisons": lit_comparisons,
     }
@@ -189,20 +224,43 @@ def compute_statistics(args):
         "STATISTICAL SIGNIFICANCE AND UNCERTAINTY ANALYSIS (v4 DATASET)",
         "=" * 100,
         "",
-        "1. PAIRED MCNEMAR SIGNIFICANCE TESTS (Proposed Hybrid vs 87T Baseline):",
-        f"   - Dependability (Fault Traces, N = {mcnemar_dep_87t['n_traces']}):",
-        f"       Proposed: {mcnemar_dep_87t['accuracy_A_pct']:.2f}% | 87T Baseline: {mcnemar_dep_87t['accuracy_B_pct']:.2f}%",
-        f"       Contingency Table: Both Pass = {mcnemar_dep_87t['table']['n11']}, Proposed Wins = {mcnemar_dep_87t['table']['n10_A_wins_B_fails']}, "
+        "1. PAIRED MCNEMAR SIGNIFICANCE TESTS:",
+        f"   [A] Proposed Hybrid vs Conventional Unrestrained 87T (N = {len(y_true)}):",
+        f"       - Dependability (Fault Traces, N = {mcnemar_dep_87t['n_traces']}):",
+        f"           Proposed: {mcnemar_dep_87t['accuracy_A_pct']:.2f}% | 87T Baseline: {mcnemar_dep_87t['accuracy_B_pct']:.2f}%",
+        f"           Contingency: Both Pass = {mcnemar_dep_87t['table']['n11']}, Proposed Wins = {mcnemar_dep_87t['table']['n10_A_wins_B_fails']}, "
         f"87T Wins = {mcnemar_dep_87t['table']['n01_A_fails_B_wins']}, Both Fail = {mcnemar_dep_87t['table']['n00']}",
-        f"       Discordant pairs: {mcnemar_dep_87t['n_discordant']}, Chi2 = {mcnemar_dep_87t['chi2_stat']:.3f}, p-value = {mcnemar_dep_87t['p_value']:.4e} "
+        f"           Discordant: {mcnemar_dep_87t['n_discordant']}, Chi2 = {mcnemar_dep_87t['chi2_stat']:.3f}, p-value = {mcnemar_dep_87t['p_value']:.4e} "
         f"({'p < 0.001 ***' if mcnemar_dep_87t['p_value'] < 0.001 else 'p < 0.05 *' if mcnemar_dep_87t['p_value'] < 0.05 else 'not significant'})",
         "",
-        f"   - Security (Healthy / Inrush / External Traces, N = {mcnemar_sec_87t['n_traces']}):",
-        f"       Proposed: {mcnemar_sec_87t['accuracy_A_pct']:.2f}% | 87T Baseline: {mcnemar_sec_87t['accuracy_B_pct']:.2f}%",
-        f"       Contingency Table: Both Restrain = {mcnemar_sec_87t['table']['n11']}, Proposed Wins = {mcnemar_sec_87t['table']['n10_A_wins_B_fails']}, "
+        f"       - Security (Healthy / Inrush / External Traces, N = {mcnemar_sec_87t['n_traces']}):",
+        f"           Proposed: {mcnemar_sec_87t['accuracy_A_pct']:.2f}% | 87T Baseline: {mcnemar_sec_87t['accuracy_B_pct']:.2f}%",
+        f"           Contingency: Both Restrain = {mcnemar_sec_87t['table']['n11']}, Proposed Wins = {mcnemar_sec_87t['table']['n10_A_wins_B_fails']}, "
         f"87T Wins = {mcnemar_sec_87t['table']['n01_A_fails_B_wins']}, Both False-Trip = {mcnemar_sec_87t['table']['n00']}",
-        f"       Discordant pairs: {mcnemar_sec_87t['n_discordant']}, Chi2 = {mcnemar_sec_87t['chi2_stat']:.3f}, p-value = {mcnemar_sec_87t['p_value']:.4e} "
+        f"           Discordant: {mcnemar_sec_87t['n_discordant']}, Chi2 = {mcnemar_sec_87t['chi2_stat']:.3f}, p-value = {mcnemar_sec_87t['p_value']:.4e} "
         f"({'p < 0.001 ***' if mcnemar_sec_87t['p_value'] < 0.001 else 'p < 0.05 *' if mcnemar_sec_87t['p_value'] < 0.05 else 'not significant'})",
+    ]
+
+    if mcnemar_dep_harm and mcnemar_sec_harm:
+        L += [
+            "",
+            f"   [B] Proposed Hybrid vs Per-Phase Harmonic Restrained 87T (R3) (N = {len(y_true)}):",
+            f"       - Dependability (Fault Traces, N = {mcnemar_dep_harm['n_traces']}):",
+            f"           Proposed: {mcnemar_dep_harm['accuracy_A_pct']:.2f}% | Harmonic 87T (R3): {mcnemar_dep_harm['accuracy_B_pct']:.2f}%",
+            f"           Contingency: Both Pass = {mcnemar_dep_harm['table']['n11']}, Proposed Wins = {mcnemar_dep_harm['table']['n10_A_wins_B_fails']}, "
+            f"Harmonic 87T Wins = {mcnemar_dep_harm['table']['n01_A_fails_B_wins']}, Both Fail = {mcnemar_dep_harm['table']['n00']}",
+            f"           Discordant: {mcnemar_dep_harm['n_discordant']}, Chi2 = {mcnemar_dep_harm['chi2_stat']:.3f}, p-value = {mcnemar_dep_harm['p_value']:.4e} "
+            f"({'p < 0.001 ***' if mcnemar_dep_harm['p_value'] < 0.001 else 'p < 0.05 *' if mcnemar_dep_harm['p_value'] < 0.05 else 'not significant'})",
+            "",
+            f"       - Security (Healthy / Inrush / External Traces, N = {mcnemar_sec_harm['n_traces']}):",
+            f"           Proposed: {mcnemar_sec_harm['accuracy_A_pct']:.2f}% | Harmonic 87T (R3): {mcnemar_sec_harm['accuracy_B_pct']:.2f}%",
+            f"           Contingency: Both Restrain = {mcnemar_sec_harm['table']['n11']}, Proposed Wins = {mcnemar_sec_harm['table']['n10_A_wins_B_fails']}, "
+            f"Harmonic 87T Wins = {mcnemar_sec_harm['table']['n01_A_fails_B_wins']}, Both False-Trip = {mcnemar_sec_harm['table']['n00']}",
+            f"           Discordant: {mcnemar_sec_harm['n_discordant']}, Chi2 = {mcnemar_sec_harm['chi2_stat']:.3f}, p-value = {mcnemar_sec_harm['p_value']:.4e} "
+            f"({'p < 0.001 ***' if mcnemar_sec_harm['p_value'] < 0.001 else 'p < 0.05 *' if mcnemar_sec_harm['p_value'] < 0.05 else 'not significant'})",
+        ]
+
+    L += [
         "",
         f"2. MULTI-SEED CROSS-VALIDATION SUMMARY (Mean +/- SD over {len(fold_summs)} Fold-Models):",
         f"   {'Protection Architecture':28s} {'Dependability (%)':>20s} {'Security (%)':>20s} {'Overall Accuracy (%)':>22s}",
@@ -238,7 +296,7 @@ def compute_statistics(args):
 
 def main():
     parser = argparse.ArgumentParser(description="Compute Paired Statistics and Wilson CIs for v4")
-    parser.add_argument("--cv-dir", required=True, help="Path to v4 CV run directory")
+    parser.add_argument("--cv-dir", default="runs/20261027_v4_cv5_seeds", help="Path to v4 CV run directory")
     parser.add_argument("--harmonic-dir", default="runs/20261027_v4_harmonic87t", help="Path to harmonic 87T results")
     parser.add_argument("--lit-dir", default=None, help="Path to literature benchmark results")
     parser.add_argument("--output-dir", default="runs/20261027_v4_stats", help="Output directory")

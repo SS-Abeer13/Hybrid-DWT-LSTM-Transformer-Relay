@@ -1,28 +1,27 @@
 % Auto-generated literature benchmark tables for Chapter 6
 \begin{table}[H]\centering
-\caption{Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (Repetition~1, grouped 5-fold cross-validation across $N_{\text{eval}} = 3{,}124$ evaluated traces: $N_{\text{fault,det}} = 1{,}251$ detectable faults and $N_{\text{healthy}} = 1{,}873$ healthy traces, with 94 sub-noise-floor faults segregated).}\label{tab:lit_benchmark}
+\caption{Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (3{,}218 traces, grouped 5-fold cross-validation).}\label{tab:lit_benchmark}
+\setlength{\tabcolsep}{4.0pt}\small
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}llcccccc@{}}\toprule
-\textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Complexity} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule
+\textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Params} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule
 \multicolumn{8}{@{}l}{\textit{Panel A: Standalone Literature Operating Mode (Direct Trip with Dwell Persistence)}} \\ \midrule
-Conventional 87T & Sharp \cite{ref7} (1958) & --- & 79.62 & 52.96 & 63.64 & 0.6\,ms & 881 \\
-Wavelet-SVM & Sim\~{o}es \cite{ref13} (2021) & 5,880 & 88.25 & 91.94 & 90.46 & 30.6\,ms & 151 \\
-Wavelet-ANN & Ngaopitakkul \cite{ref19} / Costa \cite{ref18} & 5,441 & 98.32 & 99.57 & 99.07 & 16.9\,ms & 8 \\
-Wavelet-RF & Abdusalam \cite{ref11} (2022) & 100 trees & 98.64 & 99.89 & 99.39 & 18.1\,ms & 2 \\
-1D-CNN & Afrasiabi \cite{ref16} (2020) & 14,561 & 98.96 & 99.36 & 99.20 & 16.2\,ms & 12 \\
-Wavelet-GRU & Lin \cite{ref23} (2025) & 44,354 & 99.20 & 98.93 & 99.04 & 15.0\,ms & 20 \\
-Standalone LSTM & Alhamd \cite{ref1} / Atiyah \cite{ref3} & 58,241 & 99.04 & 99.31 & 99.20 & 15.0\,ms & 13 \\
+Conventional 87T & Sharp [7] (1958) & --- & 80.33 & 30.17 & 50.80 & 0.6\,ms & 1266 \\
+Wavelet-SVM & Simoes [13] (2021) & 5,880 & 93.13 & 82.79 & 87.04 & 20.6\,ms & 312 \\
+Wavelet-ANN & Guzman [19] / Costa [18] & 5,441 & 98.50 & 99.56 & 99.12 & 21.2\,ms & 8 \\
+Wavelet-RF & Abdusalam [11] (2022) & 41,806 & 98.34 & 99.17 & 98.83 & 20.0\,ms & 15 \\
+1D-CNN & Afrasiabi [16] (2020) & 14,561 & 98.34 & 99.45 & 98.99 & 21.2\,ms & 10 \\
+Wavelet-GRU & Lin [23] (2025) & 44,354 & 99.29 & 99.45 & 99.38 & 17.5\,ms & 10 \\
+Standalone LSTM & Alhamd [1] / Atiyah [3] & 58,241 & 99.21 & 99.45 & 99.35 & 17.5\,ms & 10 \\
 \midrule
 \multicolumn{8}{@{}l}{\textit{Panel B: Under Proposed Supervisory Hybrid Architecture (87T Handshake + AI-Alone Path)}} \\ \midrule
-Wavelet-SVM & Dual-Path Hybrid & 5,880 & 84.33 & 99.63 & 93.50 & 31.2\,ms & 7 \\
-Wavelet-ANN & Dual-Path Hybrid & 5,441 & 96.72 & 99.89 & 98.62 & 19.4\,ms & 2 \\
-Wavelet-RF & Dual-Path Hybrid & 100 trees & 97.12 & 99.95 & 98.82 & 20.0\,ms & 1 \\
-1D-CNN & Dual-Path Hybrid & 14,561 & 97.76 & 99.95 & 99.07 & 18.8\,ms & 1 \\
-Wavelet-GRU & Dual-Path Hybrid & 44,354 & 97.92 & 99.57 & 98.91 & 15.6\,ms & 8 \\
-\textbf{Proposed Hybrid DWT-LSTM} & Dual-Path Hybrid & 58,241 & \textbf{98.56} & \textbf{99.41} & \textbf{99.07} & \textbf{15.6\,ms} & \textbf{11} \\
+Wavelet-SVM & Dual-Path Hybrid & 5,880 & 86.97 & 93.00 & 90.52 & 35.6\,ms & 127 \\
+Wavelet-ANN & Dual-Path Hybrid & 5,441 & 97.08 & 99.72 & 98.64 & 22.5\,ms & 5 \\
+Wavelet-RF & Dual-Path Hybrid & 41,806 & 96.52 & 99.78 & 98.44 & 22.5\,ms & 4 \\
+1D-CNN & Dual-Path Hybrid & 14,561 & 97.87 & 99.67 & 98.93 & 21.9\,ms & 6 \\
+Wavelet-GRU & Dual-Path Hybrid & 44,354 & 98.82 & 99.67 & 99.32 & 18.8\,ms & 6 \\
+\textbf{Proposed Hybrid DWT-LSTM} & Dual-Path Hybrid & 58,241 & 98.34 & 99.50 & 99.03 & 17.5\,ms & 9 \\
 \bottomrule
 \end{tabular}%
 }
-\vspace{2pt}
-\raggedright\footnotesize\textit{Note:} Med.\,$T_{op}$ is median relay operate time (breaker opening not modelled). Baseline 87T lacks harmonic restraint. For comparison, a conventional 87T with phase-independent harmonic restraint ($k_2 \le 15\%$, $k_5 \le 35\%$) attains 84.33\% dep.\ and 97.97\% sec.\ (38 false trips), while the Proposed Hybrid achieves 98.56\% dep.\ and 99.41\% sec.\ (11 false trips).
 \end{table}

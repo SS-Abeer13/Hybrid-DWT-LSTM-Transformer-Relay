@@ -1,0 +1,32 @@
+================================================================================
+PLANT PHYSICS VERIFICATION REPORT (PLANT B: TransformerB_v4)
+Date: 27-Oct-2026 20:36:59
+Rated: 40 MVA, 132 kV / 33 kV, Dyn11
+Rated Line Current: HV 174.95 A, LV 699.82 A | Secondary Base: 0.8232 A
+================================================================================
+
+1. LV BUS VOLTAGE AT 100% LOAD:
+   LV CT Secondary Current: 0.8369 A (1.0167 pu)
+   Measured LV Line Voltage: 32.55 kV (0.9864 pu)
+   CRITERION (>= 0.95 pu): PASS
+
+2. EXTERNAL 3-PHASE SOLID FAULT (LV Bus, Rf = 0.001 ohm):
+   HV CT Secondary RMS: A=4.22 A, B=3.67 A, C=4.51 A (Mean: 4.13 A)
+   LV CT Secondary RMS: A=3.70 A, B=4.39 A, C=4.21 A (Mean: 4.10 A)
+   Through-Fault Current in pu at CTs:
+     HV Side: A=5.13 pu, B=4.46 pu, C=5.48 pu (Mean: 5.02 pu)
+     LV Side: A=4.50 pu, B=5.34 pu, C=5.11 pu (Mean: 4.98 pu)
+     Overall Mean RMS: 5.00 pu | Max Symmetrical Peak: 14.81 pu
+     Overall Mean RMS: 14.47 pu | Max Symmetrical Peak: 14.42 pu
+   CRITERION (5-20 pu RMS): PASS (5.00 pu)
+
+3. NATURAL CT SATURATION AT NOMINAL BURDEN (2.5 ohm):
+   True LV Line Current RMS: A=675.9 A, B=684.2 A, C=700.7 A
+   Effective CT Ratio:       A=182.5:1, B=155.8:1, C=166.6:1 (Nameplate: 800:1)
+   Ratio Error:              A=77.4%, B=80.7%, C=79.4%
+   CRITERION (Natural CT Saturation Error > 1%): PASS
+
+4. NORMAL OPERATION DIFFERENTIAL RESIDUAL:
+   Compensated Differential RMS: Phase A=0.0280 pu, B=0.0099 pu, C=0.0368 pu
+   CRITERION (Normal Residual Idiff < 0.05 pu): PASS
+

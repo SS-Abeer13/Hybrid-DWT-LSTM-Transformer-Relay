@@ -50,15 +50,19 @@ def compensated_diff(primary: np.ndarray, secondary: np.ndarray) -> np.ndarray:
     return lv - hv
 
 
-def plant_compensated_diff(primary: np.ndarray, secondary: np.ndarray, i_nom: float = I_NOM_SEC) -> np.ndarray:
-    """Differential in per-unit CT-secondary current with the Yd1 mapping that this PLANT actually obeys.
+def plant_compensated_diff(primary: np.ndarray, secondary: np.ndarray, i_nom: float = I_NOM_SEC, plant: str = "A") -> np.ndarray:
+    """Differential in per-unit CT-secondary current with the vector-group mapping that this PLANT actually obeys.
 
-    Fitted on healthy traces (2026-10-20): LV_amps ~= (1/sqrt3) [[1,0,-1],[-1,1,0],[0,-1,1]] @ HV_amps.
+    Plant A (YNd1): LV_amps ~= (1/sqrt3) [[1,0,-1],[-1,1,0],[0,-1,1]] @ HV_amps.
+    Plant B (Dyn11): HV is Delta, LV is Wye. Compensation applied on LV side.
     Divided by i_nom so the LSTM input is normalised to per-unit (Step 1.4 / Phase 3 scale invariance).
     """
+    if plant.upper() == "B":
+        m_dyn11 = (1 / np.sqrt(3)) * np.array([[1, -1, 0], [0, 1, -1], [-1, 0, 1]])
+        return (secondary @ m_dyn11.T - primary) / (i_nom if i_nom != I_NOM_SEC else 0.8232)
     return (secondary - primary @ M_YD1) / i_nom
 
 
-def plant_compensated_diff_pu(primary: np.ndarray, secondary: np.ndarray, i_nom: float = I_NOM_SEC) -> np.ndarray:
+def plant_compensated_diff_pu(primary: np.ndarray, secondary: np.ndarray, i_nom: float = I_NOM_SEC, plant: str = "A") -> np.ndarray:
     """Explicit alias for per-unit plant-compensated differential."""
-    return plant_compensated_diff(primary, secondary, i_nom=i_nom)
+    return plant_compensated_diff(primary, secondary, i_nom=i_nom, plant=plant)

@@ -1,0 +1,17 @@
+Closed-loop validation (v4), LSTM active, relay trip logic of the saved model, 27-Oct-2026 19:14:50
+case                                 expect   actual   max prob  delay ms   status  
+--------------------------------------------------------------------------------------
+Normal, 30 % load                    BLOCK    BLOCK    0.0003    NaN        PASS    
+Normal, 100 % load                   BLOCK    BLOCK    0.0000    NaN        PASS    
+Inrush 0.8 pu remanence, 0 deg       BLOCK    BLOCK    0.0071    NaN        PASS    
+Recovery inrush (HV bus, 50 ms)      BLOCK    BLOCK    0.0038    NaN        PASS    
+Over-excitation 1.3 pu               BLOCK    BLOCK    0.0000    NaN        PASS    
+External 3-phase solid               BLOCK    BLOCK    0.0000    NaN        PASS    
+External A-G + CT saturation 8 x     BLOCK    BLOCK    0.0000    NaN        PASS    
+Internal A-G solid (LV side)         TRIP     TRIP     1.0000    15.6       PASS    
+Internal A-B, HV side                TRIP     TRIP     1.0000    2.9        PASS    
+Internal HiZ A-B, AI-only bin        TRIP     TRIP     1.0000    16.2       PASS    
+SOTF A-B                             TRIP     TRIP     1.0000    19.4       PASS    
+Fault during inrush A-B-G            TRIP     TRIP     1.0000    40.6       FAIL    
+--------------------------------------------------------------------------------------
+Passed 11 / 12 (trip decisions correct; internal faults must trip within 30 ms of the fault / energisation)

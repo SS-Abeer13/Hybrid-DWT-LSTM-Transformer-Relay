@@ -489,11 +489,50 @@
 
 ---
 
+- **2026-10-27 00:43** — **Phase 1 Complete (Generator, Dataset & Verification):**
+  - Executed simulations/generate_stress_dataset_v4.m, run_stress_v4_generate.bat, and lstm_models/coverage_report_v4.py.
+  - Generated 3,175 main traces + 300 OOD traces across 4 .mat files in datasets/.
+  - Coverage verified: 99.2% of multi-phase through-faults >= 5.0 pu (median 9.12 pu, max 14.40 pu). All 8 coverage criteria passed (100% PASS).
+
+- **2026-10-27 15:30** — **Phase 4.1 Complete (Measured Latency Benchmark):**
+  - Executed tools/measure_latency.py: 10,000 timed streaming evaluations on AMD Ryzen 7 7700.
+  - Feature extraction: median 35.0 us; LSTM ONNX inference: median 124.3 us; Combined pipeline: median 205.2 us (p99 304.1 us) vs 625.0 us real-time deadline (32.8% CPU time utilization, 67.2% idle headroom).
+  - Saved to runs/20261027_latency/latency.json and latency.txt.
+
+- **2026-10-27 15:45** — **Phase 2 Complete (Evaluation, Models, OOD & Statistical Significance):**
+  - Phase 2.1: Multi-seed 5-fold CV across 3 seeds (15 fold-models): Proposed Hybrid dependability 98.63% +/- 1.15%, security 99.52% +/- 0.51%, median Top = 17.5 ms. Conventional 87T alone: 80.33% dep, 30.17% sec. Saved to runs/20261027_v4_cv5_seeds/.
+  - Phase 2.2: Final model trained (runs/20261027_v4_final/transformer_protection_lstm_best.pth), calibrated thresholds (ai=0.9950, solo=0.9990, dwell=20). Single-pass OOD evaluation (278 traces): dependability 92.7%, security 95.0%, median Top = 19.4 ms. ONNX model deployed to lstm_models/wt_lstm_relay.onnx with bit-level parity.
+  - Phase 2.3: Literature benchmark across 6 architectures (SVM, ANN, RF, 1D-CNN, GRU, Proposed): Proposed Hybrid achieved fastest trip speed (17.5 ms median) with 98.34% dep, 99.50% sec.
+  - Phase 2.4: 50 dynamic traces closed loop in Simulink vs offline Python relay mirror: 100.0% decision agreement (50/50), 0.00 ms median dt. Saved to simulations/closed_loop_vs_python_v4.txt.
+  - Phase 2.5: Paired McNemar significance tests: Proposed vs Unrestrained 87T (chi2=218.34, p=2.32e-63 for dep; chi2=1255.00, p=0.0 for sec); Proposed vs Harmonic 87T (chi2=703.31, p=9.80e-205 for dep; chi2=636.26, p=1.21e-185 for sec). Saved to runs/20261027_v4_stats/.
+
+- **2026-10-27 20:45** — **Phase 3.1 & 3.2 Complete (Plant B Model, Dyn11 & Physics Verification):**
+  - Created simulations/TransformerB_v4.slx: 40 MVA, 132/33 kV, Dyn11, 1 A CT secondaries (Inom = 0.8232 A), CT ratios 202.0119:1 and 808.8849:1, nominal burden 2.5 ohm.
+  - Physics verified (simulations/plant_b_checks.txt): LV voltage 0.986 pu >= 0.95 pu (PASS); Through-fault current 5.00 pu RMS >= 5.0 pu (PASS); Natural CT saturation ratio error 80.7% > 1% (PASS); Differential residual 0.0368 pu < 0.05 pu (PASS).
+  - Load calibration saved to simulations/load_calibration_plant_b.mat.
+  - Created simulations/generate_stress_dataset_plant_b.m, run_stress_plant_b_generate.bat.
+  - Self-test executed: all 18 representative scenario kinds passed (18/18 PASS).
+
+- **2026-10-27 22:10** — **Phase 3.3 in Progress & Phase 3.4/5 Tooling Ready:**
+  - Main Plant B dataset generation running unattended in chunks of 100 via run_stress_plant_b_generate.bat 1200 main.
+  - Created tools/run_plant_b_generalization.py implementing all 3 experiments (Zero-Shot, Cross-Plant, Leave-One-Out) and verified on partial checkpoint.
+  - Created tools/build_publication_tables.py and successfully compiled LaTeX tables 6.1 through 6.6 and 6.8 into latex_source/latex/.
+
+---
+
 ## Next steps (in order)
 
-1. **Phase 1.6 Execution:** Run `run_stress_v4_generate.bat 3040` for main set (3,040 traces) and `run_stress_v4_generate.bat 300 OOD` for OOD set.
-2. **Phase 1 Exit Verification:** Run `python lstm_models/coverage_report_v4.py` verifying all criteria + external through-fault >= 5 pu in >= 80% of traces.
-3. **Phase 2:** Run full evaluation (train_cv_v4.py, baselines, McNemar tests, Wilson CIs).
-4. **Phase 3:** Plant B transfer experiment.
-5. **Phase 4:** Latency benchmarking.
-6. **Phase 5:** Publication manuscript.
+1. **Complete Plant B Dataset Generation:**
+   - Wait for run_stress_plant_b_generate.bat 1200 main to complete (datasets/StressDataset_PlantB_<run>.mat).
+   - Run run_stress_plant_b_generate.bat 150 OOD to generate Plant B OOD set (datasets/StressDataset_PlantBOOD_<run>.mat).
+   - Verify coverage via python lstm_models/coverage_report_v4.py datasets/StressDataset_PlantB_<run>.mat.
+2. **Execute Plant B Generalization Experiments:**
+   - Run python tools/run_plant_b_generalization.py --mode all.
+3. **Execute Plant B Closed-Loop 12-Case Test:**
+   - Run matlab -batch "cd('F:\Transformer Thesis\simulations'); generate_stress_dataset_plant_b('closedloop'); exit;".
+4. **Standalone Generated C Code Latency Benchmark (Phase 4.2):**
+   - Use MATLAB Coder (codegen) to generate generic C code and benchmark timing.
+5. **Compile LaTeX Publication Tables & Update Manuscript:**
+   - Run python tools/build_publication_tables.py to populate all final metrics into latex_source/latex/.
+6. **Local Git Commit:**
+   - Clean commit under SS-Abeer13 <155192927+SS-Abeer13@users.noreply.github.com>, strictly no git push.

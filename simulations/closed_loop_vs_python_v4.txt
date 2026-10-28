@@ -1,0 +1,57 @@
+Simulink closed loop (LSTM active, saved model v4) vs Python relay mirror (final model, AI 0.9950, solo 0.9990, dwell 20) on 50 traces: 25 held-out validation traces of the final model + 25 OOD traces
+
+set        #     scenario                   mirror   simulink      dt ms
+main          86 Normal                     block    block             -
+main         123 Normal                     block    block             -
+main         159 Normal                     block    block             -
+main         171 Normal                     block    block             -
+main         347 Inrush_NoLoad              block    block             -
+main         560 Inrush_Loaded              block    block             -
+main         797 Overexcitation             block    block             -
+main         800 Overexcitation             block    block             -
+main         831 Overexcitation             block    block             -
+main         875 Internal_Evolving          TRIP     TRIP           +0.0
+main         909 Internal_Evolving          TRIP     TRIP           +0.0
+main        1345 InternalHV_AG              TRIP     TRIP           +0.0
+main        1638 External_CG                block    block             -
+main        1689 Stress_ExtCTSat_CG         block    block             -
+main        1804 External_AB                block    block             -
+main        1857 Internal_BC                TRIP     TRIP           +0.0
+main        2087 Stress_ExtCTSat_AC         block    block             -
+main        2108 Stress_CTSat_Int_AC        TRIP     TRIP           +0.0
+main        2116 Internal_ABG               TRIP     TRIP           +0.0
+main        2307 InternalHV_BCG             TRIP     TRIP           +6.7
+main        2553 Internal_ABC               TRIP     TRIP           +0.0
+main        2762 External_ABCG              block    block             -
+main        2811 Internal_HiZ_AB            TRIP     TRIP           +0.0
+main        2960 Internal_HiZ_ABC           TRIP     TRIP           +0.0
+main        3033 Internal_HiZ_AG            TRIP     TRIP           +0.0
+ood           25 Inrush_Loaded              block    block             -
+ood           26 Inrush_Loaded              block    block             -
+ood           27 Inrush_Loaded              block    block             -
+ood           31 Internal_AB                TRIP     TRIP           +0.0
+ood           33 Internal_AB                TRIP     TRIP           +0.0
+ood           35 Internal_AB                TRIP     TRIP           +0.0
+ood           37 Internal_AB                TRIP     TRIP           +0.0
+ood           56 Internal_AG                TRIP     TRIP           +0.0
+ood           73 External_ABC               block    block             -
+ood           87 Inrush_Loaded              block    block             -
+ood          119 InternalHV_AG              TRIP     TRIP           +0.0
+ood          138 Stress_ExtCTSat_AB         block    block             -
+ood          180 Stress_CTSat_Int_AG        TRIP     TRIP           +0.0
+ood          189 Overexcitation             TRIP     TRIP           +4.8
+ood          201 Inrush_Loaded              block    block             -
+ood          219 Internal_AB                TRIP     TRIP           +0.0
+ood          224 Internal_SOTF_AB           TRIP     TRIP           +0.0
+ood          229 Internal_SOTF_AB           TRIP     TRIP           +0.0
+ood          234 Stress_FaultInInrush       TRIP     TRIP           +0.0
+ood          242 Normal                     block    block             -
+ood          266 Inrush_Loaded              block    block             -
+ood          268 Inrush_Loaded              block    block             -
+ood          271 Internal_AB                TRIP     TRIP           +0.0
+ood          288 Internal_ABC               TRIP     TRIP           +0.0
+ood          296 InternalHV_AB              TRIP     TRIP           +0.4
+
+Decision agreement: 50 / 50 = 100.0 %  (criterion >= 98 %)
+Trip-time difference Simulink - mirror over 26 common trips: median 0.00 ms, mean 0.46, p95 3.67, max |dt| 6.73 ms  (criterion median <= 2 ms)
+Simulink correct vs ground truth: 49 / 50; mirror correct: 49 / 50

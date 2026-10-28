@@ -1,0 +1,30 @@
+Closed-loop validation (d4main), LSTM active, relay trip logic of the saved model, 27-Oct-2026 21:00:17
+case                                 expect   actual   max prob  delay ms   status  
+--------------------------------------------------------------------------------------
+Normal #86                           BLOCK    BLOCK    0.0000    NaN        PASS    
+Normal #123                          BLOCK    BLOCK    0.0002    NaN        PASS    
+Normal #159                          BLOCK    BLOCK    0.0000    NaN        PASS    
+Normal #171                          BLOCK    BLOCK    0.0000    NaN        PASS    
+Inrush_NoLoad #347                   BLOCK    BLOCK    0.0036    NaN        PASS    
+Inrush_Loaded #560                   BLOCK    BLOCK    0.0042    NaN        PASS    
+Overexcitation #797                  BLOCK    BLOCK    0.0000    NaN        PASS    
+Overexcitation #800                  BLOCK    BLOCK    0.7583    NaN        PASS    
+Overexcitation #831                  BLOCK    BLOCK    0.0000    NaN        PASS    
+Internal_Evolving #875               TRIP     TRIP     1.0000    22.4       PASS    
+Internal_Evolving #909               TRIP     TRIP     1.0000    30.6       FAIL    
+InternalHV_AG #1345                  TRIP     TRIP     1.0000    22.0       PASS    
+External_CG #1638                    BLOCK    BLOCK    0.0001    NaN        PASS    
+Stress_ExtCTSat_CG #1689             BLOCK    BLOCK    0.0001    NaN        PASS    
+External_AB #1804                    BLOCK    BLOCK    0.0000    NaN        PASS    
+Internal_BC #1857                    TRIP     TRIP     1.0000    15.5       PASS    
+Stress_ExtCTSat_AC #2087             BLOCK    BLOCK    0.0000    NaN        PASS    
+Stress_CTSat_Int_AC #2108            TRIP     TRIP     1.0000    21.0       PASS    
+Internal_ABG #2116                   TRIP     TRIP     1.0000    20.5       PASS    
+InternalHV_BCG #2307                 TRIP     TRIP     1.0000    9.0        PASS    
+Internal_ABC #2553                   TRIP     TRIP     1.0000    17.3       PASS    
+External_ABCG #2762                  BLOCK    BLOCK    0.0001    NaN        PASS    
+Internal_HiZ_AB #2811                TRIP     TRIP     1.0000    23.8       PASS    
+Internal_HiZ_ABC #2960               TRIP     TRIP     1.0000    16.8       PASS    
+Internal_HiZ_AG #3033                TRIP     TRIP     1.0000    22.4       PASS    
+--------------------------------------------------------------------------------------
+Passed 24 / 25 (trip decisions correct; internal faults must trip within 30 ms of the fault / energisation)

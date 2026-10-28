@@ -297,6 +297,7 @@ def main():
             "cv_5fold": cv_stats,
             "ood_overall": ood_summary,
             "ood_blocks": ood_block_summaries,
+            "rows": main_rows,
         }
         
         # Text summary formatting

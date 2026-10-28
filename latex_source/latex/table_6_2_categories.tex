@@ -1,25 +1,27 @@
-\begin{table}[H]\centering\caption{Performance breakdown across all 16 scenario categories (Hybrid + AI-Alone Path, $N_{\text{eval}} = 3{,}124$).}\label{tab:6.2}
+\begin{table}[H]\centering
+\caption{Performance breakdown across all 16 scenario categories under grouped 5-fold CV (Proposed Hybrid + AI-Alone Path vs Baselines).}\label{tab:6.2_categories}
+\setlength{\tabcolsep}{4.5pt}\small
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcccccc@{}}\toprule
-\textbf{Scenario Category} & \textbf{Traces ($n$)} & \textbf{Expected} & \textbf{Rep.\ 1 [95\% CI]} & \textbf{Mean (3 Rep)} & \textbf{LSTM Alone} & \textbf{87T Alone}\\ \midrule
-External CT-sat & 241 & BLOCK & 98.8 [96.4, 99.6] & 99.2\% & 98.5\% & 34.4\%\\
-External HiZ & 60 & BLOCK & 100.0 [94.0, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
-External in inrush & 100 & BLOCK & 99.0 [94.6, 99.8] & 98.7\% & 98.7\% & 0.0\%\\
-External solid & 440 & BLOCK & 99.8 [98.7, 100.0] & 99.9\% & 99.8\% & 100.0\%\\
-Inrush loaded & 240 & BLOCK & 100.0 [98.4, 100.0] & 99.9\% & 99.9\% & 0.0\%\\
-Inrush no-load & 200 & BLOCK & 99.5 [97.2, 99.9] & 99.8\% & 99.8\% & 0.0\%\\
-Normal & 302 & BLOCK & 100.0 [98.7, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
-Over-excitation & 210 & BLOCK & 100.0 [98.2, 100.0] & 100.0\% & 100.0\% & 41.9\%\\
-Recovery inrush & 80 & BLOCK & 93.8 [86.2, 97.3] & 97.5\% & 97.5\% & 23.8\%\\
-\midrule
-Evolving & 80 & TRIP & 100.0 [95.4, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
-Fault in inrush & 113 & TRIP & 100.0 [96.7, 100.0] & 100.0\% & 100.0\% & 0.0\%\\
-Internal CT-sat & 121 & TRIP & 100.0 [96.9, 100.0] & 100.0\% & 100.0\% & 90.9\%\\
-Internal HV-side & 198 & TRIP & 100.0 [98.1, 100.0] & 100.0\% & 100.0\% & 100.0\%\\
-Internal HiZ & 153 & TRIP & 89.5 [83.7, 93.5] & 93.0\% & 95.2\% & 52.3\%\\
-Internal LV solid & 506 & TRIP & 100.0 [99.2, 100.0] & 100.0\% & 100.0\% & 88.5\%\\
-SOTF & 80 & TRIP & 97.5 [91.3, 99.3] & 97.9\% & 98.3\% & 100.0\%\\
+\textbf{Scenario Category} & \textbf{Traces ($N$)} & \textbf{Expected} & \textbf{Proposed [95\% Wilson CI]} & \textbf{LSTM Alone} & \textbf{87T Alone} & \textbf{Med.\,$T_{op}$}\\ \midrule
+Evolving & 80 & Trip & 100.0 [98.4, 100.0] & 100.0 & 100.0 & 18.8\,ms\\
+External CT-sat & 241 & Block & 98.8 [97.7, 99.3] & 97.9 & 2.5 & ---\\
+External HiZ & 60 & Block & 100.0 [97.9, 100.0] & 100.0 & 100.0 & ---\\
+External in inrush & 100 & Block & 96.7 [94.0, 98.2] & 97.0 & 0.0 & ---\\
+External solid & 439 & Block & 100.0 [99.7, 100.0] & 99.9 & 14.4 & ---\\
+Fault in inrush & 120 & Trip & 99.7 [98.4, 100.0] & 99.7 & 0.0 & 27.5\,ms\\
+Inrush loaded & 200 & Block & 100.0 [99.4, 100.0] & 100.0 & 0.0 & ---\\
+Inrush no-load & 200 & Block & 99.8 [99.1, 100.0] & 99.8 & 0.0 & ---\\
+Internal CT-sat & 121 & Trip & 100.0 [99.0, 100.0] & 100.0 & 98.3 & 19.4\,ms\\
+Internal HV-side & 207 & Trip & 100.0 [99.4, 100.0] & 100.0 & 100.0 & 13.1\,ms\\
+Internal HiZ & 152 & Trip & 91.2 [88.3, 93.5] & 96.5 & 53.3 & 18.1\,ms\\
+Internal LV solid & 506 & Trip & 100.0 [99.7, 100.0] & 100.0 & 88.9 & 17.5\,ms\\
+Normal & 303 & Block & 100.0 [99.6, 100.0] & 100.0 & 100.0 & ---\\
+Over-excitation & 190 & Block & 99.6 [98.7, 99.9] & 99.6 & 47.4 & ---\\
+Recovery inrush & 80 & Block & 98.3 [95.8, 99.4] & 97.1 & 31.2 & ---\\
+SOTF & 80 & Trip & 95.4 [92.0, 97.4] & 94.6 & 100.0 & 28.1\,ms\\
 \bottomrule
 \end{tabular}%
 }
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Wilson 95\% confidence intervals computed over unique evaluated traces. Total unique traces = 3{,}167.
 \end{table}

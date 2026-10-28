@@ -1,0 +1,14 @@
+\begin{table}[H]\centering
+\caption{Paired McNemar statistical significance tests ($df=1$, with continuity correction) comparing the Proposed Hybrid Relay against conventional differential relay baselines.}\label{tab:6.3_stats}
+\small
+\begin{tabular}{@{}llccccc@{}}\toprule
+\textbf{Baseline Model} & \textbf{Metric} & \textbf{Proposed} & \textbf{Baseline} & \textbf{Discordant ($b/c$)} & \textbf{McNemar $\chi^2$} & \textbf{$p$-Value}\\ \midrule
+Conventional 87T Alone & Dependability & 98.34\% & 80.33\% & 232 / 4 & 218.34 & $< 10^{-10}$\\
+Conventional 87T Alone & Security & 99.50\% & 30.17\% & 1257 / 0 & 1255.00 & $< 10^{-10}$\\
+\midrule
+Harmonic 87T (Per-Phase) & Dependability & 98.34\% & 41.55\% & 726 / 7 & 703.31 & $< 10^{-10}$\\
+Harmonic 87T (Per-Phase) & Security & 99.50\% & 63.65\% & 656 / 6 & 636.26 & $< 10^{-10}$\\
+\bottomrule
+\end{tabular}
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} $b$: traces correctly classified by Proposed but failed by Baseline; $c$: traces correctly classified by Baseline but failed by Proposed. All comparisons statistically significant at $\alpha = 0.001$.
+\end{table}

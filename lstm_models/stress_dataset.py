@@ -61,6 +61,7 @@ def load_traces(path: Path) -> list[dict]:
             rec = {
                 "source_file": path.name,
                 "source_index": i,
+                "plant": "B" if ("plantb" in path.name.lower() or "plant_b" in path.name.lower()) else "A",
                 "primary": ip,
                 "secondary": is_,
                 "should_trip": int(should[i]),

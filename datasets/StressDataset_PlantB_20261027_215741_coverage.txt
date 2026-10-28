@@ -1,0 +1,77 @@
+Coverage report: StressDataset_PlantB_20261027_215741.mat   (1200 traces; 1113 pass the strict generator checks, 1171 with the two benign failures accepted, see v3_checks.py)
+====================================================================================================
+
+Scenario groups (traces / passing checks):
+  Internal LV solid      198 /   197
+  External solid         176 /   165
+  Normal                 120 /   119
+  External CT-sat         99 /    92
+  Internal HiZ            95 /    94
+  Inrush no-load          79 /    79
+  Internal HV-side        77 /    73
+  Over-excitation         59 /    59
+  Fault in inrush         47 /    47
+  Inrush loaded           47 /    44
+  Internal CT-sat         44 /    44
+  External in inrush      39 /    38
+  Evolving                32 /    32
+  Recovery inrush         32 /    32
+  SOTF                    32 /    32
+  External HiZ            24 /    24
+
+1. Scenario group x load bin (traces passing checks; min 4, HV min 2; bins: 1 = 10-30, 2 = 30-60, 3 = 60-90, 4 = 90-110 % of rated current):
+  Internal LV solid      55    55    44    43
+  External solid         41    41    41    42
+  Normal                 29    30    30    30
+  External CT-sat         0     0    49    43
+  Internal HiZ           25    25    25    19
+  Inrush no-load         20    20    20    19
+  Internal HV-side       22    22    20     9
+  Over-excitation        15    15    15    14
+  Fault in inrush        12    12    12    11
+  Inrush loaded          12    12    11     9
+  Internal CT-sat         0     0    22    22
+  External in inrush     10    10     9     9
+  Evolving                8     8     8     8
+  Recovery inrush         8     8     8     8
+  SOTF                    8     8     8     8
+  External HiZ            6     6     6     6
+[PASS] 1 load-bin cells: all cells >= minimum
+
+2. Inrush cells (actual inception-angle quadrant x residual-flux bin; min 2), traces passing checks:
+  Inrush no-load:   flux bin 1 | 2 | 3   per quadrant 1-4 (0-90, 90-180, 180-270, 270-360 deg)
+    quadrant 1:   9    9    6
+    quadrant 2:   6    5    8
+    quadrant 3:   6    6    4
+    quadrant 4:   6    6    8
+  Inrush loaded:   flux bin 1 | 2 | 3   per quadrant 1-4 (0-90, 90-180, 180-270, 270-360 deg)
+    quadrant 1:   6    6    4
+    quadrant 2:   5    2    3
+    quadrant 3:   3    2    3
+    quadrant 4:   1    4    5
+[FAIL] 2 inrush cells: 1 cells below 2, first: Inrush loaded quadrant 4 flux bin 1: 1 < 2
+
+3. Internal HiZ: Rf bins (visible / AI-only / undetectable) [34, 30, 30];  measured faultDiffPu bands (>= 0.30 / 0.05-0.30 / < 0.05 pu) [94, 0, 0]
+[PASS] 3 HiZ bins and bands: bins [34, 30, 30] (each >= 16 required; Plant B 33 kV fault currents naturally exceed 0.30 pu)
+
+4. External CT-sat: ratio error > 10 % in 100 % of 92 traces; per type: AB 100%, ABC 100%, ABCG 100%, ABG 100%, AC 100%, ACG 100%, AG 100%, BC 100%, BCG 100%, BG 100%, CG 100%
+[PASS] 4 External CT-sat saturation: 100 % (>= 70 % required)
+4. Internal CT-sat: ratio error > 10 % in 100 % of 44 traces; per type: AB 100%, ABC 100%, ABCG 100%, ABG 100%, AC 100%, ACG 100%, AG 100%, BC 100%, BCG 100%, BG 100%, CG 100%
+[PASS] 4 Internal CT-sat saturation: 100 % (>= 70 % required)
+
+5. Over-excitation: 5th/1st > 0.2 and differential > 0.02 pu in 51 of 59 traces; source scale 1.15-1.45 pu
+[PASS] 5 over-excitation harmonics: 86 % (>= 80 % required)
+   Recovery inrush: peak differential after clearing > 0.05 pu in 32 of 32 traces (informational: depends on the clearing angle)
+
+6. Realised load within tolerance in 100.0 % of 956 measured traces
+[PASS] 6 realised load: 100.0 % (>= 95 % required)
+
+7. Generator checks (relaxed): 97.6 % of all traces (strict 92.8 %); worst scenarios: Stress_ExtCTSat_AG 67% (n=9), External_BC 81% (n=16), External_CG 81% (n=16), InternalHV_AB 86% (n=7), InternalHV_ABC 86% (n=7), InternalHV_AG 86% (n=7); duplicate fingerprints: 0
+[FAIL] 7 generator checks: overall 97.6 %, worst scenario 67 %, duplicates 0
+
+8. External multi-phase through-fault peak: >= 5.0 pu in 99.5 % of 193 traces (min 4.34 pu, median 8.86 pu, max 15.84 pu)
+   (Secondary 40 ms window RMS: median 3.00 pu, max 6.69 pu; secondary current chops naturally under heavy CT saturation)
+[PASS] 8 external through-fault >= 5 pu: 99.5 % (>= 80 % required)
+
+====================================================================================================
+OVERALL: FAILED: 2 inrush cells, 7 generator checks. Top up with generate_stress_dataset_v4(n, 'Only', '<scenario>') (own seed range), do not train with an empty cell.

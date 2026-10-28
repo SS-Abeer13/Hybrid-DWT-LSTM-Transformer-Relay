@@ -24,11 +24,48 @@ I_NOM_V3 = 300e6 / (np.sqrt(3) * 230e3) / CT_RATIO_HV_V3   # = 0.9302 A
 CT_RATIO_HV_V4, CT_RATIO_LV_V4 = 404.7288, 8460.0372
 I_NOM_V4 = 1.8610                                         # = 1.8610 A
 
-# Active calibration default (v4)
+# Plant B calibrated values (simulations/plant_b_checks.txt)
+CT_RATIO_HV_PLANT_B, CT_RATIO_LV_PLANT_B = 202.0119, 808.8849
+I_NOM_PLANT_B = 0.8232
+
+# Active calibration default (Plant A, v4)
 CT_RATIO_HV, CT_RATIO_LV = CT_RATIO_HV_V4, CT_RATIO_LV_V4
 I_NOM = I_NOM_V4
 M_PLANT = (1 / np.sqrt(3)) * np.array([[1, 0, -1], [-1, 1, 0], [0, -1, 1]])   # column-vector form
 I_PICKUP, I_HIGH_SET, SLOPE_1, SLOPE_2, BREAKPOINT = 0.30, 10.0, 0.25, 0.60, 3.0   # unchanged chart settings
+
+
+def get_plant_config(plant: str = "A") -> dict:
+    """Returns calibration and compensation matrix configuration for Plant A or Plant B."""
+    p_name = plant.upper()
+    if p_name == "A":
+        return {
+            "name": "Plant A",
+            "rating_mva": 300.0,
+            "v_hv_kv": 230.0,
+            "v_lv_kv": 11.0,
+            "vector_group": "YNd1",
+            "i_nom": I_NOM_V4,
+            "ct_ratio_hv": CT_RATIO_HV_V4,
+            "ct_ratio_lv": CT_RATIO_LV_V4,
+            "m_hv": (1 / np.sqrt(3)) * np.array([[1, 0, -1], [-1, 1, 0], [0, -1, 1]]),
+            "m_lv": np.eye(3),
+        }
+    elif p_name == "B":
+        return {
+            "name": "Plant B",
+            "rating_mva": 40.0,
+            "v_hv_kv": 132.0,
+            "v_lv_kv": 33.0,
+            "vector_group": "Dyn11",
+            "i_nom": I_NOM_PLANT_B,
+            "ct_ratio_hv": CT_RATIO_HV_PLANT_B,
+            "ct_ratio_lv": CT_RATIO_LV_PLANT_B,
+            "m_hv": np.eye(3),
+            "m_lv": (1 / np.sqrt(3)) * np.array([[1, -1, 0], [0, 1, -1], [-1, 0, 1]]),
+        }
+    else:
+        raise ValueError(f"Unknown plant '{plant}'; expected 'A' or 'B'.")
 
 
 def sliding_rms(x: np.ndarray) -> np.ndarray:
@@ -39,11 +76,14 @@ def sliding_rms(x: np.ndarray) -> np.ndarray:
     return out
 
 
-def analyse(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP, i_nom: float = I_NOM) -> dict:
+def analyse(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP, i_nom: float | None = None,
+            plant: str = "A") -> dict:
     """primary/secondary: [T x 3] CT-secondary amps (HV, LV). Returns per-sample boolean 'vote' (any-phase 87T trip
     condition), 'highset' (Id > 10 pu, bypasses the AI) and the per-phase Id/Ir RMS in pu."""
-    hv = (primary / i_nom) @ M_PLANT.T
-    lv = secondary / i_nom
+    cfg = get_plant_config(plant)
+    base = i_nom if i_nom is not None else cfg["i_nom"]
+    hv = (primary / base) @ cfg["m_hv"].T
+    lv = (secondary / base) @ cfg["m_lv"].T
     idr = sliding_rms(lv - hv)
     irr = sliding_rms(0.5 * (np.abs(hv) + np.abs(lv)))
     dyn = np.where(irr <= BREAKPOINT, SLOPE_1 * irr, SLOPE_2 * (irr - BREAKPOINT) + SLOPE_1 * BREAKPOINT)
@@ -54,9 +94,12 @@ def analyse(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP
             "idiff_rms": idr, "irest_rms": irr}
 
 
-def fault_rise_pu(primary: np.ndarray, secondary: np.ndarray, onset: int, i_nom: float = I_NOM) -> float:
+def fault_rise_pu(primary: np.ndarray, secondary: np.ndarray, onset: int, i_nom: float | None = None,
+                  plant: str = "A") -> float:
     """Detectability: rise of the per-phase differential RMS (pu) 40-60 ms after the fault vs 10-30 ms before (as the generator did)."""
-    d = (secondary / i_nom) - (primary / i_nom) @ M_PLANT.T
+    cfg = get_plant_config(plant)
+    base = i_nom if i_nom is not None else cfg["i_nom"]
+    d = (secondary / base) @ cfg["m_lv"].T - (primary / base) @ cfg["m_hv"].T
     a = slice(onset + 64, onset + 96)
     b = slice(max(onset - 48, 0), max(onset - 16, 1))
     if a.stop > len(d):
@@ -66,7 +109,7 @@ def fault_rise_pu(primary: np.ndarray, secondary: np.ndarray, onset: int, i_nom:
 
 def analyse_harmonic(primary: np.ndarray, secondary: np.ndarray, pickup: float = I_PICKUP,
                      k2_thresh: float = 0.15, k5_thresh: float = 0.35, mode: str = "per_phase",
-                     i_nom: float = I_NOM) -> dict:
+                     i_nom: float | None = None, plant: str = "A") -> dict:
     """Conventional 87T dual-slope characteristic WITH 2nd and 5th harmonic restraint.
     Computes sliding 32-sample FFT harmonic ratios k2 = |I_100Hz| / |I_50Hz| and k5 = |I_250Hz| / |I_50Hz|.
     
@@ -76,9 +119,11 @@ def analyse_harmonic(primary: np.ndarray, secondary: np.ndarray, pickup: float =
       - 'cross_active': cross-blocking active only from phases whose differential RMS exceeds pickup.
       - 'as_coded' (unselective cross-block): ANY phase with k2>15% or k5>35% blocks all phases.
     """
-    res = analyse(primary, secondary, pickup=pickup, i_nom=i_nom)
-    hv = (primary / i_nom) @ M_PLANT.T
-    lv = secondary / i_nom
+    res = analyse(primary, secondary, pickup=pickup, i_nom=i_nom, plant=plant)
+    cfg = get_plant_config(plant)
+    base = i_nom if i_nom is not None else cfg["i_nom"]
+    hv = (primary / base) @ cfg["m_hv"].T
+    lv = (secondary / base) @ cfg["m_lv"].T
     diff = lv - hv  # [T x 3]
     T_len = diff.shape[0]
     

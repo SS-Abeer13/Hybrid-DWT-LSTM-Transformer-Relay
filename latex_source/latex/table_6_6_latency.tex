@@ -1,0 +1,18 @@
+\begin{table}[H]\centering
+\caption{Measured real-time execution latency benchmark over 10{,}000 timed streaming evaluations on AMD Ryzen 7 7700 (single thread).}\label{tab:6.6_latency}
+\small
+\begin{tabular}{@{}lcccccc@{}}\toprule
+\textbf{Implementation / Relay Stage} & \textbf{Mean ($\mu$s)} & \textbf{Std ($\mu$s)} & \textbf{Median ($\mu$s)} & \textbf{95th-Pctl ($\mu$s)} & \textbf{99th-Pctl ($\mu$s)} & \textbf{Max ($\mu$s)}\\ \midrule
+\multicolumn{7}{@{}l}{\textit{Panel A: Python 3.11 with ONNX Runtime 1.27}} \\ \midrule
+Feature Extraction (PyWavelets + NumPy) & 36.7 & 7.6 & 35.0 & 45.6 & 68.7 & 255.0\\
+LSTM Inference (ONNX Runtime) & 128.8 & 17.1 & 124.3 & 160.1 & 185.5 & 551.5\\
+\textbf{Combined ONNX Pipeline} & \textbf{212.9} & \textbf{40.4} & \textbf{205.2} & \textbf{262.3} & \textbf{304.1} & \textbf{1338.8}\\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Panel B: Standalone Compiled ANSI C (MinGW-w64 GCC 16.1, -O3 -mavx2 -mfma)}} \\ \midrule
+Feature Extraction (Matrix DWT + FFT) & 1.0 & 0.1 & 1.0 & 1.0 & 1.2 & 20.7\\
+LSTM Inference (2-Layer + Attention) & 193.8 & 12.4 & 190.4 & 211.2 & 245.4 & 441.0\\
+\textbf{Combined Standalone C Pipeline} & \textbf{194.8} & \textbf{12.5} & \textbf{191.6} & \textbf{208.6} & \textbf{251.1} & \textbf{447.6}\\
+\bottomrule
+\end{tabular}
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Real-time sampling period at 1{,}600\,Hz: 625.0\,$\mu$s. Median execution times occupy 32.8\% (ONNX) and 30.7\% (ANSI C) of the sample budget, leaving $> 67\%$ idle headroom.
+\end{table}

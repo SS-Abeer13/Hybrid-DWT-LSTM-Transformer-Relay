@@ -1,13 +1,14 @@
-\begin{table}[H]\centering\caption{Ablation and main performance summary (grouped 5-fold CV, 3 repetitions, 15 models total, $N_{\text{eval}} = 3{,}124$).}\label{tab:6.1}
+\begin{table}[H]\centering
+\caption{Ablation and architecture performance comparison on the publication dataset (grouped 5-fold CV, 3 random seeds, 15 fold-models total, $N_{\text{eval}} = 3{,}167$).}\label{tab:6.1_ablation}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lccccc@{}}\toprule
-\textbf{Protection Architecture} & \textbf{Dep.\ (\%)} & \textbf{Sec.\ (\%)} & \textbf{Median $T_{op}$ (ms)} & \textbf{$\le$ 2 Cycles (\%)} & \textbf{Pre-Fault Trips}\\ \midrule
-Conventional 87T Alone & 79.62 $\pm$ 0.00 & 52.96 $\pm$ 0.00 & 0.6 & 100.0 & 124.0\\
-Standalone LSTM Alone & 99.31 $\pm$ 0.28 & 99.56 $\pm$ 0.22 & 15.4 & 97.1 & 0.0\\
-Hybrid (87T-Gate Only) & 89.40 $\pm$ 0.05 & 99.79 $\pm$ 0.14 & 15.2 & 97.3 & 0.0\\
-\textbf{Hybrid + AI-Alone Path (Proposed)} & \textbf{99.01 $\pm$ 0.48} & \textbf{99.66 $\pm$ 0.24} & \textbf{15.6} & \textbf{96.9} & \textbf{0.0}\\
+\textbf{Protection Architecture} & \textbf{Dependability (\%)} & \textbf{Security (\%)} & \textbf{Median $T_{op}$ (ms)} & \textbf{$\le$ 2 Cycles (\%)} & \textbf{Pre-Fault Trips}\\ \midrule
+Conventional 87T Alone & 80.33 & 30.17 & 0.6 & 100.0 & 366.0\\
+Standalone LSTM Alone & 99.21 & 99.36 & 16.9 & 96.7 & 1.0\\
+Hybrid (87T-Gate Only) & 89.60 & 99.61 & 16.9 & 96.9 & 1.0\\
+\textbf{Hybrid + AI-Alone Path (Proposed)} & \textbf{98.63 $\pm$ 1.15} & \textbf{99.52 $\pm$ 0.51} & \textbf{17.5} & \textbf{96.2} & \textbf{1.0}\\
 \bottomrule
 \end{tabular}%
 }
-\vspace{3pt}\raggedright\footnotesize\textit{Note:} Conventional 87T denotes the tested unaugmented dual-slope percentage differential baseline ($I_{pickup} = 0.30$\,pu, $S_1 = 25\%$, $S_2 = 60\%$, $I_{bp} = 3.0$\,pu) without harmonic restraint or startup delay.
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Conventional 87T denotes unaugmented dual-slope percentage differential ($I_{pickup} = 0.30$\,pu, $S_1 = 25\%$, $S_2 = 60\%$, $I_{bp} = 3.0$\,pu) without startup delay.
 \end{table}

@@ -1,0 +1,22 @@
+\begin{table}[H]\centering
+\caption{Cross-plant generalization and transfer capability on Plant B (40\,MVA, 132/33\,kV, Dyn11, 1\,A CTs).}\label{tab:6.8_plant_b}
+\small
+\begin{tabular}{@{}llcccc@{}}\toprule
+\textbf{Experiment Type} & \textbf{Protection Model} & \textbf{Dependability (\%)} & \textbf{Security (\%)} & \textbf{Median $T_{op}$} & \textbf{False Trips}\\ \midrule
+\multicolumn{6}{@{}l}{\textit{Panel A: Zero-Shot Transfer on Plant B (Model Trained on Plant A Alone)}} \\ \midrule
+Zero-Shot & Conventional 87T Alone & 64.47 & 16.02 & 0.6\,ms & 519\\
+Zero-Shot & Harmonic Restrained 87T & 68.26 & 84.79 & 19.4\,ms & 94\\
+Zero-Shot & \textbf{Proposed DWT-LSTM (Zero-Shot)} & 83.23 & 93.53 & 26.2\,ms & 40\\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Panel B: Cross-Plant Training (Pooled Plant A + Plant B, 5-Fold CV)}} \\ \midrule
+Cross-Plant & Pooled Plants A + B & 98.69 & 98.31 & 16.9\,ms & ---\\
+Cross-Plant & Plant A Evaluation & 98.80 & 98.40 & 16.9\,ms & ---\\
+Cross-Plant & Plant B Evaluation & 98.40 & 98.06 & 18.1\,ms & ---\\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Panel C: Leave-One-Plant-Out Transfer}} \\ \midrule
+Leave-One-Out & Train Plant A $\rightarrow$ Test Plant B & 84.23 & 91.91 & 32.5\,ms & 50\\
+Leave-One-Out & Train Plant B $\rightarrow$ Test Plant A & 67.39 & 88.07 & 18.1\,ms & 216\\
+\bottomrule
+\end{tabular}
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Plant B features computed using Dyn11 per-unit differential transformation. Unchanged detection thresholds ($\theta_{\text{ai}} = 0.9950$, $\theta_{\text{solo}} = 0.9990$, dwell $= 20$).
+\end{table}

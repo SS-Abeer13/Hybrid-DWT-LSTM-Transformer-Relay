@@ -10,13 +10,13 @@
 \contentsline {table}{\numberline {5.1}{\ignorespaces Frequency band allocation for the 2-level DWT at 1.6\,kHz.}}{24}{table.caption.28}%
 \contentsline {table}{\numberline {5.2}{\ignorespaces Per-inference parameter and numerical budget of the DWT--LSTM pipeline.}}{26}{table.caption.31}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Ablation and main performance summary (grouped 5-fold CV, 3 repetitions, 15 models total, $N_{\text {eval}} = 3{,}124$).}}{28}{table.caption.34}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Performance breakdown across all 16 scenario categories (Hybrid + AI-Alone Path, $N_{\text {eval}} = 3{,}124$).}}{29}{table.caption.35}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Ablation and architecture performance comparison on the publication dataset (grouped 5-fold CV, 3 random seeds, 15 fold-models total, $N_{\text {eval}} = 3{,}167$).}}{28}{table.caption.34}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Performance breakdown across all 16 scenario categories under grouped 5-fold CV (Proposed Hybrid + AI-Alone Path vs Baselines).}}{29}{table.caption.35}%
 \contentsline {table}{\numberline {6.3}{\ignorespaces Retraining impact: performance on realistic stress cases.}}{30}{table.caption.36}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces Performance on the Out-of-Distribution (OOD) test corpus (291 usable traces).}}{31}{table.caption.37}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces Extended closed-loop Simulink co-simulation verification (12 benchmark cases, saved run 21-Oct-2026).}}{32}{table.caption.38}%
-\contentsline {table}{\numberline {6.6}{\ignorespaces High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}}{33}{table.caption.39}%
-\contentsline {table}{\numberline {6.7}{\ignorespaces Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (Repetition~1, grouped 5-fold cross-validation across $N_{\text {eval}} = 3{,}124$ evaluated traces: $N_{\text {fault,det}} = 1{,}251$ detectable faults and $N_{\text {healthy}} = 1{,}873$ healthy traces, with 94 sub-noise-floor faults segregated).}}{35}{table.caption.42}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Single-pass out-of-distribution (OOD) stress evaluation on 278 held-out traces with zero retraining or threshold adaptation.}}{31}{table.caption.37}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Simulink dynamic closed-loop simulation vs.\ offline Python relay mirror across 50 dynamic traces (25 held-out validation + 25 OOD).}}{31}{table.caption.38}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces High-impedance internal fault sensitivity by resistance bin ($n = 80$ traces per bin).}}{32}{table.caption.39}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (3{,}218 traces, grouped 5-fold cross-validation).}}{35}{table.caption.42}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {A.1}{\ignorespaces Daubechies-4 (db4) low-pass and high-pass decomposition filter coefficients ($L=8$).}}{45}{table.caption.45}%

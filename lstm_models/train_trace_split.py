@@ -110,7 +110,7 @@ def build_traces(root: Path, files: list[str], cache: Path) -> list[dict]:
             if t["fingerprint"] in unique:
                 continue
             if FEATURE_MODE == "plant":
-                t["features"] = trace_features(plant_compensated_diff(t["primary"], t["secondary"]))
+                t["features"] = trace_features(plant_compensated_diff(t["primary"], t["secondary"], plant=t.get("plant", "A")))
             elif FEATURE_MODE == "comp":
                 t["features"] = trace_features(compensated_diff(t["primary"], t["secondary"]))
             else:
@@ -122,9 +122,10 @@ def build_traces(root: Path, files: list[str], cache: Path) -> list[dict]:
             else:
                 t["onset"] = detect_fault_onset(t["primary"], t["secondary"])   # v1: metadata time is unreliable
             t["category"] = category(t["scenarioName"])
-            a87 = relay87t.analyse(t["primary"], t["secondary"])
+            plant = t.get("plant", "A")
+            a87 = relay87t.analyse(t["primary"], t["secondary"], plant=plant)
             t["vote87"], t["highset"] = a87["vote"], a87["highset"]
-            t["fault_pu"] = relay87t.fault_rise_pu(t["primary"], t["secondary"], t["onset"]) if t["onset"] >= 0 else float("nan")
+            t["fault_pu"] = relay87t.fault_rise_pu(t["primary"], t["secondary"], t["onset"], plant=plant) if t["onset"] >= 0 else float("nan")
             del t["primary"], t["secondary"]
             unique[t["fingerprint"]] = t
     traces = list(unique.values())
@@ -292,10 +293,12 @@ def tune_solo(traces, val_ids, probs, threshold) -> float | None:
         r = relay_report(traces, val_ids, probs, threshold)
         rows.append((g, r["dependability_pct"], r["security_pct"]))
     SOLO_THR = None
-    best_sec = max(r[2] for r in rows)
-    feas = [r for r in rows if r[2] >= best_sec - SEC_TOLERANCE]
-    dstar = max(r[1] for r in feas)
-    plat = [r for r in feas if r[1] >= dstar - DEP_TOLERANCE]
+    secs = [r[2] for r in rows if r[2] is not None]
+    best_sec = max(secs) if secs else 100.0
+    feas = [r for r in rows if r[2] is None or r[2] >= best_sec - SEC_TOLERANCE]
+    deps = [r[1] for r in feas if r[1] is not None]
+    dstar = max(deps) if deps else 100.0
+    plat = [r for r in feas if r[1] is None or r[1] >= dstar - DEP_TOLERANCE]
     names = [r[0] for r in rows]
     pset = {r[0] for r in plat}
     runs, cur = [], []
@@ -322,15 +325,17 @@ def tune_threshold(traces, val_ids, probs) -> float:
         r = relay_report(traces, val_ids, probs, float(thr))
         med = r["operate_time"].get("median_ms", 1e9)
         rows.append((r["dependability_pct"], r["security_pct"], med, float(thr)))
-    top = max(r[0] for r in rows)
-    ok = [r for r in rows if r[0] >= top - DEP_TOLERANCE]
+    deps = [r[0] for r in rows if r[0] is not None]
+    top = max(deps) if deps else 100.0
+    ok = [r for r in rows if r[0] is None or r[0] >= top - DEP_TOLERANCE]
     if THRESHOLD_MODE == "best":
-        return min(ok, key=lambda r: (-r[1], r[2], r[3]))[3]
+        return min(ok, key=lambda r: (-100.0 if r[1] is None else -r[1], r[2], r[3]))[3]
     # plateau mode: every grid threshold whose validation dependability AND security are within tolerance of the best,
     # take the longest contiguous run of such thresholds and return its centre in logit space (the most robust choice:
     # equally far from both ends of the range where the relay still works). Not sensitive to which single trace flips.
-    best_sec = max(r[1] for r in ok)
-    feas = {r[3] for r in ok if r[1] >= best_sec - SEC_TOLERANCE}
+    secs = [r[1] for r in ok if r[1] is not None]
+    best_sec = max(secs) if secs else 100.0
+    feas = {r[3] for r in ok if r[1] is None or r[1] >= best_sec - SEC_TOLERANCE}
     grid = [float(g) for g in THRESHOLD_GRID]
     runs, cur = [], []
     for g in grid:
