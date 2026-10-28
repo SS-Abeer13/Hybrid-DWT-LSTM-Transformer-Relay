@@ -582,3 +582,11 @@
    - Run python tools/build_publication_tables.py to populate all final metrics into latex_source/latex/.
 6. **Local Git Commit:**
    - Clean commit under SS-Abeer13 <155192927+SS-Abeer13@users.noreply.github.com>, strictly no git push.
+
+### V8 option (a), step 1: v5 plant models (2026-10-28 15:21)
+- `simulations/build_plants_v5.m` creates `TransformerWithCTSaturation_v5.slx` and `TransformerB_v5.slx` from the v4 files (v4 untouched). Transformer X 11 % (A) / 10 % (B), R 0.54 % / 0.5 % (X/R ~20), plant A source 0.12 ohm + 11.2 mH. CT saturation flux column x0.5 (A, knee ~9 pu) and x6 (B, knee ~108 pu; the 1 A / 2.5 ohm CT needs this to stay linear in steady state at 8.6 pu through-fault).
+- Trial builds (X/R 55/40, knee 18 pu for both) are kept in `simulations/_v5_trial_xr40/` and `_v5_trial_knee18/` (not committed): plant B CTs were saturated in steady state at nominal burden (flux demand 88-124 pu, `probe_flux_demand_v5.m`).
+- Results (`simulations/plant_v5_checks_A.txt`, `plant_v5_checks_B.txt`): TRUE through-fault 7.39 pu (A), 8.64 pu (B); CT steady deviation 1.7 % / 1.5 %; normal differential residual <= 0.0065 pu.
+  - Plant A: C1-C6 PASS.
+  - Plant B: C4 FAIL (maximum DC offset does not saturate the CT at nominal burden, 1.5 % deviation; saturation only with raised burden, C5 19.5 %), C6 FAIL by 0.02 percentage points (ratio change 2.02 % at 150 % load, 3x burden; plant A 1.98 %). Criteria not changed after the result.
+- MATLAB MCP config points at `R2023a\bin\bin\win64\MATLAB.exe` (nonexistent); runs here use `matlab.exe -batch` directly.

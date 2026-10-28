@@ -1,0 +1,42 @@
+=== TransformerWithCTSaturation_v4 ===
+[Step_down_Transformer] NominalPower=[ 300e6 50 ] | Winding1=[ 230e3 0.0025  0.01 ] | Winding2= [ 11e3 0.0025 0.01]   | Winding1Connection=Y | Winding2Connection=Delta (D1) | Rm=500 | Lm=inf | Saturation=[0 0 ; 0.005 1.2 ; 5.0 1.8] | SetSaturation=on | 
+[Three-Phase Series RLC Branch] Resistance=0.1 | Inductance=1e-3 | Capacitance=inf | BranchType=RLC | 
+[Three-Phase Series RLC Load] NominalVoltage=11e3 | ActivePower=3e+08 | 
+[VS] 
+[VSa] Amplitude=(230e3*sqrt(2))/(sqrt(3)) | Frequency=50 | 
+[VSb] Amplitude=(230e3*sqrt(2))/(sqrt(3)) | Frequency=50 | 
+[VSc] Amplitude=(230e3*sqrt(2))/(sqrt(3)) | Frequency=50 | 
+[CT/1ohm] Resistance=1 | Inductance=[] | 
+[CT/CT 2000/5 A 25 VA] NominalPower=[25 50] | Winding1=[5*(1/400) 0.2 0.001] | Winding2=[5 0.2 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=-4.4292901831583e-09 | 
+[CT1/1ohm] Resistance=1 | Inductance=[] | 
+[CT1/CT 2000/5 A 25 VA] NominalPower=[25 50] | Winding1=[5*(1/400) 0.2 0.001] | Winding2=[5 0.2 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=2.21150229354582e-09 | 
+[CT2/1ohm] Resistance=1 | Inductance=[] | 
+[CT2/CT 2000/5 A 25 VA] NominalPower=[25 50] | Winding1=[5*(1/400) 0.2 0.001] | Winding2=[5 0.2 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=2.21778788961252e-09 | 
+[CT3/1ohm] Resistance=1 | Inductance=[] | 
+[CT3/CT 92000/5 A 25 VA] NominalPower=[25 50] | Winding1=[5*(11/92000) 0.2 0.001] | Winding2=[5 0.2 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=1.82966643691712e-10 | 
+[CT4/1ohm] Resistance=1 | Inductance=[] | 
+[CT4/CT 92000/5 A 25 VA] NominalPower=[25 50] | Winding1=[5*(11/92000) 0.2 0.001] | Winding2=[5 0.2 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=-1.83122766517186e-10 | 
+[CT6/1ohm] Resistance=1 | Inductance=[] | 
+[CT6/CT 92000/5 A 25 VA] NominalPower=[25 50] | Winding1=[5*(11/92000) 0.2 0.001] | Winding2=[5 0.2 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=1.56122825475519e-13 | 
+
+=== TransformerB_v4 ===
+[Step_down_Transformer] NominalPower=[ 40e6 50 ] | Winding1=[ 132e3 0.002 0.0050 ] | Winding2=[ 33e3 0.002 0.0050 ] | Winding1Connection=Delta (D11) | Winding2Connection=Yg | Rm=500 | Lm=inf | Saturation=[0 0 ; 0.005 1.2 ; 5.0 1.8] | SetSaturation=on | 
+[Three-Phase Series RLC Branch] Resistance=0.46 | Inductance=0.0221 | Capacitance=inf | BranchType=RLC | 
+[Three-Phase Series RLC Load] NominalVoltage=33e3 | ActivePower=38e6 | 
+[VS] 
+[VSa] Amplitude=(132e3*sqrt(2))/(sqrt(3)) | Frequency=50 | 
+[VSb] Amplitude=(132e3*sqrt(2))/(sqrt(3)) | Frequency=50 | 
+[VSc] Amplitude=(132e3*sqrt(2))/(sqrt(3)) | Frequency=50 | 
+[CT/1ohm] Resistance=2.5 | Inductance=[] | 
+[CT/CT 2000/5 A 25 VA] NominalPower=[2.5 50] | Winding1=[2.5*(1/200) 0.05 0.001] | Winding2=[2.5 0.05 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=-4.4292901831583e-09 | 
+[CT1/1ohm] Resistance=2.5 | Inductance=[] | 
+[CT1/CT 2000/5 A 25 VA] NominalPower=[2.5 50] | Winding1=[2.5*(1/200) 0.05 0.001] | Winding2=[2.5 0.05 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=2.21150229354582e-09 | 
+[CT2/1ohm] Resistance=2.5 | Inductance=[] | 
+[CT2/CT 2000/5 A 25 VA] NominalPower=[2.5 50] | Winding1=[2.5*(1/200) 0.05 0.001] | Winding2=[2.5 0.05 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=2.21778788961252e-09 | 
+[CT3/1ohm] Resistance=2.5 | Inductance=[] | 
+[CT3/CT 92000/5 A 25 VA] NominalPower=[2.5 50] | Winding1=[2.5*(1/800) 0.05 0.001] | Winding2=[2.5 0.05 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=1.82966643691712e-10 | 
+[CT4/1ohm] Resistance=2.5 | Inductance=[] | 
+[CT4/CT 92000/5 A 25 VA] NominalPower=[2.5 50] | Winding1=[2.5*(1/800) 0.05 0.001] | Winding2=[2.5 0.05 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=-1.83122766517186e-10 | 
+[CT6/1ohm] Resistance=2.5 | Inductance=[] | 
+[CT6/CT 92000/5 A 25 VA] NominalPower=[2.5 50] | Winding1=[2.5*(1/800) 0.05 0.001] | Winding2=[2.5 0.05 0.001] | Saturation=[0 0 ; 0.001 0.8 ; 0.01 1.15 ; 0.1 1.25 ; 1 1.3] | CoreLoss=[100] | InitialFlux=1.56122825475519e-13 | 
+

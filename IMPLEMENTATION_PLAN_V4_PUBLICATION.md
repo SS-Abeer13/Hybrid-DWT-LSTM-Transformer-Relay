@@ -203,3 +203,40 @@ Status key: [x] fixed and verified from a re-run output file; [ ] open. Numbers 
 - [x] **V7. Log back-dating, missing overnight entries, commits.** Written below as a reconciliation using file modification times from the system clock (not the log's own times). Commits: see the log entry.
 
 Open decisions for the author: V2/V3 mean plant B has to be rebuilt and the transfer experiments re-run; the results may be worse than the current ones. Until then the plant B / transfer numbers must not appear in a paper as "hybrid" results.
+
+---
+
+## Re-check of the V4 fixes — 2026-10-28 14:45
+
+**Verified:**
+- V1 McNemar now pairs by trace: harmonic 87T 81.67 / 91.67 %, p = 3.3e-62 / 2.2e-34, matching its own summary.
+- V3 diagnosis (time-base bug in the plant-B check).
+- V4 independent plant-A truth check.
+- V5 inrush from the datasets (plant A median 2.8, plant B 2.0 × rated peak).
+- V6 wording.
+- Commit at 10:01.
+
+Good, honest work. V2 and V3 correctly remain open.
+
+### V8. Plant A has the same physics problem as plant B, only milder — author decision needed  ⚠️
+`simulations/plant_v4_truth_check.txt`:
+- A solid external 3-phase fault drives a **true 23.9 pu RMS** through-current.
+- The CT secondaries read only **0.27×** of it (6.4 pu): every solid external fault saturates the CTs heavily at nominal burden.
+
+Two consequences a protection reviewer will raise:
+1. **Through-fault level.** A through-fault is limited mainly by the transformer's own leakage impedance: I ≈ 1 / Z_t pu. 23.9 pu implies Z_t ≈ 4 %. Large power transformers (300 MVA, 230 kV) typically have Z_t of roughly 10–15 %, which gives about 7–10 pu. Check the model's leakage R/X (the winding parameters in pu) against that.
+2. **CT sizing.** Protection CTs are normally chosen (IEEE C37.110 practice) so they do **not** saturate on the maximum **symmetrical** through-fault at rated burden. Saturation should come only from DC offset, remanence or high burden. With today's CTs, "External solid" and "External CT-sat" are both heavily saturated. That blurs the categories and makes the conventional 87T baselines look worse than a well-designed relay would (unrestrained 87T: External solid 14 % correct).
+
+**Options (author decides):**
+- [ ] **(a) Recommended for a journal:** fix both plants together.
+  - Set realistic transformer impedance (plant A ~12 %, plant B ~10 %) and source/feeder impedance, so the TRUE through-fault is about 7–15 pu.
+  - Size the CTs so they stay linear for the maximum symmetrical through-fault at nominal burden, saturating only with DC offset / extra burden in the CT-stress scenarios.
+  - Re-calibrate, regenerate plant A (≈ 5 h) and plant B (≈ 2 h), then re-run CV × 3 seeds, final + OOD, baselines, statistics, the transfer experiments and both closed loops (≈ 1 day of compute).
+- [ ] **(b) Faster:** keep plant A as is. Fix only plant B (V2/V3), with plant B's CTs sized correctly. State plant A's CT undersizing and 24 pu through-fault as limitations. Report external-fault results as "with CT saturation".
+
+Either way, the paper must say which current is quoted (TRUE or CT secondary).
+
+### Still open from V1–V7
+- [ ] V2 / V3: plant B redesign, regeneration, re-run of zero-shot / cross-plant / leave-one-out and the plant-B closed loop (including the missed solid internal fault).
+- [ ] OOD block-3 label: `runs/20261027_v4_final/report_ood.txt` says "CT burden 4–8×"; the v4 harmonic summary says "12–16×" for the same block. Take the range from the generator and fix both.
+- [ ] `runs/20261027_latency/latency_c.json|txt` still carry the old header (re-run or patch the header; the numbers stand).

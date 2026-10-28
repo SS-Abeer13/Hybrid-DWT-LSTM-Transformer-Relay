@@ -1,0 +1,23 @@
+PLANT B v5 PHYSICS CHECK (TransformerB_v5), 28-Oct-2026 15:19:33
+Rated line current HV 174.95 A, LV 699.82 A (S = 40 MVA, 132 / 33 kV). TRUE currents from the V-I blocks, own time base.
+
+1. 100 % LOAD, pf 1.0, burden 1 x:
+   TRUE LV voltage 0.9853 pu | TRUE line current HV 0.988 pu, LV 0.985 pu | measured CT ratio HV 201.9810:1, LV 808.5778:1 | rated CT secondary HV 0.8662 A, LV 0.8655 A
+   C1 LV voltage >= 0.95 pu: PASS
+
+   (same load at pf 0.9: TRUE LV voltage 0.9416 pu)
+
+2.1 LOAD 100 % (pf 0.9), burden 1 x: CT ratio / ratio at 100 % load = 1.0001 | normal differential residual (max phase) 0.0073 pu
+2.2 LOAD 150 % (pf 0.9), burden 1 x: CT ratio / ratio at 100 % load = 1.0001 | normal differential residual (max phase) 0.0068 pu
+2.3 LOAD 150 % (pf 0.9), burden 3 x: CT ratio / ratio at 100 % load = 1.0202 | normal differential residual (max phase) 0.0065 pu
+   C6 linear to 150 % load at 3 x burden (ratio change < 2 %) and residual < 0.05 pu: FAIL
+
+3.1 THROUGH-FAULT, inception at voltage peak (90 deg), burden 1 x: TRUE RMS steady 8.64 pu (first two cycles 10.31 pu) | CT deviation first two cycles HV 1.5 %, LV 1.4 % | steady HV 1.5 %, LV 1.5 %
+3.2 THROUGH-FAULT, inception at voltage zero (0 deg, maximum DC offset), burden 1 x: TRUE RMS steady 8.64 pu (first two cycles 10.31 pu) | CT deviation first two cycles HV 1.4 %, LV 1.5 % | steady HV 1.5 %, LV 1.5 %
+3.3 THROUGH-FAULT, inception at voltage peak, 4 x burden, burden 4 x: TRUE RMS steady 8.64 pu (first two cycles 10.31 pu) | CT deviation first two cycles HV 17.6 %, LV 19.5 % | steady HV 22.8 %, LV 25.3 %
+   C2 TRUE steady through-fault 7-15 pu RMS (8.64 pu): PASS
+   C3 CTs linear in the steady state at nominal burden (max deviation 1.5 % < 5 %): PASS
+   C4 maximum DC offset saturates a CT in the first two cycles (max deviation 1.5 % > 10 %): FAIL
+   C5 4 x burden saturates in the first two cycles (max deviation 19.5 % > 10 %): PASS
+
+OVERALL: FAIL
