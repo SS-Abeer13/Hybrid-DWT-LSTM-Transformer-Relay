@@ -590,3 +590,12 @@
   - Plant A: C1-C6 PASS.
   - Plant B: C4 FAIL (maximum DC offset does not saturate the CT at nominal burden, 1.5 % deviation; saturation only with raised burden, C5 19.5 %), C6 FAIL by 0.02 percentage points (ratio change 2.02 % at 150 % load, 3x burden; plant A 1.98 %). Criteria not changed after the result.
 - MATLAB MCP config points at `R2023a\bin\bin\win64\MATLAB.exe` (nonexistent); runs here use `matlab.exe -batch` directly.
+
+### V8 option (a), step 2: calibration, generators, regeneration started (2026-10-28 16:26)
+- Load calibration v5: `simulations/load_calibration_v5.txt|mat` (plant A), `load_calibration_plant_b_v5.txt|mat` (plant B; base 0.8658 A).
+- HiZ sweeps v5 per plant: `hiz_sweep_v5_<plant>_<type>.mat`, bins `hiz_bins_v5_A.json`, `hiz_bins_v5_B.json` (plant B Rf range 3-3000 ohm; the first plant-B sweep over 0.01-100 ohm is kept in `simulations/_hiz_B_Rf_0p01_100/`, the 0.05 pu crossing was outside its range). v4 plant B had used the plant-A bins.
+- Plant B chart constants (`patch_charts_plant_b_v5.m`): Yd1_Compensation I_nom 0.8232 -> 0.8658 A, ratios 201.98 / 808.58; DWT_Feature_Extraction I_base 1.8610 (the plant-A base) -> 0.8658 A. Python: `relay87t.py` plant B constants, `features12.py`, `coverage_report_v4.py` base updated.
+- Generators `generate_stress_dataset_v5.m`, `generate_stress_dataset_plant_b_v5.m`: v5 models, own calibration/bins, CT burden ranges from `generator_ranges_v5.json` (chosen from `burden_sweep_v5_console.txt` before any data), new field `extFaultTruePu` (true through-fault RMS 10-50 ms after inception), timing tolerance 50 ms for `ct_stress_ext` (plant B self-test: Stress_ExtCTSat_AG 35 ms late; a CT sized for the through-fault saturates after the DC-offset flux has built up). Self-tests: plant A passed; plant B passed after the tolerance change.
+- Old plant B results renamed `*_INVALID_87Tcal` (runs/20261027_v4_plant_b_zeroshot, _cross_plant, _leave_one_out; simulations/test_hybrid_relay_plant_b_results.*).
+- 2026-10-28 16:23: `run_v5_generation_all.bat` started (plant A main 3040 -> A OOD 300 -> B main 1200 -> B OOD 150, auto-resume). First ETA from the generator log: ~264 min for plant A main.
+- MATLAB MCP is misconfigured (`R2023a\bin\bin\win64`); MATLAB is run with `matlab.exe -batch`.
