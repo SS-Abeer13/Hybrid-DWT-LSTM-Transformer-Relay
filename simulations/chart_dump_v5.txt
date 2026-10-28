@@ -1,0 +1,171 @@
+=== TransformerB_v5/Hybrid 87T Relay/DWT Feature Extraction
+function features = DWT_Feature_Extraction(I_diff_window)
+    % Inputs: I_diff_window (32x3 matrix from the Buffer block)
+    % Outputs: features (1x12 vector for the LSTM)
+    % Step 1.4: Normalised to per-unit using rated secondary current (1.8610 A)
+    
+    % wavelets and fft are extrinsic because code generator does not support dwt/wavedec/fft
+    coder.extrinsic('wavedec', 'detcoef', 'appcoef', 'fft');
+    
+    features = zeros(1, 12);
+    I_base = 1.8610; % rated CT-secondary base current for v4 (probe_ct_truth_v4.m)
+    
+    for ph = 1:3
+        signal = I_diff_window(:, ph) / I_base;
+        
+        % Pre-initialize variables for code generation compliance
+        C = zeros(45, 1);
+        L = zeros(4, 1);
+        d1 = zeros(19, 1);
+        d2 = zeros(13, 1);
+        a2 = zeros(13, 1);
+        fft_vals = zeros(32, 1);
+        
+        % 2-level db4 wavelet decomposition
+        [C, L] = wavedec(signal, 2, 'db4');
+        
+        % Calculate squared DWT energy coefficients
+        d1 = detcoef(C, L, 1);
+        d2 = detcoef(C, L, 2);
+        a2 = appcoef(C, L, 'db4', 2);
+        
+        E_D1 = sum(d1.^2);
+        E_D2 = sum(d2.^2);
+        E_A2 = sum(a2.^2);
+        
+        % Store features in 12-element feature vector
+        base = (ph - 1) * 3 + 1;
+        features(base)     = log(1 + E_D1);
+        features(base + 1) = log(1 + E_D2);
+        features(base + 2) = log(1 + E_A2);
+        
+        % 2nd Harmonic Ratio (Bin 3 = 100 Hz, Bin 2 = 50 Hz @ 1600 Hz / 32 samples)
+        fft_vals = abs(fft(signal));
+        ratio_2nd = fft_vals(3) / (fft_vals(2) + 1e-4);
+        features(9 + ph) = min(ratio_2nd, 2.0);
+    end
+end
+--- other chart: TransformerB_v5/Hybrid 87T Relay/LSTM Predict
+--- other chart: TransformerB_v5/Hybrid 87T Relay/Supervisory Override with Hardware Fallback
+=== TransformerB_v5/Hybrid 87T Relay/Yd1 Compensation
+function [I_hv_comp_pu, I_lv_comp_pu] = Yd1_Compensation(I_hv_sec, I_lv_sec)
+% =========================================================================
+% HYBRID ADAPTIVE 87T RELAY: SIGNAL CONDITIONING & COMPENSATION (Plant B)
+% Vector Group: Dyn11 (HV Delta, LV Wye). 40 MVA, 132/33 kV, 1 A secondaries
+% Calibrated: 2026-10-27 from probe_ct_truth_plant_b.m
+% =========================================================================
+    % 1. NAMEPLATE RATINGS (40 MVA)
+    S_nom   = 40e6;
+    V_hv_ll = 132e3;
+    V_lv_ll = 33e3;
+
+    % 2. Primary full-load amperes
+    I_FLA_hv = S_nom / (sqrt(3) * V_hv_ll);   % 174.9546 A
+    I_FLA_lv = S_nom / (sqrt(3) * V_lv_ll);   % 699.8184 A
+
+    % 3. EFFECTIVE CT ratios
+    CT_Ratio_HV = 202.0119;
+    CT_Ratio_LV = 808.8849;
+
+    % 4. Rated secondary currents = 1.0 pu bases (Mean: 0.8232 A)
+    I_nom = 0.8232;
+
+    % 5. Per-unit normalisation
+    I_hv_pu = I_hv_sec ./ I_nom;
+    I_lv_pu = I_lv_sec ./ I_nom;
+
+    % 6. Dyn11 compensation of the Wye (LV) side.
+    % M2 matrix yields 0.0353 pu residual (pure magnetizing current).
+    M_Dyn11 = (1/sqrt(3)) * [ 1, -1,  0; 
+                              0,  1, -1; 
+                             -1,  0,  1];
+    I_lv_comp_pu = M_Dyn11 * I_lv_pu;
+
+    % HV (Delta) side passes through
+    I_hv_comp_pu = I_hv_pu;
+end
+=== TransformerWithCTSaturation_v5/Hybrid 87T Relay/DWT Feature Extraction
+function features = DWT_Feature_Extraction(I_diff_window)
+    % Inputs: I_diff_window (32x3 matrix from the Buffer block)
+    % Outputs: features (1x12 vector for the LSTM)
+    % Step 1.4: Normalised to per-unit using rated secondary current (1.8610 A)
+    
+    % wavelets and fft are extrinsic because code generator does not support dwt/wavedec/fft
+    coder.extrinsic('wavedec', 'detcoef', 'appcoef', 'fft');
+    
+    features = zeros(1, 12);
+    I_base = 1.8610; % rated CT-secondary base current for v4 (probe_ct_truth_v4.m)
+    
+    for ph = 1:3
+        signal = I_diff_window(:, ph) / I_base;
+        
+        % Pre-initialize variables for code generation compliance
+        C = zeros(45, 1);
+        L = zeros(4, 1);
+        d1 = zeros(19, 1);
+        d2 = zeros(13, 1);
+        a2 = zeros(13, 1);
+        fft_vals = zeros(32, 1);
+        
+        % 2-level db4 wavelet decomposition
+        [C, L] = wavedec(signal, 2, 'db4');
+        
+        % Calculate squared DWT energy coefficients
+        d1 = detcoef(C, L, 1);
+        d2 = detcoef(C, L, 2);
+        a2 = appcoef(C, L, 'db4', 2);
+        
+        E_D1 = sum(d1.^2);
+        E_D2 = sum(d2.^2);
+        E_A2 = sum(a2.^2);
+        
+        % Store features in 12-element feature vector
+        base = (ph - 1) * 3 + 1;
+        features(base)     = log(1 + E_D1);
+        features(base + 1) = log(1 + E_D2);
+        features(base + 2) = log(1 + E_A2);
+        
+        % 2nd Harmonic Ratio (Bin 3 = 100 Hz, Bin 2 = 50 Hz @ 1600 Hz / 32 samples)
+        fft_vals = abs(fft(signal));
+        ratio_2nd = fft_vals(3) / (fft_vals(2) + 1e-4);
+        features(9 + ph) = min(ratio_2nd, 2.0);
+    end
+end
+--- other chart: TransformerWithCTSaturation_v5/Hybrid 87T Relay/LSTM Predict
+--- other chart: TransformerWithCTSaturation_v5/Hybrid 87T Relay/Supervisory Override with Hardware Fallback
+=== TransformerWithCTSaturation_v5/Hybrid 87T Relay/Yd1 Compensation
+function [I_hv_comp_pu, I_lv_comp_pu] = Yd1_Compensation(I_hv_sec, I_lv_sec)
+% =========================================================================
+% HYBRID ADAPTIVE 87T RELAY: SIGNAL CONDITIONING & COMPENSATION (v4)
+% Vector Group: Yd1 (HV Wye, LV Delta). Calibrated 2026-10-26 (series CT wiring)
+% =========================================================================
+    % 1. NAMEPLATE RATINGS (300 MVA)
+    S_nom   = 300e6;
+    V_hv_ll = 230e3;
+    V_lv_ll = 11e3;
+
+    % 2. Primary full-load amperes
+    I_FLA_hv = S_nom / (sqrt(3) * V_hv_ll);   % 753.064 A
+    I_FLA_lv = S_nom / (sqrt(3) * V_lv_ll);   % 15745.916 A
+
+    % 3. EFFECTIVE CT ratios measured against the true line currents (series CT wiring)
+    CT_Ratio_HV = 404.7288;
+    CT_Ratio_LV = 8460.0372;
+
+    % 4. Rated secondary currents = 1.0 pu bases (1.8607 A HV / 1.8612 A LV)
+    I_nom_hv = I_FLA_hv / CT_Ratio_HV;
+    I_nom_lv = I_FLA_lv / CT_Ratio_LV;
+
+    % 5. Per-unit normalisation
+    I_hv_pu = I_hv_sec ./ I_nom_hv;
+    I_lv_pu = I_lv_sec ./ I_nom_lv;
+
+    % 6. Yd1 compensation of the Wye (HV) side. Mapping: I_lv = M * I_hv for healthy operation.
+    M_Yd1 = (1/sqrt(3)) * [ 1,  0, -1; 
+                           -1,  1,  0; 
+                            0, -1,  1];
+    I_hv_comp_pu = M_Yd1 * I_hv_pu;
+
+    % LV (Delta) side passes through
+    I_lv_comp_pu = I_lv_pu;
+end

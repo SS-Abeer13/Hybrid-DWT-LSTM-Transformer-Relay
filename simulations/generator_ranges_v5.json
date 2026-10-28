@@ -1,0 +1,5 @@
+{
+ "note": "CT burden multiples of the nominal burden (A: 1 ohm, B: 2.5 ohm) for the v5 generators. Chosen from the CT deviation on a 3-phase external fault (burden_sweep_v5_console.txt, probe_burden_sweep_v5.m) BEFORE any dataset was generated or any model trained: normal = tolerance on the nominal burden; stress = range in which the CT output deviates more than ~10 % in the first cycles; ood = beyond the stress range (OOD block 3).",
+ "A": {"burden_normal": [1.0, 1.2], "burden_stress": [2.0, 6.0], "burden_ood": [8.0, 12.0]},
+ "B": {"burden_normal": [1.0, 1.2], "burden_stress": [3.5, 8.0], "burden_ood": [10.0, 16.0]}
+}
