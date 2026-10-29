@@ -1,17 +1,17 @@
-Closed-loop validation (plant_b), LSTM active, relay trip logic of the saved model, 27-Oct-2026 23:49:35
+Closed-loop validation (plant_b), LSTM active, relay trip logic of the saved model, 29-Oct-2026 15:31:42
 case                                 expect   actual   max prob  delay ms   status  
 --------------------------------------------------------------------------------------
-Normal, 30 % load                    BLOCK    BLOCK    0.0002    NaN        PASS    
+Normal, 30 % load                    BLOCK    BLOCK    0.0000    NaN        PASS    
 Normal, 100 % load                   BLOCK    BLOCK    0.0000    NaN        PASS    
-Inrush 0.8 pu remanence, 0 deg       BLOCK    BLOCK    0.0105    NaN        PASS    
-Recovery inrush (HV bus, 50 ms)      BLOCK    BLOCK    0.0008    NaN        PASS    
+Inrush 0.8 pu remanence, 0 deg       BLOCK    BLOCK    0.0017    NaN        PASS    
+Recovery inrush (HV bus, 50 ms)      BLOCK    BLOCK    0.0004    NaN        PASS    
 Over-excitation 1.3 pu               BLOCK    BLOCK    0.0000    NaN        PASS    
-External 3-phase solid               BLOCK    BLOCK    0.0002    NaN        PASS    
-External A-G + CT saturation 8 x     BLOCK    BLOCK    0.0000    NaN        PASS    
-Internal A-G solid (LV side)         TRIP     BLOCK    0.8931    NaN        FAIL    
-Internal A-B, HV side                TRIP     TRIP     1.0000    14.4       PASS    
-Internal HiZ A-B, AI-only bin        TRIP     TRIP     0.9996    37.5       FAIL    
-SOTF A-B                             TRIP     TRIP     0.9999    24.4       PASS    
-Fault during inrush A-B-G            TRIP     TRIP     1.0000    21.9       PASS    
+External 3-phase solid               BLOCK    BLOCK    0.0000    NaN        PASS    
+External A-G + CT saturation 8 x     BLOCK    BLOCK    0.2061    NaN        PASS    
+Internal A-G solid (LV side)         TRIP     TRIP     1.0000    15.6       PASS    
+Internal A-B, HV side                TRIP     TRIP     1.0000    2.2        PASS    
+Internal HiZ A-B, AI-only bin        TRIP     TRIP     1.0000    15.0       PASS    
+SOTF A-B                             TRIP     TRIP     1.0000    15.6       PASS    
+Fault during inrush A-B-G            TRIP     TRIP     1.0000    12.5       PASS    
 --------------------------------------------------------------------------------------
-Passed 10 / 12 (trip decisions correct; internal faults must trip within 30 ms of the fault / energisation)
+Passed 12 / 12 (trip decisions correct; internal faults must trip within 30 ms of the fault / energisation)

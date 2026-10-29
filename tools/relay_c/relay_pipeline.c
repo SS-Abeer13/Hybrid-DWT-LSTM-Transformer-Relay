@@ -97,7 +97,8 @@ float lstm_infer_probability(const float feat_seq[32][12]) {
     for (int t = 0; t < 32; t++) {
         const float *xt = feat_seq[t];
 
-        /* --- Layer 0 (input: 12, hidden: 64) --- */
+        /* --- Layer 0 (input: 12, hidden: 64); new hidden state goes to h0n so that all 64 units use the PREVIOUS h0 --- */
+        float h0n[64];
         for (int i = 0; i < 64; i++) {
             /* Input gate */
             float gi = B_L0[i] + dot_64_avx2(&W_HH_L0[i * 64], h0);
@@ -124,10 +125,12 @@ float lstm_infer_probability(const float feat_seq[32][12]) {
             float og = sigmoid(go);
 
             c0[i] = fg * c0[i] + ig * c_cand;
-            h0[i] = og * tanhf_fast(c0[i]);
+            h0n[i] = og * tanhf_fast(c0[i]);
         }
+        for (int i = 0; i < 64; i++) h0[i] = h0n[i];
 
-        /* --- Layer 1 (input: 64, hidden: 64) --- */
+        /* --- Layer 1 (input: 64, hidden: 64); same two-step update of h1 --- */
+        float h1n[64];
         for (int i = 0; i < 64; i++) {
             float gi = B_L1[i] + dot_64_avx2(&W_IH_L1[i * 64], h0) + dot_64_avx2(&W_HH_L1[i * 64], h1);
             int ifg = 64 + i;
@@ -143,9 +146,10 @@ float lstm_infer_probability(const float feat_seq[32][12]) {
             float og = sigmoid(go);
 
             c1[i] = fg * c1[i] + ig * c_cand;
-            h1[i] = og * tanhf_fast(c1[i]);
-            seq_out[t][i] = h1[i];
+            h1n[i] = og * tanhf_fast(c1[i]);
+            seq_out[t][i] = h1n[i];
         }
+        for (int i = 0; i < 64; i++) h1[i] = h1n[i];
     }
 
     /* --- LayerNorm over hidden dimension (64) for each time step --- */

@@ -3,12 +3,12 @@
 \small
 \begin{tabular}{@{}llccccc@{}}\toprule
 \textbf{Baseline Model} & \textbf{Metric} & \textbf{Proposed} & \textbf{Baseline} & \textbf{Discordant ($b/c$)} & \textbf{McNemar $\chi^2$} & \textbf{$p$-Value}\\ \midrule
-Conventional 87T Alone & Dependability & 98.34\% & 80.33\% & 232 / 4 & 218.34 & $< 10^{-10}$\\
-Conventional 87T Alone & Security & 99.50\% & 30.17\% & 1257 / 0 & 1255.00 & $< 10^{-10}$\\
+Conventional 87T Alone & Dependability & 93.92\% & 80.34\% & 179 / 9 & 151.92 & $< 10^{-10}$\\
+Conventional 87T Alone & Security & 99.14\% & 63.41\% & 718 / 8 & 692.40 & $< 10^{-10}$\\
 \midrule
-Harmonic 87T (Per-Phase) & Dependability & 98.34\% & 81.67\% & 212 / 1 & 207.04 & $< 10^{-10}$\\
-Harmonic 87T (Per-Phase) & Security & 99.50\% & 91.67\% & 151 / 9 & 124.26 & $< 10^{-10}$\\
+Harmonic 87T (Per-Phase) & Dependability & 93.92\% & 85.93\% & 101 / 1 & 96.09 & $< 10^{-10}$\\
+Harmonic 87T (Per-Phase) & Security & 99.14\% & 99.40\% & 12 / 17 & 0.55 & 4.5826e-01\\
 \bottomrule
 \end{tabular}
-\vspace{3pt}\raggedright\footnotesize\textit{Note:} $b$: traces correctly classified by Proposed but failed by Baseline; $c$: traces correctly classified by Baseline but failed by Proposed. All comparisons statistically significant at $\alpha = 0.001$.
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} $b$: traces correctly classified by Proposed but failed by Baseline; $c$: traces correctly classified by Baseline but failed by Proposed. 3 of 4 comparisons are significant at $\alpha = 0.001$; not significant: proposed vs harmonic 87t per phase security (p = 0.458).
 \end{table}

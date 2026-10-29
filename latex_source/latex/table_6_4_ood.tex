@@ -1,16 +1,16 @@
 \begin{table}[H]\centering
-\caption{Single-pass out-of-distribution (OOD) stress evaluation on 278 held-out traces with zero retraining or threshold adaptation.}\label{tab:6.4_ood}
+\caption{Single-pass out-of-distribution (OOD) stress evaluation on 299 held-out traces with zero retraining or threshold adaptation.}\label{tab:6.4_ood}
 \small
 \begin{tabular}{@{}llcccc@{}}\toprule
 \textbf{Stress Condition Block} & \textbf{Operating Range} & \textbf{Faults ($N$)} & \textbf{Dep.\,(\%)} & \textbf{Healthy ($N$)} & \textbf{Sec.\,(\%)}\\ \midrule
-Block 1: Extreme Loading & 1--10\% and 110--130\% rated load & 28 & 100.0 & 28 & 100.0\\
-Block 2: Weak Source + Frequency Drift & Source $Z \times 3$, $f = 49.5 / 50.5$\,Hz & 29 & 100.0 & 30 & 100.0\\
-Block 3: Extreme CT Burden Saturation & CT burden $4\times$--$8\times$ nominal & 22 & 59.1 & 23 & 100.0\\
-Block 4: Severe Overexcitation + Flux & $V = 1.5$--$1.6$\,pu, $\psi_{\text{rem}} = 0.90$\,pu & 30 & 96.7 & 30 & 76.7\\
-Block 5: Severe Noise + CT Mismatch & BLWN noise 5\%, CT mismatch $\pm 8\%$ & 28 & 100.0 & 30 & 100.0\\
+Block 1: Extreme Loading & 1--10\% and 110--130\% rated load & 30 & 100.0 & 30 & 96.7\\
+Block 2: Weak Source + Frequency Drift & Source $Z \times 3$, $f = 49.5 / 50.5$\,Hz & 30 & 100.0 & 30 & 100.0\\
+Block 3: Extreme CT Burden Saturation & CT burden 8--12$\times$ nominal & 30 & 100.0 & 30 & 96.7\\
+Block 4: Severe Overexcitation + Flux & $V = 1.5$--$1.6$\,pu, $\psi_{\text{rem}} = 0.90$\,pu & 30 & 96.7 & 30 & 93.3\\
+Block 5: Severe Noise + CT Mismatch & BLWN noise 5\%, CT mismatch $\pm 8\%$ & 29 & 93.1 & 30 & 93.3\\
 \midrule
-\textbf{Overall OOD Performance} & \textbf{All 5 Stress Blocks Combined} & \textbf{137} & \textbf{92.7} & \textbf{141} & \textbf{95.0}\\
+\textbf{Overall OOD Performance} & \textbf{All 5 Stress Blocks Combined} & \textbf{149} & \textbf{98.0} & \textbf{150} & \textbf{96.0}\\
 \bottomrule
 \end{tabular}
-\vspace{3pt}\raggedright\footnotesize\textit{Note:} Median operating time across all OOD internal faults: 19.4\,ms. Zero pre-fault trips.
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Median operating time across all OOD internal faults: 17.5\,ms. Pre-fault trips: 0.
 \end{table}

@@ -1,14 +1,14 @@
 \begin{table}[H]\centering
-\caption{Ablation and architecture performance comparison on the publication dataset (grouped 5-fold CV, 3 random seeds, 15 fold-models total, $N_{\text{eval}} = 3{,}167$).}\label{tab:6.1_ablation}
+\caption{Ablation and architecture performance comparison on the publication dataset (grouped 5-fold CV, 3 random seeds, 15 fold-models total, $N_{\text{eval}}$ per repetition given in the note).}\label{tab:6.1_ablation}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lccccc@{}}\toprule
 \textbf{Protection Architecture} & \textbf{Dependability (\%)} & \textbf{Security (\%)} & \textbf{Median $T_{op}$ (ms)} & \textbf{$\le$ 2 Cycles (\%)} & \textbf{Pre-Fault Trips}\\ \midrule
-Conventional 87T Alone & 80.33 & 30.17 & 0.6 & 100.0 & 366.0\\
-Standalone LSTM Alone & 99.21 & 99.36 & 16.9 & 96.7 & 1.0\\
-Hybrid (87T-Gate Only) & 89.60 & 99.61 & 16.9 & 96.9 & 1.0\\
-\textbf{Hybrid + AI-Alone Path (Proposed)} & \textbf{98.63 $\pm$ 1.15} & \textbf{99.52 $\pm$ 0.51} & \textbf{17.5} & \textbf{96.2} & \textbf{1.0}\\
+Conventional 87T Alone & 80.34 & 63.41 & 1.2 & 100.0 & 333.0\\
+Standalone LSTM Alone & 97.68 & 95.60 & 15.6 & 96.3 & 4.0\\
+Hybrid (87T-Gate Only) & 88.38 & 99.43 & 16.2 & 95.1 & 0.0\\
+\textbf{Hybrid + AI-Alone Path (Proposed)} & \textbf{92.99 $\pm$ 3.60} & \textbf{98.96 $\pm$ 0.81} & \textbf{16.2} & \textbf{93.0} & \textbf{0.0}\\
 \bottomrule
 \end{tabular}%
 }
-\vspace{3pt}\raggedright\footnotesize\textit{Note:} Conventional 87T denotes unaugmented dual-slope percentage differential ($I_{pickup} = 0.30$\,pu, $S_1 = 25\%$, $S_2 = 60\%$, $I_{bp} = 3.0$\,pu) without startup delay.
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Conventional 87T denotes unaugmented dual-slope percentage differential ($I_{pickup} = 0.30$\,pu, $S_1 = 25\%$, $S_2 = 60\%$, $I_{bp} = 3.0$\,pu) without startup delay. $N_{\text{eval}} = 3238$ traces per repetition; $\pm$: standard deviation over the 15 fold-models.
 \end{table}

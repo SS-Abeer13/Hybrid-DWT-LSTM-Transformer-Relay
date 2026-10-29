@@ -1,12 +1,12 @@
 \begin{table}[H]\centering
-\caption{Simulink dynamic closed-loop simulation vs.\ offline Python relay mirror across 50 dynamic traces (25 held-out validation + 25 OOD).}\label{tab:6.5_closed_loop}
+\caption{Simulink dynamic closed-loop simulation vs.\ offline Python relay mirror across 50 dynamic traces (held-out validation + OOD).}\label{tab:6.5_closed_loop}
 \small
 \begin{tabular}{@{}lcccc@{}}\toprule
-\textbf{Test Evaluation Set} & \textbf{Traces ($N$)} & \textbf{Decision Agreement} & \textbf{Median $\Delta t$} & \textbf{Max $|\Delta t|$}\\ \midrule
-Held-Out Validation Traces & 25 & 25 / 25 (100.0\%) & 0.00\,ms & 6.73\,ms\\
-Out-of-Distribution (OOD) Traces & 25 & 25 / 25 (100.0\%) & 0.00\,ms & 4.81\,ms\\ \midrule
-\textbf{Combined Total Suite} & \textbf{50} & \textbf{50 / 50 (100.0\%)} & \textbf{0.00\,ms} & \textbf{6.73\,ms}\\
+\textbf{Test Evaluation Set} & \textbf{Traces ($N$)} & \textbf{Decision Agreement} & \textbf{Median $|\Delta t|$} & \textbf{Max $|\Delta t|$}\\ \midrule
+Held-Out Validation Traces & 25 & 25 / 25 (100.0\%) & 0.00\,ms & 0.30\,ms\\
+Out-of-Distribution (OOD) Traces & 25 & 25 / 25 (100.0\%) & 0.00\,ms & 0.12\,ms\\ \midrule
+\textbf{Combined Total Suite} & \textbf{50} & \textbf{50 / 50 (100.0\%)} & \textbf{0.00\,ms} & \textbf{0.30\,ms}\\
 \bottomrule
 \end{tabular}
-\vspace{3pt}\raggedright\footnotesize\textit{Note:} Ground-truth trip accuracy: 49 / 50 (98.0\%) on both Simulink closed loop and Python mirror. Median $\Delta t \le 2.0$\,ms acceptance criterion passed.
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Ground-truth trip accuracy: Simulink 49 / 50, Python mirror 49 / 50. |$\Delta t$| over the 24 traces tripped by both.
 \end{table}

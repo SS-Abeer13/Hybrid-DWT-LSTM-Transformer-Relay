@@ -6,21 +6,21 @@
 \begin{tabular}{@{}llcccccc@{}}\toprule
 \textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Params} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule
 \multicolumn{8}{@{}l}{\textit{Panel A: Standalone Literature Operating Mode (Direct Trip with Dwell Persistence)}} \\ \midrule
-Conventional 87T & Sharp [7] (1958) & --- & 80.33 & 30.17 & 50.80 & 0.6\,ms & 1266 \\
-Wavelet-SVM & Simoes [13] (2021) & 5,880 & 93.13 & 82.79 & 87.04 & 20.6\,ms & 312 \\
-Wavelet-ANN & Guzman [19] / Costa [18] & 5,441 & 98.50 & 99.56 & 99.12 & 21.2\,ms & 8 \\
-Wavelet-RF & Abdusalam [11] (2022) & 41,806 & 98.34 & 99.17 & 98.83 & 20.0\,ms & 15 \\
-1D-CNN & Afrasiabi [16] (2020) & 14,561 & 98.34 & 99.45 & 98.99 & 21.2\,ms & 10 \\
-Wavelet-GRU & Lin [23] (2025) & 44,354 & 99.29 & 99.45 & 99.38 & 17.5\,ms & 10 \\
-Standalone LSTM & Alhamd [1] / Atiyah [3] & 58,241 & 99.21 & 99.45 & 99.35 & 17.5\,ms & 10 \\
+Conventional 87T & Sharp [7] (1958) & --- & 80.34 & 63.41 & 69.95 & 1.2\,ms & 727 \\
+Wavelet-SVM & Simoes [13] (2021) & 5,880 & 84.01 & 74.23 & 78.01 & 15.6\,ms & 512 \\
+Wavelet-ANN & Guzman [19] / Costa [18] & 5,441 & 97.12 & 96.28 & 96.60 & 16.2\,ms & 74 \\
+Wavelet-RF & Abdusalam [11] (2022) & 37,802 & 96.32 & 96.88 & 96.66 & 16.2\,ms & 62 \\
+1D-CNN & Afrasiabi [16] (2020) & 14,561 & 97.52 & 96.73 & 97.04 & 16.2\,ms & 65 \\
+Wavelet-GRU & Lin [23] (2025) & 44,354 & 98.40 & 96.53 & 97.25 & 15.0\,ms & 69 \\
+Standalone LSTM & Alhamd [1] / Atiyah [3] & 58,241 & 97.92 & 96.78 & 97.22 & 15.6\,ms & 64 \\
 \midrule
 \multicolumn{8}{@{}l}{\textit{Panel B: Under Proposed Supervisory Hybrid Architecture (87T Handshake + AI-Alone Path)}} \\ \midrule
-Wavelet-SVM & Dual-Path Hybrid & 5,880 & 86.97 & 93.00 & 90.52 & 35.6\,ms & 127 \\
-Wavelet-ANN & Dual-Path Hybrid & 5,441 & 97.08 & 99.72 & 98.64 & 22.5\,ms & 5 \\
-Wavelet-RF & Dual-Path Hybrid & 41,806 & 96.52 & 99.78 & 98.44 & 22.5\,ms & 4 \\
-1D-CNN & Dual-Path Hybrid & 14,561 & 97.87 & 99.67 & 98.93 & 21.9\,ms & 6 \\
-Wavelet-GRU & Dual-Path Hybrid & 44,354 & 98.82 & 99.67 & 99.32 & 18.8\,ms & 6 \\
-\textbf{Proposed Hybrid DWT-LSTM} & Dual-Path Hybrid & 58,241 & 98.34 & 99.50 & 99.03 & 17.5\,ms & 9 \\
+Wavelet-SVM & Dual-Path Hybrid & 5,880 & 80.82 & 98.24 & 91.51 & 18.1\,ms & 35 \\
+Wavelet-ANN & Dual-Path Hybrid & 5,441 & 92.57 & 99.09 & 96.57 & 16.9\,ms & 18 \\
+Wavelet-RF & Dual-Path Hybrid & 37,802 & 92.09 & 99.25 & 96.48 & 19.4\,ms & 15 \\
+1D-CNN & Dual-Path Hybrid & 14,561 & 92.25 & 99.14 & 96.48 & 18.1\,ms & 17 \\
+Wavelet-GRU & Dual-Path Hybrid & 44,354 & 93.29 & 99.04 & 96.82 & 15.6\,ms & 19 \\
+\textbf{Proposed Hybrid DWT-LSTM} & Dual-Path Hybrid & 58,241 & 93.92 & 99.14 & 97.13 & 16.2\,ms & 17 \\
 \bottomrule
 \end{tabular}%
 }

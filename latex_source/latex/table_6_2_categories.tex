@@ -4,24 +4,24 @@
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcccccc@{}}\toprule
 \textbf{Scenario Category} & \textbf{Traces ($N$)} & \textbf{Expected} & \textbf{Proposed [95\% Wilson CI]} & \textbf{LSTM Alone} & \textbf{87T Alone} & \textbf{Med.\,$T_{op}$}\\ \midrule
-Evolving & 80 & Trip & 100.0 [98.4, 100.0] & 100.0 & 100.0 & 18.8\,ms\\
-External CT-sat & 241 & Block & 98.8 [97.7, 99.3] & 97.9 & 2.5 & ---\\
+Evolving & 80 & Trip & 100.0 [98.4, 100.0] & 100.0 & 100.0 & 16.2\,ms\\
+External CT-sat & 302 & Block & 98.7 [97.7, 99.2] & 93.6 & 66.9 & ---\\
 External HiZ & 60 & Block & 100.0 [97.9, 100.0] & 100.0 & 100.0 & ---\\
-External in inrush & 100 & Block & 96.7 [94.0, 98.2] & 97.0 & 0.0 & ---\\
-External solid & 439 & Block & 100.0 [99.7, 100.0] & 99.9 & 14.4 & ---\\
-Fault in inrush & 120 & Trip & 99.7 [98.4, 100.0] & 99.7 & 0.0 & 27.5\,ms\\
-Inrush loaded & 200 & Block & 100.0 [99.4, 100.0] & 100.0 & 0.0 & ---\\
-Inrush no-load & 200 & Block & 99.8 [99.1, 100.0] & 99.8 & 0.0 & ---\\
-Internal CT-sat & 121 & Trip & 100.0 [99.0, 100.0] & 100.0 & 98.3 & 19.4\,ms\\
-Internal HV-side & 207 & Trip & 100.0 [99.4, 100.0] & 100.0 & 100.0 & 13.1\,ms\\
-Internal HiZ & 152 & Trip & 91.2 [88.3, 93.5] & 96.5 & 53.3 & 18.1\,ms\\
-Internal LV solid & 506 & Trip & 100.0 [99.7, 100.0] & 100.0 & 88.9 & 17.5\,ms\\
+External in inrush & 100 & Block & 88.3 [84.2, 91.5] & 78.7 & 0.0 & ---\\
+External solid & 440 & Block & 98.9 [98.2, 99.4] & 90.2 & 100.0 & ---\\
+Fault in inrush & 111 & Trip & 100.0 [98.9, 100.0] & 98.8 & 0.0 & 28.1\,ms\\
+Inrush loaded & 192 & Block & 100.0 [99.3, 100.0] & 99.7 & 0.0 & ---\\
+Inrush no-load & 200 & Block & 99.8 [99.1, 100.0] & 98.8 & 0.0 & ---\\
+Internal CT-sat & 121 & Trip & 100.0 [99.0, 100.0] & 100.0 & 100.0 & 16.2\,ms\\
+Internal HV-side & 198 & Trip & 100.0 [99.4, 100.0] & 100.0 & 100.0 & 3.8\,ms\\
+Internal HiZ & 155 & Trip & 65.8 [61.4, 70.0] & 87.1 & 51.0 & 25.6\,ms\\
+Internal LV solid & 506 & Trip & 94.7 [93.5, 95.7] & 99.8 & 88.3 & 16.9\,ms\\
 Normal & 303 & Block & 100.0 [99.6, 100.0] & 100.0 & 100.0 & ---\\
-Over-excitation & 190 & Block & 99.6 [98.7, 99.9] & 99.6 & 47.4 & ---\\
-Recovery inrush & 80 & Block & 98.3 [95.8, 99.4] & 97.1 & 31.2 & ---\\
-SOTF & 80 & Trip & 95.4 [92.0, 97.4] & 94.6 & 100.0 & 28.1\,ms\\
+Over-excitation & 310 & Block & 100.0 [99.6, 100.0] & 100.0 & 63.2 & ---\\
+Recovery inrush & 80 & Block & 100.0 [98.4, 100.0] & 99.2 & 73.8 & ---\\
+SOTF & 80 & Trip & 90.0 [85.6, 93.2] & 91.7 & 100.0 & 21.2\,ms\\
 \bottomrule
 \end{tabular}%
 }
-\vspace{3pt}\raggedright\footnotesize\textit{Note:} Wilson 95\% confidence intervals computed over unique evaluated traces. Total unique traces = 3{,}167.
+\vspace{3pt}\raggedright\footnotesize\textit{Note:} Wilson 95\% confidence intervals computed over unique evaluated traces. Total unique traces = 3238.
 \end{table}

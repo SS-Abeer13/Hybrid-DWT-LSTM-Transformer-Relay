@@ -230,7 +230,7 @@ def compute_statistics(args):
     # Format text output
     L = [
         "=" * 100,
-        "STATISTICAL SIGNIFICANCE AND UNCERTAINTY ANALYSIS (v4 DATASET)",
+        "STATISTICAL SIGNIFICANCE AND UNCERTAINTY ANALYSIS (v5 DATASET)",
         "=" * 100,
         "",
         "1. PAIRED MCNEMAR SIGNIFICANCE TESTS:",
