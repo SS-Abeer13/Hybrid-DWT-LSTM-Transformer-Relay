@@ -599,3 +599,8 @@
 - Old plant B results renamed `*_INVALID_87Tcal` (runs/20261027_v4_plant_b_zeroshot, _cross_plant, _leave_one_out; simulations/test_hybrid_relay_plant_b_results.*).
 - 2026-10-28 16:23: `run_v5_generation_all.bat` started (plant A main 3040 -> A OOD 300 -> B main 1200 -> B OOD 150, auto-resume). First ETA from the generator log: ~264 min for plant A main.
 - MATLAB MCP is misconfigured (`R2023a\bin\bin\win64`); MATLAB is run with `matlab.exe -batch`.
+
+### V8 option (a), step 3: v5 datasets generated (2026-10-29 11:30)
+- Plant A main `StressDataset_v5_20261028_162333.mat` (3040, 16:23-20:57), OOD `StressDataset_v5OOD_20261028_205712.mat` (300); top-ups (Inrush_Loaded 80, Overexcitation 100 and 60 with OverexcMin 1.22, Stress_ExtCTSat multi-phase 60). Plant B main `StressDataset_PlantBv5_20261028_212041.mat` (1200), OOD `StressDataset_PlantBv5OOD_20261029_010052.mat` (150), top-ups Inrush_Loaded 30, Overexcitation 60. Coverage (`*_plus_topups_coverage.txt`): all 8 criteria pass for both plants.
+- Interruptions: plant B main stopped at trace 313 and OOD at 111 when processes were killed (my kill of duplicate waiter processes at 21:45; the session end on 10-29); both resumed from PARTIAL files with the same run id. The plant B over-excitation top-up crashed once (MATLAB heap corruption) and was resumed from its PARTIAL file. Logs of the interrupted parts are kept as `*_part1_*`.
+- 8 of the 80 plant-A loaded-inrush top-up simulations aborted early (solver stopped, truncated identical stubs, status Failed); coverage criterion 7 now counts aborted simulations separately from duplicates (`coverage_report_v5.py`); they are excluded from training and evaluation.

@@ -190,8 +190,10 @@ def main(paths: list[Path]) -> int:
     for nm, o in zip(names, ok):
         perscn[nm].append(o)
     worst = sorted(((float(np.mean(v)), k, len(v)) for k, v in perscn.items()))[:6]
-    dup = n - len(set(fps))
-    L.append(f"7. Generator checks (relaxed): {100 * fr:.1f} % of all traces (strict {100 * strict_ok.mean():.1f} %); worst scenarios: " + ", ".join(f"{k} {100 * a:.0f}% (n={c})" for a, k, c in worst) + f"; duplicate fingerprints: {dup}")
+    succ = [f for f, st_ in zip(fps, status) if st_ == "Success"]
+    dup = len(succ) - len(set(succ))   # v5: aborted simulations (status Failed, identical truncated stubs) are counted separately, they are excluded everywhere
+    n_failed = n - len(succ)
+    L.append(f"7. Generator checks (relaxed): {100 * fr:.1f} % of all traces (strict {100 * strict_ok.mean():.1f} %); worst scenarios: " + ", ".join(f"{k} {100 * a:.0f}% (n={c})" for a, k, c in worst) + f"; aborted simulations (excluded): {n_failed}; duplicate fingerprints among completed traces: {dup}")
     verdict("7 generator checks", fr >= 0.97 and worst[0][0] >= 0.90 and dup == 0, f"overall {100 * fr:.1f} %, worst scenario {100 * worst[0][0]:.0f} %, duplicates {dup}")
     L.append("")
 
