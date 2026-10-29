@@ -24,9 +24,9 @@ I_NOM_V3 = 300e6 / (np.sqrt(3) * 230e3) / CT_RATIO_HV_V3   # = 0.9302 A
 CT_RATIO_HV_V4, CT_RATIO_LV_V4 = 404.7288, 8460.0372
 I_NOM_V4 = 1.8610                                         # = 1.8610 A
 
-# Plant B calibrated values (simulations/plant_b_checks.txt)
-CT_RATIO_HV_PLANT_B, CT_RATIO_LV_PLANT_B = 202.0119, 808.8849
-I_NOM_PLANT_B = 0.8232
+# Plant B calibrated values, v5 plant (simulations/plant_v5_checks_B.txt). v4 values were 202.0119 / 808.8849 / 0.8232 A (0.8232 A did not match the ratios: 0.8661 A).
+CT_RATIO_HV_PLANT_B, CT_RATIO_LV_PLANT_B = 201.98, 808.58
+I_NOM_PLANT_B = 0.8658
 
 # Active calibration default (Plant A, v4)
 CT_RATIO_HV, CT_RATIO_LV = CT_RATIO_HV_V4, CT_RATIO_LV_V4

@@ -64,7 +64,7 @@ def load_meta(path: Path):
         fps = [text(h, ds["fingerprint"], i) for i in range(n)]
 
         ext_peaks = np.full(n, np.nan, dtype=float)
-        I_nom = 0.8232 if "PlantB" in path.name else 1.8610
+        I_nom = 0.8658 if "PlantB" in path.name else 1.8610
         if "primaryCurrent" in ds:
             p_ref = ds["primaryCurrent"][()]
             for i in range(n):

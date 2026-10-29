@@ -1,0 +1,303 @@
+[Thu 10/29/2026 10:58:24.85] launch 1 
+=== Stress dataset Plant B | set OOD | run 20261029_010052 | 150 samples | 72 scenarios | start at 101 | chunk 100 ===
+  Normal                       14
+  Inrush_NoLoad                 3
+  Inrush_Loaded                16
+  Recovery_Inrush               3
+  Overexcitation                6
+  Internal_Evolving             0
+  Internal_SOTF_AB              5
+  Internal_SOTF_ABC             0
+  External_HiZ_AB               0
+  External_HiZ_ABC              0
+  Stress_FaultInInrush          5
+  Stress_ExtInInrush            0
+  Internal_AG                   3
+  InternalHV_AG                 5
+  External_AG                   0
+  Stress_ExtCTSat_AG            5
+  Stress_CTSat_Int_AG           5
+  Internal_BG                   0
+  InternalHV_BG                 0
+  External_BG                   0
+  Stress_ExtCTSat_BG            0
+  Stress_CTSat_Int_BG           0
+  Internal_CG                   0
+  InternalHV_CG                 0
+  External_CG                   0
+  Stress_ExtCTSat_CG            0
+  Stress_CTSat_Int_CG           0
+  Internal_AB                  19
+  InternalHV_AB                 9
+  External_AB                   4
+  Stress_ExtCTSat_AB            5
+  Stress_CTSat_Int_AB           5
+  Internal_BC                   0
+  InternalHV_BC                 0
+  External_BC                   0
+  Stress_ExtCTSat_BC            0
+  Stress_CTSat_Int_BC           0
+  Internal_AC                   0
+  InternalHV_AC                 0
+  External_AC                   0
+  Stress_ExtCTSat_AC            0
+  Stress_CTSat_Int_AC           0
+  Internal_ABG                  0
+  InternalHV_ABG                0
+  External_ABG                  0
+  Stress_ExtCTSat_ABG           0
+  Stress_CTSat_Int_ABG          0
+  Internal_BCG                  0
+  InternalHV_BCG                0
+  External_BCG                  0
+  Stress_ExtCTSat_BCG           0
+  Stress_CTSat_Int_BCG          0
+  Internal_ACG                  0
+  InternalHV_ACG                0
+  External_ACG                  0
+  Stress_ExtCTSat_ACG           0
+  Stress_CTSat_Int_ACG          0
+  Internal_ABC                 14
+  InternalHV_ABC                0
+  External_ABC                 14
+  Stress_ExtCTSat_ABC           5
+  Stress_CTSat_Int_ABC          5
+  Internal_ABCG                 0
+  InternalHV_ABCG               0
+  External_ABCG                 0
+  Stress_ExtCTSat_ABCG          0
+  Stress_CTSat_Int_ABCG         0
+  Internal_HiZ_AB               0
+  Internal_HiZ_BC               0
+  Internal_HiZ_AC               0
+  Internal_HiZ_ABC              0
+  Internal_HiZ_AG               0
+[ 101/ 150] Inrush_Loaded              OK   | load  107% (real  NaN%) pf 0.88 noise 0.32% burden 1.0x CTerr   2% | event 0.392s det 0.399s | checks OK | ETA 14 min
+[ 102/ 150] Inrush_Loaded              OK   | load   27% (real  NaN%) pf 0.96 noise 0.30% burden 1.1x CTerr   3% | event 0.671s det 0.677s | checks OK | ETA 9 min
+[ 103/ 150] Recovery_Inrush            OK   | load   41% (real   40%) pf 0.93 noise 0.90% burden 1.0x CTerr   3% | event 0.421s det 0.436s | checks OK | ETA 7 min
+[ 104/ 150] Recovery_Inrush            OK   | load   44% (real   43%) pf 0.96 noise 0.16% burden 1.0x CTerr   3% | event 0.532s det 0.542s | checks OK | ETA 6 min
+[ 105/ 150] Recovery_Inrush            OK   | load   80% (real   81%) pf 0.83 noise 0.14% burden 1.1x CTerr   2% | event 0.467s det 0.472s | checks OK | ETA 5 min
+[ 106/ 150] Internal_AB                OK   | load   59% (real   57%) pf 0.97 noise 0.17% burden 1.2x CTerr   3% | event 0.586s det 0.590s | checks OK | ETA 5 min
+[ 107/ 150] Internal_AB                OK   | load  105% (real  106%) pf 0.88 noise 0.28% burden 1.2x CTerr   2% | event 0.594s det 0.596s | checks OK | ETA 4 min
+[ 108/ 150] Internal_AB                OK   | load  108% (real  108%) pf 0.89 noise 0.17% burden 1.2x CTerr   2% | event 0.444s det 0.446s | checks OK | ETA 4 min
+[ 109/ 150] Internal_AB                OK   | load   91% (real   95%) pf 0.82 noise 0.13% burden 1.1x CTerr   2% | event 0.522s det 0.524s | checks OK | ETA 4 min
+[ 110/ 150] Internal_AB                OK   | load   96% (real   95%) pf 1.00 noise 0.09% burden 1.1x CTerr   2% | event 0.661s det 0.663s | checks OK | ETA 4 min
+[ 111/ 150] Internal_SOTF_AB           OK   | load   30% (real  NaN%) pf 0.81 noise 0.67% burden 1.2x CTerr   6% | event 0.661s det 0.664s | checks OK | ETA 3 min
+[ 112/ 150] Internal_SOTF_AB           OK   | load   50% (real  NaN%) pf 0.84 noise 0.23% burden 1.1x CTerr   3% | event 0.235s det 0.237s | checks OK | ETA 3 min
+[ 113/ 150] Internal_SOTF_AB           OK   | load   20% (real  NaN%) pf 0.94 noise 0.60% burden 1.0x CTerr   9% | event 0.501s det 0.511s | checks OK | ETA 3 min
+[ 114/ 150] Internal_SOTF_AB           OK   | load   28% (real  NaN%) pf 0.90 noise 0.18% burden 1.2x CTerr   6% | event 0.521s det 0.530s | checks OK | ETA 3 min
+[ 115/ 150] Internal_SOTF_AB           OK   | load   13% (real  NaN%) pf 0.91 noise 0.77% burden 1.1x CTerr  17% | event 0.612s det 0.614s | checks OK | ETA 3 min
+[ 116/ 150] Stress_FaultInInrush       OK   | load   15% (real  NaN%) pf 0.90 noise 0.22% burden 1.1x CTerr   3% | event 0.550s det 0.552s | checks OK | ETA 3 min
+[ 117/ 150] Stress_FaultInInrush       OK   | load   85% (real  NaN%) pf 0.82 noise 0.13% burden 1.1x CTerr  13% | event 0.371s det 0.373s | checks OK | ETA 3 min
+[ 118/ 150] Stress_FaultInInrush       OK   | load   95% (real  NaN%) pf 0.92 noise 0.61% burden 1.2x CTerr   2% | event 0.387s det 0.392s | checks OK | ETA 3 min
+[ 119/ 150] Stress_FaultInInrush       OK   | load   90% (real  NaN%) pf 0.82 noise 0.29% burden 1.1x CTerr  16% | event 0.458s det 0.464s | checks OK | ETA 2 min
+[ 120/ 150] Stress_FaultInInrush       OK   | load   41% (real  NaN%) pf 0.90 noise 0.11% burden 1.2x CTerr   2% | event 0.573s det 0.578s | checks OK | ETA 2 min
+[ 121/ 150] Normal                     OK   | load   19% (real   20%) pf 0.98 noise 5.21% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[ 122/ 150] Normal                     CHK  | load   13% (real   13%) pf 0.96 noise 5.39% burden 1.0x CTerr NaN% | event      - det      - | FAILED: TIMING | ETA 2 min
+[ 123/ 150] Normal                     OK   | load   60% (real   62%) pf 0.82 noise 5.34% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[ 124/ 150] Normal                     OK   | load   84% (real   82%) pf 0.91 noise 4.41% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[ 125/ 150] Normal                     OK   | load   76% (real   79%) pf 0.88 noise 4.98% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[ 126/ 150] External_ABC               OK   | load   71% (real   71%) pf 0.83 noise 5.49% burden 1.0x CTerr   7% | event 0.422s det 0.426s | checks OK | ETA 2 min
+[ 127/ 150] External_ABC               OK   | load   91% (real   89%) pf 1.00 noise 5.54% burden 1.1x CTerr   8% | event 0.508s det 0.519s | checks OK | ETA 2 min
+[ 128/ 150] External_ABC               OK   | load   60% (real   59%) pf 0.97 noise 4.34% burden 1.2x CTerr   7% | event 0.369s det 0.377s | checks OK | ETA 2 min
+[ 129/ 150] External_ABC               OK   | load   91% (real   86%) pf 0.96 noise 5.70% burden 1.2x CTerr   8% | event 0.522s det      - | checks OK | ETA 2 min
+[ 130/ 150] External_ABC               OK   | load   65% (real   66%) pf 0.94 noise 4.37% burden 1.1x CTerr   6% | event 0.448s det 0.452s | checks OK | ETA 1 min
+[ 131/ 150] Inrush_Loaded              OK   | load   96% (real  NaN%) pf 0.91 noise 4.66% burden 1.2x CTerr   8% | event 0.686s det 0.693s | checks OK | ETA 1 min
+[ 132/ 150] Inrush_Loaded              OK   | load   13% (real  NaN%) pf 0.81 noise 4.06% burden 1.2x CTerr  39% | event 0.664s det 0.671s | checks OK | ETA 1 min
+[ 133/ 150] Inrush_Loaded              OK   | load   18% (real  NaN%) pf 0.84 noise 4.29% burden 1.1x CTerr  26% | event 0.186s det 0.193s | checks OK | ETA 1 min
+[ 134/ 150] Inrush_Loaded              OK   | load   83% (real  NaN%) pf 0.90 noise 5.46% burden 1.0x CTerr  10% | event 0.114s det 0.121s | checks OK | ETA 1 min
+[ 135/ 150] Inrush_Loaded              OK   | load   55% (real  NaN%) pf 0.81 noise 5.47% burden 1.1x CTerr  15% | event 0.664s det 0.671s | checks OK | ETA 1 min
+ERROR: MATLAB error Exit Status: 0xc0000374, Heap corruption
+[Thu 10/29/2026 11:01:44.08] launch 2 
+=== Stress dataset Plant B | set OOD | run 20261029_010052 | 150 samples | 72 scenarios | start at 126 | chunk 100 ===
+  Normal                       14
+  Inrush_NoLoad                 3
+  Inrush_Loaded                16
+  Recovery_Inrush               3
+  Overexcitation                6
+  Internal_Evolving             0
+  Internal_SOTF_AB              5
+  Internal_SOTF_ABC             0
+  External_HiZ_AB               0
+  External_HiZ_ABC              0
+  Stress_FaultInInrush          5
+  Stress_ExtInInrush            0
+  Internal_AG                   3
+  InternalHV_AG                 5
+  External_AG                   0
+  Stress_ExtCTSat_AG            5
+  Stress_CTSat_Int_AG           5
+  Internal_BG                   0
+  InternalHV_BG                 0
+  External_BG                   0
+  Stress_ExtCTSat_BG            0
+  Stress_CTSat_Int_BG           0
+  Internal_CG                   0
+  InternalHV_CG                 0
+  External_CG                   0
+  Stress_ExtCTSat_CG            0
+  Stress_CTSat_Int_CG           0
+  Internal_AB                  19
+  InternalHV_AB                 9
+  External_AB                   4
+  Stress_ExtCTSat_AB            5
+  Stress_CTSat_Int_AB           5
+  Internal_BC                   0
+  InternalHV_BC                 0
+  External_BC                   0
+  Stress_ExtCTSat_BC            0
+  Stress_CTSat_Int_BC           0
+  Internal_AC                   0
+  InternalHV_AC                 0
+  External_AC                   0
+  Stress_ExtCTSat_AC            0
+  Stress_CTSat_Int_AC           0
+  Internal_ABG                  0
+  InternalHV_ABG                0
+  External_ABG                  0
+  Stress_ExtCTSat_ABG           0
+  Stress_CTSat_Int_ABG          0
+  Internal_BCG                  0
+  InternalHV_BCG                0
+  External_BCG                  0
+  Stress_ExtCTSat_BCG           0
+  Stress_CTSat_Int_BCG          0
+  Internal_ACG                  0
+  InternalHV_ACG                0
+  External_ACG                  0
+  Stress_ExtCTSat_ACG           0
+  Stress_CTSat_Int_ACG          0
+  Internal_ABC                 14
+  InternalHV_ABC                0
+  External_ABC                 14
+  Stress_ExtCTSat_ABC           5
+  Stress_CTSat_Int_ABC          5
+  Internal_ABCG                 0
+  InternalHV_ABCG               0
+  External_ABCG                 0
+  Stress_ExtCTSat_ABCG          0
+  Stress_CTSat_Int_ABCG         0
+  Internal_HiZ_AB               0
+  Internal_HiZ_BC               0
+  Internal_HiZ_AC               0
+  Internal_HiZ_ABC              0
+  Internal_HiZ_AG               0
+[ 126/ 150] External_ABC               OK   | load   71% (real   71%) pf 0.83 noise 5.49% burden 1.0x CTerr   7% | event 0.422s det 0.426s | checks OK | ETA 4 min
+[ 127/ 150] External_ABC               OK   | load   91% (real   89%) pf 1.00 noise 5.54% burden 1.1x CTerr   8% | event 0.508s det 0.519s | checks OK | ETA 3 min
+[ 128/ 150] External_ABC               OK   | load   60% (real   59%) pf 0.97 noise 4.34% burden 1.2x CTerr   7% | event 0.369s det 0.377s | checks OK | ETA 2 min
+[ 129/ 150] External_ABC               OK   | load   91% (real   86%) pf 0.96 noise 5.70% burden 1.2x CTerr   8% | event 0.522s det      - | checks OK | ETA 2 min
+[ 130/ 150] External_ABC               OK   | load   65% (real   66%) pf 0.94 noise 4.37% burden 1.1x CTerr   6% | event 0.448s det 0.452s | checks OK | ETA 2 min
+[ 131/ 150] Inrush_Loaded              OK   | load   96% (real  NaN%) pf 0.91 noise 4.66% burden 1.2x CTerr   8% | event 0.686s det 0.693s | checks OK | ETA 2 min
+[ 132/ 150] Inrush_Loaded              OK   | load   13% (real  NaN%) pf 0.81 noise 4.06% burden 1.2x CTerr  39% | event 0.664s det 0.671s | checks OK | ETA 2 min
+[ 133/ 150] Inrush_Loaded              OK   | load   18% (real  NaN%) pf 0.84 noise 4.29% burden 1.1x CTerr  26% | event 0.186s det 0.193s | checks OK | ETA 1 min
+[ 134/ 150] Inrush_Loaded              OK   | load   83% (real  NaN%) pf 0.90 noise 5.46% burden 1.0x CTerr  10% | event 0.114s det 0.121s | checks OK | ETA 1 min
+[ 135/ 150] Inrush_Loaded              OK   | load   55% (real  NaN%) pf 0.81 noise 5.47% burden 1.1x CTerr  15% | event 0.664s det 0.671s | checks OK | ETA 1 min
+[ 136/ 150] Internal_AB                OK   | load   45% (real   43%) pf 0.92 noise 4.44% burden 1.0x CTerr  23% | event 0.322s det 0.329s | checks OK | ETA 1 min
+[ 137/ 150] Internal_AB                OK   | load   60% (real   60%) pf 0.95 noise 5.45% burden 1.0x CTerr  21% | event 0.468s det 0.471s | checks OK | ETA 1 min
+[ 138/ 150] Internal_AB                OK   | load   37% (real   39%) pf 0.95 noise 5.51% burden 1.1x CTerr  38% | event 0.501s det 0.503s | checks OK | ETA 1 min
+[ 139/ 150] Internal_AB                OK   | load   96% (real   98%) pf 0.84 noise 4.30% burden 1.2x CTerr  10% | event 0.385s det 0.387s | checks OK | ETA 1 min
+ERROR: MATLAB error Exit Status: 0xc0000374, Heap corruption
+[Thu 10/29/2026 11:03:14.45] launch 3 
+=== Stress dataset Plant B | set OOD | run 20261029_010052 | 150 samples | 72 scenarios | start at 126 | chunk 100 ===
+  Normal                       14
+  Inrush_NoLoad                 3
+  Inrush_Loaded                16
+  Recovery_Inrush               3
+  Overexcitation                6
+  Internal_Evolving             0
+  Internal_SOTF_AB              5
+  Internal_SOTF_ABC             0
+  External_HiZ_AB               0
+  External_HiZ_ABC              0
+  Stress_FaultInInrush          5
+  Stress_ExtInInrush            0
+  Internal_AG                   3
+  InternalHV_AG                 5
+  External_AG                   0
+  Stress_ExtCTSat_AG            5
+  Stress_CTSat_Int_AG           5
+  Internal_BG                   0
+  InternalHV_BG                 0
+  External_BG                   0
+  Stress_ExtCTSat_BG            0
+  Stress_CTSat_Int_BG           0
+  Internal_CG                   0
+  InternalHV_CG                 0
+  External_CG                   0
+  Stress_ExtCTSat_CG            0
+  Stress_CTSat_Int_CG           0
+  Internal_AB                  19
+  InternalHV_AB                 9
+  External_AB                   4
+  Stress_ExtCTSat_AB            5
+  Stress_CTSat_Int_AB           5
+  Internal_BC                   0
+  InternalHV_BC                 0
+  External_BC                   0
+  Stress_ExtCTSat_BC            0
+  Stress_CTSat_Int_BC           0
+  Internal_AC                   0
+  InternalHV_AC                 0
+  External_AC                   0
+  Stress_ExtCTSat_AC            0
+  Stress_CTSat_Int_AC           0
+  Internal_ABG                  0
+  InternalHV_ABG                0
+  External_ABG                  0
+  Stress_ExtCTSat_ABG           0
+  Stress_CTSat_Int_ABG          0
+  Internal_BCG                  0
+  InternalHV_BCG                0
+  External_BCG                  0
+  Stress_ExtCTSat_BCG           0
+  Stress_CTSat_Int_BCG          0
+  Internal_ACG                  0
+  InternalHV_ACG                0
+  External_ACG                  0
+  Stress_ExtCTSat_ACG           0
+  Stress_CTSat_Int_ACG          0
+  Internal_ABC                 14
+  InternalHV_ABC                0
+  External_ABC                 14
+  Stress_ExtCTSat_ABC           5
+  Stress_CTSat_Int_ABC          5
+  Internal_ABCG                 0
+  InternalHV_ABCG               0
+  External_ABCG                 0
+  Stress_ExtCTSat_ABCG          0
+  Stress_CTSat_Int_ABCG         0
+  Internal_HiZ_AB               0
+  Internal_HiZ_BC               0
+  Internal_HiZ_AC               0
+  Internal_HiZ_ABC              0
+  Internal_HiZ_AG               0
+[ 126/ 150] External_ABC               OK   | load   71% (real   71%) pf 0.83 noise 5.49% burden 1.0x CTerr   7% | event 0.422s det 0.426s | checks OK | ETA 4 min
+[ 127/ 150] External_ABC               OK   | load   91% (real   89%) pf 1.00 noise 5.54% burden 1.1x CTerr   8% | event 0.508s det 0.519s | checks OK | ETA 3 min
+[ 128/ 150] External_ABC               OK   | load   60% (real   59%) pf 0.97 noise 4.34% burden 1.2x CTerr   7% | event 0.369s det 0.377s | checks OK | ETA 2 min
+[ 129/ 150] External_ABC               OK   | load   91% (real   86%) pf 0.96 noise 5.70% burden 1.2x CTerr   8% | event 0.522s det      - | checks OK | ETA 2 min
+[ 130/ 150] External_ABC               OK   | load   65% (real   66%) pf 0.94 noise 4.37% burden 1.1x CTerr   6% | event 0.448s det 0.452s | checks OK | ETA 2 min
+[ 131/ 150] Inrush_Loaded              OK   | load   96% (real  NaN%) pf 0.91 noise 4.66% burden 1.2x CTerr   8% | event 0.686s det 0.693s | checks OK | ETA 2 min
+[ 132/ 150] Inrush_Loaded              OK   | load   13% (real  NaN%) pf 0.81 noise 4.06% burden 1.2x CTerr  39% | event 0.664s det 0.671s | checks OK | ETA 2 min
+[ 133/ 150] Inrush_Loaded              OK   | load   18% (real  NaN%) pf 0.84 noise 4.29% burden 1.1x CTerr  26% | event 0.186s det 0.193s | checks OK | ETA 1 min
+[ 134/ 150] Inrush_Loaded              OK   | load   83% (real  NaN%) pf 0.90 noise 5.46% burden 1.0x CTerr  10% | event 0.114s det 0.121s | checks OK | ETA 1 min
+[ 135/ 150] Inrush_Loaded              OK   | load   55% (real  NaN%) pf 0.81 noise 5.47% burden 1.1x CTerr  15% | event 0.664s det 0.671s | checks OK | ETA 1 min
+[ 136/ 150] Internal_AB                OK   | load   45% (real   43%) pf 0.92 noise 4.44% burden 1.0x CTerr  23% | event 0.322s det 0.329s | checks OK | ETA 1 min
+[ 137/ 150] Internal_AB                OK   | load   60% (real   60%) pf 0.95 noise 5.45% burden 1.0x CTerr  21% | event 0.468s det 0.471s | checks OK | ETA 1 min
+[ 138/ 150] Internal_AB                OK   | load   37% (real   39%) pf 0.95 noise 5.51% burden 1.1x CTerr  38% | event 0.501s det 0.503s | checks OK | ETA 1 min
+[ 139/ 150] Internal_AB                OK   | load   96% (real   98%) pf 0.84 noise 4.30% burden 1.2x CTerr  10% | event 0.385s det 0.387s | checks OK | ETA 1 min
+[ 140/ 150] Internal_AB                OK   | load   22% (real   22%) pf 0.94 noise 5.39% burden 1.1x CTerr  56% | event 0.504s det 0.511s | checks OK | ETA 1 min
+[ 141/ 150] Internal_ABC               OK   | load   79% (real   79%) pf 0.83 noise 5.43% burden 1.2x CTerr  85% | event 0.380s det 0.383s | checks OK | ETA 1 min
+[ 142/ 150] Internal_ABC               CHK  | load   13% (real   12%) pf 0.95 noise 4.38% burden 1.0x CTerr   6% | event 0.517s det 0.520s | FAILED: TIMING | ETA 1 min
+[ 143/ 150] Internal_ABC               OK   | load   56% (real   54%) pf 0.95 noise 5.68% burden 1.1x CTerr  36% | event 0.417s det 0.419s | checks OK | ETA 1 min
+[ 144/ 150] Internal_ABC               OK   | load   88% (real   86%) pf 0.83 noise 4.43% burden 1.1x CTerr 100% | event 0.346s det 0.350s | checks OK | ETA 0 min
+[ 145/ 150] Internal_ABC               OK   | load  107% (real  106%) pf 0.91 noise 5.06% burden 1.1x CTerr   4% | event 0.535s det 0.538s | checks OK | ETA 0 min
+[ 146/ 150] InternalHV_AB              OK   | load   20% (real   19%) pf 0.82 noise 5.26% burden 1.1x CTerr  84% | event 0.364s det 0.372s | checks OK | ETA 0 min
+[ 147/ 150] InternalHV_AB              OK   | load   37% (real   37%) pf 0.95 noise 5.88% burden 1.1x CTerr  20% | event 0.412s det 0.414s | checks OK | ETA 0 min
+[ 148/ 150] InternalHV_AB              OK   | load   52% (real   54%) pf 0.90 noise 4.76% burden 1.1x CTerr  11% | event 0.472s det 0.474s | checks OK | ETA 0 min
+[ 149/ 150] InternalHV_AB              OK   | load   87% (real   91%) pf 0.90 noise 5.41% burden 1.0x CTerr   8% | event 0.358s det 0.361s | checks OK | ETA 0 min
+[ 150/ 150] InternalHV_AB              OK   | load   64% (real   64%) pf 0.91 noise 4.77% burden 1.1x CTerr  36% | event 0.417s det 0.421s | checks OK | ETA 0 min
+
+Saved ONE file: F:\Transformer Thesis\datasets\StressDataset_PlantBv5OOD_20261029_010052.mat
+Checks passed: 147 / 150  (failed samples are kept but flagged; training skips them)
+Duplicate waveforms: 0 | timing failures: 3 | events too small to see: 1 | sim errors: 0
+ERROR: MATLAB error Exit Status: 0xc0000374, Heap corruption

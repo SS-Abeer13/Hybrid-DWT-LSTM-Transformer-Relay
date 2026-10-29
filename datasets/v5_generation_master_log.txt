@@ -1,0 +1,7 @@
+[Wed 10/28/2026 16:23:33.36] plant A main 3040 
+[Wed 10/28/2026 20:57:12.46] plant A OOD 300 
+[Wed 10/28/2026 21:20:41.42] plant B main 1200 
+[Wed 10/28/2026 21:45:30.10] plant B OOD 150 
+[Wed Oct 28 23:25:51 BST 2026] ALL_V5_GENERATION_DONE (resumed chain)
+[Thu 10/29/2026  1:09:41.37] B_DONE 
+[Thu 10/29/2026 11:08:58.09] B_OOD_DONE 

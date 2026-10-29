@@ -59,7 +59,7 @@ def plant_compensated_diff(primary: np.ndarray, secondary: np.ndarray, i_nom: fl
     """
     if plant.upper() == "B":
         m_dyn11 = (1 / np.sqrt(3)) * np.array([[1, -1, 0], [0, 1, -1], [-1, 0, 1]])
-        return (secondary @ m_dyn11.T - primary) / (i_nom if i_nom != I_NOM_SEC else 0.8232)
+        return (secondary @ m_dyn11.T - primary) / (i_nom if i_nom != I_NOM_SEC else 0.8658)
     return (secondary - primary @ M_YD1) / i_nom
 
 

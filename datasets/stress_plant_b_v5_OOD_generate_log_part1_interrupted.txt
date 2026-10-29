@@ -1,0 +1,459 @@
+[Thu 10/29/2026  1:00:52.60] launch 1 
+=== Stress dataset Plant B | set OOD | run 20261029_010052 | 150 samples | 72 scenarios | start at 1 | chunk 100 ===
+  Normal                       14
+  Inrush_NoLoad                 3
+  Inrush_Loaded                16
+  Recovery_Inrush               3
+  Overexcitation                6
+  Internal_Evolving             0
+  Internal_SOTF_AB              5
+  Internal_SOTF_ABC             0
+  External_HiZ_AB               0
+  External_HiZ_ABC              0
+  Stress_FaultInInrush          5
+  Stress_ExtInInrush            0
+  Internal_AG                   3
+  InternalHV_AG                 5
+  External_AG                   0
+  Stress_ExtCTSat_AG            5
+  Stress_CTSat_Int_AG           5
+  Internal_BG                   0
+  InternalHV_BG                 0
+  External_BG                   0
+  Stress_ExtCTSat_BG            0
+  Stress_CTSat_Int_BG           0
+  Internal_CG                   0
+  InternalHV_CG                 0
+  External_CG                   0
+  Stress_ExtCTSat_CG            0
+  Stress_CTSat_Int_CG           0
+  Internal_AB                  19
+  InternalHV_AB                 9
+  External_AB                   4
+  Stress_ExtCTSat_AB            5
+  Stress_CTSat_Int_AB           5
+  Internal_BC                   0
+  InternalHV_BC                 0
+  External_BC                   0
+  Stress_ExtCTSat_BC            0
+  Stress_CTSat_Int_BC           0
+  Internal_AC                   0
+  InternalHV_AC                 0
+  External_AC                   0
+  Stress_ExtCTSat_AC            0
+  Stress_CTSat_Int_AC           0
+  Internal_ABG                  0
+  InternalHV_ABG                0
+  External_ABG                  0
+  Stress_ExtCTSat_ABG           0
+  Stress_CTSat_Int_ABG          0
+  Internal_BCG                  0
+  InternalHV_BCG                0
+  External_BCG                  0
+  Stress_ExtCTSat_BCG           0
+  Stress_CTSat_Int_BCG          0
+  Internal_ACG                  0
+  InternalHV_ACG                0
+  External_ACG                  0
+  Stress_ExtCTSat_ACG           0
+  Stress_CTSat_Int_ACG          0
+  Internal_ABC                 14
+  InternalHV_ABC                0
+  External_ABC                 14
+  Stress_ExtCTSat_ABC           5
+  Stress_CTSat_Int_ABC          5
+  Internal_ABCG                 0
+  InternalHV_ABCG               0
+  External_ABCG                 0
+  Stress_ExtCTSat_ABCG          0
+  Stress_CTSat_Int_ABCG         0
+  Internal_HiZ_AB               0
+  Internal_HiZ_BC               0
+  Internal_HiZ_AC               0
+  Internal_HiZ_ABC              0
+  Internal_HiZ_AG               0
+[   1/ 150] Normal                     OK   | load    6% (real    7%) pf 0.93 noise 0.05% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 26 min
+[   2/ 150] Normal                     OK   | load  128% (real  130%) pf 0.92 noise 0.52% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 19 min
+[   3/ 150] Normal                     OK   | load  129% (real  132%) pf 0.89 noise 0.63% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 16 min
+[   4/ 150] Normal                     OK   | load    9% (real    9%) pf 0.81 noise 0.98% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 15 min
+[   5/ 150] External_ABC               OK   | load    3% (real    3%) pf 0.91 noise 0.14% burden 1.0x CTerr   2% | event 0.461s det 0.469s | checks OK | ETA 14 min
+[   6/ 150] External_ABC               OK   | load    3% (real    3%) pf 0.83 noise 0.07% burden 1.1x CTerr   3% | event 0.406s det 0.409s | checks OK | ETA 13 min
+[   7/ 150] External_ABC               OK   | load    9% (real    9%) pf 0.95 noise 0.57% burden 1.1x CTerr   2% | event 0.485s det 0.491s | checks OK | ETA 13 min
+[   8/ 150] External_ABC               OK   | load    3% (real    3%) pf 0.85 noise 0.06% burden 1.2x CTerr   2% | event 0.451s det 0.454s | checks OK | ETA 12 min
+[   9/ 150] External_AB                OK   | load  121% (real  123%) pf 0.86 noise 0.38% burden 1.2x CTerr   2% | event 0.411s det 0.416s | checks OK | ETA 12 min
+[  10/ 150] External_AB                OK   | load    8% (real    9%) pf 0.97 noise 0.49% burden 1.0x CTerr   7% | event 0.589s det 0.593s | checks OK | ETA 12 min
+[  11/ 150] External_AB                OK   | load    7% (real    7%) pf 0.88 noise 0.27% burden 1.0x CTerr   6% | event 0.717s det 0.720s | checks OK | ETA 11 min
+[  12/ 150] External_AB                OK   | load  111% (real  109%) pf 0.98 noise 0.54% burden 1.0x CTerr   2% | event 0.631s det 0.634s | checks OK | ETA 11 min
+[  13/ 150] Inrush_Loaded              OK   | load  115% (real  NaN%) pf 0.82 noise 0.07% burden 1.1x CTerr   2% | event 0.528s det 0.534s | checks OK | ETA 11 min
+[  14/ 150] Inrush_Loaded              OK   | load    2% (real  NaN%) pf 0.80 noise 0.08% burden 1.1x CTerr  18% | event 0.690s det 0.696s | checks OK | ETA 11 min
+[  15/ 150] Inrush_Loaded              OK   | load    5% (real  NaN%) pf 0.88 noise 0.34% burden 1.0x CTerr  11% | event 0.673s det 0.679s | checks OK | ETA 11 min
+[  16/ 150] Internal_AB                OK   | load  122% (real  124%) pf 0.93 noise 0.86% burden 1.0x CTerr   2% | event 0.356s det 0.364s | checks OK | ETA 10 min
+[  17/ 150] Internal_AB                OK   | load  114% (real  113%) pf 0.92 noise 0.67% burden 1.2x CTerr   3% | event 0.455s det 0.457s | checks OK | ETA 10 min
+[  18/ 150] Internal_AB                OK   | load    4% (real    4%) pf 0.85 noise 0.11% burden 1.1x CTerr  12% | event 0.627s det 0.635s | checks OK | ETA 10 min
+[  19/ 150] Internal_AB                OK   | load  123% (real  120%) pf 0.81 noise 0.47% burden 1.1x CTerr   2% | event 0.660s det 0.669s | checks OK | ETA 10 min
+[  20/ 150] Internal_ABC               OK   | load  121% (real  115%) pf 0.95 noise 0.22% burden 1.1x CTerr   2% | event 0.384s det 0.386s | checks OK | ETA 10 min
+[  21/ 150] Internal_ABC               OK   | load  117% (real  117%) pf 0.85 noise 0.10% burden 1.1x CTerr   3% | event 0.607s det 0.609s | checks OK | ETA 10 min
+[  22/ 150] Internal_ABC               OK   | load    7% (real    7%) pf 0.81 noise 0.70% burden 1.1x CTerr  32% | event 0.410s det 0.412s | checks OK | ETA 10 min
+[  23/ 150] Internal_ABC               OK   | load  130% (real  133%) pf 0.94 noise 0.09% burden 1.2x CTerr   3% | event 0.525s det 0.527s | checks OK | ETA 10 min
+[  24/ 150] InternalHV_AB              OK   | load  119% (real  119%) pf 0.82 noise 0.88% burden 1.2x CTerr   4% | event 0.529s det 0.532s | checks OK | ETA 9 min
+[  25/ 150] InternalHV_AB              OK   | load    8% (real    7%) pf 0.97 noise 0.97% burden 1.1x CTerr  15% | event 0.469s det 0.477s | checks OK | ETA 9 min
+[  26/ 150] InternalHV_AB              OK   | load  128% (real  124%) pf 0.82 noise 0.17% burden 1.1x CTerr   3% | event 0.731s det 0.733s | checks OK | ETA 9 min
+[  27/ 150] InternalHV_AB              OK   | load    5% (real    5%) pf 0.98 noise 0.98% burden 1.0x CTerr  25% | event 0.423s det 0.425s | checks OK | ETA 9 min
+[  28/ 150] Internal_AG                OK   | load  125% (real  129%) pf 0.82 noise 0.37% burden 1.1x CTerr   4% | event 0.416s det 0.419s | checks OK | ETA 9 min
+[  29/ 150] Internal_AG                OK   | load  113% (real  109%) pf 0.89 noise 0.09% burden 1.1x CTerr  10% | event 0.697s det 0.700s | checks OK | ETA 9 min
+[  30/ 150] Internal_AG                CHK  | load    1% (real    1%) pf 0.85 noise 0.69% burden 1.1x CTerr   2% | event 0.728s det 0.731s | FAILED: TIMING | ETA 9 min
+[  31/ 150] Normal                     OK   | load   86% (real   81%) pf 0.85 noise 0.93% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[  32/ 150] Normal                     OK   | load   20% (real   20%) pf 0.84 noise 0.20% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[  33/ 150] Normal                     OK   | load   67% (real   63%) pf 0.97 noise 0.84% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[  34/ 150] Normal                     OK   | load   19% (real   19%) pf 0.95 noise 0.08% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[  35/ 150] Normal                     OK   | load  101% (real   98%) pf 0.83 noise 0.35% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 8 min
+[  36/ 150] External_ABC               OK   | load   51% (real   50%) pf 0.88 noise 0.30% burden 1.1x CTerr   2% | event 0.535s det 0.539s | checks OK | ETA 8 min
+[  37/ 150] External_ABC               OK   | load   96% (real   92%) pf 0.98 noise 0.16% burden 1.0x CTerr   2% | event 0.479s det 0.482s | checks OK | ETA 8 min
+[  38/ 150] External_ABC               OK   | load   37% (real   36%) pf 0.93 noise 0.12% burden 1.0x CTerr   2% | event 0.645s det 0.649s | checks OK | ETA 8 min
+[  39/ 150] External_ABC               OK   | load   96% (real   92%) pf 0.99 noise 0.12% burden 1.1x CTerr   2% | event 0.442s det 0.448s | checks OK | ETA 8 min
+[  40/ 150] External_ABC               OK   | load   19% (real   19%) pf 0.95 noise 0.28% burden 1.2x CTerr   2% | event 0.482s det 0.491s | checks OK | ETA 8 min
+[  41/ 150] Inrush_Loaded              OK   | load   65% (real  NaN%) pf 0.92 noise 0.23% burden 1.1x CTerr   3% | event 0.517s det 0.524s | checks OK | ETA 8 min
+[  42/ 150] Inrush_Loaded              OK   | load   79% (real  NaN%) pf 1.00 noise 0.30% burden 1.2x CTerr   2% | event 0.270s det 0.276s | checks OK | ETA 8 min
+[  43/ 150] Inrush_Loaded              OK   | load   41% (real  NaN%) pf 0.89 noise 0.58% burden 1.0x CTerr   3% | event 0.127s det 0.133s | checks OK | ETA 8 min
+[  44/ 150] Inrush_Loaded              OK   | load   59% (real  NaN%) pf 1.00 noise 0.06% burden 1.0x CTerr   3% | event 0.214s det 0.221s | checks OK | ETA 8 min
+[  45/ 150] Inrush_Loaded              OK   | load   79% (real  NaN%) pf 0.99 noise 0.29% burden 1.1x CTerr   2% | event 0.183s det 0.190s | checks OK | ETA 8 min
+[  46/ 150] Internal_AB                OK   | load   41% (real   41%) pf 0.85 noise 0.86% burden 1.1x CTerr   5% | event 0.358s det 0.360s | checks OK | ETA 8 min
+[  47/ 150] Internal_AB                OK   | load   87% (real   83%) pf 0.97 noise 0.57% burden 1.0x CTerr   3% | event 0.621s det 0.623s | checks OK | ETA 7 min
+[  48/ 150] Internal_AB                OK   | load   79% (real   78%) pf 0.94 noise 0.33% burden 1.1x CTerr   2% | event 0.699s det 0.706s | checks OK | ETA 7 min
+[  49/ 150] Internal_AB                OK   | load   98% (real   99%) pf 0.82 noise 0.48% burden 1.0x CTerr   3% | event 0.506s det 0.515s | checks OK | ETA 7 min
+[  50/ 150] Internal_AB                OK   | load   11% (real   11%) pf 0.92 noise 0.17% burden 1.0x CTerr   9% | event 0.735s det 0.740s | checks OK | ETA 7 min
+[  51/ 150] Internal_ABC               OK   | load   54% (real   53%) pf 0.86 noise 0.31% burden 1.2x CTerr  19% | event 0.567s det 0.571s | checks OK | ETA 7 min
+[  52/ 150] Internal_ABC               OK   | load   26% (real   27%) pf 0.81 noise 0.07% burden 1.1x CTerr  15% | event 0.374s det 0.378s | checks OK | ETA 7 min
+[  53/ 150] Internal_ABC               OK   | load   48% (real   49%) pf 0.86 noise 0.76% burden 1.1x CTerr  19% | event 0.721s det 0.724s | checks OK | ETA 7 min
+[  54/ 150] Internal_ABC               OK   | load  106% (real  105%) pf 0.83 noise 0.13% burden 1.2x CTerr   3% | event 0.444s det 0.446s | checks OK | ETA 7 min
+[  55/ 150] Internal_ABC               OK   | load   97% (real   94%) pf 0.93 noise 0.35% burden 1.0x CTerr   2% | event 0.667s det 0.671s | checks OK | ETA 7 min
+[  56/ 150] InternalHV_AG              OK   | load   83% (real   80%) pf 0.94 noise 0.91% burden 1.0x CTerr   3% | event 0.548s det 0.556s | checks OK | ETA 7 min
+[  57/ 150] InternalHV_AG              OK   | load  107% (real  105%) pf 0.89 noise 0.11% burden 1.1x CTerr   4% | event 0.657s det 0.661s | checks OK | ETA 7 min
+[  58/ 150] InternalHV_AG              OK   | load   40% (real   42%) pf 0.93 noise 0.16% burden 1.0x CTerr   3% | event 0.396s det 0.406s | checks OK | ETA 7 min
+[  59/ 150] InternalHV_AG              OK   | load   67% (real   66%) pf 0.89 noise 0.15% burden 1.2x CTerr   3% | event 0.472s det 0.474s | checks OK | ETA 7 min
+[  60/ 150] InternalHV_AG              OK   | load   19% (real   19%) pf 0.97 noise 0.07% burden 1.0x CTerr   4% | event 0.508s det 0.517s | checks OK | ETA 6 min
+[  61/ 150] Stress_ExtCTSat_ABC        OK   | load   75% (real   78%) pf 0.95 noise 2.81% burden 11.3x CTerr  54% | event 0.353s det 0.364s | checks OK | ETA 6 min
+[  62/ 150] Stress_ExtCTSat_ABC        OK   | load   79% (real   82%) pf 0.93 noise 1.99% burden 12.2x CTerr  57% | event 0.606s det 0.614s | checks OK | ETA 6 min
+[  63/ 150] Stress_ExtCTSat_ABC        OK   | load  103% (real  100%) pf 0.99 noise 1.61% burden 11.1x CTerr  52% | event 0.415s det 0.429s | checks OK | ETA 6 min
+[  64/ 150] Stress_ExtCTSat_ABC        OK   | load  104% (real  102%) pf 0.89 noise 1.70% burden 12.7x CTerr  55% | event 0.351s det 0.359s | checks OK | ETA 6 min
+[  65/ 150] Stress_ExtCTSat_ABC        OK   | load   93% (real   92%) pf 0.83 noise 1.51% burden 10.9x CTerr  51% | event 0.550s det 0.564s | checks OK | ETA 6 min
+[  66/ 150] Stress_ExtCTSat_AB         OK   | load   86% (real   81%) pf 0.94 noise 1.20% burden 11.3x CTerr  15% | event 0.749s det 0.757s | checks OK | ETA 6 min
+[  67/ 150] Stress_ExtCTSat_AB         OK   | load   79% (real   76%) pf 0.92 noise 1.01% burden 13.1x CTerr  57% | event 0.367s det 0.376s | checks OK | ETA 6 min
+[  68/ 150] Stress_ExtCTSat_AB         OK   | load   94% (real   98%) pf 0.86 noise 2.68% burden 12.5x CTerr  33% | event 0.716s det 0.732s | checks OK | ETA 6 min
+[  69/ 150] Stress_ExtCTSat_AB         OK   | load  110% (real  112%) pf 0.80 noise 2.46% burden 13.2x CTerr  15% | event 0.582s det 0.589s | checks OK | ETA 6 min
+[  70/ 150] Stress_ExtCTSat_AB         OK   | load   61% (real   59%) pf 0.87 noise 2.25% burden 11.5x CTerr  44% | event 0.320s det 0.329s | checks OK | ETA 6 min
+[  71/ 150] Stress_ExtCTSat_AG         OK   | load   61% (real   59%) pf 0.94 noise 1.61% burden 10.8x CTerr  51% | event 0.377s det 0.388s | checks OK | ETA 6 min
+[  72/ 150] Stress_ExtCTSat_AG         OK   | load   93% (real   95%) pf 0.98 noise 2.51% burden 11.4x CTerr  52% | event 0.657s det 0.667s | checks OK | ETA 6 min
+[  73/ 150] Stress_ExtCTSat_AG         OK   | load   85% (real   82%) pf 0.85 noise 2.33% burden 12.9x CTerr  37% | event 0.547s det 0.561s | checks OK | ETA 6 min
+[  74/ 150] Stress_ExtCTSat_AG         OK   | load   84% (real   82%) pf 0.91 noise 2.09% burden 13.9x CTerr  42% | event 0.474s det 0.481s | checks OK | ETA 5 min
+[  75/ 150] Stress_ExtCTSat_AG         OK   | load  101% (real  100%) pf 0.87 noise 1.61% burden 12.5x CTerr  54% | event 0.556s det 0.566s | checks OK | ETA 5 min
+[  76/ 150] Stress_CTSat_Int_AB        OK   | load  106% (real  109%) pf 0.98 noise 1.65% burden 12.0x CTerr  54% | event 0.637s det 0.642s | checks OK | ETA 5 min
+[  77/ 150] Stress_CTSat_Int_AB        OK   | load  107% (real  109%) pf 0.87 noise 1.73% burden 13.8x CTerr  43% | event 0.576s det 0.578s | checks OK | ETA 5 min
+[  78/ 150] Stress_CTSat_Int_AB        OK   | load  104% (real  105%) pf 0.98 noise 1.32% burden 15.9x CTerr  40% | event 0.703s det 0.705s | checks OK | ETA 5 min
+[  79/ 150] Stress_CTSat_Int_AB        OK   | load   73% (real   73%) pf 0.87 noise 1.96% burden 13.8x CTerr  18% | event 0.682s det 0.684s | checks OK | ETA 5 min
+[  80/ 150] Stress_CTSat_Int_AB        OK   | load   78% (real   76%) pf 0.95 noise 2.19% burden 11.9x CTerr  51% | event 0.416s det 0.422s | checks OK | ETA 5 min
+[  81/ 150] Stress_CTSat_Int_ABC       OK   | load   61% (real   63%) pf 0.83 noise 1.31% burden 10.3x CTerr  48% | event 0.308s det 0.311s | checks OK | ETA 5 min
+[  82/ 150] Stress_CTSat_Int_ABC       OK   | load   67% (real   68%) pf 0.81 noise 2.37% burden 15.4x CTerr  61% | event 0.335s det 0.338s | checks OK | ETA 5 min
+[  83/ 150] Stress_CTSat_Int_ABC       OK   | load   87% (real   84%) pf 0.89 noise 1.58% burden 13.1x CTerr  55% | event 0.672s det 0.675s | checks OK | ETA 5 min
+[  84/ 150] Stress_CTSat_Int_ABC       OK   | load   63% (real   66%) pf 0.93 noise 1.39% burden 13.6x CTerr  60% | event 0.384s det 0.387s | checks OK | ETA 5 min
+[  85/ 150] Stress_CTSat_Int_ABC       OK   | load  102% (real  101%) pf 0.91 noise 2.22% burden 13.0x CTerr  56% | event 0.427s det 0.429s | checks OK | ETA 5 min
+[  86/ 150] Stress_CTSat_Int_AG        OK   | load   70% (real   70%) pf 0.95 noise 1.38% burden 11.0x CTerr  41% | event 0.535s det 0.542s | checks OK | ETA 5 min
+[  87/ 150] Stress_CTSat_Int_AG        OK   | load  109% (real  109%) pf 0.99 noise 2.11% burden 12.9x CTerr  18% | event 0.590s det 0.592s | checks OK | ETA 5 min
+[  88/ 150] Stress_CTSat_Int_AG        OK   | load   82% (real   80%) pf 0.88 noise 1.14% burden 10.8x CTerr  32% | event 0.671s det 0.678s | checks OK | ETA 4 min
+[  89/ 150] Stress_CTSat_Int_AG        OK   | load   69% (real   68%) pf 0.86 noise 1.44% burden 15.6x CTerr  47% | event 0.690s det 0.698s | checks OK | ETA 4 min
+[  90/ 150] Stress_CTSat_Int_AG        OK   | load   64% (real   64%) pf 0.81 noise 1.01% burden 11.6x CTerr  51% | event 0.485s det 0.488s | checks OK | ETA 4 min
+[  91/ 150] Overexcitation             OK   | load   33% (real   50%) pf 0.97 noise 0.21% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  92/ 150] Overexcitation             OK   | load  109% (real  160%) pf 0.93 noise 0.40% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  93/ 150] Overexcitation             OK   | load   13% (real   19%) pf 0.89 noise 0.34% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  94/ 150] Overexcitation             OK   | load   68% (real   98%) pf 0.89 noise 0.14% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  95/ 150] Overexcitation             OK   | load   17% (real   25%) pf 0.98 noise 0.56% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  96/ 150] Overexcitation             OK   | load   98% (real  145%) pf 0.80 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  97/ 150] Inrush_NoLoad              OK   | load   60% (real  NaN%) pf 0.93 noise 0.17% burden 1.2x CTerr   2% | event 0.341s det 0.348s | checks OK | ETA 4 min
+[  98/ 150] Inrush_NoLoad              OK   | load  101% (real  NaN%) pf 1.00 noise 0.11% burden 1.0x CTerr   3% | event 0.455s det 0.462s | checks OK | ETA 4 min
+[  99/ 150] Inrush_NoLoad              OK   | load   45% (real  NaN%) pf 0.93 noise 0.39% burden 1.1x CTerr   3% | event 0.395s det 0.402s | checks OK | ETA 4 min
+[ 100/ 150] Inrush_Loaded              OK   | load   55% (real  NaN%) pf 0.93 noise 0.49% burden 1.1x CTerr   3% | event 0.612s det 0.618s | checks OK | ETA 4 min
+CHUNK_DONE at sample 100 of 150 (run 20261029_010052). Restart MATLAB with the same Run id to continue.
+[Thu 10/29/2026  1:08:31.17] launch 2 
+=== Stress dataset Plant B | set OOD | run 20261029_010052 | 150 samples | 72 scenarios | start at 101 | chunk 100 ===
+  Normal                       14
+  Inrush_NoLoad                 3
+  Inrush_Loaded                16
+  Recovery_Inrush               3
+  Overexcitation                6
+  Internal_Evolving             0
+  Internal_SOTF_AB              5
+  Internal_SOTF_ABC             0
+  External_HiZ_AB               0
+  External_HiZ_ABC              0
+  Stress_FaultInInrush          5
+  Stress_ExtInInrush            0
+  Internal_AG                   3
+  InternalHV_AG                 5
+  External_AG                   0
+  Stress_ExtCTSat_AG            5
+  Stress_CTSat_Int_AG           5
+  Internal_BG                   0
+  InternalHV_BG                 0
+  External_BG                   0
+  Stress_ExtCTSat_BG            0
+  Stress_CTSat_Int_BG           0
+  Internal_CG                   0
+  InternalHV_CG                 0
+  External_CG                   0
+  Stress_ExtCTSat_CG            0
+  Stress_CTSat_Int_CG           0
+  Internal_AB                  19
+  InternalHV_AB                 9
+  External_AB                   4
+  Stress_ExtCTSat_AB            5
+  Stress_CTSat_Int_AB           5
+  Internal_BC                   0
+  InternalHV_BC                 0
+  External_BC                   0
+  Stress_ExtCTSat_BC            0
+  Stress_CTSat_Int_BC           0
+  Internal_AC                   0
+  InternalHV_AC                 0
+  External_AC                   0
+  Stress_ExtCTSat_AC            0
+  Stress_CTSat_Int_AC           0
+  Internal_ABG                  0
+  InternalHV_ABG                0
+  External_ABG                  0
+  Stress_ExtCTSat_ABG           0
+  Stress_CTSat_Int_ABG          0
+  Internal_BCG                  0
+  InternalHV_BCG                0
+  External_BCG                  0
+  Stress_ExtCTSat_BCG           0
+  Stress_CTSat_Int_BCG          0
+  Internal_ACG                  0
+  InternalHV_ACG                0
+  External_ACG                  0
+  Stress_ExtCTSat_ACG           0
+  Stress_CTSat_Int_ACG          0
+  Internal_ABC                 14
+  InternalHV_ABC                0
+  External_ABC                 14
+  Stress_ExtCTSat_ABC           5
+  Stress_CTSat_Int_ABC          5
+  Internal_ABCG                 0
+  InternalHV_ABCG               0
+  External_ABCG                 0
+  Stress_ExtCTSat_ABCG          0
+  Stress_CTSat_Int_ABCG         0
+  Internal_HiZ_AB               0
+  Internal_HiZ_BC               0
+  Internal_HiZ_AC               0
+  Internal_HiZ_ABC              0
+  Internal_HiZ_AG               0
+[ 101/ 150] Inrush_Loaded              OK   | load  107% (real  NaN%) pf 0.88 noise 0.32% burden 1.0x CTerr   2% | event 0.392s det 0.399s | checks OK | ETA 9 min
+[ 102/ 150] Inrush_Loaded              OK   | load   27% (real  NaN%) pf 0.96 noise 0.30% burden 1.1x CTerr   3% | event 0.671s det 0.677s | checks OK | ETA 6 min
+[ 103/ 150] Recovery_Inrush            OK   | load   41% (real   40%) pf 0.93 noise 0.90% burden 1.0x CTerr   3% | event 0.421s det 0.436s | checks OK | ETA 5 min
+[ 104/ 150] Recovery_Inrush            OK   | load   44% (real   43%) pf 0.96 noise 0.16% burden 1.0x CTerr   3% | event 0.532s det 0.542s | checks OK | ETA 5 min
+[ 105/ 150] Recovery_Inrush            OK   | load   80% (real   81%) pf 0.83 noise 0.14% burden 1.1x CTerr   2% | event 0.467s det 0.472s | checks OK | ETA 4 min
+[ 106/ 150] Internal_AB                OK   | load   59% (real   57%) pf 0.97 noise 0.17% burden 1.2x CTerr   3% | event 0.586s det 0.590s | checks OK | ETA 4 min
+[ 107/ 150] Internal_AB                OK   | load  105% (real  106%) pf 0.88 noise 0.28% burden 1.2x CTerr   2% | event 0.594s det 0.596s | checks OK | ETA 4 min
+[ 108/ 150] Internal_AB                OK   | load  108% (real  108%) pf 0.89 noise 0.17% burden 1.2x CTerr   2% | event 0.444s det 0.446s | checks OK | ETA 4 min
+[ 109/ 150] Internal_AB                OK   | load   91% (real   95%) pf 0.82 noise 0.13% burden 1.1x CTerr   2% | event 0.522s det 0.524s | checks OK | ETA 3 min
+[ 110/ 150] Internal_AB                OK   | load   96% (real   95%) pf 1.00 noise 0.09% burden 1.1x CTerr   2% | event 0.661s det 0.663s | checks OK | ETA 3 min
+[ 111/ 150] Internal_SOTF_AB           OK   | load   30% (real  NaN%) pf 0.81 noise 0.67% burden 1.2x CTerr   6% | event 0.661s det 0.664s | checks OK | ETA 3 min
+ERROR: MATLAB error Exit Status: 0x40010004
+[Thu 10/29/2026  1:09:38.57] launch 3 
+[Thu 10/29/2026  1:09:38.59] launch 4 
+[Thu 10/29/2026  1:09:38.60] launch 5 
+[Thu 10/29/2026  1:09:38.62] launch 6 
+[Thu 10/29/2026  1:09:38.63] launch 7 
+[Thu 10/29/2026  1:09:38.65] launch 8 
+[Thu 10/29/2026  1:09:38.66] launch 9 
+[Thu 10/29/2026  1:09:38.68] launch 10 
+[Thu 10/29/2026  1:09:38.69] launch 11 
+[Thu 10/29/2026  1:09:38.71] launch 12 
+[Thu 10/29/2026  1:09:38.72] launch 13 
+[Thu 10/29/2026  1:09:38.74] launch 14 
+[Thu 10/29/2026  1:09:38.75] launch 15 
+[Thu 10/29/2026  1:09:38.77] launch 16 
+[Thu 10/29/2026  1:09:38.78] launch 17 
+[Thu 10/29/2026  1:09:38.80] launch 18 
+[Thu 10/29/2026  1:09:38.82] launch 19 
+[Thu 10/29/2026  1:09:38.84] launch 20 
+[Thu 10/29/2026  1:09:38.85] launch 21 
+[Thu 10/29/2026  1:09:38.87] launch 22 
+[Thu 10/29/2026  1:09:38.88] launch 23 
+[Thu 10/29/2026  1:09:38.90] launch 24 
+[Thu 10/29/2026  1:09:38.91] launch 25 
+[Thu 10/29/2026  1:09:38.92] launch 26 
+[Thu 10/29/2026  1:09:38.94] launch 27 
+[Thu 10/29/2026  1:09:38.95] launch 28 
+[Thu 10/29/2026  1:09:38.97] launch 29 
+[Thu 10/29/2026  1:09:38.98] launch 30 
+[Thu 10/29/2026  1:09:39.00] launch 31 
+[Thu 10/29/2026  1:09:39.01] launch 32 
+[Thu 10/29/2026  1:09:39.03] launch 33 
+[Thu 10/29/2026  1:09:39.04] launch 34 
+[Thu 10/29/2026  1:09:39.06] launch 35 
+[Thu 10/29/2026  1:09:39.07] launch 36 
+[Thu 10/29/2026  1:09:39.08] launch 37 
+[Thu 10/29/2026  1:09:39.10] launch 38 
+[Thu 10/29/2026  1:09:39.11] launch 39 
+[Thu 10/29/2026  1:09:39.12] launch 40 
+[Thu 10/29/2026  1:09:39.14] launch 41 
+[Thu 10/29/2026  1:09:39.15] launch 42 
+[Thu 10/29/2026  1:09:39.17] launch 43 
+[Thu 10/29/2026  1:09:39.18] launch 44 
+[Thu 10/29/2026  1:09:39.20] launch 45 
+[Thu 10/29/2026  1:09:39.21] launch 46 
+[Thu 10/29/2026  1:09:39.22] launch 47 
+[Thu 10/29/2026  1:09:39.24] launch 48 
+[Thu 10/29/2026  1:09:39.25] launch 49 
+[Thu 10/29/2026  1:09:39.27] launch 50 
+[Thu 10/29/2026  1:09:39.28] launch 51 
+[Thu 10/29/2026  1:09:39.30] launch 52 
+[Thu 10/29/2026  1:09:39.31] launch 53 
+[Thu 10/29/2026  1:09:39.32] launch 54 
+[Thu 10/29/2026  1:09:39.34] launch 55 
+[Thu 10/29/2026  1:09:39.35] launch 56 
+[Thu 10/29/2026  1:09:39.36] launch 57 
+[Thu 10/29/2026  1:09:39.38] launch 58 
+[Thu 10/29/2026  1:09:39.39] launch 59 
+[Thu 10/29/2026  1:09:39.41] launch 60 
+[Thu 10/29/2026  1:09:39.42] launch 61 
+[Thu 10/29/2026  1:09:39.44] launch 62 
+[Thu 10/29/2026  1:09:39.45] launch 63 
+[Thu 10/29/2026  1:09:39.46] launch 64 
+[Thu 10/29/2026  1:09:39.48] launch 65 
+[Thu 10/29/2026  1:09:39.49] launch 66 
+[Thu 10/29/2026  1:09:39.51] launch 67 
+[Thu 10/29/2026  1:09:39.52] launch 68 
+[Thu 10/29/2026  1:09:39.54] launch 69 
+[Thu 10/29/2026  1:09:39.55] launch 70 
+[Thu 10/29/2026  1:09:39.56] launch 71 
+[Thu 10/29/2026  1:09:39.58] launch 72 
+[Thu 10/29/2026  1:09:39.59] launch 73 
+[Thu 10/29/2026  1:09:39.60] launch 74 
+[Thu 10/29/2026  1:09:39.62] launch 75 
+[Thu 10/29/2026  1:09:39.63] launch 76 
+[Thu 10/29/2026  1:09:39.65] launch 77 
+[Thu 10/29/2026  1:09:39.66] launch 78 
+[Thu 10/29/2026  1:09:39.67] launch 79 
+[Thu 10/29/2026  1:09:39.69] launch 80 
+[Thu 10/29/2026  1:09:39.70] launch 81 
+[Thu 10/29/2026  1:09:39.72] launch 82 
+[Thu 10/29/2026  1:09:39.73] launch 83 
+[Thu 10/29/2026  1:09:39.75] launch 84 
+[Thu 10/29/2026  1:09:39.76] launch 85 
+[Thu 10/29/2026  1:09:39.77] launch 86 
+[Thu 10/29/2026  1:09:39.79] launch 87 
+[Thu 10/29/2026  1:09:39.80] launch 88 
+[Thu 10/29/2026  1:09:39.81] launch 89 
+[Thu 10/29/2026  1:09:39.83] launch 90 
+[Thu 10/29/2026  1:09:39.84] launch 91 
+[Thu 10/29/2026  1:09:39.86] launch 92 
+[Thu 10/29/2026  1:09:39.87] launch 93 
+[Thu 10/29/2026  1:09:39.88] launch 94 
+[Thu 10/29/2026  1:09:39.90] launch 95 
+[Thu 10/29/2026  1:09:39.91] launch 96 
+[Thu 10/29/2026  1:09:39.92] launch 97 
+[Thu 10/29/2026  1:09:39.94] launch 98 
+[Thu 10/29/2026  1:09:39.95] launch 99 
+[Thu 10/29/2026  1:09:39.97] launch 100 
+[Thu 10/29/2026  1:09:39.98] launch 101 
+[Thu 10/29/2026  1:09:39.99] launch 102 
+[Thu 10/29/2026  1:09:40.01] launch 103 
+[Thu 10/29/2026  1:09:40.02] launch 104 
+[Thu 10/29/2026  1:09:40.03] launch 105 
+[Thu 10/29/2026  1:09:40.05] launch 106 
+[Thu 10/29/2026  1:09:40.06] launch 107 
+[Thu 10/29/2026  1:09:40.08] launch 108 
+[Thu 10/29/2026  1:09:40.09] launch 109 
+[Thu 10/29/2026  1:09:40.10] launch 110 
+[Thu 10/29/2026  1:09:40.12] launch 111 
+[Thu 10/29/2026  1:09:40.13] launch 112 
+[Thu 10/29/2026  1:09:40.14] launch 113 
+[Thu 10/29/2026  1:09:40.15] launch 114 
+[Thu 10/29/2026  1:09:40.17] launch 115 
+[Thu 10/29/2026  1:09:40.18] launch 116 
+[Thu 10/29/2026  1:09:40.19] launch 117 
+[Thu 10/29/2026  1:09:40.21] launch 118 
+[Thu 10/29/2026  1:09:40.22] launch 119 
+[Thu 10/29/2026  1:09:40.23] launch 120 
+[Thu 10/29/2026  1:09:40.25] launch 121 
+[Thu 10/29/2026  1:09:40.26] launch 122 
+[Thu 10/29/2026  1:09:40.27] launch 123 
+[Thu 10/29/2026  1:09:40.29] launch 124 
+[Thu 10/29/2026  1:09:40.30] launch 125 
+[Thu 10/29/2026  1:09:40.31] launch 126 
+[Thu 10/29/2026  1:09:40.33] launch 127 
+[Thu 10/29/2026  1:09:40.34] launch 128 
+[Thu 10/29/2026  1:09:40.35] launch 129 
+[Thu 10/29/2026  1:09:40.37] launch 130 
+[Thu 10/29/2026  1:09:40.39] launch 131 
+[Thu 10/29/2026  1:09:40.40] launch 132 
+[Thu 10/29/2026  1:09:40.42] launch 133 
+[Thu 10/29/2026  1:09:40.43] launch 134 
+[Thu 10/29/2026  1:09:40.45] launch 135 
+[Thu 10/29/2026  1:09:40.47] launch 136 
+[Thu 10/29/2026  1:09:40.49] launch 137 
+[Thu 10/29/2026  1:09:40.51] launch 138 
+[Thu 10/29/2026  1:09:40.52] launch 139 
+[Thu 10/29/2026  1:09:40.53] launch 140 
+[Thu 10/29/2026  1:09:40.55] launch 141 
+[Thu 10/29/2026  1:09:40.56] launch 142 
+[Thu 10/29/2026  1:09:40.58] launch 143 
+[Thu 10/29/2026  1:09:40.59] launch 144 
+[Thu 10/29/2026  1:09:40.60] launch 145 
+[Thu 10/29/2026  1:09:40.62] launch 146 
+[Thu 10/29/2026  1:09:40.63] launch 147 
+[Thu 10/29/2026  1:09:40.64] launch 148 
+[Thu 10/29/2026  1:09:40.66] launch 149 
+[Thu 10/29/2026  1:09:40.67] launch 150 
+[Thu 10/29/2026  1:09:40.68] launch 151 
+[Thu 10/29/2026  1:09:40.70] launch 152 
+[Thu 10/29/2026  1:09:40.71] launch 153 
+[Thu 10/29/2026  1:09:40.72] launch 154 
+[Thu 10/29/2026  1:09:40.74] launch 155 
+[Thu 10/29/2026  1:09:40.75] launch 156 
+[Thu 10/29/2026  1:09:40.77] launch 157 
+[Thu 10/29/2026  1:09:40.78] launch 158 
+[Thu 10/29/2026  1:09:40.79] launch 159 
+[Thu 10/29/2026  1:09:40.81] launch 160 
+[Thu 10/29/2026  1:09:40.82] launch 161 
+[Thu 10/29/2026  1:09:40.84] launch 162 
+[Thu 10/29/2026  1:09:40.85] launch 163 
+[Thu 10/29/2026  1:09:40.86] launch 164 
+[Thu 10/29/2026  1:09:40.88] launch 165 
+[Thu 10/29/2026  1:09:40.89] launch 166 
+[Thu 10/29/2026  1:09:40.90] launch 167 
+[Thu 10/29/2026  1:09:40.92] launch 168 
+[Thu 10/29/2026  1:09:40.93] launch 169 
+[Thu 10/29/2026  1:09:40.94] launch 170 
+[Thu 10/29/2026  1:09:40.96] launch 171 
+[Thu 10/29/2026  1:09:40.97] launch 172 
+[Thu 10/29/2026  1:09:40.99] launch 173 
+[Thu 10/29/2026  1:09:41.00] launch 174 
+[Thu 10/29/2026  1:09:41.01] launch 175 
+[Thu 10/29/2026  1:09:41.03] launch 176 
+[Thu 10/29/2026  1:09:41.04] launch 177 
+[Thu 10/29/2026  1:09:41.05] launch 178 
+[Thu 10/29/2026  1:09:41.07] launch 179 
+[Thu 10/29/2026  1:09:41.08] launch 180 
+[Thu 10/29/2026  1:09:41.10] launch 181 
+[Thu 10/29/2026  1:09:41.11] launch 182 
+[Thu 10/29/2026  1:09:41.12] launch 183 
+[Thu 10/29/2026  1:09:41.13] launch 184 
+[Thu 10/29/2026  1:09:41.15] launch 185 
+[Thu 10/29/2026  1:09:41.16] launch 186 
+[Thu 10/29/2026  1:09:41.17] launch 187 
+[Thu 10/29/2026  1:09:41.19] launch 188 
+[Thu 10/29/2026  1:09:41.20] launch 189 
+[Thu 10/29/2026  1:09:41.21] launch 190 
+[Thu 10/29/2026  1:09:41.23] launch 191 
+[Thu 10/29/2026  1:09:41.24] launch 192 
+[Thu 10/29/2026  1:09:41.26] launch 193 
+[Thu 10/29/2026  1:09:41.28] launch 194 
+[Thu 10/29/2026  1:09:41.29] launch 195 
+[Thu 10/29/2026  1:09:41.30] launch 196 
+[Thu 10/29/2026  1:09:41.32] launch 197 
+[Thu 10/29/2026  1:09:41.33] launch 198 
+[Thu 10/29/2026  1:09:41.34] launch 199 
+[Thu 10/29/2026  1:09:41.36] launch 200 

@@ -1,0 +1,450 @@
+Wed Oct 28 23:25:51 BST 2026 top-up Inrush_Loaded 80
+=== Stress dataset v5 | set main | run 20261028_232627 | 80 samples | 1 scenarios | start at 1 | chunk 0 ===
+  Inrush_Loaded                80
+[   1/  80] Inrush_Loaded              OK   | load   63% (real  NaN%) pf 0.94 noise 0.56% burden 1.1x CTerr   3% | event 0.673s det 0.680s | checks OK | ETA 24 min
+[   2/  80] Inrush_Loaded              OK   | load   25% (real  NaN%) pf 0.91 noise 0.31% burden 1.0x CTerr   3% | event 0.561s det 0.568s | checks OK | ETA 15 min
+[   3/  80] Inrush_Loaded              OK   | load   74% (real  NaN%) pf 0.84 noise 0.19% burden 1.1x CTerr   2% | event 0.350s det 0.357s | checks OK | ETA 12 min
+[   4/  80] Inrush_Loaded              OK   | load  108% (real  NaN%) pf 0.97 noise 0.05% burden 1.1x CTerr   3% | event 0.503s det 0.510s | checks OK | ETA 10 min
+[   5/  80] Inrush_Loaded              OK   | load   16% (real  NaN%) pf 1.00 noise 0.74% burden 1.1x CTerr   6% | event 0.559s det 0.566s | checks OK | ETA 9 min
+[   6/  80] Inrush_Loaded              OK   | load  102% (real  NaN%) pf 0.82 noise 0.06% burden 1.0x CTerr   2% | event 0.541s det 0.548s | checks OK | ETA 8 min
+[   7/  80] Inrush_Loaded              OK   | load   93% (real  NaN%) pf 0.82 noise 0.22% burden 1.2x CTerr   2% | event 0.316s det 0.322s | checks OK | ETA 8 min
+[   8/  80] Inrush_Loaded              OK   | load   75% (real  NaN%) pf 0.93 noise 0.08% burden 1.2x CTerr   2% | event 0.419s det 0.426s | checks OK | ETA 7 min
+[   9/  80] Inrush_Loaded              OK   | load   70% (real  NaN%) pf 0.92 noise 0.12% burden 1.2x CTerr   3% | event 0.576s det 0.582s | checks OK | ETA 7 min
+[  10/  80] Inrush_Loaded              OK   | load   65% (real  NaN%) pf 0.93 noise 0.10% burden 1.0x CTerr   3% | event 0.335s det 0.342s | checks OK | ETA 7 min
+[  11/  80] Inrush_Loaded              OK   | load   75% (real  NaN%) pf 0.86 noise 0.53% burden 1.0x CTerr   3% | event 0.179s det 0.185s | checks OK | ETA 6 min
+[  12/  80] Inrush_Loaded              OK   | load   95% (real  NaN%) pf 0.88 noise 0.09% burden 1.1x CTerr   2% | event 0.210s det 0.217s | checks OK | ETA 6 min
+[  13/  80] Inrush_Loaded              OK   | load   37% (real  NaN%) pf 0.93 noise 0.44% burden 1.1x CTerr   3% | event 0.413s det 0.419s | checks OK | ETA 6 min
+[  14/  80] Inrush_Loaded              OK   | load  105% (real  NaN%) pf 0.81 noise 0.18% burden 1.1x CTerr   2% | event 0.299s det 0.305s | checks OK | ETA 6 min
+[  15/  80] Inrush_Loaded              OK   | load  102% (real  NaN%) pf 0.84 noise 0.07% burden 1.1x CTerr   2% | event 0.380s det 0.387s | checks OK | ETA 6 min
+[  16/  80] Inrush_Loaded              OK   | load   34% (real  NaN%) pf 0.86 noise 0.05% burden 1.1x CTerr   2% | event 0.363s det 0.369s | checks OK | ETA 6 min
+[  17/  80] Inrush_Loaded              OK   | load   23% (real  NaN%) pf 0.83 noise 0.22% burden 1.1x CTerr   3% | event 0.344s det 0.350s | checks OK | ETA 5 min
+[  18/  80] Inrush_Loaded              OK   | load   93% (real  NaN%) pf 0.88 noise 0.14% burden 1.1x CTerr   3% | event 0.624s det 0.630s | checks OK | ETA 5 min
+[  19/  80] Inrush_Loaded              OK   | load   38% (real  NaN%) pf 0.91 noise 0.20% burden 1.1x CTerr   3% | event 0.485s det 0.491s | checks OK | ETA 5 min
+[  20/  80] Inrush_Loaded              OK   | load  106% (real  NaN%) pf 0.91 noise 0.36% burden 1.1x CTerr   2% | event 0.161s det 0.167s | checks OK | ETA 5 min
+[  21/  80] Inrush_Loaded              OK   | load   80% (real  NaN%) pf 0.80 noise 0.26% burden 1.1x CTerr   2% | event 0.120s det 0.127s | checks OK | ETA 5 min
+[  22/  80] Inrush_Loaded              OK   | load   22% (real  NaN%) pf 0.98 noise 0.40% burden 1.1x CTerr   3% | event 0.530s det 0.537s | checks OK | ETA 5 min
+[  23/  80] Inrush_Loaded              OK   | load   20% (real  NaN%) pf 1.00 noise 0.36% burden 1.2x CTerr   3% | event 0.265s det 0.272s | checks OK | ETA 5 min
+[  24/  80] Inrush_Loaded              OK   | load   39% (real  NaN%) pf 0.98 noise 0.07% burden 1.1x CTerr   2% | event 0.385s det 0.393s | checks OK | ETA 5 min
+[  25/  80] Inrush_Loaded              OK   | load   27% (real  NaN%) pf 0.96 noise 0.06% burden 1.1x CTerr   3% | event 0.435s det 0.441s | checks OK | ETA 5 min
+[  26/  80] Inrush_Loaded              OK   | load   60% (real  NaN%) pf 0.89 noise 0.06% burden 1.2x CTerr   2% | event 0.564s det 0.570s | checks OK | ETA 4 min
+[  27/  80] Inrush_Loaded              OK   | load   35% (real  NaN%) pf 0.90 noise 0.12% burden 1.1x CTerr   2% | event 0.525s det 0.531s | checks OK | ETA 4 min
+[  28/  80] Inrush_Loaded              OK   | load   75% (real  NaN%) pf 0.99 noise 0.05% burden 1.2x CTerr   2% | event 0.610s det 0.616s | checks OK | ETA 4 min
+[  29/  80] Inrush_Loaded              OK   | load   21% (real  NaN%) pf 0.81 noise 0.40% burden 1.1x CTerr   3% | event 0.346s det 0.352s | checks OK | ETA 4 min
+[  30/  80] Inrush_Loaded              OK   | load   29% (real  NaN%) pf 0.86 noise 0.07% burden 1.1x CTerr   2% | event 0.380s det 0.386s | checks OK | ETA 4 min
+[  31/  80] Inrush_Loaded              ERR  | load   23% (real  NaN%) pf 0.85 noise 0.27% burden 1.1x CTerr NaN% | event 0.270s det      - | FAILED: TIMING, logged size [141 3] / [141 3], expected [1761 3] | ETA 4 min
+[  32/  80] Inrush_Loaded              OK   | load   81% (real  NaN%) pf 0.93 noise 0.22% burden 1.1x CTerr   3% | event 0.174s det 0.181s | checks OK | ETA 4 min
+[  33/  80] Inrush_Loaded              OK   | load   21% (real  NaN%) pf 0.80 noise 0.11% burden 1.1x CTerr   3% | event 0.634s det 0.641s | checks OK | ETA 4 min
+[  34/  80] Inrush_Loaded              ERR  | load   66% (real  NaN%) pf 0.98 noise 0.13% burden 1.1x CTerr NaN% | event 0.503s det      - | FAILED: TIMING, logged size [1 3] / [1 3], expected [1761 3] | ETA 4 min
+[  35/  80] Inrush_Loaded              OK   | load   20% (real  NaN%) pf 1.00 noise 0.71% burden 1.2x CTerr   5% | event 0.115s det 0.122s | checks OK | ETA 4 min
+[  36/  80] Inrush_Loaded              ERR  | load   81% (real  NaN%) pf 0.85 noise 0.38% burden 1.1x CTerr NaN% | event 0.471s det      - | FAILED: TIMING, logged size [144 3] / [144 3], expected [1761 3] | ETA 4 min
+[  37/  80] Inrush_Loaded              OK   | load   14% (real  NaN%) pf 0.99 noise 0.74% burden 1.0x CTerr   7% | event 0.354s det 0.361s | checks OK | ETA 3 min
+[  38/  80] Inrush_Loaded              OK   | load   91% (real  NaN%) pf 0.82 noise 0.09% burden 1.2x CTerr   2% | event 0.396s det 0.403s | checks OK | ETA 3 min
+[  39/  80] Inrush_Loaded              ERR  | load   84% (real  NaN%) pf 0.91 noise 0.19% burden 1.0x CTerr NaN% | event 0.501s det      - | FAILED: TIMING, logged size [1 3] / [1 3], expected [1761 3] | ETA 3 min
+[  40/  80] Inrush_Loaded              OK   | load   93% (real  NaN%) pf 0.96 noise 0.10% burden 1.1x CTerr   2% | event 0.661s det 0.667s | checks OK | ETA 3 min
+[  41/  80] Inrush_Loaded              OK   | load   57% (real  NaN%) pf 0.98 noise 0.59% burden 1.2x CTerr   3% | event 0.476s det 0.482s | checks OK | ETA 3 min
+[  42/  80] Inrush_Loaded              OK   | load   53% (real  NaN%) pf 0.89 noise 0.69% burden 1.0x CTerr   3% | event 0.286s det 0.292s | checks OK | ETA 3 min
+[  43/  80] Inrush_Loaded              OK   | load   43% (real  NaN%) pf 0.93 noise 0.05% burden 1.0x CTerr   2% | event 0.459s det 0.466s | checks OK | ETA 3 min
+[  44/  80] Inrush_Loaded              OK   | load   46% (real  NaN%) pf 0.83 noise 0.30% burden 1.1x CTerr   2% | event 0.124s det 0.131s | checks OK | ETA 3 min
+[  45/  80] Inrush_Loaded              OK   | load   15% (real  NaN%) pf 0.85 noise 0.31% burden 1.1x CTerr   4% | event 0.307s det 0.314s | checks OK | ETA 3 min
+[  46/  80] Inrush_Loaded              OK   | load  109% (real  NaN%) pf 0.82 noise 0.12% burden 1.1x CTerr   3% | event 0.449s det 0.455s | checks OK | ETA 3 min
+[  47/  80] Inrush_Loaded              OK   | load   16% (real  NaN%) pf 0.95 noise 0.05% burden 1.1x CTerr   3% | event 0.177s det 0.184s | checks OK | ETA 3 min
+[  48/  80] Inrush_Loaded              OK   | load   47% (real  NaN%) pf 0.82 noise 0.51% burden 1.1x CTerr   3% | event 0.438s det 0.444s | checks OK | ETA 2 min
+[  49/  80] Inrush_Loaded              OK   | load   97% (real  NaN%) pf 0.81 noise 0.17% burden 1.1x CTerr   2% | event 0.656s det 0.662s | checks OK | ETA 2 min
+[  50/  80] Inrush_Loaded              OK   | load   73% (real  NaN%) pf 0.91 noise 0.13% burden 1.2x CTerr   3% | event 0.171s det 0.177s | checks OK | ETA 2 min
+[  51/  80] Inrush_Loaded              OK   | load   99% (real  NaN%) pf 0.84 noise 0.14% burden 1.1x CTerr   2% | event 0.375s det 0.382s | checks OK | ETA 2 min
+[  52/  80] Inrush_Loaded              OK   | load   44% (real  NaN%) pf 0.90 noise 0.64% burden 1.1x CTerr   3% | event 0.271s det 0.278s | checks OK | ETA 2 min
+[  53/  80] Inrush_Loaded              ERR  | load   97% (real  NaN%) pf 0.99 noise 0.23% burden 1.1x CTerr NaN% | event 0.451s det      - | FAILED: TIMING, logged size [0 3] / [0 3], expected [1761 3] | ETA 2 min
+[  54/  80] Inrush_Loaded              OK   | load   29% (real  NaN%) pf 0.93 noise 0.70% burden 1.1x CTerr   3% | event 0.664s det 0.671s | checks OK | ETA 2 min
+[  55/  80] Inrush_Loaded              OK   | load  103% (real  NaN%) pf 0.92 noise 0.35% burden 1.1x CTerr   2% | event 0.260s det 0.267s | checks OK | ETA 2 min
+[  56/  80] Inrush_Loaded              OK   | load   34% (real  NaN%) pf 0.99 noise 0.65% burden 1.1x CTerr   3% | event 0.188s det 0.194s | checks OK | ETA 2 min
+[  57/  80] Inrush_Loaded              OK   | load   24% (real  NaN%) pf 0.88 noise 0.24% burden 1.0x CTerr   3% | event 0.549s det 0.555s | checks OK | ETA 2 min
+[  58/  80] Inrush_Loaded              OK   | load   38% (real  NaN%) pf 0.80 noise 0.09% burden 1.0x CTerr   3% | event 0.690s det 0.696s | checks OK | ETA 2 min
+[  59/  80] Inrush_Loaded              OK   | load   67% (real  NaN%) pf 1.00 noise 0.84% burden 1.0x CTerr   3% | event 0.304s det 0.311s | checks OK | ETA 2 min
+[  60/  80] Inrush_Loaded              ERR  | load   86% (real  NaN%) pf 0.94 noise 0.19% burden 1.0x CTerr NaN% | event 0.375s det      - | FAILED: TIMING, logged size [285 3] / [285 3], expected [1761 3] | ETA 2 min
+[  61/  80] Inrush_Loaded              OK   | load   96% (real  NaN%) pf 0.90 noise 0.26% burden 1.1x CTerr   2% | event 0.187s det 0.193s | checks OK | ETA 1 min
+[  62/  80] Inrush_Loaded              OK   | load   36% (real  NaN%) pf 0.92 noise 0.11% burden 1.1x CTerr   2% | event 0.681s det 0.688s | checks OK | ETA 1 min
+[  63/  80] Inrush_Loaded              ERR  | load   21% (real  NaN%) pf 0.88 noise 0.73% burden 1.0x CTerr NaN% | event 0.528s det      - | FAILED: TIMING, logged size [1 3] / [1 3], expected [1761 3] | ETA 1 min
+[  64/  80] Inrush_Loaded              OK   | load   48% (real  NaN%) pf 0.96 noise 0.06% burden 1.2x CTerr   2% | event 0.609s det 0.616s | checks OK | ETA 1 min
+[  65/  80] Inrush_Loaded              ERR  | load   37% (real  NaN%) pf 0.83 noise 0.34% burden 1.2x CTerr NaN% | event 0.474s det      - | FAILED: TIMING, logged size [1 3] / [1 3], expected [1761 3] | ETA 1 min
+[  66/  80] Inrush_Loaded              OK   | load   32% (real  NaN%) pf 0.95 noise 0.06% burden 1.0x CTerr   2% | event 0.438s det 0.445s | checks OK | ETA 1 min
+[  67/  80] Inrush_Loaded              OK   | load   93% (real  NaN%) pf 0.92 noise 0.47% burden 1.2x CTerr   2% | event 0.460s det 0.466s | checks OK | ETA 1 min
+[  68/  80] Inrush_Loaded              OK   | load   35% (real  NaN%) pf 0.81 noise 0.09% burden 1.1x CTerr   3% | event 0.399s det 0.405s | checks OK | ETA 1 min
+[  69/  80] Inrush_Loaded              OK   | load   99% (real  NaN%) pf 0.86 noise 0.21% burden 1.1x CTerr   2% | event 0.676s det 0.682s | checks OK | ETA 1 min
+[  70/  80] Inrush_Loaded              OK   | load   30% (real  NaN%) pf 0.99 noise 0.17% burden 1.0x CTerr   2% | event 0.238s det 0.245s | checks OK | ETA 1 min
+[  71/  80] Inrush_Loaded              OK   | load  105% (real  NaN%) pf 0.83 noise 0.35% burden 1.0x CTerr   3% | event 0.397s det 0.405s | checks OK | ETA 1 min
+[  72/  80] Inrush_Loaded              OK   | load   51% (real  NaN%) pf 0.85 noise 0.09% burden 1.0x CTerr   2% | event 0.650s det 0.657s | checks OK | ETA 1 min
+[  73/  80] Inrush_Loaded              OK   | load   66% (real  NaN%) pf 0.95 noise 1.00% burden 1.1x CTerr   3% | event 0.678s det 0.684s | checks OK | ETA 1 min
+[  74/  80] Inrush_Loaded              OK   | load   28% (real  NaN%) pf 0.97 noise 0.11% burden 1.1x CTerr   3% | event 0.341s det 0.347s | checks OK | ETA 0 min
+[  75/  80] Inrush_Loaded              OK   | load   21% (real  NaN%) pf 0.99 noise 0.08% burden 1.1x CTerr   2% | event 0.579s det 0.585s | checks OK | ETA 0 min
+[  76/  80] Inrush_Loaded              OK   | load   68% (real  NaN%) pf 0.93 noise 0.27% burden 1.2x CTerr   3% | event 0.134s det 0.141s | checks OK | ETA 0 min
+[  77/  80] Inrush_Loaded              OK   | load   72% (real  NaN%) pf 0.84 noise 0.19% burden 1.1x CTerr   2% | event 0.498s det 0.505s | checks OK | ETA 0 min
+[  78/  80] Inrush_Loaded              OK   | load   68% (real  NaN%) pf 0.93 noise 0.84% burden 1.1x CTerr   3% | event 0.454s det 0.461s | checks OK | ETA 0 min
+[  79/  80] Inrush_Loaded              OK   | load   32% (real  NaN%) pf 0.84 noise 0.08% burden 1.2x CTerr   3% | event 0.676s det 0.682s | checks OK | ETA 0 min
+[  80/  80] Inrush_Loaded              OK   | load  100% (real  NaN%) pf 0.96 noise 0.31% burden 1.2x CTerr   2% | event 0.545s det 0.552s | checks OK | ETA 0 min
+
+Saved ONE file: F:\Transformer Thesis\datasets\StressDataset_v5Only_20261028_232627.mat
+Checks passed: 72 / 80  (failed samples are kept but flagged; training skips them)
+Duplicate waveforms: 0 | timing failures: 8 | events too small to see: 0 | sim errors: 8
+Wed Oct 28 23:32:54 BST 2026 top-up Overexcitation 100 (OverexcMin 1.22)
+=== Stress dataset v5 | set main | run 20261028_233305 | 100 samples | 1 scenarios | start at 1 | chunk 0 ===
+  Overexcitation              100
+[   1/ 100] Overexcitation             OK   | load   92% (real  122%) pf 0.89 noise 0.33% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 16 min
+[   2/ 100] Overexcitation             OK   | load   21% (real   28%) pf 0.85 noise 0.17% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 12 min
+[   3/ 100] Overexcitation             OK   | load   47% (real   64%) pf 0.93 noise 0.41% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 10 min
+[   4/ 100] Overexcitation             OK   | load   95% (real  118%) pf 0.89 noise 0.16% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[   5/ 100] Overexcitation             OK   | load   29% (real   39%) pf 0.88 noise 0.49% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 9 min
+[   6/ 100] Overexcitation             OK   | load   37% (real   47%) pf 0.81 noise 0.29% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 8 min
+[   7/ 100] Overexcitation             OK   | load   88% (real  114%) pf 0.97 noise 0.99% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 8 min
+[   8/ 100] Overexcitation             OK   | load   58% (real   74%) pf 0.85 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 8 min
+[   9/ 100] Overexcitation             OK   | load   17% (real   23%) pf 0.94 noise 0.10% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 7 min
+[  10/ 100] Overexcitation             OK   | load   86% (real  106%) pf 0.88 noise 0.05% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 7 min
+[  11/ 100] Overexcitation             OK   | load   90% (real  121%) pf 0.91 noise 0.76% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 7 min
+[  12/ 100] Overexcitation             OK   | load   49% (real   68%) pf 0.80 noise 0.17% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 7 min
+[  13/ 100] Overexcitation             OK   | load   76% (real  100%) pf 0.83 noise 0.19% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 7 min
+[  14/ 100] Overexcitation             OK   | load   94% (real  123%) pf 0.94 noise 0.15% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 7 min
+[  15/ 100] Overexcitation             OK   | load   20% (real   28%) pf 0.97 noise 0.19% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  16/ 100] Overexcitation             OK   | load  107% (real  129%) pf 0.93 noise 0.84% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  17/ 100] Overexcitation             OK   | load   80% (real  110%) pf 0.87 noise 0.58% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  18/ 100] Overexcitation             OK   | load   37% (real   51%) pf 0.82 noise 0.16% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  19/ 100] Overexcitation             OK   | load   33% (real   44%) pf 0.86 noise 0.72% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  20/ 100] Overexcitation             OK   | load   32% (real   42%) pf 0.90 noise 0.52% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  21/ 100] Overexcitation             OK   | load  106% (real  135%) pf 0.89 noise 0.26% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  22/ 100] Overexcitation             OK   | load   71% (real   89%) pf 0.84 noise 0.19% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  23/ 100] Overexcitation             OK   | load   28% (real   38%) pf 0.88 noise 0.21% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  24/ 100] Overexcitation             OK   | load   67% (real   92%) pf 0.95 noise 0.11% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[  25/ 100] Overexcitation             OK   | load   44% (real   58%) pf 0.99 noise 0.31% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  26/ 100] Overexcitation             OK   | load   95% (real  125%) pf 0.90 noise 0.62% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  27/ 100] Overexcitation             OK   | load   93% (real  125%) pf 0.88 noise 0.28% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  28/ 100] Overexcitation             OK   | load   47% (real   62%) pf 0.99 noise 0.22% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  29/ 100] Overexcitation             OK   | load   16% (real   20%) pf 0.93 noise 0.92% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  30/ 100] Overexcitation             OK   | load   29% (real   37%) pf 0.97 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  31/ 100] Overexcitation             OK   | load   49% (real   65%) pf 0.91 noise 0.69% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  32/ 100] Overexcitation             OK   | load   17% (real   21%) pf 0.94 noise 0.18% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  33/ 100] Overexcitation             OK   | load  101% (real  142%) pf 0.80 noise 0.38% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  34/ 100] Overexcitation             OK   | load   39% (real   54%) pf 0.83 noise 0.05% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  35/ 100] Overexcitation             OK   | load  100% (real  128%) pf 0.98 noise 0.15% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  36/ 100] Overexcitation             OK   | load   23% (real   29%) pf 0.88 noise 0.59% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  37/ 100] Overexcitation             OK   | load   78% (real  104%) pf 0.97 noise 0.10% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  38/ 100] Overexcitation             OK   | load   23% (real   28%) pf 0.93 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  39/ 100] Overexcitation             OK   | load   36% (real   47%) pf 0.90 noise 0.41% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  40/ 100] Overexcitation             OK   | load   43% (real   53%) pf 0.96 noise 0.41% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  41/ 100] Overexcitation             OK   | load   61% (real   83%) pf 0.80 noise 0.45% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  42/ 100] Overexcitation             OK   | load  102% (real  135%) pf 0.96 noise 0.54% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  43/ 100] Overexcitation             OK   | load  106% (real  141%) pf 0.83 noise 0.13% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  44/ 100] Overexcitation             OK   | load   71% (real   98%) pf 0.86 noise 0.10% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  45/ 100] Overexcitation             OK   | load   64% (real   82%) pf 0.99 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  46/ 100] Overexcitation             OK   | load   49% (real   64%) pf 0.87 noise 0.20% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  47/ 100] Overexcitation             OK   | load  107% (real  134%) pf 0.88 noise 0.05% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  48/ 100] Overexcitation             OK   | load   83% (real  114%) pf 0.90 noise 0.21% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  49/ 100] Overexcitation             OK   | load   57% (real   79%) pf 0.89 noise 0.15% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  50/ 100] Overexcitation             OK   | load   80% (real   99%) pf 0.97 noise 0.10% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  51/ 100] Overexcitation             OK   | load  104% (real  143%) pf 0.98 noise 0.78% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  52/ 100] Overexcitation             OK   | load   19% (real   23%) pf 0.85 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  53/ 100] Overexcitation             OK   | load   37% (real   49%) pf 0.94 noise 0.34% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  54/ 100] Overexcitation             OK   | load  106% (real  150%) pf 0.83 noise 0.31% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  55/ 100] Overexcitation             OK   | load   35% (real   45%) pf 0.93 noise 0.27% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  56/ 100] Overexcitation             OK   | load   57% (real   78%) pf 1.00 noise 0.98% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  57/ 100] Overexcitation             OK   | load   84% (real  116%) pf 0.88 noise 0.13% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  58/ 100] Overexcitation             OK   | load   68% (real   88%) pf 0.93 noise 0.15% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  59/ 100] Overexcitation             OK   | load   75% (real  100%) pf 0.81 noise 0.11% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  60/ 100] Overexcitation             OK   | load   66% (real   85%) pf 0.94 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  61/ 100] Overexcitation             OK   | load   40% (real   50%) pf 0.84 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  62/ 100] Overexcitation             OK   | load   48% (real   58%) pf 0.85 noise 0.51% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  63/ 100] Overexcitation             OK   | load  106% (real  131%) pf 0.84 noise 0.12% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  64/ 100] Overexcitation             OK   | load  110% (real  142%) pf 0.89 noise 0.16% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  65/ 100] Overexcitation             OK   | load  109% (real  138%) pf 0.87 noise 0.08% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  66/ 100] Overexcitation             OK   | load   62% (real   84%) pf 0.93 noise 0.19% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  67/ 100] Overexcitation             OK   | load   14% (real   19%) pf 0.95 noise 0.70% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  68/ 100] Overexcitation             OK   | load   29% (real   40%) pf 0.98 noise 0.16% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  69/ 100] Overexcitation             OK   | load   75% (real  103%) pf 0.82 noise 0.07% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  70/ 100] Overexcitation             OK   | load   12% (real   16%) pf 0.81 noise 0.61% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  71/ 100] Overexcitation             OK   | load   19% (real   26%) pf 0.86 noise 0.68% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  72/ 100] Overexcitation             OK   | load   24% (real   31%) pf 0.87 noise 0.08% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  73/ 100] Overexcitation             OK   | load  106% (real  133%) pf 0.89 noise 0.84% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  74/ 100] Overexcitation             OK   | load   29% (real   39%) pf 0.82 noise 0.09% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  75/ 100] Overexcitation             OK   | load   74% (real  100%) pf 0.85 noise 0.20% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  76/ 100] Overexcitation             OK   | load   75% (real  106%) pf 0.89 noise 0.10% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  77/ 100] Overexcitation             OK   | load   74% (real   99%) pf 0.92 noise 0.10% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  78/ 100] Overexcitation             OK   | load   90% (real  111%) pf 0.83 noise 0.08% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  79/ 100] Overexcitation             OK   | load   51% (real   63%) pf 0.88 noise 0.08% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  80/ 100] Overexcitation             OK   | load   23% (real   30%) pf 0.93 noise 0.88% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  81/ 100] Overexcitation             OK   | load   93% (real  126%) pf 0.82 noise 0.47% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  82/ 100] Overexcitation             OK   | load   98% (real  133%) pf 0.91 noise 0.66% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  83/ 100] Overexcitation             OK   | load  108% (real  150%) pf 0.99 noise 0.16% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  84/ 100] Overexcitation             OK   | load   27% (real   37%) pf 0.97 noise 0.11% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  85/ 100] Overexcitation             OK   | load   29% (real   39%) pf 0.85 noise 0.36% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  86/ 100] Overexcitation             OK   | load   11% (real   14%) pf 0.93 noise 0.09% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  87/ 100] Overexcitation             OK   | load   30% (real   40%) pf 0.87 noise 0.05% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  88/ 100] Overexcitation             OK   | load   77% (real  105%) pf 0.95 noise 0.18% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  89/ 100] Overexcitation             OK   | load   74% (real   96%) pf 0.99 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  90/ 100] Overexcitation             OK   | load   32% (real   44%) pf 0.91 noise 0.67% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  91/ 100] Overexcitation             OK   | load   99% (real  123%) pf 0.87 noise 0.39% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  92/ 100] Overexcitation             OK   | load   81% (real   98%) pf 0.99 noise 0.87% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  93/ 100] Overexcitation             OK   | load   15% (real   18%) pf 0.82 noise 0.19% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  94/ 100] Overexcitation             OK   | load   24% (real   30%) pf 0.93 noise 0.11% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  95/ 100] Overexcitation             OK   | load   80% (real  100%) pf 0.95 noise 0.30% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  96/ 100] Overexcitation             OK   | load   60% (real   79%) pf 0.91 noise 0.28% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  97/ 100] Overexcitation             OK   | load   32% (real   39%) pf 0.96 noise 0.07% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  98/ 100] Overexcitation             OK   | load   30% (real   40%) pf 0.86 noise 0.49% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  99/ 100] Overexcitation             OK   | load   91% (real  125%) pf 0.89 noise 0.96% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[ 100/ 100] Overexcitation             OK   | load   56% (real   76%) pf 0.85 noise 0.19% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+
+Saved ONE file: F:\Transformer Thesis\datasets\StressDataset_v5Only_20261028_233305.mat
+Checks passed: 100 / 100  (failed samples are kept but flagged; training skips them)
+Duplicate waveforms: 0 | timing failures: 0 | events too small to see: 0 | sim errors: 0
+Wed Oct 28 23:40:30 BST 2026 top-up Stress_ExtCTSat multi-phase 60
+=== Stress dataset v5 | set main | run 20261028_234041 | 60 samples | 8 scenarios | start at 1 | chunk 0 ===
+  Stress_ExtCTSat_AB            4
+  Stress_ExtCTSat_BC            8
+  Stress_ExtCTSat_AC            8
+  Stress_ExtCTSat_ABG           8
+  Stress_ExtCTSat_BCG           8
+  Stress_ExtCTSat_ACG           8
+  Stress_ExtCTSat_ABC           8
+  Stress_ExtCTSat_ABCG          8
+[   1/  60] Stress_ExtCTSat_AB         OK   | load  107% (real  101%) pf 0.85 noise 1.42% burden 5.2x CTerr  20% | event 0.313s det 0.315s | checks OK | ETA 10 min
+[   2/  60] Stress_ExtCTSat_AB         OK   | load   60% (real   60%) pf 0.92 noise 2.61% burden 3.5x CTerr  36% | event 0.581s det 0.589s | checks OK | ETA 7 min
+[   3/  60] Stress_ExtCTSat_AB         OK   | load  104% (real  106%) pf 0.91 noise 1.16% burden 3.9x CTerr   7% | event 0.351s det 0.353s | checks OK | ETA 6 min
+[   4/  60] Stress_ExtCTSat_AB         OK   | load   66% (real   69%) pf 0.98 noise 2.13% burden 2.6x CTerr  42% | event 0.748s det 0.752s | checks OK | ETA 5 min
+[   5/  60] Stress_ExtCTSat_BC         OK   | load   85% (real   81%) pf 0.96 noise 1.28% burden 3.7x CTerr  48% | event 0.363s det 0.368s | checks OK | ETA 5 min
+[   6/  60] Stress_ExtCTSat_BC         OK   | load   82% (real   78%) pf 0.98 noise 2.57% burden 2.3x CTerr   4% | event 0.594s det 0.596s | checks OK | ETA 5 min
+[   7/  60] Stress_ExtCTSat_BC         OK   | load   76% (real   79%) pf 0.85 noise 1.33% burden 3.5x CTerr  22% | event 0.421s det 0.427s | checks OK | ETA 4 min
+[   8/  60] Stress_ExtCTSat_BC         OK   | load   72% (real   75%) pf 0.86 noise 1.01% burden 3.8x CTerr  15% | event 0.431s det 0.439s | checks OK | ETA 4 min
+[   9/  60] Stress_ExtCTSat_BC         OK   | load  109% (real  109%) pf 0.99 noise 1.34% burden 5.8x CTerr  31% | event 0.648s det 0.650s | checks OK | ETA 4 min
+[  10/  60] Stress_ExtCTSat_BC         OK   | load  107% (real  108%) pf 0.93 noise 1.71% burden 4.3x CTerr  42% | event 0.730s det 0.736s | checks OK | ETA 4 min
+[  11/  60] Stress_ExtCTSat_BC         OK   | load   97% (real   92%) pf 0.97 noise 2.91% burden 5.8x CTerr  61% | event 0.329s det 0.335s | checks OK | ETA 4 min
+[  12/  60] Stress_ExtCTSat_BC         OK   | load   79% (real   79%) pf 0.90 noise 2.84% burden 4.6x CTerr  33% | event 0.403s det 0.406s | checks OK | ETA 4 min
+[  13/  60] Stress_ExtCTSat_AC         OK   | load   89% (real   87%) pf 0.83 noise 1.93% burden 3.1x CTerr  26% | event 0.424s det 0.430s | checks OK | ETA 3 min
+[  14/  60] Stress_ExtCTSat_AC         OK   | load  107% (real  106%) pf 0.96 noise 2.21% burden 4.0x CTerr  33% | event 0.659s det 0.662s | checks OK | ETA 3 min
+[  15/  60] Stress_ExtCTSat_AC         OK   | load   71% (real   70%) pf 0.92 noise 1.04% burden 5.7x CTerr  37% | event 0.422s det 0.428s | checks OK | ETA 3 min
+[  16/  60] Stress_ExtCTSat_AC         OK   | load   81% (real   83%) pf 0.97 noise 2.39% burden 5.6x CTerr  49% | event 0.366s det 0.370s | checks OK | ETA 3 min
+[  17/  60] Stress_ExtCTSat_AC         OK   | load   80% (real   82%) pf 0.95 noise 2.47% burden 4.5x CTerr  44% | event 0.491s det 0.499s | checks OK | ETA 3 min
+[  18/  60] Stress_ExtCTSat_AC         OK   | load  100% (real   98%) pf 0.98 noise 2.18% burden 2.8x CTerr  45% | event 0.724s det 0.728s | checks OK | ETA 3 min
+[  19/  60] Stress_ExtCTSat_AC         OK   | load   63% (real   62%) pf 0.94 noise 2.06% burden 4.2x CTerr  19% | event 0.572s det 0.581s | checks OK | ETA 3 min
+[  20/  60] Stress_ExtCTSat_AC         OK   | load  104% (real  108%) pf 0.84 noise 2.34% burden 3.4x CTerr   7% | event 0.663s det 0.666s | checks OK | ETA 3 min
+[  21/  60] Stress_ExtCTSat_ABG        OK   | load   90% (real   85%) pf 0.84 noise 1.02% burden 4.9x CTerr  12% | event 0.356s det 0.359s | checks OK | ETA 3 min
+[  22/  60] Stress_ExtCTSat_ABG        OK   | load  107% (real  110%) pf 0.97 noise 1.12% burden 5.3x CTerr  27% | event 0.685s det 0.688s | checks OK | ETA 3 min
+[  23/  60] Stress_ExtCTSat_ABG        OK   | load   66% (real   68%) pf 0.91 noise 2.15% burden 2.3x CTerr  38% | event 0.302s det 0.307s | checks OK | ETA 3 min
+[  24/  60] Stress_ExtCTSat_ABG        OK   | load  108% (real  111%) pf 0.93 noise 1.48% burden 3.7x CTerr  36% | event 0.536s det 0.539s | checks OK | ETA 2 min
+[  25/  60] Stress_ExtCTSat_ABG        OK   | load   60% (real   59%) pf 0.98 noise 2.50% burden 2.0x CTerr   5% | event 0.501s det 0.503s | checks OK | ETA 2 min
+[  26/  60] Stress_ExtCTSat_ABG        OK   | load  105% (real  105%) pf 0.99 noise 1.05% burden 4.6x CTerr  49% | event 0.341s det 0.344s | checks OK | ETA 2 min
+[  27/  60] Stress_ExtCTSat_ABG        OK   | load   75% (real   77%) pf 0.82 noise 2.56% burden 3.8x CTerr  49% | event 0.416s det 0.420s | checks OK | ETA 2 min
+[  28/  60] Stress_ExtCTSat_ABG        OK   | load   83% (real   80%) pf 0.97 noise 1.06% burden 3.9x CTerr  11% | event 0.554s det 0.556s | checks OK | ETA 2 min
+[  29/  60] Stress_ExtCTSat_BCG        OK   | load  110% (real  108%) pf 0.95 noise 1.78% burden 2.3x CTerr  25% | event 0.469s det 0.472s | checks OK | ETA 2 min
+[  30/  60] Stress_ExtCTSat_BCG        OK   | load   96% (real   98%) pf 0.81 noise 2.12% burden 5.7x CTerr  59% | event 0.383s det 0.386s | checks OK | ETA 2 min
+[  31/  60] Stress_ExtCTSat_BCG        OK   | load   75% (real   78%) pf 0.87 noise 1.43% burden 4.4x CTerr  30% | event 0.595s det 0.598s | checks OK | ETA 2 min
+[  32/  60] Stress_ExtCTSat_BCG        OK   | load   84% (real   84%) pf 0.99 noise 2.32% burden 5.2x CTerr  30% | event 0.430s det 0.432s | checks OK | ETA 2 min
+[  33/  60] Stress_ExtCTSat_BCG        OK   | load   74% (real   72%) pf 0.94 noise 2.83% burden 4.9x CTerr  47% | event 0.352s det 0.359s | checks OK | ETA 2 min
+[  34/  60] Stress_ExtCTSat_BCG        OK   | load  110% (real  114%) pf 0.95 noise 1.83% burden 5.9x CTerr  42% | event 0.724s det 0.726s | checks OK | ETA 2 min
+[  35/  60] Stress_ExtCTSat_BCG        OK   | load  107% (real  108%) pf 0.81 noise 2.14% burden 4.3x CTerr  19% | event 0.401s det 0.403s | checks OK | ETA 2 min
+[  36/  60] Stress_ExtCTSat_BCG        OK   | load   79% (real   81%) pf 0.99 noise 2.65% burden 4.0x CTerr  17% | event 0.605s det 0.607s | checks OK | ETA 2 min
+[  37/  60] Stress_ExtCTSat_ACG        OK   | load   80% (real   81%) pf 0.89 noise 1.16% burden 2.8x CTerr   8% | event 0.591s det 0.593s | checks OK | ETA 2 min
+[  38/  60] Stress_ExtCTSat_ACG        OK   | load   65% (real   62%) pf 0.91 noise 1.55% burden 3.6x CTerr  19% | event 0.547s det 0.556s | checks OK | ETA 1 min
+[  39/  60] Stress_ExtCTSat_ACG        OK   | load   88% (real   91%) pf 0.89 noise 1.50% burden 2.9x CTerr  25% | event 0.623s det 0.632s | checks OK | ETA 1 min
+[  40/  60] Stress_ExtCTSat_ACG        OK   | load   96% (real   98%) pf 0.86 noise 1.19% burden 3.8x CTerr  14% | event 0.543s det 0.552s | checks OK | ETA 1 min
+[  41/  60] Stress_ExtCTSat_ACG        OK   | load   88% (real   89%) pf 0.81 noise 1.12% burden 5.9x CTerr  60% | event 0.504s det 0.509s | checks OK | ETA 1 min
+[  42/  60] Stress_ExtCTSat_ACG        OK   | load   97% (real   97%) pf 0.80 noise 1.08% burden 6.0x CTerr  47% | event 0.739s det 0.742s | checks OK | ETA 1 min
+[  43/  60] Stress_ExtCTSat_ACG        OK   | load   72% (real   69%) pf 0.83 noise 1.98% burden 2.5x CTerr   6% | event 0.361s det 0.371s | checks OK | ETA 1 min
+[  44/  60] Stress_ExtCTSat_ACG        OK   | load   69% (real   67%) pf 0.87 noise 1.68% burden 2.6x CTerr  12% | event 0.419s det 0.427s | checks OK | ETA 1 min
+[  45/  60] Stress_ExtCTSat_ABC        OK   | load  105% (real  103%) pf 0.82 noise 2.45% burden 3.2x CTerr  32% | event 0.717s det 0.722s | checks OK | ETA 1 min
+[  46/  60] Stress_ExtCTSat_ABC        OK   | load   67% (real   65%) pf 0.91 noise 2.86% burden 2.8x CTerr  21% | event 0.572s det 0.576s | checks OK | ETA 1 min
+[  47/  60] Stress_ExtCTSat_ABC        OK   | load   69% (real   69%) pf 0.86 noise 1.11% burden 3.6x CTerr  43% | event 0.550s det 0.555s | checks OK | ETA 1 min
+[  48/  60] Stress_ExtCTSat_ABC        OK   | load  107% (real  108%) pf 0.86 noise 1.55% burden 3.3x CTerr  45% | event 0.465s det 0.469s | checks OK | ETA 1 min
+[  49/  60] Stress_ExtCTSat_ABC        OK   | load   69% (real   69%) pf 0.84 noise 2.18% burden 2.2x CTerr  37% | event 0.737s det 0.741s | checks OK | ETA 1 min
+[  50/  60] Stress_ExtCTSat_ABC        OK   | load   75% (real   75%) pf 0.88 noise 2.04% burden 4.1x CTerr  42% | event 0.310s det 0.314s | checks OK | ETA 1 min
+[  51/  60] Stress_ExtCTSat_ABC        OK   | load   94% (real   94%) pf 0.98 noise 1.50% burden 2.9x CTerr  46% | event 0.687s det 0.690s | checks OK | ETA 1 min
+[  52/  60] Stress_ExtCTSat_ABC        OK   | load   90% (real   94%) pf 0.91 noise 2.74% burden 4.7x CTerr  41% | event 0.581s det 0.589s | checks OK | ETA 1 min
+[  53/  60] Stress_ExtCTSat_ABCG       OK   | load  106% (real  102%) pf 0.99 noise 1.10% burden 5.6x CTerr  59% | event 0.747s det 0.755s | checks OK | ETA 0 min
+[  54/  60] Stress_ExtCTSat_ABCG       OK   | load   87% (real   88%) pf 0.93 noise 1.54% burden 3.8x CTerr  34% | event 0.687s det 0.691s | checks OK | ETA 0 min
+[  55/  60] Stress_ExtCTSat_ABCG       OK   | load   74% (real   74%) pf 0.86 noise 1.72% burden 2.7x CTerr  20% | event 0.388s det 0.392s | checks OK | ETA 0 min
+[  56/  60] Stress_ExtCTSat_ABCG       OK   | load   73% (real   71%) pf 0.84 noise 1.51% burden 5.6x CTerr  46% | event 0.366s det 0.374s | checks OK | ETA 0 min
+[  57/  60] Stress_ExtCTSat_ABCG       OK   | load   61% (real   63%) pf 0.88 noise 1.90% burden 3.4x CTerr  53% | event 0.323s det 0.328s | checks OK | ETA 0 min
+[  58/  60] Stress_ExtCTSat_ABCG       OK   | load   99% (real  100%) pf 0.98 noise 2.69% burden 3.2x CTerr  50% | event 0.536s det 0.541s | checks OK | ETA 0 min
+[  59/  60] Stress_ExtCTSat_ABCG       OK   | load   91% (real   89%) pf 0.82 noise 2.03% burden 3.7x CTerr  39% | event 0.478s det 0.482s | checks OK | ETA 0 min
+[  60/  60] Stress_ExtCTSat_ABCG       OK   | load   82% (real   84%) pf 0.86 noise 1.15% burden 4.0x CTerr  43% | event 0.364s det 0.369s | checks OK | ETA 0 min
+
+Saved ONE file: F:\Transformer Thesis\datasets\StressDataset_v5Only_20261028_234041.mat
+Checks passed: 60 / 60  (failed samples are kept but flagged; training skips them)
+Duplicate waveforms: 0 | timing failures: 0 | events too small to see: 0 | sim errors: 0
+Wed Oct 28 23:44:55 BST 2026 A_TOPUPS_DONE
+Thu Oct 29 11:09:38 BST 2026 B top-up Inrush_Loaded 30
+=== Stress dataset Plant B | set main | run 20261029_111005 | 30 samples | 1 scenarios | start at 1 | chunk 0 ===
+  Inrush_Loaded                30
+[   1/  30] Inrush_Loaded              OK   | load   12% (real  NaN%) pf 0.94 noise 0.56% burden 1.1x CTerr   7% | event 0.673s det 0.680s | checks OK | ETA 8 min
+[   2/  30] Inrush_Loaded              OK   | load   25% (real  NaN%) pf 0.91 noise 0.31% burden 1.0x CTerr   3% | event 0.561s det 0.568s | checks OK | ETA 5 min
+[   3/  30] Inrush_Loaded              OK   | load   99% (real  NaN%) pf 0.84 noise 0.19% burden 1.1x CTerr   2% | event 0.350s det 0.357s | checks OK | ETA 4 min
+[   4/  30] Inrush_Loaded              OK   | load   87% (real  NaN%) pf 0.97 noise 0.05% burden 1.1x CTerr   3% | event 0.503s det 0.509s | checks OK | ETA 3 min
+[   5/  30] Inrush_Loaded              OK   | load   39% (real  NaN%) pf 1.00 noise 0.74% burden 1.1x CTerr   4% | event 0.559s det 0.566s | checks OK | ETA 3 min
+[   6/  30] Inrush_Loaded              OK   | load  102% (real  NaN%) pf 0.82 noise 0.06% burden 1.0x CTerr   2% | event 0.541s det 0.548s | checks OK | ETA 3 min
+[   7/  30] Inrush_Loaded              OK   | load   64% (real  NaN%) pf 0.82 noise 0.22% burden 1.2x CTerr   2% | event 0.316s det 0.323s | checks OK | ETA 2 min
+[   8/  30] Inrush_Loaded              OK   | load   75% (real  NaN%) pf 0.93 noise 0.08% burden 1.2x CTerr   2% | event 0.419s det 0.426s | checks OK | ETA 2 min
+[   9/  30] Inrush_Loaded              OK   | load   17% (real  NaN%) pf 0.92 noise 0.12% burden 1.2x CTerr   3% | event 0.576s det 0.582s | checks OK | ETA 2 min
+[  10/  30] Inrush_Loaded              OK   | load   13% (real  NaN%) pf 0.93 noise 0.10% burden 1.0x CTerr   4% | event 0.335s det 0.342s | checks OK | ETA 2 min
+[  11/  30] Inrush_Loaded              OK   | load   20% (real  NaN%) pf 0.86 noise 0.53% burden 1.0x CTerr   4% | event 0.179s det 0.186s | checks OK | ETA 2 min
+[  12/  30] Inrush_Loaded              OK   | load   68% (real  NaN%) pf 0.88 noise 0.09% burden 1.1x CTerr   3% | event 0.210s det 0.217s | checks OK | ETA 2 min
+[  13/  30] Inrush_Loaded              OK   | load   94% (real  NaN%) pf 0.93 noise 0.44% burden 1.1x CTerr   2% | event 0.413s det 0.420s | checks OK | ETA 1 min
+[  14/  30] Inrush_Loaded              OK   | load  105% (real  NaN%) pf 0.81 noise 0.18% burden 1.1x CTerr   2% | event 0.299s det 0.306s | checks OK | ETA 1 min
+[  15/  30] Inrush_Loaded              OK   | load  102% (real  NaN%) pf 0.84 noise 0.07% burden 1.1x CTerr   2% | event 0.380s det 0.386s | checks OK | ETA 1 min
+[  16/  30] Inrush_Loaded              OK   | load   13% (real  NaN%) pf 0.86 noise 0.05% burden 1.1x CTerr   3% | event 0.363s det 0.369s | checks OK | ETA 1 min
+[  17/  30] Inrush_Loaded              OK   | load   49% (real  NaN%) pf 0.83 noise 0.22% burden 1.1x CTerr   3% | event 0.344s det 0.351s | checks OK | ETA 1 min
+[  18/  30] Inrush_Loaded              OK   | load   34% (real  NaN%) pf 0.88 noise 0.14% burden 1.1x CTerr   3% | event 0.624s det 0.631s | checks OK | ETA 1 min
+[  19/  30] Inrush_Loaded              OK   | load   95% (real  NaN%) pf 0.91 noise 0.20% burden 1.1x CTerr   3% | event 0.485s det 0.491s | checks OK | ETA 1 min
+[  20/  30] Inrush_Loaded              OK   | load   26% (real  NaN%) pf 0.91 noise 0.36% burden 1.1x CTerr   3% | event 0.161s det 0.168s | checks OK | ETA 1 min
+[  21/  30] Inrush_Loaded              OK   | load   80% (real  NaN%) pf 0.80 noise 0.26% burden 1.1x CTerr   3% | event 0.120s det 0.127s | checks OK | ETA 1 min
+[  22/  30] Inrush_Loaded              OK   | load   48% (real  NaN%) pf 0.98 noise 0.40% burden 1.1x CTerr   2% | event 0.530s det 0.537s | checks OK | ETA 1 min
+[  23/  30] Inrush_Loaded              OK   | load   45% (real  NaN%) pf 1.00 noise 0.36% burden 1.2x CTerr   3% | event 0.265s det 0.272s | checks OK | ETA 1 min
+[  24/  30] Inrush_Loaded              OK   | load   39% (real  NaN%) pf 0.98 noise 0.07% burden 1.1x CTerr   2% | event 0.385s det 0.392s | checks OK | ETA 0 min
+[  25/  30] Inrush_Loaded              OK   | load  107% (real  NaN%) pf 0.96 noise 0.06% burden 1.1x CTerr   2% | event 0.435s det 0.442s | checks OK | ETA 0 min
+[  26/  30] Inrush_Loaded              OK   | load   30% (real  NaN%) pf 0.89 noise 0.06% burden 1.2x CTerr   3% | event 0.564s det 0.570s | checks OK | ETA 0 min
+[  27/  30] Inrush_Loaded              OK   | load   65% (real  NaN%) pf 0.90 noise 0.12% burden 1.1x CTerr   2% | event 0.525s det 0.532s | checks OK | ETA 0 min
+[  28/  30] Inrush_Loaded              OK   | load   20% (real  NaN%) pf 0.99 noise 0.05% burden 1.2x CTerr   3% | event 0.610s det 0.616s | checks OK | ETA 0 min
+[  29/  30] Inrush_Loaded              OK   | load   76% (real  NaN%) pf 0.81 noise 0.40% burden 1.1x CTerr   3% | event 0.346s det 0.352s | checks OK | ETA 0 min
+[  30/  30] Inrush_Loaded              OK   | load   58% (real  NaN%) pf 0.86 noise 0.07% burden 1.1x CTerr   3% | event 0.380s det 0.386s | checks OK | ETA 0 min
+
+Saved ONE file: F:\Transformer Thesis\datasets\StressDataset_PlantBv5Only_20261029_111005.mat
+Checks passed: 30 / 30  (failed samples are kept but flagged; training skips them)
+Duplicate waveforms: 0 | timing failures: 0 | events too small to see: 0 | sim errors: 0
+Thu Oct 29 11:12:40 BST 2026 B top-up Overexcitation 60
+=== Stress dataset Plant B | set main | run 20261029_111251 | 60 samples | 1 scenarios | start at 1 | chunk 0 ===
+  Overexcitation               60
+[   1/  60] Overexcitation             OK   | load   12% (real   16%) pf 0.89 noise 0.33% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 10 min
+[   2/  60] Overexcitation             OK   | load   46% (real   62%) pf 0.85 noise 0.17% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 7 min
+[   3/  60] Overexcitation             OK   | load   47% (real   64%) pf 0.93 noise 0.41% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[   4/  60] Overexcitation             OK   | load   68% (real   84%) pf 0.89 noise 0.16% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[   5/  60] Overexcitation             OK   | load  109% (real  150%) pf 0.88 noise 0.49% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[   6/  60] Overexcitation             OK   | load   67% (real   87%) pf 0.81 noise 0.29% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[   7/  60] Overexcitation             OK   | load  109% (real  141%) pf 0.97 noise 0.99% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[   8/  60] Overexcitation             OK   | load   28% (real   36%) pf 0.85 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[   9/  60] Overexcitation             OK   | load   41% (real   55%) pf 0.94 noise 0.10% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  10/  60] Overexcitation             OK   | load   56% (real   69%) pf 0.88 noise 0.05% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  11/  60] Overexcitation             OK   | load   10% (real   13%) pf 0.91 noise 0.76% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  12/  60] Overexcitation             OK   | load   49% (real   68%) pf 0.80 noise 0.17% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  13/  60] Overexcitation             OK   | load  101% (real  133%) pf 0.83 noise 0.19% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  14/  60] Overexcitation             OK   | load   37% (real   47%) pf 0.94 noise 0.15% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  15/  60] Overexcitation             OK   | load   20% (real   28%) pf 0.97 noise 0.19% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  16/  60] Overexcitation             OK   | load   27% (real   32%) pf 0.93 noise 0.84% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  17/  60] Overexcitation             OK   | load  104% (real  142%) pf 0.87 noise 0.58% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  18/  60] Overexcitation             OK   | load   37% (real   51%) pf 0.82 noise 0.16% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  19/  60] Overexcitation             OK   | load   92% (real  124%) pf 0.86 noise 0.72% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  20/  60] Overexcitation             OK   | load   62% (real   82%) pf 0.90 noise 0.52% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  21/  60] Overexcitation             OK   | load   84% (real  106%) pf 0.89 noise 0.26% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  22/  60] Overexcitation             OK   | load   97% (real  123%) pf 0.84 noise 0.19% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  23/  60] Overexcitation             OK   | load  108% (real  150%) pf 0.88 noise 0.21% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  24/  60] Overexcitation             OK   | load   67% (real   92%) pf 0.95 noise 0.11% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  25/  60] Overexcitation             OK   | load   44% (real   58%) pf 0.99 noise 0.31% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  26/  60] Overexcitation             OK   | load   95% (real  125%) pf 0.90 noise 0.62% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  27/  60] Overexcitation             OK   | load   65% (real   87%) pf 0.88 noise 0.28% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  28/  60] Overexcitation             OK   | load   77% (real  102%) pf 0.99 noise 0.22% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  29/  60] Overexcitation             OK   | load   16% (real   19%) pf 0.93 noise 0.92% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  30/  60] Overexcitation             OK   | load  109% (real  140%) pf 0.97 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  31/  60] Overexcitation             OK   | load   49% (real   65%) pf 0.91 noise 0.69% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  32/  60] Overexcitation             OK   | load   41% (real   50%) pf 0.94 noise 0.18% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  33/  60] Overexcitation             OK   | load   76% (real  107%) pf 0.80 noise 0.38% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  34/  60] Overexcitation             OK   | load   69% (real   96%) pf 0.83 noise 0.05% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  35/  60] Overexcitation             OK   | load   75% (real   96%) pf 0.98 noise 0.15% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  36/  60] Overexcitation             OK   | load   50% (real   62%) pf 0.88 noise 0.59% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  37/  60] Overexcitation             OK   | load  102% (real  135%) pf 0.97 noise 0.10% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  38/  60] Overexcitation             OK   | load  103% (real  126%) pf 0.93 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  39/  60] Overexcitation             OK   | load   94% (real  125%) pf 0.90 noise 0.41% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  40/  60] Overexcitation             OK   | load   73% (real   89%) pf 0.96 noise 0.41% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  41/  60] Overexcitation             OK   | load   10% (real   14%) pf 0.80 noise 0.45% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  42/  60] Overexcitation             OK   | load   22% (real   30%) pf 0.96 noise 0.54% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  43/  60] Overexcitation             OK   | load   26% (real   34%) pf 0.83 noise 0.13% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  44/  60] Overexcitation             OK   | load   97% (real  135%) pf 0.86 noise 0.10% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  45/  60] Overexcitation             OK   | load   13% (real   16%) pf 0.99 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  46/  60] Overexcitation             OK   | load   79% (real  104%) pf 0.87 noise 0.20% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  47/  60] Overexcitation             OK   | load   85% (real  107%) pf 0.88 noise 0.05% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  48/  60] Overexcitation             OK   | load   53% (real   72%) pf 0.90 noise 0.21% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  49/  60] Overexcitation             OK   | load  108% (real  150%) pf 0.89 noise 0.15% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  50/  60] Overexcitation             OK   | load   23% (real   29%) pf 0.97 noise 0.10% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  51/  60] Overexcitation             OK   | load   24% (real   33%) pf 0.98 noise 0.78% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  52/  60] Overexcitation             OK   | load   73% (real   93%) pf 0.85 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  53/  60] Overexcitation             OK   | load   37% (real   49%) pf 0.94 noise 0.34% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  54/  60] Overexcitation             OK   | load  106% (real  150%) pf 0.83 noise 0.31% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  55/  60] Overexcitation             OK   | load   14% (real   17%) pf 0.93 noise 0.27% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+ERROR: MATLAB error Exit Status: 0xc0000374, Heap corruption
+Thu Oct 29 11:17:09 BST 2026 A top-up Overexcitation 60
+=== Stress dataset v5 | set main | run 20261029_111722 | 60 samples | 1 scenarios | start at 1 | chunk 0 ===
+  Overexcitation               60
+[   1/  60] Overexcitation             OK   | load   17% (real   23%) pf 0.93 noise 0.38% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 12 min
+[   2/  60] Overexcitation             OK   | load  108% (real  135%) pf 0.88 noise 0.16% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 8 min
+[   3/  60] Overexcitation             OK   | load   90% (real  120%) pf 0.96 noise 0.21% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 7 min
+[   4/  60] Overexcitation             OK   | load   96% (real  119%) pf 0.93 noise 0.11% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[   5/  60] Overexcitation             OK   | load   71% (real   89%) pf 0.96 noise 0.11% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 6 min
+[   6/  60] Overexcitation             OK   | load   22% (real   30%) pf 0.83 noise 0.27% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[   7/  60] Overexcitation             OK   | load   71% (real   94%) pf 0.97 noise 0.12% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[   8/  60] Overexcitation             OK   | load   56% (real   71%) pf 0.88 noise 0.21% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[   9/  60] Overexcitation             OK   | load   27% (real   33%) pf 0.89 noise 0.25% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  10/  60] Overexcitation             OK   | load  108% (real  146%) pf 0.82 noise 0.82% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 5 min
+[  11/  60] Overexcitation             OK   | load  107% (real  137%) pf 1.00 noise 0.17% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  12/  60] Overexcitation             OK   | load   69% (real   92%) pf 0.81 noise 0.75% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  13/  60] Overexcitation             OK   | load   16% (real   19%) pf 0.84 noise 0.68% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  14/  60] Overexcitation             OK   | load   34% (real   46%) pf 0.94 noise 0.07% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  15/  60] Overexcitation             OK   | load   33% (real   45%) pf 0.90 noise 0.50% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  16/  60] Overexcitation             OK   | load   92% (real  118%) pf 0.91 noise 0.64% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  17/  60] Overexcitation             OK   | load   62% (real   79%) pf 0.90 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 4 min
+[  18/  60] Overexcitation             OK   | load   23% (real   31%) pf 0.82 noise 0.21% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  19/  60] Overexcitation             OK   | load   30% (real   40%) pf 0.92 noise 0.51% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  20/  60] Overexcitation             OK   | load  106% (real  129%) pf 0.82 noise 0.26% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  21/  60] Overexcitation             OK   | load   70% (real   93%) pf 0.90 noise 0.05% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  22/  60] Overexcitation             OK   | load   15% (real   20%) pf 0.98 noise 0.58% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  23/  60] Overexcitation             OK   | load   30% (real   42%) pf 0.96 noise 0.47% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  24/  60] Overexcitation             OK   | load   72% (real   98%) pf 0.82 noise 0.96% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  25/  60] Overexcitation             OK   | load   46% (real   64%) pf 0.91 noise 0.12% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  26/  60] Overexcitation             OK   | load   51% (real   63%) pf 0.88 noise 0.81% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  27/  60] Overexcitation             OK   | load   76% (real  103%) pf 0.83 noise 0.18% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  28/  60] Overexcitation             OK   | load   59% (real   74%) pf 1.00 noise 0.17% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 3 min
+[  29/  60] Overexcitation             OK   | load   79% (real  106%) pf 0.97 noise 0.20% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  30/  60] Overexcitation             OK   | load   54% (real   67%) pf 0.96 noise 0.05% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  31/  60] Overexcitation             OK   | load   23% (real   31%) pf 0.94 noise 0.32% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  32/  60] Overexcitation             OK   | load   29% (real   41%) pf 0.91 noise 0.15% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  33/  60] Overexcitation             OK   | load   36% (real   49%) pf 0.81 noise 0.10% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  34/  60] Overexcitation             OK   | load   36% (real   46%) pf 0.84 noise 0.49% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  35/  60] Overexcitation             OK   | load  101% (real  138%) pf 0.90 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  36/  60] Overexcitation             OK   | load  100% (real  140%) pf 0.81 noise 0.65% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  37/  60] Overexcitation             OK   | load   17% (real   23%) pf 0.92 noise 0.07% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  38/  60] Overexcitation             OK   | load   42% (real   51%) pf 0.95 noise 0.37% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  39/  60] Overexcitation             OK   | load   70% (real   91%) pf 0.95 noise 0.70% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  40/  60] Overexcitation             OK   | load   86% (real  116%) pf 0.84 noise 0.39% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  41/  60] Overexcitation             OK   | load   95% (real  131%) pf 0.94 noise 0.18% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  42/  60] Overexcitation             OK   | load  102% (real  138%) pf 0.83 noise 0.21% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  43/  60] Overexcitation             OK   | load   32% (real   40%) pf 0.95 noise 0.07% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  44/  60] Overexcitation             OK   | load   17% (real   23%) pf 0.95 noise 0.09% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  45/  60] Overexcitation             OK   | load   47% (real   57%) pf 0.83 noise 0.09% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  46/  60] Overexcitation             OK   | load   26% (real   33%) pf 0.91 noise 0.14% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  47/  60] Overexcitation             OK   | load   95% (real  116%) pf 0.82 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  48/  60] Overexcitation             OK   | load   39% (real   49%) pf 0.95 noise 0.21% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  49/  60] Overexcitation             OK   | load   17% (real   23%) pf 0.90 noise 0.66% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  50/  60] Overexcitation             OK   | load   79% (real  109%) pf 0.90 noise 0.73% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  51/  60] Overexcitation             OK   | load  102% (real  131%) pf 0.91 noise 0.31% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  52/  60] Overexcitation             OK   | load   78% (real  109%) pf 0.99 noise 0.78% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  53/  60] Overexcitation             OK   | load   76% (real   99%) pf 0.92 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  54/  60] Overexcitation             OK   | load   74% (real   94%) pf 0.99 noise 0.09% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  55/  60] Overexcitation             OK   | load   30% (real   37%) pf 0.90 noise 0.12% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  56/  60] Overexcitation             OK   | load  106% (real  149%) pf 0.94 noise 0.12% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  57/  60] Overexcitation             OK   | load   94% (real  125%) pf 0.80 noise 0.07% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  58/  60] Overexcitation             OK   | load   30% (real   40%) pf 0.97 noise 0.28% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  59/  60] Overexcitation             OK   | load   64% (real   85%) pf 0.83 noise 0.31% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  60/  60] Overexcitation             OK   | load   26% (real   35%) pf 0.90 noise 0.05% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+
+Saved ONE file: F:\Transformer Thesis\datasets\StressDataset_v5Only_20261029_111722.mat
+Checks passed: 60 / 60  (failed samples are kept but flagged; training skips them)
+Duplicate waveforms: 0 | timing failures: 0 | events too small to see: 0 | sim errors: 0
+ERROR: MATLAB error Exit Status: 0xc0000374, Heap corruption
+Thu Oct 29 11:22:57 BST 2026 ALL_TOPUPS2_DONE
+=== Stress dataset Plant B | set main | run 20261029_111251 | 60 samples | 1 scenarios | start at 51 | chunk 0 ===
+  Overexcitation               60
+[  51/  60] Overexcitation             OK   | load   24% (real   33%) pf 0.98 noise 0.78% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 2 min
+[  52/  60] Overexcitation             OK   | load   73% (real   93%) pf 0.85 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  53/  60] Overexcitation             OK   | load   37% (real   49%) pf 0.94 noise 0.34% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  54/  60] Overexcitation             OK   | load  106% (real  150%) pf 0.83 noise 0.31% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 1 min
+[  55/  60] Overexcitation             OK   | load   14% (real   17%) pf 0.93 noise 0.27% burden 1.0x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  56/  60] Overexcitation             OK   | load   28% (real   38%) pf 1.00 noise 0.98% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  57/  60] Overexcitation             OK   | load   84% (real  116%) pf 0.88 noise 0.13% burden 1.2x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  58/  60] Overexcitation             OK   | load   38% (real   49%) pf 0.93 noise 0.15% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  59/  60] Overexcitation             OK   | load   20% (real   26%) pf 0.81 noise 0.11% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+[  60/  60] Overexcitation             OK   | load   36% (real   46%) pf 0.94 noise 0.06% burden 1.1x CTerr NaN% | event      - det      - | checks OK | ETA 0 min
+
+Saved ONE file: F:\Transformer Thesis\datasets\StressDataset_PlantBv5Only_20261029_111251.mat
+Checks passed: 60 / 60  (failed samples are kept but flagged; training skips them)
+Duplicate waveforms: 0 | timing failures: 0 | events too small to see: 0 | sim errors: 0
