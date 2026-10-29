@@ -240,3 +240,47 @@ Either way, the paper must say which current is quoted (TRUE or CT secondary).
 - [x] V2 / V3: plant B redesign, regeneration, re-run of zero-shot / cross-plant / leave-one-out and the plant-B closed loop (including the missed solid internal fault). **DONE 2026-10-29 (v5): zero-shot, cross-plant, leave-one-out and the 12-case closed loop (12/12, solid internal LV A-G now trips) re-run on v5.**
 - [x] OOD block-3 label: `runs/20261027_v4_final/report_ood.txt` says "CT burden 4–8×"; the v4 harmonic summary says "12–16×" for the same block. Take the range from the generator and fix both. **DONE 2026-10-29 (v5): labels now come from simulations/generator_ranges_v5.json (OOD block 3: 8-12x plant A).**
 - [x] `runs/20261027_latency/latency_c.json|txt` still carry the old header (re-run or patch the header; the numbers stand). **DONE 2026-10-29 (v5): old run renamed *_SUPERSEDED_Cbug (C LSTM in-place update bug found and fixed); new run runs/20261029_v5_latency, header correct.**
+
+---
+
+## Review of the v5 rebuild — 2026-10-30 01:50
+
+**Verified against the files:**
+- Plant checks: plant A TRUE through-fault 7.39 pu, CTs linear at nominal burden, DC offset saturates.
+- CV × 3 seeds, final + OOD, harmonic 87T, statistics, zero-shot / cross-plant / leave-one-out.
+- The C-relay bug fix; latency re-measured on an idle machine.
+- Invalid v4 runs renamed.
+
+V8 / V2 / V3 are closed. The work is careful and honest.
+
+**The results changed, so the paper's claim must change.** With a realistic plant, the conventional per-phase harmonic 87T is a strong baseline:
+
+| Plant A (v5), same traces | Dependability | Security |
+|---|---|---|
+| Per-phase harmonic 87T | 85.93 % | **99.40 %** |
+| Hybrid + AI-alone path (CV, 3 seeds, pooled) | **92.99 %** (fold sd 3.6) | 98.96 % |
+| Hybrid, Repetition 1 vs harmonic (McNemar, `v5_stats`) | 93.92 % vs 85.93 %, p = 4e-29 | 99.14 % vs 99.40 %, **p = 0.46 (n.s.)** |
+| LSTM alone | 97.68 % | 95.60 % |
+
+| Plant B zero-shot (`v5_plant_b_zeroshot`) | Dependability | Security |
+|---|---|---|
+| Harmonic 87T | **94.12 %** | **98.95 %** |
+| Proposed (trained on A only) | 92.70 % | 88.35 % (89 false trips, mostly Stress_ExtCTSat) |
+| Cross-plant training (A + B) | 94.78 % | 98.22 % |
+
+**Defensible claim:** on the plant it is trained for, the hybrid **matches the security of a per-phase harmonic-restrained 87T** (no significant difference) and **raises dependability by ~8 pt** (p < 0.001), mainly on high-impedance faults below the 87T pickup. It **does not transfer zero-shot** to a different transformer: security falls to 88 %. It needs plant-specific or multi-plant training; cross-plant training restores 94.8 / 98.2 %.
+
+Do **not** claim "outperforms conventional protection" without these qualifiers.
+
+**Optional, pre-registered experiment (decide BEFORE running; validation-only tuning; report whatever comes out):**
+- [ ] **E1. Harmonic-restrained 87T as the gate.** Use the per-phase harmonic 87T vote, instead of the unrestrained one, as the 87T gate of the hybrid. Keep the AI-alone path. Rationale: combine the harmonic 87T's security with the AI's sensitivity to HiZ faults. Run on the v5 CV folds (3 seeds) and plant-B zero-shot with thresholds tuned on validation only. Add it as one extra row ("Hybrid, harmonic gate"). Note it is a design variant decided after the v5 results.
+
+**Before the paper:**
+- [ ] Update the paper / thesis tables only through `tools/build_publication_tables_v5.py` (no typed numbers).
+- [ ] State in Limitations: Internal HiZ dependability 65.8 % (hybrid, CV); fault-in-inrush closed-loop 59.9 ms; zero-shot transfer weakness; simulation only, no HIL.
+- [ ] Push to GitHub (GitHub is still at 2026-10-26) so the code and data-generation scripts can be cited.
+
+### E1 protocol (fixed 2026-10-30, before the run)
+- Variant "Hybrid, harmonic gate": the 87T vote and high-set of the hybrid are the outputs of `relay87t.analyse_harmonic(mode='per_phase')` (k2 15 %, k5 35 %, pickup 0.30 pu, same slopes) instead of `analyse`. Everything else as "Hybrid + AI-alone path": trip = high-set OR (gate vote AND confirmed LSTM >= AI threshold) OR confirmed LSTM >= solo threshold, dwell 20.
+- No retraining: the 15 saved fold models and the saved final model. AI and solo thresholds are tuned by the existing plateau rules (`tune_threshold`, `tune_solo`) on each model's own validation traces, with the harmonic gate in place.
+- Evaluation: (1) CV pooled over the 15 fold-models, paired McNemar by (seed, fold, trace) against "Hybrid + AI-alone path" and against the per-phase harmonic 87T; (2) final model on OOD, scored once; (3) plant B zero-shot with the thresholds tuned on the final model's validation traces, frozen. One attempt, one variant, whatever comes out is reported. Post-hoc design variant (decided after the v5 results). Script: `tools/e1_harmonic_gate_v5.py`.
