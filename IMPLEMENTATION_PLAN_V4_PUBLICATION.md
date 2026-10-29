@@ -273,7 +273,7 @@ V8 / V2 / V3 are closed. The work is careful and honest.
 Do **not** claim "outperforms conventional protection" without these qualifiers.
 
 **Optional, pre-registered experiment (decide BEFORE running; validation-only tuning; report whatever comes out):**
-- [ ] **E1. Harmonic-restrained 87T as the gate.** Use the per-phase harmonic 87T vote, instead of the unrestrained one, as the 87T gate of the hybrid. Keep the AI-alone path. Rationale: combine the harmonic 87T's security with the AI's sensitivity to HiZ faults. Run on the v5 CV folds (3 seeds) and plant-B zero-shot with thresholds tuned on validation only. Add it as one extra row ("Hybrid, harmonic gate"). Note it is a design variant decided after the v5 results.
+- [x] **E1. Harmonic-restrained 87T as the gate.** Use the per-phase harmonic 87T vote, instead of the unrestrained one, as the 87T gate of the hybrid. Keep the AI-alone path. Rationale: combine the harmonic 87T's security with the AI's sensitivity to HiZ faults. Run on the v5 CV folds (3 seeds) and plant-B zero-shot with thresholds tuned on validation only. Add it as one extra row ("Hybrid, harmonic gate"). Note it is a design variant decided after the v5 results.
 
 **Before the paper:**
 - [ ] Update the paper / thesis tables only through `tools/build_publication_tables_v5.py` (no typed numbers).
@@ -284,3 +284,10 @@ Do **not** claim "outperforms conventional protection" without these qualifiers.
 - Variant "Hybrid, harmonic gate": the 87T vote and high-set of the hybrid are the outputs of `relay87t.analyse_harmonic(mode='per_phase')` (k2 15 %, k5 35 %, pickup 0.30 pu, same slopes) instead of `analyse`. Everything else as "Hybrid + AI-alone path": trip = high-set OR (gate vote AND confirmed LSTM >= AI threshold) OR confirmed LSTM >= solo threshold, dwell 20.
 - No retraining: the 15 saved fold models and the saved final model. AI and solo thresholds are tuned by the existing plateau rules (`tune_threshold`, `tune_solo`) on each model's own validation traces, with the harmonic gate in place.
 - Evaluation: (1) CV pooled over the 15 fold-models, paired McNemar by (seed, fold, trace) against "Hybrid + AI-alone path" and against the per-phase harmonic 87T; (2) final model on OOD, scored once; (3) plant B zero-shot with the thresholds tuned on the final model's validation traces, frozen. One attempt, one variant, whatever comes out is reported. Post-hoc design variant (decided after the v5 results). Script: `tools/e1_harmonic_gate_v5.py`.
+
+
+### E1 result (2026-10-30, `runs/20261029_v5_e1_harmonic_gate/e1_summary.txt`; one attempt, protocol above)
+- CV, 15 fold-models pooled: hybrid with harmonic gate 91.98 % dependability / 99.38 % security (263 -> 301 missed, 62 -> 37 false trips) vs the current hybrid 92.99 / 98.96. Paired McNemar: dependability 9 vs 47 discordant, p = 7.6e-07 (worse); security 30 vs 5, p = 5.0e-05 (better).
+- Final model, OOD (once): 97.99 % / 92.67 % vs 98.0 / 96.0 (11 vs 6 false trips; block 4 over-excitation security 76.7 %).
+- Plant B zero-shot (thresholds frozen from the final model's validation traces, AI 0.9000, solo 0.998): 92.70 % / 88.35 %, 89 false trips, identical to the current hybrid.
+- Conclusion: the harmonic gate does not improve the hybrid; it trades 1.0 pt of dependability for 0.4 pt of security in CV, is worse on OOD security, and does not change the zero-shot false trips. The variant is not adopted.
