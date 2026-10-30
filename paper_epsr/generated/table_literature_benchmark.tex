@@ -1,0 +1,27 @@
+% Auto-generated literature benchmark tables for Chapter 6
+\begin{table}[H]\centering
+\caption{Comparative benchmarking against literature models on the same transformer dataset (3{,}238 traces, grouped 5-fold cross-validation, first repetition).}\label{tab:lit_benchmark}
+\setlength{\tabcolsep}{4.0pt}\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llcccccc@{}}\toprule
+\textbf{Protection Model} & \textbf{Reference / Type} & \textbf{Params} & \textbf{Dep.\,(\%)} & \textbf{Sec.\,(\%)} & \textbf{Acc.\,(\%)} & \textbf{Med.\,$T_{op}$} & \textbf{False Trips}\\ \midrule
+\multicolumn{8}{@{}l}{\textit{Panel A: Standalone Literature Operating Mode (Direct Trip with Dwell Persistence)}} \\ \midrule
+Conventional 87T & Sharp [7] (1958) & --- & 80.34 & 63.41 & 69.95 & 1.2\,ms & 727 \\
+Wavelet-SVM & Simoes [13] (2021) & 5,880 & 84.01 & 74.23 & 78.01 & 15.6\,ms & 512 \\
+Wavelet-ANN & Guzman [19] / Costa [18] & 5,441 & 97.12 & 96.28 & 96.60 & 16.2\,ms & 74 \\
+Wavelet-RF & Abdusalam [11] (2022) & 37,802 & 96.32 & 96.88 & 96.66 & 16.2\,ms & 62 \\
+1D-CNN & Afrasiabi [16] (2020) & 14,561 & 97.52 & 96.73 & 97.04 & 16.2\,ms & 65 \\
+Wavelet-GRU & Lin [23] (2025) & 44,354 & 98.40 & 96.53 & 97.25 & 15.0\,ms & 69 \\
+Standalone LSTM & Alhamd [1] / Atiyah [3] & 58,241 & 97.92 & 96.78 & 97.22 & 15.6\,ms & 64 \\
+\midrule
+\multicolumn{8}{@{}l}{\textit{Panel B: Under Proposed Supervisory Hybrid Architecture (87T Handshake + AI-Alone Path)}} \\ \midrule
+Wavelet-SVM & Dual-Path Hybrid & 5,880 & 80.82 & 98.24 & 91.51 & 18.1\,ms & 35 \\
+Wavelet-ANN & Dual-Path Hybrid & 5,441 & 92.57 & 99.09 & 96.57 & 16.9\,ms & 18 \\
+Wavelet-RF & Dual-Path Hybrid & 37,802 & 92.09 & 99.25 & 96.48 & 19.4\,ms & 15 \\
+1D-CNN & Dual-Path Hybrid & 14,561 & 92.25 & 99.14 & 96.48 & 18.1\,ms & 17 \\
+Wavelet-GRU & Dual-Path Hybrid & 44,354 & 93.29 & 99.04 & 96.82 & 15.6\,ms & 19 \\
+\textbf{Proposed Hybrid DWT-LSTM} & Dual-Path Hybrid & 58,241 & 93.92 & 99.14 & 97.13 & 16.2\,ms & 17 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

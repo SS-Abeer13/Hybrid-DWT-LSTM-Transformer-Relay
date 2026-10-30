@@ -636,10 +636,13 @@ def run_benchmarks(args):
 
     # Generate Markdown Artifact for Thesis / Results Directory
     doc_path = ROOT / "documents" / "results_v3" / "literature_benchmark.md"
+    _cvs = json.loads((Path(args.cv_dir).parent / "summary.json").read_text(encoding="utf-8"))
+    _h = _cvs["pooled"]["Hybrid + AI-alone path"]
+    n_eval = (_h["n_fault"] + _h["n_healthy"]) // len(_cvs["seeds"])
     md_lines = [
         "# Comprehensive Literature Review Benchmarking Results",
         "",
-        "Direct apples-to-apples performance comparison of literature protection models on the identical 300 MVA power transformer dataset (3,218 traces, grouped 5-fold cross-validation, identical 20-sample dwell persistence and 87T high-set instantaneous trip).",
+        f"Performance of literature protection models on the identical transformer dataset ({n_eval:,} evaluated traces, grouped 5-fold cross-validation, identical 20-sample dwell persistence and 87T high-set instantaneous trip). Numbers are written by lstm_models/benchmark_literature_models.py from the saved fold results.",
         "",
         "## Table 1: Standalone Classifier Performance (Literature Operating Mode)",
         "",
@@ -694,12 +697,9 @@ def run_benchmarks(args):
 
     md_lines.extend([
         "",
-        "## Key Findings & Comparative Insights",
+        "## Reading the tables",
         "",
-        "1. **Temporal Context is Decisive**: Deep sequence models (LSTM, GRU, 1D-CNN) outperform static classifiers (SVM, ANN/MLP, Random Forest) by 1.5–3.2% in dependability and up to 4.5% in security under standalone mode, proving that tracking temporal trajectory dynamics across multi-resolution wavelet scales prevents transient false positives.",
-        "2. **LSTM vs. GRU**: While GRU exhibits lower parameter count (44.3k vs. 58.2k), LSTM achieves slightly higher margin in separating high-impedance internal faults during magnetizing inrush.",
-        "3. **Supervisory Handshake Value**: When integrated into the proposed dual-path hybrid architecture, ALL machine learning models experience a dramatic reduction in false trips (SVM false trips drop from 48 to 14; ANN false trips drop from 39 to 12; LSTM false trips drop from 13 to 11), confirming that the supervisory 87T handshake acts as a universal safety anchor for power system protection.",
-        "4. **Proposed Architecture Superiority**: The proposed **Hybrid DWT-LSTM** achieves the highest balanced performance across the entire 3,218-trace corpus: **98.56% pooled dependability** (99.01% across 15 models), **99.41% pooled security** (99.66% across 15 models), **0 pre-fault trips**, and **15.6 ms median clearing time**.",
+        "The two tables above are the result; this report contains no interpretation. Dependability and security are pooled over the evaluated traces of the first CV repetition; the comparison with the proposed relay over 3 repetitions is in runs/<tag>_cv5_seeds/summary.txt.",
     ])
 
     doc_path.write_text("\n".join(md_lines), encoding="utf-8")
@@ -710,7 +710,7 @@ def run_benchmarks(args):
     tex_lines = [
         r"% Auto-generated literature benchmark tables for Chapter 6",
         r"\begin{table}[H]\centering",
-        r"\caption{Comparative benchmarking against literature models on the verified 300\,MVA transformer dataset (3{,}218 traces, grouped 5-fold cross-validation).}\label{tab:lit_benchmark}",
+        r"\caption{Comparative benchmarking against literature models on the same transformer dataset (" + f"{n_eval:,}".replace(",", "{,}") + r" traces, grouped 5-fold cross-validation, first repetition).}\label{tab:lit_benchmark}",
         r"\setlength{\tabcolsep}{4.0pt}\small",
         r"\resizebox{\textwidth}{!}{%",
         r"\begin{tabular}{@{}llcccccc@{}}\toprule",

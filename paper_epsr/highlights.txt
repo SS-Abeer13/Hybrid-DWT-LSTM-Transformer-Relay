@@ -1,0 +1,5 @@
+Dual-path relay: 87T-gated LSTM confirmation plus persistence-filtered AI-alone trip
+Leak-free protocol: trace-grouped CV, validation-only thresholds, OOD scored once
+Per-phase harmonic 87T and five literature models compared on identical folds
+Security not significantly different from harmonic 87T; dependability higher
+No zero-shot transfer to plant B; training on both plants restores security

@@ -1,6 +1,6 @@
 # Comprehensive Literature Review Benchmarking Results
 
-Direct apples-to-apples performance comparison of literature protection models on the identical 300 MVA power transformer dataset (3,218 traces, grouped 5-fold cross-validation, identical 20-sample dwell persistence and 87T high-set instantaneous trip).
+Performance of literature protection models on the identical transformer dataset (3,238 evaluated traces, grouped 5-fold cross-validation, identical 20-sample dwell persistence and 87T high-set instantaneous trip). Numbers are written by lstm_models/benchmark_literature_models.py from the saved fold results.
 
 ## Table 1: Standalone Classifier Performance (Literature Operating Mode)
 
@@ -30,9 +30,6 @@ $$\text{TRIP} = \text{HighSet} \vee (\text{87T\_Vote} \wedge p_{\text{AI,conf}} 
 | **Wavelet-GRU** | Dual-Path Hybrid | 93.29% | 99.04% | 96.82% | 15.6 | 0 | 19 | 84 |
 | **Proposed Hybrid DWT-LSTM** | Dual-Path Hybrid | 93.92% | 99.14% | 97.13% | 16.2 | 0 | 17 | 76 |
 
-## Key Findings & Comparative Insights
+## Reading the tables
 
-1. **Temporal Context is Decisive**: Deep sequence models (LSTM, GRU, 1D-CNN) outperform static classifiers (SVM, ANN/MLP, Random Forest) by 1.5–3.2% in dependability and up to 4.5% in security under standalone mode, proving that tracking temporal trajectory dynamics across multi-resolution wavelet scales prevents transient false positives.
-2. **LSTM vs. GRU**: While GRU exhibits lower parameter count (44.3k vs. 58.2k), LSTM achieves slightly higher margin in separating high-impedance internal faults during magnetizing inrush.
-3. **Supervisory Handshake Value**: When integrated into the proposed dual-path hybrid architecture, ALL machine learning models experience a dramatic reduction in false trips (SVM false trips drop from 48 to 14; ANN false trips drop from 39 to 12; LSTM false trips drop from 13 to 11), confirming that the supervisory 87T handshake acts as a universal safety anchor for power system protection.
-4. **Proposed Architecture Superiority**: The proposed **Hybrid DWT-LSTM** achieves the highest balanced performance across the entire 3,218-trace corpus: **98.56% pooled dependability** (99.01% across 15 models), **99.41% pooled security** (99.66% across 15 models), **0 pre-fault trips**, and **15.6 ms median clearing time**.
+The two tables above are the result; this report contains no interpretation. Dependability and security are pooled over the evaluated traces of the first CV repetition; the comparison with the proposed relay over 3 repetitions is in runs/<tag>_cv5_seeds/summary.txt.

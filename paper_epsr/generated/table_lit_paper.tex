@@ -1,0 +1,17 @@
+\begin{tabular}{@{}llrrrrr@{}}\toprule
+Model & Mode & Parameters & Dep.\,(\%) & Sec.\,(\%) & Median $T_{op}$ (ms) & False trips\\ \midrule
+Conventional 87T & direct trip & --- & 80.34 & 63.41 & 1.2 & 727\\
+Wavelet-SVM & direct trip & 5{,}880 & 84.01 & 74.23 & 15.6 & 512\\
+Wavelet-SVM & in the dual-path relay & 5{,}880 & 80.82 & 98.24 & 18.1 & 35\\
+Wavelet-ANN & direct trip & 5{,}441 & 97.12 & 96.28 & 16.2 & 74\\
+Wavelet-ANN & in the dual-path relay & 5{,}441 & 92.57 & 99.09 & 16.9 & 18\\
+Wavelet-RF & direct trip & 37{,}802 & 96.32 & 96.88 & 16.2 & 62\\
+Wavelet-RF & in the dual-path relay & 37{,}802 & 92.09 & 99.25 & 19.4 & 15\\
+1D-CNN & direct trip & 14{,}561 & 97.52 & 96.73 & 16.2 & 65\\
+1D-CNN & in the dual-path relay & 14{,}561 & 92.25 & 99.14 & 18.1 & 17\\
+Wavelet-GRU & direct trip & 44{,}354 & 98.40 & 96.53 & 15.0 & 69\\
+Wavelet-GRU & in the dual-path relay & 44{,}354 & 93.29 & 99.04 & 15.6 & 19\\
+Standalone LSTM & direct trip & 58{,}241 & 97.92 & 96.78 & 15.6 & 64\\
+Proposed Hybrid DWT-LSTM & in the dual-path relay & 58{,}241 & 93.92 & 99.14 & 16.2 & 17\\
+\bottomrule
+\end{tabular}

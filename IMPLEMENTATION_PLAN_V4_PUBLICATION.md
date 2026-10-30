@@ -291,3 +291,10 @@ Do **not** claim "outperforms conventional protection" without these qualifiers.
 - Final model, OOD (once): 97.99 % / 92.67 % vs 98.0 / 96.0 (11 vs 6 false trips; block 4 over-excitation security 76.7 %).
 - Plant B zero-shot (thresholds frozen from the final model's validation traces, AI 0.9000, solo 0.998): 92.70 % / 88.35 %, 89 false trips, identical to the current hybrid.
 - Conclusion: the harmonic gate does not improve the hybrid; it trades 1.0 pt of dependability for 0.4 pt of security in CV, is worse on OOD security, and does not change the zero-shot false trips. The variant is not adopted.
+
+
+### Phase 5 start (2026-10-30)
+- Plant-B trip-path check (`tools/plantb_trip_path_v5.py`, `runs/20261029_v5_plant_b_zeroshot/trip_path_check.txt`): of 89 zero-shot false trips, 87 come first through the AI-alone path and 2 through the gated path; without the AI-alone path the zero-shot relay gives 90.47 % dependability / 99.21 % security. 11 of 493 faults trip only through the AI-alone path.
+- Pushed to GitHub (`main`): rebased on the remote (its README rename and CLAUDE.md deletion kept), `CLAUDE.md` untracked and ignored, README rebuilt from the result files by `tools/build_readme_v5.py`.
+- Found afterwards: `lstm_models/benchmark_literature_models.py` wrote hand-typed claims (3,218 traces, 300 MVA, 98.56 % / 99.41 %, "highest balanced performance") into `documents/results_v3/literature_benchmark.md` and the LaTeX caption; these are removed, the report is regenerated from the saved folds (`documents/results_v3/literature_benchmark.md`), the corrected file is committed locally and not yet pushed.
+- Paper: `paper_epsr/` (elsarticle, EPSR). `tools/build_paper_macros_v5.py` writes the macros and tables; `main.tex` compiles to 13 pages with red placeholders for unverified citations (`REFERENCES_TO_VERIFY.md`). 5.1 novelty statement and 5.2 structure drafted, 5.3 implemented for the numbers in the draft, 5.4 availability statement drafted. Open: related work text, figures from the v5 data, author block and declarations, cover letter, reading by a supervisor or protection engineer (5.5).
