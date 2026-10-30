@@ -63,3 +63,7 @@ latex_source/**/Reference papers/*.pdf
 latex_source/**/Reference Papers/*.pdf
 latex_source/MIST_LaTeX*/**/*.pdf
 latex_source/MIST_LaTeX*/**/~*.docx
+
+# Local agent instructions (deleted from the remote on purpose)
+CLAUDE.md
+brain/
