@@ -77,7 +77,7 @@ prepareModelForGeneration(B);
 setHighRate(B);
 cfg.hr = struct('on', true, 'fs', 20000, 'powergui', 25e-6, 'noiseTs', 25e-6, 'sampleTime', 50e-6);
 ref = []; if ~isempty(opts.Reference), ref = loadReference(opts.Reference); end
-hrIdx = []; hrIp = {}; hrIs = {};
+hrIdx = []; hrIp = {}; hrIs = {}; hrTp = {}; hrTs = {};
 cfg.srcZ0 = [str2double(get_param(B.srcZ, 'Resistance')), str2double(get_param(B.srcZ, 'Inductance'))];
 assert(abs(cfg.srcZ0(1) - 0.46) < 1e-3 && abs(cfg.srcZ0(2) - 0.0221) < 1e-4, 'GenPlantB:SrcZ', ...
     'unexpected source impedance %s / %s', get_param(B.srcZ, 'Resistance'), get_param(B.srcZ, 'Inductance'));
@@ -176,7 +176,7 @@ for idx = startAt:N
     applyScenario(B, sc, p, cfg);
     [rec, status] = simulateAndCheck(model, B, sc, p, cfg, fingerprints);
     dataset = store(dataset, idx, sc, p, rec, status);
-    if ~isempty(rec.Ip), hrIdx(end + 1) = idx; hrIp{end + 1} = rec.Ip; hrIs{end + 1} = rec.Is; end %#ok<AGROW>
+    if ~isempty(rec.Ip), hrIdx(end + 1) = idx; hrIp{end + 1} = rec.Ip; hrIs{end + 1} = rec.Is; hrTp{end + 1} = rec.Tp; hrTs{end + 1} = rec.Ts; end %#ok<AGROW>
     dataset.primaryCurrent{idx} = []; dataset.secondaryCurrent{idx} = [];
     if ~isempty(rec.fingerprint) && ~fingerprints.isKey(rec.fingerprint)
         fingerprints(rec.fingerprint) = idx;
@@ -189,12 +189,12 @@ for idx = startAt:N
 
     if mod(idx, 25) == 0
         generationConfig = cfg; scenarioTableOut = ST;
-        [hrIdx, hrIp, hrIs] = flushHR(datasetsDir, 'StressDataset_PlantBv5HR', fileTag, runId, hrIdx, hrIp, hrIs, dataset);
+        [hrIdx, hrIp, hrIs, hrTp, hrTs] = flushHR(datasetsDir, 'StressDataset_PlantBv5HR', fileTag, runId, hrIdx, hrIp, hrIs, hrTp, hrTs, dataset);
         save(partialFile(datasetsDir, fileTag, runId), 'dataset', 'generationConfig', 'scenarioTableOut', '-v7.3');
     end
     if opts.Chunk > 0 && done >= opts.Chunk && idx < N
         generationConfig = cfg; scenarioTableOut = ST;
-        [hrIdx, hrIp, hrIs] = flushHR(datasetsDir, 'StressDataset_PlantBv5HR', fileTag, runId, hrIdx, hrIp, hrIs, dataset);
+        [hrIdx, hrIp, hrIs, hrTp, hrTs] = flushHR(datasetsDir, 'StressDataset_PlantBv5HR', fileTag, runId, hrIdx, hrIp, hrIs, hrTp, hrTs, dataset);
         save(partialFile(datasetsDir, fileTag, runId), 'dataset', 'generationConfig', 'scenarioTableOut', '-v7.3');
         fprintf('CHUNK_DONE at sample %d of %d (run %s). Restart MATLAB with the same Run id to continue.\n', idx, N, runId);
         outFile = '';
@@ -204,7 +204,7 @@ end
 
 generationConfig = cfg; scenarioTableOut = ST;
 outFile = finalFile;
-[hrIdx, hrIp, hrIs] = flushHR(datasetsDir, 'StressDataset_PlantBv5HR', fileTag, runId, hrIdx, hrIp, hrIs, dataset); %#ok<ASGLU>
+[hrIdx, hrIp, hrIs, hrTp, hrTs] = flushHR(datasetsDir, 'StressDataset_PlantBv5HR', fileTag, runId, hrIdx, hrIp, hrIs, hrTp, hrTs, dataset); %#ok<ASGLU>
 save(outFile, 'dataset', 'generationConfig', 'scenarioTableOut', '-v7.3');
 if isfile(partialFile(datasetsDir, fileTag, runId)), delete(partialFile(datasetsDir, fileTag, runId)); end
 
@@ -691,7 +691,10 @@ if cfg.hr.on     % D2: no per-trace waveform checks (they assume 1600 Hz and wer
     if ~isequal(size(Ip), [nHR 3]) || ~isequal(size(Is), [nHR 3])
         status = 'ERR'; rec.message = sprintf('logged size %s / %s, expected [%d 3]', mat2str(size(Ip)), mat2str(size(Is)), nHR); return;
     end
-    rec.Ip = single(Ip); rec.Is = single(Is); rec.timingOK = 1; rec.checkPassed = 1; status = 'OK'; return;
+    rec.Ip = single(Ip); rec.Is = single(Is); rec.timingOK = 1; rec.checkPassed = 1;
+    lsgH = out.get('logsout'); [iPT, tPT] = loggedSignal(lsgH, 'TruePrimI'); [iST, tST] = loggedSignal(lsgH, 'TrueSecI');
+    tHR = (0:nHR - 1)' / cfg.hr.fs; rec.Tp = single(interp1(tPT, iPT, tHR, 'linear', 'extrap')); rec.Ts = single(interp1(tST, iST, tHR, 'linear', 'extrap'));
+    status = 'OK'; return;
 end
 nExp = round(cfg.stopTime * cfg.fs) + 1;
 if ~isequal(size(Ip), [nExp 3]) || ~isequal(size(Is), [nExp 3])
@@ -990,11 +993,11 @@ for q = 1:size(pairs, 1)
 end
 end
 
-function [hrIdx, hrIp, hrIs] = flushHR(dir, prefix, fileTag, runId, hrIdx, hrIp, hrIs, dataset)
+function [hrIdx, hrIp, hrIs, hrTp, hrTs] = flushHR(dir, prefix, fileTag, runId, hrIdx, hrIp, hrIs, hrTp, hrTs, dataset)
 % writes the buffered 20 kHz traces (single precision) as one block file; called together with every checkpoint of the run
 if isempty(hrIdx), return; end
 d = fullfile(dir, 'hr'); if ~isfolder(d), mkdir(d); end
-Ip = cat(3, hrIp{:}); Is = cat(3, hrIs{:}); idx = hrIdx(:); scenario = dataset.scenarioName(idx); seed = dataset.sampleSeed(idx); %#ok<NASGU>
-save(fullfile(d, sprintf('%s%s_%s_blk%05d_%05d.mat', prefix, fileTag, runId, idx(1), idx(end))), 'Ip', 'Is', 'idx', 'scenario', 'seed', '-v7');
-hrIdx = []; hrIp = {}; hrIs = {};
+Ip = cat(3, hrIp{:}); Is = cat(3, hrIs{:}); Tp = cat(3, hrTp{:}); Ts = cat(3, hrTs{:}); idx = hrIdx(:); scenario = dataset.scenarioName(idx); seed = dataset.sampleSeed(idx); %#ok<NASGU>
+save(fullfile(d, sprintf('%s%s_%s_blk%05d_%05d.mat', prefix, fileTag, runId, idx(1), idx(end))), 'Ip', 'Is', 'Tp', 'Ts', 'idx', 'scenario', 'seed', '-v7');
+hrIdx = []; hrIp = {}; hrIs = {}; hrTp = {}; hrTs = {};
 end
