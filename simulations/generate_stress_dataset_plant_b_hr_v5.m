@@ -961,12 +961,12 @@ if c, v = a; else, v = b; end
 end
 
 function setHighRate(B)
-% D2: in-memory only. powergui 25 us (40 kHz), noise Ts 25 us, relay-input ZOH and both To Workspace blocks 50 us (20 kHz). Read back and asserted.
+% D2: in-memory only. powergui 25 us (40 kHz), noise Ts 25 us, both To Workspace blocks (CT secondary + noise + quantisation) 50 us (20 kHz). Read back and asserted.
 gui = find_system(B.model, 'SearchDepth', 1, 'MaskType', 'PSB option menu block');
 assert(numel(gui) == 1, 'powergui not unique');
 setp(gui{1}, 'SampleTime', '25e-6');
 setp(B.blwn, 'Ts', '25e-6');
-for nm = {'ZOH_1600', 'To Workspace', 'To Workspace1'}
+for nm = {'To Workspace', 'To Workspace1'}   % the relay's own ZOH_1600 (inside the relay) stays at 1600 Hz: running its wavelet chart at 20 kHz made a trace 3x slower
     h = find_system(B.model, 'FollowLinks', 'on', 'LookUnderMasks', 'all', 'Name', nm{1});
     assert(numel(h) == 1, 'block %s found %d times', nm{1}, numel(h));
     setp(h{1}, 'SampleTime', '50e-6');
