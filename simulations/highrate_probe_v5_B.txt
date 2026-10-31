@@ -1,0 +1,5 @@
+High-rate feasibility probe, plant B, 31-Oct-2026 08:43:44. Original: powergui 10e-5, noise Ts 0.0001, ZOH 6.25e-4, To Workspace 6.25e-4
+standard : wall 11.3 s, 1761 samples (1601 Hz), one trace (6 channels) = 0.25 MB
+highrate : wall 27.9 s, 22001 samples (20001 Hz), one trace (6 channels) = 3.17 MB
+standard : LV RMS (0.55-0.65 s) per phase [7.7112 7.5761 7.4482] A; energy above 1.6 kHz / total (per phase) [0 0 0]
+highrate : LV RMS (0.55-0.65 s) per phase [7.7253 7.5949 7.4517] A; energy above 1.6 kHz / total (per phase) [4.73e-05 4.84e-05 1.22e-07]

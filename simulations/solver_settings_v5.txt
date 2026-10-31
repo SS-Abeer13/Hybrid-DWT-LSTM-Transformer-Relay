@@ -1,0 +1,140 @@
+==== TransformerWithCTSaturation_v5
+  SolverType         Variable-step
+  Solver             ode23tb
+  FixedStep          auto
+  MaxStep            1e-4
+  MinStep            auto
+  RelTol             1e-3
+  AbsTol             auto
+  StartTime          0.0
+  StopTime           1
+  SampleTimeColors   off
+  SaveFormat         Array
+  Decimation         1
+  LimitDataPoints    on
+  powergui SimulationMode Discrete
+  powergui SampleTime     10e-5
+  powergui SolverType     Backward Euler
+  powergui Frequency      60
+  DBG_supervisory_raw_trip         [ToWorkspace] SampleTime=-1 Decimation=1
+  DBG_trip_bool                    [ToWorkspace] SampleTime=-1 Decimation=1
+  DBG_trip_latch                   [ToWorkspace] SampleTime=-1 Decimation=1
+  DBG_trip_outport_input           [ToWorkspace] SampleTime=-1 Decimation=1
+  Feature Window                   [Buffer]
+  I_diff_window                    [Buffer]
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  ZOH_1600                         [ZeroOrderHold] SampleTime=6.25e-4
+  Band-Limited White Noise         [SubSystem] Ts=0.0001 Seed=[23341] Cov=[0.1]
+  Quantizer                        [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer1                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer2                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer3                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer4                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer5                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  To Workspace                     [ToWorkspace] SampleTime=6.25e-4 Decimation=1
+  To Workspace1                    [ToWorkspace] SampleTime=6.25e-4 Decimation=1
+==== TransformerB_v5
+  SolverType         Variable-step
+  Solver             ode23tb
+  FixedStep          auto
+  MaxStep            1e-4
+  MinStep            auto
+  RelTol             1e-3
+  AbsTol             auto
+  StartTime          0.0
+  StopTime           1
+  SampleTimeColors   off
+  SaveFormat         Array
+  Decimation         1
+  LimitDataPoints    on
+  powergui SimulationMode Discrete
+  powergui SampleTime     10e-5
+  powergui SolverType     Backward Euler
+  powergui Frequency      60
+  DBG_supervisory_raw_trip         [ToWorkspace] SampleTime=-1 Decimation=1
+  DBG_trip_bool                    [ToWorkspace] SampleTime=-1 Decimation=1
+  DBG_trip_latch                   [ToWorkspace] SampleTime=-1 Decimation=1
+  DBG_trip_outport_input           [ToWorkspace] SampleTime=-1 Decimation=1
+  Feature Window                   [Buffer]
+  I_diff_window                    [Buffer]
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  Unit Delay                       [UnitDelay] SampleTime=Ts
+  Unit Delay1                      [UnitDelay] SampleTime=Ts
+  ZOH_1600                         [ZeroOrderHold] SampleTime=6.25e-4
+  Band-Limited White Noise         [SubSystem] Ts=0.0001 Seed=[23341] Cov=[0.1]
+  Quantizer                        [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer1                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer2                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer3                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer4                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  Quantizer5                       [Quantizer] SampleTime=-1 QuantizationInterval=0.01
+  To Workspace                     [ToWorkspace] SampleTime=6.25e-4 Decimation=1
+  To Workspace1                    [ToWorkspace] SampleTime=6.25e-4 Decimation=1

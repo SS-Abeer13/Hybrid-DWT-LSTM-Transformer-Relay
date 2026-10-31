@@ -1,0 +1,3196 @@
+{
+ "date": "2026-10-31 08:32",
+ "source": "Crossref REST API (query.bibliographic)",
+ "refs": [
+  {
+   "listed": {
+    "key": "ref1",
+    "raw": "Q. Alhamd, M. Saniei, S. G. Seifossadat, and E. Mashhour, Advanced fault detection in power transformers using improved wavelet analysis and LSTM networks considering current transformer saturation and uncertainties, Algorithms, vol. 17, no. 9, art. 397, 2024.",
+    "authors": "Q. Alhamd, M. Saniei, S. G. Seifossadat, and E. Mashhour",
+    "title": "Advanced fault detection in power transformers using improved wavelet analysis and LSTM networks considering current transformer saturation and uncertainties",
+    "venue": "Algorithms",
+    "year": "2024",
+    "vol": "17",
+    "no": "9",
+    "pages": "",
+    "art": "397"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.3390/a17090397",
+    "title": "Advanced Fault Detection in Power Transformers Using Improved Wavelet Analysis and LSTM Networks Considering Current Transformer Saturation and Uncertainties",
+    "authors": [
+     "Qusay Alhamd",
+     "Mohsen Saniei",
+     "Seyyed Ghodratollah Seifossadat",
+     "Elaheh Mashhour"
+    ],
+    "venue": "Algorithms",
+    "volume": "17",
+    "issue": "9",
+    "pages": "397",
+    "article": null,
+    "year": 2024,
+    "type": "journal-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.1109/pesgm.2018.8586618",
+     "title": "A Wavelet-Based Transformer Differential Protection With Differential Current Transformer Saturation and Cross-Country Fault Detection",
+     "authors": [
+      "Flavio Costa",
+      "Rodrigo Prado"
+     ],
+     "venue": "2018 IEEE Power &amp; Energy Society General Meeting (PESGM)",
+     "volume": null,
+     "issue": null,
+     "pages": "1-1",
+     "article": null,
+     "year": 2018,
+     "type": "proceedings-article",
+     "title_similarity": 0.536,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    },
+    {
+     "doi": "10.1109/tpwrd.2017.2764062",
+     "title": "A Wavelet-Based Transformer Differential Protection With Differential Current Transformer Saturation and Cross-Country Fault Detection",
+     "authors": [
+      "Rodrigo Prado Medeiros",
+      "Flavio Bezerra Costa"
+     ],
+     "venue": "IEEE Transactions on Power Delivery",
+     "volume": "33",
+     "issue": "2",
+     "pages": "789-799",
+     "article": null,
+     "year": 2018,
+     "type": "journal-article",
+     "title_similarity": 0.536,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "MATCH"
+  },
+  {
+   "listed": {
+    "key": "ref2",
+    "raw": "Q. Alhamd, M. Saniei, and S. G. Seifossadat, Intelligent differential protection of power transformers based on wavelet packet transform and deep sequence learning, Int.\\ J.\\ Electr.\\ Power Energy Syst., vol. 155, p. 109567, 2024.",
+    "authors": "Q. Alhamd, M. Saniei, and S. G. Seifossadat",
+    "title": "Intelligent differential protection of power transformers based on wavelet packet transform and deep sequence learning",
+    "venue": "Int.\\ J.\\ Electr.\\ Power Energy Syst.",
+    "year": "2024",
+    "vol": "155",
+    "no": "",
+    "pages": "",
+    "art": "109567"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.21275/v4i12.09111502",
+    "title": "Transformer Differential Protection Using Wavelet Packet Transform",
+    "authors": [],
+    "venue": "International Journal of Science and Research (IJSR)",
+    "volume": "4",
+    "issue": "12",
+    "pages": "907-913",
+    "article": null,
+    "year": 2015,
+    "type": "journal-article",
+    "title_similarity": 0.587,
+    "listed_author_surnames_found": 0.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.26634/jdp.4.4.8311",
+     "title": "Wavelet-Packet-Transform Based Differential Protection Of Power Transformer",
+     "authors": [
+      "Suribabu"
+     ],
+     "venue": "i-manager's Journal on Digital Signal Processing",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2016,
+     "type": "journal-article",
+     "title_similarity": 0.508,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    },
+    {
+     "doi": "10.5772/19712",
+     "title": "Application of Discrete Wavelet Transform for Differential Protection of Power Transformers",
+     "authors": [
+      "Mario Orlando",
+      "Arturo Suman"
+     ],
+     "venue": "Discrete Wavelet Transforms - Biomedical Applications",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2011,
+     "type": "book-chapter",
+     "title_similarity": 0.469,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref3",
+    "raw": "W. A. Atiyah, S. Karimi, and M. Moradi, A novel approach for diagnosing transformer internal defects and inrush current based on 1DCNN and LSTM deep learning, J.\\ Electr.\\ Syst., vol. 20, no. 3, pp. 2557-2572, 2024.",
+    "authors": "W. A. Atiyah, S. Karimi, and M. Moradi",
+    "title": "A novel approach for diagnosing transformer internal defects and inrush current based on 1DCNN and LSTM deep learning",
+    "venue": "J.\\ Electr.\\ Syst.",
+    "year": "2024",
+    "vol": "20",
+    "no": "3",
+    "pages": "2557-2572",
+    "art": "2557"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.52783/jes.3163",
+    "title": "A Novel Approach for Diagnosing Transformer Internal Defects and Inrush Current Based on 1DCNN and LSTM Deep Learning",
+    "authors": [
+     "Wael Abdulhassan Atiyah"
+    ],
+    "venue": "Journal of Electrical Systems",
+    "volume": "20",
+    "issue": "4s",
+    "pages": "2557-2572",
+    "article": null,
+    "year": 2024,
+    "type": "journal-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 0.33,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": true
+   },
+   "others": [
+    {
+     "doi": "10.14416/j.asep.2024.07.008",
+     "title": "Transformer Differential Protection Method for Recognition between Power Transformer Internal Defects and Inrush Current: A Comprehensive Review of Detection Techniques",
+     "authors": [
+      "Wael Abdulhasan Atiyah",
+      "Shahram Karimi",
+      "Mohamad Moradi"
+     ],
+     "venue": "Applied Science and Engineering Progress",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2024,
+     "type": "journal-article",
+     "title_similarity": 0.561,
+     "listed_author_surnames_found": 1.0,
+     "year_match": true,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.20944/preprints202308.0149.v1",
+     "title": "Hybrid LSTM+1DCNN Approach to Forecast Torque Internal Combustion Engines",
+     "authors": [
+      "Federico Ricci",
+      "Luca Petrucci",
+      "Francesco Mariani"
+     ],
+     "venue": "",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2023,
+     "type": "posted-content",
+     "title_similarity": 0.442,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref4",
+    "raw": "P. M. Anderson, Power System Protection. New York, NY: IEEE Press / McGraw-Hill, 1999.",
+    "authors": "P. M. Anderson",
+    "title": "",
+    "venue": "Power System Protection",
+    "year": "1999",
+    "vol": "",
+    "no": "",
+    "pages": "",
+    "art": ""
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1089/obe.2005.1.37",
+    "title": "Book ReviewDr. Kushner's Personality Type Diet.  Kushner   R.F. ,  Kushner   N. , St. Martins Press, New York NY, 2003The Ultimate Weight Solution.  McGraw   P.C. , Free Press (Simon and Schuster) New York NY, 2003",
+    "authors": [
+     "Daniel H. Bessesen"
+    ],
+    "venue": "Obesity Management",
+    "volume": "1",
+    "issue": "1",
+    "pages": "37-37",
+    "article": null,
+    "year": 2005,
+    "type": "journal-article",
+    "title_similarity": 0.0,
+    "listed_author_surnames_found": 0.0,
+    "year_match": false,
+    "volume_match": null,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.1002/ncr.4110390314",
+     "title": "American politics system. By Hugh York, McGraw‐Hill and the Party system. By Hugh A. Bone. New York, McGraw‐Hill Book Company, Inc., 1949. viii, 777 pp. $5.50",
+     "authors": [],
+     "venue": "National Municipal Review",
+     "volume": "39",
+     "issue": "3",
+     "pages": "166-166",
+     "article": null,
+     "year": 1950,
+     "type": "journal-article",
+     "title_similarity": 0.0,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": null,
+     "pages_match": null
+    },
+    {
+     "doi": "10.1108/ss.1999.17.3.179.1",
+     "title": "Wood Engineering and Construction Handbook. 3rd ed.991Keith Faherty, Thomas Williamson. <i>Wood Engineering and Construction Handbook. 3rd ed.</i>. New York, NY: McGraw‐Hill Handbooks 1999. pp. 889, ISBN: 0‐07‐022070‐0 £71.99",
+     "authors": [
+      "Trevor Cooke"
+     ],
+     "venue": "Structural Survey",
+     "volume": "17",
+     "issue": "3",
+     "pages": "179-180",
+     "article": null,
+     "year": 1999,
+     "type": "journal-article",
+     "title_similarity": 0.0,
+     "listed_author_surnames_found": 0.0,
+     "year_match": true,
+     "volume_match": null,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref5",
+    "raw": "K. Sudha and A. K. Pradhan, Wavelet transform-based technique for detection and classification of power system disturbances, Int.\\ J.\\ Emerg.\\ Electr.\\ Power Syst., vol. 8, no. 5, pp. 1-22, 2007.",
+    "authors": "K. Sudha and A. K. Pradhan",
+    "title": "Wavelet transform-based technique for detection and classification of power system disturbances",
+    "venue": "Int.\\ J.\\ Emerg.\\ Electr.\\ Power Syst.",
+    "year": "2007",
+    "vol": "8",
+    "no": "5",
+    "pages": "1-22",
+    "art": "1"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/stpec59253.2023.10430605",
+    "title": "Wavelet Transform-based Fault Detection and ELM-based Fault Classification for Transmission Lines",
+    "authors": [
+     "Yangyadatta Tripathy",
+     "Rudranarayan Pradhan"
+    ],
+    "venue": "2023 IEEE 3rd International Conference on Smart Technologies for Power, Energy and Control (STPEC)",
+    "volume": null,
+    "issue": null,
+    "pages": "1-6",
+    "article": null,
+    "year": 2023,
+    "type": "proceedings-article",
+    "title_similarity": 0.677,
+    "listed_author_surnames_found": 0.5,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/powercon.2016.7754026",
+     "title": "A generalized empirical wavelet transform for classification of power quality disturbances",
+     "authors": [
+      "Karthik Thirumala",
+      "Amod C. Umarikar",
+      "Trapti Jain"
+     ],
+     "venue": "2016 IEEE International Conference on Power System Technology (POWERCON)",
+     "volume": null,
+     "issue": null,
+     "pages": "1-5",
+     "article": null,
+     "year": 2016,
+     "type": "proceedings-article",
+     "title_similarity": 0.649,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.23883/ijrter.2018.4015.9uoew",
+     "title": "Power system fault detection and classification using wavelet transform and back propagation neural network",
+     "authors": [],
+     "venue": "International Journal of Recent Trends in Engineering and Research",
+     "volume": "4",
+     "issue": "1",
+     "pages": "98-109",
+     "article": null,
+     "year": 2018,
+     "type": "journal-article",
+     "title_similarity": 0.416,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref6",
+    "raw": "O. Ozgonenel and T. S. Karagol, A new transformer differential protection scheme based on wavelet transform, Electr.\\ Power Syst.\\ Res., vol. 116, pp. 146-154, Nov. 2014.",
+    "authors": "O. Ozgonenel and T. S. Karagol",
+    "title": "A new transformer differential protection scheme based on wavelet transform",
+    "venue": "Electr.\\ Power Syst.\\ Res.",
+    "year": "2014",
+    "vol": "116",
+    "no": "",
+    "pages": "146-154",
+    "art": "146"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1016/j.epsr.2014.04.008",
+    "title": "Transformer differential protection using wavelet transform",
+    "authors": [
+     "Okan Ozgonenel",
+     "Serap Karagol"
+    ],
+    "venue": "Electric Power Systems Research",
+    "volume": "114",
+    "issue": null,
+    "pages": "60-67",
+    "article": null,
+    "year": 2014,
+    "type": "journal-article",
+    "title_similarity": 0.836,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1016/j.jestch.2025.102144",
+     "title": "Transformer differential protection with wavelet transform and difference function",
+     "authors": [
+      "Merve Oztekin",
+      "Serap Karagol",
+      "Okan Ozgonenel"
+     ],
+     "venue": "Engineering Science and Technology, an International Journal",
+     "volume": "70",
+     "issue": null,
+     "pages": "102144",
+     "article": "102144",
+     "year": 2025,
+     "type": "journal-article",
+     "title_similarity": 0.701,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/eleco.2013.6713836",
+     "title": "A novel transformer protection method based on Hilbert Huang Transform and artificial neural network",
+     "authors": [
+      "Okan Ozgonenel",
+      "Serap Karagol"
+     ],
+     "venue": "2013 8th International Conference on Electrical and Electronics Engineering (ELECO)",
+     "volume": null,
+     "issue": null,
+     "pages": "225-228",
+     "article": null,
+     "year": 2013,
+     "type": "proceedings-article",
+     "title_similarity": 0.606,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref7",
+    "raw": "R. L. Sharp and W. E. Glassburn, A new approach to transformer differential protection, Trans.\\ Amer.\\ Inst.\\ Electr.\\ Eng.\\ III, Power App.\\ Syst., vol. 77, no. 3, pp. 12-18, Apr. 1958.",
+    "authors": "R. L. Sharp and W. E. Glassburn",
+    "title": "A new approach to transformer differential protection",
+    "venue": "Trans.\\ Amer.\\ Inst.\\ Electr.\\ Eng.\\ III, Power App.\\ Syst.",
+    "year": "1958",
+    "vol": "77",
+    "no": "3",
+    "pages": "12-18",
+    "art": "12"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/aieepas.1958.4500059",
+    "title": "A Transformer Differential Relay with Second-Harmonic Restraint",
+    "authors": [
+     "R. L. Sharp",
+     "W. E. Glassburn"
+    ],
+    "venue": "Transactions of the American Institute of Electrical Engineers. Part III: Power Apparatus and Systems",
+    "volume": "77",
+    "issue": "3",
+    "pages": "913-918",
+    "article": null,
+    "year": 1958,
+    "type": "journal-article",
+    "title_similarity": 0.569,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/icps.1999.787227",
+     "title": "A new approach for transformer ground differential protection",
+     "authors": [
+      "T. Sezi"
+     ],
+     "venue": "1999 IEEE Industrial and Commercial Power Systems Technical Conference (Cat. No.99CH36371)",
+     "volume": null,
+     "issue": null,
+     "pages": "15",
+     "article": null,
+     "year": null,
+     "type": "proceedings-article",
+     "title_similarity": 0.912,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/tdc.1999.755384",
+     "title": "A new approach for transformer ground differential protection",
+     "authors": [
+      "T. Sezi"
+     ],
+     "venue": "1999 IEEE Transmission and Distribution Conference (Cat. No. 99CH36333)",
+     "volume": null,
+     "issue": null,
+     "pages": "394-399 vol.1",
+     "article": null,
+     "year": 1999,
+     "type": "proceedings-article",
+     "title_similarity": 0.912,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref8",
+    "raw": "Z. Huang, S. Chen, S. Guo, and H. Yin, Transformer differential protection based on self-adaptive biased characteristic curve, Power Syst.\\ Prot.\\ Control, vol. 44, no. 16, pp. 11-17, 2016.",
+    "authors": "Z. Huang, S. Chen, S. Guo, and H. Yin",
+    "title": "Transformer differential protection based on self-adaptive biased characteristic curve",
+    "venue": "Power Syst.\\ Prot.\\ Control",
+    "year": "2016",
+    "vol": "44",
+    "no": "16",
+    "pages": "11-17",
+    "art": "11"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/ciced.2016.7576109",
+    "title": "Study of transformer differential protection based on self-adaptive biased characteristic curve",
+    "authors": [
+     "Shaofeng Huang",
+     "Shanshan Li",
+     "Hongming Yin",
+     "Yuanqing Xiao",
+     "Liang Zhang",
+     "Junlei Zhao"
+    ],
+    "venue": "2016 China International Conference on Electricity Distribution (CICED)",
+    "volume": null,
+    "issue": null,
+    "pages": "1-5",
+    "article": null,
+    "year": 2016,
+    "type": "proceedings-article",
+    "title_similarity": 0.95,
+    "listed_author_surnames_found": 0.5,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1002/cta.3476",
+     "title": "Transformer differential protection scheme based on self‐adaptive biased characteristic curve and considering cross‐country faults",
+     "authors": [
+      "Nassim Shahbazi",
+      "Sajad Bagheri",
+      "Gevork B. Gharehpetian"
+     ],
+     "venue": "International Journal of Circuit Theory and Applications",
+     "volume": "51",
+     "issue": "3",
+     "pages": "1110-1131",
+     "article": null,
+     "year": 2022,
+     "type": "journal-article",
+     "title_similarity": 0.787,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1007/978-981-99-3870-4_9",
+     "title": "Sequential Component-Based Improvement in Percentage Biased Differential Protection of a Power Transformer",
+     "authors": [
+      "Nilesh Chothani",
+      "Maulik Raichura",
+      "Dharmesh Patel"
+     ],
+     "venue": "Studies in Infrastructure and Control",
+     "volume": null,
+     "issue": null,
+     "pages": "263-283",
+     "article": null,
+     "year": 2023,
+     "type": "book-chapter",
+     "title_similarity": 0.427,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref9",
+    "raw": "M. Tripathy, R. P. Maheshwari, and H. K. Verma, Power transformer differential protection based on optimal probabilistic neural network, IEEE Trans.\\ Power Del., vol. 25, no. 1, pp. 102-112, Jan. 2010.",
+    "authors": "M. Tripathy, R. P. Maheshwari, and H. K. Verma",
+    "title": "Power transformer differential protection based on optimal probabilistic neural network",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2010",
+    "vol": "25",
+    "no": "1",
+    "pages": "102-112",
+    "art": "102"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/tpwrd.2009.2028800",
+    "title": "Power Transformer Differential Protection Based On Optimal Probabilistic Neural Network",
+    "authors": [
+     "M. Tripathy",
+     "R.P. Maheshwari",
+     "H.K. Verma"
+    ],
+    "venue": "IEEE Transactions on Power Delivery",
+    "volume": "25",
+    "issue": "1",
+    "pages": "102-112",
+    "article": null,
+    "year": 2010,
+    "type": "journal-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": true
+   },
+   "others": [
+    {
+     "doi": "10.1049/iet-epa:20070009",
+     "title": "Probabilistic neural-network-based protection of power transformer",
+     "authors": [
+      "M. Tripathy",
+      "R.P. Maheshwari",
+      "H.K. Verma"
+     ],
+     "venue": "IET Electric Power Applications",
+     "volume": "1",
+     "issue": "5",
+     "pages": "793-798",
+     "article": null,
+     "year": 2007,
+     "type": "journal-article",
+     "title_similarity": 0.353,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/ptc.2009.5282183",
+     "title": "Optimal Radial Basis Function Neural Network power transformer differential protection",
+     "authors": [
+      "Manoj Tripathy",
+      "Suresh Ala"
+     ],
+     "venue": "2009 IEEE Bucharest PowerTech",
+     "volume": null,
+     "issue": null,
+     "pages": "1-8",
+     "article": null,
+     "year": 2009,
+     "type": "proceedings-article",
+     "title_similarity": 0.474,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "MATCH"
+  },
+  {
+   "listed": {
+    "key": "ref10",
+    "raw": "A. Prataprao, S. Khedkar, and S. Barve, A review on fault classification methodologies in power transformer, Int.\\ J.\\ Eng.\\ Adv.\\ Technol., vol. 9, no. 1, pp. 7102-7109, 2019.",
+    "authors": "A. Prataprao, S. Khedkar, and S. Barve",
+    "title": "A review on fault classification methodologies in power transformer",
+    "venue": "Int.\\ J.\\ Eng.\\ Adv.\\ Technol.",
+    "year": "2019",
+    "vol": "9",
+    "no": "1",
+    "pages": "7102-7109",
+    "art": "7102"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.30537/sjet.v8i2.1585",
+    "title": "Fault Prediction and Classification in Power Distribution Transformer Using Machine Learning",
+    "authors": [
+     "Zawar Ahmed Khan",
+     "Muhammad Amir Raza",
+     "Ramesh Kumar",
+     "Shakir Ali Soomro",
+     "Hizbullah Odho"
+    ],
+    "venue": "Sukkur IBA Journal of Emerging Technologies",
+    "volume": "8",
+    "issue": "2",
+    "pages": "37-49",
+    "article": null,
+    "year": 2025,
+    "type": "journal-article",
+    "title_similarity": 0.516,
+    "listed_author_surnames_found": 0.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1049/esi2.12012",
+     "title": "Review of methodologies used for detection of magnetising inrush and fault conditions in power transformer",
+     "authors": [
+      "Maulik Raichura",
+      "Nilesh Chothani",
+      "Dharmesh Patel"
+     ],
+     "venue": "IET Energy Systems Integration",
+     "volume": "3",
+     "issue": "2",
+     "pages": "109-129",
+     "article": null,
+     "year": 2021,
+     "type": "journal-article",
+     "title_similarity": 0.509,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/ptc.2001.964922",
+     "title": "Fast transformer fault classification by means of recorded protection signals",
+     "authors": [
+      "T. Babnik",
+      "F. Gubina"
+     ],
+     "venue": "2001 IEEE Porto Power Tech Proceedings (Cat. No.01EX502)",
+     "volume": "vol.3",
+     "issue": null,
+     "pages": "6",
+     "article": null,
+     "year": null,
+     "type": "proceedings-article",
+     "title_similarity": 0.5,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref11",
+    "raw": "M. Abdusalam, K. F. Ali, and W. M. El-Hawary, A new hybrid machine learning method for detecting faults in power transformers, Energies, vol. 15, no. 18, art. 6758, 2022.",
+    "authors": "M. Abdusalam, K. F. Ali, and W. M. El-Hawary",
+    "title": "A new hybrid machine learning method for detecting faults in power transformers",
+    "venue": "Energies",
+    "year": "2022",
+    "vol": "15",
+    "no": "18",
+    "pages": "",
+    "art": "6758"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.3390/en15113905",
+    "title": "New Hybrid Machine Learning Method for Detecting Faults in Three-Phase Power Transformers",
+    "authors": [
+     "Othman Abdusalam",
+     "Alasmer Ibrahim",
+     "Fatih Anayi",
+     "Michael Packianather"
+    ],
+    "venue": "Energies",
+    "volume": "15",
+    "issue": "11",
+    "pages": "3905",
+    "article": null,
+    "year": 2022,
+    "type": "journal-article",
+    "title_similarity": 0.917,
+    "listed_author_surnames_found": 0.33,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.30724/1998-9903-2025-27-4-69-81",
+     "title": "An advanced event tree analysis method for detecting faults in power transformers",
+     "authors": [
+      "V. M. Levin",
+      "A. A. Zelenskih",
+      "P. A. Petushkov"
+     ],
+     "venue": "Power engineering: research, equipment, technology",
+     "volume": "27",
+     "issue": "4",
+     "pages": "69-81",
+     "article": null,
+     "year": 2025,
+     "type": "journal-article",
+     "title_similarity": 0.762,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    },
+    {
+     "doi": "10.1016/j.epsr.2026.112877",
+     "title": "Detecting Incipient Faults in Power Transformers through Hybrid Model of DGA and Machine Learning",
+     "authors": [
+      "Abdelaziz G. Saleh",
+      "A.E. Azzam",
+      "Gamal Attiya",
+      "Elhossiny Ibrahim"
+     ],
+     "venue": "Electric Power Systems Research",
+     "volume": "256",
+     "issue": null,
+     "pages": "112877",
+     "article": "112877",
+     "year": 2026,
+     "type": "journal-article",
+     "title_similarity": 0.432,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref12",
+    "raw": "J. Wang, Y. Liu, Z. Li, and B. Wang, Early classification for power transformer fault detection using reinforcement learning, Expert Syst.\\ Appl., vol. 240, art. 122550, 2024.",
+    "authors": "J. Wang, Y. Liu, Z. Li, and B. Wang",
+    "title": "Early classification for power transformer fault detection using reinforcement learning",
+    "venue": "Expert Syst.\\ Appl.",
+    "year": "2024",
+    "vol": "240",
+    "no": "",
+    "pages": "",
+    "art": "122550"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1016/j.eswa.2025.128632",
+    "title": "Reinforcement learning based early classification framework for power transformer differential protection",
+    "authors": [
+     "Xiaopeng Wang",
+     "Anyang He",
+     "Zongbo Li",
+     "Zaibin Jiao",
+     "Na Lu"
+    ],
+    "venue": "Expert Systems with Applications",
+    "volume": "292",
+    "issue": null,
+    "pages": "128632",
+    "article": "128632",
+    "year": 2025,
+    "type": "journal-article",
+    "title_similarity": 0.542,
+    "listed_author_surnames_found": 0.67,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.2139/ssrn.5315049",
+     "title": "Robust Uav Power Line Detection Using Transformer-Based Reinforcement Learning in Gps-Denied and Wind Disturbances Environments",
+     "authors": [
+      "Pengkai Wang",
+      "Jonghoek Kim",
+      "mitra Ghergherehchi",
+      "Zhong Yang",
+      "Mingxuan Zhang",
+      "Luwei Liao",
+      "Hongyu Xu"
+     ],
+     "venue": "",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2025,
+     "type": "posted-content",
+     "title_similarity": 0.467,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    },
+    {
+     "doi": "10.30537/sjet.v8i2.1585",
+     "title": "Fault Prediction and Classification in Power Distribution Transformer Using Machine Learning",
+     "authors": [
+      "Zawar Ahmed Khan",
+      "Muhammad Amir Raza",
+      "Ramesh Kumar",
+      "Shakir Ali Soomro",
+      "Hizbullah Odho"
+     ],
+     "venue": "Sukkur IBA Journal of Emerging Technologies",
+     "volume": "8",
+     "issue": "2",
+     "pages": "37-49",
+     "article": null,
+     "year": 2025,
+     "type": "journal-article",
+     "title_similarity": 0.615,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref13",
+    "raw": "L. D. Simoes, H. J. D. Costa, M. N. O. Aires, R. P. Medeiros, F. B. Costa, and A. S. Bretas, A power transformer differential protection based on support vector machine and wavelet transform, Electr.\\ Power Syst.\\ Res., vol. 197, art. 107297, Aug. 2021.",
+    "authors": "L. D. Simoes, H. J. D. Costa, M. N. O. Aires, R. P. Medeiros, F. B. Costa, and A. S. Bretas",
+    "title": "A power transformer differential protection based on support vector machine and wavelet transform",
+    "venue": "Electr.\\ Power Syst.\\ Res.",
+    "year": "2021",
+    "vol": "197",
+    "no": "",
+    "pages": "",
+    "art": "107297"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1016/j.epsr.2021.107297",
+    "title": "A power transformer differential protection based on support vector machine and wavelet transform",
+    "authors": [
+     "Lucas D. Simões",
+     "Hagi J.D. Costa",
+     "Matheus N.O. Aires",
+     "Rodrigo P. Medeiros",
+     "Flavio B. Costa",
+     "Arturo S. Bretas"
+    ],
+    "venue": "Electric Power Systems Research",
+    "volume": "197",
+    "issue": null,
+    "pages": "107297",
+    "article": "107297",
+    "year": 2021,
+    "type": "journal-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 0.8,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.1109/npsc.2016.7858917",
+     "title": "Power transformer differential protection using S-transform and Support Vector Machine",
+     "authors": [
+      "Ashesh M. Shah",
+      "Bhavesh R. Bhalja",
+      "Rajesh M. Patel"
+     ],
+     "venue": "2016 National Power Systems Conference (NPSC)",
+     "volume": null,
+     "issue": null,
+     "pages": "1-6",
+     "article": null,
+     "year": 2016,
+     "type": "proceedings-article",
+     "title_similarity": 0.732,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    },
+    {
+     "doi": "10.21275/v4i12.09111502",
+     "title": "Transformer Differential Protection Using Wavelet Packet Transform",
+     "authors": [],
+     "venue": "International Journal of Science and Research (IJSR)",
+     "volume": "4",
+     "issue": "12",
+     "pages": "907-913",
+     "article": null,
+     "year": 2015,
+     "type": "journal-article",
+     "title_similarity": 0.699,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref14",
+    "raw": "S. Suliman, A. Mohamed, and H. Shareef, Discrimination between inrush current and internal fault in power transformer using discrete wavelet transform, Indones.\\ J.\\ Electron., vol. 3, no. 2, pp. 59-65, 2021.",
+    "authors": "S. Suliman, A. Mohamed, and H. Shareef",
+    "title": "Discrimination between inrush current and internal fault in power transformer using discrete wavelet transform",
+    "venue": "Indones.\\ J.\\ Electron.",
+    "year": "2021",
+    "vol": "3",
+    "no": "2",
+    "pages": "59-65",
+    "art": "59"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1016/j.epsr.2010.07.010",
+    "title": "A novel algorithm for discrimination between inrush current and internal faults in power transformer differential protection based on discrete wavelet transform",
+    "authors": [
+     "A.A. Hossam Eldin",
+     "M.A. Refaey"
+    ],
+    "venue": "Electric Power Systems Research",
+    "volume": "81",
+    "issue": "1",
+    "pages": "19-24",
+    "article": null,
+    "year": 2011,
+    "type": "journal-article",
+    "title_similarity": 0.793,
+    "listed_author_surnames_found": 0.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1016/j.protcy.2015.10.038",
+     "title": "Discrimination of Internal Fault Current and Inrush Current in a Power Transformer Using Empirical Wavelet Transform",
+     "authors": [
+      "Maya P.",
+      "S. Vidya shree",
+      "Roopasree K.",
+      "K.P. Soman"
+     ],
+     "venue": "Procedia Technology",
+     "volume": "21",
+     "issue": null,
+     "pages": "514-519",
+     "article": null,
+     "year": 2015,
+     "type": "journal-article",
+     "title_similarity": 0.681,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1002/tee.21971",
+     "title": "A discrete wavelet transform approach to discriminating among inrush current, external fault, and internal fault in power transformer using low-frequency components differential current only",
+     "authors": [
+      "Atthapol Ngaopitakkul",
+      "Chaiyan Jettanasen"
+     ],
+     "venue": "IEEJ Transactions on Electrical and Electronic Engineering",
+     "volume": "9",
+     "issue": "3",
+     "pages": "302-314",
+     "article": null,
+     "year": 2014,
+     "type": "journal-article",
+     "title_similarity": 0.567,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref15",
+    "raw": "W. Rebizant, J. Szafran, and A. Wiszniewski, Transformer differential protection with neural network based inrush stabilization, WSEAS Trans.\\ Circuits Syst., vol. 6, no. 4, pp. 537-544, 2007.",
+    "authors": "W. Rebizant, J. Szafran, and A. Wiszniewski",
+    "title": "Transformer differential protection with neural network based inrush stabilization",
+    "venue": "WSEAS Trans.\\ Circuits Syst.",
+    "year": "2007",
+    "vol": "6",
+    "no": "4",
+    "pages": "537-544",
+    "art": "537"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/pct.2007.4538488",
+    "title": "Transformer Differential Protection with Neural Network Based Inrush Stabilization",
+    "authors": [
+     "Waldemar Rebizant",
+     "Daniel Bejmert",
+     "Ludwig Schiel"
+    ],
+    "venue": "2007 IEEE Lausanne Power Tech",
+    "volume": null,
+    "issue": null,
+    "pages": "1209-1214",
+    "article": null,
+    "year": 2007,
+    "type": "proceedings-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 0.33,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1016/j.ijepes.2014.05.056",
+     "title": "Transformer differential protection with fuzzy logic based inrush stabilization",
+     "authors": [
+      "D. Bejmert",
+      "W. Rebizant",
+      "L. Schiel"
+     ],
+     "venue": "International Journal of Electrical Power &amp; Energy Systems",
+     "volume": "63",
+     "issue": null,
+     "pages": "51-63",
+     "article": null,
+     "year": 2014,
+     "type": "journal-article",
+     "title_similarity": 0.882,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/ptc.2011.6019178",
+     "title": "Fuzzy adaptive transmission line differential protection with improved stabilization for near-by transformer inrush cases",
+     "authors": [
+      "W. Rebizant",
+      "K. Solak",
+      "A. Klimek"
+     ],
+     "venue": "2011 IEEE Trondheim PowerTech",
+     "volume": null,
+     "issue": null,
+     "pages": "1-6",
+     "article": null,
+     "year": 2011,
+     "type": "proceedings-article",
+     "title_similarity": 0.542,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref16",
+    "raw": "S. Afrasiabi, M. Afrasiabi, B. Parang, and M. Mohammadi, Integration of accelerated deep neural network into power transformer differential protection, IEEE Trans.\\ Ind.\\ Informat., vol. 16, no. 2, pp. 865-876, Feb. 2020.",
+    "authors": "S. Afrasiabi, M. Afrasiabi, B. Parang, and M. Mohammadi",
+    "title": "Integration of accelerated deep neural network into power transformer differential protection",
+    "venue": "IEEE Trans.\\ Ind.\\ Informat.",
+    "year": "2020",
+    "vol": "16",
+    "no": "2",
+    "pages": "865-876",
+    "art": "865"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/tii.2019.2929744",
+    "title": "Integration of Accelerated Deep Neural Network Into Power Transformer Differential Protection",
+    "authors": [
+     "Shahabodin Afrasiabi",
+     "Mousa Afrasiabi",
+     "Benyamin Parang",
+     "Mohammad Mohammadi"
+    ],
+    "venue": "IEEE Transactions on Industrial Informatics",
+    "volume": "16",
+    "issue": "2",
+    "pages": "865-876",
+    "article": null,
+    "year": 2020,
+    "type": "journal-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": true
+   },
+   "others": [
+    {
+     "doi": "10.1016/j.asoc.2019.105975",
+     "title": "Designing a composite deep learning based differential protection scheme of power transformers",
+     "authors": [
+      "Shahabodin Afrasiabi",
+      "Mousa Afrasiabi",
+      "Benyamin Parang",
+      "Mohammad Mohammadi"
+     ],
+     "venue": "Applied Soft Computing",
+     "volume": "87",
+     "issue": null,
+     "pages": "105975",
+     "article": "105975",
+     "year": 2020,
+     "type": "journal-article",
+     "title_similarity": 0.503,
+     "listed_author_surnames_found": 1.0,
+     "year_match": true,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/ptc.2009.5282183",
+     "title": "Optimal Radial Basis Function Neural Network power transformer differential protection",
+     "authors": [
+      "Manoj Tripathy",
+      "Suresh Ala"
+     ],
+     "venue": "2009 IEEE Bucharest PowerTech",
+     "volume": null,
+     "issue": null,
+     "pages": "1-8",
+     "article": null,
+     "year": 2009,
+     "type": "proceedings-article",
+     "title_similarity": 0.715,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "MATCH"
+  },
+  {
+   "listed": {
+    "key": "ref17",
+    "raw": "A. Raichura and S. Paithankar, Improved transformer differential protection by adaptive pickup, Aust.\\ J.\\ Electr.\\ Electron.\\ Eng., vol. 17, no. 2, pp. 109-119, 2020.",
+    "authors": "A. Raichura and S. Paithankar",
+    "title": "Improved transformer differential protection by adaptive pickup",
+    "venue": "Aust.\\ J.\\ Electr.\\ Electron.\\ Eng.",
+    "year": "2020",
+    "vol": "17",
+    "no": "2",
+    "pages": "109-119",
+    "art": "109"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.15598/aeee.v18i3.3833",
+    "title": "Improved Transformer Differential Protection by Adaptive Pickup Setting during Momentary Over-Fluxing Condition",
+    "authors": [
+     "Maulik Raichura",
+     "Nilesh Chothani",
+     "Dharmesh Patel"
+    ],
+    "venue": "Advances in Electrical and Electronic Engineering",
+    "volume": "18",
+    "issue": "3",
+    "pages": null,
+    "article": null,
+    "year": 2020,
+    "type": "journal-article",
+    "title_similarity": 0.724,
+    "listed_author_surnames_found": 0.5,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1007/978-981-99-3870-4_7",
+     "title": "Adaptive Biased Differential Protection Considering Over-Fluxing and CT Saturation Conditions",
+     "authors": [
+      "Nilesh Chothani",
+      "Maulik Raichura",
+      "Dharmesh Patel"
+     ],
+     "venue": "Studies in Infrastructure and Control",
+     "volume": null,
+     "issue": null,
+     "pages": "187-229",
+     "article": null,
+     "year": 2023,
+     "type": "book-chapter",
+     "title_similarity": 0.462,
+     "listed_author_surnames_found": 0.5,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1002/2050-7038.12751/v3/response1",
+     "title": "Author response for \"Development of an adaptive differential protection scheme for transformer during &lt;scp&gt;current transformer&lt;/scp&gt; saturation and over‐fluxing condition\"",
+     "authors": [
+      "Maulik Raichura",
+      "Nilesh Chothani",
+      "Dharmesh Patel"
+     ],
+     "venue": "",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2020,
+     "type": "peer-review",
+     "title_similarity": 0.301,
+     "listed_author_surnames_found": 0.5,
+     "year_match": true,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref18",
+    "raw": "E. C. M. Costa, S. C. A. Alves, and R. L. A. Ribeiro, Identification of inrush currents in power transformers using wavelet transform and artificial neural networks, J.\\ Control Autom.\\ Electr.\\ Syst., vol. 24, no. 5, pp. 636-645, Oct. 2013.",
+    "authors": "E. C. M. Costa, S. C. A. Alves, and R. L. A. Ribeiro",
+    "title": "Identification of inrush currents in power transformers using wavelet transform and artificial neural networks",
+    "venue": "J.\\ Control Autom.\\ Electr.\\ Syst.",
+    "year": "2013",
+    "vol": "24",
+    "no": "5",
+    "pages": "636-645",
+    "art": "636"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/icpst.2008.4745190",
+    "title": "New Method for Discrimination of Transformers Internal Faults from Magnetizing Inrush Currents Using Wavelet Transform",
+    "authors": [
+     "A. Rahmati",
+     "M. Sanaye-Pasand"
+    ],
+    "venue": "2008 Joint International Conference on Power System Technology and IEEE Power India Conference",
+    "volume": null,
+    "issue": null,
+    "pages": "1-7",
+    "article": null,
+    "year": 2008,
+    "type": "proceedings-article",
+    "title_similarity": 0.465,
+    "listed_author_surnames_found": 0.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/iceice.2011.5777769",
+     "title": "A wavelet transform based discrimination between internal faults and inrush currents in power transformers",
+     "authors": [
+      "Yang Long",
+      "Ning Jingdong"
+     ],
+     "venue": "2011 International Conference on Electric Information and Control Engineering",
+     "volume": null,
+     "issue": null,
+     "pages": "1127-1129",
+     "article": null,
+     "year": 2011,
+     "type": "proceedings-article",
+     "title_similarity": 0.463,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1007/s00202-025-03368-1",
+     "title": "Hybrid wavelet transform and backpropagation neural network technique to distinguish internal faults and inrush currents in power transformers",
+     "authors": [
+      "Wael Abdulhasan Atiyah",
+      "Shahram Karimi",
+      "Mohamad Moradi"
+     ],
+     "venue": "Electrical Engineering",
+     "volume": "108",
+     "issue": "1",
+     "pages": null,
+     "article": "42",
+     "year": 2025,
+     "type": "journal-article",
+     "title_similarity": 0.413,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref19",
+    "raw": "A. Ngaopitakkul and A. Kunakorn, Internal fault classification in power transformers using discrete wavelet transform and back-propagation neural networks, Int.\\ J.\\ Comput.\\ Appl., vol. 28, no. 5, pp. 15-22, 2006.",
+    "authors": "A. Ngaopitakkul and A. Kunakorn",
+    "title": "Internal fault classification in power transformers using discrete wavelet transform and back-propagation neural networks",
+    "venue": "Int.\\ J.\\ Comput.\\ Appl.",
+    "year": "2006",
+    "vol": "28",
+    "no": "5",
+    "pages": "15-22",
+    "art": "15"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1049/cp:20062112",
+    "title": "Detecting winding to ground fault locations in power transformers using back-propagation neural networks",
+    "authors": [
+     "A. Ngaopitakkul",
+     "A. Kunakorn"
+    ],
+    "venue": "7th IET International Conference on Advances in Power System Control, Operation and Management (APSCOM 2006)",
+    "volume": null,
+    "issue": null,
+    "pages": "275-275",
+    "article": null,
+    "year": 2006,
+    "type": "proceedings-article",
+    "title_similarity": 0.693,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1038/s41598-022-24434-9",
+     "title": "Winding-to-ground fault location in power transformer windings using combination of discrete wavelet transform and back-propagation neural network",
+     "authors": [
+      "Pathomthat Chiradeja",
+      "Atthapol Ngaopitakkul"
+     ],
+     "venue": "Scientific Reports",
+     "volume": "12",
+     "issue": "1",
+     "pages": null,
+     "article": "20157",
+     "year": 2022,
+     "type": "journal-article",
+     "title_similarity": 0.809,
+     "listed_author_surnames_found": 0.5,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/icpst.2004.1460005",
+     "title": "Discrete wavelet transform and probabilistic neural networks algorithm for identification of fault locations on transmission systems",
+     "authors": [
+      "A. Ngaopitakkul",
+      "A. Kunakorn",
+      "S. Bunjongjit"
+     ],
+     "venue": "2004 International Conference on Power System Technology, 2004. PowerCon 2004.",
+     "volume": "1",
+     "issue": null,
+     "pages": "270-274",
+     "article": null,
+     "year": null,
+     "type": "proceedings-article",
+     "title_similarity": 0.419,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref20",
+    "raw": "S. Subramanian, M. S. Kalavathi, and C. Sharmeela, Wavelet packet transform and support vector machine based discrimination between magnetizing inrush and internal faults, Math.\\ Probl.\\ Eng., vol. 2010, pp. 1-13, 2010.",
+    "authors": "S. Subramanian, M. S. Kalavathi, and C. Sharmeela",
+    "title": "Wavelet packet transform and support vector machine based discrimination between magnetizing inrush and internal faults",
+    "venue": "Math.\\ Probl.\\ Eng.",
+    "year": "2010",
+    "vol": "2010",
+    "no": "",
+    "pages": "1-13",
+    "art": "1"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.5539/mas.v4n5p67",
+    "title": "Wavelet Packet Transform and Support Vector Machine Based Discrimination of Power Transformer Inrush Current from Internal Fault Currents",
+    "authors": [
+     "Sendilkumar Subramanian",
+     "Badrilal Mathur",
+     "Joseph Henry"
+    ],
+    "venue": "Modern Applied Science",
+    "volume": "4",
+    "issue": "5",
+    "pages": null,
+    "article": null,
+    "year": 2010,
+    "type": "journal-article",
+    "title_similarity": 0.805,
+    "listed_author_surnames_found": 0.33,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/tpwrd.2002.803797",
+     "title": "A wavelet-based technique for discrimination between faults and magnetizing inrush currents in transformers",
+     "authors": [
+      "O.A.S. Youssef"
+     ],
+     "venue": "IEEE Transactions on Power Delivery",
+     "volume": "18",
+     "issue": "1",
+     "pages": "170-176",
+     "article": null,
+     "year": 2003,
+     "type": "journal-article",
+     "title_similarity": 0.558,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/iceice.2011.5777769",
+     "title": "A wavelet transform based discrimination between internal faults and inrush currents in power transformers",
+     "authors": [
+      "Yang Long",
+      "Ning Jingdong"
+     ],
+     "venue": "2011 International Conference on Electric Information and Control Engineering",
+     "volume": null,
+     "issue": null,
+     "pages": "1127-1129",
+     "article": null,
+     "year": 2011,
+     "type": "proceedings-article",
+     "title_similarity": 0.551,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref21",
+    "raw": "H. Dashti and M. Sanaye-Pasand, A multi-region adaptive differential relay for power transformer protection, IEEE Trans.\\ Power Del., vol. 29, no. 5, pp. 2165-2174, 2014.",
+    "authors": "H. Dashti and M. Sanaye-Pasand",
+    "title": "A multi-region adaptive differential relay for power transformer protection",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2014",
+    "vol": "29",
+    "no": "5",
+    "pages": "2165-2174",
+    "art": "2165"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/tpwrd.2013.2280023",
+    "title": "Power Transformer Protection Using a Multiregion Adaptive Differential Relay",
+    "authors": [
+     "Hamed Dashti",
+     "Majid Sanaye-Pasand"
+    ],
+    "venue": "IEEE Transactions on Power Delivery",
+    "volume": "29",
+    "issue": "2",
+    "pages": "777-785",
+    "article": null,
+    "year": 2014,
+    "type": "journal-article",
+    "title_similarity": 0.543,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/upec.2007.4468971",
+     "title": "Current transformer saturation detectors for busbar differential protection",
+     "authors": [
+      "H. Dashti",
+      "M. Sanaye-Pasand",
+      "M. Davarpanah"
+     ],
+     "venue": "2007 42nd International Universities Power Engineering Conference",
+     "volume": null,
+     "issue": null,
+     "pages": "338-343",
+     "article": null,
+     "year": 2007,
+     "type": "proceedings-article",
+     "title_similarity": 0.44,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/naps.2011.6024874",
+     "title": "A novel and fast moving window based technique for transformer differential protection",
+     "authors": [
+      "H. Abniki",
+      "M. Sanaye-Pasand",
+      "H. Dashti",
+      "S. Shishehchi"
+     ],
+     "venue": "2011 North American Power Symposium",
+     "volume": null,
+     "issue": null,
+     "pages": "1-6",
+     "article": null,
+     "year": 2011,
+     "type": "proceedings-article",
+     "title_similarity": 0.435,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref22",
+    "raw": "A. Shahbazi, A. A. Samad, and P. R. Sharma, A self-adaptive biased characteristic curve method for power transformer differential protection, Int.\\ J.\\ Comput.\\ Theory Appl., vol. 11, no. 4, pp. 321-331, 2022.",
+    "authors": "A. Shahbazi, A. A. Samad, and P. R. Sharma",
+    "title": "A self-adaptive biased characteristic curve method for power transformer differential protection",
+    "venue": "Int.\\ J.\\ Comput.\\ Theory Appl.",
+    "year": "2022",
+    "vol": "11",
+    "no": "4",
+    "pages": "321-331",
+    "art": "321"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1002/cta.3476",
+    "title": "Transformer differential protection scheme based on self‐adaptive biased characteristic curve and considering cross‐country faults",
+    "authors": [
+     "Nassim Shahbazi",
+     "Sajad Bagheri",
+     "Gevork B. Gharehpetian"
+    ],
+    "venue": "International Journal of Circuit Theory and Applications",
+    "volume": "51",
+    "issue": "3",
+    "pages": "1110-1131",
+    "article": null,
+    "year": 2022,
+    "type": "journal-article",
+    "title_similarity": 0.442,
+    "listed_author_surnames_found": 0.33,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1080/07313569708955752",
+     "title": "ADAPTIVE DIGITAL DIFFERENTIAL RELAY OF PARABOLIC CHARACTERISTIC FOR TRANSFORMER PROTECTION",
+     "authors": [
+      "R. P. MAHESHWARI",
+      "H. K. VERMA"
+     ],
+     "venue": "Electric Machines &amp; Power Systems",
+     "volume": "25",
+     "issue": "5",
+     "pages": "459-473",
+     "article": null,
+     "year": 1997,
+     "type": "journal-article",
+     "title_similarity": 0.581,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/ciced.2016.7576109",
+     "title": "Study of transformer differential protection based on self-adaptive biased characteristic curve",
+     "authors": [
+      "Shaofeng Huang",
+      "Shanshan Li",
+      "Hongming Yin",
+      "Yuanqing Xiao",
+      "Liang Zhang",
+      "Junlei Zhao"
+     ],
+     "venue": "2016 China International Conference on Electricity Distribution (CICED)",
+     "volume": null,
+     "issue": null,
+     "pages": "1-5",
+     "article": null,
+     "year": 2016,
+     "type": "proceedings-article",
+     "title_similarity": 0.45,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref23",
+    "raw": "Y. Lin, Z. Li, X. Wang, and L. Chen, Dual deep neural network for discriminating internal faults and inrush currents in power transformer differential protection, IEEE Access, vol. 13, pp. 11234-11246, 2025.",
+    "authors": "Y. Lin, Z. Li, X. Wang, and L. Chen",
+    "title": "Dual deep neural network for discriminating internal faults and inrush currents in power transformer differential protection",
+    "venue": "IEEE Access",
+    "year": "2025",
+    "vol": "13",
+    "no": "",
+    "pages": "11234-11246",
+    "art": "11234"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/access.2025.3618747",
+    "title": "A Dual Deep Neural Network Approach for Discriminating Internal Faults and Inrush Currents in Transformers Under CT Saturation",
+    "authors": [
+     "Sopheap Key",
+     "Soupheng Leap",
+     "Seong-Min Yoon",
+     "Heungseok Lee",
+     "Soon-Ryul Nam"
+    ],
+    "venue": "IEEE Access",
+    "volume": "13",
+    "issue": null,
+    "pages": "178492-178504",
+    "article": null,
+    "year": 2025,
+    "type": "journal-article",
+    "title_similarity": 0.832,
+    "listed_author_surnames_found": 0.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1016/j.epsr.2020.107012",
+     "title": "Application of probabilistic distance measures for inrush and internal fault currents discrimination in power transformer differential protection",
+     "authors": [
+      "Mohsen Tajdinian",
+      "Haidar Samet"
+     ],
+     "venue": "Electric Power Systems Research",
+     "volume": "193",
+     "issue": null,
+     "pages": "107012",
+     "article": "107012",
+     "year": 2021,
+     "type": "journal-article",
+     "title_similarity": 0.647,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1016/j.epsr.2010.07.010",
+     "title": "A novel algorithm for discrimination between inrush current and internal faults in power transformer differential protection based on discrete wavelet transform",
+     "authors": [
+      "A.A. Hossam Eldin",
+      "M.A. Refaey"
+     ],
+     "venue": "Electric Power Systems Research",
+     "volume": "81",
+     "issue": "1",
+     "pages": "19-24",
+     "article": null,
+     "year": 2011,
+     "type": "journal-article",
+     "title_similarity": 0.641,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref24",
+    "raw": "M. Oztekin, S. Karagol, and O. Ozgonenel, Power transformer differential protection with wavelet transform and difference function, Eng.\\ Sci.\\ Technol.\\ Int.\\ J., vol. 70, art. 102144, 2025.",
+    "authors": "M. Oztekin, S. Karagol, and O. Ozgonenel",
+    "title": "Power transformer differential protection with wavelet transform and difference function",
+    "venue": "Eng.\\ Sci.\\ Technol.\\ Int.\\ J.",
+    "year": "2025",
+    "vol": "70",
+    "no": "",
+    "pages": "",
+    "art": "102144"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1016/j.jestch.2025.102144",
+    "title": "Transformer differential protection with wavelet transform and difference function",
+    "authors": [
+     "Merve Oztekin",
+     "Serap Karagol",
+     "Okan Ozgonenel"
+    ],
+    "venue": "Engineering Science and Technology, an International Journal",
+    "volume": "70",
+    "issue": null,
+    "pages": "102144",
+    "article": "102144",
+    "year": 2025,
+    "type": "journal-article",
+    "title_similarity": 0.965,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.1016/j.epsr.2014.04.008",
+     "title": "Transformer differential protection using wavelet transform",
+     "authors": [
+      "Okan Ozgonenel",
+      "Serap Karagol"
+     ],
+     "venue": "Electric Power Systems Research",
+     "volume": "114",
+     "issue": null,
+     "pages": "60-67",
+     "article": null,
+     "year": 2014,
+     "type": "journal-article",
+     "title_similarity": 0.748,
+     "listed_author_surnames_found": 0.67,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    },
+    {
+     "doi": "10.21275/v4i12.09111502",
+     "title": "Transformer Differential Protection Using Wavelet Packet Transform",
+     "authors": [],
+     "venue": "International Journal of Science and Research (IJSR)",
+     "volume": "4",
+     "issue": "12",
+     "pages": "907-913",
+     "article": null,
+     "year": 2015,
+     "type": "journal-article",
+     "title_similarity": 0.714,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "MATCH"
+  },
+  {
+   "listed": {
+    "key": "ref25",
+    "raw": "P. Chiradeja, C. Pothisarn, and A. Ngaopitakkul, Identification of inrush current and internal faults in power transformers using probabilistic neural network and discrete wavelet transform, Appl.\\ Sci., vol. 11, no. 22, art. 10619, 2021.",
+    "authors": "P. Chiradeja, C. Pothisarn, and A. Ngaopitakkul",
+    "title": "Identification of inrush current and internal faults in power transformers using probabilistic neural network and discrete wavelet transform",
+    "venue": "Appl.\\ Sci.",
+    "year": "2021",
+    "vol": "11",
+    "no": "22",
+    "pages": "",
+    "art": "10619"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/speedam.2010.5545066",
+    "title": "Inrush current detection based on wavelet transform and Probabilistic Neural Network",
+    "authors": [
+     "G. Mokryani",
+     "P. Siano",
+     "A. Piccolo"
+    ],
+    "venue": "SPEEDAM 2010",
+    "volume": null,
+    "issue": null,
+    "pages": "62-67",
+    "article": null,
+    "year": 2010,
+    "type": "proceedings-article",
+    "title_similarity": 0.571,
+    "listed_author_surnames_found": 0.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.1109/icpst.2008.4745190",
+     "title": "New Method for Discrimination of Transformers Internal Faults from Magnetizing Inrush Currents Using Wavelet Transform",
+     "authors": [
+      "A. Rahmati",
+      "M. Sanaye-Pasand"
+     ],
+     "venue": "2008 Joint International Conference on Power System Technology and IEEE Power India Conference",
+     "volume": null,
+     "issue": null,
+     "pages": "1-7",
+     "article": null,
+     "year": 2008,
+     "type": "proceedings-article",
+     "title_similarity": 0.504,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    },
+    {
+     "doi": "10.1007/s00202-025-03368-1",
+     "title": "Hybrid wavelet transform and backpropagation neural network technique to distinguish internal faults and inrush currents in power transformers",
+     "authors": [
+      "Wael Abdulhasan Atiyah",
+      "Shahram Karimi",
+      "Mohamad Moradi"
+     ],
+     "venue": "Electrical Engineering",
+     "volume": "108",
+     "issue": "1",
+     "pages": null,
+     "article": "42",
+     "year": 2025,
+     "type": "journal-article",
+     "title_similarity": 0.397,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref26",
+    "raw": "H. Noshad, M. Razaz, and S. G. Seifossadat, A new algorithm considering ultra-saturation phenomenon for differential protection of power transformers, Int.\\ J.\\ Electron.\\ Electr.\\ Power, vol. 7, no. 2, pp. 51-61, 2019.",
+    "authors": "H. Noshad, M. Razaz, and S. G. Seifossadat",
+    "title": "A new algorithm considering ultra-saturation phenomenon for differential protection of power transformers",
+    "venue": "Int.\\ J.\\ Electron.\\ Electr.\\ Power",
+    "year": "2019",
+    "vol": "7",
+    "no": "2",
+    "pages": "51-61",
+    "art": "51"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1016/j.epsr.2014.01.001",
+    "title": "A new algorithm based on Clarke's Transform and Discrete Wavelet Transform for the differential protection of three-phase power transformers considering the ultra-saturation phenomenon",
+    "authors": [
+     "Bahram Noshad",
+     "Morteza Razaz",
+     "Seyed Ghodratollah Seifossadat"
+    ],
+    "venue": "Electric Power Systems Research",
+    "volume": "110",
+    "issue": null,
+    "pages": "9-24",
+    "article": null,
+    "year": 2014,
+    "type": "journal-article",
+    "title_similarity": 0.533,
+    "listed_author_surnames_found": 1.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1080/15325008.2013.807895",
+     "title": "A Model for the Ultra-saturation Phenomenon During Energization of an Unloaded Power Transformer and Its Effect on Differential Protection",
+     "authors": [
+      "Bahram Noshad",
+      "Morteza Razaz",
+      "Seyed Ghodratollah Seifossadat"
+     ],
+     "venue": "Electric Power Components and Systems",
+     "volume": "41",
+     "issue": "12",
+     "pages": "1129-1145",
+     "article": null,
+     "year": 2013,
+     "type": "journal-article",
+     "title_similarity": 0.519,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1515/ijeeps-2017-0233",
+     "title": "A New Algorithm for Three-Phase Power Transformer Differential Protection Considering Effect of Ultra-Saturation Phenomenon Based on Discrete Wavelet Transform",
+     "authors": [
+      "Bahram Noshad"
+     ],
+     "venue": "International Journal of Emerging Electric Power Systems",
+     "volume": "20",
+     "issue": "1",
+     "pages": null,
+     "article": "20170233",
+     "year": 2018,
+     "type": "journal-article",
+     "title_similarity": 0.545,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref27",
+    "raw": "Y. Yubo, C. Deshu, X. Zhenyu, and O. P. Malik, Adaptive variable window algorithm for power transformer differential protection, IEEE Trans.\\ Power Del., vol. 20, no. 3, pp. 1790-1798, 2005.",
+    "authors": "Y. Yubo, C. Deshu, X. Zhenyu, and O. P. Malik",
+    "title": "Adaptive variable window algorithm for power transformer differential protection",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2005",
+    "vol": "20",
+    "no": "3",
+    "pages": "1790-1798",
+    "art": "1790"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/tdc.2005.1547155",
+    "title": "An Adaptive Variable Window Algorithm for Transformer Differential Protection Relay",
+    "authors": [
+     "Yuan Yubo",
+     "Lu Yuping",
+     "Xu Yang",
+     "L.L. Lai"
+    ],
+    "venue": "2005 IEEE/PES Transmission &amp;amp; Distribution Conference &amp;amp; Exposition: Asia and Pacific",
+    "volume": null,
+    "issue": null,
+    "pages": "1-6",
+    "article": null,
+    "year": null,
+    "type": "proceedings-article",
+    "title_similarity": 0.908,
+    "listed_author_surnames_found": 0.25,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/tdc.2005.1547163",
+     "title": "An Adaptive Variable Window Algorithm for Transformer Differential Protection Relay",
+     "authors": [
+      "Yuan Yubo",
+      "Lu Yuping",
+      "Xu Yang",
+      "L.L. Lai"
+     ],
+     "venue": "2005 IEEE/PES Transmission &amp;amp; Distribution Conference &amp;amp; Exposition: Asia and Pacific",
+     "volume": null,
+     "issue": null,
+     "pages": "1-5",
+     "article": null,
+     "year": null,
+     "type": "proceedings-article",
+     "title_similarity": 0.908,
+     "listed_author_surnames_found": 0.25,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/drpt.2011.5994027",
+     "title": "A variable data-window phaselet transformer differential protection algorithm based on recursive least square theory",
+     "authors": [
+      "Ye Wang",
+      "Yuping Lu",
+      "Chao Cai"
+     ],
+     "venue": "2011 4th International Conference on Electric Utility Deregulation and Restructuring and Power Technologies (DRPT)",
+     "volume": null,
+     "issue": null,
+     "pages": "930-937",
+     "article": null,
+     "year": 2011,
+     "type": "proceedings-article",
+     "title_similarity": 0.571,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref28",
+    "raw": "T. Hayder, U. Schaerli, K. Feser, and L. Schiel, Universal adaptive differential protection for regulating transformers, IEEE Trans.\\ Power Del., vol. 23, no. 2, pp. 568-575, Apr. 2008.",
+    "authors": "T. Hayder, U. Schaerli, K. Feser, and L. Schiel",
+    "title": "Universal adaptive differential protection for regulating transformers",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2008",
+    "vol": "23",
+    "no": "2",
+    "pages": "568-575",
+    "art": "568"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/tpwrd.2008.916758",
+    "title": "Universal Adaptive Differential Protection for Regulating Transformers",
+    "authors": [
+     "T. Hayder",
+     "U. Schaerli",
+     "K. Feser",
+     "L. Schiel"
+    ],
+    "venue": "IEEE Transactions on Power Delivery",
+    "volume": "23",
+    "issue": "2",
+    "pages": "568-575",
+    "article": null,
+    "year": 2008,
+    "type": "journal-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": true
+   },
+   "others": [
+    {
+     "doi": "10.1109/ptc.2003.1304681",
+     "title": "New algorithms to improve the sensitivity of differential protection of regulating transformers",
+     "authors": [
+      "T. Hayder",
+      "U. Schaerti",
+      "K. Feser",
+      "L. Schiel"
+     ],
+     "venue": "2003 IEEE Bologna Power Tech Conference Proceedings,",
+     "volume": "2",
+     "issue": null,
+     "pages": "992-995",
+     "article": null,
+     "year": null,
+     "type": "proceedings-article",
+     "title_similarity": 0.703,
+     "listed_author_surnames_found": 0.75,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.3403/30337891",
+     "title": "Measuring relays and protection equipment",
+     "authors": [],
+     "venue": "",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": null,
+     "type": "standard",
+     "title_similarity": 0.432,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "MATCH"
+  },
+  {
+   "listed": {
+    "key": "ref29",
+    "raw": "S. B. A. Bukhari, A. Wadood, T. Khurshaid, K. K. Mehmood, S. Rhee, and C. H. Kim, Empirical wavelet transform based intelligent protection scheme for microgrids, Energies, vol. 15, no. 21, art. 7995, 2022.",
+    "authors": "S. B. A. Bukhari, A. Wadood, T. Khurshaid, K. K. Mehmood, S. Rhee, and C. H. Kim",
+    "title": "Empirical wavelet transform based intelligent protection scheme for microgrids",
+    "venue": "Energies",
+    "year": "2022",
+    "vol": "15",
+    "no": "21",
+    "pages": "",
+    "art": "7995"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.3390/en15217995",
+    "title": "Empirical Wavelet Transform-Based Intelligent Protection Scheme for Microgrids",
+    "authors": [
+     "Syed Basit Ali Bukhari",
+     "Abdul Wadood",
+     "Tahir Khurshaid",
+     "Khawaja Khalid Mehmood",
+     "Sang Bong Rhee",
+     "Ki-Chai Kim"
+    ],
+    "venue": "Energies",
+    "volume": "15",
+    "issue": "21",
+    "pages": "7995",
+    "article": null,
+    "year": 2022,
+    "type": "journal-article",
+    "title_similarity": 0.987,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": null
+   },
+   "others": [
+    {
+     "doi": "10.1016/j.epsr.2023.109292",
+     "title": "A novel differential protection scheme for AC microgrids based on discrete wavelet transform",
+     "authors": [
+      "Amir Hossein Nazari Tajani",
+      "Ali Bamshad",
+      "Navid Ghaffarzadeh"
+     ],
+     "venue": "Electric Power Systems Research",
+     "volume": "220",
+     "issue": null,
+     "pages": "109292",
+     "article": "109292",
+     "year": 2023,
+     "type": "journal-article",
+     "title_similarity": 0.529,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    },
+    {
+     "doi": "10.1109/edssc.2015.7285203",
+     "title": "Digital protection scheme for microgrids using wavelet transform",
+     "authors": [
+      "P. Kanakasabapathy",
+      "Meenakshi Mohan"
+     ],
+     "venue": "2015 IEEE International Conference on Electron Devices and Solid-State Circuits (EDSSC)",
+     "volume": null,
+     "issue": null,
+     "pages": "664-667",
+     "article": null,
+     "year": 2015,
+     "type": "proceedings-article",
+     "title_similarity": 0.521,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": null
+    }
+   ],
+   "verdict_auto": "MATCH"
+  },
+  {
+   "listed": {
+    "key": "ref30",
+    "raw": "S. Murugan, S. Simon, K. Venkatesh, and N. K. Sharma, An efficient approach for power transformer differential protection using energy feature tracking, IEEE Trans.\\ Power Del., vol. 32, no. 4, pp. 1850-1859, 2017.",
+    "authors": "S. Murugan, S. Simon, K. Venkatesh, and N. K. Sharma",
+    "title": "An efficient approach for power transformer differential protection using energy feature tracking",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2017",
+    "vol": "32",
+    "no": "4",
+    "pages": "1850-1859",
+    "art": "1850"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/pesgm.2017.8274337",
+    "title": "An empirical fourier transform based power transformer differential protection",
+    "authors": [
+     "Senthilkumar Murugan",
+     "Sishaj P Simon",
+     "Sundareswaran Kinattingal",
+     "Srinivasa Rao Nayak Panugothu",
+     "Narayana Prasad Padhy"
+    ],
+    "venue": "2017 IEEE Power &amp; Energy Society General Meeting",
+    "volume": null,
+    "issue": null,
+    "pages": "1-1",
+    "article": null,
+    "year": 2017,
+    "type": "proceedings-article",
+    "title_similarity": 0.606,
+    "listed_author_surnames_found": 0.5,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/apap.2011.6180428",
+     "title": "Transformer differential protection using calculated power",
+     "authors": [
+      "Wang Liping",
+      "Wang Xiaoru"
+     ],
+     "venue": "2011 International Conference on Advanced Power System Automation and Protection",
+     "volume": null,
+     "issue": null,
+     "pages": "363-367",
+     "article": null,
+     "year": 2011,
+     "type": "proceedings-article",
+     "title_similarity": 0.606,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.17775/cseejpes.2021.02120",
+     "title": "Dynamic differential current-based transformer protection using convolutional neural network",
+     "authors": [],
+     "venue": "CSEE Journal of Power and Energy Systems",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2022,
+     "type": "journal-article",
+     "title_similarity": 0.423,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref31",
+    "raw": "K. Hegazy and M. M. A. Salama, Advanced differential protection scheme for power transformers based on wavelet packet transform, IEEE Trans.\\ Power Del., vol. 35, no. 5, pp. 2345-2356, 2020.",
+    "authors": "K. Hegazy and M. M. A. Salama",
+    "title": "Advanced differential protection scheme for power transformers based on wavelet packet transform",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2020",
+    "vol": "35",
+    "no": "5",
+    "pages": "2345-2356",
+    "art": "2345"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.21275/v4i12.09111502",
+    "title": "Transformer Differential Protection Using Wavelet Packet Transform",
+    "authors": [],
+    "venue": "International Journal of Science and Research (IJSR)",
+    "volume": "4",
+    "issue": "12",
+    "pages": "907-913",
+    "article": null,
+    "year": 2015,
+    "type": "journal-article",
+    "title_similarity": 0.679,
+    "listed_author_surnames_found": 0.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.26634/jdp.4.4.8311",
+     "title": "Wavelet-Packet-Transform Based Differential Protection Of Power Transformer",
+     "authors": [
+      "Suribabu"
+     ],
+     "venue": "i-manager's Journal on Digital Signal Processing",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2016,
+     "type": "journal-article",
+     "title_similarity": 0.585,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.5772/19712",
+     "title": "Application of Discrete Wavelet Transform for Differential Protection of Power Transformers",
+     "authors": [
+      "Mario Orlando",
+      "Arturo Suman"
+     ],
+     "venue": "Discrete Wavelet Transforms - Biomedical Applications",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2011,
+     "type": "book-chapter",
+     "title_similarity": 0.535,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref32",
+    "raw": "B. Kasztenny and E. Rosolowski, Adaptive neural network-based protection of power transformers, Electr.\\ Power Syst.\\ Res., vol. 155, pp. 368-379, 2018.",
+    "authors": "B. Kasztenny and E. Rosolowski",
+    "title": "Adaptive neural network-based protection of power transformers",
+    "venue": "Electr.\\ Power Syst.\\ Res.",
+    "year": "2018",
+    "vol": "155",
+    "no": "",
+    "pages": "368-379",
+    "art": "368"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/tdc.1999.756100",
+    "title": "Multi-objective optimization of a neural network based differential relay for power transformers",
+    "authors": [
+     "B. Kasztenny",
+     "E. Rosolowski",
+     "M. Lukowicz"
+    ],
+    "venue": "1999 IEEE Transmission and Distribution Conference (Cat. No. 99CH36333)",
+    "volume": null,
+    "issue": null,
+    "pages": "476-481 vol.2",
+    "article": null,
+    "year": 1999,
+    "type": "proceedings-article",
+    "title_similarity": 0.62,
+    "listed_author_surnames_found": 1.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/tpwrd.2025.3622473",
+     "title": "Differential Protection of Dual-Core Phase-Shifting Transformers",
+     "authors": [
+      "Bogdan Kasztenny",
+      "Eugeniusz Rosolowski"
+     ],
+     "venue": "IEEE Transactions on Power Delivery",
+     "volume": "40",
+     "issue": "6",
+     "pages": "3650-3659",
+     "article": null,
+     "year": 2025,
+     "type": "journal-article",
+     "title_similarity": 0.556,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/tpwrd.2007.909217",
+     "title": "Modeling and Protection of Hexagonal Phase-Shifting Transformers—Part II: Protection",
+     "authors": [
+      "B. Kasztenny",
+      "E. Rosolowski"
+     ],
+     "venue": "IEEE Transactions on Power Delivery",
+     "volume": "23",
+     "issue": "3",
+     "pages": "1351-1358",
+     "article": null,
+     "year": 2008,
+     "type": "journal-article",
+     "title_similarity": 0.438,
+     "listed_author_surnames_found": 1.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref33",
+    "raw": "Z. Gajic, I. Brncic, and R. Gojko, Differential protection of power transformers using ICT and smart processing, Int.\\ J.\\ Electr.\\ Power Energy Syst., vol. 110, pp. 582-592, 2019.",
+    "authors": "Z. Gajic, I. Brncic, and R. Gojko",
+    "title": "Differential protection of power transformers using ICT and smart processing",
+    "venue": "Int.\\ J.\\ Electr.\\ Power Energy Syst.",
+    "year": "2019",
+    "vol": "110",
+    "no": "",
+    "pages": "582-592",
+    "art": "582"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1049/cp.2014.0005",
+    "title": "Differential Protection for Converter Transformers",
+    "authors": [
+     "Z. Gajic"
+    ],
+    "venue": "12th IET International Conference on Developments in Power System Protection (DPSP 2014)",
+    "volume": null,
+    "issue": null,
+    "pages": "1.5-1.5",
+    "article": null,
+    "year": 2014,
+    "type": "proceedings-article",
+    "title_similarity": 0.651,
+    "listed_author_surnames_found": 0.33,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/tpwrd.2007.905561",
+     "title": "Differential Protection for Special Industrial Transformers",
+     "authors": [
+      "Zoran Gajic"
+     ],
+     "venue": "IEEE Transactions on Power Delivery",
+     "volume": "22",
+     "issue": "4",
+     "pages": "2126-2131",
+     "article": null,
+     "year": 2007,
+     "type": "journal-article",
+     "title_similarity": 0.593,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1049/cp:20080009",
+     "title": "Differential protection methodology for arbitrary three-phase power transformers",
+     "authors": [
+      "Z. Gajic"
+     ],
+     "venue": "IET 9th International Conference on Developments in Power Systems Protection (DPSP 2008)",
+     "volume": "2008",
+     "issue": null,
+     "pages": "44-49",
+     "article": null,
+     "year": 2008,
+     "type": "proceedings-article",
+     "title_similarity": 0.577,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref34",
+    "raw": "D. R. Oliveira, A. S. Bretas, and L. U. Iurinic, Transformers differential protection using independent component analysis, IEEE Trans.\\ Power Del., vol. 34, no. 2, pp. 738-747, 2019.",
+    "authors": "D. R. Oliveira, A. S. Bretas, and L. U. Iurinic",
+    "title": "Transformers differential protection using independent component analysis",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2019",
+    "vol": "34",
+    "no": "2",
+    "pages": "738-747",
+    "art": "738"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/ptc.2009.5282195",
+    "title": "Application of Discrete Wavelet Transform for differential protection of power transformers",
+    "authors": [
+     "M. O. Oliveira",
+     "A. S. Bretas"
+    ],
+    "venue": "2009 IEEE Bucharest PowerTech",
+    "volume": null,
+    "issue": null,
+    "pages": "1-8",
+    "article": null,
+    "year": 2009,
+    "type": "proceedings-article",
+    "title_similarity": 0.537,
+    "listed_author_surnames_found": 0.67,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/tdc-la.2008.4641818",
+     "title": "Differential protection of three-phase transformers using Wavelet Transforms",
+     "authors": [
+      "M. O. Oliveira",
+      "R. H. Salim",
+      "A. S. Bretas"
+     ],
+     "venue": "2008 IEEE/PES Transmission and Distribution Conference and Exposition: Latin America",
+     "volume": null,
+     "issue": null,
+     "pages": "1-6",
+     "article": null,
+     "year": 2008,
+     "type": "proceedings-article",
+     "title_similarity": 0.523,
+     "listed_author_surnames_found": 0.67,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.26512/2025.03.d.53040",
+     "title": "HVDC converter transformers protection - differential function assessment",
+     "authors": [
+      "Glaufe Santos de Oliveira"
+     ],
+     "venue": "",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": null,
+     "type": "dissertation",
+     "title_similarity": 0.507,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref35",
+    "raw": "A. Hooshyar, M. Sanaye-Pasand, and M. Davarpanah, GARCH differential current modeling for power transformer protection, IEEE Trans.\\ Power Del., vol. 31, no. 2, pp. 642-652, Apr. 2016.",
+    "authors": "A. Hooshyar, M. Sanaye-Pasand, and M. Davarpanah",
+    "title": "GARCH differential current modeling for power transformer protection",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2016",
+    "vol": "31",
+    "no": "2",
+    "pages": "642-652",
+    "art": "642"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/ptc.2009.5282013",
+    "title": "Current differential relay with a power-current spectrum blocking for transformer protection",
+    "authors": [
+     "Hatem A. Darwish",
+     "Matti Lehtonen"
+    ],
+    "venue": "2009 IEEE Bucharest PowerTech",
+    "volume": null,
+    "issue": null,
+    "pages": "1-7",
+    "article": null,
+    "year": 2009,
+    "type": "proceedings-article",
+    "title_similarity": 0.688,
+    "listed_author_surnames_found": 0.0,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1049/cp:20040086",
+     "title": "Design and evaluation of a current differential relay for transformer protection",
+     "authors": [
+      "E.S. Jin"
+     ],
+     "venue": "Eighth IEE International Conference on Developments in Power System Protection",
+     "volume": "2004",
+     "issue": null,
+     "pages": "152-155",
+     "article": null,
+     "year": 2004,
+     "type": "proceedings-article",
+     "title_similarity": 0.635,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/pesgm.2018.8586618",
+     "title": "A Wavelet-Based Transformer Differential Protection With Differential Current Transformer Saturation and Cross-Country Fault Detection",
+     "authors": [
+      "Flavio Costa",
+      "Rodrigo Prado"
+     ],
+     "venue": "2018 IEEE Power &amp; Energy Society General Meeting (PESGM)",
+     "volume": null,
+     "issue": null,
+     "pages": "1-1",
+     "article": null,
+     "year": 2018,
+     "type": "proceedings-article",
+     "title_similarity": 0.465,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref36",
+    "raw": "Y. C. Kang, B. E. Lee, and S. H. Kang, A CT saturation detection algorithm using the secondary current third-derivative function, IEEE Trans.\\ Power Del., vol. 26, no. 4, pp. 2863-2871, 2011.",
+    "authors": "Y. C. Kang, B. E. Lee, and S. H. Kang",
+    "title": "A CT saturation detection algorithm using the secondary current third-derivative function",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2011",
+    "vol": "26",
+    "no": "4",
+    "pages": "2863-2871",
+    "art": "2863"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/ptc.2003.1304742",
+    "title": "An algorithm for detecting CT saturation using the secondary current third-difference function",
+    "authors": [
+     "Yong-Cheol Kang",
+     "Sang-Hee Kang",
+     "P. Crossley"
+    ],
+    "venue": "2003 IEEE Bologna Power Tech Conference Proceedings,",
+    "volume": "4",
+    "issue": null,
+    "pages": "318-323",
+    "article": null,
+    "year": null,
+    "type": "proceedings-article",
+    "title_similarity": 0.689,
+    "listed_author_surnames_found": 0.5,
+    "year_match": false,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.2316/p.2017.853-024",
+     "title": "A CT Saturation Detection Algorithm Based on the Analysis of the Saturated Current Using Wavelet Transformation",
+     "authors": [
+      "Min-Soo Kim",
+      "Sang-Hee Kang"
+     ],
+     "venue": "Modelling, Simulation and Identification / 854: Intelligent Systems and Control",
+     "volume": null,
+     "issue": null,
+     "pages": null,
+     "article": null,
+     "year": 2017,
+     "type": "proceedings-article",
+     "title_similarity": 0.65,
+     "listed_author_surnames_found": 0.5,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/pes.2003.1267123",
+     "title": "A CT saturation detection algorithm",
+     "authors": [
+      "Y.C. Kang",
+      "S.H. Ok",
+      "S.H. Kang"
+     ],
+     "venue": "2003 IEEE Power Engineering Society General Meeting (IEEE Cat. No.03CH37491)",
+     "volume": null,
+     "issue": null,
+     "pages": "33-33",
+     "article": null,
+     "year": null,
+     "type": "proceedings-article",
+     "title_similarity": 0.565,
+     "listed_author_surnames_found": 0.5,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  },
+  {
+   "listed": {
+    "key": "ref37",
+    "raw": "X. Lin, P. Liu, and O. P. Malik, Studies for identification of the inrush based on improved correlation algorithm, IEEE Trans.\\ Power Del., vol. 17, no. 4, pp. 901-907, 2002.",
+    "authors": "X. Lin, P. Liu, and O. P. Malik",
+    "title": "Studies for identification of the inrush based on improved correlation algorithm",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2002",
+    "vol": "17",
+    "no": "4",
+    "pages": "901-907",
+    "art": "901"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/tpwrd.2002.803730",
+    "title": "Studies for identification of the inrush based on improved correlation algorithm",
+    "authors": [
+     "Xiang-ning Lin",
+     "Pei Liu",
+     "O.P. Malik"
+    ],
+    "venue": "IEEE Transactions on Power Delivery",
+    "volume": "17",
+    "issue": "4",
+    "pages": "901-907",
+    "article": null,
+    "year": 2002,
+    "type": "journal-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": true
+   },
+   "others": [
+    {
+     "doi": "10.1109/mper.2002.4312416",
+     "title": "Studies for Identification of Inrush Based on Improved Correlation Algorithm",
+     "authors": [
+      "X. Lin",
+      "P. Liu",
+      "O. P. Malik"
+     ],
+     "venue": "IEEE Power Engineering Review",
+     "volume": "22",
+     "issue": "7",
+     "pages": "60-60",
+     "article": null,
+     "year": 2002,
+     "type": "journal-article",
+     "title_similarity": 0.974,
+     "listed_author_surnames_found": 1.0,
+     "year_match": true,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.6036/9454",
+     "title": "A NEW IDENTIFICATION METHOD OF THE TRANSFORMER INRUSH CURRENT BASED ON IMPROVED HILBERT-HUANG TRANSFORM ALGORITHM",
+     "authors": [
+      "NA WU",
+      "SHUXIAN FAN",
+      "LIN LIU",
+      "YAN GAO",
+      "AYING WEI"
+     ],
+     "venue": "DYNA",
+     "volume": "95",
+     "issue": "1",
+     "pages": "305-312",
+     "article": null,
+     "year": 2020,
+     "type": "journal-article",
+     "title_similarity": 0.632,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "MATCH"
+  },
+  {
+   "listed": {
+    "key": "ref38",
+    "raw": "R. P. Medeiros, F. B. Costa, and K. M. Silva, Power transformer differential protection using the boundary discrete wavelet transform, IEEE Trans.\\ Power Del., vol. 31, no. 5, pp. 2083-2095, Oct. 2016.",
+    "authors": "R. P. Medeiros, F. B. Costa, and K. M. Silva",
+    "title": "Power transformer differential protection using the boundary discrete wavelet transform",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2016",
+    "vol": "31",
+    "no": "5",
+    "pages": "2083-2095",
+    "art": "2083"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/tpwrd.2015.2513778",
+    "title": "Power Transformer Differential Protection Using the Boundary Discrete Wavelet Transform",
+    "authors": [
+     "R. P. Medeiros",
+     "F. B. Costa",
+     "K. M. Silva"
+    ],
+    "venue": "IEEE Transactions on Power Delivery",
+    "volume": "31",
+    "issue": "5",
+    "pages": "2083-2095",
+    "article": null,
+    "year": 2016,
+    "type": "journal-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": true,
+    "pages_match": true
+   },
+   "others": [
+    {
+     "doi": "10.21275/v4i12.09111502",
+     "title": "Transformer Differential Protection Using Wavelet Packet Transform",
+     "authors": [],
+     "venue": "International Journal of Science and Research (IJSR)",
+     "volume": "4",
+     "issue": "12",
+     "pages": "907-913",
+     "article": null,
+     "year": 2015,
+     "type": "journal-article",
+     "title_similarity": 0.771,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1049/cp:20010180",
+     "title": "A new technique for power transformer protection using discrete dyadic wavelet transform",
+     "authors": [
+      "Zhonghao Yang"
+     ],
+     "venue": "7th International Conference on Developments in Power Systems Protection (DPSP 2001)",
+     "volume": "2001",
+     "issue": null,
+     "pages": "383-386",
+     "article": null,
+     "year": 2001,
+     "type": "proceedings-article",
+     "title_similarity": 0.697,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "MATCH"
+  },
+  {
+   "listed": {
+    "key": "ref39",
+    "raw": "R. P. Medeiros, F. B. Costa, K. M. Silva, J. J. Chavez, J. R. Lima Junior, and M. Popov, A Clarke-wavelet-based time-domain power transformer differential protection, IEEE Trans.\\ Power Del., vol. 37, no. 1, pp. 317-328, Feb. 2022.",
+    "authors": "R. P. Medeiros, F. B. Costa, K. M. Silva, J. J. Chavez, J. R. Lima Junior, and M. Popov",
+    "title": "A Clarke-wavelet-based time-domain power transformer differential protection",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2022",
+    "vol": "37",
+    "no": "1",
+    "pages": "317-328",
+    "art": "317"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/pesgm48719.2022.9916863",
+    "title": "A Clarke-Wavelet-Based Time-Domain Power Transformer Differential Protection",
+    "authors": [
+     "Rodrigo Medeiros",
+     "Flavio Costa",
+     "Kleber Silva",
+     "Jose Chavez",
+     "Jose Lima Junior",
+     "Marjan Popov"
+    ],
+    "venue": "2022 IEEE Power &amp; Energy Society General Meeting (PESGM)",
+    "volume": null,
+    "issue": null,
+    "pages": "1-1",
+    "article": null,
+    "year": 2022,
+    "type": "proceedings-article",
+    "title_similarity": 1.0,
+    "listed_author_surnames_found": 1.0,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/tpwrd.2021.3059732",
+     "title": "A Clarke-Wavelet-Based Time-Domain Power Transformer Differential Protection",
+     "authors": [
+      "Rodrigo Prado Medeiros",
+      "Flavio Bezerra Costa",
+      "Kleber Melo Silva",
+      "Jose de Jesus Chavez Muro",
+      "Jose Raimundo Lima Júnior",
+      "Marjan Popov"
+     ],
+     "venue": "IEEE Transactions on Power Delivery",
+     "volume": "37",
+     "issue": "1",
+     "pages": "317-328",
+     "article": null,
+     "year": 2022,
+     "type": "journal-article",
+     "title_similarity": 1.0,
+     "listed_author_surnames_found": 0.67,
+     "year_match": true,
+     "volume_match": true,
+     "pages_match": true
+    },
+    {
+     "doi": "10.1016/j.epsr.2025.111622",
+     "title": "Wavelet-based time-domain double-fed induction generator differential protection",
+     "authors": [
+      "R.P. Medeiros",
+      "L.S. Barros",
+      "F.B. Costa",
+      "F.E.V. Taveiros"
+     ],
+     "venue": "Electric Power Systems Research",
+     "volume": "245",
+     "issue": null,
+     "pages": "111622",
+     "article": "111622",
+     "year": 2025,
+     "type": "journal-article",
+     "title_similarity": 0.718,
+     "listed_author_surnames_found": 0.33,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "PARTIAL"
+  },
+  {
+   "listed": {
+    "key": "ref40",
+    "raw": "Y. Wang, X. Yin, H. Zhang, and D. Chen, Variable data-window Phaselet algorithm based transformer differential protection, IEEE Trans.\\ Power Del., vol. 26, no. 4, pp. 2648-2656, Oct. 2011.",
+    "authors": "Y. Wang, X. Yin, H. Zhang, and D. Chen",
+    "title": "Variable data-window Phaselet algorithm based transformer differential protection",
+    "venue": "IEEE Trans.\\ Power Del.",
+    "year": "2011",
+    "vol": "26",
+    "no": "4",
+    "pages": "2648-2656",
+    "art": "2648"
+   },
+   "pdf_first_page": null,
+   "best": {
+    "doi": "10.1109/drpt.2011.5994027",
+    "title": "A variable data-window phaselet transformer differential protection algorithm based on recursive least square theory",
+    "authors": [
+     "Ye Wang",
+     "Yuping Lu",
+     "Chao Cai"
+    ],
+    "venue": "2011 4th International Conference on Electric Utility Deregulation and Restructuring and Power Technologies (DRPT)",
+    "volume": null,
+    "issue": null,
+    "pages": "930-937",
+    "article": null,
+    "year": 2011,
+    "type": "proceedings-article",
+    "title_similarity": 0.66,
+    "listed_author_surnames_found": 0.25,
+    "year_match": true,
+    "volume_match": false,
+    "pages_match": false
+   },
+   "others": [
+    {
+     "doi": "10.1109/tdc.2005.1547163",
+     "title": "An Adaptive Variable Window Algorithm for Transformer Differential Protection Relay",
+     "authors": [
+      "Yuan Yubo",
+      "Lu Yuping",
+      "Xu Yang",
+      "L.L. Lai"
+     ],
+     "venue": "2005 IEEE/PES Transmission &amp;amp; Distribution Conference &amp;amp; Exposition: Asia and Pacific",
+     "volume": null,
+     "issue": null,
+     "pages": "1-5",
+     "article": null,
+     "year": null,
+     "type": "proceedings-article",
+     "title_similarity": 0.756,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    },
+    {
+     "doi": "10.1109/tdc.2005.1547155",
+     "title": "An Adaptive Variable Window Algorithm for Transformer Differential Protection Relay",
+     "authors": [
+      "Yuan Yubo",
+      "Lu Yuping",
+      "Xu Yang",
+      "L.L. Lai"
+     ],
+     "venue": "2005 IEEE/PES Transmission &amp;amp; Distribution Conference &amp;amp; Exposition: Asia and Pacific",
+     "volume": null,
+     "issue": null,
+     "pages": "1-6",
+     "article": null,
+     "year": null,
+     "type": "proceedings-article",
+     "title_similarity": 0.756,
+     "listed_author_surnames_found": 0.0,
+     "year_match": false,
+     "volume_match": false,
+     "pages_match": false
+    }
+   ],
+   "verdict_auto": "NOT_FOUND"
+  }
+ ]
+}
