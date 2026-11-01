@@ -32,7 +32,7 @@ A percentage-differential element detects abnormal conditions; a CNN fed with th
 | Item | Fill |
 |---|---|
 | Handling of the three phases | the three phases are three input channels (7 x 8 x 3); the normalising maximum is taken over the three phases of the half cycle, so that the relative amplitude between phases is kept (a per-phase maximum would blow up the noise of a healthy phase). Recorded as an assumption. |
-| CT-saturation compensation (two LS filters of Hajipour et al. 2015) | **not in the project's PDFs; the filter equations are not available to me.** Decision: the CNN is evaluated first without the compensation filter (deviation D-1); if the paper is obtained, the filter is implemented from it and the CNN re-evaluated. The results table must carry the footnote. |
+| CT-saturation compensation (two LS filters of Hajipour et al. 2015) | **Amended 2026-11-01:** the paper (Hajipour et al. 2015) was supplied by the user and is implemented as `hajipour2015_ct_comp.py` from `hajipour2015_ct_comp_spec.md`; it is the first stage of the CNN (4 kHz, nominal burden as relay setting, then resampled to 5.6 kHz). The CNN is also reported without it (ablation). See that spec's section 6 for how well the filter works on our CT-stress traces. |
 | Percentage-differential trigger | our 87T characteristic (pickup 0.30 pu, slopes 0.25 and 0.60, breakpoint 3 pu) is the abnormality detector, as in the paper's flow (Fig. 1) where an abnormality check precedes the CNN. |
 | Window position | training windows: the half cycle that starts at the first pickup of the percentage element for each event (for faults, inrush, over-excitation, external faults); windows of healthy traces: random half cycles. Test: from the first pickup the CNN is evaluated every 1/8 cycle (7 samples at 5.6 kHz) on the latest half cycle while the element stays picked up, up to two cycles; the first window with Y = 1 issues the trip. The earliest decision is therefore half a cycle after the pickup. |
 | Product quantisation | implementation is possible but only affects speed, not accuracy, per the paper's own aim; first version: the uncompressed CNN of Fig. 1, with the compression factor (parameter count with 16 subcodewords) computed analytically; PQ implementation is a second step if time allows. |
@@ -47,7 +47,7 @@ A percentage-differential element detects abnormal conditions; a CNN fed with th
 | PSCAD 230 kV network with four transformers | plants A and B (Simulink) | retrained |
 | Random 70/30 split | trace-grouped 5-fold CV x 3 seeds | leak-free |
 | Fault type outputs | binary trip output | |
-| CT compensation filter | not implemented (D-1) | the method is evaluated without its stated first stage; saturation cases are expected to be harder |
+| CT compensation filter | implemented from Hajipour et al. (D-1 amended); the compensation is nearly inactive on our CT-stress traces (hajipour2015_ct_comp_spec.md section 6) | reported with and without |
 | Product-quantised layers | uncompressed layers | affects speed/memory only |
 
 ## 6. Label mapping

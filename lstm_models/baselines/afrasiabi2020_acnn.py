@@ -1,6 +1,7 @@
 """Afrasiabi et al. 2020, IEEE TII 16(2):865-876 - CNN on the normalised half-cycle differential currents (network of Fig. 1), triggered by a
 percentage-differential element. Implemented from documents/baselines/afrasiabi2020_acnn_spec.md. Not implemented (and said so in the spec):
-the least-squares CT-saturation compensation of Hajipour et al. 2015 and the product quantisation of the layers (affects speed only).
+the product quantisation of the layers (affects speed only). The CT-saturation compensation of Hajipour et al. 2015 is
+implemented (hajipour2015_ct_comp.py, spec hajipour2015_ct_comp_spec.md) and is the first stage (`compensate=True`); `compensate=False` is the ablation.
 
 Data path: 20 kHz CT secondaries -> 5,600 Hz (112 samples per cycle at 50 Hz) -> plant compensation -> differential d = lv - hv (per unit).
 Input of the CNN: 56 samples (half cycle) of the three phases, normalised by the maximum absolute value of the window (Eq. 2), arranged as 3 x 7 x 8.
@@ -42,8 +43,14 @@ def window(d: np.ndarray, end: int) -> np.ndarray:
     return w / max(float(np.abs(w).max()), 1e-9)
 
 
-def prepare(tr: dict, plant: str = "A") -> dict:
-    hv, lv = C.plant_pu(tr["Ip"], tr["Is"], plant)
+def prepare(tr: dict, plant: str = "A", compensate: bool = True) -> dict:
+    ip, is_ = tr["Ip"].astype(np.float64), tr["Is"].astype(np.float64)
+    if compensate:      # Hajipour et al.: at 4 kHz (80 samples/cycle) with the NOMINAL burden, then on to the CNN rate
+        from . import hajipour2015_ct_comp as H
+        cp = H.ct_params(plant, 1.0)
+        ip, is_ = (C.resample(H.compensate(C.resample(a, H.FS_COMP), H.FS_COMP, cp), C.FS_HR, H.FS_COMP) for a in (ip, is_))
+        n = min(len(ip), len(tr["Ip"])); ip, is_ = ip[:n], is_[:n]
+    hv, lv = C.plant_pu(ip, is_, plant)
     hv, lv = C.resample(hv, FS), C.resample(lv, FS)
     return {"d": (lv - hv).astype(np.float32), "picked": percentage_pickup(hv, lv)}
 
@@ -112,13 +119,14 @@ class AcnnMethod:
     traces (validation AUC); 25 epochs at most, early stopping (patience 5), batch 256, Adam, positive-class weight."""
     LR_GRID = (3e-4, 1e-3, 3e-3)
 
-    def __init__(self, plant: str = "A", max_epochs: int = 25, patience: int = 5, threshold: float = 0.5):
+    def __init__(self, plant: str = "A", max_epochs: int = 25, patience: int = 5, threshold: float = 0.5, compensate: bool = True):
+        self.compensate = compensate
         self.plant, self.max_epochs, self.patience, self.threshold = plant, max_epochs, patience, threshold
         self.model: ACNN | None = None
         self.epochs_used: dict[float, int] = {}
 
     def prepare(self, tr: dict) -> dict:
-        return prepare(tr, self.plant)
+        return prepare(tr, self.plant, self.compensate)
 
     def _fit_one(self, Xtr, ytr, Xva, yva, lr, seed):
         torch.manual_seed(seed)

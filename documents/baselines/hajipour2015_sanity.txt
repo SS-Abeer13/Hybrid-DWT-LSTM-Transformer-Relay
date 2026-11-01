@@ -1,0 +1,7 @@
+Hajipour et al. 2015 CT compensation, plant A, 40 CT-stress external-fault traces, 4 kHz (80 samples/cycle), DOCC off
+transient error (Eq. 14, max over the first 5 cycles after the event, worst phase), % ; burden scale = multiple of the nominal burden
+burden scale: median 3.52, range 2.02-5.75
+no compensation                          median    7.88  p90   71.72  max   86.34
+compensation, nominal burden assumed     median    7.88  p90   66.99  max   86.34
+compensation, true burden (oracle)       median    7.88  p90   66.99  max   86.34
+paper (PSCAD, Jiles-Atherton CT): below 1.4 / 3.21 / 1.67 % in the worst case
