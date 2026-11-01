@@ -1,0 +1,33 @@
+Simoes et al. detector (adaptive threshold = factor x mean of the previous two cycles), 15 traces per scenario, plant A, 12.8 kHz, armed from 0.12 s
+per scenario and factor: mean firings per trace | mean firings that match no known event | fraction of traces with at least one matched firing
+
+External_ABC
+   factor     3:   1497.8 |   1431.1 | 1.00
+   factor    10:     30.5 |     16.9 | 1.00
+   factor    30:      9.7 |      3.1 | 1.00
+   factor   100:      5.1 |      2.0 | 1.00
+Inrush_NoLoad
+   factor     3:   1113.8 |   1078.7 | 1.00
+   factor    10:     79.1 |     61.7 | 0.93
+   factor    30:      8.8 |      2.2 | 0.93
+   factor   100:      3.9 |      0.0 | 0.93
+Internal_AB
+   factor     3:    978.4 |    935.7 | 1.00
+   factor    10:     12.0 |      1.7 | 1.00
+   factor    30:      4.7 |      0.5 | 1.00
+   factor   100:      2.8 |      0.2 | 0.80
+Internal_HiZ_AB
+   factor     3:   1376.1 |   1334.5 | 1.00
+   factor    10:      6.9 |      1.8 | 0.93
+   factor    30:      2.9 |      0.8 | 0.80
+   factor   100:      1.6 |      0.5 | 0.60
+Normal
+   factor     3:   1494.3 |   1494.3 | 0.00
+   factor    10:      2.0 |      2.0 | 0.00
+   factor    30:      0.8 |      0.8 | 0.00
+   factor   100:      0.6 |      0.6 | 0.00
+Overexcitation
+   factor     3:   1591.0 |   1591.0 | 0.00
+   factor    10:     85.8 |     85.8 | 0.00
+   factor    30:      1.0 |      1.0 | 0.00
+   factor   100:      0.9 |      0.9 | 0.00
