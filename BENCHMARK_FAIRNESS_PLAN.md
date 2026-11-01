@@ -204,3 +204,216 @@ R0 (≈ 0.5 day) → D1–D3 (≈ 1 day, mostly unattended re-simulation) → sp
 - Specs are written and committed **before** implementation and before seeing any result of that method.
 - No method is tuned on test folds or OOD. No method gets less training budget than the proposed model.
 - If a reproduction beats the proposed model on any metric, it is reported as such.
+
+---
+
+# Status and next steps — 2026-11-01 23:20, with hypotheses and pre-set decisions
+
+## How to use this section
+- Every step has three parts:
+  - **Hypothesis**: what we expect and why, based on what is already measured.
+  - **Test**: what is measured and from which file.
+  - **Decision rules**: what we do for each possible outcome.
+- Hypotheses and rules are fixed **now, before** the step runs. Commit this file first.
+- After each step, log in `IMPLEMENTATION_PLAN.md`: "H… confirmed / rejected", the numbers (from saved files) and **which decision rule fired**.
+- If an outcome fits no rule, or you want to act against a rule: **stop**, write the reason in the log first, and ask the author.
+- A rejected hypothesis is a result, not a failure. Never re-run with changed settings to make a hypothesis come true.
+
+## Done and verified (status at 23:20)
+- **R0:** 10 references verified, 21 corrected, **9 not found** (still in `main.tex`).
+- **D1:** done.
+- **D2:** 20 kHz re-simulation done 13:08. 30 of 3,332 plant-A traces failed (`hr_missing_traces.txt`); plant B 12 and OOD 3 failed, no manifest yet.
+- **D3:** 429/432 = 99.3 % identical decisions.
+- **Specs** for all six papers.
+- **Modules:** Simões, Afrasiabi (+ Hajipour), Key; harness `common.py` / `cv.py`.
+- **Not yet:** no reproduction evaluated; Part 1 (B1–B5) not started.
+
+---
+
+## N1. Close the data loose ends (≈ 1 h)
+
+### N1a. Missing-trace manifests and the common trace set
+- [ ] Write manifests for plant B (12) and OOD (3), like `hr_missing_traces.txt`.
+- **Hypothesis H1a:** the failed re-simulations are scattered over scenarios. No scenario group loses more than 5 % of its traces, so using only traces present in both sets does not bias any category. The plant-A list so far shows mixed groups (Normal, inrush, over-excitation, SOTF, external).
+- **Test:** count failures per scenario group, per data set.
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| every group loses ≤ 5 % | use the intersection ("common set") for all methods; list the excluded traces in the paper's appendix |
+| a group loses > 5 %, or failures share one cause (same scenario kind, same parameter range) | re-run those traces once (smaller solver step or a single-trace launch); if they still fail, keep them excluded and **report the group's reduced n** next to its results |
+| plant B or OOD loses a whole category | stop and report to the author before N4 |
+
+### N1b. Re-score the proposed relay and the 87T baselines on the common set
+- [ ] From the saved predictions (no retraining): proposed hybrid, LSTM alone, unrestrained 87T and harmonic 87T on the common set → `runs/<date>_v5_common_set/`.
+- **Hypothesis H1b:** removing 30 of 3,332 traces (0.9 %) changes dependability and security by **< 0.3 pt**.
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| all changes ≤ 0.5 pt | comparison tables use common-set numbers; the headline stays the full-set number, with a footnote |
+| any change > 0.5 pt | use common-set numbers everywhere, and log which excluded traces cause the difference (they matter, so N1a's retry becomes mandatory) |
+
+### N1c. powergui frequency check (60 Hz setting, 50 Hz system)
+- [ ] One trace each of Normal 100 % load, external 3-phase fault and inrush: run with powergui Frequency 60 Hz (as now) and 50 Hz. Compare the CT-secondary currents and the proposed relay's decision → `simulations/powergui_freq_check.txt`.
+- **Hypothesis H1c:** the effect is negligible (< 0.1 % RMS difference, identical decisions). In discrete simulation this parameter only affects initial-state and phasor tools.
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| RMS difference < 0.5 % and identical decisions | keep all data; one sentence in Limitations |
+| 0.5–2 %, or any decision differs | set 50 Hz in the v5 models for all **new** simulations; run 100 traces (stratified) with 50 Hz and compare decisions; if ≥ 99 % identical, keep the existing data and report the check; otherwise go to the next row |
+| > 2 %, or < 99 % identical decisions on the 100 traces | **stop**: the author decides whether to regenerate v5 (≈ 1 day compute + all evaluations) |
+
+---
+
+## N2. Simões detector setting, chosen by a rule (≈ 1 h)
+- [ ] Grid of detector factors {5, 10, 15, 20, 30, 50, 100}, evaluated **per fold on validation traces only**.
+- **Pre-set selection rule:** choose the **smallest** factor that gives ≤ 1 spurious firing per trace on validation Normal and over-excitation traces **and** ≥ 95 % event detection on validation fault, inrush and external traces.
+- **Hypothesis H2:** no factor meets both criteria. `simoes_detector_check.txt` (15 traces/scenario) shows that at factor 30 Normal has 0.8 spurious firings, but Internal HiZ is detected in only 80 % of traces; at 10, HiZ is 93 %, but inrush has 62 spurious firings. HiZ detection will be the limiting part.
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| a factor meets both criteria | use it (per fold) |
+| no factor meets both | use the smallest factor meeting the **spurious-firing** criterion (the paper's detector is a security device). Report its detection rate per group. Undetected events count as **no trip** in native mode (missed faults). Record it in the spec amendment |
+| even factor 100 gives > 1 spurious firing per Normal trace | report the method as "detector not usable at our noise level"; still evaluate with factor 100 and flag the row ⚠ |
+
+In every case, report the paper's factor 3 as unusable here, citing `simoes_detector_check.txt` (≈ 1,500 firings per trace).
+
+---
+
+## N3. The three remaining modules (≈ 2–3 days)
+**Common rule for all modules:**
+- Before evaluation, each module must pass its **sanity check** (one qualitative behaviour from its paper, saved as `<name>_sanity.png/.txt`) **and** reach ≥ 80 % training accuracy on fold 1.
+- If either fails, check the implementation against the spec checklist. **At most two debug rounds**, each logged.
+- If it still fails, the method is evaluated as implemented and its row is flagged ⚠ "reproduction could not reach the paper's qualitative behaviour". **Never drop a method silently.**
+
+### N3a. Ngaopitakkul & Kunakorn 2006 (DWT scale-1 + BPNN)
+- **Hypothesis H3a:** weak transfer. It was designed for fault-**type** classification at 200 kHz; its only feature is the scale-1 (highest band) coefficient. In our lumped plant at 20 kHz that band is mostly noise (`hf_content.txt`: after an event, energy above 5 kHz ≈ 1e-4 to 1e-3 of the total for faults). Expect security on inrush and external faults **below 90 %**, and the lowest dependability on HiZ faults among all methods.
+- **Decision rules:** as in the common rule. If H3a is confirmed, the paper says the method is unsuited to data without high-frequency transients. That is a statement about this test bench, not about the method.
+
+### N3b. Abdusalam et al. 2022 (DWT × 5 wavelets + OMP + BA/GA + KNN/SVM/ANN)
+- **Hypothesis H3b:** decent classification of inrush vs fault, because its statistical features over a 6-level DWT capture the 2nd-harmonic-dominated inrush shape. But it is a **whole-window** classifier, so its operate time will be at least one window after inception. Expect median operate time **≥ 20 ms**, slower than the proposed 16 ms. Dependability on HiZ will be lower than the proposed hybrid's.
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| BA+SVM and GA+SVM differ by ≤ 3 pt on validation | report BA+SVM only (spec choice); the others in the appendix |
+| they differ by > 3 pt | report both rows in Table A, because the paper's internal inconsistency then matters |
+
+### N3c. Alhamd et al. 2024 (wavelet feature + differential and bias current → bidirectional LSTM)
+- **Hypothesis H3c:** the **closest competitor**: same idea (wavelet + LSTM), trained on our data. Expect dependability and security **within 2 pt of LSTM alone** (97.7 % / 95.6 %), and **lower security than the proposed hybrid** (no 87T gate). Its bidirectional, segment-based decision makes it **much slower**: median operate time ≥ 25 ms; the paper reports 110–170 ms.
+- **Decision rules:** see N4. This method is the one most likely to challenge the claim.
+
+---
+
+## N4. Evaluate all six reproductions (≈ 1–2 days, mostly unattended)
+- [ ] 3 seeds × 5 folds on the common set, two modes (native = main row; dwell 20 + validation-tuned threshold = like-for-like row), OOD once, plant-B zero-shot frozen, measured latency at each method's own rate.
+
+**Hypotheses (pre-registered):**
+- **H4.1, dependability:** the proposed hybrid keeps the **highest dependability**. Its margin comes mainly from **Internal HiZ** faults, which it catches through the AI-alone path. Reproductions relying on high-frequency content (Simões, Ngaopitakkul) have the lowest HiZ dependability.
+- **H4.2, security:** reproductions trained on our data (Key, Afrasiabi, Alhamd, Abdusalam) reach security of about **94–99 %**, similar to our LSTM alone (95.6 %), and **below the proposed hybrid** (99.0 %), because none has an 87T gate.
+- **H4.3, speed:**
+  - Simões is the **fastest** when its detector fires: the paper reports ≈ 4 samples, under 1 ms.
+  - Afrasiabi (half-cycle window) ≥ 10 ms.
+  - Key (one-cycle window) ≥ 20 ms.
+  - Alhamd ≥ 25 ms.
+  - The proposed median is 16 ms.
+- **H4.4, transfer:** every learned method loses security in the plant-B zero-shot test, as ours did (88 %). The harmonic 87T (98.95 %) stays the most secure on plant B.
+- **H4.5, latency:** all methods meet their per-sample budget on the PC, except possibly Simões' SVM2 (768 features at 12.8 kHz, 78 µs budget).
+
+**Decision rules (Holm-corrected paired McNemar, α = 0.05, pooled over 3 seeds):**
+
+| Outcome vs the proposed hybrid | Action |
+|---|---|
+| no reproduction is significantly better on dependability or security | **claim A holds** (see N8) |
+| a reproduction is significantly better on **one** metric and worse on the other | **claim B**: report the trade-off and the operating points; no "best" wording |
+| a reproduction is significantly better on **both** metrics, or better on one and not significantly worse on the other | **claim C**: the proposed classifier is not the best. Run **one** pre-registered extra evaluation: that method inside the dual-path supervisory logic ("hybrid with X", thresholds tuned on validation). The dual-path logic is model-agnostic; report it as the architecture's contribution |
+| a reproduction has dependability or security < 60 % | apply the N3 debug rule (max 2 logged rounds), then report as measured with the explanation (e.g. HF content) |
+| native and like-for-like results of a method differ by > 5 pt | report both rows and discuss; the native row is the "as intended" result |
+| a method misses its per-sample latency budget | report "not real-time at its native rate on this PC"; do **not** lower its sampling rate to make it fit |
+| H4.4 rejected (a reproduction transfers to plant B with security ≥ 98 %) | report it prominently; it weakens our generalisation limitation into a model-specific one, and the paper says so |
+
+---
+
+## N5. Statistics (≈ 0.5 day)
+- [ ] Paired McNemar on (seed, fold, trace): proposed hybrid vs each reproduction (native), LSTM alone vs each, for dependability and security separately. Holm correction across all tests in the table. Mean ± sd over the 15 fold-models.
+- **Hypothesis H5:** with about 1,250 fault and 1,990 healthy traces per seed, differences of about **≥ 1.5 pt** in dependability and **≥ 0.7 pt** in security will be significant after Holm. Smaller ones will not.
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| p_Holm ≥ 0.05 | write "no significant difference"; never "better" or "comparable performance" |
+| the per-seed differences change sign between seeds | report the difference as "unstable across splits", even if the pooled test is significant |
+| the fold-model sd of a method > 3 pt | report its range next to the mean, and do not rank it by the mean alone |
+
+---
+
+## N6. Part 1, reduced (≈ 1 day)
+
+### N6a (B1). Same-feature models with an equal training budget (25 epochs, patience 5 for every neural model)
+- **Hypothesis H6a:** the GRU (trained with only 10 epochs, patience 3) and the 1D-CNN (15 / 4) improve by **0.5–2 pt**. The GRU may then **match** the LSTM, because it already had the highest standalone dependability (v5 table: 98.40 %).
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| a same-feature model is within 1 pt of the LSTM on both metrics | run **B2** (equal hyperparameter search, 12 configurations per model, LSTM included). The paper states the choice of LSTM over GRU/CNN is **not decisive**; the claim rests on the dual-path architecture |
+| the LSTM leads by > 1 pt on at least one metric and is not worse on the other | B2 optional; skip it; report B1 |
+
+### N6b (B3). Rename the rows to architecture names; no paper attribution
+No hypothesis; always done.
+
+### N6c (B4). Validation-tuned harmonic 87T (pickup {0.2, 0.3, 0.4} pu, k2 {0.12, 0.15, 0.20}, k5 {0.25, 0.35}, plateau rule)
+- **Hypothesis H6c:** tuning (mainly a lower pickup) raises the harmonic 87T's dependability by **2–5 pt**, by catching part of the HiZ faults now below 0.30 pu, while keeping security ≥ 99 %. The hybrid's dependability lead (now +8 pt, 93.92 vs 85.93 % in repetition 1) shrinks but **stays significant**.
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| the tuned 87T stays ≥ 3 pt below the hybrid in dependability, significantly | claim stands; the tuned 87T becomes the **main** conventional baseline in the paper (the stronger one) |
+| the gap drops below 3 pt, or is no longer significant | the dependability claim is **weakened** to the measured gap; the paper's headline changes to the architecture and the evaluation, and the HiZ-specific gain is reported per bin |
+| the tuned 87T's security falls below 99 % at its best dependability | report both of its operating points (textbook and tuned) |
+
+---
+
+## N7. References — author action, gate before any submission  🚨
+- [ ] Replace or remove the 9 UNVERIFIED references (ref2, 5, 10, 18, 31, 32, 33, 34, 35) and every sentence and table cell citing them, including the accuracy figures attributed to ref2 (~99.5 %) and ref18 (99.1 %).
+- [ ] Run the same audit on the **EPSR paper draft** bibliography.
+- **Hypothesis H7:** most of these 9 do not exist (neither Crossref nor title/author searches find them), so they cannot be repaired, only replaced or dropped.
+- **Decision rules:**
+
+| Outcome per reference | Action |
+|---|---|
+| a real paper supporting the same sentence is found (with DOI, read by the author) | replace, and record it in `reference_audit.md` |
+| no real paper found | delete the citation **and** the claim it supported; rewrite the sentence without it |
+| **Gate:** | **no submission** until the audit shows **0 UNVERIFIED** in both the thesis and the paper |
+
+---
+
+## N8. Paper update (≈ 2–3 days) — the claim is chosen by the N4/N6 outcome, not written in advance
+- [ ] Table A (reproduced published methods), Table B (same-feature models), limitations from `REPORTING_NOTES.md`, push to GitHub.
+
+**Claim templates (pick by the decision rule that fired):**
+- **Claim A** (N4 row 1 and N6c row 1): "Under identical leak-free evaluation, the dual-path hybrid matches the security of a tuned harmonic-restrained 87T and exceeds its dependability by X pt (p…). It also outperforms six reproduced published methods on at least one metric without being worse on the other. It needs plant-specific training (plant-B zero-shot security 88 %)."
+- **Claim B** (trade-off): "The hybrid offers a different operating point: [metric] higher, [metric] lower than [method]. It is the only one combining … within … ms."
+- **Claim C** (beaten): "The contribution is the model-agnostic dual-path supervisory architecture and the evaluation protocol. The best classifier on this bench is X. Placing X inside the dual-path logic gives …."
+
+**Target journal by outcome:**
+- Claim A → EPSR (primary) / IJEPES.
+- Claim B → EPSR.
+- Claim C → EPSR or IEEE Access, as a methods/evaluation paper, with expectations lowered accordingly.
+
+---
+
+## Decision for later: winding capacitances (high-frequency realism)
+- **Hypothesis HL:** if the HF-based methods (Simões, Ngaopitakkul) perform poorly, the main cause is the missing kHz content of the lumped plant, not the methods themselves.
+- **Test (after N4):** their native dependability on **solid** internal faults, and whether their misses concentrate on traces whose post-event energy above 5 kHz is at the noise floor (`hf_content` method, per trace).
+- **Decision rules:**
+
+| Outcome | Action |
+|---|---|
+| solid-fault dependability ≥ 90 % | no plant change; limitation sentence only |
+| < 90 %, and misses concentrate on HF-poor traces | **optional** sensitivity study: add winding capacitances to plant A, re-simulate **300 stratified traces** at 20 kHz, re-run only those two methods and the proposed relay. Report it as a separate, labelled study; v5 stays the main result |
+| < 90 %, but misses do not concentrate on HF-poor traces | no plant change; the weakness is attributed to the method on this bench |
+
+**Rough total to a submittable paper: about 1.5–2 weeks** (N1–N6 ≈ 6–8 days including unattended compute, N8 ≈ 2–3 days, N7 depends on the author).
