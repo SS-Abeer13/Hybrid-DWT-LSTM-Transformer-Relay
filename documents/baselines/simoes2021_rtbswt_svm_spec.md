@@ -66,3 +66,11 @@ One qualitative result of the paper: operating and restraining differential ener
 
 ## 7. Cost to report
 Per-sample floating-point operations of the wavelet preprocessing (paper: 730 FLOPs/sample) and of SVM 1 (paper: 73,728 FLOPs, 768 square roots, 768 exponentials) and SVM 2 (751,593 FLOPs) are counted for our implementation; the latency of one sample is measured at 12,800 Hz (budget 78.1 us).
+
+## 8. Amendments of 2026-11-01 (made while writing the code, before any evaluation result of this method)
+1. **The published detector cannot be used at our noise level.** With the threshold E_th = 3 x the mean energy of the previous two cycles (Eq. 12), the detector fires about 1,500-2,000 times per trace on noise alone (the energies of white noise are chi-square distributed and exceed three times their mean about 1.7 % of the samples in each of the eight signals; `tools` check on 20 kHz data resampled to 12.8 kHz, see the module's test log). The factor is therefore a hyperparameter: chosen from {3, 10, 30, 100} on the training folds as the smallest value for which the normal and over-excitation traces of the training folds give at most one unmatched detection per trace on average. The published value 3 stays as a reported configuration; it fails by construction on our data and the results table has to say so.
+2. The detector is armed from t = 0.12 s (start-up transient of the simulation, same limit as the generator's own checks).
+3. Detector firings that match no known event of the trace (noise, repeated crossings) are left out of the training set of SVM 1 (the paper has only three classes); at test time they are classified like any other firing and can cause false trips. Firings are matched to events within one cycle after the event.
+4. Negative-sequence delays of 85.33 and 170.67 samples are rounded to 85 and 171.
+5. The negative-sequence and phase currents are first compensated (plant matrix) and the X side is taken as the current leaving the transformer, so that the operating energy is the differential energy.
+Two SVM 1 variants are reported: "published" (C = 500, gamma = 100) and "grid" (C in {10, 100, 500, 1000} x gamma in {1, 10, 100, 1000}, chosen on the validation events of the inner split).

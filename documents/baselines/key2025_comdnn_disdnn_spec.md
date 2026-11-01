@@ -53,3 +53,10 @@ Their Fig. 6 / Fig. 7: the Com-DNN output overlays the undistorted primary curre
 
 ## 6. Cost to report
 Parameter count and floating-point operations of both networks per inference (compare with the paper's 28,353 FLOPs), and the measured latency per decision at 3,200 Hz (budget 312.5 us per sample).
+
+## 7. Amendments of 2026-11-01 (made while writing the code, before any evaluation result of this method)
+1. Normalisation (Eq. 2 leaves the reference open): the Com-DNN windows (one raw CT signal) are divided by their own maximum absolute value, the undistorted target by the same number. For the Dis-DNN a **fixed per-unit scale** is used (differential current / 4 pu, clipped to [-1, 1]); a per-window maximum would erase the amplitude difference between a quiet and a faulted system.
+2. The Dis-DNN input is the window of 64 samples of **all three phases** of the differential current (192 inputs), so that the class is a property of the event and not of a single phase (an A-G fault has almost no differential current in phases B and C, and a per-phase label would be wrong there).
+3. Com-DNN: a 64 - n - 64 network with leaky ReLU, trained end to end on (distorted, undistorted) window pairs with mean-squared error; the estimate of the current sample is the last output of the window ending at that sample. The paper's "SDAE-based" description of this network is not specific enough to do more.
+4. Sparsity term (Eq. 5-6): the KL divergence is computed on the mean sigmoid of the hidden pre-activation (the paper uses leaky ReLU units, for which a probability interpretation needs a squashing function).
+5. Epoch limits: up to 25 epochs with early stopping for all networks, 8 pre-training epochs per autoencoder; Adam; random search with the configuration count of the other methods; Com-DNN chosen by validation MSE, Dis-DNN by balanced accuracy of the four classes on validation windows.
