@@ -21,6 +21,7 @@ function outFile = generate_stress_dataset_hr_v5(nSamples, varargin)
 %   'OverexcMin' lower bound (pu) of the over-excitation source voltage, default 1.15 (main set); the coverage top-up uses 1.22 (saturated core).
 %   'Indices' closedloop only: dataset trace numbers (1..N of the chosen 'Set') to re-run with the LSTM active (D4); empty = the 12 D3 cases.
 %   'Tag'     closedloop only: suffix of the result files.
+%   'GuiFreq' N1c: set powergui Frequency (Hz) in memory (default: keep the model's 60).
 %   'Range'   self-test only: [first last] case numbers (the heap crash can hit a long single session; run 1:9 and 10:18).
 %
 % v3 = v2 plus the changes of IMPLEMENTATION_PLAN_V3.md (A1: the options above; A2-A8 add load calibration, CT stress, HiZ bins,
@@ -73,7 +74,7 @@ datasetsDir = fullfile(projectDir, 'datasets');
 selfTest = nargin >= 1 && (ischar(nSamples) || isstring(nSamples)) && strcmpi(nSamples, 'selftest');
 closedLoop = nargin >= 1 && (ischar(nSamples) || isstring(nSamples)) && strcmpi(nSamples, 'closedloop');
 if nargin < 1 || isempty(nSamples) || selfTest || closedLoop, nSamplesNum = 3040; else, nSamplesNum = nSamples; end
-opts = struct('Resume', '', 'Run', '', 'Seed', 20261021, 'StopTime', 1.10, 'Chunk', 0, 'Set', 'main', 'Only', {{}}, 'Range', [], 'OverexcMin', 1.15, 'Indices', [], 'Reference', '', 'Tag', 'v5');
+opts = struct('Resume', '', 'Run', '', 'Seed', 20261021, 'StopTime', 1.10, 'Chunk', 0, 'Set', 'main', 'Only', {{}}, 'Range', [], 'OverexcMin', 1.15, 'Indices', [], 'Reference', '', 'Tag', 'v5', 'GuiFreq', []);
 for k = 1:2:numel(varargin)
     assert(isfield(opts, varargin{k}), 'GenV5:Option', 'Unknown option "%s".', varargin{k});
     opts.(varargin{k}) = varargin{k + 1};
@@ -114,6 +115,11 @@ cleanup = onCleanup(@() finishGeneration(model));  %#ok<NASGU>  never saves the 
 B = locateBlocks(model);
 prepareModelForGeneration(B);
 setHighRate(B);
+if ~isempty(opts.GuiFreq)   % N1c: powergui Frequency check, in memory only (the .slx is never saved)
+    gf = find_system(B.model, 'SearchDepth', 1, 'MaskType', 'PSB option menu block');
+    set_param(gf{1}, 'Frequency', num2str(opts.GuiFreq));
+    assert(str2double(get_param(gf{1}, 'Frequency')) == opts.GuiFreq, 'GuiFreq not applied');
+end
 cfg.hr = struct('on', true, 'fs', 20000, 'powergui', 25e-6, 'noiseTs', 25e-6, 'sampleTime', 50e-6);
 ref = []; if ~isempty(opts.Reference), ref = loadReference(opts.Reference); end
 hrIdx = []; hrIp = {}; hrIs = {}; hrTp = {}; hrTs = {};

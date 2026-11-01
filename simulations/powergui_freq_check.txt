@@ -1,0 +1,4 @@
+N1c powergui Frequency check (2026-11-01, tools: simulations/generate_stress_dataset_hr_v5.m option GuiFreq, run_n1c.sh; model unchanged on disk, setting changed in memory only)
+Plant A v5, 20 kHz settings, identical seeds/scenarios: 8 Normal, 3 Inrush_Loaded, 1 External_ABC (12 traces; the 'Only' draw gave this mix).
+powergui Frequency 60 (as in the model) vs 50: CT-secondary and true line currents (Ip, Is, Tp, Ts) are identical (max absolute difference over all four signals and all 12 traces: 0.0 A; peak CT-secondary current 18.94 A).
+Conclusion: in the discrete (Backward Euler, 100 us) simulation the powergui Frequency parameter has no effect on the logged currents; no regeneration needed.

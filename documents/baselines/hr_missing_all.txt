@@ -1,0 +1,115 @@
+plantA_main: 3340 original traces, 30 without a 20 kHz copy (0.90 %)
+  by scenario family (phase suffix removed):
+    [family] InternalHV                 4/198 (2.0 %)
+    [family] External_HiZ               1/60 (1.7 %)
+    [family] Inrush_NoLoad              3/200 (1.5 %)
+    [family] Recovery_Inrush            1/80 (1.2 %)
+    [family] Internal_SOTF              1/80 (1.2 %)
+    [family] Internal_HiZ               3/240 (1.2 %)
+    [family] Stress_ExtInInrush         1/100 (1.0 %)
+    [family] Stress_ExtCTSat            3/302 (1.0 %)
+    [family] Normal                     3/303 (1.0 %)
+    [family] Internal                   5/506 (1.0 %)
+    [family] Overexcitation             2/310 (0.6 %)
+    [family] Inrush_Loaded              1/200 (0.5 %)
+    [family] External                   2/440 (0.5 %)
+    Internal_HiZ_BC              3/48 (6.2 %)
+    InternalHV_AG                1/18 (5.6 %)
+    InternalHV_AB                1/18 (5.6 %)
+    InternalHV_AC                1/18 (5.6 %)
+    InternalHV_ACG               1/18 (5.6 %)
+    Stress_ExtCTSat_BG           1/22 (4.5 %)
+    Internal_BC                  2/46 (4.3 %)
+    External_HiZ_AB              1/30 (3.3 %)
+    Stress_ExtCTSat_AC           1/30 (3.3 %)
+    Stress_ExtCTSat_ABC          1/30 (3.3 %)
+    Internal_SOTF_ABC            1/40 (2.5 %)
+    External_AB                  1/40 (2.5 %)
+    External_BCG                 1/40 (2.5 %)
+    Internal_CG                  1/46 (2.2 %)
+    Internal_BCG                 1/46 (2.2 %)
+    Internal_ABCG                1/46 (2.2 %)
+    Inrush_NoLoad                3/200 (1.5 %)
+    Recovery_Inrush              1/80 (1.2 %)
+    Stress_ExtInInrush           1/100 (1.0 %)
+    Normal                       3/303 (1.0 %)
+    Overexcitation               2/310 (0.6 %)
+    Inrush_Loaded                1/200 (0.5 %)
+  StressDataset_v5_20261028_162333.mat index 45 Normal
+  StressDataset_v5_20261028_162333.mat index 93 Normal
+  StressDataset_v5_20261028_162333.mat index 284 Normal
+  StressDataset_v5_20261028_162333.mat index 344 Inrush_NoLoad
+  StressDataset_v5_20261028_162333.mat index 444 Inrush_NoLoad
+  StressDataset_v5_20261028_162333.mat index 491 Inrush_NoLoad
+  StressDataset_v5_20261028_162333.mat index 675 Recovery_Inrush
+  StressDataset_v5_20261028_162333.mat index 743 Overexcitation
+  StressDataset_v5_20261028_162333.mat index 984 Internal_SOTF_ABC
+  StressDataset_v5_20261028_162333.mat index 1042 External_HiZ_AB
+  StressDataset_v5_20261028_162333.mat index 1282 Stress_ExtInInrush
+  StressDataset_v5_20261028_162333.mat index 1341 InternalHV_AG
+  StressDataset_v5_20261028_162333.mat index 1542 Stress_ExtCTSat_BG
+  StressDataset_v5_20261028_162333.mat index 1598 Internal_CG
+  StressDataset_v5_20261028_162333.mat index 1752 InternalHV_AB
+  StressDataset_v5_20261028_162333.mat index 1796 External_AB
+  StressDataset_v5_20261028_162333.mat index 1842 Internal_BC
+  StressDataset_v5_20261028_162333.mat index 1857 Internal_BC
+  StressDataset_v5_20261028_162333.mat index 2041 InternalHV_AC
+  StressDataset_v5_20261028_162333.mat index 2084 Stress_ExtCTSat_AC
+  StressDataset_v5_20261028_162333.mat index 2287 Internal_BCG
+  StressDataset_v5_20261028_162333.mat index 2340 External_BCG
+  StressDataset_v5_20261028_162333.mat index 2448 InternalHV_ACG
+  StressDataset_v5_20261028_162333.mat index 2639 Stress_ExtCTSat_ABC
+  StressDataset_v5_20261028_162333.mat index 2681 Internal_ABCG
+  StressDataset_v5_20261028_162333.mat index 2867 Internal_HiZ_BC
+  StressDataset_v5_20261028_162333.mat index 2872 Internal_HiZ_BC
+  StressDataset_v5_20261028_162333.mat index 2884 Internal_HiZ_BC
+  StressDataset_v5Only_20261028_232627.mat index 76 Inrush_Loaded
+  StressDataset_v5Only_20261028_233305.mat index 62 Overexcitation
+plantA_OOD: 300 original traces, 3 without a 20 kHz copy (1.00 %)
+  by scenario family (phase suffix removed):
+    [family] Normal                     1/28 (3.6 %)
+    [family] Stress_CTSat_Int           1/30 (3.3 %)
+    [family] Internal                   1/73 (1.4 %)
+    Stress_CTSat_Int_AG          1/10 (10.0 %)
+    Normal                       1/28 (3.6 %)
+    Internal_AB                  1/38 (2.6 %)
+  StressDataset_v5OOD_20261028_205712.mat index 66 Normal
+  StressDataset_v5OOD_20261028_205712.mat index 99 Internal_AB
+  StressDataset_v5OOD_20261028_205712.mat index 171 Stress_CTSat_Int_AG
+plantB_main: 1290 original traces, 11 without a 20 kHz copy (0.85 %)
+  by scenario family (phase suffix removed):
+    [family] Recovery_Inrush            1/32 (3.1 %)
+    [family] Internal_SOTF              1/32 (3.1 %)
+    [family] Stress_CTSat_Int           1/44 (2.3 %)
+    [family] Stress_ExtCTSat            2/99 (2.0 %)
+    [family] Normal                     2/120 (1.7 %)
+    [family] Inrush_NoLoad              1/79 (1.3 %)
+    [family] Internal_HiZ               1/95 (1.1 %)
+    [family] Overexcitation             1/119 (0.8 %)
+    [family] Internal                   1/198 (0.5 %)
+    Stress_CTSat_Int_AC          1/4 (25.0 %)
+    Stress_ExtCTSat_CG           1/9 (11.1 %)
+    Stress_ExtCTSat_ABC          1/9 (11.1 %)
+    Internal_SOTF_ABC            1/16 (6.2 %)
+    Internal_BG                  1/18 (5.6 %)
+    Internal_HiZ_BC              1/19 (5.3 %)
+    Recovery_Inrush              1/32 (3.1 %)
+    Normal                       2/120 (1.7 %)
+    Inrush_NoLoad                1/79 (1.3 %)
+    Overexcitation               1/119 (0.8 %)
+  StressDataset_PlantBv5_20261028_212041.mat index 65 Normal
+  StressDataset_PlantBv5_20261028_212041.mat index 93 Normal
+  StressDataset_PlantBv5_20261028_212041.mat index 193 Inrush_NoLoad
+  StressDataset_PlantBv5_20261028_212041.mat index 261 Recovery_Inrush
+  StressDataset_PlantBv5_20261028_212041.mat index 395 Internal_SOTF_ABC
+  StressDataset_PlantBv5_20261028_212041.mat index 569 Internal_BG
+  StressDataset_PlantBv5_20261028_212041.mat index 660 Stress_ExtCTSat_CG
+  StressDataset_PlantBv5_20261028_212041.mat index 834 Stress_CTSat_Int_AC
+  StressDataset_PlantBv5_20261028_212041.mat index 1039 Stress_ExtCTSat_ABC
+  StressDataset_PlantBv5_20261028_212041.mat index 1133 Internal_HiZ_BC
+  StressDataset_PlantBv5Only_20261029_111251.mat index 59 Overexcitation
+plantB_OOD: 150 original traces, 1 without a 20 kHz copy (0.67 %)
+  by scenario family (phase suffix removed):
+    [family] InternalHV                 1/14 (7.1 %)
+    InternalHV_AG                1/5 (20.0 %)
+  StressDataset_PlantBv5OOD_20261029_010052.mat index 57 InternalHV_AG
