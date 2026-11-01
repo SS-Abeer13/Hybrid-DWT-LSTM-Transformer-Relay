@@ -1,0 +1,7 @@
+D3 equivalence, plant A main set, 432 traces (6 per scenario), final model thresholds AI 0.995 / solo 0.998 / dwell 20
+identical trip / no-trip decision: 429/432 = 99.31 %  (criterion >= 99 %)
+trip-time difference HR - original on traces tripping in both (ms): median 0.000, p5 -1.875, p95 3.125, n=240
+discordant traces: 3
+  {'scenario': 'Stress_ExtCTSat_AC', 'should_trip': False, 'orig_tripped': False, 'hr_tripped': True}
+  {'scenario': 'Internal_ACG', 'should_trip': True, 'orig_tripped': False, 'hr_tripped': True}
+  {'scenario': 'Internal_HiZ_AC', 'should_trip': True, 'orig_tripped': True, 'hr_tripped': False}

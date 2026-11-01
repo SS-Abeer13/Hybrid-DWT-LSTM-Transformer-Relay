@@ -1,0 +1,24 @@
+{
+ "n": 432,
+ "same": 429,
+ "discordant": [
+  {
+   "scenario": "Stress_ExtCTSat_AC",
+   "should_trip": false,
+   "orig_tripped": false,
+   "hr_tripped": true
+  },
+  {
+   "scenario": "Internal_ACG",
+   "should_trip": true,
+   "orig_tripped": false,
+   "hr_tripped": true
+  },
+  {
+   "scenario": "Internal_HiZ_AC",
+   "should_trip": true,
+   "orig_tripped": true,
+   "hr_tripped": false
+  }
+ ]
+}
