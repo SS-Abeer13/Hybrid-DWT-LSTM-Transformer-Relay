@@ -213,7 +213,7 @@ class Simoes2021:
 
 
 # ---------------------------------------------------------------------------------------------------------------- harness adapter (baselines/cv.py)
-FACTORS = (3.0, 10.0, 30.0, 100.0)
+FACTORS = (5.0, 10.0, 15.0, 20.0, 30.0, 50.0, 100.0)   # N2 grid (BENCHMARK_FAIRNESS_PLAN.md); the paper's factor 3 is not usable at our noise level
 GRID_C1 = (10.0, 100.0, 500.0, 1000.0)
 GRID_G1 = (1.0, 10.0, 100.0, 1000.0)
 
@@ -221,8 +221,7 @@ GRID_G1 = (1.0, 10.0, 100.0, 1000.0)
 class SimoesMethod:
     """prepare / fit / trip_time interface. mode 'published': C = 500, gamma = 100 of the paper; mode 'grid': (C, gamma) chosen on the validation
     events from GRID_C1 x GRID_G1 (the paper's grid search, with the inner validation split instead of 10-fold CV). In both modes the detector factor
-    is chosen on the training traces: the smallest of FACTORS for which the normal-operation and over-excitation traces of the training folds
-    give at most one unmatched detection per trace on average (factor 3 of the paper fires about 1,500 times per trace on our noise level)."""
+    is chosen on the VALIDATION traces by the pre-set N2 rule (select_factor) (factor 3 of the paper fires about 1,500 times per trace on our noise level)."""
 
     def __init__(self, mode: str = "published", plant: str = "A"):
         self.mode, self.plant = mode, plant
@@ -238,14 +237,30 @@ class SimoesMethod:
         F1, ok = svm1_features(E, kd)
         return {"E": E, "kd": kd[ok], "F1": F1}
 
-    def fit(self, train: list[dict], val: list[dict], seed: int):
-        neutral = [it for it in train if C.event_class(it["meta"]) == "NONE"]
-        self.factor = FACTORS[-1]
+    @staticmethod
+    def select_factor(val: list[dict]) -> tuple[float, dict]:
+        """N2 pre-set rule, on VALIDATION traces only: the smallest factor with <= 1 spurious firing per trace on normal / over-excitation traces AND
+        >= 95 % event detection (a firing matched to the event within one cycle) on fault / inrush / external traces. If none meets both: the smallest
+        meeting the spurious-firing criterion (flag 'detection_criterion_unmet'); if none meets even that: the largest factor (flag 'unusable')."""
+        neutral = [it for it in val if C.event_class(it["meta"]) == "NONE"]
+        ev = [it for it in val if C.event_class(it["meta"]) != "NONE" and not it["meta"].get("undetectable")]
+        rep = {}
         for f in FACTORS:
-            n_fa = np.mean([len(detect(it["proc"]["E"].astype(np.float64), f)) for it in neutral[:60]]) if neutral else 0.0
-            if n_fa <= 1.0:
-                self.factor = f
-                break
+            spur = float(np.mean([len(detect(it["proc"]["E"].astype(np.float64), f)) for it in neutral])) if neutral else 0.0
+            hit = [any(l is not None for l in label_events(it["meta"], detect(it["proc"]["E"].astype(np.float64), f))) for it in ev]
+            rep[f] = {"spurious_per_trace": spur, "detection_rate": float(np.mean(hit)) if hit else float("nan")}
+        both = [f for f in FACTORS if rep[f]["spurious_per_trace"] <= 1.0 and rep[f]["detection_rate"] >= 0.95]
+        spur_ok = [f for f in FACTORS if rep[f]["spurious_per_trace"] <= 1.0]
+        if both:
+            chosen, flag = both[0], "ok"
+        elif spur_ok:
+            chosen, flag = spur_ok[0], "detection_criterion_unmet"
+        else:
+            chosen, flag = FACTORS[-1], "unusable"
+        return chosen, {"chosen": chosen, "flag": flag, "grid": rep}
+
+    def fit(self, train: list[dict], val: list[dict], seed: int):
+        self.factor, self.factor_report = self.select_factor(val)
         tr_items = [{"meta": it["meta"], "proc": self._proc(it["proc"]["E"], self.factor)} for it in train]
         if self.mode == "published":
             self.model = Simoes2021(factor=self.factor, plant=self.plant).fit(tr_items)
