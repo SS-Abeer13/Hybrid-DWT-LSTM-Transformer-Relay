@@ -283,3 +283,14 @@ class SimoesMethod:
 
     def trip_time(self, proc: dict) -> float | None:
         return self.model.trip_time(self._proc(proc["E"], self.factor))
+
+    STEP_S, EVENT_BASED = 0.0, True
+
+    def score_stream(self, proc: dict):
+        """One score per detector firing (event-based method): sigmoid of the SVM 1 one-versus-rest decision value of the internal-fault class."""
+        p = self._proc(proc["E"], self.factor)
+        if len(p["kd"]) == 0:
+            return np.zeros(0), np.zeros(0)
+        d = self.model.svm1.decision_function(self.model._n1(p["F1"]))
+        col = list(self.model.svm1.classes_).index("IF")
+        return (p["kd"] + N_POST - 1) / FS, 1.0 / (1.0 + np.exp(-d[:, col]))

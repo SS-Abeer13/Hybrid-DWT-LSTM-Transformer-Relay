@@ -244,6 +244,18 @@ class AbdusalamMethod:
                 return float(e / FS)
         return None
 
+    STEP_S, EVENT_BASED = STEP / FS, False
+
+    def score_stream(self, proc: dict):
+        """Sigmoid of the SVM one-versus-rest decision value of the internal-fault class (BA/GA + SVM variants)."""
+        ends = decision_ends(proc)
+        if len(ends) == 0:
+            return ends / FS, np.zeros(0)
+        X = np.nan_to_num(self.scaler.transform(np.array([feats(proc, int(e)) for e in ends], np.float64)))[:, self.mask]
+        dfun = self.clf.decision_function(X)
+        col = list(self.clf.classes_).index(2)
+        return ends / FS, 1.0 / (1.0 + np.exp(-dfun[:, col]))
+
 
 def trace_windows(meta: dict, proc: dict, tid: int) -> list[int]:
     """Every window end that any fold can ask for: the training windows of the trace (deterministic per trace id) and the native decision windows."""
@@ -259,4 +271,15 @@ def compute_trace_features(args):
     proc = {"d": d, "picked": picked, "fc": {}}
     for e in trace_windows(meta, proc, tid):
         feats(proc, e)
+    return tid, proc["fc"]
+
+
+def compute_decision_features(args):
+    """Worker (external evaluation sets): (tid, meta, d, picked) -> (tid, {end: features}) for the native decision windows only."""
+    import warnings
+    warnings.simplefilter("ignore")
+    tid, meta, d, picked = args
+    proc = {"d": d, "picked": picked, "fc": {}}
+    for e in decision_ends(proc):
+        feats(proc, int(e))
     return tid, proc["fc"]

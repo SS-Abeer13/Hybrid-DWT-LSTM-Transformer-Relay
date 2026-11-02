@@ -150,3 +150,19 @@ def events(meta: dict) -> list[tuple[float, str]]:
         if s == "Internal_Evolving" and np.isfinite(t_f2):
             ev.append((float(t_f2), "IF"))
     return [(t, c) for t, c in ev if np.isfinite(t)]
+
+
+# ---------------------------------------------------------------------------------------------------------------- plant B and OOD (N4)
+PLANT_B_MAIN = [("StressDataset_PlantBv5HR_20261028_212041", "StressDataset_PlantBv5_20261028_212041.mat"),
+                ("StressDataset_PlantBv5HROnly_20261029_111005", "StressDataset_PlantBv5Only_20261029_111005.mat"),
+                ("StressDataset_PlantBv5HROnly_20261029_111251", "StressDataset_PlantBv5Only_20261029_111251.mat")]
+CACHE_B_MAIN = ROOT / "runs" / "20261101_v5_benchmark_fair" / "cache" / "traces_cache_plantB_main.npz"
+
+
+def load_highset_times(cache: Path) -> dict[tuple[str, int], float | None]:
+    """(source file, index) -> time (s) of the first sample of the 87T high-set element (Id > 10 pu) at the relay's 1,600 Hz, None if it never fires."""
+    out = {}
+    for t in np.load(cache, allow_pickle=True)["traces"]:
+        h = np.asarray(t["highset"]).astype(bool)
+        out[(t["source_file"], int(t["source_index"]))] = float(np.argmax(h) / FS_RELAY) if h.any() else None
+    return out

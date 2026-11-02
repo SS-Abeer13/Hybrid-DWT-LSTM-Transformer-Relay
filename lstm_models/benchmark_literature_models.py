@@ -435,6 +435,7 @@ def run_benchmarks(args):
         if ckpt_path.is_file():
             print(f"[{m_name}] Loading saved model...")
             mlp.load_state_dict(torch.load(ckpt_path, map_location=device))
+            mlp.to(device)
         else:
             print(f"[{m_name}] Training 3-layer MLP...")
             t0 = time.time()
@@ -466,6 +467,7 @@ def run_benchmarks(args):
         if ckpt_path.is_file():
             print(f"[{m_name}] Loading saved model...")
             cnn.load_state_dict(torch.load(ckpt_path, map_location=device))
+            cnn.to(device)
         else:
             print(f"[{m_name}] Training Temporal 1D-CNN...")
             t0 = time.time()
@@ -497,6 +499,7 @@ def run_benchmarks(args):
         if ckpt_path.is_file():
             print(f"[{m_name}] Loading saved model...")
             gru.load_state_dict(torch.load(ckpt_path, map_location=device))
+            gru.to(device)
         else:
             print(f"[{m_name}] Training 2-layer GRU with Attention...")
             t0 = time.time()

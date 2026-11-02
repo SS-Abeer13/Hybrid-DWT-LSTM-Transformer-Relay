@@ -276,3 +276,12 @@ class KeyMethod:
         ends, cls = self.class_sequence(proc)
         hit = np.nonzero(cls == CLASSES["internal"])[0]
         return float(ends[hit[0]] / FS) if len(hit) else None
+
+    STEP_S, EVENT_BASED = 1.0 / FS, False
+
+    def score_stream(self, proc: dict):
+        d = differential_pu(estimate(self.com, proc), self.plant)
+        ends = np.arange(max(N - 1, int(0.12 * FS)), len(d))
+        with torch.no_grad():
+            p = torch.softmax(self.dis(torch.from_numpy(dis_windows(d, ends))), 1)[:, CLASSES["internal"]].numpy()
+        return ends / FS, p

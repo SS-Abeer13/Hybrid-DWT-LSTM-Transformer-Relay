@@ -184,3 +184,10 @@ class AcnnMethod:
         p = self.window_scores(proc, ends)
         hit = np.nonzero(p > self.threshold)[0]
         return float(ends[hit[0]] / FS) if len(hit) else None
+
+    STEP_S, EVENT_BASED = STEP / FS, False
+
+    def score_stream(self, proc: dict):
+        """(decision times in s, score in [0, 1]) of every window the relay evaluates (like-for-like mode, N4)."""
+        ends = decision_ends(proc)
+        return ends / FS, self.window_scores(proc, ends)

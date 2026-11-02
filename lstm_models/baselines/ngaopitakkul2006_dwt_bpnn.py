@@ -145,3 +145,13 @@ class NgaopitakkulMethod:
             if forward(self.p, x[None], *self.h).max() > self.threshold:
                 return float(2.0 * (td + QUARTER) / FS)
         return None
+
+    STEP_S, EVENT_BASED = 0.0, True
+
+    def score_stream(self, proc: dict):
+        """One score per detection (event-based method): the largest of the eight outputs, clipped to [0, 1]."""
+        t, sc = [], []
+        for td in cached_detections(proc):
+            x = (features(proc["c2"], int(td)) - self.lo) / np.maximum(self.hi - self.lo, 1e-9)
+            t.append(2.0 * (td + QUARTER) / FS); sc.append(float(np.clip(forward(self.p, x[None], *self.h).max(), 0, 1)))
+        return np.array(t), np.array(sc)

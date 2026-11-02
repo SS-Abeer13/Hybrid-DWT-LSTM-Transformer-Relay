@@ -198,3 +198,19 @@ class AlhamdMethod:
         ends, cls = self.class_stream(proc)
         hit = np.nonzero((cls == IDX["internal"]) | (cls == IDX["internal_ctsat"]))[0]
         return float(ends[hit[0]] / FS) if len(hit) else None
+
+    STEP_S, EVENT_BASED = STEP / FS, False
+
+    def score_stream(self, proc: dict):
+        X = proc["X"].astype(np.float32)
+        ends = np.arange(int(T_START * FS) + SEG, len(X), STEP)
+        W = np.lib.stride_tricks.sliding_window_view(X, SEG, axis=0)
+        idx = ends - SEG + 1
+        out = []
+        self.model.eval()
+        with torch.no_grad():
+            for b in range(0, len(idx), 512):
+                xb = torch.from_numpy(np.ascontiguousarray(W[idx[b:b + 512]].transpose(0, 2, 1))).to(DEV)
+                o = self.model(xb)
+                out.append((o[:, IDX["internal"]] + o[:, IDX["internal_ctsat"]]).clamp(0, 1).cpu().numpy())
+        return ends / FS, np.concatenate(out)
