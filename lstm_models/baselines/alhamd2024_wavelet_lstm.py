@@ -25,6 +25,7 @@ DK = L                              # sliding window length of the boundary tran
 CLASSES = ["inrush", "internal", "internal_ctsat", "external", "noevent"]
 IDX = {c: i for i, c in enumerate(CLASSES)}
 T_START = 0.12
+DEV = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def _shift(x: np.ndarray, o: int) -> np.ndarray:
@@ -94,12 +95,13 @@ GRID = dict(hidden=(32, 64, 128), layers=(1, 2), dropout=(0.1, 0.2, 0.3), lr=(3e
 
 class AlhamdMethod:
     """SGDM (momentum 0.9), learning rate dropped by 10 after half of the epochs, early stopping on validation loss. The 12-configuration random search
-    (spec section 4) is run ONCE (first fold of the first seed, on its validation traces) and the chosen configuration is trained on every fold: the 200-epoch
+    (spec section 4) is run ONCE (first fold of the first seed, on its validation traces; the `search_per_fold=False` variant used for the reduced-budget run) and the chosen configuration is trained on every fold: the 200-epoch
     schedule of the paper makes a per-fold search days long (deviation recorded). Budget actually used: 6 windows per trace, search 8 epochs, final training 25 epochs
     (early stopping on validation loss, patience 5; LR dropped by 10 after half of the epochs) instead of 200: stated as a deviation, it is the same epoch limit as the Part 1 models."""
     FROZEN: dict | None = None
 
-    def __init__(self, plant: str = "A", per_trace: int = 6, epochs: int = 25, patience: int = 5, search_epochs: int = 8, n_configs: int = 12, seed: int = 0):
+    def __init__(self, plant: str = "A", per_trace: int = 20, epochs: int = 200, patience: int = 20, search_epochs: int = 60, n_configs: int = 12, seed: int = 0, search_per_fold: bool = True):
+        self.search_per_fold = search_per_fold
         self.plant, self.per_trace, self.epochs, self.patience, self.search_epochs, self.n_configs, self.seed = plant, per_trace, epochs, patience, search_epochs, n_configs, seed
         self.model: BiLSTM | None = None
         self.cfg: dict | None = None
@@ -132,15 +134,15 @@ class AlhamdMethod:
 
     def _train(self, cfg: dict, Xtr, ytr, Xva, yva, epochs: int, patience: int, seed: int):
         torch.manual_seed(seed)
-        m = BiLSTM(cfg["hidden"], cfg["layers"], cfg["dropout"])
+        m = BiLSTM(cfg["hidden"], cfg["layers"], cfg["dropout"]).to(DEV)
         opt = torch.optim.SGD(m.parameters(), lr=cfg["lr"], momentum=0.9)
         sched = torch.optim.lr_scheduler.MultiStepLR(opt, [epochs // 2], 0.1)
-        xt, yt = torch.from_numpy(Xtr), torch.eye(len(CLASSES))[torch.from_numpy(ytr)]
-        xv, yv = torch.from_numpy(Xva), torch.eye(len(CLASSES))[torch.from_numpy(yva)]
+        xt, yt = torch.from_numpy(Xtr).to(DEV), torch.eye(len(CLASSES))[torch.from_numpy(ytr)].to(DEV)
+        xv, yv = torch.from_numpy(Xva).to(DEV), torch.eye(len(CLASSES))[torch.from_numpy(yva)].to(DEV)
         best, state, stale, ep = 1e9, None, 0, 0
         for ep in range(1, epochs + 1):
             m.train()
-            perm = torch.randperm(len(xt))
+            perm = torch.randperm(len(xt), device=DEV)
             for b in range(0, len(perm), 256):
                 i = perm[b:b + 256]
                 opt.zero_grad(set_to_none=True)
@@ -159,18 +161,18 @@ class AlhamdMethod:
                 if stale >= patience:
                     break
         m.load_state_dict(state)
-        return m, best, ep
+        return m.eval(), best, ep
 
     def fit(self, train: list[dict], val: list[dict], seed: int):
         rng = np.random.RandomState(seed)
         Xtr, ytr = self._windows(train, rng)
         Xva, yva = self._windows(val, rng)
-        if AlhamdMethod.FROZEN is None:
+        if self.search_per_fold or AlhamdMethod.FROZEN is None:
             cr = np.random.RandomState(20261101)
             configs = [{k: v[cr.randint(len(v))] for k, v in GRID.items()} for _ in range(self.n_configs)]
             res = []
             for cfg in configs:
-                m, vl, ep = self._train(cfg, Xtr, ytr, Xva, yva, self.search_epochs, 4, seed)
+                m, vl, ep = self._train(cfg, Xtr, ytr, Xva, yva, self.search_epochs, 10, seed)
                 res.append({**cfg, "val_loss": vl, "epochs": ep}); self.log.append(res[-1])
             AlhamdMethod.FROZEN = {"cfg": min(res, key=lambda r: r["val_loss"]), "search": res}
         self.cfg = {k: AlhamdMethod.FROZEN["cfg"][k] for k in GRID}
@@ -188,8 +190,8 @@ class AlhamdMethod:
         self.model.eval()
         with torch.no_grad():
             for b in range(0, len(idx), 512):
-                xb = torch.from_numpy(np.ascontiguousarray(W[idx[b:b + 512]].transpose(0, 2, 1)))
-                out.append(self.model(xb).argmax(1).numpy())
+                xb = torch.from_numpy(np.ascontiguousarray(W[idx[b:b + 512]].transpose(0, 2, 1))).to(DEV)
+                out.append(self.model(xb).argmax(1).cpu().numpy())
         return ends, np.concatenate(out)
 
     def trip_time(self, proc: dict) -> float | None:

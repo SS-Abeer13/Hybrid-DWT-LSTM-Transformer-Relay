@@ -200,7 +200,9 @@ def train_torch_model(model: nn.Module, xtr: np.ndarray, ytr: np.ndarray, xva: n
     best_auc, stale = -1.0, 0
     best_state = None
 
+    model.epochs_used = 0
     for epoch in range(1, epochs + 1):
+        model.epochs_used = epoch
         model.train()
         perm = torch.randperm(len(yt))
         for b in range(0, len(perm), batch_size):
@@ -343,7 +345,7 @@ def run_benchmarks(args):
 
     out_dir = Path(args.output_dir) if Path(args.output_dir).is_absolute() else ROOT / args.output_dir
     out_dir.mkdir(parents=True, exist_ok=True)
-    device = torch.device("cpu")
+    device = torch.device(args.device)
 
     # 3. Setup identical 5-fold cross validation split
     names = np.array([t["scenarioName"] for t in traces])
@@ -436,11 +438,11 @@ def run_benchmarks(args):
         else:
             print(f"[{m_name}] Training 3-layer MLP...")
             t0 = time.time()
-            mlp, best_auc = train_torch_model(mlp, xtr_pool, ytr, xva_pool, yva, device, epochs=15, patience=4)
+            mlp, best_auc = train_torch_model(mlp, xtr_pool, ytr, xva_pool, yva, device, epochs=args.epochs or 15, patience=args.patience or 4)
             torch.save(mlp.state_dict(), ckpt_path)
             print(f"[{m_name}] Trained in {time.time() - t0:.1f}s, Best Val AUC: {best_auc:.4f}")
 
-        fold_meta[m_name] = {"params": count_parameters(mlp), "type": "Shallow Neural Network"}
+        fold_meta[m_name] = {"params": count_parameters(mlp), "type": "Shallow Neural Network", "epochs_used": getattr(mlp, "epochs_used", None)}
         model_meta[m_name] = fold_meta[m_name]
 
         print(f"[{m_name}] Generating streaming probabilities...")
@@ -467,11 +469,11 @@ def run_benchmarks(args):
         else:
             print(f"[{m_name}] Training Temporal 1D-CNN...")
             t0 = time.time()
-            cnn, best_auc = train_torch_model(cnn, xtr_seq, ytr, xva_seq, yva, device, epochs=15, patience=4)
+            cnn, best_auc = train_torch_model(cnn, xtr_seq, ytr, xva_seq, yva, device, epochs=args.epochs or 15, patience=args.patience or 4)
             torch.save(cnn.state_dict(), ckpt_path)
             print(f"[{m_name}] Trained in {time.time() - t0:.1f}s, Best Val AUC: {best_auc:.4f}")
 
-        fold_meta[m_name] = {"params": count_parameters(cnn), "type": "Convolutional Network"}
+        fold_meta[m_name] = {"params": count_parameters(cnn), "type": "Convolutional Network", "epochs_used": getattr(cnn, "epochs_used", None)}
         model_meta[m_name] = fold_meta[m_name]
 
         print(f"[{m_name}] Generating streaming probabilities...")
@@ -498,11 +500,11 @@ def run_benchmarks(args):
         else:
             print(f"[{m_name}] Training 2-layer GRU with Attention...")
             t0 = time.time()
-            gru, best_auc = train_torch_model(gru, xtr_seq, ytr, xva_seq, yva, device, epochs=10, patience=3)
+            gru, best_auc = train_torch_model(gru, xtr_seq, ytr, xva_seq, yva, device, epochs=args.epochs or 10, patience=args.patience or 3)
             torch.save(gru.state_dict(), ckpt_path)
             print(f"[{m_name}] Trained in {time.time() - t0:.1f}s, Best Val AUC: {best_auc:.4f}")
 
-        fold_meta[m_name] = {"params": count_parameters(gru), "type": "Recurrent Sequence"}
+        fold_meta[m_name] = {"params": count_parameters(gru), "type": "Recurrent Sequence", "epochs_used": getattr(gru, "epochs_used", None)}
         model_meta[m_name] = fold_meta[m_name]
 
         print(f"[{m_name}] Generating streaming probabilities...")
@@ -778,6 +780,9 @@ def main():
     parser.add_argument("--cv-dir", default=None, help="Path to CV fold results directory")
     parser.add_argument("--seed", type=int, default=20261021)
     parser.add_argument("--folds", type=int, default=5)
+    parser.add_argument("--epochs", type=int, default=None, help="B1: same max epochs for every neural model (default: the old per-model settings)")
+    parser.add_argument("--patience", type=int, default=None, help="B1: same early-stopping patience for every neural model")
+    parser.add_argument("--device", default="cpu", help="cpu or cuda (GPU) for the torch models")
     parser.add_argument("--train-stride", type=int, default=8)
     args = parser.parse_args()
     run_benchmarks(args)

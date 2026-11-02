@@ -13,7 +13,7 @@ seeds = [cv.SEEDS[int(i)] for i in sys.argv[2:]] or cv.SEEDS
 metas, pos = cv.trace_index()
 cv.check_folds_match_reference(metas)
 make = {"afrasiabi": lambda s, k: A.AcnnMethod("A", compensate=True), "afrasiabi_nocomp": lambda s, k: A.AcnnMethod("A", compensate=False),
-        "key": lambda s, k: K.KeyMethod("A", n_configs=12), "ngaopitakkul": lambda s, k: N.NgaopitakkulMethod("A", seed=s + k), "alhamd": lambda s, k: H.AlhamdMethod("A", seed=s + k)}[name]
+        "key": lambda s, k: K.KeyMethod("A", n_configs=12), "ngaopitakkul": lambda s, k: N.NgaopitakkulMethod("A", seed=s + k), "alhamd": lambda s, k: H.AlhamdMethod("A", seed=s + k), "alhamd_reduced_budget": lambda s, k: H.AlhamdMethod("A", seed=s + k, per_trace=6, epochs=25, patience=5, search_epochs=8, search_per_fold=False)}[name]
 m0 = make(0, 0)
 cache = OUT / "cache" / f"{name}_procs.npz"
 t0 = time.time()
