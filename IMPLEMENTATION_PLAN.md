@@ -647,3 +647,9 @@
 ### 2026-11-01 23:45 - N2 Simoes detector factor (rule from BENCHMARK_FAIRNESS_PLAN.md)
 - tools/cache_simoes_energies.py (RT-BSWT energies of all 3,302 common-set plant-A traces, 46 s) and tools/n2_simoes_factor.py -> runs/20261101_v5_benchmark_fair/n2_simoes_factor.txt/.json. 15 fold-models, validation traces only.
 - H2 (no factor meets both criteria) **confirmed**: spurious firings per Normal/over-excitation trace 395 / 54 / 22 / 10 / 3.2 / 1.3 / 0.78 for factors 5 / 10 / 15 / 20 / 30 / 50 / 100; detection 99.9 / 99.2 / 97.8 / 96.5 / 94.5 / 91.5 / 86.1 %. (Hypothesis text said 0.8 spurious at 30; on the validation sets, which include over-excitation, it is 3.2 - the qualitative statement stands.) **Rule fired: row 2** - the smallest factor meeting the spurious-firing criterion: 100 in 12 folds, 50 in 3 folds; undetected events = no trip in native mode. Row 3 (unusable) did not fire since factor 100 gives 0.78 spurious per trace. Spec amendment 9 added; SimoesMethod.select_factor implements the rule.
+
+### 2026-11-02 09:16 - Author decisions recorded (after N1/N2)
+- N1 accepted. Gap to close: re-run the single plant-B OOD InternalHV trace (1 of 14, 7.1 %) at the start of N4; if it fails again report n = 13.
+- N2 accepted; consequence fixed BEFORE the Simoes results are interpreted: at the chosen factor (50-100) the detector finds only 86-92 % of events (validation, mean 86.1 % at factor 100), so Simoes' native dependability cannot exceed about 90 %; this is a property of the detector at our noise level, stated in the plan in advance and not to be explained away later. No further tuning of the Simoes detector is allowed.
+- Order of work: N6a now (unattended), N3 modules meanwhile, then N4 (all six), statistics, paper.
+- Noted at decision time (Simoes native, published / grid): dependability 59.9 / 69.7 %, security 95.3 / 92.2 % (runs/20261101_v5_benchmark_fair/simoes_*).

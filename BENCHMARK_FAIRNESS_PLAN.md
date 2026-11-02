@@ -233,7 +233,7 @@ R0 (≈ 0.5 day) → D1–D3 (≈ 1 day, mostly unattended re-simulation) → sp
 ## N1. Close the data loose ends (≈ 1 h)
 
 ### N1a. Missing-trace manifests and the common trace set
-- [ ] Write manifests for plant B (12) and OOD (3), like `hr_missing_traces.txt`.
+- [x] Write manifests for plant B (11) and OOD (1), like `hr_missing_traces.txt`.
 - **Hypothesis H1a:** the failed re-simulations are scattered over scenarios. No scenario group loses more than 5 % of its traces, so using only traces present in both sets does not bias any category. The plant-A list so far shows mixed groups (Normal, inrush, over-excitation, SOTF, external).
 - **Test:** count failures per scenario group, per data set.
 - **Decision rules:**
@@ -417,3 +417,26 @@ No hypothesis; always done.
 | < 90 %, but misses do not concentrate on HF-poor traces | no plant change; the weakness is attributed to the method on this bench |
 
 **Rough total to a submittable paper: about 1.5–2 weeks** (N1–N6 ≈ 6–8 days including unattended compute, N8 ≈ 2–3 days, N7 depends on the author).
+
+---
+
+## Review and decisions — 2026-11-02 09:15
+Checked against `runs/20261101_v5_common_set/summary.txt`, `runs/20261101_v5_benchmark_fair/n2_simoes_factor.txt`, `simulations/powergui_freq_check.txt` and `documents/baselines/hr_missing_all.txt`. The work stopped after N2 (last commit 2026-11-01 23:45).
+
+**N1: accepted.** H1a, H1b and H1c are confirmed; the rules were applied as written.
+- N1b: the largest change is 0.04 pt. Use common-set numbers in the comparison tables.
+- N1c: identical currents (0.0 A difference), so no regeneration. Add one Limitations sentence.
+- **One deviation to close:** N1a's rule says "re-run once" for the plant-B OOD InternalHV family (1/14 = 7.1 %). This was skipped. **Decision D1:** do the single-trace re-run at the start of N4 (≈ 1 min of MATLAB). If it succeeds, include the trace; if not, keep n = 13 and report it. Reading "group" as the scenario family (phase suffix removed) is accepted.
+
+**N2: accepted.** H2 is confirmed, and row 2 fired: factor 100 in 12 folds, 50 in 3.
+- **Consequence, recorded now, before N4:** the detector finds only 86–92 % of events at these factors. Undetected events are "no trip" in native mode, so **Simões' native dependability is capped at about 86–92 %**. That is consistent with H4.1, and it must be explained in the paper as a detector/noise-floor limitation (`hf_content.txt`).
+- **No further tuning of the detector is allowed.** The like-for-like mode (dwell + validation threshold) uses the same detector factor per fold.
+
+**Decision D2, order of work (to use idle compute):**
+1. Start **N6a (B1, equal training budget for the same-feature models)** now as an **unattended Python run**. It needs no MATLAB, and the RAM peak is ~1.7 GB, within the 4 GB rule.
+2. While it runs, code **N3**: Ngaopitakkul, Abdusalam, Alhamd, each with its sanity check and the fold-1 training-accuracy gate (≥ 80 %, max two logged debug rounds).
+3. Then **N4** (all six reproductions), starting with the D1 single-trace re-run. Then N5, N6b/N6c, N8.
+
+**Decision D3:** N7 (the 9 unverified references) remains a **hard gate** for any submission. It is author work and can be done in parallel; nothing else depends on it.
+
+**Expected time from here:** N3 ≈ 2–3 days, N4 + N5 ≈ 2 days (mostly unattended), N6 ≈ 1 day (partly overlapping), N8 ≈ 2–3 days.
