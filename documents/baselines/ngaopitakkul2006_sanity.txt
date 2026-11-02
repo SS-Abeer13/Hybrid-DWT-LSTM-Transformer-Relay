@@ -1,0 +1,6 @@
+trace 1293: max squared coefficient in 5 ms after the fault / max in 20 ms before (A, B, C, zero seq): 1.74 1.42 0.65 0.73; detections near the event: []
+   same trace on the NOISE-FREE true line currents (V-I blocks): post/pre ratio A, B, C, 0: 2.0e+10 9.4e+05 1.7e+06 1.5e+10
+trace 1294: max squared coefficient in 5 ms after the fault / max in 20 ms before (A, B, C, zero seq): 0.36 0.61 0.99 0.60; detections near the event: []
+   same trace on the NOISE-FREE true line currents (V-I blocks): post/pre ratio A, B, C, 0: 1.4e+08 3.5e+03 3.5e+03 1.5e+08
+trace 1295: max squared coefficient in 5 ms after the fault / max in 20 ms before (A, B, C, zero seq): 6.66 0.67 0.69 3.26; detections near the event: [0.0001]
+   same trace on the NOISE-FREE true line currents (V-I blocks): post/pre ratio A, B, C, 0: 4.5e+10 8.6e+05 9.7e+05 2.9e+10

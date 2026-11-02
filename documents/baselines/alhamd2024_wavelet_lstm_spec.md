@@ -52,3 +52,9 @@ Their Figs. 7-14: the differential current and its first-level wavelet and scali
 
 ## 7. Cost to report
 Parameter count and operations per segment decision of the bidirectional LSTM, measured latency per decision at 3 kHz (decision every 5 samples: budget 1.67 ms).
+
+## 8. Amendments of 2026-11-02 (made while writing the code, before any evaluation result of this method)
+1. Features: the sequence input is the time series over the 60-sample segment of w(l,k) and S(l,k), l = 0 ... 7, for the three phases (48 channels), scaled by arcsinh(10 x) (a fixed, amplitude-preserving compression; the paper does not give a scaling). L = 8 taps (db4).
+2. Classes: inrush; internal fault; internal fault with CT saturation (scenario names Stress_CTSat_Int*); external fault (all external scenarios); no event (normal, over-excitation, segments before the first event). Training segments lie entirely after an event (labelled by the latest event) or entirely before the first event; mixed segments are left out. Up to 6 segments per trace (segments up to 3 cycles after each event, plus 8 random candidates).
+3. Budget: the paper's 200 epochs are not affordable with a search (days of CPU). Used: the 12-configuration random search is run **once** (first fold of the first seed, 8 epochs per configuration, early stopping patience 4, on that fold's validation segments) and the winning configuration is trained on every fold for at most 25 epochs (patience 5, learning rate dropped by 10 after half of the epochs, SGD momentum 0.9). This is the same epoch limit as the Part 1 models and a smaller budget than the paper's; recorded as a deviation.
+4. Native decision: every 5 samples from 0.12 s the latest 60-sample segment is classified; trip at the first segment classified as internal fault with or without CT saturation.
