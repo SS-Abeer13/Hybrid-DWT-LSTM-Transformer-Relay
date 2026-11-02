@@ -16,6 +16,7 @@ function outFile = generate_stress_dataset_plant_b_hr_v5(nSamples, varargin)
 %   'OverexcMin' lower bound (pu) of over-excitation source voltage (default 1.15).
 %   'Indices' closedloop only: trace numbers to re-run with LSTM active; empty = 12 cases.
 %   'Tag'     closedloop only: suffix of result files (default 'plant_b').
+%   'Redo'    vector of trace numbers to (re-)simulate only (N1a re-run of failed traces; use a new Run id).
 %   'Range'   self-test only: [first last] case numbers.
 
 warning('off', 'all');
@@ -27,7 +28,7 @@ datasetsDir = fullfile(projectDir, 'datasets');
 selfTest = nargin >= 1 && (ischar(nSamples) || isstring(nSamples)) && strcmpi(nSamples, 'selftest');
 closedLoop = nargin >= 1 && (ischar(nSamples) || isstring(nSamples)) && strcmpi(nSamples, 'closedloop');
 if nargin < 1 || isempty(nSamples) || selfTest || closedLoop, nSamplesNum = 1200; else, nSamplesNum = nSamples; end
-opts = struct('Resume', '', 'Run', '', 'Seed', 20261021, 'StopTime', 1.10, 'Chunk', 0, 'Set', 'main', 'Only', {{}}, 'Range', [], 'OverexcMin', 1.15, 'Indices', [], 'Reference', '', 'Tag', 'plant_b');
+opts = struct('Resume', '', 'Run', '', 'Seed', 20261021, 'StopTime', 1.10, 'Chunk', 0, 'Set', 'main', 'Only', {{}}, 'Range', [], 'OverexcMin', 1.15, 'Indices', [], 'Reference', '', 'Tag', 'plant_b', 'Redo', []);
 for k = 1:2:numel(varargin)
     assert(isfield(opts, varargin{k}), 'GenPlantB:Option', 'Unknown option "%s".', varargin{k});
     opts.(varargin{k}) = varargin{k + 1};
@@ -166,7 +167,8 @@ for j = 1:startAt - 1
 end
 
 t0 = tic;
-for idx = startAt:N
+loopIdx = startAt:N; if ~isempty(opts.Redo), loopIdx = opts.Redo(:).'; end   % N1a: re-run named traces only (same parameters: seeded by index)
+for idx = loopIdx
     sc = ST(plan(idx));
     within = idx - firstOf(plan(idx)) + 1;
     if strcmp(opts.Set, 'OOD'), within = 0; end
@@ -182,7 +184,7 @@ for idx = startAt:N
         fingerprints(rec.fingerprint) = idx;
     end
 
-    el = toc(t0); done = idx - startAt + 1;
+    el = toc(t0); done = max(1, find(loopIdx == idx, 1));
     fprintf('[%4d/%4d] %-26s %-4s | load %4.0f%% (real %4.0f%%) pf %.2f noise %.2f%% burden %.1fx CTerr %3.0f%% | event %6s det %6s | %s | ETA %.0f min\n', ...
         idx, N, sc.name, status, 100 * p.loadPu, rec.loadRealisedPct, p.pf, p.noisePct, p.ctBurden, rec.ctRatioErrorMax, fmtT(p.tEvent), fmtT(rec.eventDetected), ...
         checkText(rec), el / done * (N - idx) / 60);
