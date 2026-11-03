@@ -398,6 +398,9 @@ def main():
     generate_table_6_5_closed_loop()
     generate_table_6_6_latency()
     generate_table_6_8_plant_b_generalization()
+    sys.path.insert(0, str(ROOT / "tools"))
+    import publication_tables_AD as AD
+    AD.build_all()          # Tables A-D (benchmark fairness, D-N8c)
     print("All available publication tables compiled successfully.")
 
 
