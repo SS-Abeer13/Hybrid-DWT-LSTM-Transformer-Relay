@@ -1,0 +1,406 @@
+{
+ "main": [
+  {
+   "index": 123,
+   "scenario": "Normal",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 159,
+   "scenario": "Normal",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 172,
+   "scenario": "Normal",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 347,
+   "scenario": "Inrush_NoLoad",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 682,
+   "scenario": "Recovery_Inrush",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 718,
+   "scenario": "Overexcitation",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 831,
+   "scenario": "Overexcitation",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 886,
+   "scenario": "Internal_Evolving",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.615,
+   "onset_s": 0.590625
+  },
+  {
+   "index": 1096,
+   "scenario": "Stress_FaultInInrush",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.3,
+   "onset_s": 0.24
+  },
+  {
+   "index": 1209,
+   "scenario": "Stress_ExtInInrush",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 1295,
+   "scenario": "Internal_AG",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.333125,
+   "onset_s": 0.31625
+  },
+  {
+   "index": 1594,
+   "scenario": "Internal_CG",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.451875,
+   "onset_s": 0.435625
+  },
+  {
+   "index": 1738,
+   "scenario": "Internal_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.628125,
+   "onset_s": 0.60625
+  },
+  {
+   "index": 1871,
+   "scenario": "Internal_BC",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.619375,
+   "onset_s": 0.6
+  },
+  {
+   "index": 2070,
+   "scenario": "External_AC",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 2145,
+   "scenario": "Internal_ABG",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.719375,
+   "onset_s": 0.701875
+  },
+  {
+   "index": 2183,
+   "scenario": "External_ABG",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 2240,
+   "scenario": "Stress_ExtCTSat_ABG",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 2429,
+   "scenario": "Internal_ACG",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.33875,
+   "onset_s": 0.31625
+  },
+  {
+   "index": 2438,
+   "scenario": "InternalHV_ACG",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.755,
+   "onset_s": 0.74875
+  },
+  {
+   "index": 2457,
+   "scenario": "External_ACG",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 2564,
+   "scenario": "Internal_ABC",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.57125,
+   "onset_s": 0.5425
+  },
+  {
+   "index": 2854,
+   "scenario": "Internal_HiZ_BC",
+   "should_trip": 1,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": 0.42875
+  },
+  {
+   "index": 2970,
+   "scenario": "Internal_HiZ_ABC",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.75625,
+   "onset_s": 0.731875
+  },
+  {
+   "index": 3030,
+   "scenario": "Internal_HiZ_AG",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.73,
+   "onset_s": 0.7125
+  }
+ ],
+ "ood": [
+  {
+   "index": 5,
+   "scenario": "Normal",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 23,
+   "scenario": "External_AB",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 28,
+   "scenario": "Inrush_Loaded",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 30,
+   "scenario": "Inrush_Loaded",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 31,
+   "scenario": "Internal_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.70375,
+   "onset_s": 0.6875
+  },
+  {
+   "index": 32,
+   "scenario": "Internal_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.405,
+   "onset_s": 0.3875
+  },
+  {
+   "index": 33,
+   "scenario": "Internal_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.321875,
+   "onset_s": 0.30625
+  },
+  {
+   "index": 60,
+   "scenario": "Internal_AG",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.536875,
+   "onset_s": 0.520625
+  },
+  {
+   "index": 61,
+   "scenario": "Normal",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 63,
+   "scenario": "Normal",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 66,
+   "scenario": "Normal",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 95,
+   "scenario": "Internal_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.564375,
+   "onset_s": 0.5475
+  },
+  {
+   "index": 97,
+   "scenario": "Internal_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.650625,
+   "onset_s": 0.63625
+  },
+  {
+   "index": 106,
+   "scenario": "Internal_ABC",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.475,
+   "onset_s": 0.458125
+  },
+  {
+   "index": 108,
+   "scenario": "Internal_ABC",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.394375,
+   "onset_s": 0.37125
+  },
+  {
+   "index": 138,
+   "scenario": "Stress_ExtCTSat_AB",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 140,
+   "scenario": "Stress_ExtCTSat_AB",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 153,
+   "scenario": "Stress_CTSat_Int_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.611875,
+   "onset_s": 0.596875
+  },
+  {
+   "index": 156,
+   "scenario": "Stress_CTSat_Int_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.4575,
+   "onset_s": 0.443125
+  },
+  {
+   "index": 189,
+   "scenario": "Overexcitation",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 209,
+   "scenario": "Recovery_Inrush",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 237,
+   "scenario": "Stress_FaultInInrush",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.395625,
+   "onset_s": 0.380625
+  },
+  {
+   "index": 250,
+   "scenario": "Normal",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 253,
+   "scenario": "External_ABC",
+   "should_trip": 0,
+   "tripped": false,
+   "trip_time_s": null,
+   "onset_s": null
+  },
+  {
+   "index": 295,
+   "scenario": "InternalHV_AB",
+   "should_trip": 1,
+   "tripped": true,
+   "trip_time_s": 0.683125,
+   "onset_s": 0.68125
+  }
+ ]
+}

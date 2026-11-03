@@ -1,0 +1,37 @@
+{
+ "Wavelet-SVM": {
+  "n_components": 240,
+  "gamma_x": 1.0,
+  "alpha": 1e-05
+ },
+ "Wavelet-RF": {
+  "n_estimators": 400,
+  "max_depth": null,
+  "min_samples_leaf": 1
+ },
+ "Wavelet-ANN": {
+  "hidden1": 64,
+  "hidden2": 64,
+  "dropout": 0.1,
+  "lr": 0.001
+ },
+ "1D-CNN": {
+  "channels": 64,
+  "kernel": 5,
+  "layers": 3,
+  "dropout": 0.1,
+  "lr": 0.001
+ },
+ "Wavelet-GRU": {
+  "hidden": 128,
+  "layers": 1,
+  "dropout": 0.1,
+  "lr": 0.001
+ },
+ "Proposed LSTM": {
+  "hidden": 128,
+  "layers": 2,
+  "dropout": 0.2,
+  "lr": 0.003
+ }
+}

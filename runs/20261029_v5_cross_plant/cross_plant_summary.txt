@@ -1,0 +1,19 @@
+EXPERIMENT 2: CROSS-PLANT TRAINING SUMMARY (5-FOLD CV)
+Date: 2026-10-29T17:09:31.627887
+================================================================================
+
+Subset: Overall (Pooled A + B)
+  Dependability: 94.78% [93.64, 95.73]%
+  Security:      98.22% [97.65, 98.65]%
+  Operate Median: 15.0 ms (<=1 cyc: 83.30308529945553%, <=2 cyc: 95.76527525710829%)
+
+Subset: Plant A Subset
+  Dependability: 94.56% [93.17, 95.69]%
+  Security:      98.79% [98.21, 99.19]%
+  Operate Median: 15.625 ms (<=1 cyc: 78.86728655959425%, <=2 cyc: 94.75908706677939%)
+
+Subset: Plant B Subset
+  Dependability: 95.33% [93.10, 96.87]%
+  Security:      96.73% [95.21, 97.77]%
+  Operate Median: 13.75 ms (<=1 cyc: 94.46808510638299%, <=2 cyc: 98.29787234042553%)
+

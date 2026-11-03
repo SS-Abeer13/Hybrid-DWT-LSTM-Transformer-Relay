@@ -1,0 +1,15 @@
+HiZ sensitivity, v5 plant B (corrected differential; no noise; nominal burden)
+
+type    Rf@1pu   Rf@0.30   Rf@0.05  Rf@0.015 | load spread (max/min) of Rf@0.30, Rf@0.05 | monotonic
+AB       25.55     85.65    481.54   1408.81 | 1.05, 1.07 | True
+ABC      25.55     85.97    491.51   1509.22 | 1.05, 1.05 | True
+AC       25.56     85.86    488.81   1444.65 | 1.05, 1.04 | True
+AG       14.41     49.59    287.80    897.12 | 1.05, 1.07 | True
+BC       25.55     85.91    493.61   1445.43 | 1.05, 1.04 | True
+
+Bins (ohm, log-uniform):
+  AB   visible 25.55-85.65 | ai_only 85.65-481.54 | undetect 481.54-1408.81
+  ABC  visible 25.55-85.97 | ai_only 85.97-491.51 | undetect 491.51-1509.22
+  AC   visible 25.56-85.86 | ai_only 85.86-488.81 | undetect 488.81-1444.65
+  AG   visible 14.41-49.59 | ai_only 49.59-287.80 | undetect 287.80-897.12
+  BC   visible 25.55-85.91 | ai_only 85.91-493.61 | undetect 493.61-1445.43

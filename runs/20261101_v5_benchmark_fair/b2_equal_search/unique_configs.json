@@ -1,0 +1,74 @@
+{
+ "Wavelet-SVM": {
+  "unique": 10,
+  "drawn": 12,
+  "duplicates(first,second)": [
+   [
+    1,
+    8
+   ],
+   [
+    6,
+    11
+   ]
+  ]
+ },
+ "Wavelet-RF": {
+  "unique": 11,
+  "drawn": 12,
+  "duplicates(first,second)": [
+   [
+    6,
+    8
+   ]
+  ]
+ },
+ "Wavelet-ANN": {
+  "unique": 11,
+  "drawn": 12,
+  "duplicates(first,second)": [
+   [
+    5,
+    11
+   ]
+  ]
+ },
+ "1D-CNN": {
+  "unique": 10,
+  "drawn": 12,
+  "duplicates(first,second)": [
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    9
+   ]
+  ]
+ },
+ "Wavelet-GRU": {
+  "unique": 11,
+  "drawn": 12,
+  "duplicates(first,second)": [
+   [
+    4,
+    8
+   ]
+  ]
+ },
+ "Proposed LSTM": {
+  "unique": 10,
+  "drawn": 12,
+  "duplicates(first,second)": [
+   [
+    3,
+    5
+   ],
+   [
+    2,
+    9
+   ]
+  ]
+ }
+}

@@ -1,0 +1,4 @@
+Alhamd et al. latency per decision (single thread CPU, features of 5 new samples + BiLSTM 60x48), budget 1,667 us
+seed20261021_fold1                                   {'hidden': 128, 'layers': 1, 'dropout': 0.2, 'lr': 0.03}  median 1166 us, p99 1747 us -> real-time
+final_model                                          {'hidden': 128, 'layers': 1, 'dropout': 0.1, 'lr': 0.03}  median 1169 us, p99 1674 us -> real-time
+largest_search_space_config (earlier measurement)    {'hidden': 128, 'layers': 2, 'dropout': 0.1}  median 1799 us, p99 2312 us -> NOT real-time in this implementation

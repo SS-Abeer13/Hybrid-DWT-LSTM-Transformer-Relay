@@ -1,0 +1,24 @@
+Plant B zero-shot trip-path check (plant-A final model, AI 0.995, solo 0.998, dwell 20; 1289 traces)
+
+Proposed as evaluated (high-set + gate + solo)       dep  92.70 %  sec  88.35 %  missed  36  false trips  89
+without AI-alone path (high-set + gate)              dep  90.47 %  sec  99.21 %  missed  47  false trips   6
+AI-alone path only (+ high-set)                      dep  92.70 %  sec  88.35 %  missed  36  false trips  89
+high-set only                                        dep  50.30 %  sec 100.00 %  missed 245  false trips   0
+
+False trips (detectable healthy traces, n=764): first path = {'solo': 87, 'gate': 2}; traces where BOTH gated and AI-alone paths fired: 6
+By category (first path; _both_gate_and_solo = traces where both fired):
+   External                   {'solo': 23, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_AG         {'solo': 8, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_ABC        {'solo': 8, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_BCG        {'solo': 7, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_ABCG       {'solo': 7, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_BG         {'solo': 6, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_AC         {'solo': 6, '_both_gate_and_solo': 2}
+   Stress_ExtCTSat_ABG        {'solo': 6, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_AB         {'solo': 4, '_both_gate_and_solo': 2, 'gate': 1}
+   Stress_ExtInInrush         {'solo': 4, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_BC         {'solo': 3, '_both_gate_and_solo': 2, 'gate': 1}
+   Stress_ExtCTSat_ACG        {'solo': 3, '_both_gate_and_solo': 0}
+   Stress_ExtCTSat_CG         {'solo': 2, '_both_gate_and_solo': 0}
+
+Faults (n=493): first path = {'gate': 220, 'highset': 226, 'solo': 11}; tripped ONLY by the AI-alone path (neither gate nor high-set): 11

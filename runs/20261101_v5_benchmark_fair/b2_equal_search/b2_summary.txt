@@ -1,0 +1,33 @@
+Table B, tuned with equal budget (15 fold-models per model; common set)
+model              standalone dep/sec   hybrid dep/sec  epochs  chosen configuration
+Wavelet-SVM          90.93 /  90.41     87.01 /  97.73     nan  {'n_components': 240, 'gamma_x': 1.0, 'alpha': 1e-05}
+Wavelet-RF           97.07 /  95.45     93.49 /  99.49     nan  {'n_estimators': 400, 'max_depth': None, 'min_samples_leaf': 1}
+Wavelet-ANN          97.69 /  97.14     94.92 /  99.20    10.4  {'hidden1': 64, 'hidden2': 64, 'dropout': 0.1, 'lr': 0.001}
+1D-CNN               97.96 /  97.28     95.75 /  99.02    10.0  {'channels': 64, 'kernel': 5, 'layers': 3, 'dropout': 0.1, 'lr': 0.001}
+Wavelet-GRU          98.01 /  97.28     95.59 /  98.82    10.3  {'hidden': 128, 'layers': 1, 'dropout': 0.1, 'lr': 0.001}
+Proposed LSTM        98.44 /  97.26     93.60 /  99.10    10.2  {'hidden': 128, 'layers': 2, 'dropout': 0.2, 'lr': 0.003}
+deployed LSTM        97.66 /  95.57     92.95 /  98.95  (default configuration, stride 4, from the CV)
+
+paired exact McNemar, Holm over 22 tests (diff = other minus reference, pt)
+Wavelet-SVM hybrid vs tuned LSTM hybrid                        dependability n=3717 ref 93.60 other 87.01 diff -6.59 discordant 260/15 p_Holm 1.55e-57 *
+Wavelet-SVM hybrid vs tuned LSTM hybrid                        security      n=5910 ref 99.10 other 97.73 diff -1.37 discordant 127/46 p_Holm 9.79e-09 *
+Wavelet-RF hybrid vs tuned LSTM hybrid                         dependability n=3717 ref 93.60 other 93.49 diff -0.11 discordant 94/90 p_Holm 1.00e+00 unstable
+Wavelet-RF hybrid vs tuned LSTM hybrid                         security      n=5910 ref 99.10 other 99.49 diff +0.39 discordant 25/48 p_Holm 1.05e-01
+Wavelet-ANN hybrid vs tuned LSTM hybrid                        dependability n=3717 ref 93.60 other 94.92 diff +1.32 discordant 52/101 p_Holm 1.19e-03 *
+Wavelet-ANN hybrid vs tuned LSTM hybrid                        security      n=5910 ref 99.10 other 99.20 diff +0.10 discordant 29/35 p_Holm 1.00e+00 unstable
+1D-CNN hybrid vs tuned LSTM hybrid                             dependability n=3717 ref 93.60 other 95.75 diff +2.15 discordant 29/109 p_Holm 7.56e-11 *
+1D-CNN hybrid vs tuned LSTM hybrid                             security      n=5910 ref 99.10 other 99.02 diff -0.08 discordant 33/28 p_Holm 1.00e+00 unstable
+Wavelet-GRU hybrid vs tuned LSTM hybrid                        dependability n=3717 ref 93.60 other 95.59 diff +1.99 discordant 40/114 p_Holm 3.17e-08 *
+Wavelet-GRU hybrid vs tuned LSTM hybrid                        security      n=5910 ref 99.10 other 98.82 diff -0.29 discordant 38/21 p_Holm 3.63e-01 unstable
+tuned LSTM hybrid vs deployed hybrid (reference = deployed)    dependability n=3717 ref 92.95 other 93.60 diff +0.65 discordant 79/103 p_Holm 7.91e-01 unstable
+tuned LSTM hybrid vs deployed hybrid (reference = deployed)    security      n=5910 ref 98.95 other 99.10 diff +0.15 discordant 39/48 p_Holm 1.00e+00 unstable
+Wavelet-SVM hybrid vs deployed hybrid (reference = deployed)   dependability n=3717 ref 92.95 other 87.01 diff -5.95 discordant 228/7 p_Holm 5.63e-57 *
+Wavelet-SVM hybrid vs deployed hybrid (reference = deployed)   security      n=5910 ref 98.95 other 97.73 diff -1.22 discordant 119/47 p_Holm 3.04e-07 *
+Wavelet-RF hybrid vs deployed hybrid (reference = deployed)    dependability n=3717 ref 92.95 other 93.49 diff +0.54 discordant 62/82 p_Holm 9.04e-01 unstable
+Wavelet-RF hybrid vs deployed hybrid (reference = deployed)    security      n=5910 ref 98.95 other 99.49 diff +0.54 discordant 23/55 p_Holm 4.53e-03 *
+Wavelet-ANN hybrid vs deployed hybrid (reference = deployed)   dependability n=3717 ref 92.95 other 94.92 diff +1.96 discordant 39/112 p_Holm 3.41e-08 *
+Wavelet-ANN hybrid vs deployed hybrid (reference = deployed)   security      n=5910 ref 98.95 other 99.20 diff +0.25 discordant 33/48 p_Holm 9.04e-01
+1D-CNN hybrid vs deployed hybrid (reference = deployed)        dependability n=3717 ref 92.95 other 95.75 diff +2.80 discordant 22/126 p_Holm 1.30e-17 *
+1D-CNN hybrid vs deployed hybrid (reference = deployed)        security      n=5910 ref 98.95 other 99.02 diff +0.07 discordant 39/43 p_Holm 1.00e+00 unstable
+Wavelet-GRU hybrid vs deployed hybrid (reference = deployed)   dependability n=3717 ref 92.95 other 95.59 diff +2.64 discordant 27/125 p_Holm 5.40e-15 *
+Wavelet-GRU hybrid vs deployed hybrid (reference = deployed)   security      n=5910 ref 98.95 other 98.82 diff -0.14 discordant 46/38 p_Holm 1.00e+00 unstable

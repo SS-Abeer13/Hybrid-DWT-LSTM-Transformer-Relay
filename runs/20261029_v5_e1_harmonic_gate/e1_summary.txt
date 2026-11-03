@@ -1,0 +1,24 @@
+E1: hybrid with the per-phase harmonic-restrained 87T as gate (protocol fixed before the run; no retraining)
+
+(1) CV, 15 fold-models pooled (undetectable faults excluded):
+  Hybrid + AI-alone path (unrestrained gate)   dep  92.99 %  sec  98.96 %  missed  263  false   62  pre   0  median 16.2 ms
+  Hybrid, harmonic gate (E1)                   dep  91.98 %  sec  99.38 %  missed  301  false   37  pre   0  median 16.9 ms
+  per-phase harmonic 87T alone (summary of 20261029_v5_harmonic87t, main CV pooled): see that summary.
+  paired McNemar, E1 vs reference hybrid, matched on (seed, fold, trace):
+    dependability  n=3753  E1 91.98 %  ref 92.99 %  E1 wins 9  ref wins 47  chi2 24.45  p 7.64e-07
+    security       n=5961  E1 99.38 %  ref 98.96 %  E1 wins 30  ref wins 5  chi2 16.46  p 4.98e-05
+
+(2) Final model, thresholds tuned on its validation traces with the harmonic gate: AI 0.9000, solo 0.998
+  OOD (scored once):
+    reference hybrid: dep 98.0 % sec 96.0 %
+    E1                                           dep  97.99 %  sec  92.67 %  missed    3  false   11  pre   0  median 16.9 ms
+      block 1: dep 100.0 % (30)  sec 96.7 % (30)
+      block 2: dep 100.0 % (30)  sec 100.0 % (30)
+      block 3: dep 100.0 % (30)  sec 96.7 % (30)
+      block 4: dep 96.7 % (30)  sec 76.7 % (30)
+      block 5: dep 93.1 % (29)  sec 93.3 % (30)
+
+(3) Plant B zero-shot (plant-A final model; the thresholds of (2) frozen):
+    reference Proposed       : dep 92.70 %  sec 88.35 %  false trips 89
+    reference harmonic 87T   : dep 94.12 %  sec 98.95 %  false trips 8
+    E1 hybrid, harmonic gate : dep 92.70 %  sec 88.35 %  false trips 89  missed 36

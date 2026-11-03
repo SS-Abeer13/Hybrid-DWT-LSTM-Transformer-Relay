@@ -1,0 +1,9 @@
+method                 folds   dep %   sec %  median op ms
+abdusalam_ba_svm          13   76.06   99.93          21.1
+afrasiabi                 15   87.06   89.56          11.2
+afrasiabi_nocomp          15   86.41   88.09          11.2
+alhamd                    15   85.79   54.91           9.6
+key                       15   96.91   74.86          18.1
+ngaopitakkul              15   27.71   99.26           5.1
+simoes_grid               15   69.68   92.20           0.4
+simoes_published          15   59.91   95.31           0.4

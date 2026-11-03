@@ -1,0 +1,6 @@
+Common set vs full set (plant A main, CV x 3 seeds x 5 folds); 30 of 3332 kept traces excluded
+variant                     full dep  common dep   delta |  full sec  common sec   delta  (mean over 3 seeds of pooled folds)
+Hybrid + AI-alone path         92.99       92.95   -0.04 |     98.96       98.95   -0.01
+LSTM alone                     97.68       97.66   -0.02 |     95.60       95.57   -0.04
+87T alone                      80.34       80.31   -0.03 |     63.41       63.45   +0.04
+Harmonic 87T per-phase         85.93       85.96   +0.03 |     99.40       99.39   -0.01  (single pass over all traces)

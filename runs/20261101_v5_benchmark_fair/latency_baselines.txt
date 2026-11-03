@@ -1,0 +1,10 @@
+Measured latency of the reproductions (single thread, CPU, Python/PyTorch/NumPy, one decision per call; architectures at the largest search-space size, random weights)
+afrasiabi_cnn_per_decision                   median      116.7 us  p99      170.8  budget    1250.0 us  PASS
+afrasiabi_hajipour_per_sample_per_signal     median        0.1 us  p99        nan  budget     250.0 us  PASS
+key_per_sample                               median       37.0 us  p99       65.9  budget     312.5 us  PASS
+alhamd_per_decision                          median     1808.6 us  p99     2428.3  budget    1666.7 us  NOT real-time in this implementation
+ngaopitakkul_per_sample                      median        3.3 us  p99        5.8  budget      50.0 us  PASS
+ngaopitakkul_per_detection_network           median        6.1 us  p99       10.7  budget       nan us  -
+abdusalam_features_per_decision              median   608796.1 us  p99   650644.0  budget    2500.0 us  NOT real-time in this implementation
+simoes_per_sample_wavelet                    median        7.5 us  p99       12.4  budget      78.1 us  PASS
+simoes_svm1_per_detection                    median      497.6 us  p99      619.6  budget       nan us  -

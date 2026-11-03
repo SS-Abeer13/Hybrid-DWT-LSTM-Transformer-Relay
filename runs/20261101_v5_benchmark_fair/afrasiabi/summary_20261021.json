@@ -1,0 +1,11 @@
+{
+ "n_fault": 1239,
+ "n_healthy": 1970,
+ "dependability_pct": 87.48991121872479,
+ "security_pct": 91.57360406091371,
+ "missed": 133,
+ "false_trips": 166,
+ "pre_fault_trips": 22,
+ "operate_median_ms": 11.160714285714302,
+ "operate_p90_ms": 18.30357142857142
+}

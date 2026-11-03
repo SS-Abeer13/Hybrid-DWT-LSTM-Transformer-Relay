@@ -1,0 +1,12 @@
+N2 Simoes detector factor, rule on validation traces per fold; 15 fold-models
+chosen factor counts: {100.0: 12, 50.0: 3}
+flags: {'detection_criterion_unmet': 15}
+
+mean over folds per factor: spurious firings per Normal/over-excitation trace | event detection rate (fault, inrush, external traces)
+  factor     5:  394.98 |  99.9 %
+  factor    10:   54.27 |  99.2 %
+  factor    15:   22.46 |  97.8 %
+  factor    20:   10.12 |  96.5 %
+  factor    30:    3.23 |  94.5 %
+  factor    50:    1.29 |  91.5 %
+  factor   100:    0.78 |  86.1 %

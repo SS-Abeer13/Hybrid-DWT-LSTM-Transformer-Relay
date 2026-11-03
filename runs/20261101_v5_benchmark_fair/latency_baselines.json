@@ -1,0 +1,63 @@
+{
+ "afrasiabi_cnn_per_decision": {
+  "median_us": 116.7,
+  "p99_us": 170.803,
+  "max_us": 241.4,
+  "n": 2000,
+  "budget_us": 1250.0
+ },
+ "afrasiabi_hajipour_per_sample_per_signal": {
+  "median_us": 0.11749999976018444,
+  "budget_us": 250.0,
+  "note": "1 s of a saturating-free 8 A signal; six signals per sample"
+ },
+ "key_per_sample": {
+  "median_us": 37.0,
+  "p99_us": 65.91899999999998,
+  "max_us": 87.8,
+  "n": 2000,
+  "budget_us": 312.5
+ },
+ "alhamd_per_decision": {
+  "median_us": 1808.6,
+  "p99_us": 2428.2709999999997,
+  "max_us": 2730.0,
+  "n": 500,
+  "budget_us": 1666.6666666666667
+ },
+ "ngaopitakkul_per_sample": {
+  "median_us": 3.3,
+  "p99_us": 5.8,
+  "max_us": 25.7,
+  "n": 20000,
+  "budget_us": 50.0
+ },
+ "ngaopitakkul_per_detection_network": {
+  "median_us": 6.1,
+  "p99_us": 10.7,
+  "max_us": 37.9,
+  "n": 5000
+ },
+ "abdusalam_features_per_decision": {
+  "median_us": 608796.1,
+  "p99_us": 650644.005,
+  "max_us": 650787.7,
+  "n": 30,
+  "budget_us": 2500.0
+ },
+ "simoes_per_sample_wavelet": {
+  "median_us": 7.5,
+  "p99_us": 12.4,
+  "max_us": 50.3,
+  "n": 20000,
+  "budget_us": 78.125
+ },
+ "simoes_svm1_per_detection": {
+  "median_us": 497.55,
+  "p99_us": 619.637,
+  "max_us": 702.5,
+  "n": 500,
+  "n_support_total": 4500,
+  "note": "random 1,500-event training set (worst case for the support-vector count)"
+ }
+}

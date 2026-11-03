@@ -1,0 +1,356 @@
+{
+  "metadata": {
+    "Conventional 87T": {
+      "params": 0,
+      "type": "Physics-based Relay"
+    },
+    "Standalone LSTM": {
+      "params": 58241,
+      "type": "Recurrent Sequence"
+    },
+    "Proposed Hybrid DWT-LSTM": {
+      "params": 58241,
+      "type": "Hybrid Neuro-Physical"
+    },
+    "Wavelet-ANN": {
+      "params": 5441,
+      "type": "Shallow Neural Network",
+      "epochs_used": 9
+    },
+    "1D-CNN": {
+      "params": 14561,
+      "type": "Convolutional Network",
+      "epochs_used": 7
+    },
+    "Wavelet-GRU": {
+      "params": 44354,
+      "type": "Recurrent Sequence",
+      "epochs_used": 8
+    },
+    "Wavelet-RF": {
+      "params": 35274,
+      "type": "Ensemble Trees"
+    },
+    "Wavelet-SVM": {
+      "params": 5880,
+      "type": "Kernel Machine"
+    }
+  },
+  "summaries": {
+    "Conventional 87T": {
+      "standalone": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 80.3357314148681,
+        "security_pct": 63.41217916456971,
+        "accuracy_pct": 69.95058678196418,
+        "missed": 135,
+        "false_trips": 727,
+        "pre_fault_trips": 111,
+        "operate": {
+          "n": 1005,
+          "median_ms": 1.25,
+          "p90_ms": 7.5,
+          "max_ms": 23.125,
+          "within_1_cycle_pct": 99.80099502487563,
+          "within_2_cycles_pct": 100.0
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 9.574468085106384
+        }
+      }
+    },
+    "Wavelet-SVM": {
+      "standalone": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 84.97202238209432,
+        "security_pct": 74.98741821841973,
+        "accuracy_pct": 78.8449660284126,
+        "missed": 114,
+        "false_trips": 497,
+        "pre_fault_trips": 74,
+        "operate": {
+          "n": 1063,
+          "median_ms": 15.0,
+          "p90_ms": 37.37500000000004,
+          "max_ms": 703.75,
+          "within_1_cycle_pct": 75.82314205079962,
+          "within_2_cycles_pct": 93.60301034807149
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 8.51063829787234
+        }
+      },
+      "hybrid": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 82.414068745004,
+        "security_pct": 98.59084046300957,
+        "accuracy_pct": 92.34095120444718,
+        "missed": 219,
+        "false_trips": 28,
+        "pre_fault_trips": 1,
+        "operate": {
+          "n": 1031,
+          "median_ms": 18.125,
+          "p90_ms": 41.875,
+          "max_ms": 703.75,
+          "within_1_cycle_pct": 54.12221144519883,
+          "within_2_cycles_pct": 86.42095053346266
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 3.1914893617021276
+        }
+      }
+    },
+    "Wavelet-ANN": {
+      "standalone": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 96.64268585131894,
+        "security_pct": 96.27579265223956,
+        "accuracy_pct": 96.41754169240272,
+        "missed": 42,
+        "false_trips": 74,
+        "pre_fault_trips": 0,
+        "operate": {
+          "n": 1209,
+          "median_ms": 15.625,
+          "p90_ms": 33.125,
+          "max_ms": 462.5,
+          "within_1_cycle_pct": 80.23159636062861,
+          "within_2_cycles_pct": 95.11993382961124
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 11.702127659574469
+        }
+      },
+      "hybrid": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 94.08473221422862,
+        "security_pct": 98.99345747357826,
+        "accuracy_pct": 97.0969734403953,
+        "missed": 74,
+        "false_trips": 20,
+        "pre_fault_trips": 0,
+        "operate": {
+          "n": 1177,
+          "median_ms": 16.25,
+          "p90_ms": 38.75,
+          "max_ms": 438.75,
+          "within_1_cycle_pct": 73.06711979609176,
+          "within_2_cycles_pct": 91.3338997451147
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 9.574468085106384
+        }
+      }
+    },
+    "Wavelet-RF": {
+      "standalone": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 96.72262190247801,
+        "security_pct": 95.47055863110216,
+        "accuracy_pct": 95.95429277331687,
+        "missed": 41,
+        "false_trips": 90,
+        "pre_fault_trips": 0,
+        "operate": {
+          "n": 1210,
+          "median_ms": 15.625,
+          "p90_ms": 43.75,
+          "max_ms": 436.25,
+          "within_1_cycle_pct": 70.24793388429752,
+          "within_2_cycles_pct": 87.52066115702479
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 11.702127659574469
+        }
+      },
+      "hybrid": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 92.9656274980016,
+        "security_pct": 99.34574735782587,
+        "accuracy_pct": 96.88079061148858,
+        "missed": 88,
+        "false_trips": 13,
+        "pre_fault_trips": 0,
+        "operate": {
+          "n": 1163,
+          "median_ms": 16.875,
+          "p90_ms": 50.625,
+          "max_ms": 584.375,
+          "within_1_cycle_pct": 60.01719690455718,
+          "within_2_cycles_pct": 81.08340498710233
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 5.319148936170213
+        }
+      }
+    },
+    "1D-CNN": {
+      "standalone": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 96.1630695443645,
+        "security_pct": 96.62808253648717,
+        "accuracy_pct": 96.4484249536751,
+        "missed": 47,
+        "false_trips": 67,
+        "pre_fault_trips": 1,
+        "operate": {
+          "n": 1203,
+          "median_ms": 16.25,
+          "p90_ms": 33.125,
+          "max_ms": 504.375,
+          "within_1_cycle_pct": 71.07231920199501,
+          "within_2_cycles_pct": 96.09310058187863
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 10.638297872340425
+        }
+      },
+      "hybrid": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 93.20543565147882,
+        "security_pct": 99.39607448414695,
+        "accuracy_pct": 97.00432365657814,
+        "missed": 85,
+        "false_trips": 12,
+        "pre_fault_trips": 0,
+        "operate": {
+          "n": 1166,
+          "median_ms": 18.125,
+          "p90_ms": 38.125,
+          "max_ms": 588.125,
+          "within_1_cycle_pct": 59.17667238421955,
+          "within_2_cycles_pct": 91.852487135506
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 9.574468085106384
+        }
+      }
+    },
+    "Wavelet-GRU": {
+      "standalone": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 97.3621103117506,
+        "security_pct": 95.36990437845999,
+        "accuracy_pct": 96.13959234095121,
+        "missed": 33,
+        "false_trips": 92,
+        "pre_fault_trips": 0,
+        "operate": {
+          "n": 1218,
+          "median_ms": 15.0,
+          "p90_ms": 31.875,
+          "max_ms": 481.25,
+          "within_1_cycle_pct": 74.13793103448276,
+          "within_2_cycles_pct": 96.38752052545156
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 13.829787234042554
+        }
+      },
+      "hybrid": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 93.92486011191046,
+        "security_pct": 98.79214896829392,
+        "accuracy_pct": 96.91167387276096,
+        "missed": 76,
+        "false_trips": 24,
+        "pre_fault_trips": 0,
+        "operate": {
+          "n": 1175,
+          "median_ms": 18.125,
+          "p90_ms": 40.625,
+          "max_ms": 574.375,
+          "within_1_cycle_pct": 58.29787234042553,
+          "within_2_cycles_pct": 89.87234042553192
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 9.574468085106384
+        }
+      }
+    },
+    "Standalone LSTM": {
+      "standalone": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 97.0423661071143,
+        "security_pct": 94.61499748364368,
+        "accuracy_pct": 95.55281037677578,
+        "missed": 36,
+        "false_trips": 107,
+        "pre_fault_trips": 1,
+        "operate": {
+          "n": 1214,
+          "median_ms": 16.25,
+          "p90_ms": 35.0,
+          "max_ms": 635.625,
+          "within_1_cycle_pct": 74.2998352553542,
+          "within_2_cycles_pct": 94.3163097199341
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 11.702127659574469
+        }
+      }
+    },
+    "Proposed Hybrid DWT-LSTM": {
+      "hybrid": {
+        "n_fault": 1251,
+        "n_healthy": 1987,
+        "n_total": 3238,
+        "dependability_pct": 94.24460431654677,
+        "security_pct": 98.69149471565174,
+        "accuracy_pct": 96.97344039530574,
+        "missed": 72,
+        "false_trips": 26,
+        "pre_fault_trips": 0,
+        "operate": {
+          "n": 1179,
+          "median_ms": 17.5,
+          "p90_ms": 39.375,
+          "max_ms": 603.125,
+          "within_1_cycle_pct": 59.881255301102634,
+          "within_2_cycles_pct": 90.67005937234946
+        },
+        "undetectable": {
+          "n": 94,
+          "tripped_pct": 9.574468085106384
+        }
+      }
+    }
+  }
+}

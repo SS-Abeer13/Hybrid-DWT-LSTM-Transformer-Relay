@@ -1,0 +1,9 @@
+Plant B zero-shot, deployed hybrid (thresholds frozen from plant A: AI 0.995, solo 0.998, dwell 20); source: trip_path_check.json
+as evaluated: false trips 89 of 764 detectable healthy traces; first path that fired: solo 87 (97.8 %), gate 2 (2.2 %), high-set 0
+traces where both the gated path and the AI-alone path fired: 6
+false trips by family: Stress_ExtCTSat 62, External 23, Stress_ExtInInrush 4
+counterfactual (same traces, same thresholds): switch the AI-alone (solo) path off -> {"n_fault": 493, "n_healthy": 764, "dependability_pct": 90.46653144016227, "security_pct": 99.21465968586388, "missed": 47, "false_trips": 6}
+   as evaluated: {"n_fault": 493, "n_healthy": 764, "dependability_pct": 92.69776876267748, "security_pct": 88.35078534031413, "missed": 36, "false_trips": 89}
+faults tripped ONLY by the AI-alone path: 11 of 493 (2.2 %)
+
+Reading: the plant-B security loss comes from the AI-alone (solo) path, not from the 87T-gated path. Per the decision table this goes into the limitations as 'the solo path is the transfer weakness'; the solo threshold is NOT changed (that would be tuning on plant B).

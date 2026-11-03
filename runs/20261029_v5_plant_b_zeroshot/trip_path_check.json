@@ -1,0 +1,108 @@
+{
+ "thresholds": {
+  "ai": 0.995,
+  "solo": 0.998,
+  "dwell": 20
+ },
+ "variants": {
+  "Proposed as evaluated (high-set + gate + solo)": {
+   "n_fault": 493,
+   "n_healthy": 764,
+   "dependability_pct": 92.69776876267748,
+   "security_pct": 88.35078534031413,
+   "missed": 36,
+   "false_trips": 89
+  },
+  "without AI-alone path (high-set + gate)": {
+   "n_fault": 493,
+   "n_healthy": 764,
+   "dependability_pct": 90.46653144016227,
+   "security_pct": 99.21465968586388,
+   "missed": 47,
+   "false_trips": 6
+  },
+  "AI-alone path only (+ high-set)": {
+   "n_fault": 493,
+   "n_healthy": 764,
+   "dependability_pct": 92.69776876267748,
+   "security_pct": 88.35078534031413,
+   "missed": 36,
+   "false_trips": 89
+  },
+  "high-set only": {
+   "n_fault": 493,
+   "n_healthy": 764,
+   "dependability_pct": 50.30425963488844,
+   "security_pct": 100.0,
+   "missed": 245,
+   "false_trips": 0
+  }
+ },
+ "false_trip_first_path": {
+  "solo": 87,
+  "gate": 2
+ },
+ "false_trips_with_gate_and_solo_both": 6,
+ "false_trips_by_category": {
+  "Stress_ExtInInrush": {
+   "solo": 4,
+   "_both_gate_and_solo": 0
+  },
+  "External": {
+   "solo": 23,
+   "_both_gate_and_solo": 0
+  },
+  "Stress_ExtCTSat_AG": {
+   "solo": 8,
+   "_both_gate_and_solo": 0
+  },
+  "Stress_ExtCTSat_BG": {
+   "solo": 6,
+   "_both_gate_and_solo": 0
+  },
+  "Stress_ExtCTSat_CG": {
+   "solo": 2,
+   "_both_gate_and_solo": 0
+  },
+  "Stress_ExtCTSat_AB": {
+   "solo": 4,
+   "_both_gate_and_solo": 2,
+   "gate": 1
+  },
+  "Stress_ExtCTSat_BC": {
+   "solo": 3,
+   "_both_gate_and_solo": 2,
+   "gate": 1
+  },
+  "Stress_ExtCTSat_AC": {
+   "solo": 6,
+   "_both_gate_and_solo": 2
+  },
+  "Stress_ExtCTSat_ABG": {
+   "solo": 6,
+   "_both_gate_and_solo": 0
+  },
+  "Stress_ExtCTSat_BCG": {
+   "solo": 7,
+   "_both_gate_and_solo": 0
+  },
+  "Stress_ExtCTSat_ACG": {
+   "solo": 3,
+   "_both_gate_and_solo": 0
+  },
+  "Stress_ExtCTSat_ABC": {
+   "solo": 8,
+   "_both_gate_and_solo": 0
+  },
+  "Stress_ExtCTSat_ABCG": {
+   "solo": 7,
+   "_both_gate_and_solo": 0
+  }
+ },
+ "fault_first_path": {
+  "gate": 220,
+  "highset": 226,
+  "solo": 11
+ },
+ "faults_tripped_only_by_solo": 11
+}

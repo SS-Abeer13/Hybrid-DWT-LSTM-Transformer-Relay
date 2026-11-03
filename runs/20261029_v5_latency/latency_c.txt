@@ -1,0 +1,20 @@
+STANDALONE HAND-WRITTEN ANSI C LATENCY BENCHMARK (Phase 4.2; C source emitted by tools/build_and_run_c_benchmark.py, not MATLAB Coder output)
+================================================================================
+
+CPU Model:        AMD Ryzen 7 7700 8-Core Processor
+Compiler:         MinGW-w64 GCC 16.1.0 (x86_64-w64-mingw32, -O3 -mavx2 -mfma)
+Implementation:   Generic ANSI C / C99 (no external math/DL libraries)
+Sampling Period:  625.0 us (1,600 Hz)
+Timed Iterations: 10000
+
+Component Latency Breakdown (microseconds):
+  1. Feature Extraction (DWT + FFT):  median = 1.00 us (p99 = 1.50 us)
+  2. LSTM Inference (2-layer + Att):  median = 176.00 us (p99 = 232.20 us)
+  3. Combined End-to-End Relay Step:  median = 175.90 us (p99 = 228.90 us, max = 376.90 us)
+
+Real-Time Budget Analysis:
+  Sampling Period:       625.0 us
+  Median Execution:      175.90 us
+  CPU Utilization:       28.14 %
+  Idle Headroom Margin:  71.86 %
+  Verdict:               REAL-TIME CAPABLE (PASS)

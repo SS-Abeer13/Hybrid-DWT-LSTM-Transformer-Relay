@@ -1,0 +1,32 @@
+seed 20261021 fold 1: 664 test traces | dep 64.2 % sec 96.0 % | 8 s
+seed 20261021 fold 2: 662 test traces | dep 57.1 % sec 95.7 % | 8 s
+seed 20261021 fold 3: 656 test traces | dep 59.0 % sec 95.1 % | 7 s
+seed 20261021 fold 4: 658 test traces | dep 57.4 % sec 95.9 % | 7 s
+seed 20261021 fold 5: 662 test traces | dep 58.9 % sec 95.7 % | 7 s
+seed 20261022 fold 1: 662 test traces | dep 61.7 % sec 95.9 % | 7 s
+seed 20261022 fold 2: 659 test traces | dep 60.7 % sec 96.4 % | 7 s
+seed 20261022 fold 3: 659 test traces | dep 57.1 % sec 94.1 % | 9 s
+seed 20261022 fold 4: 661 test traces | dep 63.1 % sec 93.7 % | 7 s
+seed 20261022 fold 5: 661 test traces | dep 58.6 % sec 95.9 % | 7 s
+seed 20261023 fold 1: 661 test traces | dep 59.4 % sec 96.5 % | 7 s
+seed 20261023 fold 2: 660 test traces | dep 55.2 % sec 94.4 % | 8 s
+seed 20261023 fold 3: 658 test traces | dep 61.0 % sec 97.4 % | 7 s
+seed 20261023 fold 4: 661 test traces | dep 62.2 % sec 92.1 % | 9 s
+seed 20261023 fold 5: 662 test traces | dep 63.3 % sec 94.7 % | 9 s
+published dep 59.913909066451446 sec 95.31302876480542 117s
+seed 20261021 fold 1: 664 test traces | dep 71.1 % sec 92.2 % | 24 s
+seed 20261021 fold 2: 662 test traces | dep 66.7 % sec 93.9 % | 24 s
+seed 20261021 fold 3: 656 test traces | dep 70.1 % sec 93.1 % | 24 s
+seed 20261021 fold 4: 658 test traces | dep 71.3 % sec 92.9 % | 33 s
+seed 20261021 fold 5: 662 test traces | dep 65.9 % sec 92.7 % | 25 s
+seed 20261022 fold 1: 662 test traces | dep 70.8 % sec 92.6 % | 23 s
+seed 20261022 fold 2: 659 test traces | dep 71.3 % sec 92.4 % | 24 s
+seed 20261022 fold 3: 659 test traces | dep 68.0 % sec 90.1 % | 42 s
+seed 20261022 fold 4: 661 test traces | dep 68.0 % sec 89.6 % | 24 s
+seed 20261022 fold 5: 661 test traces | dep 68.5 % sec 92.9 % | 27 s
+seed 20261023 fold 1: 661 test traces | dep 69.3 % sec 91.9 % | 36 s
+seed 20261023 fold 2: 660 test traces | dep 66.9 % sec 92.9 % | 39 s
+seed 20261023 fold 3: 658 test traces | dep 72.0 % sec 94.4 % | 41 s
+seed 20261023 fold 4: 661 test traces | dep 71.3 % sec 89.6 % | 73 s
+seed 20261023 fold 5: 662 test traces | dep 74.3 % sec 91.9 % | 77 s
+grid dep 69.6798493408663 sec 92.19966159052454 536s

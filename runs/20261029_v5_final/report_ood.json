@@ -1,0 +1,2177 @@
+{
+ "settings": {
+  "87T alone": {
+   "ai_threshold": 0.5,
+   "solo_threshold": null
+  },
+  "LSTM alone": {
+   "ai_threshold": 0.45,
+   "solo_threshold": null
+  },
+  "Hybrid (87T gate)": {
+   "ai_threshold": 0.995,
+   "solo_threshold": null
+  },
+  "Hybrid + AI-alone path": {
+   "ai_threshold": 0.995,
+   "solo_threshold": 0.998
+  }
+ },
+ "n_train": 2752,
+ "n_val": 486,
+ "epochs": 14,
+ "ood": {
+  "87T alone": {
+   "overall": {
+    "n_fault": 149,
+    "n_healthy": 150,
+    "dependability_pct": 89.26174496644296,
+    "security_pct": 53.333333333333336,
+    "missed": 6,
+    "false_trips": 70,
+    "pre_fault_trips": 10,
+    "operate": {
+     "n": 133,
+     "median_ms": 1.25,
+     "p90_ms": 6.25,
+     "max_ms": 45.0,
+     "within_1_cycle_pct": 99.24812030075188,
+     "within_2_cycles_pct": 99.24812030075188
+    },
+    "undetectable": {
+     "n": 0,
+     "tripped_pct": null
+    },
+    "by_category": {
+     "External CT-sat": {
+      "n": 30,
+      "correct": 11,
+      "correct_pct": 36.666666666666664,
+      "ci95": [
+       21.87370220401768,
+       54.486753566395066
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "External solid": {
+      "n": 35,
+      "correct": 35,
+      "correct_pct": 100.0,
+      "ci95": [
+       90.10957324106113,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Fault in inrush": {
+      "n": 10,
+      "correct": 0,
+      "correct_pct": 0.0,
+      "ci95": [
+       0.0,
+       27.75401687666166
+      ],
+      "should_trip": true,
+      "median_ms": null
+     },
+     "Inrush loaded": {
+      "n": 33,
+      "correct": 0,
+      "correct_pct": 0.0,
+      "ci95": [
+       0.0,
+       10.427343003561191
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Inrush no-load": {
+      "n": 6,
+      "correct": 0,
+      "correct_pct": 0.0,
+      "ci95": [
+       0.0,
+       39.03430336530645
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Internal CT-sat": {
+      "n": 30,
+      "correct": 30,
+      "correct_pct": 100.0,
+      "ci95": [
+       88.6482908609522,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 1.875
+     },
+     "Internal HV-side": {
+      "n": 27,
+      "correct": 27,
+      "correct_pct": 100.0,
+      "ci95": [
+       87.54409628553641,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 0.625
+     },
+     "Internal LV solid": {
+      "n": 72,
+      "correct": 66,
+      "correct_pct": 91.66666666666667,
+      "ci95": [
+       82.987444728766,
+       96.12481028695096
+      ],
+      "should_trip": true,
+      "median_ms": 1.875
+     },
+     "Normal": {
+      "n": 28,
+      "correct": 28,
+      "correct_pct": 100.0,
+      "ci95": [
+       87.93527963418923,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Over-excitation": {
+      "n": 12,
+      "correct": 0,
+      "correct_pct": 0.0,
+      "ci95": [
+       0.0,
+       24.25007574992425
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Recovery inrush": {
+      "n": 6,
+      "correct": 6,
+      "correct_pct": 100.0,
+      "ci95": [
+       60.96569663469354,
+       99.99999999999999
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "SOTF": {
+      "n": 10,
+      "correct": 10,
+      "correct_pct": 100.0,
+      "ci95": [
+       72.24598312333835,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 1.875
+     }
+    }
+   },
+   "blocks": {
+    "1": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 90.0,
+     "security_pct": 76.66666666666667,
+     "missed": 3,
+     "false_trips": 7,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 27,
+      "median_ms": 1.25,
+      "p90_ms": 6.25,
+      "max_ms": 15.625,
+      "within_1_cycle_pct": 100.0,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 15,
+       "correct": 15,
+       "correct_pct": 100.0,
+       "ci95": [
+        79.6110733695652,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 7,
+       "correct": 0,
+       "correct_pct": 0.0,
+       "ci95": [
+        0.0,
+        35.433884297520656
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 7,
+       "correct": 7,
+       "correct_pct": 100.0,
+       "ci95": [
+        64.56611570247934,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 0.625
+      },
+      "Internal LV solid": {
+       "n": 23,
+       "correct": 20,
+       "correct_pct": 86.95652173913044,
+       "ci95": [
+        67.87210202698179,
+        95.46242348565531
+       ],
+       "should_trip": true,
+       "median_ms": 1.875
+      },
+      "Normal": {
+       "n": 8,
+       "correct": 8,
+       "correct_pct": 100.0,
+       "ci95": [
+        67.55843804891231,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    },
+    "2": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 93.33333333333333,
+     "security_pct": 66.66666666666666,
+     "missed": 2,
+     "false_trips": 10,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 28,
+      "median_ms": 1.25,
+      "p90_ms": 7.000000000000002,
+      "max_ms": 45.0,
+      "within_1_cycle_pct": 96.42857142857143,
+      "within_2_cycles_pct": 96.42857142857143
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 10,
+       "correct": 0,
+       "correct_pct": 0.0,
+       "ci95": [
+        0.0,
+        27.75401687666166
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 0.9375
+      },
+      "Internal LV solid": {
+       "n": 20,
+       "correct": 18,
+       "correct_pct": 90.0,
+       "ci95": [
+        69.89617935882066,
+        97.21341060158468
+       ],
+       "should_trip": true,
+       "median_ms": 2.8125
+      },
+      "Normal": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    },
+    "3": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 36.666666666666664,
+     "missed": 0,
+     "false_trips": 19,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 1.875,
+      "p90_ms": 4.375,
+      "max_ms": 5.625,
+      "within_1_cycle_pct": 100.0,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External CT-sat": {
+       "n": 30,
+       "correct": 11,
+       "correct_pct": 36.666666666666664,
+       "ci95": [
+        21.87370220401768,
+        54.486753566395066
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal CT-sat": {
+       "n": 30,
+       "correct": 30,
+       "correct_pct": 100.0,
+       "ci95": [
+        88.6482908609522,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 1.875
+      }
+     }
+    },
+    "4": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 66.66666666666666,
+     "security_pct": 20.0,
+     "missed": 0,
+     "false_trips": 24,
+     "pre_fault_trips": 10,
+     "operate": {
+      "n": 20,
+      "median_ms": 2.1875,
+      "p90_ms": 6.312500000000001,
+      "max_ms": 16.25,
+      "within_1_cycle_pct": 100.0,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "Fault in inrush": {
+       "n": 10,
+       "correct": 0,
+       "correct_pct": 0.0,
+       "ci95": [
+        0.0,
+        27.75401687666166
+       ],
+       "should_trip": true,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 6,
+       "correct": 0,
+       "correct_pct": 0.0,
+       "ci95": [
+        0.0,
+        39.03430336530645
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush no-load": {
+       "n": 6,
+       "correct": 0,
+       "correct_pct": 0.0,
+       "ci95": [
+        0.0,
+        39.03430336530645
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal LV solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 2.5
+      },
+      "Over-excitation": {
+       "n": 12,
+       "correct": 0,
+       "correct_pct": 0.0,
+       "ci95": [
+        0.0,
+        24.25007574992425
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Recovery inrush": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "SOTF": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 1.875
+      }
+     }
+    },
+    "5": {
+     "n_fault": 29,
+     "n_healthy": 30,
+     "dependability_pct": 96.55172413793103,
+     "security_pct": 66.66666666666666,
+     "missed": 1,
+     "false_trips": 10,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 28,
+      "median_ms": 1.25,
+      "p90_ms": 8.437500000000002,
+      "max_ms": 20.0,
+      "within_1_cycle_pct": 100.0,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 10,
+       "correct": 0,
+       "correct_pct": 0.0,
+       "ci95": [
+        0.0,
+        27.75401687666166
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 0.625
+      },
+      "Internal LV solid": {
+       "n": 19,
+       "correct": 18,
+       "correct_pct": 94.73684210526316,
+       "ci95": [
+        75.3607846634548,
+        99.064824750947
+       ],
+       "should_trip": true,
+       "median_ms": 1.5625
+      },
+      "Normal": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    }
+   }
+  },
+  "LSTM alone": {
+   "overall": {
+    "n_fault": 149,
+    "n_healthy": 150,
+    "dependability_pct": 99.32885906040269,
+    "security_pct": 87.33333333333333,
+    "missed": 1,
+    "false_trips": 19,
+    "pre_fault_trips": 0,
+    "operate": {
+     "n": 148,
+     "median_ms": 15.625,
+     "p90_ms": 27.62500000000003,
+     "max_ms": 85.625,
+     "within_1_cycle_pct": 82.43243243243244,
+     "within_2_cycles_pct": 98.64864864864865
+    },
+    "undetectable": {
+     "n": 0,
+     "tripped_pct": null
+    },
+    "by_category": {
+     "External CT-sat": {
+      "n": 30,
+      "correct": 29,
+      "correct_pct": 96.66666666666667,
+      "ci95": [
+       83.32924860304112,
+       99.40915620051425
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "External solid": {
+      "n": 35,
+      "correct": 30,
+      "correct_pct": 85.71428571428571,
+      "ci95": [
+       70.62411969132573,
+       93.73986119514649
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Fault in inrush": {
+      "n": 10,
+      "correct": 10,
+      "correct_pct": 100.0,
+      "ci95": [
+       72.24598312333835,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 16.25
+     },
+     "Inrush loaded": {
+      "n": 33,
+      "correct": 29,
+      "correct_pct": 87.87878787878788,
+      "ci95": [
+       72.67415674973485,
+       95.18391673241577
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Inrush no-load": {
+      "n": 6,
+      "correct": 6,
+      "correct_pct": 100.0,
+      "ci95": [
+       60.96569663469354,
+       99.99999999999999
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Internal CT-sat": {
+      "n": 30,
+      "correct": 30,
+      "correct_pct": 100.0,
+      "ci95": [
+       88.6482908609522,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 16.875
+     },
+     "Internal HV-side": {
+      "n": 27,
+      "correct": 27,
+      "correct_pct": 100.0,
+      "ci95": [
+       87.54409628553641,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 13.75
+     },
+     "Internal LV solid": {
+      "n": 72,
+      "correct": 71,
+      "correct_pct": 98.61111111111111,
+      "ci95": [
+       92.54321971571302,
+       99.75441113595677
+      ],
+      "should_trip": true,
+      "median_ms": 15.625
+     },
+     "Normal": {
+      "n": 28,
+      "correct": 28,
+      "correct_pct": 100.0,
+      "ci95": [
+       87.93527963418923,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Over-excitation": {
+      "n": 12,
+      "correct": 3,
+      "correct_pct": 25.0,
+      "ci95": [
+       8.894003962896138,
+       53.231033912065996
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Recovery inrush": {
+      "n": 6,
+      "correct": 6,
+      "correct_pct": 100.0,
+      "ci95": [
+       60.96569663469354,
+       99.99999999999999
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "SOTF": {
+      "n": 10,
+      "correct": 10,
+      "correct_pct": 100.0,
+      "ci95": [
+       72.24598312333835,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 18.75
+     }
+    }
+   },
+   "blocks": {
+    "1": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 96.66666666666667,
+     "missed": 0,
+     "false_trips": 1,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 15.0,
+      "p90_ms": 16.9375,
+      "max_ms": 35.625,
+      "within_1_cycle_pct": 96.66666666666667,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 15,
+       "correct": 14,
+       "correct_pct": 93.33333333333333,
+       "ci95": [
+        70.18292244757602,
+        98.81334113938051
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 7,
+       "correct": 7,
+       "correct_pct": 100.0,
+       "ci95": [
+        64.56611570247934,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 7,
+       "correct": 7,
+       "correct_pct": 100.0,
+       "ci95": [
+        64.56611570247934,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 13.75
+      },
+      "Internal LV solid": {
+       "n": 23,
+       "correct": 23,
+       "correct_pct": 100.0,
+       "ci95": [
+        85.68788745827374,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 15.625
+      },
+      "Normal": {
+       "n": 8,
+       "correct": 8,
+       "correct_pct": 100.0,
+       "ci95": [
+        67.55843804891231,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    },
+    "2": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 96.66666666666667,
+     "missed": 0,
+     "false_trips": 1,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 15.0,
+      "p90_ms": 15.6875,
+      "max_ms": 21.25,
+      "within_1_cycle_pct": 96.66666666666667,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 10,
+       "correct": 9,
+       "correct_pct": 90.0,
+       "ci95": [
+        59.58436145024278,
+        98.21242504842787
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 13.75
+      },
+      "Internal LV solid": {
+       "n": 20,
+       "correct": 20,
+       "correct_pct": 100.0,
+       "ci95": [
+        83.88698745050667,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 15.625
+      },
+      "Normal": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    },
+    "3": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 96.66666666666667,
+     "missed": 0,
+     "false_trips": 1,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 16.875,
+      "p90_ms": 35.125,
+      "max_ms": 40.0,
+      "within_1_cycle_pct": 73.33333333333333,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External CT-sat": {
+       "n": 30,
+       "correct": 29,
+       "correct_pct": 96.66666666666667,
+       "ci95": [
+        83.32924860304112,
+        99.40915620051425
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal CT-sat": {
+       "n": 30,
+       "correct": 30,
+       "correct_pct": 100.0,
+       "ci95": [
+        88.6482908609522,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 16.875
+      }
+     }
+    },
+    "4": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 70.0,
+     "missed": 0,
+     "false_trips": 9,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 16.25,
+      "p90_ms": 31.500000000000004,
+      "max_ms": 43.75,
+      "within_1_cycle_pct": 73.33333333333333,
+      "within_2_cycles_pct": 96.66666666666667
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "Fault in inrush": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 16.25
+      },
+      "Inrush loaded": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush no-load": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal LV solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 16.25
+      },
+      "Over-excitation": {
+       "n": 12,
+       "correct": 3,
+       "correct_pct": 25.0,
+       "ci95": [
+        8.894003962896138,
+        53.231033912065996
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Recovery inrush": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "SOTF": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 18.75
+      }
+     }
+    },
+    "5": {
+     "n_fault": 29,
+     "n_healthy": 30,
+     "dependability_pct": 96.55172413793103,
+     "security_pct": 76.66666666666667,
+     "missed": 1,
+     "false_trips": 7,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 28,
+      "median_ms": 17.1875,
+      "p90_ms": 30.5625,
+      "max_ms": 85.625,
+      "within_1_cycle_pct": 71.42857142857143,
+      "within_2_cycles_pct": 96.42857142857143
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 10,
+       "correct": 7,
+       "correct_pct": 70.0,
+       "ci95": [
+        39.67732199795652,
+        89.2210712513788
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 10,
+       "correct": 6,
+       "correct_pct": 60.0,
+       "ci95": [
+        31.266954745018637,
+        83.18224187964903
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 15.9375
+      },
+      "Internal LV solid": {
+       "n": 19,
+       "correct": 18,
+       "correct_pct": 94.73684210526316,
+       "ci95": [
+        75.3607846634548,
+        99.064824750947
+       ],
+       "should_trip": true,
+       "median_ms": 18.4375
+      },
+      "Normal": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    }
+   }
+  },
+  "Hybrid (87T gate)": {
+   "overall": {
+    "n_fault": 149,
+    "n_healthy": 150,
+    "dependability_pct": 94.63087248322147,
+    "security_pct": 98.66666666666667,
+    "missed": 8,
+    "false_trips": 2,
+    "pre_fault_trips": 0,
+    "operate": {
+     "n": 141,
+     "median_ms": 16.875,
+     "p90_ms": 38.75,
+     "max_ms": 115.625,
+     "within_1_cycle_pct": 69.50354609929079,
+     "within_2_cycles_pct": 91.48936170212765
+    },
+    "undetectable": {
+     "n": 0,
+     "tripped_pct": null
+    },
+    "by_category": {
+     "External CT-sat": {
+      "n": 30,
+      "correct": 30,
+      "correct_pct": 100.0,
+      "ci95": [
+       88.6482908609522,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "External solid": {
+      "n": 35,
+      "correct": 35,
+      "correct_pct": 100.0,
+      "ci95": [
+       90.10957324106113,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Fault in inrush": {
+      "n": 10,
+      "correct": 10,
+      "correct_pct": 100.0,
+      "ci95": [
+       72.24598312333835,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 16.5625
+     },
+     "Inrush loaded": {
+      "n": 33,
+      "correct": 33,
+      "correct_pct": 100.0,
+      "ci95": [
+       89.57265699643881,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Inrush no-load": {
+      "n": 6,
+      "correct": 6,
+      "correct_pct": 100.0,
+      "ci95": [
+       60.96569663469354,
+       99.99999999999999
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Internal CT-sat": {
+      "n": 30,
+      "correct": 30,
+      "correct_pct": 100.0,
+      "ci95": [
+       88.6482908609522,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 18.4375
+     },
+     "Internal HV-side": {
+      "n": 27,
+      "correct": 27,
+      "correct_pct": 100.0,
+      "ci95": [
+       87.54409628553641,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 3.75
+     },
+     "Internal LV solid": {
+      "n": 72,
+      "correct": 65,
+      "correct_pct": 90.27777777777777,
+      "ci95": [
+       81.26475097464319,
+       95.21042887388322
+      ],
+      "should_trip": true,
+      "median_ms": 18.125
+     },
+     "Normal": {
+      "n": 28,
+      "correct": 28,
+      "correct_pct": 100.0,
+      "ci95": [
+       87.93527963418923,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Over-excitation": {
+      "n": 12,
+      "correct": 10,
+      "correct_pct": 83.33333333333333,
+      "ci95": [
+       55.196364261532736,
+       95.30358523851777
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Recovery inrush": {
+      "n": 6,
+      "correct": 6,
+      "correct_pct": 100.0,
+      "ci95": [
+       60.96569663469354,
+       99.99999999999999
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "SOTF": {
+      "n": 10,
+      "correct": 9,
+      "correct_pct": 90.0,
+      "ci95": [
+       59.58436145024278,
+       98.21242504842787
+      ],
+      "should_trip": true,
+      "median_ms": 18.75
+     }
+    }
+   },
+   "blocks": {
+    "1": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 90.0,
+     "security_pct": 100.0,
+     "missed": 3,
+     "false_trips": 0,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 27,
+      "median_ms": 16.25,
+      "p90_ms": 20.125000000000004,
+      "max_ms": 25.625,
+      "within_1_cycle_pct": 88.88888888888889,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 15,
+       "correct": 15,
+       "correct_pct": 100.0,
+       "ci95": [
+        79.6110733695652,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 7,
+       "correct": 7,
+       "correct_pct": 100.0,
+       "ci95": [
+        64.56611570247934,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 7,
+       "correct": 7,
+       "correct_pct": 100.0,
+       "ci95": [
+        64.56611570247934,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 1.875
+      },
+      "Internal LV solid": {
+       "n": 23,
+       "correct": 20,
+       "correct_pct": 86.95652173913044,
+       "ci95": [
+        67.87210202698179,
+        95.46242348565531
+       ],
+       "should_trip": true,
+       "median_ms": 16.5625
+      },
+      "Normal": {
+       "n": 8,
+       "correct": 8,
+       "correct_pct": 100.0,
+       "ci95": [
+        67.55843804891231,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    },
+    "2": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 93.33333333333333,
+     "security_pct": 100.0,
+     "missed": 2,
+     "false_trips": 0,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 28,
+      "median_ms": 16.5625,
+      "p90_ms": 22.875,
+      "max_ms": 45.0,
+      "within_1_cycle_pct": 75.0,
+      "within_2_cycles_pct": 96.42857142857143
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 13.75
+      },
+      "Internal LV solid": {
+       "n": 20,
+       "correct": 18,
+       "correct_pct": 90.0,
+       "ci95": [
+        69.89617935882066,
+        97.21341060158468
+       ],
+       "should_trip": true,
+       "median_ms": 17.5
+      },
+      "Normal": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    },
+    "3": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 100.0,
+     "missed": 0,
+     "false_trips": 0,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 18.4375,
+      "p90_ms": 41.9375,
+      "max_ms": 43.75,
+      "within_1_cycle_pct": 53.333333333333336,
+      "within_2_cycles_pct": 83.33333333333334
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External CT-sat": {
+       "n": 30,
+       "correct": 30,
+       "correct_pct": 100.0,
+       "ci95": [
+        88.6482908609522,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal CT-sat": {
+       "n": 30,
+       "correct": 30,
+       "correct_pct": 100.0,
+       "ci95": [
+        88.6482908609522,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 18.4375
+      }
+     }
+    },
+    "4": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 96.66666666666667,
+     "security_pct": 93.33333333333333,
+     "missed": 1,
+     "false_trips": 2,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 29,
+      "median_ms": 18.125,
+      "p90_ms": 40.75,
+      "max_ms": 45.625,
+      "within_1_cycle_pct": 62.06896551724138,
+      "within_2_cycles_pct": 86.20689655172413
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "Fault in inrush": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 16.5625
+      },
+      "Inrush loaded": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush no-load": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal LV solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 17.5
+      },
+      "Over-excitation": {
+       "n": 12,
+       "correct": 10,
+       "correct_pct": 83.33333333333333,
+       "ci95": [
+        55.196364261532736,
+        95.30358523851777
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Recovery inrush": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "SOTF": {
+       "n": 10,
+       "correct": 9,
+       "correct_pct": 90.0,
+       "ci95": [
+        59.58436145024278,
+        98.21242504842787
+       ],
+       "should_trip": true,
+       "median_ms": 18.75
+      }
+     }
+    },
+    "5": {
+     "n_fault": 29,
+     "n_healthy": 30,
+     "dependability_pct": 93.10344827586206,
+     "security_pct": 100.0,
+     "missed": 2,
+     "false_trips": 0,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 27,
+      "median_ms": 17.5,
+      "p90_ms": 34.87500000000001,
+      "max_ms": 115.625,
+      "within_1_cycle_pct": 70.37037037037037,
+      "within_2_cycles_pct": 92.5925925925926
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 3.125
+      },
+      "Internal LV solid": {
+       "n": 19,
+       "correct": 17,
+       "correct_pct": 89.47368421052632,
+       "ci95": [
+        68.6054495051583,
+        97.06420586049033
+       ],
+       "should_trip": true,
+       "median_ms": 20.0
+      },
+      "Normal": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    }
+   }
+  },
+  "Hybrid + AI-alone path": {
+   "overall": {
+    "n_fault": 149,
+    "n_healthy": 150,
+    "dependability_pct": 97.98657718120806,
+    "security_pct": 96.0,
+    "missed": 3,
+    "false_trips": 6,
+    "pre_fault_trips": 0,
+    "operate": {
+     "n": 146,
+     "median_ms": 17.5,
+     "p90_ms": 38.75,
+     "max_ms": 115.625,
+     "within_1_cycle_pct": 67.12328767123287,
+     "within_2_cycles_pct": 91.0958904109589
+    },
+    "undetectable": {
+     "n": 0,
+     "tripped_pct": null
+    },
+    "by_category": {
+     "External CT-sat": {
+      "n": 30,
+      "correct": 29,
+      "correct_pct": 96.66666666666667,
+      "ci95": [
+       83.32924860304112,
+       99.40915620051425
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "External solid": {
+      "n": 35,
+      "correct": 32,
+      "correct_pct": 91.42857142857143,
+      "ci95": [
+       77.62040092883747,
+       97.0418168994703
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Fault in inrush": {
+      "n": 10,
+      "correct": 10,
+      "correct_pct": 100.0,
+      "ci95": [
+       72.24598312333835,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 16.5625
+     },
+     "Inrush loaded": {
+      "n": 33,
+      "correct": 33,
+      "correct_pct": 100.0,
+      "ci95": [
+       89.57265699643881,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Inrush no-load": {
+      "n": 6,
+      "correct": 6,
+      "correct_pct": 100.0,
+      "ci95": [
+       60.96569663469354,
+       99.99999999999999
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Internal CT-sat": {
+      "n": 30,
+      "correct": 30,
+      "correct_pct": 100.0,
+      "ci95": [
+       88.6482908609522,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 18.4375
+     },
+     "Internal HV-side": {
+      "n": 27,
+      "correct": 27,
+      "correct_pct": 100.0,
+      "ci95": [
+       87.54409628553641,
+       100.0
+      ],
+      "should_trip": true,
+      "median_ms": 3.75
+     },
+     "Internal LV solid": {
+      "n": 72,
+      "correct": 70,
+      "correct_pct": 97.22222222222223,
+      "ci95": [
+       90.42564183109327,
+       99.23491385338595
+      ],
+      "should_trip": true,
+      "median_ms": 18.125
+     },
+     "Normal": {
+      "n": 28,
+      "correct": 28,
+      "correct_pct": 100.0,
+      "ci95": [
+       87.93527963418923,
+       100.0
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Over-excitation": {
+      "n": 12,
+      "correct": 10,
+      "correct_pct": 83.33333333333333,
+      "ci95": [
+       55.196364261532736,
+       95.30358523851777
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "Recovery inrush": {
+      "n": 6,
+      "correct": 6,
+      "correct_pct": 100.0,
+      "ci95": [
+       60.96569663469354,
+       99.99999999999999
+      ],
+      "should_trip": false,
+      "median_ms": null
+     },
+     "SOTF": {
+      "n": 10,
+      "correct": 9,
+      "correct_pct": 90.0,
+      "ci95": [
+       59.58436145024278,
+       98.21242504842787
+      ],
+      "should_trip": true,
+      "median_ms": 18.75
+     }
+    }
+   },
+   "blocks": {
+    "1": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 96.66666666666667,
+     "missed": 0,
+     "false_trips": 1,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 16.25,
+      "p90_ms": 26.812500000000018,
+      "max_ms": 44.375,
+      "within_1_cycle_pct": 80.0,
+      "within_2_cycles_pct": 93.33333333333333
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 15,
+       "correct": 14,
+       "correct_pct": 93.33333333333333,
+       "ci95": [
+        70.18292244757602,
+        98.81334113938051
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 7,
+       "correct": 7,
+       "correct_pct": 100.0,
+       "ci95": [
+        64.56611570247934,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 7,
+       "correct": 7,
+       "correct_pct": 100.0,
+       "ci95": [
+        64.56611570247934,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 1.875
+      },
+      "Internal LV solid": {
+       "n": 23,
+       "correct": 23,
+       "correct_pct": 100.0,
+       "ci95": [
+        85.68788745827374,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 17.5
+      },
+      "Normal": {
+       "n": 8,
+       "correct": 8,
+       "correct_pct": 100.0,
+       "ci95": [
+        67.55843804891231,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    },
+    "2": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 100.0,
+     "missed": 0,
+     "false_trips": 0,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 16.875,
+      "p90_ms": 23.8125,
+      "max_ms": 25.625,
+      "within_1_cycle_pct": 70.0,
+      "within_2_cycles_pct": 100.0
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 13.75
+      },
+      "Internal LV solid": {
+       "n": 20,
+       "correct": 20,
+       "correct_pct": 100.0,
+       "ci95": [
+        83.88698745050667,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 17.8125
+      },
+      "Normal": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    },
+    "3": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 100.0,
+     "security_pct": 96.66666666666667,
+     "missed": 0,
+     "false_trips": 1,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 30,
+      "median_ms": 18.4375,
+      "p90_ms": 41.9375,
+      "max_ms": 43.75,
+      "within_1_cycle_pct": 53.333333333333336,
+      "within_2_cycles_pct": 83.33333333333334
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External CT-sat": {
+       "n": 30,
+       "correct": 29,
+       "correct_pct": 96.66666666666667,
+       "ci95": [
+        83.32924860304112,
+        99.40915620051425
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal CT-sat": {
+       "n": 30,
+       "correct": 30,
+       "correct_pct": 100.0,
+       "ci95": [
+        88.6482908609522,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 18.4375
+      }
+     }
+    },
+    "4": {
+     "n_fault": 30,
+     "n_healthy": 30,
+     "dependability_pct": 96.66666666666667,
+     "security_pct": 93.33333333333333,
+     "missed": 1,
+     "false_trips": 2,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 29,
+      "median_ms": 18.125,
+      "p90_ms": 40.75,
+      "max_ms": 45.625,
+      "within_1_cycle_pct": 62.06896551724138,
+      "within_2_cycles_pct": 86.20689655172413
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "Fault in inrush": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 16.5625
+      },
+      "Inrush loaded": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush no-load": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal LV solid": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 17.5
+      },
+      "Over-excitation": {
+       "n": 12,
+       "correct": 10,
+       "correct_pct": 83.33333333333333,
+       "ci95": [
+        55.196364261532736,
+        95.30358523851777
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Recovery inrush": {
+       "n": 6,
+       "correct": 6,
+       "correct_pct": 100.0,
+       "ci95": [
+        60.96569663469354,
+        99.99999999999999
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "SOTF": {
+       "n": 10,
+       "correct": 9,
+       "correct_pct": 90.0,
+       "ci95": [
+        59.58436145024278,
+        98.21242504842787
+       ],
+       "should_trip": true,
+       "median_ms": 18.75
+      }
+     }
+    },
+    "5": {
+     "n_fault": 29,
+     "n_healthy": 30,
+     "dependability_pct": 93.10344827586206,
+     "security_pct": 93.33333333333333,
+     "missed": 2,
+     "false_trips": 2,
+     "pre_fault_trips": 0,
+     "operate": {
+      "n": 27,
+      "median_ms": 17.5,
+      "p90_ms": 34.87500000000001,
+      "max_ms": 115.625,
+      "within_1_cycle_pct": 70.37037037037037,
+      "within_2_cycles_pct": 92.5925925925926
+     },
+     "undetectable": {
+      "n": 0,
+      "tripped_pct": null
+     },
+     "by_category": {
+      "External solid": {
+       "n": 10,
+       "correct": 8,
+       "correct_pct": 80.0,
+       "ci95": [
+        49.01568467207233,
+        94.33190520193067
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Inrush loaded": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      },
+      "Internal HV-side": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": true,
+       "median_ms": 3.125
+      },
+      "Internal LV solid": {
+       "n": 19,
+       "correct": 17,
+       "correct_pct": 89.47368421052632,
+       "ci95": [
+        68.6054495051583,
+        97.06420586049033
+       ],
+       "should_trip": true,
+       "median_ms": 20.0
+      },
+      "Normal": {
+       "n": 10,
+       "correct": 10,
+       "correct_pct": 100.0,
+       "ci95": [
+        72.24598312333835,
+        100.0
+       ],
+       "should_trip": false,
+       "median_ms": null
+      }
+     }
+    }
+   }
+  }
+ }
+}

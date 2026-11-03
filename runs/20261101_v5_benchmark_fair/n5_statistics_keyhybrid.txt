@@ -1,0 +1,8 @@
+Hybrid with Key vs proposed hybrid, plant-A CV (3 seeds x 5 folds, common set), exact McNemar, Holm over 50 tests; per-seed difference in the last column
+dependability n=3717: proposed 92.95 %, with Key 94.11 %, diff +1.16 pt, discordant 68/111, p = 1.62e-03, p_Holm50 = 9.72e-03 *  seeds -0.16 +0.00 +3.63
+security      n=5910: proposed 98.95 %, with Key 99.86 %, diff +0.91 pt, discordant 8/62, p = 1.83e-11, p_Holm50 = 2.37e-10 *  seeds +0.66 +1.12 +0.96
+fold-model mean +- sd (15): dependability 94.13 +- 2.37 (min 90.1), security 99.86 +- 0.36 (min 99.0)
+H6 check: dependability >= 93 %: True; security >= 99 %: True
+plantA_OOD (final model, descriptive; thresholds AI 0.3, solo 0.9): dependability 97.97 % [94.2, 99.3] (n=148), security 95.30 % [90.6, 97.7] (n=149); false-trip first path {'highset': 0, 'gate': 7, 'solo': 0}, fault first path {'highset': 24, 'gate': 114, 'solo': 7} | gated-only counterfactual: {'dependability_pct': 94.59, 'security_pct': 95.3, 'false_trips': 7}
+plantB_main (final model, descriptive; thresholds AI 0.3, solo 0.9): dependability 95.50 % [93.3, 97.0] (n=489), security 99.87 % [99.3, 100.0] (n=757); false-trip first path {'highset': 0, 'gate': 0, 'solo': 1}, fault first path {'highset': 238, 'gate': 222, 'solo': 7} | gated-only counterfactual: {'dependability_pct': 94.07, 'security_pct': 100.0, 'false_trips': 0}
+proposed hybrid, for reference (final model): OOD 97.99 / 96.00; plant B zero-shot 92.70 / 88.35

@@ -1,0 +1,328 @@
+{
+  "mcnemar": {
+    "proposed_vs_unrestrained_87t": {
+      "dependability": {
+        "n_traces": 1251,
+        "n_discordant": 188,
+        "table": {
+          "n00": 67,
+          "n01_A_fails_B_wins": 9,
+          "n10_A_wins_B_fails": 179,
+          "n11": 996
+        },
+        "accuracy_A_pct": 93.92486011191046,
+        "accuracy_B_pct": 80.3357314148681,
+        "chi2_stat": 151.92021276595744,
+        "p_value": 3.570606180072039e-42,
+        "significant_at_0_05": true,
+        "significant_at_0_01": true,
+        "significant_at_0_001": true
+      },
+      "security": {
+        "n_traces": 1987,
+        "n_discordant": 726,
+        "table": {
+          "n00": 9,
+          "n01_A_fails_B_wins": 8,
+          "n10_A_wins_B_fails": 718,
+          "n11": 1252
+        },
+        "accuracy_A_pct": 99.14443885254151,
+        "accuracy_B_pct": 63.41217916456971,
+        "chi2_stat": 692.3980716253443,
+        "p_value": 1.0550434124203995e-200,
+        "significant_at_0_05": true,
+        "significant_at_0_01": true,
+        "significant_at_0_001": true
+      }
+    },
+    "proposed_vs_harmonic_87t_per_phase": {
+      "dependability": {
+        "n_traces": 1251,
+        "n_discordant": 102,
+        "table": {
+          "n00": 75,
+          "n01_A_fails_B_wins": 1,
+          "n10_A_wins_B_fails": 101,
+          "n11": 1074
+        },
+        "accuracy_A_pct": 93.92486011191046,
+        "accuracy_B_pct": 85.93125499600319,
+        "chi2_stat": 96.08823529411765,
+        "p_value": 4.062633661888211e-29,
+        "significant_at_0_05": true,
+        "significant_at_0_01": true,
+        "significant_at_0_001": true
+      },
+      "security": {
+        "n_traces": 1987,
+        "n_discordant": 29,
+        "table": {
+          "n00": 0,
+          "n01_A_fails_B_wins": 17,
+          "n10_A_wins_B_fails": 12,
+          "n11": 1958
+        },
+        "accuracy_A_pct": 99.14443885254151,
+        "accuracy_B_pct": 99.39607448414695,
+        "chi2_stat": 0.5517241379310345,
+        "p_value": 0.45825831964612007,
+        "significant_at_0_05": false,
+        "significant_at_0_01": false,
+        "significant_at_0_001": false
+      }
+    }
+  },
+  "multi_seed_fold_models": {
+    "87T alone": {
+      "dependability": {
+        "mean": 80.35406848161035,
+        "std": 1.70214042977914
+      },
+      "security": {
+        "mean": 63.412064520756594,
+        "std": 1.4272838145900193
+      },
+      "accuracy": {
+        "mean": 69.95312288704658,
+        "std": 1.1953503146338358
+      }
+    },
+    "LSTM alone": {
+      "dependability": {
+        "mean": 97.6856269096166,
+        "std": 1.479318918640246
+      },
+      "security": {
+        "mean": 95.60455510128308,
+        "std": 3.6428742962175744
+      },
+      "accuracy": {
+        "mean": 96.40860048244609,
+        "std": 2.0676414558058176
+      }
+    },
+    "Hybrid (87T gate)": {
+      "dependability": {
+        "mean": 88.39546295419254,
+        "std": 1.7297684434550356
+      },
+      "security": {
+        "mean": 99.4295575273513,
+        "std": 0.37439619759189513
+      },
+      "accuracy": {
+        "mean": 95.163444749128,
+        "std": 0.6314073605122487
+      }
+    },
+    "Hybrid + AI-alone path": {
+      "dependability": {
+        "mean": 93.02556602409578,
+        "std": 3.604638252549429
+      },
+      "security": {
+        "mean": 98.95961756726538,
+        "std": 0.8072698393335346
+      },
+      "accuracy": {
+        "mean": 96.658871861025,
+        "std": 1.2475348325491995
+      }
+    }
+  },
+  "category_wilson_95ci": {
+    "Evolving": {
+      "n": 80,
+      "correct": 80,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        95.4180263735425,
+        100.0
+      ],
+      "should_trip": true
+    },
+    "External CT-sat": {
+      "n": 302,
+      "correct": 298,
+      "accuracy_pct": 98.67549668874172,
+      "ci95": [
+        96.64443011593785,
+        99.4837617323915
+      ],
+      "should_trip": false
+    },
+    "External HiZ": {
+      "n": 60,
+      "correct": 60,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        93.9826069522067,
+        99.99999999999999
+      ],
+      "should_trip": false
+    },
+    "External in inrush": {
+      "n": 100,
+      "correct": 93,
+      "accuracy_pct": 93.0,
+      "ci95": [
+        86.25032899347025,
+        96.5681175635936
+      ],
+      "should_trip": false
+    },
+    "External solid": {
+      "n": 440,
+      "correct": 435,
+      "accuracy_pct": 98.86363636363636,
+      "ci95": [
+        97.3677392209501,
+        99.51367072349855
+      ],
+      "should_trip": false
+    },
+    "Fault in inrush": {
+      "n": 111,
+      "correct": 111,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        96.65487070887205,
+        100.0
+      ],
+      "should_trip": true
+    },
+    "Inrush loaded": {
+      "n": 192,
+      "correct": 192,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        98.03841471883398,
+        99.99999999999999
+      ],
+      "should_trip": false
+    },
+    "Inrush no-load": {
+      "n": 200,
+      "correct": 199,
+      "accuracy_pct": 99.5,
+      "ci95": [
+        97.22256001302286,
+        99.9116854010634
+      ],
+      "should_trip": false
+    },
+    "Internal CT-sat": {
+      "n": 121,
+      "correct": 121,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        96.9228205982621,
+        99.99999999999999
+      ],
+      "should_trip": true
+    },
+    "Internal HV-side": {
+      "n": 198,
+      "correct": 198,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        98.09672535295006,
+        100.0
+      ],
+      "should_trip": true
+    },
+    "Internal HiZ": {
+      "n": 155,
+      "correct": 105,
+      "accuracy_pct": 67.74193548387096,
+      "ci95": [
+        60.030402190826074,
+        74.59528780474183
+      ],
+      "should_trip": true
+    },
+    "Internal LV solid": {
+      "n": 506,
+      "correct": 488,
+      "accuracy_pct": 96.44268774703558,
+      "ci95": [
+        94.44729784057158,
+        97.73819663457522
+      ],
+      "should_trip": true
+    },
+    "Normal": {
+      "n": 303,
+      "correct": 303,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        98.74801852160854,
+        99.99999999999999
+      ],
+      "should_trip": false
+    },
+    "Over-excitation": {
+      "n": 310,
+      "correct": 310,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        98.775943023487,
+        100.0
+      ],
+      "should_trip": false
+    },
+    "Recovery inrush": {
+      "n": 80,
+      "correct": 80,
+      "accuracy_pct": 100.0,
+      "ci95": [
+        95.4180263735425,
+        100.0
+      ],
+      "should_trip": false
+    },
+    "SOTF": {
+      "n": 80,
+      "correct": 72,
+      "accuracy_pct": 90.0,
+      "ci95": [
+        81.48912101660255,
+        94.84530008223145
+      ],
+      "should_trip": true
+    }
+  },
+  "literature_comparisons": {
+    "Wavelet-SVM": {
+      "dependability_pct": 84.01278976818544,
+      "security_pct": 74.23251132360342,
+      "accuracy_pct": 78.01111797405807
+    },
+    "Wavelet-ANN": {
+      "dependability_pct": 97.12230215827337,
+      "security_pct": 96.27579265223956,
+      "accuracy_pct": 96.60284126003707
+    },
+    "Wavelet-RF": {
+      "dependability_pct": 96.32294164668266,
+      "security_pct": 96.8797181680926,
+      "accuracy_pct": 96.66460778258184
+    },
+    "1D-CNN": {
+      "dependability_pct": 97.52198241406875,
+      "security_pct": 96.72873678912934,
+      "accuracy_pct": 97.03520691785053
+    },
+    "Wavelet-GRU": {
+      "dependability_pct": 98.40127897681855,
+      "security_pct": 96.527428283845,
+      "accuracy_pct": 97.25138974675725
+    },
+    "Standalone LSTM": {
+      "dependability_pct": 97.9216626698641,
+      "security_pct": 96.77906391545042,
+      "accuracy_pct": 97.22050648548488
+    }
+  }
+}

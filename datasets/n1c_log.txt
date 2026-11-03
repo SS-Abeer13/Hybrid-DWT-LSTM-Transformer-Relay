@@ -1,0 +1,4 @@
+[2026-11-01 23:33:13] N1c powergui 60 Hz start
+[2026-11-01 23:35:39] N1c powergui 60 Hz end
+[2026-11-01 23:35:39] N1c powergui 50 Hz start
+[2026-11-01 23:37:39] N1c powergui 50 Hz end

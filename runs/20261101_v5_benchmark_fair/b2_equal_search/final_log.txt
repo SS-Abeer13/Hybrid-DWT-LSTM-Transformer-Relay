@@ -1,0 +1,90 @@
+seed 20261021 fold 1 Wavelet-SVM: val AUC 0.9960 epochs None
+seed 20261021 fold 1 Wavelet-RF: val AUC 0.9988 epochs None
+seed 20261021 fold 1 Wavelet-ANN: val AUC 0.9992 epochs 6
+seed 20261021 fold 1 1D-CNN: val AUC 0.9995 epochs 10
+seed 20261021 fold 1 Wavelet-GRU: val AUC 0.9993 epochs 7
+seed 20261021 fold 1 Proposed LSTM: val AUC 0.9995 epochs 6
+seed 20261021 fold 2 Wavelet-SVM: val AUC 0.9940 epochs None
+seed 20261021 fold 2 Wavelet-RF: val AUC 0.9982 epochs None
+seed 20261021 fold 2 Wavelet-ANN: val AUC 0.9985 epochs 12
+seed 20261021 fold 2 1D-CNN: val AUC 0.9985 epochs 9
+seed 20261021 fold 2 Wavelet-GRU: val AUC 0.9977 epochs 8
+seed 20261021 fold 2 Proposed LSTM: val AUC 0.9976 epochs 9
+seed 20261021 fold 3 Wavelet-SVM: val AUC 0.9890 epochs None
+seed 20261021 fold 3 Wavelet-RF: val AUC 0.9991 epochs None
+seed 20261021 fold 3 Wavelet-ANN: val AUC 0.9986 epochs 9
+seed 20261021 fold 3 1D-CNN: val AUC 0.9992 epochs 10
+seed 20261021 fold 3 Wavelet-GRU: val AUC 0.9984 epochs 13
+seed 20261021 fold 3 Proposed LSTM: val AUC 0.9991 epochs 11
+seed 20261021 fold 4 Wavelet-SVM: val AUC 0.9874 epochs None
+seed 20261021 fold 4 Wavelet-RF: val AUC 0.9960 epochs None
+seed 20261021 fold 4 Wavelet-ANN: val AUC 0.9979 epochs 12
+seed 20261021 fold 4 1D-CNN: val AUC 0.9975 epochs 15
+seed 20261021 fold 4 Wavelet-GRU: val AUC 0.9962 epochs 7
+seed 20261021 fold 4 Proposed LSTM: val AUC 0.9981 epochs 11
+seed 20261021 fold 5 Wavelet-SVM: val AUC 0.9935 epochs None
+seed 20261021 fold 5 Wavelet-RF: val AUC 0.9987 epochs None
+seed 20261021 fold 5 Wavelet-ANN: val AUC 0.9992 epochs 7
+seed 20261021 fold 5 1D-CNN: val AUC 0.9995 epochs 16
+seed 20261021 fold 5 Wavelet-GRU: val AUC 0.9997 epochs 16
+seed 20261021 fold 5 Proposed LSTM: val AUC 0.9993 epochs 13
+seed 20261022 fold 1 Wavelet-SVM: val AUC 0.9957 epochs None
+seed 20261022 fold 1 Wavelet-RF: val AUC 0.9994 epochs None
+seed 20261022 fold 1 Wavelet-ANN: val AUC 0.9993 epochs 10
+seed 20261022 fold 1 1D-CNN: val AUC 0.9997 epochs 8
+seed 20261022 fold 1 Wavelet-GRU: val AUC 0.9996 epochs 14
+seed 20261022 fold 1 Proposed LSTM: val AUC 0.9994 epochs 14
+seed 20261022 fold 2 Wavelet-SVM: val AUC 0.9940 epochs None
+seed 20261022 fold 2 Wavelet-RF: val AUC 0.9987 epochs None
+seed 20261022 fold 2 Wavelet-ANN: val AUC 0.9991 epochs 13
+seed 20261022 fold 2 1D-CNN: val AUC 0.9994 epochs 7
+seed 20261022 fold 2 Wavelet-GRU: val AUC 0.9994 epochs 14
+seed 20261022 fold 2 Proposed LSTM: val AUC 0.9994 epochs 9
+seed 20261022 fold 3 Wavelet-SVM: val AUC 0.9950 epochs None
+seed 20261022 fold 3 Wavelet-RF: val AUC 0.9982 epochs None
+seed 20261022 fold 3 Wavelet-ANN: val AUC 0.9992 epochs 12
+seed 20261022 fold 3 1D-CNN: val AUC 0.9997 epochs 12
+seed 20261022 fold 3 Wavelet-GRU: val AUC 0.9985 epochs 8
+seed 20261022 fold 3 Proposed LSTM: val AUC 0.9992 epochs 9
+seed 20261022 fold 4 Wavelet-SVM: val AUC 0.9883 epochs None
+seed 20261022 fold 4 Wavelet-RF: val AUC 0.9975 epochs None
+seed 20261022 fold 4 Wavelet-ANN: val AUC 0.9981 epochs 12
+seed 20261022 fold 4 1D-CNN: val AUC 0.9981 epochs 6
+seed 20261022 fold 4 Wavelet-GRU: val AUC 0.9963 epochs 6
+seed 20261022 fold 4 Proposed LSTM: val AUC 0.9976 epochs 7
+seed 20261022 fold 5 Wavelet-SVM: val AUC 0.9900 epochs None
+seed 20261022 fold 5 Wavelet-RF: val AUC 0.9961 epochs None
+seed 20261022 fold 5 Wavelet-ANN: val AUC 0.9982 epochs 9
+seed 20261022 fold 5 1D-CNN: val AUC 0.9967 epochs 9
+seed 20261022 fold 5 Wavelet-GRU: val AUC 0.9971 epochs 7
+seed 20261022 fold 5 Proposed LSTM: val AUC 0.9983 epochs 6
+seed 20261023 fold 1 Wavelet-SVM: val AUC 0.9909 epochs None
+seed 20261023 fold 1 Wavelet-RF: val AUC 0.9981 epochs None
+seed 20261023 fold 1 Wavelet-ANN: val AUC 0.9984 epochs 10
+seed 20261023 fold 1 1D-CNN: val AUC 0.9992 epochs 14
+seed 20261023 fold 1 Wavelet-GRU: val AUC 0.9989 epochs 10
+seed 20261023 fold 1 Proposed LSTM: val AUC 0.9990 epochs 10
+seed 20261023 fold 2 Wavelet-SVM: val AUC 0.9942 epochs None
+seed 20261023 fold 2 Wavelet-RF: val AUC 0.9977 epochs None
+seed 20261023 fold 2 Wavelet-ANN: val AUC 0.9995 epochs 12
+seed 20261023 fold 2 1D-CNN: val AUC 0.9988 epochs 9
+seed 20261023 fold 2 Wavelet-GRU: val AUC 0.9992 epochs 12
+seed 20261023 fold 2 Proposed LSTM: val AUC 0.9991 epochs 11
+seed 20261023 fold 3 Wavelet-SVM: val AUC 0.9923 epochs None
+seed 20261023 fold 3 Wavelet-RF: val AUC 0.9947 epochs None
+seed 20261023 fold 3 Wavelet-ANN: val AUC 0.9992 epochs 11
+seed 20261023 fold 3 1D-CNN: val AUC 0.9991 epochs 7
+seed 20261023 fold 3 Wavelet-GRU: val AUC 0.9992 epochs 10
+seed 20261023 fold 3 Proposed LSTM: val AUC 0.9982 epochs 12
+seed 20261023 fold 4 Wavelet-SVM: val AUC 0.9874 epochs None
+seed 20261023 fold 4 Wavelet-RF: val AUC 0.9950 epochs None
+seed 20261023 fold 4 Wavelet-ANN: val AUC 0.9984 epochs 8
+seed 20261023 fold 4 1D-CNN: val AUC 0.9982 epochs 7
+seed 20261023 fold 4 Wavelet-GRU: val AUC 0.9981 epochs 12
+seed 20261023 fold 4 Proposed LSTM: val AUC 0.9981 epochs 8
+seed 20261023 fold 5 Wavelet-SVM: val AUC 0.9889 epochs None
+seed 20261023 fold 5 Wavelet-RF: val AUC 0.9989 epochs None
+seed 20261023 fold 5 Wavelet-ANN: val AUC 0.9993 epochs 13
+seed 20261023 fold 5 1D-CNN: val AUC 0.9991 epochs 11
+seed 20261023 fold 5 Wavelet-GRU: val AUC 0.9993 epochs 10
+seed 20261023 fold 5 Proposed LSTM: val AUC 0.9993 epochs 17

@@ -1,0 +1,20 @@
+{
+ "dependability": {
+  "n": 3717,
+  "deployed_pct": 92.9513048157116,
+  "gated_only_pct": 88.43153080441216,
+  "diff_pt": -4.519774011299438,
+  "deployed_only_correct": 168,
+  "gated_only_correct": 0,
+  "p": 5.345529420184391e-51
+ },
+ "security": {
+  "n": 5910,
+  "deployed_pct": 98.95093062605753,
+  "gated_only_pct": 99.42470389170896,
+  "diff_pt": 0.47377326565143374,
+  "deployed_only_correct": 0,
+  "gated_only_correct": 28,
+  "p": 7.450580596923828e-09
+ }
+}

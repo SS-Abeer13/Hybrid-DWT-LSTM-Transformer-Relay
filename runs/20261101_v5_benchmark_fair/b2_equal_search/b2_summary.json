@@ -1,0 +1,398 @@
+[
+ {
+  "test": "Wavelet-SVM hybrid vs tuned LSTM hybrid",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 93.5969868173258,
+  "other_pct": 87.00564971751412,
+  "diff_pt": -6.591337099811678,
+  "ref_only": 260,
+  "other_only": 15,
+  "p": 7.047739407255026e-59,
+  "per_seed": {
+   "20261021": -6.8603712671509225,
+   "20261022": -5.004035512510086,
+   "20261023": -7.909604519774016
+  },
+  "p_holm": 1.5505026695961058e-57,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-SVM hybrid vs tuned LSTM hybrid",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 99.10321489001691,
+  "other_pct": 97.7326565143824,
+  "diff_pt": -1.370558375634523,
+  "ref_only": 127,
+  "other_only": 46,
+  "p": 5.75830100288868e-10,
+  "per_seed": {
+   "20261021": -1.8274111675126936,
+   "20261022": -1.624365482233503,
+   "20261023": -0.6598984771573613
+  },
+  "p_holm": 9.789111704910756e-09,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-RF hybrid vs tuned LSTM hybrid",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 93.5969868173258,
+  "other_pct": 93.4893731503901,
+  "diff_pt": -0.10761366693570196,
+  "ref_only": 94,
+  "other_only": 90,
+  "p": 0.8250403507533893,
+  "per_seed": {
+   "20261021": -0.08071025020177647,
+   "20261022": 1.049233252623083,
+   "20261023": -1.2913640032284124
+  },
+  "p_holm": 1.0,
+  "sign_stable": false
+ },
+ {
+  "test": "Wavelet-RF hybrid vs tuned LSTM hybrid",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 99.10321489001691,
+  "other_pct": 99.49238578680203,
+  "diff_pt": 0.3891708967851071,
+  "ref_only": 25,
+  "other_only": 48,
+  "p": 0.009542211425865477,
+  "per_seed": {
+   "20261021": 0.5076142131979711,
+   "20261022": 0.3045685279187915,
+   "20261023": 0.35532994923856975
+  },
+  "p_holm": 0.10496432568452024,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-ANN hybrid vs tuned LSTM hybrid",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 93.5969868173258,
+  "other_pct": 94.91525423728814,
+  "diff_pt": 1.3182674199623379,
+  "ref_only": 52,
+  "other_only": 101,
+  "p": 9.176460450517676e-05,
+  "per_seed": {
+   "20261021": 0.9685230024213065,
+   "20261022": 2.1791767554479424,
+   "20261023": 0.8071025020177536
+  },
+  "p_holm": 0.0011929398585672978,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-ANN hybrid vs tuned LSTM hybrid",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 99.10321489001691,
+  "other_pct": 99.20473773265651,
+  "diff_pt": 0.10152284263958977,
+  "ref_only": 29,
+  "other_only": 35,
+  "p": 0.5323087760278422,
+  "per_seed": {
+   "20261021": 0.10152284263958977,
+   "20261022": -0.050761421319789335,
+   "20261023": 0.25380710659898
+  },
+  "p_holm": 1.0,
+  "sign_stable": false
+ },
+ {
+  "test": "1D-CNN hybrid vs tuned LSTM hybrid",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 93.5969868173258,
+  "other_pct": 95.74926015603981,
+  "diff_pt": 2.152273338714017,
+  "ref_only": 29,
+  "other_only": 109,
+  "p": 4.201557931039114e-12,
+  "per_seed": {
+   "20261021": 2.5020177562550483,
+   "20261022": 2.824858757062143,
+   "20261023": 1.1299435028248594
+  },
+  "p_holm": 7.562804275870405e-11,
+  "sign_stable": true
+ },
+ {
+  "test": "1D-CNN hybrid vs tuned LSTM hybrid",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 99.10321489001691,
+  "other_pct": 99.0186125211506,
+  "diff_pt": -0.08460236886632666,
+  "ref_only": 33,
+  "other_only": 28,
+  "p": 0.6089207154048286,
+  "per_seed": {
+   "20261021": 0.10152284263958977,
+   "20261022": -0.25380710659898,
+   "20261023": -0.10152284263960087
+  },
+  "p_holm": 1.0,
+  "sign_stable": false
+ },
+ {
+  "test": "Wavelet-GRU hybrid vs tuned LSTM hybrid",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 93.5969868173258,
+  "other_pct": 95.58783965563626,
+  "diff_pt": 1.990852838310464,
+  "ref_only": 40,
+  "other_only": 114,
+  "p": 1.9815804011750467e-09,
+  "per_seed": {
+   "20261021": 0.8071025020177647,
+   "20261022": 2.7441485068603666,
+   "20261023": 2.421307506053272
+  },
+  "p_holm": 3.170528641880075e-08,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-GRU hybrid vs tuned LSTM hybrid",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 99.10321489001691,
+  "other_pct": 98.81556683587141,
+  "diff_pt": -0.2876480541455173,
+  "ref_only": 38,
+  "other_only": 21,
+  "p": 0.036343179957053884,
+  "per_seed": {
+   "20261021": 0.10152284263958977,
+   "20261022": -0.6598984771573613,
+   "20261023": -0.3045685279187915
+  },
+  "p_holm": 0.36343179957053884,
+  "sign_stable": false
+ },
+ {
+  "test": "tuned LSTM hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 92.9513048157116,
+  "other_pct": 93.5969868173258,
+  "diff_pt": 0.6456820016142006,
+  "ref_only": 79,
+  "other_only": 103,
+  "p": 0.08794001140445894,
+  "per_seed": {
+   "20261021": -0.5649717514124353,
+   "20261022": -1.5334947538337307,
+   "20261023": 4.035512510088779
+  },
+  "p_holm": 0.7914601026401304,
+  "sign_stable": false
+ },
+ {
+  "test": "tuned LSTM hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 98.95093062605753,
+  "other_pct": 99.10321489001691,
+  "diff_pt": 0.1522842639593902,
+  "ref_only": 39,
+  "other_only": 48,
+  "p": 0.3911909653007529,
+  "per_seed": {
+   "20261021": -0.050761421319789335,
+   "20261022": 0.6091370558375608,
+   "20261023": -0.10152284263958977
+  },
+  "p_holm": 1.0,
+  "sign_stable": false
+ },
+ {
+  "test": "Wavelet-SVM hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 92.9513048157116,
+  "other_pct": 87.00564971751412,
+  "diff_pt": -5.945655098197477,
+  "ref_only": 228,
+  "other_only": 7,
+  "p": 2.6808544131477726e-58,
+  "per_seed": {
+   "20261021": -7.425343018563357,
+   "20261022": -6.537530266343817,
+   "20261023": -3.874092009685237
+  },
+  "p_holm": 5.629794267610322e-57,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-SVM hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 98.95093062605753,
+  "other_pct": 97.7326565143824,
+  "diff_pt": -1.2182741116751328,
+  "ref_only": 119,
+  "other_only": 47,
+  "p": 2.170345035060878e-08,
+  "per_seed": {
+   "20261021": -1.878172588832483,
+   "20261022": -1.0152284263959421,
+   "20261023": -0.761421319796951
+  },
+  "p_holm": 3.0384830490852293e-07,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-RF hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 92.9513048157116,
+  "other_pct": 93.4893731503901,
+  "diff_pt": 0.5380683346784987,
+  "ref_only": 62,
+  "other_only": 82,
+  "p": 0.11303096428191356,
+  "per_seed": {
+   "20261021": -0.6456820016142117,
+   "20261022": -0.4842615012106477,
+   "20261023": 2.7441485068603666
+  },
+  "p_holm": 0.9042477142553085,
+  "sign_stable": false
+ },
+ {
+  "test": "Wavelet-RF hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 98.95093062605753,
+  "other_pct": 99.49238578680203,
+  "diff_pt": 0.5414551607444973,
+  "ref_only": 23,
+  "other_only": 55,
+  "p": 0.00037779201420676267,
+  "per_seed": {
+   "20261021": 0.45685279187818173,
+   "20261022": 0.9137055837563524,
+   "20261023": 0.25380710659898
+  },
+  "p_holm": 0.0045335041704811525,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-ANN hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 92.9513048157116,
+  "other_pct": 94.91525423728814,
+  "diff_pt": 1.9639494215765385,
+  "ref_only": 39,
+  "other_only": 112,
+  "p": 2.2714502836002474e-09,
+  "per_seed": {
+   "20261021": 0.40355125100887124,
+   "20261022": 0.6456820016142117,
+   "20261023": 4.842615012106533
+  },
+  "p_holm": 3.407175425400371e-08,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-ANN hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 98.95093062605753,
+  "other_pct": 99.20473773265651,
+  "diff_pt": 0.25380710659898,
+  "ref_only": 33,
+  "other_only": 48,
+  "p": 0.1192736683117644,
+  "per_seed": {
+   "20261021": 0.05076142131980044,
+   "20261022": 0.5583756345177715,
+   "20261023": 0.1522842639593902
+  },
+  "p_holm": 0.9042477142553085,
+  "sign_stable": true
+ },
+ {
+  "test": "1D-CNN hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 92.9513048157116,
+  "other_pct": 95.74926015603981,
+  "diff_pt": 2.7979553403282176,
+  "ref_only": 22,
+  "other_only": 126,
+  "p": 6.485282938356565e-19,
+  "per_seed": {
+   "20261021": 1.937046004842613,
+   "20261022": 1.2913640032284124,
+   "20261023": 5.165456012913639
+  },
+  "p_holm": 1.2970565876713131e-17,
+  "sign_stable": true
+ },
+ {
+  "test": "1D-CNN hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 98.95093062605753,
+  "other_pct": 99.0186125211506,
+  "diff_pt": 0.06768189509306355,
+  "ref_only": 39,
+  "other_only": 43,
+  "p": 0.7406528413457831,
+  "per_seed": {
+   "20261021": 0.05076142131980044,
+   "20261022": 0.35532994923858086,
+   "20261023": -0.20304568527919065
+  },
+  "p_holm": 1.0,
+  "sign_stable": false
+ },
+ {
+  "test": "Wavelet-GRU hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "dependability",
+  "n": 3717,
+  "ref_pct": 92.9513048157116,
+  "other_pct": 95.58783965563626,
+  "diff_pt": 2.6365348399246646,
+  "ref_only": 27,
+  "other_only": 125,
+  "p": 2.842953625825025e-16,
+  "per_seed": {
+   "20261021": 0.2421307506053294,
+   "20261022": 1.210653753026636,
+   "20261023": 6.456820016142051
+  },
+  "p_holm": 5.401611889067547e-15,
+  "sign_stable": true
+ },
+ {
+  "test": "Wavelet-GRU hybrid vs deployed hybrid (reference = deployed)",
+  "metric": "security",
+  "n": 5910,
+  "ref_pct": 98.95093062605753,
+  "other_pct": 98.81556683587141,
+  "diff_pt": -0.1353637901861271,
+  "ref_only": 46,
+  "other_only": 38,
+  "p": 0.4452046690465761,
+  "per_seed": {
+   "20261021": 0.05076142131980044,
+   "20261022": -0.05076142131980044,
+   "20261023": -0.4060913705583813
+  },
+  "p_holm": 1.0,
+  "sign_stable": false
+ }
+]

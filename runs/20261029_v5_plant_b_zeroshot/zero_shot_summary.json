@@ -1,0 +1,1586 @@
+{
+  "Proposed": {
+    "variant": "Proposed",
+    "n_fault": 493,
+    "n_healthy": 764,
+    "dependability_pct": 92.69776876267748,
+    "dependability_ci95": [
+      90.05623567775345,
+      94.67904672685337
+    ],
+    "security_pct": 88.35078534031413,
+    "security_ci95": [
+      85.8816635231935,
+      90.43617594593022
+    ],
+    "missed_trips": 36,
+    "false_trips": 89,
+    "pre_fault_trips": 0,
+    "operate": {
+      "n": 457,
+      "median_ms": 14.375,
+      "p90_ms": 18.75,
+      "max_ms": 86.875,
+      "within_1_cycle_pct": 92.5601750547046,
+      "within_2_cycles_pct": 99.34354485776805
+    },
+    "undetectable": {
+      "n": 32,
+      "tripped": 0,
+      "tripped_pct": 0.0
+    },
+    "by_category": {
+      "External": {
+        "n": 175,
+        "correct": 152,
+        "correct_pct": 86.85714285714286,
+        "ci95": [
+          81.05080606369319,
+          91.08012605732756
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "External_HiZ": {
+        "n": 24,
+        "correct": 24,
+        "correct_pct": 100.0,
+        "ci95": [
+          86.20242789217465,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Inrush": {
+        "n": 156,
+        "correct": 156,
+        "correct_pct": 100.0,
+        "ci95": [
+          97.59671639303521,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Internal": {
+        "n": 307,
+        "correct": 307,
+        "correct_pct": 100.0,
+        "ci95": [
+          98.7641792027363,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.375
+      },
+      "Internal_HiZ": {
+        "n": 63,
+        "correct": 27,
+        "correct_pct": 42.857142857142854,
+        "ci95": [
+          31.396939194252337,
+          55.13836051067001
+        ],
+        "should_trip": true,
+        "median_operate_ms": 25.0
+      },
+      "Internal_SOTF": {
+        "n": 32,
+        "correct": 32,
+        "correct_pct": 100.0,
+        "ci95": [
+          89.28211908211186,
+          99.99999999999999
+        ],
+        "should_trip": true,
+        "median_operate_ms": 11.875
+      },
+      "Normal": {
+        "n": 120,
+        "correct": 120,
+        "correct_pct": 100.0,
+        "ci95": [
+          96.89809557908127,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Overexcitation": {
+        "n": 119,
+        "correct": 119,
+        "correct_pct": 100.0,
+        "ci95": [
+          96.87284429303254,
+          99.99999999999999
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Recovery_Inrush": {
+        "n": 32,
+        "correct": 32,
+        "correct_pct": 100.0,
+        "ci95": [
+          89.28211908211186,
+          99.99999999999999
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_CTSat_Int_AB": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.6875
+      },
+      "Stress_CTSat_Int_ABC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 10.3125
+      },
+      "Stress_CTSat_Int_ABCG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 10.0
+      },
+      "Stress_CTSat_Int_ABG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 16.5625
+      },
+      "Stress_CTSat_Int_AC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 34.375
+      },
+      "Stress_CTSat_Int_ACG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 13.4375
+      },
+      "Stress_CTSat_Int_AG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 16.5625
+      },
+      "Stress_CTSat_Int_BC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 13.4375
+      },
+      "Stress_CTSat_Int_BCG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.375
+      },
+      "Stress_CTSat_Int_BG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 16.5625
+      },
+      "Stress_CTSat_Int_CG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 15.9375
+      },
+      "Stress_ExtCTSat_AB": {
+        "n": 9,
+        "correct": 4,
+        "correct_pct": 44.44444444444444,
+        "ci95": [
+          18.877886314051356,
+          73.33482697447214
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABC": {
+        "n": 9,
+        "correct": 1,
+        "correct_pct": 11.11111111111111,
+        "ci95": [
+          1.989094476133249,
+          43.49989854353121
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABCG": {
+        "n": 9,
+        "correct": 2,
+        "correct_pct": 22.22222222222222,
+        "ci95": [
+          6.322525590150119,
+          54.74104085246735
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABG": {
+        "n": 9,
+        "correct": 3,
+        "correct_pct": 33.333333333333336,
+        "ci95": [
+          12.058406396498972,
+          64.57973346907151
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_AC": {
+        "n": 9,
+        "correct": 3,
+        "correct_pct": 33.333333333333336,
+        "ci95": [
+          12.058406396498972,
+          64.57973346907151
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ACG": {
+        "n": 9,
+        "correct": 6,
+        "correct_pct": 66.66666666666667,
+        "ci95": [
+          35.42026653092849,
+          87.94159360350102
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_AG": {
+        "n": 9,
+        "correct": 1,
+        "correct_pct": 11.11111111111111,
+        "ci95": [
+          1.989094476133249,
+          43.49989854353121
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BC": {
+        "n": 9,
+        "correct": 5,
+        "correct_pct": 55.55555555555556,
+        "ci95": [
+          26.665173025527867,
+          81.12211368594863
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BCG": {
+        "n": 9,
+        "correct": 2,
+        "correct_pct": 22.22222222222222,
+        "ci95": [
+          6.322525590150119,
+          54.74104085246735
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BG": {
+        "n": 9,
+        "correct": 3,
+        "correct_pct": 33.333333333333336,
+        "ci95": [
+          12.058406396498972,
+          64.57973346907151
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_CG": {
+        "n": 9,
+        "correct": 7,
+        "correct_pct": 77.77777777777777,
+        "ci95": [
+          45.25895914753266,
+          93.67747440984988
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtInInrush": {
+        "n": 39,
+        "correct": 35,
+        "correct_pct": 89.74358974358974,
+        "ci95": [
+          76.4211791963175,
+          95.93866137703239
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_FaultInInrush": {
+        "n": 47,
+        "correct": 47,
+        "correct_pct": 100.0,
+        "ci95": [
+          92.44426798356679,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 15.625
+      }
+    }
+  },
+  "Harmonic 87T": {
+    "variant": "Harmonic 87T",
+    "n_fault": 493,
+    "n_healthy": 764,
+    "dependability_pct": 94.11764705882352,
+    "dependability_ci95": [
+      91.67966397482348,
+      95.87341879478214
+    ],
+    "security_pct": 98.95287958115183,
+    "security_ci95": [
+      97.9474734188561,
+      99.46847184207316
+    ],
+    "missed_trips": 29,
+    "false_trips": 8,
+    "pre_fault_trips": 0,
+    "operate": {
+      "n": 464,
+      "median_ms": 14.0625,
+      "p90_ms": 18.125,
+      "max_ms": 80.0,
+      "within_1_cycle_pct": 96.55172413793103,
+      "within_2_cycles_pct": 98.70689655172413
+    },
+    "undetectable": {
+      "n": 32,
+      "tripped": 0,
+      "tripped_pct": 0.0
+    },
+    "by_category": {
+      "External": {
+        "n": 175,
+        "correct": 175,
+        "correct_pct": 100.0,
+        "ci95": [
+          97.85203969905916,
+          99.99999999999999
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "External_HiZ": {
+        "n": 24,
+        "correct": 24,
+        "correct_pct": 100.0,
+        "ci95": [
+          86.20242789217465,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Inrush": {
+        "n": 156,
+        "correct": 156,
+        "correct_pct": 100.0,
+        "ci95": [
+          97.59671639303521,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Internal": {
+        "n": 307,
+        "correct": 307,
+        "correct_pct": 100.0,
+        "ci95": [
+          98.7641792027363,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 13.125
+      },
+      "Internal_HiZ": {
+        "n": 63,
+        "correct": 34,
+        "correct_pct": 53.96825396825397,
+        "ci95": [
+          41.78927566276944,
+          65.69111339005147
+        ],
+        "should_trip": true,
+        "median_operate_ms": 17.1875
+      },
+      "Internal_SOTF": {
+        "n": 32,
+        "correct": 32,
+        "correct_pct": 100.0,
+        "ci95": [
+          89.28211908211186,
+          99.99999999999999
+        ],
+        "should_trip": true,
+        "median_operate_ms": 11.875
+      },
+      "Normal": {
+        "n": 120,
+        "correct": 120,
+        "correct_pct": 100.0,
+        "ci95": [
+          96.89809557908127,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Overexcitation": {
+        "n": 119,
+        "correct": 119,
+        "correct_pct": 100.0,
+        "ci95": [
+          96.87284429303254,
+          99.99999999999999
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Recovery_Inrush": {
+        "n": 32,
+        "correct": 31,
+        "correct_pct": 96.875,
+        "ci95": [
+          84.25577423578254,
+          99.44621240369733
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_CTSat_Int_AB": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 15.0
+      },
+      "Stress_CTSat_Int_ABC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 10.3125
+      },
+      "Stress_CTSat_Int_ABCG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 10.0
+      },
+      "Stress_CTSat_Int_ABG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.375
+      },
+      "Stress_CTSat_Int_AC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 16.25
+      },
+      "Stress_CTSat_Int_ACG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 13.4375
+      },
+      "Stress_CTSat_Int_AG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.6875
+      },
+      "Stress_CTSat_Int_BC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.375
+      },
+      "Stress_CTSat_Int_BCG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.375
+      },
+      "Stress_CTSat_Int_BG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 15.9375
+      },
+      "Stress_CTSat_Int_CG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 16.25
+      },
+      "Stress_ExtCTSat_AB": {
+        "n": 9,
+        "correct": 7,
+        "correct_pct": 77.77777777777777,
+        "ci95": [
+          45.25895914753266,
+          93.67747440984988
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABC": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABCG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_AC": {
+        "n": 9,
+        "correct": 7,
+        "correct_pct": 77.77777777777777,
+        "ci95": [
+          45.25895914753266,
+          93.67747440984988
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ACG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_AG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BC": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BCG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_CG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtInInrush": {
+        "n": 39,
+        "correct": 36,
+        "correct_pct": 92.3076923076923,
+        "ci95": [
+          79.67896223902862,
+          97.34925514550514
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_FaultInInrush": {
+        "n": 47,
+        "correct": 47,
+        "correct_pct": 100.0,
+        "ci95": [
+          92.44426798356679,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 13.125
+      }
+    }
+  },
+  "87T alone": {
+    "variant": "87T alone",
+    "n_fault": 493,
+    "n_healthy": 764,
+    "dependability_pct": 89.4523326572008,
+    "dependability_ci95": [
+      86.42920372321854,
+      91.8653921328196
+    ],
+    "security_pct": 62.04188481675392,
+    "security_ci95": [
+      58.54864567363488,
+      65.41463497878622
+    ],
+    "missed_trips": 29,
+    "false_trips": 290,
+    "pre_fault_trips": 23,
+    "operate": {
+      "n": 441,
+      "median_ms": 3.75,
+      "p90_ms": 13.75,
+      "max_ms": 80.0,
+      "within_1_cycle_pct": 96.5986394557823,
+      "within_2_cycles_pct": 98.63945578231292
+    },
+    "undetectable": {
+      "n": 32,
+      "tripped": 0,
+      "tripped_pct": 0.0
+    },
+    "by_category": {
+      "External": {
+        "n": 175,
+        "correct": 175,
+        "correct_pct": 100.0,
+        "ci95": [
+          97.85203969905916,
+          99.99999999999999
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "External_HiZ": {
+        "n": 24,
+        "correct": 24,
+        "correct_pct": 100.0,
+        "ci95": [
+          86.20242789217465,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Inrush": {
+        "n": 156,
+        "correct": 0,
+        "correct_pct": 0.0,
+        "ci95": [
+          0.0,
+          2.403283606964797
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Internal": {
+        "n": 307,
+        "correct": 307,
+        "correct_pct": 100.0,
+        "ci95": [
+          98.7641792027363,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 2.5
+      },
+      "Internal_HiZ": {
+        "n": 63,
+        "correct": 34,
+        "correct_pct": 53.96825396825397,
+        "ci95": [
+          41.78927566276944,
+          65.69111339005147
+        ],
+        "should_trip": true,
+        "median_operate_ms": 6.5625
+      },
+      "Internal_SOTF": {
+        "n": 32,
+        "correct": 32,
+        "correct_pct": 100.0,
+        "ci95": [
+          89.28211908211186,
+          99.99999999999999
+        ],
+        "should_trip": true,
+        "median_operate_ms": 9.375
+      },
+      "Normal": {
+        "n": 120,
+        "correct": 120,
+        "correct_pct": 100.0,
+        "ci95": [
+          96.89809557908127,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Overexcitation": {
+        "n": 119,
+        "correct": 69,
+        "correct_pct": 57.983193277310924,
+        "ci95": [
+          49.00152274947442,
+          66.46557003680809
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Recovery_Inrush": {
+        "n": 32,
+        "correct": 0,
+        "correct_pct": 0.0,
+        "ci95": [
+          0.0,
+          10.717880917888133
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_CTSat_Int_AB": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 15.0
+      },
+      "Stress_CTSat_Int_ABC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 10.3125
+      },
+      "Stress_CTSat_Int_ABCG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 10.0
+      },
+      "Stress_CTSat_Int_ABG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 1.25
+      },
+      "Stress_CTSat_Int_AC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 1.25
+      },
+      "Stress_CTSat_Int_ACG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 13.4375
+      },
+      "Stress_CTSat_Int_AG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 1.25
+      },
+      "Stress_CTSat_Int_BC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 5.625
+      },
+      "Stress_CTSat_Int_BCG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 1.25
+      },
+      "Stress_CTSat_Int_BG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 1.5625
+      },
+      "Stress_CTSat_Int_CG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 1.25
+      },
+      "Stress_ExtCTSat_AB": {
+        "n": 9,
+        "correct": 5,
+        "correct_pct": 55.55555555555556,
+        "ci95": [
+          26.665173025527867,
+          81.12211368594863
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABC": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABCG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_AC": {
+        "n": 9,
+        "correct": 5,
+        "correct_pct": 55.55555555555556,
+        "ci95": [
+          26.665173025527867,
+          81.12211368594863
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ACG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_AG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BC": {
+        "n": 9,
+        "correct": 4,
+        "correct_pct": 44.44444444444444,
+        "ci95": [
+          18.877886314051356,
+          73.33482697447214
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BCG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_CG": {
+        "n": 9,
+        "correct": 9,
+        "correct_pct": 100.0,
+        "ci95": [
+          70.08558040328856,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtInInrush": {
+        "n": 39,
+        "correct": 0,
+        "correct_pct": 0.0,
+        "ci95": [
+          0.0,
+          8.966652181914668
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_FaultInInrush": {
+        "n": 47,
+        "correct": 24,
+        "correct_pct": 51.06382978723404,
+        "ci95": [
+          37.24247987552015,
+          64.72441944327913
+        ],
+        "should_trip": true,
+        "median_operate_ms": 11.5625
+      }
+    }
+  },
+  "LSTM alone": {
+    "variant": "LSTM alone",
+    "n_fault": 493,
+    "n_healthy": 764,
+    "dependability_pct": 92.90060851926978,
+    "dependability_ci95": [
+      90.28650398715958,
+      94.8513213267328
+    ],
+    "security_pct": 87.30366492146598,
+    "security_ci95": [
+      84.75478473132358,
+      89.47929120280702
+    ],
+    "missed_trips": 35,
+    "false_trips": 97,
+    "pre_fault_trips": 0,
+    "operate": {
+      "n": 458,
+      "median_ms": 14.375,
+      "p90_ms": 18.75,
+      "max_ms": 85.625,
+      "within_1_cycle_pct": 92.57641921397381,
+      "within_2_cycles_pct": 99.56331877729258
+    },
+    "undetectable": {
+      "n": 32,
+      "tripped": 0,
+      "tripped_pct": 0.0
+    },
+    "by_category": {
+      "External": {
+        "n": 175,
+        "correct": 146,
+        "correct_pct": 83.42857142857143,
+        "ci95": [
+          77.21401469341555,
+          88.20706327681258
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "External_HiZ": {
+        "n": 24,
+        "correct": 23,
+        "correct_pct": 95.83333333333333,
+        "ci95": [
+          79.75823996210292,
+          99.26065227239049
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Inrush": {
+        "n": 156,
+        "correct": 156,
+        "correct_pct": 100.0,
+        "ci95": [
+          97.59671639303521,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Internal": {
+        "n": 307,
+        "correct": 307,
+        "correct_pct": 100.0,
+        "ci95": [
+          98.7641792027363,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.375
+      },
+      "Internal_HiZ": {
+        "n": 63,
+        "correct": 28,
+        "correct_pct": 44.44444444444444,
+        "ci95": [
+          32.84711763851359,
+          56.68033768753713
+        ],
+        "should_trip": true,
+        "median_operate_ms": 26.25
+      },
+      "Internal_SOTF": {
+        "n": 32,
+        "correct": 32,
+        "correct_pct": 100.0,
+        "ci95": [
+          89.28211908211186,
+          99.99999999999999
+        ],
+        "should_trip": true,
+        "median_operate_ms": 11.875
+      },
+      "Normal": {
+        "n": 120,
+        "correct": 120,
+        "correct_pct": 100.0,
+        "ci95": [
+          96.89809557908127,
+          100.0
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Overexcitation": {
+        "n": 119,
+        "correct": 119,
+        "correct_pct": 100.0,
+        "ci95": [
+          96.87284429303254,
+          99.99999999999999
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Recovery_Inrush": {
+        "n": 32,
+        "correct": 32,
+        "correct_pct": 100.0,
+        "ci95": [
+          89.28211908211186,
+          99.99999999999999
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_CTSat_Int_AB": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.6875
+      },
+      "Stress_CTSat_Int_ABC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 10.3125
+      },
+      "Stress_CTSat_Int_ABCG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 10.0
+      },
+      "Stress_CTSat_Int_ABG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 16.5625
+      },
+      "Stress_CTSat_Int_AC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 34.375
+      },
+      "Stress_CTSat_Int_ACG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 13.4375
+      },
+      "Stress_CTSat_Int_AG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 16.5625
+      },
+      "Stress_CTSat_Int_BC": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 13.4375
+      },
+      "Stress_CTSat_Int_BCG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 14.375
+      },
+      "Stress_CTSat_Int_BG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 16.5625
+      },
+      "Stress_CTSat_Int_CG": {
+        "n": 4,
+        "correct": 4,
+        "correct_pct": 100.0,
+        "ci95": [
+          51.01101796138528,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 15.9375
+      },
+      "Stress_ExtCTSat_AB": {
+        "n": 9,
+        "correct": 4,
+        "correct_pct": 44.44444444444444,
+        "ci95": [
+          18.877886314051356,
+          73.33482697447214
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABC": {
+        "n": 9,
+        "correct": 1,
+        "correct_pct": 11.11111111111111,
+        "ci95": [
+          1.989094476133249,
+          43.49989854353121
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABCG": {
+        "n": 9,
+        "correct": 2,
+        "correct_pct": 22.22222222222222,
+        "ci95": [
+          6.322525590150119,
+          54.74104085246735
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ABG": {
+        "n": 9,
+        "correct": 3,
+        "correct_pct": 33.333333333333336,
+        "ci95": [
+          12.058406396498972,
+          64.57973346907151
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_AC": {
+        "n": 9,
+        "correct": 3,
+        "correct_pct": 33.333333333333336,
+        "ci95": [
+          12.058406396498972,
+          64.57973346907151
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_ACG": {
+        "n": 9,
+        "correct": 6,
+        "correct_pct": 66.66666666666667,
+        "ci95": [
+          35.42026653092849,
+          87.94159360350102
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_AG": {
+        "n": 9,
+        "correct": 1,
+        "correct_pct": 11.11111111111111,
+        "ci95": [
+          1.989094476133249,
+          43.49989854353121
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BC": {
+        "n": 9,
+        "correct": 5,
+        "correct_pct": 55.55555555555556,
+        "ci95": [
+          26.665173025527867,
+          81.12211368594863
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BCG": {
+        "n": 9,
+        "correct": 2,
+        "correct_pct": 22.22222222222222,
+        "ci95": [
+          6.322525590150119,
+          54.74104085246735
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_BG": {
+        "n": 9,
+        "correct": 2,
+        "correct_pct": 22.22222222222222,
+        "ci95": [
+          6.322525590150119,
+          54.74104085246735
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtCTSat_CG": {
+        "n": 9,
+        "correct": 7,
+        "correct_pct": 77.77777777777777,
+        "ci95": [
+          45.25895914753266,
+          93.67747440984988
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_ExtInInrush": {
+        "n": 39,
+        "correct": 35,
+        "correct_pct": 89.74358974358974,
+        "ci95": [
+          76.4211791963175,
+          95.93866137703239
+        ],
+        "should_trip": false,
+        "median_operate_ms": null
+      },
+      "Stress_FaultInInrush": {
+        "n": 47,
+        "correct": 47,
+        "correct_pct": 100.0,
+        "ci95": [
+          92.44426798356679,
+          100.0
+        ],
+        "should_trip": true,
+        "median_operate_ms": 15.625
+      }
+    }
+  }
+}

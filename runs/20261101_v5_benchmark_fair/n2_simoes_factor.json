@@ -1,0 +1,557 @@
+[
+ {
+  "seed": 20261021,
+  "fold": 1,
+  "n_val": 385,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 339.7638888888889,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 56.125,
+    "detection_rate": 0.9968051118210862
+   },
+   "15.0": {
+    "spurious_per_trace": 24.75,
+    "detection_rate": 0.9840255591054313
+   },
+   "20.0": {
+    "spurious_per_trace": 11.76388888888889,
+    "detection_rate": 0.9680511182108626
+   },
+   "30.0": {
+    "spurious_per_trace": 4.222222222222222,
+    "detection_rate": 0.9488817891373802
+   },
+   "50.0": {
+    "spurious_per_trace": 1.1111111111111112,
+    "detection_rate": 0.9201277955271565
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7083333333333334,
+    "detection_rate": 0.8626198083067093
+   }
+  }
+ },
+ {
+  "seed": 20261021,
+  "fold": 2,
+  "n_val": 386,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 355.5138888888889,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 52.736111111111114,
+    "detection_rate": 0.9936305732484076
+   },
+   "15.0": {
+    "spurious_per_trace": 23.194444444444443,
+    "detection_rate": 0.9904458598726115
+   },
+   "20.0": {
+    "spurious_per_trace": 11.527777777777779,
+    "detection_rate": 0.9840764331210191
+   },
+   "30.0": {
+    "spurious_per_trace": 3.361111111111111,
+    "detection_rate": 0.964968152866242
+   },
+   "50.0": {
+    "spurious_per_trace": 1.25,
+    "detection_rate": 0.9267515923566879
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7916666666666666,
+    "detection_rate": 0.856687898089172
+   }
+  }
+ },
+ {
+  "seed": 20261021,
+  "fold": 3,
+  "n_val": 384,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 441.56944444444446,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 59.52777777777778,
+    "detection_rate": 0.9871794871794872
+   },
+   "15.0": {
+    "spurious_per_trace": 27.458333333333332,
+    "detection_rate": 0.967948717948718
+   },
+   "20.0": {
+    "spurious_per_trace": 12.166666666666666,
+    "detection_rate": 0.9551282051282052
+   },
+   "30.0": {
+    "spurious_per_trace": 4.75,
+    "detection_rate": 0.9294871794871795
+   },
+   "50.0": {
+    "spurious_per_trace": 1.3472222222222223,
+    "detection_rate": 0.8910256410256411
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7222222222222222,
+    "detection_rate": 0.842948717948718
+   }
+  }
+ },
+ {
+  "seed": 20261021,
+  "fold": 4,
+  "n_val": 383,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 450.013698630137,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 61.89041095890411,
+    "detection_rate": 0.9838709677419355
+   },
+   "15.0": {
+    "spurious_per_trace": 22.986301369863014,
+    "detection_rate": 0.9741935483870968
+   },
+   "20.0": {
+    "spurious_per_trace": 8.698630136986301,
+    "detection_rate": 0.967741935483871
+   },
+   "30.0": {
+    "spurious_per_trace": 2.835616438356164,
+    "detection_rate": 0.9548387096774194
+   },
+   "50.0": {
+    "spurious_per_trace": 1.5068493150684932,
+    "detection_rate": 0.9258064516129032
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7945205479452054,
+    "detection_rate": 0.864516129032258
+   }
+  }
+ },
+ {
+  "seed": 20261021,
+  "fold": 5,
+  "n_val": 385,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 383.6849315068493,
+    "detection_rate": 0.9967948717948718
+   },
+   "10.0": {
+    "spurious_per_trace": 61.71232876712329,
+    "detection_rate": 0.9871794871794872
+   },
+   "15.0": {
+    "spurious_per_trace": 25.958904109589042,
+    "detection_rate": 0.9807692307692307
+   },
+   "20.0": {
+    "spurious_per_trace": 11.917808219178083,
+    "detection_rate": 0.9615384615384616
+   },
+   "30.0": {
+    "spurious_per_trace": 4.178082191780822,
+    "detection_rate": 0.9358974358974359
+   },
+   "50.0": {
+    "spurious_per_trace": 1.4931506849315068,
+    "detection_rate": 0.9038461538461539
+   },
+   "100.0": {
+    "spurious_per_trace": 0.821917808219178,
+    "detection_rate": 0.8557692307692307
+   }
+  }
+ },
+ {
+  "seed": 20261022,
+  "fold": 1,
+  "n_val": 387,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 413.7671232876712,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 50.12328767123287,
+    "detection_rate": 0.9936305732484076
+   },
+   "15.0": {
+    "spurious_per_trace": 15.712328767123287,
+    "detection_rate": 0.9745222929936306
+   },
+   "20.0": {
+    "spurious_per_trace": 6.767123287671233,
+    "detection_rate": 0.9617834394904459
+   },
+   "30.0": {
+    "spurious_per_trace": 3.1095890410958904,
+    "detection_rate": 0.9331210191082803
+   },
+   "50.0": {
+    "spurious_per_trace": 1.1232876712328768,
+    "detection_rate": 0.910828025477707
+   },
+   "100.0": {
+    "spurious_per_trace": 0.863013698630137,
+    "detection_rate": 0.8471337579617835
+   }
+  }
+ },
+ {
+  "seed": 20261022,
+  "fold": 2,
+  "n_val": 384,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 402.14084507042253,
+    "detection_rate": 0.9968051118210862
+   },
+   "10.0": {
+    "spurious_per_trace": 54.647887323943664,
+    "detection_rate": 0.9936102236421726
+   },
+   "15.0": {
+    "spurious_per_trace": 20.08450704225352,
+    "detection_rate": 0.9904153354632588
+   },
+   "20.0": {
+    "spurious_per_trace": 9.746478873239436,
+    "detection_rate": 0.9808306709265175
+   },
+   "30.0": {
+    "spurious_per_trace": 2.619718309859155,
+    "detection_rate": 0.9616613418530351
+   },
+   "50.0": {
+    "spurious_per_trace": 1.1830985915492958,
+    "detection_rate": 0.9297124600638977
+   },
+   "100.0": {
+    "spurious_per_trace": 0.8450704225352113,
+    "detection_rate": 0.865814696485623
+   }
+  }
+ },
+ {
+  "seed": 20261022,
+  "fold": 3,
+  "n_val": 387,
+  "chosen": 50.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 408.7083333333333,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 51.93055555555556,
+    "detection_rate": 0.9904761904761905
+   },
+   "15.0": {
+    "spurious_per_trace": 22.77777777777778,
+    "detection_rate": 0.9841269841269841
+   },
+   "20.0": {
+    "spurious_per_trace": 9.902777777777779,
+    "detection_rate": 0.9682539682539683
+   },
+   "30.0": {
+    "spurious_per_trace": 2.125,
+    "detection_rate": 0.9492063492063492
+   },
+   "50.0": {
+    "spurious_per_trace": 0.875,
+    "detection_rate": 0.926984126984127
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7638888888888888,
+    "detection_rate": 0.8698412698412699
+   }
+  }
+ },
+ {
+  "seed": 20261022,
+  "fold": 4,
+  "n_val": 386,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 411.7671232876712,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 46.89041095890411,
+    "detection_rate": 0.9904153354632588
+   },
+   "15.0": {
+    "spurious_per_trace": 17.273972602739725,
+    "detection_rate": 0.9744408945686901
+   },
+   "20.0": {
+    "spurious_per_trace": 6.986301369863014,
+    "detection_rate": 0.9616613418530351
+   },
+   "30.0": {
+    "spurious_per_trace": 3.219178082191781,
+    "detection_rate": 0.939297124600639
+   },
+   "50.0": {
+    "spurious_per_trace": 1.8493150684931507,
+    "detection_rate": 0.9233226837060703
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7808219178082192,
+    "detection_rate": 0.8753993610223643
+   }
+  }
+ },
+ {
+  "seed": 20261022,
+  "fold": 5,
+  "n_val": 384,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 414.90410958904107,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 58.76712328767123,
+    "detection_rate": 0.9903536977491961
+   },
+   "15.0": {
+    "spurious_per_trace": 25.041095890410958,
+    "detection_rate": 0.9807073954983923
+   },
+   "20.0": {
+    "spurious_per_trace": 9.534246575342467,
+    "detection_rate": 0.9581993569131833
+   },
+   "30.0": {
+    "spurious_per_trace": 2.095890410958904,
+    "detection_rate": 0.9356913183279743
+   },
+   "50.0": {
+    "spurious_per_trace": 1.2465753424657535,
+    "detection_rate": 0.909967845659164
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7808219178082192,
+    "detection_rate": 0.8585209003215434
+   }
+  }
+ },
+ {
+  "seed": 20261023,
+  "fold": 1,
+  "n_val": 383,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 390.31944444444446,
+    "detection_rate": 0.9967845659163987
+   },
+   "10.0": {
+    "spurious_per_trace": 57.77777777777778,
+    "detection_rate": 0.9967845659163987
+   },
+   "15.0": {
+    "spurious_per_trace": 23.72222222222222,
+    "detection_rate": 0.9678456591639871
+   },
+   "20.0": {
+    "spurious_per_trace": 11.11111111111111,
+    "detection_rate": 0.9614147909967846
+   },
+   "30.0": {
+    "spurious_per_trace": 2.4305555555555554,
+    "detection_rate": 0.9453376205787781
+   },
+   "50.0": {
+    "spurious_per_trace": 1.0277777777777777,
+    "detection_rate": 0.9131832797427653
+   },
+   "100.0": {
+    "spurious_per_trace": 0.8611111111111112,
+    "detection_rate": 0.8681672025723473
+   }
+  }
+ },
+ {
+  "seed": 20261023,
+  "fold": 2,
+  "n_val": 383,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 398.36986301369865,
+    "detection_rate": 0.9967741935483871
+   },
+   "10.0": {
+    "spurious_per_trace": 54.75342465753425,
+    "detection_rate": 0.9903225806451613
+   },
+   "15.0": {
+    "spurious_per_trace": 22.164383561643834,
+    "detection_rate": 0.9741935483870968
+   },
+   "20.0": {
+    "spurious_per_trace": 11.726027397260275,
+    "detection_rate": 0.9548387096774194
+   },
+   "30.0": {
+    "spurious_per_trace": 5.47945205479452,
+    "detection_rate": 0.9451612903225807
+   },
+   "50.0": {
+    "spurious_per_trace": 1.9452054794520548,
+    "detection_rate": 0.9129032258064517
+   },
+   "100.0": {
+    "spurious_per_trace": 0.726027397260274,
+    "detection_rate": 0.867741935483871
+   }
+  }
+ },
+ {
+  "seed": 20261023,
+  "fold": 3,
+  "n_val": 388,
+  "chosen": 100.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 384.8082191780822,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 48.16438356164384,
+    "detection_rate": 0.9873015873015873
+   },
+   "15.0": {
+    "spurious_per_trace": 25.506849315068493,
+    "detection_rate": 0.9777777777777777
+   },
+   "20.0": {
+    "spurious_per_trace": 11.465753424657533,
+    "detection_rate": 0.9650793650793651
+   },
+   "30.0": {
+    "spurious_per_trace": 3.3698630136986303,
+    "detection_rate": 0.9523809523809523
+   },
+   "50.0": {
+    "spurious_per_trace": 1.6712328767123288,
+    "detection_rate": 0.9111111111111111
+   },
+   "100.0": {
+    "spurious_per_trace": 0.6712328767123288,
+    "detection_rate": 0.8507936507936508
+   }
+  }
+ },
+ {
+  "seed": 20261023,
+  "fold": 4,
+  "n_val": 384,
+  "chosen": 50.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 352.5890410958904,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 50.41095890410959,
+    "detection_rate": 0.9967845659163987
+   },
+   "15.0": {
+    "spurious_per_trace": 18.63013698630137,
+    "detection_rate": 0.9742765273311897
+   },
+   "20.0": {
+    "spurious_per_trace": 9.767123287671232,
+    "detection_rate": 0.9710610932475884
+   },
+   "30.0": {
+    "spurious_per_trace": 2.1780821917808217,
+    "detection_rate": 0.9453376205787781
+   },
+   "50.0": {
+    "spurious_per_trace": 0.8356164383561644,
+    "detection_rate": 0.9163987138263665
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7534246575342466,
+    "detection_rate": 0.8713826366559485
+   }
+  }
+ },
+ {
+  "seed": 20261023,
+  "fold": 5,
+  "n_val": 385,
+  "chosen": 50.0,
+  "flag": "detection_criterion_unmet",
+  "grid": {
+   "5.0": {
+    "spurious_per_trace": 376.73972602739724,
+    "detection_rate": 1.0
+   },
+   "10.0": {
+    "spurious_per_trace": 48.534246575342465,
+    "detection_rate": 1.0
+   },
+   "15.0": {
+    "spurious_per_trace": 21.589041095890412,
+    "detection_rate": 0.9807692307692307
+   },
+   "20.0": {
+    "spurious_per_trace": 8.753424657534246,
+    "detection_rate": 0.9583333333333334
+   },
+   "30.0": {
+    "spurious_per_trace": 2.506849315068493,
+    "detection_rate": 0.9294871794871795
+   },
+   "50.0": {
+    "spurious_per_trace": 0.958904109589041,
+    "detection_rate": 0.9102564102564102
+   },
+   "100.0": {
+    "spurious_per_trace": 0.7945205479452054,
+    "detection_rate": 0.8525641025641025
+   }
+  }
+ }
+]

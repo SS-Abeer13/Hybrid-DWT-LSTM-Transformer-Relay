@@ -1,0 +1,10 @@
+Gated-only ablation of the proposed hybrid (post-hoc, from saved decisions; AI-alone path off)
+
+plant A CV, dependability (n=3717): deployed 92.95 %, gated-only 88.43 %, diff -4.52 pt, discordant 168/0, exact McNemar p = 5.35e-51 (raw, 2 ablation tests)
+plant A CV, security      (n=5910): deployed 98.95 %, gated-only 99.42 %, diff +0.47 pt, discordant 0/28, exact McNemar p = 7.45e-09 (raw, 2 ablation tests)
+plant A OOD (final model, once), Hybrid + AI-alone path: {"dependability_pct": 97.99, "security_pct": 96.0, "missed": 3, "false_trips": 6}
+plant A OOD (final model, once), Hybrid (87T gate): {"dependability_pct": 94.63, "security_pct": 98.67, "missed": 8, "false_trips": 2}
+plant B zero-shot, Proposed as evaluated (high-set + gate + solo): dependability 92.70 %, security 88.35 %, false trips 89
+plant B zero-shot, without AI-alone path (high-set + gate): dependability 90.47 %, security 99.21 %, false trips 6
+
+Wording (post-hoc counterfactual, a practical recommendation): the AI-alone path buys a few points of dependability; on an unseen plant it caused 98 % of the false trips; a utility deploying the relay on an untrained plant should disable it until retraining. The deployed logic stays the main result everywhere.

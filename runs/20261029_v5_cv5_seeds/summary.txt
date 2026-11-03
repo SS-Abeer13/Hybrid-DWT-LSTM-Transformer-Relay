@@ -1,0 +1,13 @@
+Grouped 5-Fold CV across 3 seed(s) ([20261021, 20261022, 20261023]); total 15 fold-models
+====================================================================================================
+
+Pooled headline metrics over all seeds and folds:
+variant                      dep %   sec % missed false  pre  med ms    p90    max <=1cyc <=2cyc | undetectable tripped
+87T alone                    80.34   63.41    405  2181  333     1.2    7.5   23.1   99.8  100.0 | 10 % of 282
+LSTM alone                   97.68   95.60     83   262    4    15.6   31.9  635.6   79.5   96.3 | 13 % of 282
+Hybrid (87T gate)            88.38   99.43    436    34    0    16.2   33.1  603.1   72.4   95.1 | 10 % of 282
+Hybrid + AI-alone path       92.99   98.96    263    62    0    16.2   36.2  603.1   69.1   93.0 | 10 % of 282
+
+Mean +/- SD over the 15 fold-models (Hybrid + AI-alone path):
+  dependability_pct  93.03 +/- 3.60   [min 86.43, max 97.59]
+  security_pct       98.96 +/- 0.81   [min 96.73, max 99.75]

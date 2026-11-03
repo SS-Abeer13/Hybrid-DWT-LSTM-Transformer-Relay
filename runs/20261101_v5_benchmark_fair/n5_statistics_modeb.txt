@@ -1,0 +1,58 @@
+Paired exact McNemar tests on (seed, fold, trace), plant-A common set, native decisions; Holm correction over all 48 tests; * = p_Holm < 0.05; 'unstable' = per-seed difference changes sign
+reference        mode    method             metric             n   ref %  meth %  diff pt ref-only meth-only         p    p_Holm
+Proposed hybrid  native  simoes_grid        dependability   3717   92.95   69.68   -23.27      982       117 8.71e-171 2.96e-169 *
+Proposed hybrid  native  simoes_grid        security        5910   98.95   92.20    -6.75      449        50  2.86e-81  7.73e-80 *
+LSTM alone       native  simoes_grid        dependability   3717   97.66   69.68   -27.98     1063        23  0.00e+00  0.00e+00 *
+LSTM alone       native  simoes_grid        security        5910   95.57   92.20    -3.37      419       220  2.86e-15  3.72e-14 *
+Proposed hybrid  native  afrasiabi          dependability   3717   92.95   86.71    -6.24      263        31  5.55e-47  1.11e-45 *
+Proposed hybrid  native  afrasiabi          security        5910   98.95   88.63   -10.32      636        26 3.61e-153 1.19e-151 *
+LSTM alone       native  afrasiabi          dependability   3717   97.66   86.71   -10.95      432        25  5.93e-97  1.72e-95 *
+LSTM alone       native  afrasiabi          security        5910   95.57   88.63    -6.94      609       199  4.33e-49  9.54e-48 *
+Proposed hybrid  native  key                dependability   3717   92.95   96.99    +4.04       96       246  2.57e-16  3.85e-15 *
+Proposed hybrid  native  key                security        5910   98.95   75.28   -23.67     1426        27  0.00e+00  0.00e+00 *
+LSTM alone       native  key                dependability   3717   97.66   96.99    -0.67       96        71  6.30e-02  2.52e-01
+LSTM alone       native  key                security        5910   95.57   75.28   -20.29     1345       146 3.84e-243 1.50e-241 *
+Proposed hybrid  native  alhamd             dependability   3717   92.95   96.53    +3.58      105       238  5.25e-13  6.31e-12 *
+Proposed hybrid  native  alhamd             security        5910   98.95   82.91   -16.04      972        24 3.39e-252 1.36e-250 *
+LSTM alone       native  alhamd             dependability   3717   97.66   96.53    -1.13      108        66  1.80e-03  9.00e-03 *
+LSTM alone       native  alhamd             security        5910   95.57   82.91   -12.66      892       144 2.80e-132 8.68e-131 *
+Proposed hybrid  native  abdusalam_ba_svm   dependability   3717   92.95   76.38   -16.57      623         7 3.43e-174 1.20e-172 *
+Proposed hybrid  native  abdusalam_ba_svm   security        5910   98.95   99.95    +1.00        3        62  2.48e-15  3.48e-14 *
+LSTM alone       native  abdusalam_ba_svm   dependability   3717   97.66   76.38   -21.28      792         1 3.05e-236 1.16e-234 *
+LSTM alone       native  abdusalam_ba_svm   security        5910   95.57   99.95    +4.38        3       262  1.05e-73  2.72e-72 *
+Proposed hybrid  native  ngaopitakkul       dependability   3717   92.95   27.71   -65.24     2460        35  0.00e+00  0.00e+00 *
+Proposed hybrid  native  ngaopitakkul       security        5910   98.95   99.26    +0.30       43        61  9.50e-02  2.85e-01
+LSTM alone       native  ngaopitakkul       dependability   3717   97.66   27.71   -69.95     2610        10  0.00e+00  0.00e+00 *
+LSTM alone       native  ngaopitakkul       security        5910   95.57   99.26    +3.69       43       261  3.11e-39  5.91e-38 *
+Proposed hybrid  modeb   simoes_grid        dependability   3717   92.95   76.84   -16.12      778       179  1.37e-89  3.84e-88 *
+Proposed hybrid  modeb   simoes_grid        security        5910   98.95   72.08   -26.87     1615        27  0.00e+00  0.00e+00 *
+LSTM alone       modeb   simoes_grid        dependability   3717   97.66   76.84   -20.82      819        45 6.23e-185 2.24e-183 *
+LSTM alone       modeb   simoes_grid        security        5910   95.57   72.08   -23.49     1559       171 2.55e-280 1.05e-278 *
+Proposed hybrid  modeb   afrasiabi          dependability   3717   92.95   87.27    -5.68      228        17  2.51e-48  5.28e-47 *
+Proposed hybrid  modeb   afrasiabi          security        5910   98.95   99.64    +0.69       14        55  6.92e-07  5.54e-06 *
+LSTM alone       modeb   afrasiabi          dependability   3717   97.66   87.27   -10.38      398        12 3.12e-101 9.37e-100 *
+LSTM alone       modeb   afrasiabi          security        5910   95.57   99.64    +4.08       13       254  3.72e-59  8.92e-58 *
+Proposed hybrid  modeb   key                dependability   3717   92.95   97.23    +4.28       45       204  2.30e-25  3.92e-24 *
+Proposed hybrid  modeb   key                security        5910   98.95   99.56    +0.61       26        62  1.57e-04  1.10e-03 *
+LSTM alone       modeb   key                dependability   3717   97.66   97.23    -0.43       63        47  1.52e-01  3.05e-01 unstable
+LSTM alone       modeb   key                security        5910   95.57   99.56    +3.99       25       261  9.98e-51  2.30e-49 *
+Proposed hybrid  modeb   alhamd             dependability   3717   92.95   97.93    +4.98       26       211  3.41e-37  6.14e-36 *
+Proposed hybrid  modeb   alhamd             security        5910   98.95   98.17    -0.78       98        52  2.15e-04  1.29e-03 *
+LSTM alone       modeb   alhamd             dependability   3717   97.66   97.93    +0.27       43        53  3.58e-01  3.58e-01
+LSTM alone       modeb   alhamd             security        5910   95.57   98.17    +2.61       67       221  2.24e-20  3.59e-19 *
+Proposed hybrid  modeb   abdusalam_ba_svm   dependability   3717   92.95   79.23   -13.72      525        15 3.48e-134 1.11e-132 *
+Proposed hybrid  modeb   abdusalam_ba_svm   security        5910   98.95   92.91    -6.04      405        48  1.85e-71  4.62e-70 *
+LSTM alone       modeb   abdusalam_ba_svm   dependability   3717   97.66   79.23   -18.43      692         7 1.21e-194 4.46e-193 *
+LSTM alone       modeb   abdusalam_ba_svm   security        5910   95.57   92.91    -2.66      398       241  5.58e-10  6.14e-09 * unstable
+Proposed hybrid  modeb   ngaopitakkul       dependability   3717   92.95   38.39   -54.56     2080        52  0.00e+00  0.00e+00 *
+Proposed hybrid  modeb   ngaopitakkul       security        5910   98.95   97.48    -1.47      144        57  7.16e-10  7.16e-09 *
+LSTM alone       modeb   ngaopitakkul       dependability   3717   97.66   38.39   -59.27     2216        13  0.00e+00  0.00e+00 *
+LSTM alone       modeb   ngaopitakkul       security        5910   95.57   97.48    +1.91      144       257  1.81e-08  1.63e-07 *
+
+fold-model mean +- sd (15 fold-models per method)
+simoes_grid        dep 69.70 +- 2.32   sec 92.20 +- 1.43
+afrasiabi          dep 86.73 +- 2.04   sec 88.63 +- 4.39   (sd > 3 pt: report the range)
+key                dep 96.99 +- 1.49   sec 75.25 +- 8.62   (sd > 3 pt: report the range)
+alhamd             dep 96.53 +- 1.44   sec 82.91 +- 4.36   (sd > 3 pt: report the range)
+abdusalam_ba_svm   dep 76.41 +- 2.41   sec 99.95 +- 0.10
+ngaopitakkul       dep 27.74 +- 3.39   sec 99.26 +- 0.41   (sd > 3 pt: report the range)

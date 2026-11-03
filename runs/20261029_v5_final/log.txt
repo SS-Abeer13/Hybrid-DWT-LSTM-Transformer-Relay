@@ -1,0 +1,44 @@
+traces: 3332 built, 3332 pass the generator checks, 94 undetectable (< 0.05 pu)
+Windows: train 585119 (21.1% trip) | val 103324 (22.1% trip)
+Epoch 01 loss 0.1391 | val AUC 0.9966 acc 0.9806 | 69s
+Epoch 02 loss 0.0691 | val AUC 0.9959 acc 0.9764 | 69s
+Epoch 03 loss 0.0501 | val AUC 0.9970 acc 0.9876 | 70s
+Epoch 04 loss 0.0397 | val AUC 0.9968 acc 0.9892 | 69s
+Epoch 05 loss 0.0317 | val AUC 0.9968 acc 0.9894 | 69s
+Epoch 06 loss 0.0268 | val AUC 0.9975 acc 0.9884 | 69s
+Epoch 07 loss 0.0232 | val AUC 0.9984 acc 0.9898 | 71s
+Epoch 08 loss 0.0188 | val AUC 0.9985 acc 0.9866 | 69s
+Epoch 09 loss 0.0164 | val AUC 0.9993 acc 0.9924 | 68s
+Epoch 10 loss 0.0147 | val AUC 0.9990 acc 0.9907 | 69s
+Epoch 11 loss 0.0132 | val AUC 0.9985 acc 0.9881 | 69s
+Epoch 12 loss 0.0121 | val AUC 0.9989 acc 0.9902 | 69s
+Epoch 13 loss 0.0110 | val AUC 0.9987 acc 0.9876 | 71s
+Epoch 14 loss 0.0101 | val AUC 0.9985 acc 0.9912 | 71s
+final model: 2752 train / 486 val traces, 14 epochs, thresholds {'ai_threshold': 0.995, 'solo_threshold': 0.998}
+traces: 300 built, 299 pass the generator checks, 0 undetectable (< 0.05 pu)
+FINAL model (20261029_v5_final): trained on 2752 traces, thresholds tuned on 486 validation traces; OOD set scored ONCE, no re-tuning
+
+[87T alone] OOD overall: dependability 89.3 % (149 faults), security 53.3 % (150 healthy), missed 6, false 70, pre-fault 10, operate median 1.25 ms
+[LSTM alone] OOD overall: dependability 99.3 % (149 faults), security 87.3 % (150 healthy), missed 1, false 19, pre-fault 0, operate median 15.625 ms
+[Hybrid (87T gate)] OOD overall: dependability 94.6 % (149 faults), security 98.7 % (150 healthy), missed 8, false 2, pre-fault 0, operate median 16.875 ms
+[Hybrid + AI-alone path] OOD overall: dependability 98.0 % (149 faults), security 96.0 % (150 healthy), missed 3, false 6, pre-fault 0, operate median 17.5 ms
+    block 1 extreme load (1-10 %, 110-130 %)                     dependability 100.0 % (30)  security  96.7 % (30)  missed 0 false 1
+    block 2 weak source 3x + 49.5/50.5 Hz                        dependability 100.0 % (30)  security 100.0 % (30)  missed 0 false 0
+    block 3 CT burden 8-12x                                      dependability 100.0 % (30)  security  96.7 % (30)  missed 0 false 1
+    block 4 over-excitation 1.5-1.6 pu + residual flux 0.9 pu    dependability  96.7 % (30)  security  93.3 % (30)  missed 1 false 2
+    block 5 noise 5 % + CT mismatch +/-8 %                       dependability  93.1 % (29)  security  93.3 % (30)  missed 2 false 2
+
+Per category (OOD, hybrid + AI-alone):
+    External CT-sat      n=  30    96.7 % [ 83.3,  99.4]
+    External solid       n=  35    91.4 % [ 77.6,  97.0]
+    Fault in inrush      n=  10   100.0 % [ 72.2, 100.0]
+    Inrush loaded        n=  33   100.0 % [ 89.6, 100.0]
+    Inrush no-load       n=   6   100.0 % [ 61.0, 100.0]
+    Internal CT-sat      n=  30   100.0 % [ 88.6, 100.0]
+    Internal HV-side     n=  27   100.0 % [ 87.5, 100.0]
+    Internal LV solid    n=  72    97.2 % [ 90.4,  99.2]
+    Normal               n=  28   100.0 % [ 87.9, 100.0]
+    Over-excitation      n=  12    83.3 % [ 55.2,  95.3]
+    Recovery inrush      n=   6   100.0 % [ 61.0, 100.0]
+    SOTF                 n=  10    90.0 % [ 59.6,  98.2]
+FINAL_DONE

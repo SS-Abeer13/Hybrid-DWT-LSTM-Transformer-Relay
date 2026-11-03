@@ -1,0 +1,26 @@
+================================================================================
+MEASURED LATENCY BENCHMARK REPORT (TRANSFORMER RELAY v4)
+================================================================================
+Timestamp:          2026-10-29T17:45:55.550439
+Host CPU:           AMD Ryzen 7 7700 8-Core Processor
+Operating System:   Windows 10 (10.0.26300)
+Software Stack:     Python 3.11.0, PyTorch 2.3.1+cpu, ONNX Runtime 1.27.0
+Execution Model:    Single thread (intra_op_num_threads=1, ORT_SEQUENTIAL), streaming 1 window/call
+Timed Iterations:   10000 calls (following 100 warm-up calls)
+
+LATENCY BREAKDOWN (Microseconds, us):
+Subsystem                           Median      Mean       p90       p99       Max
+--------------------------------------------------------------------------------
+1. Feature Extraction (DWT+FFT)       21.7      22.3      22.1      38.5     265.3
+2. LSTM ONNX Inference                88.8      91.1      92.0     135.9     319.4
+3. Total Combined Pipeline           139.6     143.1     145.6     218.9     438.1
+--------------------------------------------------------------------------------
+
+REAL-TIME FEASIBILITY ASSESSMENT:
+   Relay Sampling Frequency:       1,600 Hz (32 samples/cycle at 50 Hz)
+   Available Time Budget per Step: 625.0 us
+   Measured Pipeline Latency (p50):139.6 us (22.3% CPU core load)
+   Measured Pipeline Latency (p99):218.9 us
+   Processing Safety Margin:       77.7% idle headroom per sample interval
+   Real-time Feasibility Verdict:  PASS (Well within 625 us real-time budget)
+================================================================================

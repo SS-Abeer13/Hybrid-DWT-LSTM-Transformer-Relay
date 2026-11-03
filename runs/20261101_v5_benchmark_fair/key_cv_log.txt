@@ -1,0 +1,17 @@
+prepared 3302 traces in 22s
+seed 20261021 fold 1: 664 test traces | dep 96.7 % sec 83.6 % | 841 s
+seed 20261021 fold 2: 662 test traces | dep 97.2 % sec 73.6 % | 632 s
+seed 20261021 fold 3: 656 test traces | dep 97.6 % sec 65.6 % | 585 s
+seed 20261021 fold 4: 658 test traces | dep 98.4 % sec 72.1 % | 697 s
+seed 20261021 fold 5: 662 test traces | dep 99.2 % sec 92.4 % | 632 s
+seed 20261022 fold 1: 662 test traces | dep 98.4 % sec 74.1 % | 622 s
+seed 20261022 fold 2: 659 test traces | dep 95.5 % sec 78.4 % | 586 s
+seed 20261022 fold 3: 659 test traces | dep 96.8 % sec 71.5 % | 651 s
+seed 20261022 fold 4: 661 test traces | dep 98.4 % sec 85.8 % | 692 s
+seed 20261022 fold 5: 661 test traces | dep 94.0 % sec 66.6 % | 934 s
+seed 20261023 fold 1: 661 test traces | dep 96.5 % sec 81.1 % | 782 s
+seed 20261023 fold 2: 660 test traces | dep 94.4 % sec 71.5 % | 655 s
+seed 20261023 fold 3: 658 test traces | dep 95.9 % sec 61.9 % | 628 s
+seed 20261023 fold 4: 661 test traces | dep 97.2 % sec 72.5 % | 964 s
+seed 20261023 fold 5: 662 test traces | dep 97.5 % sec 71.8 % | 980 s
+key dep 96.9061070755986 sec 74.85617597292725

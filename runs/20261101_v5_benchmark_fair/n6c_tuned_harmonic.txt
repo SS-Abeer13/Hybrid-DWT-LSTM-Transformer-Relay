@@ -1,0 +1,8 @@
+Validation-tuned harmonic 87T (per-phase) vs textbook settings, plant-A CV (3 seeds x 5 folds, common set)
+chosen settings (pickup, k2, k5) over the 15 fold-models: {'[0.2, 0.2, 0.25]': 9, '[0.2, 0.15, 0.25]': 6}
+harmonic 87T textbook 0.30/0.15/0.35  dependability n=3717: hybrid 92.95 harmonic 85.96 diff -6.99 pt discordant 267/7 p_Holm4 5.76e-69 *  seeds -7.91 -8.23 -4.84
+harmonic 87T textbook 0.30/0.15/0.35  security      n=5910: hybrid 98.95 harmonic 99.39 diff +0.44 pt discordant 29/55 p_Holm4 1.21e-02 *  seeds +0.25 +0.71 +0.36
+harmonic 87T tuned on validation      dependability n=3717: hybrid 92.95 harmonic 91.18 diff -1.78 pt discordant 138/72 p_Holm4 1.85e-05 *  seeds -2.66 -2.82 +0.16
+harmonic 87T tuned on validation      security      n=5910: hybrid 98.95 harmonic 99.07 diff +0.12 pt discordant 47/54 p_Holm4 5.51e-01  seeds -0.10 +0.30 +0.15
+dependability, Internal_HiZ (n=459): hybrid 65.4, tuned harmonic 62.1, textbook harmonic 51.0
+dependability, other internal faults (n=3258): hybrid 96.8, tuned harmonic 95.3, textbook harmonic 90.9

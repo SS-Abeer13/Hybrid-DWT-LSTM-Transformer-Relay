@@ -1,0 +1,55 @@
+====================================================================================================
+STATISTICAL SIGNIFICANCE AND UNCERTAINTY ANALYSIS (v5 DATASET)
+====================================================================================================
+
+1. PAIRED MCNEMAR SIGNIFICANCE TESTS:
+   [A] Proposed Hybrid vs Conventional Unrestrained 87T (N = 3238):
+       - Dependability (Fault Traces, N = 1251):
+           Proposed: 93.92% | 87T Baseline: 80.34%
+           Contingency: Both Pass = 996, Proposed Wins = 179, 87T Wins = 9, Both Fail = 67
+           Discordant: 188, Chi2 = 151.920, p-value = 3.5706e-42 (p < 0.001 ***)
+
+       - Security (Healthy / Inrush / External Traces, N = 1987):
+           Proposed: 99.14% | 87T Baseline: 63.41%
+           Contingency: Both Restrain = 1252, Proposed Wins = 718, 87T Wins = 8, Both False-Trip = 9
+           Discordant: 726, Chi2 = 692.398, p-value = 1.0550e-200 (p < 0.001 ***)
+
+   [B] Proposed Hybrid vs Per-Phase Harmonic Restrained 87T (R3) (N = 3238):
+       - Dependability (Fault Traces, N = 1251):
+           Proposed: 93.92% | Harmonic 87T (R3): 85.93%
+           Contingency: Both Pass = 1074, Proposed Wins = 101, Harmonic 87T Wins = 1, Both Fail = 75
+           Discordant: 102, Chi2 = 96.088, p-value = 4.0626e-29 (p < 0.001 ***)
+
+       - Security (Healthy / Inrush / External Traces, N = 1987):
+           Proposed: 99.14% | Harmonic 87T (R3): 99.40%
+           Contingency: Both Restrain = 1958, Proposed Wins = 12, Harmonic 87T Wins = 17, Both False-Trip = 0
+           Discordant: 29, Chi2 = 0.552, p-value = 4.5826e-01 (not significant)
+
+2. MULTI-SEED CROSS-VALIDATION SUMMARY (Mean +/- SD over 15 Fold-Models):
+   Protection Architecture         Dependability (%)         Security (%)   Overall Accuracy (%)
+-----------------------------------------------------------------------------------------------
+   87T alone                       80.35 +/- 1.70%    63.41 +/- 1.43%    69.95 +/- 1.20%
+   LSTM alone                      97.69 +/- 1.48%    95.60 +/- 3.64%    96.41 +/- 2.07%
+   Hybrid (87T gate)               88.40 +/- 1.73%    99.43 +/- 0.37%    95.16 +/- 0.63%
+   Hybrid + AI-alone path          93.03 +/- 3.60%    98.96 +/- 0.81%    96.66 +/- 1.25%
+
+3. PER-CATEGORY PERFORMANCE & WILSON 95% CONFIDENCE INTERVALS (Proposed Hybrid + AI-Alone Path):
+   Scenario Category            Type      N  Correct   Accuracy (%)          Wilson 95% CI
+--------------------------------------------------------------------------------------
+   Evolving                    Fault     80       80        100.00%        [95.4%, 100.0%]
+   External CT-sat          Non-Fault    302      298         98.68%         [96.6%, 99.5%]
+   External HiZ             Non-Fault     60       60        100.00%        [94.0%, 100.0%]
+   External in inrush       Non-Fault    100       93         93.00%         [86.3%, 96.6%]
+   External solid           Non-Fault    440      435         98.86%         [97.4%, 99.5%]
+   Fault in inrush             Fault    111      111        100.00%        [96.7%, 100.0%]
+   Inrush loaded            Non-Fault    192      192        100.00%        [98.0%, 100.0%]
+   Inrush no-load           Non-Fault    200      199         99.50%         [97.2%, 99.9%]
+   Internal CT-sat             Fault    121      121        100.00%        [96.9%, 100.0%]
+   Internal HV-side            Fault    198      198        100.00%        [98.1%, 100.0%]
+   Internal HiZ                Fault    155      105         67.74%         [60.0%, 74.6%]
+   Internal LV solid           Fault    506      488         96.44%         [94.4%, 97.7%]
+   Normal                   Non-Fault    303      303        100.00%        [98.7%, 100.0%]
+   Over-excitation          Non-Fault    310      310        100.00%        [98.8%, 100.0%]
+   Recovery inrush          Non-Fault     80       80        100.00%        [95.4%, 100.0%]
+   SOTF                        Fault     80       72         90.00%         [81.5%, 94.8%]
+====================================================================================================

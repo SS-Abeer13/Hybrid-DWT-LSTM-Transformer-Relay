@@ -1,0 +1,34 @@
+EXPERIMENT 1: ZERO-SHOT TRANSFER SUMMARY
+Date: 2026-10-29T16:09:45.578933
+Source Model: F:\Transformer Thesis\runs\20261029_v5_final\transformer_protection_lstm_best.pth
+Evaluation Traces: 1289 from Plant B
+================================================================================
+
+Variant: Proposed
+  Dependability: 92.70% [90.06, 94.68]%
+  Security:      88.35% [85.88, 90.44]%
+  Missed Trips:  36 / 493
+  False Trips:   89 / 764
+  Operate Median: 14.375 ms (<=1 cyc: 92.5601750547046%, <=2 cyc: 99.34354485776805%)
+
+Variant: Harmonic 87T
+  Dependability: 94.12% [91.68, 95.87]%
+  Security:      98.95% [97.95, 99.47]%
+  Missed Trips:  29 / 493
+  False Trips:   8 / 764
+  Operate Median: 14.0625 ms (<=1 cyc: 96.55172413793103%, <=2 cyc: 98.70689655172413%)
+
+Variant: 87T alone
+  Dependability: 89.45% [86.43, 91.87]%
+  Security:      62.04% [58.55, 65.41]%
+  Missed Trips:  29 / 493
+  False Trips:   290 / 764
+  Operate Median: 3.75 ms (<=1 cyc: 96.5986394557823%, <=2 cyc: 98.63945578231292%)
+
+Variant: LSTM alone
+  Dependability: 92.90% [90.29, 94.85]%
+  Security:      87.30% [84.75, 89.48]%
+  Missed Trips:  35 / 493
+  False Trips:   97 / 764
+  Operate Median: 14.375 ms (<=1 cyc: 92.57641921397381%, <=2 cyc: 99.56331877729258%)
+

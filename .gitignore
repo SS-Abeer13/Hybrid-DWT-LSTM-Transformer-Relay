@@ -24,6 +24,8 @@ __pycache__/
 *.pth
 *.onnx
 *.npz
+*.npy
+*.pkl
 
 # Third-party binaries
 *.mcpb

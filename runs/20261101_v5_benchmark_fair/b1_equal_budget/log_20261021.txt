@@ -1,0 +1,185 @@
+====================================================================================================
+STARTING LITERATURE BENCHMARKING SUITE ON 300 MVA TRANSFORMER DATASET
+====================================================================================================
+Loading cached traces from: F:\Transformer Thesis\runs\20261029_v5_cv5_seeds\traces_cache.npz
+Verified dataset: 3332 traces loaded (94 undetectable)
+
+Loading established baseline results from F:\Transformer Thesis\runs\20261029_v5_cv5_seeds\seed_20261021...
+
+Fold 1 already completed. Loading cached results from benchmark_fold_results.json...
+
+----------------------------------------------------------------------
+FOLD 2 / 5 (Test traces: 667)
+----------------------------------------------------------------------
+Generating training windows (stride=8)...
+Train windows: 467322 (21.1% trip) | Val windows: 82712 (20.4% trip)
+[Wavelet-ANN] Loading saved model...
+[Wavelet-ANN] Generating streaming probabilities...
+Traceback (most recent call last):
+  File "F:\Transformer Thesis\lstm_models\benchmark_literature_models.py", line 792, in <module>
+    main()
+  File "F:\Transformer Thesis\lstm_models\benchmark_literature_models.py", line 788, in main
+    run_benchmarks(args)
+  File "F:\Transformer Thesis\lstm_models\benchmark_literature_models.py", line 449, in run_benchmarks
+    probs_mlp = {i: stream_probs_torch(mlp, traces[i]["features"], is_mlp=True, device=device) for i in (va_ids + te_ids)}
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Transformer Thesis\lstm_models\benchmark_literature_models.py", line 449, in <dictcomp>
+    probs_mlp = {i: stream_probs_torch(mlp, traces[i]["features"], is_mlp=True, device=device) for i in (va_ids + te_ids)}
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\utils\_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Transformer Thesis\lstm_models\benchmark_literature_models.py", line 169, in stream_probs_torch
+    out.append(torch.sigmoid(model(batch_t)).cpu().numpy())
+                             ^^^^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Transformer Thesis\lstm_models\benchmark_literature_models.py", line 137, in forward
+    return self.net(x).view(-1)
+           ^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\nn\modules\container.py", line 250, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\venv_gpu\Lib\site-packages\torch\nn\modules\linear.py", line 134, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but got mat1 is on cuda:0, different from other tensors on cpu (when checking argument in method wrapper_CUDA_addmm)
+====================================================================================================
+STARTING LITERATURE BENCHMARKING SUITE ON 300 MVA TRANSFORMER DATASET
+====================================================================================================
+Loading cached traces from: F:\Transformer Thesis\runs\20261029_v5_cv5_seeds\traces_cache.npz
+Verified dataset: 3332 traces loaded (94 undetectable)
+
+Loading established baseline results from F:\Transformer Thesis\runs\20261029_v5_cv5_seeds\seed_20261021...
+
+Fold 1 already completed. Loading cached results from benchmark_fold_results.json...
+
+----------------------------------------------------------------------
+FOLD 2 / 5 (Test traces: 667)
+----------------------------------------------------------------------
+Generating training windows (stride=8)...
+Train windows: 467322 (21.1% trip) | Val windows: 82712 (20.4% trip)
+[Wavelet-ANN] Training 3-layer MLP...
+[Wavelet-ANN] Trained in 34.9s, Best Val AUC: 0.9976
+[Wavelet-ANN] Generating streaming probabilities...
+[1D-CNN] Training Temporal 1D-CNN...
+[1D-CNN] Trained in 61.2s, Best Val AUC: 0.9981
+[1D-CNN] Generating streaming probabilities...
+[Wavelet-GRU] Training 2-layer GRU with Attention...
+[Wavelet-GRU] Trained in 81.2s, Best Val AUC: 0.9971
+[Wavelet-GRU] Generating streaming probabilities...
+[Wavelet-RF] Fitting Random Forest (100 trees)...
+[Wavelet-RF] Fitted in 2.3s
+[Wavelet-RF] Generating streaming probabilities...
+[Wavelet-SVM] Fitting Nystroem RBF-SVM...
+[Wavelet-SVM] Fitted in 0.3s
+[Wavelet-SVM] Generating streaming probabilities...
+
+----------------------------------------------------------------------
+FOLD 3 / 5 (Test traces: 666)
+----------------------------------------------------------------------
+Generating training windows (stride=8)...
+Train windows: 467321 (21.4% trip) | Val windows: 82713 (20.2% trip)
+[Wavelet-ANN] Training 3-layer MLP...
+[Wavelet-ANN] Trained in 104.3s, Best Val AUC: 0.9975
+[Wavelet-ANN] Generating streaming probabilities...
+[1D-CNN] Training Temporal 1D-CNN...
+[1D-CNN] Trained in 347.8s, Best Val AUC: 0.9985
+[1D-CNN] Generating streaming probabilities...
+[Wavelet-GRU] Training 2-layer GRU with Attention...
+[Wavelet-GRU] Trained in 287.8s, Best Val AUC: 0.9977
+[Wavelet-GRU] Generating streaming probabilities...
+[Wavelet-RF] Fitting Random Forest (100 trees)...
+[Wavelet-RF] Fitted in 2.4s
+[Wavelet-RF] Generating streaming probabilities...
+[Wavelet-SVM] Fitting Nystroem RBF-SVM...
+[Wavelet-SVM] Fitted in 0.3s
+[Wavelet-SVM] Generating streaming probabilities...
+
+----------------------------------------------------------------------
+FOLD 4 / 5 (Test traces: 666)
+----------------------------------------------------------------------
+Generating training windows (stride=8)...
+Train windows: 468594 (21.3% trip) | Val windows: 82712 (20.5% trip)
+[Wavelet-ANN] Training 3-layer MLP...
+[Wavelet-ANN] Trained in 986.0s, Best Val AUC: 0.9974
+[Wavelet-ANN] Generating streaming probabilities...
+[1D-CNN] Training Temporal 1D-CNN...
+[1D-CNN] Trained in 143.1s, Best Val AUC: 0.9964
+[1D-CNN] Generating streaming probabilities...
+[Wavelet-GRU] Training 2-layer GRU with Attention...
+[Wavelet-GRU] Trained in 145.8s, Best Val AUC: 0.9955
+[Wavelet-GRU] Generating streaming probabilities...
+[Wavelet-RF] Fitting Random Forest (100 trees)...
+[Wavelet-RF] Fitted in 1.5s
+[Wavelet-RF] Generating streaming probabilities...
+[Wavelet-SVM] Fitting Nystroem RBF-SVM...
+[Wavelet-SVM] Fitted in 0.2s
+[Wavelet-SVM] Generating streaming probabilities...
+
+----------------------------------------------------------------------
+FOLD 5 / 5 (Test traces: 666)
+----------------------------------------------------------------------
+Generating training windows (stride=8)...
+Train windows: 468382 (21.4% trip) | Val windows: 82711 (21.0% trip)
+[Wavelet-ANN] Training 3-layer MLP...
+[Wavelet-ANN] Trained in 164.0s, Best Val AUC: 0.9992
+[Wavelet-ANN] Generating streaming probabilities...
+[1D-CNN] Training Temporal 1D-CNN...
+[1D-CNN] Trained in 118.4s, Best Val AUC: 0.9990
+[1D-CNN] Generating streaming probabilities...
+[Wavelet-GRU] Training 2-layer GRU with Attention...
+[Wavelet-GRU] Trained in 212.5s, Best Val AUC: 0.9994
+[Wavelet-GRU] Generating streaming probabilities...
+[Wavelet-RF] Fitting Random Forest (100 trees)...
+[Wavelet-RF] Fitted in 1.5s
+[Wavelet-RF] Generating streaming probabilities...
+[Wavelet-SVM] Fitting Nystroem RBF-SVM...
+[Wavelet-SVM] Fitted in 0.2s
+[Wavelet-SVM] Generating streaming probabilities...
+
+Completed 5-fold cross-validation in 82.3 minutes!
+
+==============================================================================================================
+STANDALONE CLASSIFIER COMPARISON (Apples-to-Apples Literature Benchmark)
+==============================================================================================================
+Model Architecture         Model Type               Dep %   Sec %   Acc %  Med Top  <=2cyc%  Missed  False   Pre
+--------------------------------------------------------------------------------------------------------------
+Conventional 87T           Physics-based Relay      80.34   63.41   69.95      1.2    100.0     135    727   111
+Wavelet-SVM                Kernel Machine           84.01   74.23   78.01     15.6     93.1     117    512    83
+Wavelet-ANN                Shallow Neural Network   97.76   96.43   96.94     16.2     95.5      27     71     1
+Wavelet-RF                 Ensemble Trees           96.32   96.88   96.66     16.2     87.8      46     62     0
+1D-CNN                     Convolutional Network    97.52   97.08   97.25     15.6     95.5      30     58     1
+Wavelet-GRU                Recurrent Sequence       98.16   96.83   97.34     15.0     96.4      23     63     0
+Standalone LSTM            Recurrent Sequence       97.92   96.78   97.22     15.6     96.4      26     64     0
+
+==============================================================================================================
+HYBRID RELAY COMPARISON (Under Proposed Supervisory Handshake + AI-Alone Path)
+==============================================================================================================
+Model Architecture         Model Type               Dep %   Sec %   Acc %  Med Top  <=2cyc%  Missed  False   Pre
+--------------------------------------------------------------------------------------------------------------
+Wavelet-SVM                Kernel Machine           80.82   98.24   91.51     18.1     84.9     234     35     6
+Wavelet-ANN                Shallow Neural Network   92.17   99.35   96.57     16.9     91.0      98     13     0
+Wavelet-RF                 Ensemble Trees           92.09   99.25   96.48     19.4     77.6      99     15     0
+1D-CNN                     Convolutional Network    93.84   98.84   96.91     16.9     93.5      77     23     0
+Wavelet-GRU                Recurrent Sequence       93.76   98.89   96.91     15.0     94.0      78     22     0
+Proposed Hybrid DWT-LSTM   Hybrid Neuro-Physical    93.92   99.14   97.13     16.2     92.8      76     17     0
+
+Saved Markdown comparison report to: F:\Transformer Thesis\documents\results_v3\literature_benchmark.md
+Saved LaTeX comparison table to: F:\Transformer Thesis\latex_source\latex\table_literature_benchmark.tex

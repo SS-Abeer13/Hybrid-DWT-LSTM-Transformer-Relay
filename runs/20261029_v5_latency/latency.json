@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-29T17:45:55.550439",
+    "cpu_model": "AMD Ryzen 7 7700 8-Core Processor",
+    "os": "Windows 10 (10.0.26300)",
+    "python_version": "3.11.0",
+    "torch_version": "2.3.1+cpu",
+    "onnxruntime_version": "1.27.0",
+    "sample_rate_hz": 1600,
+    "sample_period_us": 625.0,
+    "n_warmup": 100,
+    "n_timed_calls": 10000
+  },
+  "feature_extraction_dwt_fft": {
+    "mean_us": 22.260939999999998,
+    "std_us": 4.514271626342394,
+    "median_us": 21.7,
+    "p90_us": 22.1,
+    "p95_us": 23.0,
+    "p99_us": 38.502000000000045,
+    "max_us": 265.3,
+    "min_us": 21.0
+  },
+  "onnx_inference": {
+    "mean_us": 91.08723,
+    "std_us": 10.907900986308045,
+    "median_us": 88.8,
+    "p90_us": 92.0,
+    "p95_us": 101.0,
+    "p99_us": 135.90200000000004,
+    "max_us": 319.4,
+    "min_us": 86.9
+  },
+  "combined_relay_pipeline": {
+    "mean_us": 143.05293999999998,
+    "std_us": 15.43497092178667,
+    "median_us": 139.6,
+    "p90_us": 145.6,
+    "p95_us": 150.30499999999995,
+    "p99_us": 218.9,
+    "max_us": 438.1,
+    "min_us": 136.8
+  },
+  "budget_analysis": {
+    "sampling_interval_us": 625.0,
+    "pipeline_median_us": 139.6,
+    "pipeline_p99_us": 218.9,
+    "cpu_time_utilization_pct": 22.336,
+    "real_time_margin_pct": 77.664,
+    "verdict_real_time_capable": true
+  }
+}

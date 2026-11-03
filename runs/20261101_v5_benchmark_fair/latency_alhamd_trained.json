@@ -1,0 +1,236 @@
+{
+ "seed20261021_fold1": {
+  "cfg": {
+   "hidden": 128,
+   "layers": 1,
+   "dropout": 0.2,
+   "lr": 0.03
+  },
+  "search": [
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.1,
+    "lr": 0.03,
+    "val_loss": 0.0364457368850708,
+    "epochs": 45
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.2,
+    "lr": 0.03,
+    "val_loss": 0.03545759618282318,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.1,
+    "lr": 0.01,
+    "val_loss": 0.054687172174453735,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.1,
+    "lr": 0.003,
+    "val_loss": 0.09055397659540176,
+    "epochs": 60
+   },
+   {
+    "hidden": 32,
+    "layers": 2,
+    "dropout": 0.3,
+    "lr": 0.003,
+    "val_loss": 0.10343082249164581,
+    "epochs": 60
+   },
+   {
+    "hidden": 32,
+    "layers": 2,
+    "dropout": 0.1,
+    "lr": 0.03,
+    "val_loss": 0.0356639064848423,
+    "epochs": 41
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.2,
+    "lr": 0.03,
+    "val_loss": 0.03545759618282318,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.2,
+    "lr": 0.003,
+    "val_loss": 0.09200815856456757,
+    "epochs": 60
+   },
+   {
+    "hidden": 32,
+    "layers": 1,
+    "dropout": 0.3,
+    "lr": 0.03,
+    "val_loss": 0.044335752725601196,
+    "epochs": 53
+   },
+   {
+    "hidden": 32,
+    "layers": 2,
+    "dropout": 0.3,
+    "lr": 0.01,
+    "val_loss": 0.052373941987752914,
+    "epochs": 60
+   },
+   {
+    "hidden": 64,
+    "layers": 1,
+    "dropout": 0.1,
+    "lr": 0.03,
+    "val_loss": 0.03807445988059044,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.2,
+    "lr": 0.03,
+    "val_loss": 0.03545759618282318,
+    "epochs": 60
+   }
+  ],
+  "latency": {
+   "median_us": 1165.8,
+   "p99_us": 1746.9589999999992,
+   "budget_us": 1666.6666666666667
+  }
+ },
+ "final_model": {
+  "cfg": {
+   "hidden": 128,
+   "layers": 1,
+   "dropout": 0.1,
+   "lr": 0.03
+  },
+  "search": [
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.1,
+    "lr": 0.03,
+    "val_loss": 0.0359269343316555,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.2,
+    "lr": 0.03,
+    "val_loss": 0.03595849126577377,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.1,
+    "lr": 0.01,
+    "val_loss": 0.04936594143509865,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.1,
+    "lr": 0.003,
+    "val_loss": 0.09120944887399673,
+    "epochs": 60
+   },
+   {
+    "hidden": 32,
+    "layers": 2,
+    "dropout": 0.3,
+    "lr": 0.003,
+    "val_loss": 0.10508837550878525,
+    "epochs": 60
+   },
+   {
+    "hidden": 32,
+    "layers": 2,
+    "dropout": 0.1,
+    "lr": 0.03,
+    "val_loss": 0.0360083132982254,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.2,
+    "lr": 0.03,
+    "val_loss": 0.03595849126577377,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.2,
+    "lr": 0.003,
+    "val_loss": 0.09300536662340164,
+    "epochs": 60
+   },
+   {
+    "hidden": 32,
+    "layers": 1,
+    "dropout": 0.3,
+    "lr": 0.03,
+    "val_loss": 0.044092435389757156,
+    "epochs": 60
+   },
+   {
+    "hidden": 32,
+    "layers": 2,
+    "dropout": 0.3,
+    "lr": 0.01,
+    "val_loss": 0.052384283393621445,
+    "epochs": 60
+   },
+   {
+    "hidden": 64,
+    "layers": 1,
+    "dropout": 0.1,
+    "lr": 0.03,
+    "val_loss": 0.03871903568506241,
+    "epochs": 60
+   },
+   {
+    "hidden": 128,
+    "layers": 1,
+    "dropout": 0.2,
+    "lr": 0.03,
+    "val_loss": 0.03595849126577377,
+    "epochs": 60
+   }
+  ],
+  "latency": {
+   "median_us": 1169.0,
+   "p99_us": 1673.504,
+   "budget_us": 1666.6666666666667
+  }
+ },
+ "largest_search_space_config (earlier measurement)": {
+  "cfg": {
+   "hidden": 128,
+   "layers": 2,
+   "dropout": 0.1
+  },
+  "latency": {
+   "median_us": 1799.35,
+   "p99_us": 2311.5319999999992,
+   "budget_us": 1666.6666666666667
+  }
+ }
+}

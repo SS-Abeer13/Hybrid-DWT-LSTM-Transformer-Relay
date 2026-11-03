@@ -1,0 +1,19 @@
+prepared 3302 traces in 0s
+seed 20261021 fold 1: native 71.1/92.2 | mode b (thr 0.3) 76.8/75.8 | 45s
+seed 20261021 fold 2: native 66.7/93.9 | mode b (thr 0.3) 73.8/79.9 | 29s
+seed 20261021 fold 3: native 70.1/93.1 | mode b (thr 0.25) 79.3/62.6 | 34s
+seed 20261021 fold 4: native 71.3/92.9 | mode b (thr 0.3) 75.8/79.2 | 38s
+seed 20261021 fold 5: native 65.9/92.7 | mode b (thr 0.25) 74.0/61.4 | 42s
+seed 20261022 fold 1: native 70.8/92.6 | mode b (thr 0.3) 76.7/77.4 | 41s
+seed 20261022 fold 2: native 71.3/92.4 | mode b (thr 0.25) 75.8/64.0 | 44s
+seed 20261022 fold 3: native 68.0/90.1 | mode b (thr 0.3) 81.0/71.2 | 76s
+seed 20261022 fold 4: native 68.0/89.6 | mode b (thr 0.25) 74.2/58.1 | 43s
+seed 20261022 fold 5: native 68.5/92.9 | mode b (thr 0.35) 74.9/86.1 | 44s
+seed 20261023 fold 1: native 69.3/91.9 | mode b (thr 0.3) 74.8/75.3 | 42s
+seed 20261023 fold 2: native 66.9/92.9 | mode b (thr 0.3) 74.6/80.4 | 43s
+seed 20261023 fold 3: native 72.0/94.4 | mode b (thr 0.25) 78.5/66.5 | 52s
+seed 20261023 fold 4: native 71.3/89.6 | mode b (thr 0.3) 80.7/69.7 | 81s
+seed 20261023 fold 5: native 74.3/91.9 | mode b (thr 0.3) 81.9/73.6 | 79s
+final model fitted; mode-b threshold 0.3
+plantA_OOD: 297 traces | native 70.9/73.8 | mode b 75.0/60.4
+plantB_main: 1278 traces | native 83.2/89.4 | mode b 86.7/71.7
