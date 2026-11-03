@@ -24,7 +24,10 @@ SEEDS = (20261021, 20261022, 20261023)
 
 def trace_index() -> tuple[list[dict], dict]:
     """The cached trace list of the CV (same order as train_cv_v5) and a map (source file, source index) -> position."""
-    z = np.load(C.CACHE_A_MAIN, allow_pickle=True)["traces"]
+    if not C.CACHE_A_MAIN.is_file():      # the 250 MB feature cache is not on GitHub: use the light metadata file written from it
+        z = json.loads((C.ROOT / "runs" / "20261101_v5_benchmark_fair" / "trace_metas_plantA.json").read_text(encoding="utf-8"))
+    else:
+        z = np.load(C.CACHE_A_MAIN, allow_pickle=True)["traces"]
     metas = []
     for t in z:
         m = {k: v for k, v in t.items() if k not in ("features", "vote87", "highset")}
