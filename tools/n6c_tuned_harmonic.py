@@ -135,6 +135,16 @@ def main():
         t["p_holm4"] = float(q)
         L.append(f"harmonic 87T {t['setting']:24s} {t['metric']:13s} n={t['n']}: hybrid {t['hybrid']:.2f} harmonic {t['harmonic']:.2f} diff {t['diff_pt']:+.2f} pt "
                  f"discordant {t['hybrid_only']}/{t['harmonic_only']} p_Holm4 {q:.2e}" + (" *" if q < 0.05 else "") + "  seeds " + " ".join(f"{v:+.2f}" for v in t["per_seed"].values()))
+    def fam(i):
+        return "Internal_HiZ" if metas[i]["scenarioName"].startswith("Internal_HiZ") else "other internal faults"
+
+    def dep_of(rows, g):
+        v = [bool(rows[k]["correct"]) for k in rows if k in ref and rows[k]["should_trip"] and not rows[k]["undetectable"] and fam(k[2]) == g]
+        return 100 * np.mean(v), len(v)
+
+    for g in ("Internal_HiZ", "other internal faults"):
+        (hy, n) = dep_of({k: ref[k] for k in tuned_rows if k in ref}, g)
+        L.append(f"dependability, {g} (n={n}): hybrid {hy:.1f}, tuned harmonic {dep_of(tuned_rows, g)[0]:.1f}, textbook harmonic {dep_of(text_rows, g)[0]:.1f}")
     (OUT / "n6c_tuned_harmonic.txt").write_text("\n".join(L))
     (OUT / "n6c_tuned_harmonic.json").write_text(json.dumps({"chosen": chosen, "tests": tests}, indent=1, default=float))
     print("\n".join(L))
