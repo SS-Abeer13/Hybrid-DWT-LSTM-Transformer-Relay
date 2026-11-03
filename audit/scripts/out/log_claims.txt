@@ -1,0 +1,2 @@
+363 claims checked; 362 match; 1 do not match or error
+  NO: 2026-11-03 08:17 | like-for-like neural security range '95.3-99.6 %' (CV) - lower end | full/{afrasiabi,key,alhamd}/cv_*.json | recomputed 98.1726

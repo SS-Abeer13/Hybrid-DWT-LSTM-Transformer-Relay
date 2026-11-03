@@ -1,0 +1,166 @@
+== fold/trace set consistency
+  ref                    keys  9996  in ref not here    0  here not in ref   0
+  simoes_grid            keys  9906  in ref not here   90  here not in ref   0
+  afrasiabi              keys  9906  in ref not here   90  here not in ref   0
+  key                    keys  9906  in ref not here   90  here not in ref   0
+  alhamd                 keys  9906  in ref not here   90  here not in ref   0
+  abdusalam_ba_svm       keys  9906  in ref not here   90  here not in ref   0
+  ngaopitakkul           keys  9906  in ref not here   90  here not in ref   0
+  key_hybrid             keys  9906  in ref not here   90  here not in ref   0
+  b2:Wavelet-SVM         keys  9996  in ref not here    0  here not in ref   0
+  b2:Wavelet-RF          keys  9996  in ref not here    0  here not in ref   0
+  b2:Wavelet-ANN         keys  9996  in ref not here    0  here not in ref   0
+  b2:1D-CNN              keys  9996  in ref not here    0  here not in ref   0
+  b2:Wavelet-GRU         keys  9996  in ref not here    0  here not in ref   0
+  b2:Proposed LSTM       keys  9996  in ref not here    0  here not in ref   0
+  traces in ref but not in reproductions: 30 unique; equal to the hr_missing set: True; |BAD| = 30
+  proposed hybrid dependability: common set 92.95 (n=3717), all traces 92.99 (n=3753)
+  proposed hybrid security: common set 98.95 (n=5910), all traces 98.96 (n=5961)
+  undetectable flag in result.json vs metadata (fault_pu < 0.05): 0 disagreements
+  test traces per (seed, fold): min 666, max 667, total per seed [3332, 3332, 3332]
+
+== n5_statistics.json: 24 recomputed tests, 24 saved tests (Holm family size recomputed = 24)
+  Proposed hybrid native simoes_grid       dependability n=3717  92.95  69.68  -23.27   982/117   p=8.714e-171 pH=1.394e-169  OK
+  Proposed hybrid native simoes_grid       security      n=5910  98.95  92.20   -6.75   449/50    p=2.863e-81 pH=3.435e-80  OK
+  LSTM alone      native simoes_grid       dependability n=3717  97.66  69.68  -27.98  1063/23    p=0.000e+00 pH=0.000e+00  OK
+  LSTM alone      native simoes_grid       security      n=5910  95.57  92.20   -3.37   419/220   p=2.865e-15 pH=1.491e-14  OK
+  Proposed hybrid native afrasiabi         dependability n=3717  92.95  86.71   -6.24   263/31    p=5.546e-47 pH=4.991e-46  OK
+  Proposed hybrid native afrasiabi         security      n=5910  98.95  88.63  -10.32   636/26    p=3.613e-153 pH=5.420e-152  OK
+  LSTM alone      native afrasiabi         dependability n=3717  97.66  86.71  -10.95   432/25    p=5.929e-97 pH=7.708e-96  OK
+  LSTM alone      native afrasiabi         security      n=5910  95.57  88.63   -6.94   609/199   p=4.335e-49 pH=4.335e-48  OK
+  Proposed hybrid native key               dependability n=3717  92.95  96.99   +4.04    96/246   p=2.569e-16 pH=1.798e-15  OK
+  Proposed hybrid native key               security      n=5910  98.95  75.28  -23.67  1426/27    p=0.000e+00 pH=0.000e+00  OK
+  LSTM alone      native key               dependability n=3717  97.66  96.99   -0.67    96/71    p=6.296e-02 pH=1.259e-01  OK
+  LSTM alone      native key               security      n=5910  95.57  75.28  -20.29  1345/146   p=3.838e-243 pH=7.293e-242  OK
+  Proposed hybrid native alhamd            dependability n=3717  92.95  96.53   +3.58   105/238   p=5.255e-13 pH=2.102e-12  OK
+  Proposed hybrid native alhamd            security      n=5910  98.95  82.91  -16.04   972/24    p=3.390e-252 pH=6.780e-251  OK
+  LSTM alone      native alhamd            dependability n=3717  97.66  96.53   -1.13   108/66    p=1.800e-03 pH=5.401e-03  OK
+  LSTM alone      native alhamd            security      n=5910  95.57  82.91  -12.66   892/144   p=2.800e-132 pH=3.921e-131  OK
+  Proposed hybrid native abdusalam_ba_svm  dependability n=3717  92.95  76.38  -16.57   623/7     p=3.431e-174 pH=5.833e-173  OK
+  Proposed hybrid native abdusalam_ba_svm  security      n=5910  98.95  99.95   +1.00     3/62    p=2.484e-15 pH=1.491e-14  OK
+  LSTM alone      native abdusalam_ba_svm  dependability n=3717  97.66  76.38  -21.28   792/1     p=3.048e-236 pH=5.487e-235  OK
+  LSTM alone      native abdusalam_ba_svm  security      n=5910  95.57  99.95   +4.38     3/262   p=1.046e-73 pH=1.151e-72  OK
+  Proposed hybrid native ngaopitakkul      dependability n=3717  92.95  27.71  -65.24  2460/35    p=0.000e+00 pH=0.000e+00  OK
+  Proposed hybrid native ngaopitakkul      security      n=5910  98.95  99.26   +0.30    43/61    p=9.504e-02 pH=1.259e-01  OK
+  LSTM alone      native ngaopitakkul      dependability n=3717  97.66  27.71  -69.95  2610/10    p=0.000e+00 pH=0.000e+00  OK
+  LSTM alone      native ngaopitakkul      security      n=5910  95.57  99.26   +3.69    43/261   p=3.112e-39 pH=2.489e-38  OK
+
+== n5_statistics_modeb.json: 48 recomputed tests, 48 saved tests (Holm family size recomputed = 48)
+  Proposed hybrid native simoes_grid       dependability n=3717  92.95  69.68  -23.27   982/117   p=8.714e-171 pH=2.963e-169  OK
+  Proposed hybrid native simoes_grid       security      n=5910  98.95  92.20   -6.75   449/50    p=2.863e-81 pH=7.729e-80  OK
+  LSTM alone      native simoes_grid       dependability n=3717  97.66  69.68  -27.98  1063/23    p=0.000e+00 pH=0.000e+00  OK
+  LSTM alone      native simoes_grid       security      n=5910  95.57  92.20   -3.37   419/220   p=2.865e-15 pH=3.724e-14  OK
+  Proposed hybrid native afrasiabi         dependability n=3717  92.95  86.71   -6.24   263/31    p=5.546e-47 pH=1.109e-45  OK
+  Proposed hybrid native afrasiabi         security      n=5910  98.95  88.63  -10.32   636/26    p=3.613e-153 pH=1.192e-151  OK
+  LSTM alone      native afrasiabi         dependability n=3717  97.66  86.71  -10.95   432/25    p=5.929e-97 pH=1.720e-95  OK
+  LSTM alone      native afrasiabi         security      n=5910  95.57  88.63   -6.94   609/199   p=4.335e-49 pH=9.537e-48  OK
+  Proposed hybrid native key               dependability n=3717  92.95  96.99   +4.04    96/246   p=2.569e-16 pH=3.854e-15  OK
+  Proposed hybrid native key               security      n=5910  98.95  75.28  -23.67  1426/27    p=0.000e+00 pH=0.000e+00  OK
+  LSTM alone      native key               dependability n=3717  97.66  96.99   -0.67    96/71    p=6.296e-02 pH=2.518e-01  OK
+  LSTM alone      native key               security      n=5910  95.57  75.28  -20.29  1345/146   p=3.838e-243 pH=1.497e-241  OK
+  Proposed hybrid native alhamd            dependability n=3717  92.95  96.53   +3.58   105/238   p=5.255e-13 pH=6.305e-12  OK
+  Proposed hybrid native alhamd            security      n=5910  98.95  82.91  -16.04   972/24    p=3.390e-252 pH=1.356e-250  OK
+  LSTM alone      native alhamd            dependability n=3717  97.66  96.53   -1.13   108/66    p=1.800e-03 pH=9.001e-03  OK
+  LSTM alone      native alhamd            security      n=5910  95.57  82.91  -12.66   892/144   p=2.800e-132 pH=8.681e-131  OK
+  Proposed hybrid native abdusalam_ba_svm  dependability n=3717  92.95  76.38  -16.57   623/7     p=3.431e-174 pH=1.201e-172  OK
+  Proposed hybrid native abdusalam_ba_svm  security      n=5910  98.95  99.95   +1.00     3/62    p=2.484e-15 pH=3.478e-14  OK
+  LSTM alone      native abdusalam_ba_svm  dependability n=3717  97.66  76.38  -21.28   792/1     p=3.048e-236 pH=1.158e-234  OK
+  LSTM alone      native abdusalam_ba_svm  security      n=5910  95.57  99.95   +4.38     3/262   p=1.046e-73 pH=2.721e-72  OK
+  Proposed hybrid native ngaopitakkul      dependability n=3717  92.95  27.71  -65.24  2460/35    p=0.000e+00 pH=0.000e+00  OK
+  Proposed hybrid native ngaopitakkul      security      n=5910  98.95  99.26   +0.30    43/61    p=9.504e-02 pH=2.851e-01  OK
+  LSTM alone      native ngaopitakkul      dependability n=3717  97.66  27.71  -69.95  2610/10    p=0.000e+00 pH=0.000e+00  OK
+  LSTM alone      native ngaopitakkul      security      n=5910  95.57  99.26   +3.69    43/261   p=3.112e-39 pH=5.912e-38  OK
+  Proposed hybrid modeb  simoes_grid       dependability n=3717  92.95  76.84  -16.12   778/179   p=1.373e-89 pH=3.844e-88  OK
+  Proposed hybrid modeb  simoes_grid       security      n=5910  98.95  72.08  -26.87  1615/27    p=0.000e+00 pH=0.000e+00  OK
+  LSTM alone      modeb  simoes_grid       dependability n=3717  97.66  76.84  -20.82   819/45    p=6.230e-185 pH=2.243e-183  OK
+  LSTM alone      modeb  simoes_grid       security      n=5910  95.57  72.08  -23.49  1559/171   p=2.551e-280 pH=1.046e-278  OK
+  Proposed hybrid modeb  afrasiabi         dependability n=3717  92.95  87.27   -5.68   228/17    p=2.512e-48 pH=5.276e-47  OK
+  Proposed hybrid modeb  afrasiabi         security      n=5910  98.95  99.64   +0.69    14/55    p=6.922e-07 pH=5.538e-06  OK
+  LSTM alone      modeb  afrasiabi         dependability n=3717  97.66  87.27  -10.38   398/12    p=3.122e-101 pH=9.366e-100  OK
+  LSTM alone      modeb  afrasiabi         security      n=5910  95.57  99.64   +4.08    13/254   p=3.716e-59 pH=8.919e-58  OK
+  Proposed hybrid modeb  key               dependability n=3717  92.95  97.23   +4.28    45/204   p=2.304e-25 pH=3.918e-24  OK
+  Proposed hybrid modeb  key               security      n=5910  98.95  99.56   +0.61    26/62    p=1.571e-04 pH=1.100e-03  OK
+  LSTM alone      modeb  key               dependability n=3717  97.66  97.23   -0.43    63/47    p=1.523e-01 pH=3.047e-01  OK
+  LSTM alone      modeb  key               security      n=5910  95.57  99.56   +3.99    25/261   p=9.980e-51 pH=2.296e-49  OK
+  Proposed hybrid modeb  alhamd            dependability n=3717  92.95  97.93   +4.98    26/211   p=3.413e-37 pH=6.143e-36  OK
+  Proposed hybrid modeb  alhamd            security      n=5910  98.95  98.17   -0.78    98/52    p=2.151e-04 pH=1.290e-03  OK
+  LSTM alone      modeb  alhamd            dependability n=3717  97.66  97.93   +0.27    43/53    p=3.584e-01 pH=3.584e-01  OK
+  LSTM alone      modeb  alhamd            security      n=5910  95.57  98.17   +2.61    67/221   p=2.244e-20 pH=3.590e-19  OK
+  Proposed hybrid modeb  abdusalam_ba_svm  dependability n=3717  92.95  79.23  -13.72   525/15    p=3.480e-134 pH=1.114e-132  OK
+  Proposed hybrid modeb  abdusalam_ba_svm  security      n=5910  98.95  92.91   -6.04   405/48    p=1.847e-71 pH=4.617e-70  OK
+  LSTM alone      modeb  abdusalam_ba_svm  dependability n=3717  97.66  79.23  -18.43   692/7     p=1.206e-194 pH=4.462e-193  OK
+  LSTM alone      modeb  abdusalam_ba_svm  security      n=5910  95.57  92.91   -2.66   398/241   p=5.583e-10 pH=6.141e-09  OK
+  Proposed hybrid modeb  ngaopitakkul      dependability n=3717  92.95  38.39  -54.56  2080/52    p=0.000e+00 pH=0.000e+00  OK
+  Proposed hybrid modeb  ngaopitakkul      security      n=5910  98.95  97.48   -1.47   144/57    p=7.157e-10 pH=7.157e-09  OK
+  LSTM alone      modeb  ngaopitakkul      dependability n=3717  97.66  38.39  -59.27  2216/13    p=0.000e+00 pH=0.000e+00  OK
+  LSTM alone      modeb  ngaopitakkul      security      n=5910  95.57  97.48   +1.91   144/257   p=1.810e-08 pH=1.629e-07  OK
+
+== n5_statistics_keyhybrid.json: Holm family = 48 + 2 = 50
+  dependability n=3717 92.95 -> 94.11 (+1.16) 68/111 p=1.619e-03 pH50=9.715e-03 seeds [np.float64(-0.16), np.float64(0.0), np.float64(3.63)]  OK
+  security      n=5910 98.95 -> 99.86 (+0.91) 8/62 p=1.827e-11 pH50=2.375e-10 seeds [np.float64(0.66), np.float64(1.12), np.float64(0.96)]  OK
+  fold-model mean+-sd: dep 94.13 +- 2.37 (min 90.1); sec 99.86 +- 0.36 (min 99.0)
+  Key-hybrid rows contain 9906 (seed, fold, trace) keys; traces outside the common set: 0
+  plantA_OOD: dep 97.97 (n=148), sec 95.30 (n=149)
+  plantB_main: dep 95.50 (n=489), sec 99.87 (n=757)
+
+== n6c_tuned_harmonic.json: Holm family = 4
+  textbook 0.30/0.15/0.35  dependability n=3717 92.95 85.96 -6.99 267/7 p=1.441e-69 pH4=5.762e-69 OK
+  textbook 0.30/0.15/0.35  security      n=5910 98.95 99.39 +0.44 29/55 p=6.038e-03 pH4=1.208e-02 OK
+  tuned on validation      dependability n=3717 92.95 91.18 -1.78 138/72 p=6.164e-06 pH4=1.849e-05 OK
+  tuned on validation      security      n=5910 98.95 99.07 +0.12 47/54 p=5.507e-01 pH4=5.507e-01 OK
+  dependability Internal_HiZ: hybrid 65.4 (n=459), tuned harmonic 62.1, textbook 51.0
+  dependability other: hybrid 96.8 (n=3258), tuned harmonic 95.3, textbook 90.9
+
+== n8a_instances_vs_tuned_harmonic.json: Holm family = 12 + 4 = 16
+  1D-CNN             dependability n=3717 91.18 95.75 +4.57 15/185 p=1.979e-38 pH16=2.969e-37 OK
+  1D-CNN             security      n=5910 99.07 99.02 -0.05 50/47 p=8.392e-01 pH16=1.000e+00 OK
+  Wavelet-GRU        dependability n=3717 91.18 95.59 +4.41 25/189 p=2.386e-32 pH16=3.340e-31 OK
+  Wavelet-GRU        security      n=5910 99.07 98.82 -0.25 68/53 p=2.029e-01 pH16=1.000e+00 OK
+  Wavelet-ANN        dependability n=3717 91.18 94.92 +3.74 19/158 p=1.840e-28 pH16=2.393e-27 OK
+  Wavelet-ANN        security      n=5910 99.07 99.20 +0.14 40/48 p=4.557e-01 pH16=1.000e+00 OK
+  Key (claim-C run)  dependability n=3717 91.18 94.11 +2.93 23/132 p=8.752e-20 pH16=1.050e-18 OK
+  Key (claim-C run)  security      n=5910 99.07 99.86 +0.80 8/55 p=9.762e-10 pH16=9.762e-09 OK
+  Wavelet-RF         dependability n=3717 91.18 93.49 +2.31 25/111 p=3.940e-14 pH16=4.334e-13 OK
+  Wavelet-RF         security      n=5910 99.07 99.49 +0.42 17/42 p=1.547e-03 pH16=1.083e-02 OK
+  LSTM (tuned, B2)   dependability n=3717 91.18 93.60 +2.42 81/171 p=1.465e-08 pH16=1.319e-07 OK
+  LSTM (tuned, B2)   security      n=5910 99.07 99.10 +0.03 49/51 p=9.204e-01 pH16=1.000e+00 OK
+
+== b2_summary: Table B values recomputed (common set)
+  Wavelet-SVM    standalone  90.93 /  90.41   hybrid  87.01 /  97.73
+  Wavelet-RF     standalone  97.07 /  95.45   hybrid  93.49 /  99.49
+  Wavelet-ANN    standalone  97.69 /  97.14   hybrid  94.92 /  99.20
+  1D-CNN         standalone  97.96 /  97.28   hybrid  95.75 /  99.02
+  Wavelet-GRU    standalone  98.01 /  97.28   hybrid  95.59 /  98.82
+  Proposed LSTM  standalone  98.44 /  97.26   hybrid  93.60 /  99.10
+  Holm family = 22 (12 planned + 10 post-hoc); saved 22
+  Wavelet-SVM hybrid vs tuned LSTM hybrid                    dep n=3717 -6.59 260/15 pH22=1.55e-57 pH12=8.46e-58 OK
+  Wavelet-SVM hybrid vs tuned LSTM hybrid                    sec n=5910 -1.37 127/46 pH22=9.79e-09 pH12=5.76e-09 OK
+  Wavelet-RF hybrid vs tuned LSTM hybrid                     dep n=3717 -0.11 94/90 pH22=1.00e+00 pH12=1.00e+00 OK
+  Wavelet-RF hybrid vs tuned LSTM hybrid                     sec n=5910 +0.39 25/48 pH22=1.05e-01 pH12=6.68e-02 OK
+  Wavelet-ANN hybrid vs tuned LSTM hybrid                    dep n=3717 +1.32 52/101 pH22=1.19e-03 pH12=7.34e-04 OK
+  Wavelet-ANN hybrid vs tuned LSTM hybrid                    sec n=5910 +0.10 29/35 pH22=1.00e+00 pH12=1.00e+00 OK
+  1D-CNN hybrid vs tuned LSTM hybrid                         dep n=3717 +2.15 29/109 pH22=7.56e-11 pH12=4.62e-11 OK
+  1D-CNN hybrid vs tuned LSTM hybrid                         sec n=5910 -0.08 33/28 pH22=1.00e+00 pH12=1.00e+00 OK
+  Wavelet-GRU hybrid vs tuned LSTM hybrid                    dep n=3717 +1.99 40/114 pH22=3.17e-08 pH12=1.78e-08 OK
+  Wavelet-GRU hybrid vs tuned LSTM hybrid                    sec n=5910 -0.29 38/21 pH22=3.63e-01 pH12=2.18e-01 OK
+  tuned LSTM hybrid vs deployed hybrid (reference = deployed dep n=3717 +0.65 79/103 pH22=7.91e-01 pH12=4.40e-01 OK
+  tuned LSTM hybrid vs deployed hybrid (reference = deployed sec n=5910 +0.15 39/48 pH22=1.00e+00 pH12=1.00e+00 OK
+  Wavelet-SVM hybrid vs deployed hybrid (reference = deploye dep n=3717 -5.95 228/7 pH22=5.63e-57 OK
+  Wavelet-SVM hybrid vs deployed hybrid (reference = deploye sec n=5910 -1.22 119/47 pH22=3.04e-07 OK
+  Wavelet-RF hybrid vs deployed hybrid (reference = deployed dep n=3717 +0.54 62/82 pH22=9.04e-01 OK
+  Wavelet-RF hybrid vs deployed hybrid (reference = deployed sec n=5910 +0.54 23/55 pH22=4.53e-03 OK
+  Wavelet-ANN hybrid vs deployed hybrid (reference = deploye dep n=3717 +1.96 39/112 pH22=3.41e-08 OK
+  Wavelet-ANN hybrid vs deployed hybrid (reference = deploye sec n=5910 +0.25 33/48 pH22=9.04e-01 OK
+  1D-CNN hybrid vs deployed hybrid (reference = deployed)    dep n=3717 +2.80 22/126 pH22=1.30e-17 OK
+  1D-CNN hybrid vs deployed hybrid (reference = deployed)    sec n=5910 +0.07 39/43 pH22=1.00e+00 OK
+  Wavelet-GRU hybrid vs deployed hybrid (reference = deploye dep n=3717 +2.64 27/125 pH22=5.40e-15 OK
+  Wavelet-GRU hybrid vs deployed hybrid (reference = deploye sec n=5910 -0.14 46/38 pH22=1.00e+00 OK
+
+== gated_only_ablation (common set = drop traces without a 20 kHz copy)
+  dependability n=3717 92.95 -> 88.43 (-4.52) 168/0 p=5.346e-51
+  security      n=5910 98.95 -> 99.42 (+0.47) 0/28 p=7.451e-09
+  saved: {"dependability": {"n": 3717, "deployed_pct": 92.9513048157116, "gated_only_pct": 88.43153080441216, "diff_pt": -4.519774011299438, "deployed_only_correct": 168, "gated_only_correct": 0, "p": 5.345529420184391e-51}, "security": {"n": 5910, "deployed_pct": 98.95093062605753, "gated_only_pct": 99.42470389170896, "diff_pt": 0.47377326565143374, "deployed_only_correct": 0, "gated_only_correct": 28, "p": 7.450580596923828e-09}}
+
+== SUMMARY
+mismatches > 0.01 pt or in p / counts / family size: 0
+warnings: 0

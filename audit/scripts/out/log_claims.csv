@@ -1,0 +1,364 @@
+log entry,claim (quoted from the log),file,recomputed,match
+2026-11-02 09:16,Simoes published dep 59.9,simoes_published/rows_*.json,59.9139,Y
+2026-11-02 09:16,Simoes grid dep 69.7,simoes_grid/rows_*.json,69.6798,Y
+2026-11-02 09:16,Simoes published sec 95.3,simoes_published/rows_*.json,95.3130,Y
+2026-11-02 09:16,Simoes grid sec 92.2,simoes_grid/rows_*.json,92.1997,Y
+2026-11-02 09:16,detector mean detection at factor 100: 86.1,n2_simoes_factor.txt,86.1000,Y
+2026-11-02 09:56,Afrasiabi (Hajipour) dep 87.06,afrasiabi/rows_*.json,87.0595,Y
+2026-11-02 09:56,Afrasiabi (Hajipour) sec 89.56,afrasiabi/rows_*.json,89.5601,Y
+2026-11-02 09:56,Afrasiabi no stage dep 86.41,afrasiabi_nocomp/rows_*.json,86.4138,Y
+2026-11-02 09:56,Afrasiabi no stage sec 88.09,afrasiabi_nocomp/rows_*.json,88.0880,Y
+2026-11-02 09:56,Key dep 96.91,key/rows_*.json,96.9061,Y
+2026-11-02 09:56,Key sec 74.86,key/rows_*.json,74.8562,Y
+2026-11-02 12:27,Abdusalam BA+SVM dep 76.06 (13 of 15 folds),n4_progress.txt (snapshot),76.0600,Y
+2026-11-02 12:27,Abdusalam BA+SVM sec 99.93 (13 of 15 folds),n4_progress.txt (snapshot),99.9300,Y
+2026-11-02 12:27,Alhamd reduced budget dep 85.79,alhamd_reduced_budget/rows_*.json,85.7950,Y
+2026-11-02 12:27,Alhamd reduced budget sec 54.91,alhamd_reduced_budget/rows_*.json,54.9069,Y
+2026-11-02 12:27,Ngaopitakkul dep 27.71,ngaopitakkul/rows_*.json,27.7105,Y
+2026-11-02 12:27,Ngaopitakkul sec 99.26,ngaopitakkul/rows_*.json,99.2555,Y
+2026-11-02 21:55,simoes_grid CV plant A native dep 69.68,full/simoes_grid/cv_*.json,69.6798,Y
+2026-11-02 21:55,simoes_grid CV plant A native sec 92.20,full/simoes_grid/cv_*.json,92.1997,Y
+2026-11-02 21:55,simoes_grid CV plant A modeb dep 76.84,full/simoes_grid/cv_*.json,76.8362,Y
+2026-11-02 21:55,simoes_grid CV plant A modeb sec 72.08,full/simoes_grid/cv_*.json,72.0812,Y
+2026-11-02 21:55,simoes_grid plantA_OOD native dep 70.95,full/simoes_grid/final_plantA_OOD.json,70.9459,Y
+2026-11-02 21:55,simoes_grid plantA_OOD native sec 73.83,full/simoes_grid/final_plantA_OOD.json,73.8255,Y
+2026-11-02 21:55,simoes_grid plantA_OOD modeb dep 75.00,full/simoes_grid/final_plantA_OOD.json,75.0000,Y
+2026-11-02 21:55,simoes_grid plantA_OOD modeb sec 60.40,full/simoes_grid/final_plantA_OOD.json,60.4027,Y
+2026-11-02 21:55,simoes_grid plantB_main native dep 83.23,full/simoes_grid/final_plantB_main.json,83.2311,Y
+2026-11-02 21:55,simoes_grid plantB_main native sec 89.43,full/simoes_grid/final_plantB_main.json,89.4320,Y
+2026-11-02 21:55,simoes_grid plantB_main modeb dep 86.71,full/simoes_grid/final_plantB_main.json,86.7076,Y
+2026-11-02 21:55,simoes_grid plantB_main modeb sec 71.73,full/simoes_grid/final_plantB_main.json,71.7305,Y
+2026-11-02 21:55,abdusalam_ba_svm CV plant A native dep 76.38,full/abdusalam_ba_svm/cv_*.json,76.3788,Y
+2026-11-02 21:55,abdusalam_ba_svm CV plant A native sec 99.95,full/abdusalam_ba_svm/cv_*.json,99.9492,Y
+2026-11-02 21:55,abdusalam_ba_svm CV plant A modeb dep 79.23,full/abdusalam_ba_svm/cv_*.json,79.2306,Y
+2026-11-02 21:55,abdusalam_ba_svm CV plant A modeb sec 92.91,full/abdusalam_ba_svm/cv_*.json,92.9103,Y
+2026-11-02 21:55,abdusalam_ba_svm plantA_OOD native dep 83.11,full/abdusalam_ba_svm/final_plantA_OOD.json,83.1081,Y
+2026-11-02 21:55,abdusalam_ba_svm plantA_OOD native sec 93.96,full/abdusalam_ba_svm/final_plantA_OOD.json,93.9597,Y
+2026-11-02 21:55,abdusalam_ba_svm plantA_OOD modeb dep 84.46,full/abdusalam_ba_svm/final_plantA_OOD.json,84.4595,Y
+2026-11-02 21:55,abdusalam_ba_svm plantA_OOD modeb sec 86.58,full/abdusalam_ba_svm/final_plantA_OOD.json,86.5772,Y
+2026-11-02 21:55,"plant-B cache 1,289 traces; 1,278 with a 20 kHz copy",full/key/final_plantB_main.json (rows),1278.0000,Y
+2026-11-02 21:55,OOD plant A: 297 of 300,full/key/final_plantA_OOD.json (rows),297.0000,Y
+2026-11-02 23:11,B1 Standalone LSTM standalone seed 20261021 dep 97.92,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,97.9217,Y
+2026-11-02 23:11,B1 Standalone LSTM standalone seed 20261021 sec 96.78,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,96.7791,Y
+2026-11-02 23:11,B1 Standalone LSTM standalone seed 20261022 dep 97.04,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,97.0424,Y
+2026-11-02 23:11,B1 Standalone LSTM standalone seed 20261022 sec 94.61,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,94.6150,Y
+2026-11-02 23:11,B1 Standalone LSTM standalone seed 20261023 dep 98.08,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,98.0815,Y
+2026-11-02 23:11,B1 Standalone LSTM standalone seed 20261023 sec 95.42,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,95.4202,Y
+2026-11-02 23:11,B1 1D-CNN standalone seed 20261021 dep 97.52,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,97.5220,Y
+2026-11-02 23:11,B1 1D-CNN standalone seed 20261021 sec 97.08,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,97.0810,Y
+2026-11-02 23:11,B1 1D-CNN standalone seed 20261022 dep 96.16,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,96.1631,Y
+2026-11-02 23:11,B1 1D-CNN standalone seed 20261022 sec 96.63,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,96.6281,Y
+2026-11-02 23:11,B1 1D-CNN standalone seed 20261023 dep 97.84,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,97.8417,Y
+2026-11-02 23:11,B1 1D-CNN standalone seed 20261023 sec 97.43,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,97.4333,Y
+2026-11-02 23:11,B1 Wavelet-GRU standalone seed 20261021 dep 98.16,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,98.1615,Y
+2026-11-02 23:11,B1 Wavelet-GRU standalone seed 20261021 sec 96.83,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,96.8294,Y
+2026-11-02 23:11,B1 Wavelet-GRU standalone seed 20261022 dep 97.36,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,97.3621,Y
+2026-11-02 23:11,B1 Wavelet-GRU standalone seed 20261022 sec 95.37,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,95.3699,Y
+2026-11-02 23:11,B1 Wavelet-GRU standalone seed 20261023 dep 97.44,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,97.4420,Y
+2026-11-02 23:11,B1 Wavelet-GRU standalone seed 20261023 sec 94.67,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,94.6653,Y
+2026-11-02 23:11,B1 Wavelet-ANN standalone seed 20261021 dep 97.76,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,97.7618,Y
+2026-11-02 23:11,B1 Wavelet-ANN standalone seed 20261021 sec 96.43,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,96.4268,Y
+2026-11-02 23:11,B1 Wavelet-ANN standalone seed 20261022 dep 96.64,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,96.6427,Y
+2026-11-02 23:11,B1 Wavelet-ANN standalone seed 20261022 sec 96.28,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,96.2758,Y
+2026-11-02 23:11,B1 Wavelet-ANN standalone seed 20261023 dep 97.36,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,97.3621,Y
+2026-11-02 23:11,B1 Wavelet-ANN standalone seed 20261023 sec 96.98,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,96.9804,Y
+2026-11-02 23:11,B1 Proposed Hybrid DWT-LSTM hybrid seed 20261021 dep 93.92,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,93.9249,Y
+2026-11-02 23:11,B1 Proposed Hybrid DWT-LSTM hybrid seed 20261021 sec 99.14,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,99.1444,Y
+2026-11-02 23:11,B1 Proposed Hybrid DWT-LSTM hybrid seed 20261022 dep 94.24,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,94.2446,Y
+2026-11-02 23:11,B1 Proposed Hybrid DWT-LSTM hybrid seed 20261022 sec 98.69,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,98.6915,Y
+2026-11-02 23:11,B1 Proposed Hybrid DWT-LSTM hybrid seed 20261023 dep 90.81,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,90.8074,Y
+2026-11-02 23:11,B1 Proposed Hybrid DWT-LSTM hybrid seed 20261023 sec 99.04,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,99.0438,Y
+2026-11-02 23:11,B1 1D-CNN hybrid seed 20261021 dep 93.84,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,93.8449,Y
+2026-11-02 23:11,B1 1D-CNN hybrid seed 20261021 sec 98.84,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,98.8425,Y
+2026-11-02 23:11,B1 1D-CNN hybrid seed 20261022 dep 93.21,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,93.2054,Y
+2026-11-02 23:11,B1 1D-CNN hybrid seed 20261022 sec 99.40,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,99.3961,Y
+2026-11-02 23:11,B1 1D-CNN hybrid seed 20261023 dep 94.16,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,94.1647,Y
+2026-11-02 23:11,B1 1D-CNN hybrid seed 20261023 sec 99.30,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,99.2954,Y
+2026-11-02 23:11,B1 Wavelet-GRU hybrid seed 20261021 dep 93.76,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,93.7650,Y
+2026-11-02 23:11,B1 Wavelet-GRU hybrid seed 20261021 sec 98.89,b1_equal_budget/seed_20261021/literature_benchmark_summary.json,98.8928,Y
+2026-11-02 23:11,B1 Wavelet-GRU hybrid seed 20261022 dep 93.92,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,93.9249,Y
+2026-11-02 23:11,B1 Wavelet-GRU hybrid seed 20261022 sec 98.79,b1_equal_budget/seed_20261022/literature_benchmark_summary.json,98.7921,Y
+2026-11-02 23:11,B1 Wavelet-GRU hybrid seed 20261023 dep 94.00,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,94.0048,Y
+2026-11-02 23:11,B1 Wavelet-GRU hybrid seed 20261023 sec 98.84,b1_equal_budget/seed_20261023/literature_benchmark_summary.json,98.8425,Y
+2026-11-03 08:17,key CV plant A native dep 96.99,full/key/cv_*.json,96.9868,Y
+2026-11-03 08:17,key CV plant A native sec 75.28,full/key/cv_*.json,75.2792,Y
+2026-11-03 08:17,key CV plant A modeb dep 97.23,full/key/cv_*.json,97.2289,Y
+2026-11-03 08:17,key CV plant A modeb sec 99.56,full/key/cv_*.json,99.5601,Y
+2026-11-03 08:17,key plantA_OOD native dep 96.62,full/key/final_plantA_OOD.json,96.6216,Y
+2026-11-03 08:17,key plantA_OOD native sec 78.52,full/key/final_plantA_OOD.json,78.5235,Y
+2026-11-03 08:17,key plantA_OOD modeb dep 97.97,full/key/final_plantA_OOD.json,97.9730,Y
+2026-11-03 08:17,key plantA_OOD modeb sec 95.97,full/key/final_plantA_OOD.json,95.9732,Y
+2026-11-03 08:17,key plantB_main native dep 98.16,full/key/final_plantB_main.json,98.1595,Y
+2026-11-03 08:17,key plantB_main native sec 69.75,full/key/final_plantB_main.json,69.7490,Y
+2026-11-03 08:17,key plantB_main modeb dep 96.93,full/key/final_plantB_main.json,96.9325,Y
+2026-11-03 08:17,key plantB_main modeb sec 98.94,full/key/final_plantB_main.json,98.9432,Y
+2026-11-03 08:17,alhamd CV plant A native dep 96.53,full/alhamd/cv_*.json,96.5295,Y
+2026-11-03 08:17,alhamd CV plant A native sec 82.91,full/alhamd/cv_*.json,82.9103,Y
+2026-11-03 08:17,alhamd CV plant A modeb dep 97.93,full/alhamd/cv_*.json,97.9284,Y
+2026-11-03 08:17,alhamd CV plant A modeb sec 98.17,full/alhamd/cv_*.json,98.1726,Y
+2026-11-03 08:17,alhamd plantA_OOD native dep 97.30,full/alhamd/final_plantA_OOD.json,97.2973,Y
+2026-11-03 08:17,alhamd plantA_OOD native sec 87.25,full/alhamd/final_plantA_OOD.json,87.2483,Y
+2026-11-03 08:17,alhamd plantA_OOD modeb dep 95.27,full/alhamd/final_plantA_OOD.json,95.2703,Y
+2026-11-03 08:17,alhamd plantA_OOD modeb sec 95.30,full/alhamd/final_plantA_OOD.json,95.3020,Y
+2026-11-03 08:17,alhamd plantB_main native dep 92.64,full/alhamd/final_plantB_main.json,92.6380,Y
+2026-11-03 08:17,alhamd plantB_main native sec 83.75,full/alhamd/final_plantB_main.json,83.7517,Y
+2026-11-03 08:17,alhamd plantB_main modeb dep 89.98,full/alhamd/final_plantB_main.json,89.9796,Y
+2026-11-03 08:17,alhamd plantB_main modeb sec 96.17,full/alhamd/final_plantB_main.json,96.1691,Y
+2026-11-03 08:17,afrasiabi plantB_main native sec 75.17,full/afrasiabi/final_plantB_main.json,75.1651,Y
+2026-11-03 08:17,abdusalam_ba_svm plantB_main native sec 99.74,full/abdusalam_ba_svm/final_plantB_main.json,99.7358,Y
+2026-11-03 08:17,abdusalam_ba_svm plantB_main native dep 71.37,full/abdusalam_ba_svm/final_plantB_main.json,71.3701,Y
+2026-11-03 08:17,ngaopitakkul plantB_main native sec 97.62,full/ngaopitakkul/final_plantB_main.json,97.6222,Y
+2026-11-03 08:17,ngaopitakkul plantB_main native dep 28.02,full/ngaopitakkul/final_plantB_main.json,28.0164,Y
+2026-11-03 08:17,afrasiabi plantB_main modeb sec 99.87,full/afrasiabi/final_plantB_main.json,99.8679,Y
+2026-11-03 08:17,abdusalam_ba_svm plantB_main modeb sec 95.51,full/abdusalam_ba_svm/final_plantB_main.json,95.5086,Y
+2026-11-03 08:17,simoes_grid CV plant A modeb sec 72.1,full/simoes_grid/cv_*.json,72.0812,Y
+2026-11-03 08:17,abdusalam_ba_svm CV plant A modeb sec 92.9,full/abdusalam_ba_svm/cv_*.json,92.9103,Y
+2026-11-03 08:17,afrasiabi CV plant A modeb dep 87.3,full/afrasiabi/cv_*.json,87.2747,Y
+2026-11-03 08:17,like-for-like neural security range '95.3-99.6 %' (CV) - lower end,"full/{afrasiabi,key,alhamd}/cv_*.json",98.1726,N
+2026-11-03 08:17,like-for-like neural security range '95.3-99.6 %' (CV) - upper end 99.6,full/*/cv_*.json,99.6447,Y
+2026-11-03 08:17,latency afrasiabi_cnn_per_decision median 116.7 us,latency_baselines.txt,116.7000,Y
+2026-11-03 08:17,latency key_per_sample median 37.0 us,latency_baselines.txt,37.0000,Y
+2026-11-03 08:17,latency ngaopitakkul_per_sample median 3.3 us,latency_baselines.txt,3.3000,Y
+2026-11-03 08:17,latency simoes_per_sample_wavelet median 7.5 us,latency_baselines.txt,7.5000,Y
+2026-11-03 08:17,"latency alhamd_per_decision median 1,809 us",latency_baselines.txt,1808.6000,Y
+2026-11-03 08:17,"latency abdusalam_features_per_decision median 608,796 us",latency_baselines.txt,608796.1000,Y
+2026-11-03 08:17,Simoes SVM1 per detection 498 us,latency_baselines.txt,497.6000,Y
+2026-11-03 08:17,Hajipour per sample 0.1 us,latency_baselines.txt,0.1000,Y
+2026-11-03 08:17,D-N5 hybrid vs key dependability +4.04 pt,n5_statistics.json,4.0355,Y
+2026-11-03 08:17,D-N5 hybrid vs key dependability p_Holm 1.8e-15,n5_statistics.json,1.798e-15,Y
+2026-11-03 08:17,D-N5 hybrid vs alhamd dependability +3.58 pt,n5_statistics.json,3.5782,Y
+2026-11-03 08:17,D-N5 hybrid vs alhamd dependability p_Holm 2.1e-12,n5_statistics.json,2.102e-12,Y
+2026-11-03 08:17,D-N5 hybrid vs afrasiabi dependability -6.24 pt,n5_statistics.json,-6.2416,Y
+2026-11-03 08:17,D-N5 hybrid vs afrasiabi dependability p_Holm <1e-45,n5_statistics.json,4.991e-46,Y
+2026-11-03 08:17,D-N5 hybrid vs abdusalam_ba_svm dependability -16.57 pt,n5_statistics.json,-16.5725,Y
+2026-11-03 08:17,D-N5 hybrid vs abdusalam_ba_svm dependability p_Holm <1e-45,n5_statistics.json,5.833e-173,Y
+2026-11-03 08:17,D-N5 hybrid vs simoes_grid dependability -23.27 pt,n5_statistics.json,-23.2715,Y
+2026-11-03 08:17,D-N5 hybrid vs simoes_grid dependability p_Holm <1e-45,n5_statistics.json,1.394e-169,Y
+2026-11-03 08:17,D-N5 hybrid vs ngaopitakkul dependability -65.24 pt,n5_statistics.json,-65.2408,Y
+2026-11-03 08:17,D-N5 hybrid vs ngaopitakkul dependability p_Holm <1e-45,n5_statistics.json,0.000e+00,Y
+2026-11-03 08:17,D-N5 hybrid vs key security -23.67 pt,n5_statistics.json,-23.6717,Y
+2026-11-03 08:17,D-N5 hybrid vs key security p_Holm <1e-79,n5_statistics.json,0.000e+00,Y
+2026-11-03 08:17,D-N5 hybrid vs alhamd security -16.04 pt,n5_statistics.json,-16.0406,Y
+2026-11-03 08:17,D-N5 hybrid vs alhamd security p_Holm <1e-79,n5_statistics.json,6.780e-251,Y
+2026-11-03 08:17,D-N5 hybrid vs afrasiabi security -10.32 pt,n5_statistics.json,-10.3215,Y
+2026-11-03 08:17,D-N5 hybrid vs afrasiabi security p_Holm <1e-79,n5_statistics.json,5.420e-152,Y
+2026-11-03 08:17,D-N5 hybrid vs simoes_grid security -6.75 pt,n5_statistics.json,-6.7513,Y
+2026-11-03 08:17,D-N5 hybrid vs simoes_grid security p_Holm <1e-79,n5_statistics.json,3.435e-80,Y
+2026-11-03 08:17,D-N5 hybrid vs abdusalam_ba_svm security +1.00 pt,n5_statistics.json,0.9983,Y
+2026-11-03 08:17,D-N5 hybrid vs abdusalam_ba_svm security p_Holm 1.5e-14,n5_statistics.json,1.491e-14,Y
+2026-11-03 08:17,D-N5 hybrid vs ngaopitakkul security +0.30 pt,n5_statistics.json,0.3046,Y
+2026-11-03 08:17,D-N5 hybrid vs ngaopitakkul security p_Holm 0.126,n5_statistics.json,1.259e-01,Y
+2026-11-03 08:17,LSTM alone vs Key dep -0.67,n5_statistics.json,-0.6726,Y
+2026-11-03 08:17,LSTM alone vs Key dep p_Holm 0.126,n5_statistics.json,1.259e-01,Y
+2026-11-03 08:17,LSTM alone vs Alhamd dep -1.13,n5_statistics.json,-1.1299,Y
+2026-11-03 08:17,LSTM alone vs Alhamd dep p_Holm 5.4e-3,n5_statistics.json,5.401e-03,Y
+2026-11-03 08:17,'No per-seed sign changes' (count of unstable tests in N5 = 0),n5_statistics.json,0,Y
+2026-11-03 08:17,fold-model sd afrasiabi sec_sd 4.39,n5_statistics.json,4.3930,Y
+2026-11-03 08:17,fold-model sd key sec_sd 8.62,n5_statistics.json,8.6190,Y
+2026-11-03 08:17,fold-model sd alhamd sec_sd 4.36,n5_statistics.json,4.3584,Y
+2026-11-03 08:17,fold-model sd ngaopitakkul dep_sd 3.39,n5_statistics.json,3.3914,Y
+2026-11-03 08:17,"pairs 3,717 fault",n5_statistics.json,3717,Y
+2026-11-03 08:17,"pairs 5,910 healthy",n5_statistics.json,5910,Y
+2026-11-03 09:10,D-N5b hybrid vs key like-for-like dependability +4.28,n5_statistics_modeb.json,4.2776,Y
+2026-11-03 09:10,D-N5b hybrid vs key like-for-like dependability p_Holm48 3.9e-24,n5_statistics_modeb.json,3.918e-24,Y
+2026-11-03 09:10,D-N5b hybrid vs key like-for-like security +0.61,n5_statistics_modeb.json,0.6091,Y
+2026-11-03 09:10,D-N5b hybrid vs key like-for-like security p_Holm48 1.1e-3,n5_statistics_modeb.json,1.100e-03,Y
+2026-11-03 09:10,D-N5b hybrid vs alhamd like-for-like dependability +4.98,n5_statistics_modeb.json,4.9771,Y
+2026-11-03 09:10,D-N5b hybrid vs alhamd like-for-like dependability p_Holm48 6.1e-36,n5_statistics_modeb.json,6.143e-36,Y
+2026-11-03 09:10,D-N5b hybrid vs alhamd like-for-like security -0.78,n5_statistics_modeb.json,-0.7783,Y
+2026-11-03 09:10,D-N5b hybrid vs alhamd like-for-like security p_Holm48 1.3e-3,n5_statistics_modeb.json,1.290e-03,Y
+2026-11-03 09:10,D-N5b hybrid vs afrasiabi like-for-like dependability -5.68,n5_statistics_modeb.json,-5.6766,Y
+2026-11-03 09:10,D-N5b hybrid vs afrasiabi like-for-like dependability p_Holm48 5.3e-47,n5_statistics_modeb.json,5.276e-47,Y
+2026-11-03 09:10,D-N5b hybrid vs afrasiabi like-for-like security +0.69,n5_statistics_modeb.json,0.6937,Y
+2026-11-03 09:10,D-N5b hybrid vs afrasiabi like-for-like security p_Holm48 5.5e-6,n5_statistics_modeb.json,5.538e-06,Y
+2026-11-03 09:10,D-N5b hybrid vs abdusalam_ba_svm like-for-like dependability -13.72,n5_statistics_modeb.json,-13.7207,Y
+2026-11-03 09:10,D-N5b hybrid vs abdusalam_ba_svm like-for-like dependability p_Holm48 <1e-6,n5_statistics_modeb.json,1.114e-132,Y
+2026-11-03 09:10,D-N5b hybrid vs abdusalam_ba_svm like-for-like security -6.04,n5_statistics_modeb.json,-6.0406,Y
+2026-11-03 09:10,D-N5b hybrid vs abdusalam_ba_svm like-for-like security p_Holm48 <1e-6,n5_statistics_modeb.json,4.617e-70,Y
+2026-11-03 09:10,D-N5b hybrid vs simoes_grid like-for-like dependability -16.12,n5_statistics_modeb.json,-16.1151,Y
+2026-11-03 09:10,D-N5b hybrid vs simoes_grid like-for-like dependability p_Holm48 <1e-6,n5_statistics_modeb.json,3.844e-88,Y
+2026-11-03 09:10,D-N5b hybrid vs simoes_grid like-for-like security -26.87,n5_statistics_modeb.json,-26.8697,Y
+2026-11-03 09:10,D-N5b hybrid vs simoes_grid like-for-like security p_Holm48 <1e-6,n5_statistics_modeb.json,0.000e+00,Y
+2026-11-03 09:10,D-N5b hybrid vs ngaopitakkul like-for-like dependability -54.56,n5_statistics_modeb.json,-54.5601,Y
+2026-11-03 09:10,D-N5b hybrid vs ngaopitakkul like-for-like dependability p_Holm48 <1e-6,n5_statistics_modeb.json,0.000e+00,Y
+2026-11-03 09:10,D-N5b hybrid vs ngaopitakkul like-for-like security -1.47,n5_statistics_modeb.json,-1.4721,Y
+2026-11-03 09:10,D-N5b hybrid vs ngaopitakkul like-for-like security p_Holm48 <1e-6,n5_statistics_modeb.json,7.157e-09,Y
+2026-11-03 09:10,D-N5b LSTM alone vs key like-for-like dependability -0.43,n5_statistics_modeb.json,-0.4305,Y
+2026-11-03 09:10,D-N5b LSTM alone vs key like-for-like dependability p_Holm48 0.31,n5_statistics_modeb.json,3.047e-01,Y
+2026-11-03 09:10,D-N5b LSTM alone vs key like-for-like security +3.99,n5_statistics_modeb.json,3.9932,Y
+2026-11-03 09:10,D-N5b LSTM alone vs key like-for-like security p_Holm48 2.3e-49,n5_statistics_modeb.json,2.296e-49,Y
+2026-11-03 09:10,D-N5b LSTM alone vs alhamd like-for-like dependability +0.27,n5_statistics_modeb.json,0.2690,Y
+2026-11-03 09:10,D-N5b LSTM alone vs alhamd like-for-like dependability p_Holm48 0.36,n5_statistics_modeb.json,3.584e-01,Y
+2026-11-03 09:10,D-N5b LSTM alone vs alhamd like-for-like security +2.61,n5_statistics_modeb.json,2.6058,Y
+2026-11-03 09:10,D-N5b LSTM alone vs alhamd like-for-like security p_Holm48 3.6e-19,n5_statistics_modeb.json,3.590e-19,Y
+2026-11-03 09:10,D-N5b LSTM alone vs afrasiabi like-for-like dependability -10.38,n5_statistics_modeb.json,-10.3847,Y
+2026-11-03 09:10,D-N5b LSTM alone vs afrasiabi like-for-like security +4.08,n5_statistics_modeb.json,4.0778,Y
+2026-11-03 09:10,native LSTM alone vs Key dep p_Holm 0.126 -> 0.252,n5_statistics_modeb.json,2.518e-01,Y
+2026-11-03 09:10,D-diag false trips 89,plantB_falsetrip_paths.txt,89.0,Y
+2026-11-03 09:10,D-diag healthy 764,plantB_falsetrip_paths.txt,764.0,Y
+2026-11-03 09:10,D-diag solo 87,plantB_falsetrip_paths.txt,87.0,Y
+2026-11-03 09:10,D-diag 97.8 %,plantB_falsetrip_paths.txt,97.8000,Y
+2026-11-03 09:10,D-diag gate 2,plantB_falsetrip_paths.txt,2.0,Y
+2026-11-03 09:10,D-diag CTSat 62,plantB_falsetrip_paths.txt,62.0,Y
+2026-11-03 09:10,D-diag External 23,plantB_falsetrip_paths.txt,23.0,Y
+2026-11-03 09:10,D-diag ExtInInrush 4,plantB_falsetrip_paths.txt,4.0,Y
+2026-11-03 09:10,D-diag solo off security 99.21,plantB_falsetrip_paths.txt,99.2147,Y
+2026-11-03 09:10,D-diag solo off dependability 90.47,plantB_falsetrip_paths.txt,90.4665,Y
+2026-11-03 09:10,D-diag only-solo faults 11 of 493,plantB_falsetrip_paths.txt,11.0,Y
+2026-11-03 09:42,B2 unique configs Wavelet-SVM 10,b2_equal_search/unique_configs.json,10,Y
+2026-11-03 09:42,B2 unique configs Wavelet-RF 11,b2_equal_search/unique_configs.json,11,Y
+2026-11-03 09:42,B2 unique configs Wavelet-ANN 11,b2_equal_search/unique_configs.json,11,Y
+2026-11-03 09:42,B2 unique configs 1D-CNN 10,b2_equal_search/unique_configs.json,10,Y
+2026-11-03 09:42,B2 unique configs Wavelet-GRU 11,b2_equal_search/unique_configs.json,11,Y
+2026-11-03 09:42,B2 unique configs Proposed LSTM 10,b2_equal_search/unique_configs.json,10,Y
+2026-11-03 09:42,gated-only dependability/deployed_pct 92.95,gated_only_ablation.json,92.9513,Y
+2026-11-03 09:42,gated-only dependability/gated_only_pct 88.43,gated_only_ablation.json,88.4315,Y
+2026-11-03 09:42,gated-only dependability/diff_pt -4.52,gated_only_ablation.json,-4.5198,Y
+2026-11-03 09:42,gated-only dependability/deployed_only_correct 168,gated_only_ablation.json,168,Y
+2026-11-03 09:42,gated-only security/gated_only_pct 99.42,gated_only_ablation.json,99.4247,Y
+2026-11-03 09:42,gated-only security/diff_pt +0.47,gated_only_ablation.json,0.4738,Y
+2026-11-03 09:42,gated-only security/gated_only_correct 28,gated_only_ablation.json,28,Y
+2026-11-03 09:42,gated-only dep p = 5e-51,gated_only_ablation.json,5.346e-51,Y
+2026-11-03 09:42,gated-only sec p = 7e-9,gated_only_ablation.json,7.451e-09,Y
+2026-11-03 09:42,OOD deployed 97.99,gated_only_ablation.txt,97.9900,Y
+2026-11-03 09:42,OOD deployed 96.00,gated_only_ablation.txt,96.0000,Y
+2026-11-03 09:42,OOD gated-only 94.63,gated_only_ablation.txt,94.6300,Y
+2026-11-03 09:42,OOD gated-only 98.67,gated_only_ablation.txt,98.6700,Y
+2026-11-03 09:42,'OOD 3.4 pt',gated_only_ablation.txt,3.3600,Y
+2026-11-03 13:47,Key hybrid dependability key_hybrid_pct 94.11,n5_statistics_keyhybrid.json,94.1082,Y
+2026-11-03 13:47,Key hybrid security key_hybrid_pct 99.86,n5_statistics_keyhybrid.json,99.8646,Y
+2026-11-03 13:47,Key hybrid dependability diff_pt +1.16,n5_statistics_keyhybrid.json,1.1568,Y
+2026-11-03 13:47,Key hybrid security diff_pt +0.91,n5_statistics_keyhybrid.json,0.9137,Y
+2026-11-03 13:47,Key hybrid dependability hybrid_only_correct 68,n5_statistics_keyhybrid.json,68,Y
+2026-11-03 13:47,Key hybrid dependability keyhybrid_only_correct 111,n5_statistics_keyhybrid.json,111,Y
+2026-11-03 13:47,Key hybrid security hybrid_only_correct 8,n5_statistics_keyhybrid.json,8,Y
+2026-11-03 13:47,Key hybrid security keyhybrid_only_correct 62,n5_statistics_keyhybrid.json,62,Y
+2026-11-03 13:47,Key hybrid dep p = 1.6e-3,n5_statistics_keyhybrid.json,1.619e-03,Y
+2026-11-03 13:47,Key hybrid dep p_Holm50 = 9.7e-3,n5_statistics_keyhybrid.json,9.715e-03,Y
+2026-11-03 13:47,Key hybrid sec p_Holm50 = 2.4e-10,n5_statistics_keyhybrid.json,2.375e-10,Y
+2026-11-03 13:47,Key hybrid dep per-seed -0.16,n5_statistics_keyhybrid.json,-0.1614,Y
+2026-11-03 13:47,Key hybrid dep per-seed 0.00,n5_statistics_keyhybrid.json,0.0000,Y
+2026-11-03 13:47,Key hybrid dep per-seed +3.63,n5_statistics_keyhybrid.json,3.6320,Y
+2026-11-03 13:47,Key hybrid sec per-seed +0.66,n5_statistics_keyhybrid.json,0.6599,Y
+2026-11-03 13:47,Key hybrid sec per-seed +1.12,n5_statistics_keyhybrid.json,1.1168,Y
+2026-11-03 13:47,Key hybrid sec per-seed +0.96,n5_statistics_keyhybrid.json,0.9645,Y
+2026-11-03 13:47,Key hybrid AI thresholds range 0.15-0.7 (min),full/key_hybrid/cv_*.json,0.1500,Y
+2026-11-03 13:47,Key hybrid AI thresholds range 0.15-0.7 (max),full/key_hybrid/cv_*.json,0.7000,Y
+2026-11-03 13:47,Key hybrid solo thresholds 0.9-0.95 (min),full/key_hybrid/cv_*.json,0.9000,Y
+2026-11-03 13:47,Key hybrid solo thresholds 0.9-0.95 (max),full/key_hybrid/cv_*.json,0.9500,Y
+2026-11-03 13:47,Key hybrid OOD 97.97,full/key_hybrid/final_plantA_OOD.json,97.9730,Y
+2026-11-03 13:47,Key hybrid OOD 95.30,full/key_hybrid/final_plantA_OOD.json,95.3020,Y
+2026-11-03 13:47,Key hybrid plant B 95.50,full/key_hybrid/final_plantB_main.json,95.5010,Y
+2026-11-03 13:47,Key hybrid plant B 99.87,full/key_hybrid/final_plantB_main.json,99.8679,Y
+2026-11-03 13:47,B2 search Wavelet-SVM best AUC 0.99300,b2_equal_search/search_results.json,0.9930,Y
+2026-11-03 13:47,B2 search Wavelet-SVM worst AUC 0.97045,b2_equal_search/search_results.json,0.9704,Y
+2026-11-03 13:47,B2 search Wavelet-RF best AUC 0.99870,b2_equal_search/search_results.json,0.9987,Y
+2026-11-03 13:47,B2 search Wavelet-RF worst AUC 0.99607,b2_equal_search/search_results.json,0.9961,Y
+2026-11-03 13:47,B2 search Wavelet-ANN best AUC 0.99897,b2_equal_search/search_results.json,0.9990,Y
+2026-11-03 13:47,B2 search Wavelet-ANN worst AUC 0.99786,b2_equal_search/search_results.json,0.9979,Y
+2026-11-03 13:47,B2 search 1D-CNN best AUC 0.99925,b2_equal_search/search_results.json,0.9992,Y
+2026-11-03 13:47,B2 search 1D-CNN worst AUC 0.99806,b2_equal_search/search_results.json,0.9981,Y
+2026-11-03 13:47,B2 search Wavelet-GRU best AUC 0.99888,b2_equal_search/search_results.json,0.9989,Y
+2026-11-03 13:47,B2 search Wavelet-GRU worst AUC 0.99766,b2_equal_search/search_results.json,0.9977,Y
+2026-11-03 13:47,B2 search Proposed LSTM best AUC 0.99899,b2_equal_search/search_results.json,0.9990,Y
+2026-11-03 13:47,B2 search Proposed LSTM worst AUC 0.99691,b2_equal_search/search_results.json,0.9969,Y
+2026-11-03 13:47,chosen LSTM hidden 128,b2_equal_search/chosen_configs.json,128,Y
+2026-11-03 17:53,Table B Wavelet-SVM standalone dep 90.93,b2_equal_search/final_*.json,90.9335,Y
+2026-11-03 17:53,Table B Wavelet-SVM standalone sec 90.41,b2_equal_search/final_*.json,90.4061,Y
+2026-11-03 17:53,Table B Wavelet-SVM hybrid dep 87.01,b2_equal_search/final_*.json,87.0056,Y
+2026-11-03 17:53,Table B Wavelet-SVM hybrid sec 97.73,b2_equal_search/final_*.json,97.7327,Y
+2026-11-03 17:53,Table B Wavelet-RF standalone dep 97.07,b2_equal_search/final_*.json,97.0675,Y
+2026-11-03 17:53,Table B Wavelet-RF standalone sec 95.45,b2_equal_search/final_*.json,95.4484,Y
+2026-11-03 17:53,Table B Wavelet-RF hybrid dep 93.49,b2_equal_search/final_*.json,93.4894,Y
+2026-11-03 17:53,Table B Wavelet-RF hybrid sec 99.49,b2_equal_search/final_*.json,99.4924,Y
+2026-11-03 17:53,Table B Wavelet-ANN standalone dep 97.69,b2_equal_search/final_*.json,97.6863,Y
+2026-11-03 17:53,Table B Wavelet-ANN standalone sec 97.14,b2_equal_search/final_*.json,97.1404,Y
+2026-11-03 17:53,Table B Wavelet-ANN hybrid dep 94.92,b2_equal_search/final_*.json,94.9153,Y
+2026-11-03 17:53,Table B Wavelet-ANN hybrid sec 99.20,b2_equal_search/final_*.json,99.2047,Y
+2026-11-03 17:53,Table B 1D-CNN standalone dep 97.96,b2_equal_search/final_*.json,97.9553,Y
+2026-11-03 17:53,Table B 1D-CNN standalone sec 97.28,b2_equal_search/final_*.json,97.2758,Y
+2026-11-03 17:53,Table B 1D-CNN hybrid dep 95.75,b2_equal_search/final_*.json,95.7493,Y
+2026-11-03 17:53,Table B 1D-CNN hybrid sec 99.02,b2_equal_search/final_*.json,99.0186,Y
+2026-11-03 17:53,Table B Wavelet-GRU standalone dep 98.01,b2_equal_search/final_*.json,98.0091,Y
+2026-11-03 17:53,Table B Wavelet-GRU standalone sec 97.28,b2_equal_search/final_*.json,97.2758,Y
+2026-11-03 17:53,Table B Wavelet-GRU hybrid dep 95.59,b2_equal_search/final_*.json,95.5878,Y
+2026-11-03 17:53,Table B Wavelet-GRU hybrid sec 98.82,b2_equal_search/final_*.json,98.8156,Y
+2026-11-03 17:53,Table B Proposed LSTM standalone dep 98.44,b2_equal_search/final_*.json,98.4396,Y
+2026-11-03 17:53,Table B Proposed LSTM standalone sec 97.26,b2_equal_search/final_*.json,97.2589,Y
+2026-11-03 17:53,Table B Proposed LSTM hybrid dep 93.60,b2_equal_search/final_*.json,93.5970,Y
+2026-11-03 17:53,Table B Proposed LSTM hybrid sec 99.10,b2_equal_search/final_*.json,99.1032,Y
+2026-11-03 17:53,deployed LSTM standalone 97.66,runs/20261029_v5_cv5_seeds/*/result.json,97.6594,Y
+2026-11-03 17:53,deployed LSTM standalone 95.57,runs/20261029_v5_cv5_seeds/*/result.json,95.5668,Y
+2026-11-03 17:53,deployed hybrid 92.95,runs/20261029_v5_cv5_seeds/*/result.json,92.9513,Y
+2026-11-03 17:53,deployed hybrid 98.95,runs/20261029_v5_cv5_seeds/*/result.json,98.9509,Y
+2026-11-03 17:53,B2 stats tuned LSTM hybrid vs deployed hybrid (re dependability diff_pt +0.65,b2_equal_search/b2_summary.json,0.6457,Y
+2026-11-03 17:53,B2 stats tuned LSTM hybrid vs deployed hybrid (re security diff_pt +0.15,b2_equal_search/b2_summary.json,0.1523,Y
+2026-11-03 17:53,B2 stats tuned LSTM hybrid vs deployed hybrid (re dependability p_holm 0.79,b2_equal_search/b2_summary.json,7.915e-01,Y
+2026-11-03 17:53,B2 stats tuned LSTM hybrid vs deployed hybrid (re security p_holm 1.0,b2_equal_search/b2_summary.json,1.000e+00,Y
+2026-11-03 17:53,B2 stats 1D-CNN hybrid vs deployed hybrid (refere dependability diff_pt +2.80,b2_equal_search/b2_summary.json,2.7980,Y
+2026-11-03 17:53,B2 stats 1D-CNN hybrid vs deployed hybrid (refere dependability p_holm 1.3e-17,b2_equal_search/b2_summary.json,1.297e-17,Y
+2026-11-03 17:53,B2 stats 1D-CNN hybrid vs deployed hybrid (refere security diff_pt +0.07,b2_equal_search/b2_summary.json,0.0677,Y
+2026-11-03 17:53,B2 stats Wavelet-GRU hybrid vs deployed hybrid (r dependability diff_pt +2.64,b2_equal_search/b2_summary.json,2.6365,Y
+2026-11-03 17:53,B2 stats Wavelet-GRU hybrid vs deployed hybrid (r dependability p_holm 5.4e-15,b2_equal_search/b2_summary.json,5.402e-15,Y
+2026-11-03 17:53,B2 stats Wavelet-GRU hybrid vs deployed hybrid (r security diff_pt -0.14,b2_equal_search/b2_summary.json,-0.1354,Y
+2026-11-03 17:53,B2 stats Wavelet-ANN hybrid vs deployed hybrid (r dependability diff_pt +1.96,b2_equal_search/b2_summary.json,1.9639,Y
+2026-11-03 17:53,B2 stats Wavelet-ANN hybrid vs deployed hybrid (r dependability p_holm 3.4e-8,b2_equal_search/b2_summary.json,3.407e-08,Y
+2026-11-03 17:53,B2 stats Wavelet-ANN hybrid vs deployed hybrid (r security diff_pt +0.25,b2_equal_search/b2_summary.json,0.2538,Y
+2026-11-03 17:53,B2 stats Wavelet-RF hybrid vs deployed hybrid (re dependability diff_pt +0.54,b2_equal_search/b2_summary.json,0.5381,Y
+2026-11-03 17:53,B2 stats Wavelet-RF hybrid vs deployed hybrid (re security diff_pt +0.54,b2_equal_search/b2_summary.json,0.5415,Y
+2026-11-03 17:53,B2 stats Wavelet-RF hybrid vs deployed hybrid (re security p_holm 4.5e-3,b2_equal_search/b2_summary.json,4.534e-03,Y
+2026-11-03 17:53,B2 stats Wavelet-SVM hybrid vs deployed hybrid (r dependability diff_pt -5.95,b2_equal_search/b2_summary.json,-5.9457,Y
+2026-11-03 17:53,B2 stats Wavelet-SVM hybrid vs deployed hybrid (r security diff_pt -1.22,b2_equal_search/b2_summary.json,-1.2183,Y
+2026-11-03 17:53,Holm over all 22,b2_equal_search/b2_summary.json,22,Y
+2026-11-03 23:41,"Alhamd fold-1 config median 1,166 us",latency_alhamd_trained.txt,1166.0,Y
+2026-11-03 23:41,"Alhamd fold-1 p99 1,747 us",latency_alhamd_trained.txt,1747.0,Y
+2026-11-03 23:41,"Alhamd final median 1,169 us",latency_alhamd_trained.txt,1169.0,Y
+2026-11-03 23:41,"Alhamd final p99 1,674 us",latency_alhamd_trained.txt,1674.0,Y
+2026-11-03 23:41,"Alhamd largest 1,799 us",latency_alhamd_trained.txt,1799.0,Y
+2026-11-03 23:41,N6c chosen 0.2/0.2/0.25 in 9 folds,n6c_tuned_harmonic.json,9,Y
+2026-11-03 23:41,N6c chosen 0.2/0.15/0.25 in 6 folds,n6c_tuned_harmonic.json,6,Y
+2026-11-03 23:41,N6c textbook dependability harmonic 85.96,n6c_tuned_harmonic.json,85.9564,Y
+2026-11-03 23:41,N6c textbook security harmonic 99.39,n6c_tuned_harmonic.json,99.3909,Y
+2026-11-03 23:41,N6c tuned on dependability harmonic 91.18,n6c_tuned_harmonic.json,91.1757,Y
+2026-11-03 23:41,N6c tuned on security harmonic 99.07,n6c_tuned_harmonic.json,99.0694,Y
+2026-11-03 23:41,N6c tuned on dependability diff_pt -1.78,n6c_tuned_harmonic.json,-1.7756,Y
+2026-11-03 23:41,N6c tuned on dependability hybrid_only 138,n6c_tuned_harmonic.json,138,Y
+2026-11-03 23:41,N6c tuned on dependability harmonic_only 72,n6c_tuned_harmonic.json,72,Y
+2026-11-03 23:41,N6c tuned on dependability p_holm4 1.9e-5,n6c_tuned_harmonic.json,1.849e-05,Y
+2026-11-03 23:41,N6c tuned on security diff_pt +0.12,n6c_tuned_harmonic.json,0.1184,Y
+2026-11-03 23:41,N6c tuned on security hybrid_only 47,n6c_tuned_harmonic.json,47,Y
+2026-11-03 23:41,N6c tuned on security harmonic_only 54,n6c_tuned_harmonic.json,54,Y
+2026-11-03 23:41,N6c tuned on security p_holm4 0.55,n6c_tuned_harmonic.json,5.507e-01,Y
+2026-11-03 23:41,N6c textbook dependability diff_pt -6.99,n6c_tuned_harmonic.json,-6.9949,Y
+2026-11-03 23:41,N6c textbook security diff_pt +0.44,n6c_tuned_harmonic.json,0.4399,Y
+2026-11-03 23:41,N6c textbook dependability p_holm4 5.8e-69,n6c_tuned_harmonic.json,5.762e-69,Y
+2026-11-03 23:41,N6c textbook security p_holm4 1.2e-2,n6c_tuned_harmonic.json,1.208e-02,Y
+2026-11-03 23:41,N6c tuned dep per-seed -2.66,n6c_tuned_harmonic.json,-2.6634,Y
+2026-11-03 23:41,N6c tuned dep per-seed -2.82,n6c_tuned_harmonic.json,-2.8249,Y
+2026-11-03 23:41,N6c tuned dep per-seed +0.16,n6c_tuned_harmonic.json,0.1614,Y
+2026-11-03 23:41,N6c 'reproduces the earlier 85.93 / 99.40' (dep),runs/20261101_v5_common_set/summary.txt,85.9300,Y
+2026-11-03 23:41,H6c 'gain from tuning +5.2 pt',n6c_tuned_harmonic.json,5.2193,Y
+2026-11-03 23:41,Internal_HiZ n = 459,n6c_tuned_harmonic.txt,459.0,Y
+2026-11-03 23:41,HiZ hybrid 65.4,n6c_tuned_harmonic.txt,65.4000,Y
+2026-11-03 23:41,HiZ tuned 62.1,n6c_tuned_harmonic.txt,62.1000,Y
+2026-11-03 23:41,HiZ textbook 51.0,n6c_tuned_harmonic.txt,51.0000,Y
+2026-11-03 23:41,"other internal n = 3,258",n6c_tuned_harmonic.txt,3258.0,Y
+2026-11-03 23:41,other hybrid 96.8 / tuned 95.3 / textbook 90.9 (hybrid),n6c_tuned_harmonic.txt,96.8000,Y
+2026-11-04 00:08,N8a 1D-CNN dep +4.57,n8a_instances_vs_tuned_harmonic.json,4.5736,Y
+2026-11-04 00:08,N8a 1D-CNN dep p_Holm16 3.0e-37,n8a_instances_vs_tuned_harmonic.json,2.969e-37,Y
+2026-11-04 00:08,N8a Wavelet-GRU dep +4.41,n8a_instances_vs_tuned_harmonic.json,4.4122,Y
+2026-11-04 00:08,N8a Wavelet-GRU dep p_Holm16 3.3e-31,n8a_instances_vs_tuned_harmonic.json,3.340e-31,Y
+2026-11-04 00:08,N8a Wavelet-ANN dep +3.74,n8a_instances_vs_tuned_harmonic.json,3.7396,Y
+2026-11-04 00:08,N8a Wavelet-ANN dep p_Holm16 2.4e-27,n8a_instances_vs_tuned_harmonic.json,2.393e-27,Y
+2026-11-04 00:08,N8a Key (claim-C run) dep +2.93,n8a_instances_vs_tuned_harmonic.json,2.9325,Y
+2026-11-04 00:08,N8a Key (claim-C run) dep p_Holm16 1.0e-18,n8a_instances_vs_tuned_harmonic.json,1.050e-18,Y
+2026-11-04 00:08,"N8a LSTM (tuned, B2) dep +2.42",n8a_instances_vs_tuned_harmonic.json,2.4213,Y
+2026-11-04 00:08,"N8a LSTM (tuned, B2) dep p_Holm16 1.3e-7",n8a_instances_vs_tuned_harmonic.json,1.319e-07,Y
+2026-11-04 00:08,N8a Wavelet-RF dep +2.31,n8a_instances_vs_tuned_harmonic.json,2.3137,Y
+2026-11-04 00:08,N8a Wavelet-RF dep p_Holm16 4.3e-13,n8a_instances_vs_tuned_harmonic.json,4.334e-13,Y
+2026-11-04 00:08,N8a Key (claim-C run) sec +0.80,n8a_instances_vs_tuned_harmonic.json,0.7953,Y
+2026-11-04 00:08,N8a Wavelet-RF sec +0.42,n8a_instances_vs_tuned_harmonic.json,0.4230,Y
+2026-11-04 00:08,N8a 1D-CNN sec -0.05,n8a_instances_vs_tuned_harmonic.json,-0.0508,Y
+2026-11-04 00:08,N8a Wavelet-GRU sec -0.25,n8a_instances_vs_tuned_harmonic.json,-0.2538,Y
+2026-11-04 00:08,N8a Wavelet-ANN sec +0.14,n8a_instances_vs_tuned_harmonic.json,0.1354,Y
+2026-11-04 00:08,"N8a LSTM (tuned, B2) sec +0.03",n8a_instances_vs_tuned_harmonic.json,0.0338,Y

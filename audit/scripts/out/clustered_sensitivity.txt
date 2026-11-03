@@ -1,0 +1,150 @@
+Trace-clustered sensitivity of the reported McNemar tests (audit; existing data only). 'pH' = Holm-adjusted within the reported family.
+clustered = sign-flip permutation over traces (200000 draws; floor 5.0e-06, when no permutation reaches the observed value the floor itself is used, i.e. conservative); seed1 = exact McNemar on seed 20261021 only
+
+== N5 native (Holm 24) (Holm family size 24)
+comparison                                                            diff  pH pooled   pH clust   pH seed1  verdict change
+Proposed hybrid vs simoes_grid [native] dependability               -23.27  1.39e-169   1.20e-04   5.24e-63  
+Proposed hybrid vs simoes_grid [native] security                     -6.75   3.44e-80   1.20e-04   3.35e-25  
+LSTM alone vs simoes_grid [native] dependability                    -27.98   0.00e+00   1.20e-04   8.23e-97  
+LSTM alone vs simoes_grid [native] security                          -3.37   1.49e-14   1.20e-04   3.47e-07  
+Proposed hybrid vs afrasiabi [native] dependability                  -6.24   4.99e-46   1.20e-04   7.84e-20  
+Proposed hybrid vs afrasiabi [native] security                      -10.32  5.42e-152   1.20e-04   2.21e-49  
+LSTM alone vs afrasiabi [native] dependability                      -10.95   7.71e-96   1.20e-04   1.99e-35  
+LSTM alone vs afrasiabi [native] security                            -6.94   4.33e-48   1.20e-04   2.47e-24  
+Proposed hybrid vs key [native] dependability                        +4.04   1.80e-15   1.20e-04   2.09e-06  
+Proposed hybrid vs key [native] security                            -23.67   0.00e+00   1.20e-04  5.96e-118  
+LSTM alone vs key [native] dependability                             -0.67   1.26e-01   3.34e-01   1.00e+00  
+LSTM alone vs key [native] security                                 -20.29  7.29e-242   1.20e-04   1.19e-86  
+Proposed hybrid vs alhamd [native] dependability                     +3.58   2.10e-12   1.20e-04   3.14e-04  
+Proposed hybrid vs alhamd [native] security                         -16.04  6.78e-251   1.20e-04   2.49e-79  
+LSTM alone vs alhamd [native] dependability                          -1.13   5.40e-03   5.60e-02   6.61e-01  CLUSTERED FLIPS SEED-1 FLIPS
+LSTM alone vs alhamd [native] security                              -12.66  3.92e-131   1.20e-04   1.21e-50  
+Proposed hybrid vs abdusalam_ba_svm [native] dependability          -16.57  5.83e-173   1.20e-04   2.84e-64  
+Proposed hybrid vs abdusalam_ba_svm [native] security                +1.00   1.49e-14   1.20e-04   7.63e-05  
+LSTM alone vs abdusalam_ba_svm [native] dependability               -21.28  5.49e-235   1.20e-04   3.26e-79  
+LSTM alone vs abdusalam_ba_svm [native] security                     +4.38   1.15e-72   1.20e-04   9.76e-19  
+Proposed hybrid vs ngaopitakkul [native] dependability              -65.24   0.00e+00   1.20e-04  1.13e-228  
+Proposed hybrid vs ngaopitakkul [native] security                    +0.30   1.26e-01   3.34e-01   6.90e-01  
+LSTM alone vs ngaopitakkul [native] dependability                   -69.95   0.00e+00   1.20e-04  4.24e-254  
+LSTM alone vs ngaopitakkul [native] security                         +3.69   2.49e-38   1.20e-04   2.49e-09  
+
+== N5b native + like-for-like (Holm 48) (Holm family size 48)
+comparison                                                            diff  pH pooled   pH clust   pH seed1  verdict change
+Proposed hybrid vs simoes_grid [native] dependability               -23.27  2.96e-169   2.40e-04   1.11e-62  
+Proposed hybrid vs simoes_grid [native] security                     -6.75   7.73e-80   2.40e-04   7.54e-25  
+LSTM alone vs simoes_grid [native] dependability                    -27.98   0.00e+00   2.40e-04   1.61e-96  
+LSTM alone vs simoes_grid [native] security                          -3.37   3.72e-14   2.40e-04   8.91e-07  
+Proposed hybrid vs afrasiabi [native] dependability                  -6.24   1.11e-45   2.40e-04   1.96e-19  
+Proposed hybrid vs afrasiabi [native] security                      -10.32  1.19e-151   2.40e-04   4.89e-49  
+LSTM alone vs afrasiabi [native] dependability                      -10.95   1.72e-95   2.40e-04   4.29e-35  
+LSTM alone vs afrasiabi [native] security                            -6.94   9.54e-48   2.40e-04   5.84e-24  
+Proposed hybrid vs key [native] dependability                        +4.04   3.85e-15   2.40e-04   5.92e-06  
+Proposed hybrid vs key [native] security                            -23.67   0.00e+00   2.40e-04  1.16e-117  
+LSTM alone vs key [native] dependability                             -0.67   2.52e-01   6.69e-01   1.00e+00  
+LSTM alone vs key [native] security                                 -20.29  1.50e-241   2.40e-04   2.37e-86  
+Proposed hybrid vs alhamd [native] dependability                     +3.58   6.31e-12   2.40e-04   1.02e-03  
+Proposed hybrid vs alhamd [native] security                         -16.04  1.36e-250   2.40e-04   5.10e-79  
+LSTM alone vs alhamd [native] dependability                          -1.13   9.00e-03   9.45e-02   1.00e+00  CLUSTERED FLIPS SEED-1 FLIPS
+LSTM alone vs alhamd [native] security                              -12.66  8.68e-131   2.40e-04   2.59e-50  
+Proposed hybrid vs abdusalam_ba_svm [native] dependability          -16.57  1.20e-172   2.40e-04   5.84e-64  
+Proposed hybrid vs abdusalam_ba_svm [native] security                +1.00   3.48e-14   2.40e-04   2.14e-04  
+LSTM alone vs abdusalam_ba_svm [native] dependability               -21.28  1.16e-234   2.40e-04   6.89e-79  
+LSTM alone vs abdusalam_ba_svm [native] security                     +4.38   2.72e-72   2.40e-04   2.49e-18  
+Proposed hybrid vs ngaopitakkul [native] dependability              -65.24   0.00e+00   2.40e-04  2.31e-228  
+Proposed hybrid vs ngaopitakkul [native] security                    +0.30   2.85e-01   6.69e-01   1.00e+00  
+LSTM alone vs ngaopitakkul [native] dependability                   -69.95   0.00e+00   2.40e-04  8.48e-254  
+LSTM alone vs ngaopitakkul [native] security                         +3.69   5.91e-38   2.40e-04   5.91e-09  
+Proposed hybrid vs simoes_grid [modeb] dependability                -16.12   3.84e-88   2.40e-04   4.42e-36  
+Proposed hybrid vs simoes_grid [modeb] security                     -26.87   0.00e+00   2.40e-04  9.13e-150  
+LSTM alone vs simoes_grid [modeb] dependability                     -20.82  2.24e-183   2.40e-04   4.45e-67  
+LSTM alone vs simoes_grid [modeb] security                          -23.49  1.05e-278   2.40e-04  1.33e-108  
+Proposed hybrid vs afrasiabi [modeb] dependability                   -5.68   5.28e-47   2.40e-04   2.67e-19  
+Proposed hybrid vs afrasiabi [modeb] security                        +0.69   5.54e-06   6.40e-04   1.74e-03  
+LSTM alone vs afrasiabi [modeb] dependability                       -10.38  9.37e-100   2.40e-04   3.73e-35  
+LSTM alone vs afrasiabi [modeb] security                             +4.08   8.92e-58   2.40e-04   7.87e-17  
+Proposed hybrid vs key [modeb] dependability                         +4.28   3.92e-24   2.40e-04   1.36e-04  
+Proposed hybrid vs key [modeb] security                              +0.61   1.10e-03   1.71e-02   1.00e+00   SEED-1 FLIPS
+LSTM alone vs key [modeb] dependability                              -0.43   3.05e-01   6.69e-01   4.17e-01  
+LSTM alone vs key [modeb] security                                   +3.99   2.30e-49   2.40e-04   4.76e-10  
+Proposed hybrid vs alhamd [modeb] dependability                      +4.98   6.14e-36   2.40e-04   1.90e-10  
+Proposed hybrid vs alhamd [modeb] security                           -0.78   1.29e-03   1.92e-02   1.20e-01   SEED-1 FLIPS
+LSTM alone vs alhamd [modeb] dependability                           +0.27   3.58e-01   6.69e-01   1.00e+00  
+LSTM alone vs alhamd [modeb] security                                +2.61   3.59e-19   2.40e-04   1.93e-02  
+Proposed hybrid vs abdusalam_ba_svm [modeb] dependability           -13.72  1.11e-132   2.40e-04   7.63e-52  
+Proposed hybrid vs abdusalam_ba_svm [modeb] security                 -6.04   4.62e-70   2.40e-04   1.65e-02  
+LSTM alone vs abdusalam_ba_svm [modeb] dependability                -18.43  4.46e-193   2.40e-04   4.00e-68  
+LSTM alone vs abdusalam_ba_svm [modeb] security                      -2.66   6.14e-09   2.40e-04   2.25e-01   SEED-1 FLIPS
+Proposed hybrid vs ngaopitakkul [modeb] dependability               -54.56   0.00e+00   2.40e-04  1.61e-178  
+Proposed hybrid vs ngaopitakkul [modeb] security                     -1.47   7.16e-09   2.40e-04   4.18e-05  
+LSTM alone vs ngaopitakkul [modeb] dependability                    -59.27   0.00e+00   2.40e-04  1.81e-207  
+LSTM alone vs ngaopitakkul [modeb] security                          +1.91   1.63e-07   3.15e-04   1.00e+00   SEED-1 FLIPS
+
+== Key hybrid (Holm 50) (Holm family size 2 new + 48 prior)
+comparison                                                            diff  pH pooled   pH clust   pH seed1  verdict change
+Key hybrid vs proposed hybrid dependability                          +1.16   9.72e-03   6.29e-02   1.00e+00  CLUSTERED FLIPS SEED-1 FLIPS
+Key hybrid vs proposed hybrid security                               +0.91   2.37e-10   2.50e-04   7.92e-02   SEED-1 FLIPS
+
+== N6c (Holm 4) (Holm family size 4)
+comparison                                                            diff  pH pooled   pH clust   pH seed1  verdict change
+textbook harmonic vs proposed hybrid dependability                   -6.99   5.76e-69   2.00e-05   6.37e-28  
+textbook harmonic vs proposed hybrid security                        +0.44   1.21e-02   1.08e-01   9.17e-01  CLUSTERED FLIPS SEED-1 FLIPS
+tuned harmonic vs proposed hybrid dependability                      -1.78   1.85e-05   4.60e-03   8.16e-05  
+tuned harmonic vs proposed hybrid security                           +0.12   5.51e-01   6.78e-01   9.17e-01  
+
+== N8a (Holm 16) (Holm family size 12)
+comparison                                                            diff  pH pooled   pH clust   pH seed1  verdict change
+1D-CNN hybrid vs tuned harmonic dependability                        +4.57   2.97e-37   8.00e-05   2.13e-12  
+1D-CNN hybrid vs tuned harmonic security                             -0.05   1.00e+00   1.00e+00   1.00e+00  
+Wavelet-GRU hybrid vs tuned harmonic dependability                   +4.41   3.34e-31   8.00e-05   1.69e-04  
+Wavelet-GRU hybrid vs tuned harmonic security                        -0.25   1.00e+00   1.00e+00   1.00e+00  
+Wavelet-ANN hybrid vs tuned harmonic dependability                   +3.74   2.39e-27   8.00e-05   1.94e-06  
+Wavelet-ANN hybrid vs tuned harmonic security                        +0.14   1.00e+00   1.00e+00   1.00e+00  
+Key hybrid vs tuned harmonic dependability                           +2.93   1.05e-18   8.00e-05   1.20e-04  
+Key hybrid vs tuned harmonic security                                +0.80   9.76e-09   1.15e-03   2.34e-02  
+Wavelet-RF hybrid vs tuned harmonic dependability                    +2.31   4.33e-13   1.10e-04   1.70e-03  
+Wavelet-RF hybrid vs tuned harmonic security                         +0.42   1.08e-02   1.91e-01   1.34e-01  CLUSTERED FLIPS SEED-1 FLIPS
+Proposed LSTM hybrid vs tuned harmonic dependability                 +2.42   1.32e-07   1.15e-03   3.47e-02  
+Proposed LSTM hybrid vs tuned harmonic security                      +0.03   1.00e+00   1.00e+00   1.00e+00  
+
+== B2 (Holm 22) (Holm family size 22)
+comparison                                                            diff  pH pooled   pH clust   pH seed1  verdict change
+Wavelet-SVM hybrid vs tuned LSTM hybrid dependability                -6.59   1.55e-57   1.10e-04   1.09e-24  
+Wavelet-SVM hybrid vs tuned LSTM hybrid security                     -1.37   9.79e-09   1.50e-04   1.72e-04  
+Wavelet-RF hybrid vs tuned LSTM hybrid dependability                 -0.11   1.00e+00   1.00e+00   1.00e+00  
+Wavelet-RF hybrid vs tuned LSTM hybrid security                      +0.39   1.05e-01   4.90e-01   1.00e+00  
+Wavelet-ANN hybrid vs tuned LSTM hybrid dependability                +1.32   1.19e-03   1.57e-02   1.00e+00   SEED-1 FLIPS
+Wavelet-ANN hybrid vs tuned LSTM hybrid security                     +0.10   1.00e+00   1.00e+00   1.00e+00  
+1D-CNN hybrid vs tuned LSTM hybrid dependability                     +2.15   7.56e-11   1.10e-04   3.27e-05  
+1D-CNN hybrid vs tuned LSTM hybrid security                          -0.08   1.00e+00   1.00e+00   1.00e+00  
+Wavelet-GRU hybrid vs tuned LSTM hybrid dependability                +1.99   3.17e-08   1.10e-04   1.00e+00   SEED-1 FLIPS
+Wavelet-GRU hybrid vs tuned LSTM hybrid security                     -0.29   3.63e-01   7.16e-01   1.00e+00  
+tuned LSTM hybrid vs deployed hybrid dependability                   +0.65   7.91e-01   7.16e-01   1.00e+00  
+tuned LSTM hybrid vs deployed hybrid security                        +0.15   1.00e+00   1.00e+00   1.00e+00  
+Wavelet-SVM hybrid vs deployed hybrid dependability                  -5.95   5.63e-57   1.10e-04   2.11e-25  
+Wavelet-SVM hybrid vs deployed hybrid security                       -1.22   3.04e-07   1.91e-04   8.50e-05  
+Wavelet-RF hybrid vs deployed hybrid dependability                   +0.54   9.04e-01   1.00e+00   1.00e+00  
+Wavelet-RF hybrid vs deployed hybrid security                        +0.54   4.53e-03   2.72e-02   1.00e+00   SEED-1 FLIPS
+Wavelet-ANN hybrid vs deployed hybrid dependability                  +1.96   3.41e-08   1.10e-04   1.00e+00   SEED-1 FLIPS
+Wavelet-ANN hybrid vs deployed hybrid security                       +0.25   9.04e-01   1.00e+00   1.00e+00  
+1D-CNN hybrid vs deployed hybrid dependability                       +2.80   1.30e-17   1.10e-04   1.52e-04  
+1D-CNN hybrid vs deployed hybrid security                            +0.07   1.00e+00   1.00e+00   1.00e+00  
+Wavelet-GRU hybrid vs deployed hybrid dependability                  +2.64   5.40e-15   1.10e-04   1.00e+00   SEED-1 FLIPS
+Wavelet-GRU hybrid vs deployed hybrid security                       -0.14   1.00e+00   1.00e+00   1.00e+00  
+
+== Verdict changes (significant after Holm: pooled vs clustered or seed-1 only)
+  - N5 native (Holm 24): LSTM alone vs alhamd [native] dependability diff -1.13: pooled pH 5.40e-03, clustered pH 5.60e-02, seed-1 pH 6.61e-01
+  - N5b native + like-for-like (Holm 48): LSTM alone vs alhamd [native] dependability diff -1.13: pooled pH 9.00e-03, clustered pH 9.45e-02, seed-1 pH 1.00e+00
+  - N5b native + like-for-like (Holm 48): Proposed hybrid vs key [modeb] security diff +0.61: pooled pH 1.10e-03, clustered pH 1.71e-02, seed-1 pH 1.00e+00
+  - N5b native + like-for-like (Holm 48): Proposed hybrid vs alhamd [modeb] security diff -0.78: pooled pH 1.29e-03, clustered pH 1.92e-02, seed-1 pH 1.20e-01
+  - N5b native + like-for-like (Holm 48): LSTM alone vs abdusalam_ba_svm [modeb] security diff -2.66: pooled pH 6.14e-09, clustered pH 2.40e-04, seed-1 pH 2.25e-01
+  - N5b native + like-for-like (Holm 48): LSTM alone vs ngaopitakkul [modeb] security diff +1.91: pooled pH 1.63e-07, clustered pH 3.15e-04, seed-1 pH 1.00e+00
+  - Key hybrid (Holm 50): Key hybrid vs proposed hybrid dependability diff +1.16: pooled pH 9.72e-03, clustered pH 6.29e-02, seed-1 pH 1.00e+00
+  - Key hybrid (Holm 50): Key hybrid vs proposed hybrid security diff +0.91: pooled pH 2.37e-10, clustered pH 2.50e-04, seed-1 pH 7.92e-02
+  - N6c (Holm 4): textbook harmonic vs proposed hybrid security diff +0.44: pooled pH 1.21e-02, clustered pH 1.08e-01, seed-1 pH 9.17e-01
+  - N8a (Holm 16): Wavelet-RF hybrid vs tuned harmonic security diff +0.42: pooled pH 1.08e-02, clustered pH 1.91e-01, seed-1 pH 1.34e-01
+  - B2 (Holm 22): Wavelet-ANN hybrid vs tuned LSTM hybrid dependability diff +1.32: pooled pH 1.19e-03, clustered pH 1.57e-02, seed-1 pH 1.00e+00
+  - B2 (Holm 22): Wavelet-GRU hybrid vs tuned LSTM hybrid dependability diff +1.99: pooled pH 3.17e-08, clustered pH 1.10e-04, seed-1 pH 1.00e+00
+  - B2 (Holm 22): Wavelet-RF hybrid vs deployed hybrid security diff +0.54: pooled pH 4.53e-03, clustered pH 2.72e-02, seed-1 pH 1.00e+00
+  - B2 (Holm 22): Wavelet-ANN hybrid vs deployed hybrid dependability diff +1.96: pooled pH 3.41e-08, clustered pH 1.10e-04, seed-1 pH 1.00e+00
+  - B2 (Holm 22): Wavelet-GRU hybrid vs deployed hybrid dependability diff +2.64: pooled pH 5.40e-15, clustered pH 1.10e-04, seed-1 pH 1.00e+00
+  total 15
