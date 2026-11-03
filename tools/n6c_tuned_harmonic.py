@@ -145,6 +145,8 @@ def main():
     for g in ("Internal_HiZ", "other internal faults"):
         (hy, n) = dep_of({k: ref[k] for k in tuned_rows if k in ref}, g)
         L.append(f"dependability, {g} (n={n}): hybrid {hy:.1f}, tuned harmonic {dep_of(tuned_rows, g)[0]:.1f}, textbook harmonic {dep_of(text_rows, g)[0]:.1f}")
+    rows_dump = {"tuned": [dict(v, key=list(k)) for k, v in tuned_rows.items()], "textbook": [dict(v, key=list(k)) for k, v in text_rows.items()]}
+    (OUT / "n6c_tuned_rows.json").write_text(json.dumps(rows_dump, default=float))
     (OUT / "n6c_tuned_harmonic.txt").write_text("\n".join(L))
     (OUT / "n6c_tuned_harmonic.json").write_text(json.dumps({"chosen": chosen, "tests": tests}, indent=1, default=float))
     print("\n".join(L))
