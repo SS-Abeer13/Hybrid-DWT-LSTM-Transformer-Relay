@@ -1,0 +1,23 @@
+# Python environment for the v5 analysis (audit proposal; NOT installed into the repo root).
+# Versions marked "recorded" are taken from files in this repository; the others were not recorded anywhere the audit
+# could find. Run `pip freeze` on the machine that produced runs/20261101_v5_benchmark_fair/ and replace them before release.
+#
+# Interpreter (recorded: runs/20261029_v5_latency/*.txt "Python 3.11.0"): python==3.11
+#
+numpy==1.26.*            # recorded: CLAUDE.md ("system Python311 with PYTHONPATH=.pylibs (numpy 1.26 + PyWavelets)")
+torch==2.3.1             # recorded: CPU runs, runs/20261029_v5_latency ("PyTorch 2.3.1+cpu"); GPU runs used torch 2.9.1+cu128 (IMPLEMENTATION_PLAN.md 2026-11-02 12:27)
+onnxruntime==1.27.0      # recorded: runs/20261029_v5_latency ("ONNX Runtime 1.27.0")
+onnx                     # used by lstm_models/export_onnx.py; version not recorded
+PyWavelets               # import pywt (features12.py, reproductions); version not recorded
+scipy                    # scipy.stats.binomtest (tools/n5_statistics.py), signal processing; version not recorded
+scikit-learn             # StratifiedKFold, train_test_split, SVC, RandomForest, Nystroem (folds depend on it: pin it); version not recorded
+h5py                     # MATLAB v7.3 .mat reader (lstm_models/stress_dataset.py); version not recorded
+matplotlib               # figures; version not recorded
+pandas                   # one tool only; version not recorded
+# optuna                 # only the 2026-07 LSTM design study (train_lstm_local.py / notebooks); not needed for v5 results
+#
+# Audit scripts (audit/scripts/*.py) additionally need:
+statsmodels              # Holm correction in audit/scripts/recompute_stats.py
+#
+# NOTE: scikit-learn's StratifiedKFold / train_test_split define the folds. A different scikit-learn version could in
+# principle change fold membership; lstm_models/baselines/cv.py:check_folds_match_reference() detects that.
