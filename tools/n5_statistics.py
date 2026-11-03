@@ -53,11 +53,11 @@ def holm(ps):
     return adj
 
 
-def main():
+def main(modes=("native",), tag=""):
     refs = {n: load_ref(v) for n, v in REF.items()}
     tests = []
-    for m in METHODS:
-        rows = load_method(m)
+    for mode, m in [(md, mm) for md in modes for mm in METHODS]:
+        rows = load_method(m, mode)
         if not rows:
             continue
         for rn, ref in refs.items():
@@ -70,7 +70,7 @@ def main():
                 for s in cv.SEEDS:
                     sk = [i for i, k in enumerate(ks) if k[0] == s]
                     per_seed[s] = float(100 * (b[sk].mean() - a[sk].mean())) if sk else None
-                tests.append({"method": m, "reference": rn, "metric": metric, "n": len(ks), "ref_pct": float(100 * a.mean()), "method_pct": float(100 * b.mean()),
+                tests.append({"mode": mode, "method": m, "reference": rn, "metric": metric, "n": len(ks), "ref_pct": float(100 * a.mean()), "method_pct": float(100 * b.mean()),
                               "diff_pt": float(100 * (b.mean() - a.mean())), "n_ref_only_correct": n10, "n_method_only_correct": n01, "p": p, "per_seed_diff_pt": per_seed})
     adj = holm(np.array([t["p"] for t in tests]))
     for t, q in zip(tests, adj):
@@ -80,7 +80,7 @@ def main():
     # fold-model sd of the methods
     sd = {}
     for m in METHODS:
-        rows = load_method(m)
+        rows = load_method(m, "native")
         if not rows:
             continue
         deps, secs = [], []
@@ -91,15 +91,18 @@ def main():
                 if f and h:
                     deps.append(100 * np.mean(f)); secs.append(100 * np.mean(h))
         sd[m] = {"n_fold_models": len(deps), "dep_mean": float(np.mean(deps)), "dep_sd": float(np.std(deps, ddof=1)), "sec_mean": float(np.mean(secs)), "sec_sd": float(np.std(secs, ddof=1))}
-    L = ["Paired exact McNemar tests on (seed, fold, trace), plant-A common set, native decisions; Holm correction over all %d tests; * = p_Holm < 0.05; 'unstable' = per-seed difference changes sign" % len(tests),
-         f"{'reference':16s} {'method':18s} {'metric':14s} {'n':>5s} {'ref %':>7s} {'meth %':>7s} {'diff pt':>8s} {'ref-only':>8s} {'meth-only':>9s} {'p':>9s} {'p_Holm':>9s}"]
+    L = ["Paired exact McNemar tests on (seed, fold, trace), plant-A common set, native and like-for-like decisions; Holm correction over all %d tests; * = p_Holm < 0.05; 'unstable' = per-seed difference changes sign" % len(tests),
+         f"{'reference':16s} {'mode':7s} {'method':18s} {'metric':14s} {'n':>5s} {'ref %':>7s} {'meth %':>7s} {'diff pt':>8s} {'ref-only':>8s} {'meth-only':>9s} {'p':>9s} {'p_Holm':>9s}"]
     for t in tests:
-        L.append(f"{t['reference']:16s} {t['method']:18s} {t['metric']:14s} {t['n']:5d} {t['ref_pct']:7.2f} {t['method_pct']:7.2f} {t['diff_pt']:+8.2f} {t['n_ref_only_correct']:8d} {t['n_method_only_correct']:9d} {t['p']:9.2e} {t['p_holm']:9.2e}"
+        L.append(f"{t['reference']:16s} {t['mode']:7s} {t['method']:18s} {t['metric']:14s} {t['n']:5d} {t['ref_pct']:7.2f} {t['method_pct']:7.2f} {t['diff_pt']:+8.2f} {t['n_ref_only_correct']:8d} {t['n_method_only_correct']:9d} {t['p']:9.2e} {t['p_holm']:9.2e}"
                  + (" *" if t["p_holm"] < 0.05 else "") + ("" if t["sign_stable"] else " unstable"))
     L += ["", "fold-model mean +- sd (15 fold-models per method)"] + [f"{m:18s} dep {v['dep_mean']:.2f} +- {v['dep_sd']:.2f}   sec {v['sec_mean']:.2f} +- {v['sec_sd']:.2f}" + ("   (sd > 3 pt: report the range)" if max(v["dep_sd"], v["sec_sd"]) > 3 else "") for m, v in sd.items()]
-    (OUT / "n5_statistics.json").write_text(json.dumps({"tests": tests, "fold_sd": sd}, indent=1)); (OUT / "n5_statistics.txt").write_text("\n".join(L))
+    (OUT / f"n5_statistics{tag}.json").write_text(json.dumps({"tests": tests, "fold_sd": sd}, indent=1)); (OUT / f"n5_statistics{tag}.txt").write_text("\n".join(L))
     print("\n".join(L))
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "modeb":
+        main(("native", "modeb"), "_modeb")
+    else:
+        main()
