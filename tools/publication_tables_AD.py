@@ -5,7 +5,10 @@ B  same-feature models: standalone and hybrid, default (B1) and tuned with equal
 C  conventional relays: 87T, harmonic 87T with textbook settings, harmonic 87T tuned on validation
 D  instances of the dual-path logic (deployed LSTM, tuned LSTM, CNN, GRU, ANN, RF, Key) with the gated-only ablation
 
-Called from tools/build_publication_tables_v5.py (main). Output: latex_source/latex/table_A_*.tex ... and the same files in paper_epsr/generated/.
+Called from tools/build_publication_tables_v5.py (main). Output: latex_source/latex/table_A_*.tex ..., the same files in paper_epsr/generated/ and
+paper_epsr/tables/ (LaTeX), plus a Markdown rendering of each table in paper_epsr/tables/*.md converted from the same lines (identical numbers).
+Every number in the cells, captions and notes is read from a saved file; only protocol constants (sampling rates, dwell, grid values, epoch limits)
+are written as text, and they are listed in paper_epsr/tables/README.md.
 """
 from __future__ import annotations
 
@@ -22,7 +25,8 @@ from baselines import cv  # noqa: E402
 
 BASE = ROOT / "runs" / "20261101_v5_benchmark_fair"
 CVD = ROOT / "runs" / "20261029_v5_cv5_seeds"
-OUT_DIRS = [ROOT / "latex_source" / "latex", ROOT / "paper_epsr" / "generated"]
+OUT_DIRS = [ROOT / "latex_source" / "latex", ROOT / "paper_epsr" / "generated", ROOT / "paper_epsr" / "tables"]
+MD_DIR = ROOT / "paper_epsr" / "tables"
 DEP = "Hybrid + AI-alone path"
 
 
@@ -79,11 +83,99 @@ def final_method(name: str, label: str, mode: str) -> tuple[float, float, int, i
     return 100 * np.mean([r["correct"] for r in f]), 100 * np.mean([r["correct"] for r in h]), len(f), len(h)
 
 
+def _tex_inline_to_md(t: str) -> str:
+    import re
+    t = t.replace("\\\\", "").replace("\\textmu ", "µ").replace("\\textmu", "µ").replace("\\,", " ").replace("{,}", ",").replace("\\%", "%").replace("\\&", "&")
+    t = t.replace("\\~o", "õ").replace("\\ ", " ").replace("\\_", "_").replace("--", "–").replace("``", '"').replace("''", '"')
+    t = t.replace("$\\times$", "×").replace("$\\gamma$", "γ").replace("$\\Delta$", "Δ").replace("$k_2$", "k2").replace("$k_5$", "k5")
+    t = t.replace("$^{*}$", "\\*").replace("$^{\\dagger}$", "†").replace("$^{\\ddagger}$", "‡").replace("$^{\\triangle}$", "△")
+    t = t.replace("$>3$", ">3").replace("p$_{\\mathrm{Holm}}$", "p_Holm").replace("$\\{", "{").replace("\\}$", "}")
+    t = re.sub(r"\\textit\{([^}]*)\}", r"*\1*", t)
+    t = re.sub(r"\\(label|vspace)\{[^}]*\}", "", t)
+    t = t.replace("\\par", "").replace("\\raggedright", "").replace("\\scriptsize", "").replace("\\footnotesize", "").replace("\\small", "")
+    return " ".join(t.split())
+
+
+def tex_to_md(lines: list[str]) -> list[str]:
+    """Markdown rendering of the LaTeX table lines written by this module (same strings, so the numbers are identical)."""
+    import re
+    md: list[str] = []
+    body: list[list[str]] = []
+    header_done = False
+    in_tab = False
+    for ln in lines:
+        if ln.startswith("\\caption{"):
+            cap = ln[len("\\caption{"):]
+            cap = cap[:cap.rfind("}\\label")] if "}\\label" in cap else cap.rstrip("}")
+            md += [f"**{_tex_inline_to_md(cap)}**", ""]
+        elif ln.startswith("\\begin{tabular}") or "\\begin{tabular}" in ln:
+            in_tab = True
+        elif "\\bottomrule" in ln:
+            in_tab = False
+            ncol = max(len(r) for r in body)
+            for i, r in enumerate(body):
+                r = r + [""] * (ncol - len(r))
+                md.append("| " + " | ".join(r) + " |")
+                if i == (hdr_rows - 1):
+                    md.append("|" + "---|" * ncol)
+            md.append("")
+        elif in_tab:
+            if ln.strip() in ("\\midrule", "\\addlinespace"):
+                if not header_done:
+                    header_done = True
+                continue
+            row = ln.replace("\\toprule", "").replace("\\midrule", "")
+            parts = [p for p in row.split("\\\\") if p.strip()]
+            for part in parts:
+                cells = []
+                for c in re.split(r"(?<!\\)&", part):
+                    m = re.match(r"\s*\\multicolumn\{(\d+)\}\{(?:[^{}]|\{\})*\}\{(.*)\}\s*$", c)
+                    if m:
+                        cells += [_tex_inline_to_md(m.group(2))] + [""] * (int(m.group(1)) - 1)
+                    else:
+                        cells.append(_tex_inline_to_md(c))
+                body.append(cells)
+            if "\\midrule" in ln and not header_done:
+                header_done = True
+                hdr_rows = len(body)
+        elif ln.startswith("\\vspace") or "\\textit{Notes.}" in ln:
+            md += [_tex_inline_to_md(ln), ""]
+    return md
+
+
 def tex_write(name: str, lines: list[str]) -> None:
     for d in OUT_DIRS:
         d.mkdir(parents=True, exist_ok=True)
         (d / name).write_text("\n".join(lines), encoding="utf-8")
-    print(f"Generated {name}")
+    MD_DIR.mkdir(parents=True, exist_ok=True)
+    (MD_DIR / name.replace(".tex", ".md")).write_text("\n".join(tex_to_md(lines)) + "\n", encoding="utf-8")
+    print(f"Generated {name} (+ .md)")
+
+
+def n_common() -> tuple[int, int]:
+    """(kept plant-A traces, usable traces with a 20 kHz re-simulation) from the trace metadata and hr_missing_traces.txt."""
+    metas, _ = cv.trace_index()
+    return len(metas), len(metas) - len(BAD)
+
+
+def b2_test(prefix: str, metric: str) -> dict:
+    t = [x for x in json.loads((BASE / "b2_equal_search" / "b2_summary.json").read_text()) if x["test"].startswith(prefix) and x["metric"] == metric]
+    assert len(t) == 1, (prefix, metric)
+    return t[0]
+
+
+def holm_sizes() -> dict[str, int]:
+    """Family sizes of every Holm correction, counted from the saved test lists."""
+    n5b = len(json.loads((BASE / "n5_statistics_modeb.json").read_text())["tests"])
+    kh = len(json.loads((BASE / "n5_statistics_keyhybrid.json").read_text()))
+    b2 = len(json.loads((BASE / "b2_equal_search" / "b2_summary.json").read_text()))
+    n6 = len(json.loads((BASE / "n6c_tuned_harmonic.json").read_text())["tests"])
+    n8 = len(json.loads((BASE / "n8a_instances_vs_tuned_harmonic.json").read_text()))
+    return {"n5b": n5b, "keyhybrid": n5b + kh, "b2": b2, "n6c": n6, "n8a": n8 + n6, "n8a_new": n8}
+
+
+def fmt_int(n: int) -> str:
+    return f"{n:,}".replace(",", "{,}")
 
 
 def load_fold_sd() -> dict:
@@ -133,7 +225,7 @@ def table_A() -> None:
     o = {k: v.get("overall", v) for k, v in json.load(open(ROOT / "runs" / "20261029_v5_final" / "report_ood.json"))["ood"].items()}
     z = json.load(open(ROOT / "runs" / "20261029_v5_plant_b_zeroshot" / "zero_shot_summary.json"))
     L = [r"\begin{table*}[t]\centering",
-         r"\caption{Six published methods re-implemented and trained on the benchmark data (native decision logic and like-for-like mode), against the proposed relay. Dependability / security in \%; CV = plant A, 3 seeds $\times$ 5 folds, common set (3{,}302 traces), mean over seeds; OOD and plant B: one final model scored once (plant B zero-shot, logic and threshold frozen from plant A). The reproductions are re-implementations trained on our data, not the authors' code.}\label{tab:A_reproductions}",
+         r"\caption{Six published methods re-implemented and trained on the benchmark data (native decision logic and like-for-like mode), against the proposed relay. Dependability / security in \%; CV = plant A, 3 seeds $\times$ 5 folds, common set (" + fmt_int(n_common()[1]) + r" traces), mean over seeds; OOD and plant B: one final model scored once (plant B zero-shot, logic and threshold frozen from plant A). The reproductions are re-implementations trained on our data, not the authors' code.}\label{tab:A_reproductions}",
          r"\scriptsize\setlength{\tabcolsep}{3pt}",
          r"\begin{tabular}{@{}p{3.6cm}lccccccp{1.0cm}p{4.2cm}@{}}\toprule",
          r"Method & Mode & \multicolumn{2}{c}{CV} & \multicolumn{2}{c}{OOD} & \multicolumn{2}{c}{Plant B} & Rate & Latency per decision (median / budget) \\",
@@ -174,13 +266,26 @@ def table_A() -> None:
     for f in sorted((BASE / "simoes_published").glob("rows_seed*_fold*.json")):
         rr = json.loads(f.read_text()); ns[rr[0]["seed"]] += rr
     sp = mean_over_seeds(ns)
+    # note numbers, all read from saved files (D-N8c, cloud revision 2026-11-03)
+    import re
+    n_kept, n_use = n_common()
+    n_ood_rep = sorted({len(json.loads((BASE / "full" / m / "final_plantA_OOD.json").read_text())["native"]) for m, _, _ in METHODS})
+    n_b_rep = sorted({len(json.loads((BASE / "full" / m / "final_plantB_main.json").read_text())["native"]) for m, _, _ in METHODS})
+    n_ood_prop = oh["n_fault"] + oh["n_healthy"]
+    n_b_prop = z["Proposed"]["n_fault"] + z["Proposed"]["n_healthy"]
+    ng = re.search(r"in only (\d+)-(\d+) % of internal-fault traces", (ROOT / "documents" / "baselines" / "ngaopitakkul2006_dwt_bpnn_spec.md").read_text())
+    n2 = json.loads((BASE / "n2_simoes_factor.json").read_text())
+    n2_chosen = sorted({c["chosen"] for c in n2})
+    n2_rate = [100 * np.mean([c["grid"][str(f)]["detection_rate"] for c in n2]) for f in n2_chosen]
+    hs = holm_sizes()
     L += [r"\vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Like-for-like = 20-sample dwell (12.5\,ms) with a threshold tuned on validation traces (plateau rule) plus the relay's high-set element; Sim\~oes and Ngaopitakkul act once per detector firing (no dwell). "
-          r"Native = the method's own decision rule (the ``as intended'' row). Reproductions are scored on the traces that exist in the 20\,kHz re-simulation (plant A 3{,}302 of 3{,}332, OOD 297 of 300, plant B 1{,}278 of 1{,}289); the proposed-relay rows use all traces (OOD 299, plant B 1{,}257 evaluable). "
+          r"Native = the method's own decision rule (the ``as intended'' row). Reproductions are scored on the traces that exist in the 20\,kHz re-simulation "
+          f"(plant A {fmt_int(n_use)} of {fmt_int(n_kept)}, OOD {'/'.join(fmt_int(x) for x in n_ood_rep)}, plant B {'/'.join(fmt_int(x) for x in n_b_rep)}); the proposed-relay rows use all evaluable traces (OOD {fmt_int(n_ood_prop)}, plant B {fmt_int(n_b_prop)}). "
           r"$^{\ddagger}$ fold-model standard deviation $>3$ pt: report the range, do not rank by the mean. "
-          r"$^{\triangle}$ the paper's sanity check holds on noise-free currents but not on the benchmark's CT secondaries with measurement noise (detector fires in 12--38\,\% of internal-fault traces; spec amendment 8); the lumped plants have almost no energy above 1.6\,kHz (no winding capacitances), which also limits Sim\~oes. "
+          f"$^{{\\triangle}}$ the paper's sanity check holds on noise-free currents but not on the benchmark's CT secondaries with measurement noise (detector fires in {ng.group(1)}--{ng.group(2)}\\,\\% of internal-fault traces; spec amendment 8); the lumped plants have almost no energy above 1.6\\,kHz (no winding capacitances), which also limits Sim\\~oes. "
           f"Variants in the appendix: Sim\\~oes with the published $C,\\gamma$ {sp[0]:.1f} / {sp[1]:.1f}; Afrasiabi without the Hajipour stage {nc[0]:.1f} / {nc[1]:.1f} (the stage is nearly inactive on our CT-stress traces); Abdusalam GA + SVM {ga[0]:.1f} / {ga[1]:.1f}; Alhamd with the reduced CPU budget {ar[0]:.1f} / {ar[1]:.1f} (native, CV). "
-          r"Sim\~oes' detector factor was chosen on validation traces (50 or 100): it finds 86--92\,\% of events, which caps its dependability (pre-registered). Latency: single thread, development PC, Python; networks at the largest search-space size except Alhamd (trained configurations listed); n/e = not evaluated. "
-          r"Statistics (exact McNemar, Holm over 48 tests, native and like-for-like) are in the supplementary file n5\_statistics\_modeb.txt.",
+          f"Sim\\~oes' detector factor was chosen on validation traces ({' or '.join(f'{f:.0f}' for f in n2_chosen)}): it finds {min(n2_rate):.0f}--{max(n2_rate):.0f}\\,\\% of events, which caps its dependability (pre-registered). Latency: single thread, development PC, Python; networks at the largest search-space size except Alhamd (trained configurations listed); n/e = not evaluated. "
+          f"Statistics (exact McNemar, Holm over {hs['n5b']} tests, native and like-for-like) are in the supplementary file n5\\_statistics\\_modeb.txt.",
           r"\end{table*}"]
     tex_write("table_A_reproductions.tex", L)
 
@@ -208,13 +313,22 @@ def table_B() -> None:
                 b2.setdefault(m, {}).setdefault(mode, {s_: [] for s_ in cv.SEEDS})[s] += [r for r in j[m][mode] if r["trace"] not in BAD]
     best = json.loads((BASE / "b2_equal_search" / "chosen_configs.json").read_text())
     uniq = json.loads((BASE / "b2_equal_search" / "unique_configs.json").read_text())
+    hs = holm_sizes()
+    drawn = {v["drawn"] for v in uniq.values()}; assert len(drawn) == 1; drawn = drawn.pop()
+    u_lo, u_hi = min(v["unique"] for v in uniq.values()), max(v["unique"] for v in uniq.values())
+    eps = [j[m]["epochs_used"] for f in sorted((BASE / "b2_equal_search").glob("final_seed*_fold*.json")) for j in [json.loads(f.read_text())] for m in j if j[m].get("epochs_used")]
+    ep_mean = float(np.mean(eps))
+    tl_d, tl_s = b2_test("tuned LSTM hybrid vs deployed", "dependability"), b2_test("tuned LSTM hybrid vs deployed", "security")
+    vd = {lab: (b2_test(f"{k} hybrid vs deployed", "dependability"), b2_test(f"{k} hybrid vs deployed", "security"))
+          for lab, k in (("CNN", "1D-CNN"), ("GRU", "Wavelet-GRU"), ("ANN", "Wavelet-ANN"), ("RF", "Wavelet-RF"), ("SVM", "Wavelet-SVM"))}
+    unstable_sec = [lab for lab in ("CNN", "GRU", "ANN", "RF", "SVM") if not vd[lab][1]["sign_stable"]]
     L = [r"\begin{table*}[t]\centering",
-         r"\caption{Same 12 DWT + second-harmonic features, different classifiers: default configuration (B1: equal training routine) and tuned with an equal 12-configuration search (B2); standalone and inside the dual-path logic (hybrid). Dependability / security in \%, plant-A CV, 3 seeds $\times$ 5 folds, common set, mean over seeds.}\label{tab:B_same_features}",
+         r"\caption{Same 12 DWT + second-harmonic features, different classifiers: default configuration (B1: equal training routine) and tuned with an equal " + str(drawn) + r"-configuration search (B2); standalone and inside the dual-path logic (hybrid). Dependability / security in \%, plant-A CV, 3 seeds $\times$ 5 folds, common set, mean over seeds.}\label{tab:B_same_features}",
          r"\scriptsize\setlength{\tabcolsep}{3pt}",
          r"\begin{tabular}{@{}lcccccccccp{4.2cm}@{}}\toprule",
          r"Classifier (architecture) & \multicolumn{4}{c}{Default configuration} & \multicolumn{4}{c}{Tuned, equal budget} & unique & chosen configuration \\",
          r"& \multicolumn{2}{c}{standalone} & \multicolumn{2}{c}{hybrid} & \multicolumn{2}{c}{standalone} & \multicolumn{2}{c}{hybrid} & configs & \\",
-         r"& dep. & sec. & dep. & sec. & dep. & sec. & dep. & sec. & of 12 & \\ \midrule"]
+         r"& dep. & sec. & dep. & sec. & dep. & sec. & dep. & sec. & of " + str(drawn) + r" & \\ \midrule"]
     names = [("Wavelet-SVM", "SVM (pooled features)"), ("Wavelet-RF", "Random forest (pooled features)"), ("Wavelet-ANN", "MLP (pooled features)"),
              ("1D-CNN", "1D-CNN (sequence)"), ("Wavelet-GRU", "GRU + attention (sequence)"), ("Proposed LSTM", "LSTM + attention (sequence)")]
     for key, label in names:
@@ -227,9 +341,12 @@ def table_B() -> None:
         L.append(f"{label} & {d_sa[0]:.1f} & {d_sa[1]:.1f} & {d_hy[0]:.1f} & {d_hy[1]:.1f} & {t_sa[0]:.1f} & {t_sa[1]:.1f} & {t_hy[0]:.1f} & {t_hy[1]:.1f} & {uniq[key]['unique']} & {cfg} \\\\")
     L += [r"\bottomrule\end{tabular}",
           r"\vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Default: SVM/RF/MLP/CNN/GRU from the B1 run (25 epochs maximum, patience 5, window stride 8); the LSTM default is the deployed model of the cross-validation (same routine, stride 4). "
-          r"Tuned (B2): 12 configurations drawn at random per model with a fixed seed (with replacement: 10--11 unique per model, the LSTM 10, so any unequal budget is against the proposed model), search on the inner validation split of folds 1--3 of seed 1 (mean validation window AUC), the chosen configuration then trained on all 15 fold-models; same routine for all neural models (25 epochs maximum, patience 5, about 10 epochs actually used, AdamW, batch 256, stride 4). "
-          r"The deployed LSTM and the closed-loop results are unchanged by the search; the tuned LSTM is not significantly different from it (+0.65 / +0.15 pt, Holm-22). "
-          r"Tuned hybrids vs the deployed hybrid (post-hoc family, Holm over 22 tests; per-seed security signs change for CNN, GRU and ANN): CNN +2.8 pt dependability, GRU +2.6, ANN +2.0, RF +0.5 dependability (n.s.) and +0.5 security (significant); the SVM hybrid is lower on both. Table names describe architectures; they are not reproductions of the cited papers.",
+          f"Tuned (B2): {drawn} configurations drawn at random per model with a fixed seed (with replacement: {u_lo}--{u_hi} unique per model, the LSTM {uniq['Proposed LSTM']['unique']}, so any unequal budget is against the proposed model), search on the inner validation split of folds 1--3 of seed 1 (mean validation window AUC), the chosen configuration then trained on all 15 fold-models; same routine for all neural models (25 epochs maximum, patience 5, about {ep_mean:.0f} epochs actually used, AdamW, batch 256, stride 4). "
+          f"The deployed LSTM and the closed-loop results are unchanged by the search; the tuned LSTM is not significantly different from it ({tl_d['diff_pt']:+.2f} / {tl_s['diff_pt']:+.2f} pt, Holm-{hs['b2']}). "
+          f"Tuned hybrids vs the deployed hybrid (post-hoc family; Holm over all {hs['b2']} B2 tests; per-seed security signs change for {', '.join(unstable_sec)}): "
+          + ", ".join(f"{lab} {vd[lab][0]['diff_pt']:+.1f} pt dependability" + ("" if vd[lab][0]['p_holm'] < 0.05 else " (n.s.)") for lab in ("CNN", "GRU", "ANN"))
+          + f", RF {vd['RF'][0]['diff_pt']:+.1f} dependability" + ("" if vd['RF'][0]['p_holm'] < 0.05 else " (n.s.)") + f" and {vd['RF'][1]['diff_pt']:+.1f} security" + (" (significant)" if vd['RF'][1]['p_holm'] < 0.05 else " (n.s.)")
+          + f"; the SVM hybrid is lower on both ({vd['SVM'][0]['diff_pt']:+.1f} / {vd['SVM'][1]['diff_pt']:+.1f} pt" + (", both significant)" if max(vd['SVM'][0]['p_holm'], vd['SVM'][1]['p_holm']) < 0.05 else ")") + ". Table names describe architectures; they are not reproductions of the cited papers.",
           r"\end{table*}"]
     tex_write("table_B_same_features.tex", L)
 
@@ -286,9 +403,20 @@ def table_D() -> None:
         rows = [r for r in j[k] if not r["undetectable"]]
         f = [r["correct"] for r in rows if r["should_trip"]]; h = [r["correct"] for r in rows if not r["should_trip"]]
         return 100 * np.mean(f), 100 * np.mean(h)
+    hs = holm_sizes()
+    n8l = json.loads((BASE / "n8a_instances_vs_tuned_harmonic.json").read_text())
+    th_d = {round(t["tuned_harmonic_pct"], 6) for t in n8l if t["metric"] == "dependability"}; assert len(th_d) == 1; th_d = th_d.pop()
+    th_s = {round(t["tuned_harmonic_pct"], 6) for t in n8l if t["metric"] == "security"}; assert len(th_s) == 1; th_s = th_s.pop()
+    dd = [t for t in n8l if t["metric"] == "dependability"]; dsec = [t for t in n8l if t["metric"] == "security"]
+    n_dep_sig = sum(t["p_holm16"] < 0.05 and t["diff_pt"] > 0 for t in dd)
+    n_sec_lower = sum(t["p_holm16"] < 0.05 and t["diff_pt"] < 0 for t in dsec)
+    tpc_all = json.load(open(ROOT / "runs" / "20261029_v5_plant_b_zeroshot" / "trip_path_check.json"))
+    ftp = tpc_all["false_trip_first_path"]; n_ft = tpc_all["variants"]["Proposed as evaluated (high-set + gate + solo)"]["false_trips"]
+    kh = {t["metric"]: t for t in json.loads((BASE / "n5_statistics_keyhybrid.json").read_text())}
+    stab = lambda d: all(v > 0 for v in d.values()) or all(v < 0 for v in d.values())  # noqa: E731
     sig = lambda t: ("$^{*}$" if t["p_holm16"] < 0.05 else "") + ("" if t["sign_stable"] else "$^{\\dagger}$")  # noqa: E731
     L = [r"\begin{table*}[t]\centering",
-         r"\caption{Instances of the dual-path supervisory logic with interchangeable classifiers (dependability / security, \%): plant-A CV (3 seeds $\times$ 5 folds, common set, mean over seeds), OOD and plant-B zero-shot where a final model was scored; difference to the validation-tuned harmonic 87T (91.2 / 99.1; post-hoc, Holm over 16 tests); and the gated-only ablation (AI-alone path off).}\label{tab:D_instances}",
+         r"\caption{Instances of the dual-path supervisory logic with interchangeable classifiers (dependability / security, \%): plant-A CV (3 seeds $\times$ 5 folds, common set, mean over seeds), OOD and plant-B zero-shot where a final model was scored; difference to the validation-tuned harmonic 87T (" + f"{th_d:.1f} / {th_s:.1f}; post-hoc, Holm over {hs['n8a']} tests" + r"); and the gated-only ablation (AI-alone path off).}\label{tab:D_instances}",
          r"\scriptsize\setlength{\tabcolsep}{3pt}",
          r"\begin{tabular}{@{}lcccccccc@{}}\toprule",
          r"Instance (hybrid mode) & \multicolumn{2}{c}{CV} & $\Delta$ dep. vs tuned & $\Delta$ sec. vs tuned & \multicolumn{2}{c}{OOD} & \multicolumn{2}{c}{Plant B} \\ & dep. & sec. & harmonic 87T (pt) & harmonic 87T (pt) & dep. & sec. & dep. & sec. \\ \midrule"]
@@ -306,11 +434,14 @@ def table_D() -> None:
     kgo, kgb = kd(ko, "gated_only"), kd(kb, "gated_only")
     L.append(f"Key et al.\\ network, gated only & n/e & n/e & & & {kgo[0]:.1f} & {kgo[1]:.1f} & {kgb[0]:.1f} & {kgb[1]:.1f} \\\\")
     pf = json.loads((BASE / "full" / "key_hybrid" / "final_plantB_main.json").read_text())["paths"]["false_trips"]
+    n_kb_h = sum(1 for r in kb["hybrid"] if not r["should_trip"] and not r["undetectable"])
     L += [r"\bottomrule\end{tabular}",
-          r"\vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} $^{*}$ significant after Holm over 16 tests (12 post-hoc tests added after N6c plus the 4 of the tuned-harmonic comparison); $^{\dagger}$ per-seed differences change sign (unstable across splits). All six instances are significantly more dependable than the tuned harmonic 87T (+2.3 to +4.6 pt); none is significantly less secure. "
+          f"\\vspace{{3pt}}\\par\\raggedright\\scriptsize\\textit{{Notes.}} $^{{*}}$ significant after Holm over {hs['n8a']} tests ({hs['n8a_new']} post-hoc tests added after N6c plus the {hs['n6c']} of the tuned-harmonic comparison); $^{{\\dagger}}$ per-seed differences change sign (unstable across splits). "
+          f"{n_dep_sig} of {len(dd)} instances are significantly more dependable than the tuned harmonic 87T ({min(t['diff_pt'] for t in dd):+.1f} to {max(t['diff_pt'] for t in dd):+.1f} pt); " + ("none is" if n_sec_lower == 0 else f"{n_sec_lower} are") + " significantly less secure. "
           r"The B2 instances were evaluated in cross-validation only (n/e = not evaluated: no OOD or plant-B run, no new experiments after the review). Key's classifier is the Dis-DNN internal-fault probability sampled at the relay's decision instants inside the identical logic (87T vote, confirmed output, AI-alone path, high-set; thresholds by the plateau rule). "
-          f"Plant B, deployed hybrid: 87 of 89 false trips first came from the AI-alone path, 2 from the gated path, none from the high-set; Key hybrid: {pf['solo']} of 757 from the AI-alone path, {pf['gate']} gated, {pf['highset']} high-set. "
-          f"Gated-only (post-hoc counterfactual, not adopted): on the plant-A CV the AI-alone path adds {gat['dependability']['deployed_pct'] - gat['dependability']['gated_only_pct']:.1f} pt dependability and costs {gat['security']['gated_only_pct'] - gat['security']['deployed_pct']:.1f} pt security (exact McNemar p {gat['dependability']['p']:.0e} and {gat['security']['p']:.0e}, raw). Key hybrid vs proposed hybrid: dependability +1.16 pt (unstable across seeds), security +0.91 pt (stable), Holm over 50 tests.",
+          f"Plant B, deployed hybrid: {ftp.get('solo', 0)} of {n_ft} false trips first came from the AI-alone path, {ftp.get('gate', 0)} from the gated path, {ftp.get('highset', 0) or 'none'} from the high-set; Key hybrid: {pf['solo']} of {n_kb_h} from the AI-alone path, {pf['gate']} gated, {pf['highset']} high-set. "
+          f"Gated-only (post-hoc counterfactual, not adopted): on the plant-A CV the AI-alone path adds {gat['dependability']['deployed_pct'] - gat['dependability']['gated_only_pct']:.1f} pt dependability and costs {gat['security']['gated_only_pct'] - gat['security']['deployed_pct']:.1f} pt security (exact McNemar p {gat['dependability']['p']:.0e} and {gat['security']['p']:.0e}, raw). "
+          f"Key hybrid vs proposed hybrid: dependability {kh['dependability']['diff_pt']:+.2f} pt ({'stable' if stab(kh['dependability']['per_seed_diff_pt']) else 'unstable'} across seeds), security {kh['security']['diff_pt']:+.2f} pt ({'stable' if stab(kh['security']['per_seed_diff_pt']) else 'unstable'}), Holm over {hs['keyhybrid']} tests.",
           r"\end{table*}"]
     tex_write("table_D_instances.tex", L)
 
