@@ -249,7 +249,7 @@ def main() -> None:
     model_refs = {
         "Conventional 87T": r"Sharp \cite{ref7} (1958)",
         "Wavelet-SVM": r"Sim\~{o}es \cite{ref13} (2021)",
-        "Wavelet-ANN": r"Ngaopitakkul \cite{ref19} / Costa \cite{ref18}",
+        "Wavelet-ANN": r"Ngaopitakkul \cite{ref19} / Mao \cite{ref18}",
         "Wavelet-RF": r"Abdusalam \cite{ref11} (2022)",
         "1D-CNN": r"Afrasiabi \cite{ref16} (2020)",
         "Wavelet-GRU": r"Lin \cite{ref23} (2025)",

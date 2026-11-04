@@ -1,4 +1,6 @@
-# N7 — fixes for the 9 UNVERIFIED references (proposal, author to approve)
+# N7 — fixes for the 9 UNVERIFIED references
+
+**Status 2026-11-04: approved by the author and APPLIED to `latex_source/latex/main.tex`** by `tools/apply_n7_reference_fixes.py` (defaults for the open points: see that script's docstring and the IMPLEMENTATION_PLAN.md entry of 2026-11-04). The proposal text below is kept unchanged as the record.
 
 Date: 2026-11-04 01:10 (+06:00) (cloud session, branch `cloud-n8`). Inputs: `documents/reference_audit.md` (R0, 2026-10-31) and the citing sentences in `latex_source/latex/main.tex` (line numbers below are from that file at commit 5297507).
 Method: every DOI below was resolved on the Crossref REST API (`api.crossref.org/works/<doi>`) in this session and the returned title / authors / venue / year / volume / pages were compared with the entry; the arXiv DOI was resolved on the DataCite API. Search tools: Crossref bibliographic queries, web search (IEEE Xplore, ScienceDirect, Wiley/IET, MDPI, arXiv listings).
