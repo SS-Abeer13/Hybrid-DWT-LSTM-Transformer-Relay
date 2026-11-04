@@ -117,6 +117,14 @@ up_x = [t for t in n8x if t["metric"] == "dependability" and _sigx(t) and t["dif
 k_sig = len(up_x)
 lower_x = [t for t in n8x if _sigx(t) and t["diff_pt"] < 0]
 xb = jload(f_dx2)["plantB_main|tuned, extended grid (frozen)"]
+_tb = jload(f_n6xr)["textbook"]
+dTb = float(np.mean([100 * np.mean([r["correct"] for r in _tb if r["key"][0] == sd and r["should_trip"] and not r["undetectable"]]) for sd in cv.SEEDS]))
+tune_gain = dHx - dTb
+max_cls_gain = max(t["diff_pt"] for t in n8x if t["metric"] == "dependability")
+_mac = ROOT / "paper_epsr" / "generated" / "paper_macros.tex"
+if _mac.is_file():   # the sentence must agree with the macros used in the paper body
+    _m = dict(re.findall(r"\\newcommand\{\\(\w+)\}\{([^}]*)\}", _mac.read_text(encoding="utf-8")))
+    assert f"{dTb:.1f}" == _m["depHb"] and f"{dHx:.1f}" == _m["depHx"], (dTb, dHx, _m.get("depHb"), _m.get("depHx"))
 _g = [t for t in jload(f_clu)["N6c (Holm 4)"] if t["label"] == "tuned harmonic vs proposed hybrid dependability"][0]
 gap_dep, gap_p = -_g["diff"], _g["holm_clust"]
 _seeds = [-v for v in jload(f_n6j)["tests"][2]["per_seed"].values()]   # hybrid minus tuned harmonic, per seed
@@ -127,38 +135,41 @@ clu8 = {t["label"]: t for t in jload(f_clu)["N8a (Holm 16)"]}
 clu_dep_max = max(t["holm_clust"] for lab, t in clu8.items() if lab.endswith("dependability"))
 assert clu_dep_max < 0.05, "a dependability gain is not significant under the clustered test"
 A = (
-    "Learned transformer differential relays are rarely compared on common data, folds and decision logic. "
+    "Learned 87T relays are rarely compared on common data and folds. "
     f"We evaluate on simulated {num(mva_A, 'd', 'plant A rating', f_plA, ' MVA')} and {num(mva_B, 'd', 'plant B rating', f_plB, ' MVA')} plants with trace-grouped cross-validation "
     f"({num(n_seeds, 'd', 'number of seeds', 'lstm_models/baselines/cv.py (cv.SEEDS)')} seeds x {num(n_folds, 'd', 'folds per seed', rel(BASE / 'key') + '/rows_seed*_fold*.json (file count)')} folds, "
-    f"{num(n_traces, ',d', 'plant-A common-set traces (kept minus missing 20 kHz re-simulation)', f_miss)} traces) and re-implement {W[n_methods]} published methods at their own sampling rates. "
-    f"Natively, none reaches {num(c_dep, '.0f', 'joint criterion, dependability (decision rule fixed in the dated plan)', f_plan, ' %')} dependability and "
-    f"{num(c_sec, '.1f', 'joint criterion, security (decision rule fixed in the dated plan)', f_plan, ' %')} security together: the two most dependable reach "
+    f"{num(n_traces, ',d', 'plant-A common-set traces (kept minus missing 20 kHz re-simulation)', f_miss)} traces) and re-implement {W[n_methods]} published methods. "
+    f"Natively, none reaches {num(c_dep, '.0f', 'joint criterion, dependability (decision rule fixed in the dated plan)', f_plan, ' %')} dependability with "
+    f"{num(c_sec, '.1f', 'joint criterion, security (decision rule fixed in the dated plan)', f_plan, ' %')} security; the two most dependable reach "
     f"{num(dep[by_dep[0]], '.1f', f'{by_dep[0]} native CV dependability', f_n5, ' %')} and {num(dep[by_dep[1]], '.1f', f'{by_dep[1]} native CV dependability', f_n5, ' %')} at "
     f"{num(sec[by_dep[0]], '.1f', f'{by_dep[0]} native CV security', f_n5, ' %')} and {num(sec[by_dep[1]], '.1f', f'{by_dep[1]} native CV security', f_n5, ' %')} security. "
-    "We then study a dual-path supervisory logic (87T-gated classifier, classifier-alone path, high-set) with interchangeable classifiers. "
-    f"With an equal search and epoch budget, {W[n_inst]} classifier instances reach "
+    "A dual-path supervisory logic (87T-gated classifier, classifier-alone path, high-set) accepts any classifier. "
+    f"With equal search and epoch budgets, {W[n_inst]} instances reach "
     f"{num(min(t['instance_pct'] for t in d8), '.1f', 'lowest instance dependability (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in d8), '.1f', 'highest instance dependability (hybrid, CV)', f_n8, ' %')} dependability and "
     f"{num(min(t['instance_pct'] for t in s8), '.1f', 'lowest instance security (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in s8), '.1f', 'highest instance security (hybrid, CV)', f_n8, ' %')} security. "
     f"A harmonic-restrained 87T tuned on validation traces over an extended grid (post-hoc; "
     f"{num(dHx, '.1f', 'extended-grid tuned harmonic 87T CV dependability', f_n6xr, ' %')} / {num(sHx, '.1f', 'extended-grid tuned harmonic 87T CV security', f_n6xr, ' %')}) "
-    f"cannot be told apart from the deployed LSTM instance of our Simulink closed loop ({num(deployed['dependability'], '.1f', 'deployed hybrid CV dependability', f_n5, ' %')} / "
+    f"cannot be told apart from the deployed LSTM instance ({num(deployed['dependability'], '.1f', 'deployed hybrid CV dependability', f_n5, ' %')} / "
     f"{num(deployed['security'], '.1f', 'deployed hybrid CV security', f_n5, ' %')}; trace-clustered test, "
     + (f"p_H = {num(gx_p[0], '.2f', 'clustered Holm-4 p, deployed vs extended-grid tuned harmonic (dependability and security)', f_clu)} on both metrics"
        if f"{gx_p[0]:.2f}" == f"{gx_p[1]:.2f}" else
        f"p_H = {num(gx_p[0], '.2f', 'clustered Holm-4 p, dependability', f_clu)} and {num(gx_p[1], '.2f', 'clustered Holm-4 p, security', f_clu)}")
     + f") and detects more high-impedance faults ({num(float(hizx.group(3)), '.1f', 'Internal_HiZ dependability, extended-grid tuned harmonic (CV)', f_n6xt, ' %')} against "
     f"{num(float(hizx.group(2)), '.1f', 'Internal_HiZ dependability, deployed hybrid (CV)', f_n6xt, ' %')}). "
-    f"{W[k_sig].capitalize()} of the {W[n_inst]} instances are more dependable than this relay, by "
+    f"{W[k_sig].capitalize()} of {W[n_inst]} instances are more dependable than this relay, by "
     f"{num(min(t['diff_pt'] for t in up_x), '.1f', 'smallest significant instance minus extended-grid tuned harmonic dependability difference [a]', f_n8x)}-"
     f"{num(max(t['diff_pt'] for t in up_x), '.1f', 'largest significant instance minus extended-grid tuned harmonic dependability difference [b]', f_n8x)} points "
     f"(post-hoc, Holm-adjusted), and none is less secure. "
-    f"Transfer to the unseen plant depends on the classifier: zero-shot security is "
+    f"Tuning alone raised the harmonic 87T from {num(dTb, '.1f', 'textbook harmonic 87T CV dependability', f_n6xr, ' %')} (textbook) to "
+    f"{num(dHx, '.1f', 'extended-grid tuned harmonic 87T CV dependability', f_n6xr, ' %')} dependability, by {num(tune_gain, '.1f', 'tuning gain: extended-grid minus textbook dependability (pt)', f_n6xr)} points, "
+    f"more than any classifier gains over the tuned relay (at most {num(max_cls_gain, '.1f', 'largest instance minus extended-grid tuned harmonic dependability difference', f_n8x)}). "
+    f"Zero-shot security on the unseen plant is "
     f"{num(kb_sec, '.1f', 'Key hybrid plant-B zero-shot security', f_kb, ' %')} with Key's network but {num(zs['security_pct'], '.1f', 'deployed hybrid plant-B zero-shot security', f_zs, ' %')} with the deployed LSTM, "
     f"whose classifier-alone path caused {num(tpc['false_trip_first_path']['solo'], 'd', 'plant-B false trips first fired by the AI-alone path', f_tpc)} of "
     f"{num(tpc['variants']['Proposed as evaluated (high-set + gate + solo)']['false_trips'], 'd', 'plant-B false trips, deployed hybrid', f_tpc)} false trips; "
-    f"the tuned relay, frozen from plant A, reaches {num(xb['dep'], '.1f', 'extended-grid tuned harmonic plant-B zero-shot dependability', f_dx2, ' %')} / "
+    f"the frozen tuned relay reaches {num(xb['dep'], '.1f', 'extended-grid tuned harmonic plant-B zero-shot dependability', f_dx2, ' %')} / "
     f"{num(xb['sec'], '.1f', 'extended-grid tuned harmonic plant-B zero-shot security', f_dx2, ' %')}. "
-    "The deployed LSTM relay does not outperform a well-tuned conventional relay; the contribution is the leak-free benchmark, the reproductions and the classifier-agnostic logic."
+    "The deployed LSTM relay does not outperform a well-tuned conventional relay; the benchmark, the reproductions and the classifier-agnostic logic are the contribution."
 )
 
 # ------------------------------------------------------------------------------------------------ checks
@@ -171,19 +182,19 @@ checks = [
     ("no instance significantly less dependable or less secure than the extended-grid reference (so 'none is less secure' holds)", not lower_x),
     ("range quoted over ALL instances (min and max), not the top instance only", True),
     (f"high-impedance result present (n = {hizx.group(1)})", "high-impedance" in A),
+    (f"tuning gain {tune_gain:.2f} pt is larger than every classifier's gain over the tuned relay (max {max_cls_gain:.2f} pt)", tune_gain > max_cls_gain),
 ]
 words = len(A.split())
 checks.append((f"abstract has {words} words (EPSR limit 250)", words <= 250))
 TEX = ROOT / "paper_epsr" / "generated" / "abstract.tex"
 tex = A
 tex = tex.replace("p_H = ", "$p_{\\mathrm{H}}=$\\,")
-for o, n in ((" %", "\\,\\%"), (" x ", " $\\times$ "), (" MVA", "\\,MVA"), ("-", "--")):
+for o, n in ((" %", "\\,\\%"), (" x ", " $\\times$ "), (" MVA", "\\,MVA")):
     tex = tex.replace(o, n)
-tex = tex.replace("trace--grouped", "trace-grouped").replace("high--set", "high-set").replace("classifier--alone", "classifier-alone").replace("validation--tuned", "validation-tuned") \
-         .replace("harmonic--restrained", "harmonic-restrained").replace("zero--shot", "zero-shot").replace("post--hoc", "post-hoc").replace("Holm--adjusted", "Holm-adjusted") \
-         .replace("High--impedance", "High-impedance").replace("high--confidence", "high-confidence").replace("Learning--based", "Learning-based").replace("trace--clustered", "trace-clustered") \
-         .replace("cross--validation", "cross-validation").replace("1D--CNN", "1D-CNN").replace("dual--path", "dual-path").replace("re--implement", "re-implement") \
-         .replace("--0.", "$-$0.").replace("to $-$", "to $-$")
+# hyphens stay plain hyphens; only a numeric range (digit-digit) becomes an en dash, and a leading minus sign becomes a math minus
+tex = re.sub(r"(?<=\d)-(?=\d)", "--", tex)
+tex = re.sub(r"(?<![\w.$])-(?=\d)", "$-$", tex)
+assert not re.search(r"[A-Za-z]--|--[A-Za-z]", tex), "a word hyphen became an en dash"
 TEX.parent.mkdir(parents=True, exist_ok=True)
 TEX.write_text("% generated by tools/build_abstract_draft_n8b.py - do not edit\n" + tex + "\n", encoding="utf-8")
 

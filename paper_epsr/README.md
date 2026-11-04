@@ -24,7 +24,7 @@ the compiled `main.pdf` and `supplementary.pdf` are committed for review (regene
 ## Files
 - `main.tex` manuscript; `supplementary.tex` supplementary material (full table notes, reproduction specs, all paired tests, order of decisions, audit).
 - `highlights.txt` 5 highlights, each <= 85 characters.
-- `refs.bib` generated; verified references only (two marked TODO, see below).
+- `refs.bib` generated; verified references only (one marked TODO, see below).
 - `ABSTRACT_DRAFT.md` abstract with its number-to-source map and checks; `abstract_draft_N8b.txt` is the earlier 279-word draft (record only).
 - `figures/` generated figures; `generated/` generated tables, macros, abstract and check report. Do not edit generated files by hand.
 
@@ -41,7 +41,6 @@ the compiled `main.pdf` and `supplementary.pdf` are committed for review (regene
 
 ## References still to check
 - `holm1979` (Holm, Scand. J. Statist. 1979): no DOI, JSTOR blocked the audit; open JSTOR 4615733 and confirm.
-- `ngaopitakkul2006` (Int. J. Control, Automation, and Systems 2006): not in Crossref; check the fields against the PDF.
 - Three references outside `audit/literature_table.csv` were added and resolved on Crossref by `tools/build_paper_bib.py`: Hochreiter & Schmidhuber 1997, Mallat 1989, Hajipour et al. 2015.
 
 ## Figures that need local data (not producible in the cloud)

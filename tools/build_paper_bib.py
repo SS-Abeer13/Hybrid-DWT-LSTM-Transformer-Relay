@@ -36,7 +36,9 @@ KEYS = {  # DOI (lower case) -> citation key
 }
 URL_ROWS = {"https://arxiv.org/abs/2609.28149": "oelhaf2026", "https://jmlr.org/papers/v7/demsar06a.html": "demsar2006",
             "https://webstore.iec.ch/en/publication/32570": "iec60255187"}
-UNVERIFIED = {"https://www.jstor.org/stable/4615733": "holm1979", "documents/Reference Papers (git f92ea33), not in Crossref": "ngaopitakkul2006"}
+UNVERIFIED = {"https://www.jstor.org/stable/4615733": "holm1979"}
+# Verified outside Crossref (no DOI exists): the record checked by the author on KoreaScience (IJCAS, June 2006); fields from the project PDF.
+VERIFIED_NO_DOI = {"documents/Reference Papers (git f92ea33), not in Crossref": ("ngaopitakkul2006", "https://koreascience.or.kr/article/JAKO200626813128467.page")}
 SKIP = {"https://arxiv.org/abs/2604.01928"}   # same paper as lin2023 (TPWRD): cite the journal version
 EXTRA = {"10.1162/neco.1997.9.8.1735": "hochreiter1997", "10.1109/34.192463": "mallat1989", "10.1109/tpwrd.2015.2411736": "hajipour2015"}
 
@@ -111,8 +113,9 @@ def structured(key: str, r: dict, u: str) -> str:
         spec = (ROOT / "documents" / "baselines" / "ngaopitakkul2006_dwt_bpnn_spec.md").read_text(encoding="utf-8")
         m = re.search(r'Paper: (.+?), "(.+?),"\s*\*(.+?)\*\s*(\d+)\((\d+)\), (\d+)-(\d+), \w+ (\d{4})', spec)
         auth = " and ".join(x.strip() for x in m.group(1).split(" and "))
+        mon = re.search(r"\d+-\d+, (\w+) \d{4}", spec).group(1)[:3].lower()
         return (f"@article{{{key}, author={{{auth}}}, title={{{m.group(2)}}}, journal={{{m.group(3)}}}, volume={{{m.group(4)}}}, number={{{m.group(5)}}}, "
-                f"pages={{{m.group(6)}--{m.group(7)}}}, year={{{m.group(8)}}} }}")
+                f"pages={{{m.group(6)}--{m.group(7)}}}, month={MONTHS[mon]}, year={{{m.group(8)}}}, url={{{u}}} }}")
     raise KeyError(key)
 
 
@@ -144,6 +147,9 @@ def main() -> None:
         elif u in URL_ROWS:
             assert r["verified (Y/N)"] == "Y", u
             out += [f"% verified: audit/literature_table.csv (URL {u}); fields parsed from the CSV row", structured(URL_ROWS[u], r, u), ""]
+        elif u in VERIFIED_NO_DOI:
+            key, rec = VERIFIED_NO_DOI[u]
+            out += [f"% verified by the author on KoreaScience ({rec}): IJCAS 4(3) 365-371, June 2006, no DOI; fields from the project PDF", structured(key, r, rec), ""]
         elif u in UNVERIFIED:
             assert r["verified (Y/N)"] == "N", u
             todo.append(UNVERIFIED[u])

@@ -847,3 +847,10 @@
 
 ### 2026-11-04 18:24 (+06:00) - Abstract (D-X4) approved by the author; final compile; paper-v1 pushed
 - Final compile (TeX Live 2023): main.tex 25 pages, supplementary.tex 13 pages, 0 errors, 0 undefined references or citations, no rerun warning, BibTeX without warnings. paper_epsr/main.pdf and supplementary.pdf updated.
+
+
+### 2026-11-05 00:16 (+06:00) - Abstract hyphens, Ngaopitakkul 2006 verified, tuning-gain sentence (cloud session, branch paper-v1)
+- tools/build_abstract_draft_n8b.py: word hyphens stay plain hyphens (the converter had turned every hyphen into an en dash and repaired only a fixed word list, so 87T-gated, high-impedance, leak-free, well-tuned and classifier-agnostic came out with "--"); only numeric ranges (digit-digit) become an en dash, a leading minus a math minus; an assert stops the build if a word hyphen becomes an en dash.
+- ngaopitakkul2006: verified by the author on KoreaScience (https://koreascience.or.kr/article/JAKO200626813128467.page: IJCAS vol. 4, no. 3, pp. 365-371, June 2006, no DOI); tools/build_paper_bib.py writes it as a verified entry (fields from the project PDF via the spec file, record URL, month jun); TODO removed from refs.bib, main.tex and README. Only holm1979 remains TODO.
+- New abstract sentence, generated from the same saved rows as the macros and cross-checked against generated/paper_macros.tex (depHb, depHx): tuning alone raised the harmonic 87T from 86.0 % (textbook) to 92.8 % dependability, by 6.8 points, more than any classifier gains over the tuned relay (at most 3.0). A check stops the build if the tuning gain is not larger than every classifier's gain. Wording cuts elsewhere keep the abstract at 249 words; no number removed.
+- Compile: main.tex 25 pages, supplementary.tex 13 pages, 0 errors, 0 undefined references, BibTeX without warnings; PDFs updated. EPSR word count 6,457.

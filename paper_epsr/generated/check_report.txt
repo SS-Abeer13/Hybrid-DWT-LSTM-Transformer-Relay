@@ -1,4 +1,4 @@
-main.tex: commands not defined by the macros file (check they are LaTeX/package commands): ['score', 'vote']
+main.tex: commands not defined by the macros file (check they are LaTeX/package commands): ['S', 'score', 'vote']
 main.tex: 42 cited keys; missing in refs.bib: []
 main.tex: refs without label: []
 main.tex: missing inputs: []
@@ -7,7 +7,7 @@ main.tex: brace balance 0 (negative at some point: False)
 main.tex: banned / forbidden words: []
 main.tex: [cite: placeholders: 0
 main.tex: placeholders for the author: 8
-supplementary.tex: commands not defined by the macros file (check they are LaTeX/package commands): ['arabic', 'endfirsthead', 'endhead']
+supplementary.tex: commands not defined by the macros file (check they are LaTeX/package commands): ['S', 'arabic', 'endfirsthead', 'endhead']
 supplementary.tex: 0 cited keys; missing in refs.bib: []
 supplementary.tex: refs without label: []
 supplementary.tex: missing inputs: []
@@ -17,6 +17,6 @@ supplementary.tex: banned / forbidden words: []
 supplementary.tex: [cite: placeholders: 0
 supplementary.tex: placeholders for the author: 0
 main.tex prose: digit strings typed by hand (allowed: 87T, 1D-CNN, figure/section numbers, years, model names): ['1', '1,', '14', '2', '20', '25,', '3', '3,', '4', '5', '50', '6', '7', '8', '87', '87.', '90', '99']
-EPSR word count (abstract + text + tables + captions + declarations; references and acknowledgements excluded): 6455
-abstract words: 229
+EPSR word count (abstract + text + tables + captions + declarations; references and acknowledgements excluded): 6457
+abstract words: 230
 highlights: 5 bullets, lengths [82, 85, 85, 81, 77] (limit 85)
