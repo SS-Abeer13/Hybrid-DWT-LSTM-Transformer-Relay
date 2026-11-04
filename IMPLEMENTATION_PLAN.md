@@ -843,3 +843,7 @@
   - Text (main.tex): protocol (extended grid, frozen plant-B setting, post-hoc list), Results 6.2 (conventional relays), 6.3 (instances vs the extended reference), HiZ paragraph (tuned relay 69.9 % vs deployed 65.4 %), transfer paragraph (tuned relay on plant B), Discussion "conventional baseline" rewritten, Limitations, Conclusion item 2, highlight 4. Every claim that the deployed hybrid beats a tuned relay was removed (checked: no remaining use of the original-grid gap macros or "lead").
   - Figures: the extended-grid relay is in the operating-point scatter and replaces the original-grid relay in the category figure. Supplement: Tables S8 (N6c ext) and S9 (N8a ext); the grid extension added to the order of decisions.
 - Trial compile in a scratch copy: main.tex and supplementary.tex 0 errors, 0 undefined references. EPSR word count 6,455. Final compile and push wait for the author's approval of the abstract.
+
+
+### 2026-11-04 18:24 (+06:00) - Abstract (D-X4) approved by the author; final compile; paper-v1 pushed
+- Final compile (TeX Live 2023): main.tex 25 pages, supplementary.tex 13 pages, 0 errors, 0 undefined references or citations, no rerun warning, BibTeX without warnings. paper_epsr/main.pdf and supplementary.pdf updated.
