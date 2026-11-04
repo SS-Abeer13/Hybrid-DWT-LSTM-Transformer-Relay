@@ -249,6 +249,8 @@ def table_C() -> None:
     tb, tt = mean_over_seeds(per("textbook")), mean_over_seeds(per("tuned"))
     rows_ext = json.loads((BASE / "n6c_tuned_rows_ext.json").read_text())
     tx = mean_over_seeds({s: [r for r in rows_ext["tuned"] if r["key"][0] == s] for s in cv.SEEDS})
+    dx = json.loads((BASE / "dx2_tuned_harmonic_ood_plantb.json").read_text())
+    xo, xb = dx["plantA_OOD|tuned, extended grid (frozen)"], dx["plantB_main|tuned, extended grid (frozen)"]
     hy = mean_over_seeds(cv_ref(DEP))
     fam = [l for l in (BASE / "n6c_tuned_harmonic.txt").read_text().splitlines() if l.startswith("dependability, ")]
     L = [r"\begin{table}[t]\centering",
@@ -258,7 +260,7 @@ def table_C() -> None:
          f"87T unrestrained (dual slope, 0.30\\,pu pickup) & {t87[0]:.1f} & {t87[1]:.1f} & {o['87T alone']['dependability_pct']:.1f} & {o['87T alone']['security_pct']:.1f} & {z['87T alone']['dependability_pct']:.1f} & {z['87T alone']['security_pct']:.1f} \\\\",
          f"Harmonic 87T, textbook (0.30\\,pu, $k_2$ 0.15, $k_5$ 0.35) & {tb[0]:.1f} & {tb[1]:.1f} & {h['per_phase']['ood_overall']['dependability_pct']:.1f} & {h['per_phase']['ood_overall']['security_pct']:.1f} & {z['Harmonic 87T']['dependability_pct']:.1f} & {z['Harmonic 87T']['security_pct']:.1f} \\\\",
          f"Harmonic 87T, tuned on validation, original grid & {tt[0]:.1f} & {tt[1]:.1f} & n/e & n/e & n/e & n/e \\\\",
-         f"Harmonic 87T, tuned on validation, extended grid (post-hoc) & {tx[0]:.1f} & {tx[1]:.1f} & n/e & n/e & n/e & n/e \\\\", r"\midrule",
+         f"Harmonic 87T, tuned on validation, extended grid (post-hoc; OOD and plant B with the setting frozen from plant A) & {tx[0]:.1f} & {tx[1]:.1f} & {xo['dep']:.1f} & {xo['sec']:.1f} & {xb['dep']:.1f} & {xb['sec']:.1f} \\\\", r"\midrule",
          f"Proposed relay (deployed LSTM hybrid) & {hy[0]:.1f} & {hy[1]:.1f} & {o[DEP]['dependability_pct']:.1f} & {o[DEP]['security_pct']:.1f} & {z['Proposed']['dependability_pct']:.1f} & {z['Proposed']['security_pct']:.1f} \\\\",
          r"\bottomrule\end{tabular}",
          r"\vspace{3pt}\par\raggedright\footnotesize\textit{Notes.} Tuned = grid pickup $\{0.2, 0.3, 0.4\}$\,pu $\times$ $k_2$ $\{0.12, 0.15, 0.20\}$ $\times$ $k_5$ $\{0.25, 0.35\}$, chosen per fold on validation traces by the plateau rule (fills fixed before the run); chosen settings over the 15 fold-models: "

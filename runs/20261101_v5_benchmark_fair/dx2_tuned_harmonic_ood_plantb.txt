@@ -1,0 +1,9 @@
+Tuned harmonic 87T (extended grid, post-hoc), setting FROZEN from the plant-A final model's validation split (482 validation traces): pickup 0.15 pu, k2 0.15, k5 0.2 (validation dependability / security 92.15 / 99.66)
+scored once on OOD and plant B; nothing retuned there
+
+plantA_OOD   tuned, extended grid (frozen)                      dependability 97.33 % [93.3, 99.0] (n=150), security 97.33 % [93.3, 99.0] (n=150) | on the traces that exist at 20 kHz: 97.30 / 97.32 (n=148+149)
+plantA_OOD   textbook 0.30 / 0.15 / 0.35 (consistency check)    dependability 94.00 % [89.0, 96.8] (n=150), security 88.67 % [82.6, 92.8] (n=150) | on the traces that exist at 20 kHz: 93.92 / 88.59 (n=148+149)
+plantB_main  tuned, extended grid (frozen)                      dependability 96.75 % [94.8, 98.0] (n=493), security 99.08 % [98.1, 99.6] (n=764) | on the traces that exist at 20 kHz: 96.73 / 99.08 (n=489+757)
+plantB_main  textbook 0.30 / 0.15 / 0.35 (consistency check)    dependability 94.12 % [91.7, 95.9] (n=493), security 98.95 % [97.9, 99.5] (n=764) | on the traces that exist at 20 kHz: 94.07 / 98.94 (n=489+757)
+
+H-X2 check: plant-B security 99.08 % -> meets the pre-set 98 % line (rule applied in the log)

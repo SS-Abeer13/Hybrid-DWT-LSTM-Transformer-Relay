@@ -1,0 +1,47 @@
+{
+ "setting": [
+  0.15,
+  0.15,
+  0.2
+ ],
+ "validation": [
+  92.14659685863874,
+  99.65635738831615
+ ],
+ "plantA_OOD|tuned, extended grid (frozen)": {
+  "dep": 97.33333333333334,
+  "sec": 97.33333333333334,
+  "n_fault": 150,
+  "n_healthy": 150,
+  "dep_20k": 97.2972972972973,
+  "sec_20k": 97.31543624161074,
+  "false_trips": 4
+ },
+ "plantA_OOD|textbook 0.30 / 0.15 / 0.35 (consistency check)": {
+  "dep": 94.0,
+  "sec": 88.66666666666667,
+  "n_fault": 150,
+  "n_healthy": 150,
+  "dep_20k": 93.91891891891892,
+  "sec_20k": 88.59060402684564,
+  "false_trips": 17
+ },
+ "plantB_main|tuned, extended grid (frozen)": {
+  "dep": 96.75456389452333,
+  "sec": 99.08376963350786,
+  "n_fault": 493,
+  "n_healthy": 764,
+  "dep_20k": 96.7280163599182,
+  "sec_20k": 99.07529722589167,
+  "false_trips": 7
+ },
+ "plantB_main|textbook 0.30 / 0.15 / 0.35 (consistency check)": {
+  "dep": 94.11764705882352,
+  "sec": 98.95287958115183,
+  "n_fault": 493,
+  "n_healthy": 764,
+  "dep_20k": 94.06952965235173,
+  "sec_20k": 98.94319682959049,
+  "false_trips": 8
+ }
+}
