@@ -53,12 +53,75 @@ def get(url: str) -> str:
     raise RuntimeError("rate limited")
 
 
+MONTHS = {"jan": "jan", "feb": "feb", "mar": "mar", "apr": "apr", "may": "may", "jun": "jun", "jul": "jul", "aug": "aug", "sep": "sep", "oct": "oct", "nov": "nov", "dec": "dec"}
+
+
+def fix_month(b: str) -> str:
+    """Crossref writes month=July / Sept; BibTeX month macros are jan ... dec."""
+    return re.sub(r"month=([A-Za-z]+)", lambda m: f"month={MONTHS[m.group(1)[:3].lower()]}", b)
+
+
+def standard_bib(doi: str, key: str, designation: str, year: str) -> str:
+    """IEEE standards: Crossref's BibTeX has no title or year; title from the Crossref JSON record, designation and edition year
+    from audit/literature_table.csv (the record has no issue date)."""
+    m = json.loads(get(f"https://api.crossref.org/works/{urllib.parse.quote(doi)}"))["message"]
+    assert m["type"] == "standard", doi
+    return (f"@misc{{{key}, title={{{m['title'][0]}}}, howpublished={{IEEE Std {designation}}}, organization={{IEEE}}, "
+            f"year={{{year}}}, DOI={{{m['DOI']}}}, url={{http://dx.doi.org/{m['DOI']}}} }}")
+
+
 def crossref_bib(doi: str, key: str) -> str:
     b = get(f"https://api.crossref.org/works/{urllib.parse.quote(doi)}/transform/application/x-bibtex").strip()
+    b = fix_month(b)
     b = re.sub(r"^@(\w+)\{[^,]*,", lambda m: f"@{m.group(1)}{{{key},", b, count=1)
     b = b.replace("–", "--").replace("—", "---").replace("‐", "-").replace("’", "'").replace("‘", "`").replace("&amp;", r"\&").replace(" & ", r" \& ")
     b = b.replace("õ", r"{\~o}").replace("é", r"{\'e}").replace("ć", r"{\'c}").replace("č", r"{\v{c}}").replace("ö", r'{\"o}').replace("ü", r'{\"u}')
     return b
+
+
+def authors(a: str) -> str:
+    """'Oelhaf J., Kordowich G.' -> 'Oelhaf, J. and Kordowich, G.'"""
+    out = []
+    for x in [x.strip() for x in a.split(",") if x.strip()]:
+        m = re.match(r"(.+?)\s+((?:[A-Z]\.\s*)+)$", x)
+        out.append(f"{m.group(1)}, {m.group(2).strip()}" if m else x)
+    return " and ".join(out)
+
+
+def structured(key: str, r: dict, u: str) -> str:
+    """BibTeX for the CSV rows without a DOI: fields parsed from the CSV citation string (plus the project PDF's pages for Ngaopitakkul)."""
+    c = r["citation"]
+    if key == "oelhaf2026":
+        m = re.match(r"(.+?): (.+), arXiv:(\d{4}\.\d{4,5})$", c)
+        return (f"@misc{{{key}, author={{{authors(m.group(1))}}}, title={{{m.group(2)}}}, howpublished={{arXiv preprint arXiv:{m.group(3)} [eess.SY]}}, "
+                f"eprint={{{m.group(3)}}}, archivePrefix={{arXiv}}, year={{{r['year']}}}, note={{Preprint}}, url={{{u}}} }}")
+    if key == "demsar2006":
+        m = re.match(r"(.+?): (.+), J\. Mach\. Learn\. Res\. (\d+):(\d+)-(\d+), (\d{4})$", c)
+        return (f"@article{{{key}, author={{{authors(m.group(1))}}}, title={{{m.group(2)}}}, journal={{Journal of Machine Learning Research}}, "
+                f"volume={{{m.group(3)}}}, pages={{{m.group(4)}--{m.group(5)}}}, year={{{m.group(6)}}}, url={{{u}}} }}")
+    if key == "iec60255187":
+        m = re.match(r"(IEC [\d-]+:\d{4}) (.+)$", c)
+        return f"@misc{{{key}, title={{{m.group(2)}}}, howpublished={{{m.group(1)}}}, organization={{IEC}}, year={{{r['year']}}}, url={{{u}}} }}"
+    if key == "holm1979":
+        m = re.match(r"(.+?): (.+), Scand\. J\. Statist\. (\d+)\((\d+)\):(\d+)-(\d+), (\d{4})$", c)
+        return (f"@article{{{key}, author={{{authors(m.group(1))}}}, title={{{m.group(2)}}}, journal={{Scandinavian Journal of Statistics}}, "
+                f"volume={{{m.group(3)}}}, number={{{m.group(4)}}}, pages={{{m.group(5)}--{m.group(6)}}}, year={{{m.group(7)}}}, note={{{{JSTOR}} 4615733}} }}")
+    if key == "ngaopitakkul2006":
+        # title, volume, issue and pages from the project PDF as recorded in documents/baselines/ngaopitakkul2006_dwt_bpnn_spec.md; no DOI exists
+        spec = (ROOT / "documents" / "baselines" / "ngaopitakkul2006_dwt_bpnn_spec.md").read_text(encoding="utf-8")
+        m = re.search(r'Paper: (.+?), "(.+?),"\s*\*(.+?)\*\s*(\d+)\((\d+)\), (\d+)-(\d+), \w+ (\d{4})', spec)
+        auth = " and ".join(x.strip() for x in m.group(1).split(" and "))
+        return (f"@article{{{key}, author={{{auth}}}, title={{{m.group(2)}}}, journal={{{m.group(3)}}}, volume={{{m.group(4)}}}, number={{{m.group(5)}}}, "
+                f"pages={{{m.group(6)}--{m.group(7)}}}, year={{{m.group(8)}}} }}")
+    raise KeyError(key)
+
+
+def protect_title(entry: str) -> str:
+    """elsarticle-num sentence-cases titles: brace every token with two or more capitals (IEEE, CT, LSTM, EvEMTBench) so it keeps its case."""
+    def fix(m):
+        t = re.sub(r"(?<![{\\\w])([A-Za-z]*[A-Z][a-z]*[A-Z][A-Za-z0-9-]*)", r"{\1}", m.group(2))
+        return m.group(1) + t + "}"
+    return re.sub(r"(title=\{)((?:[^{}]|\{[^{}]*\})*)\}", fix, entry) if entry.startswith("@") else entry
 
 
 def main() -> None:
@@ -71,22 +134,27 @@ def main() -> None:
             continue
         if doi and doi in KEYS:
             assert r["verified (Y/N)"] == "Y", u
-            b = crossref_bib(doi, KEYS[doi]); log[doi] = b; out += ["% verified: audit/literature_table.csv (Crossref)", b, ""]
+            std = re.search(r"IEEE (C[\d.]+)-(\d{4})", r["method"]) if doi.startswith("10.1109/ieeestd") else None
+            if std:
+                b = standard_bib(doi, KEYS[doi], f"{std.group(1)}-{std.group(2)}", std.group(2))
+                note = "% verified: audit/literature_table.csv (Crossref standard record: title; designation and edition year from the CSV)"
+            else:
+                b = crossref_bib(doi, KEYS[doi]); note = "% verified: audit/literature_table.csv (Crossref)"
+            log[doi] = b; out += [note, b, ""]
         elif u in URL_ROWS:
             assert r["verified (Y/N)"] == "Y", u
-            out += [f"% verified: audit/literature_table.csv (URL {u}); fields from the CSV row",
-                    f"@misc{{{URL_ROWS[u]},", f"  title = {{{r['citation']}}},", f"  howpublished = {{{r['venue']}}},", f"  year = {{{r['year']}}},", f"  url = {{{u}}}", "}", ""]
+            out += [f"% verified: audit/literature_table.csv (URL {u}); fields parsed from the CSV row", structured(URL_ROWS[u], r, u), ""]
         elif u in UNVERIFIED:
             assert r["verified (Y/N)"] == "N", u
             todo.append(UNVERIFIED[u])
-            out += [f"% TODO UNVERIFIED (audit/literature_table.csv: verified = N; source: {u}). Fields copied from the CSV row only; check before submission.",
-                    f"@misc{{{UNVERIFIED[u]},", f"  title = {{{r['citation']}}},", f"  howpublished = {{{r['venue']}}},", f"  year = {{{r['year']}}},", "  note = {TODO: unverified}", "}", ""]
+            out += [f"% TODO UNVERIFIED (audit/literature_table.csv: verified = N; source: {u}); check before submission.", structured(UNVERIFIED[u], r, u), ""]
     for doi, key in EXTRA.items():
         try:
             b = crossref_bib(doi, key); log[doi] = b
             out += [f"% EXTRA (not in audit/literature_table.csv): resolved on Crossref by this script, DOI {doi}", b, ""]
         except Exception as e:  # noqa: BLE001
             todo.append(key); out += [f"% TODO {key}: DOI {doi} did not resolve ({e}); not written", ""]
+    out = [protect_title(x) for x in out]
     OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
     LOG.write_text(json.dumps(log, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"{OUT.relative_to(ROOT)}: {sum(1 for l in out if l.startswith('@'))} entries; TODO: {todo}")

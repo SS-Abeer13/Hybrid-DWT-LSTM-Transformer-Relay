@@ -1,6 +1,7 @@
-\begin{table*}[t]\centering
+\begin{table*}[!htbp]\centering
 \caption{Same 12 DWT + second-harmonic features, different classifiers: default configuration (B1: equal training routine) and tuned with an equal 12-configuration search (B2); standalone and inside the dual-path logic (hybrid). Dependability / security in \%, plant-A CV, 3 seeds $\times$ 5 folds, common set, mean over seeds.}\label{tab:B_same_features}
 \scriptsize\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcccccccccp{4.2cm}@{}}\toprule
 Classifier (architecture) & \multicolumn{4}{c}{Default configuration} & \multicolumn{4}{c}{Tuned, equal budget} & unique & chosen configuration \\
 & \multicolumn{2}{c}{standalone} & \multicolumn{2}{c}{hybrid} & \multicolumn{2}{c}{standalone} & \multicolumn{2}{c}{hybrid} & configs & \\
@@ -11,6 +12,6 @@ MLP (pooled features) & 97.2 & 96.5 & 93.1 & 99.1 & 97.7 & 97.1 & 94.9 & 99.2 & 
 1D-CNN (sequence) & 97.1 & 97.0 & 93.7 & 99.2 & 98.0 & 97.3 & 95.7 & 99.0 & 10 & channels 64, kernel 5, layers 3, dropout 0.1, lr 0.001 \\
 GRU + attention (sequence) & 97.6 & 95.6 & 93.9 & 98.8 & 98.0 & 97.3 & 95.6 & 98.8 & 11 & hidden 128, layers 1, dropout 0.1, lr 0.001 \\
 LSTM + attention (sequence) & 97.7 & 95.6 & 93.0 & 99.0 & 98.4 & 97.3 & 93.6 & 99.1 & 10 & hidden 128, layers 2, dropout 0.2, lr 0.003 \\
-\bottomrule\end{tabular}
+\bottomrule\end{tabular}}
 \vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Default: SVM / RF / MLP / CNN / GRU from the B1 run (25 epochs maximum, patience 5, window stride 8); the LSTM default is the deployed model of the cross-validation (same routine, window stride 8). Tuned (B2): 12 configurations drawn at random per model with a fixed seed (with replacement: 10--11 unique per model, the LSTM 10), chosen on the inner validation split of folds 1--3 of seed 1 (mean validation window AUC) and then trained on all 15 fold-models. The search is not nested: those validation traces are test traces of other fold-models, an optimistic bias shared by all six models. Same routine for all neural models (25 epochs maximum, patience 5, about 10 epochs used, AdamW, batch 256, window stride 4); SVM and RF are fitted on random subsamples of 30{,}000 and 50{,}000 training windows, the neural models on all windows, so the budget is equal in configurations and epochs, not in data. Like-for-like reference = the tuned LSTM hybrid (same stride and budget); difference of each tuned hybrid to it, dependability / security (pt): CNN +2.2 / -0.1 (n.s.); GRU +2.0 / -0.3 (n.s.); ANN +1.3 / +0.1 (n.s.); RF -0.1 (n.s.) / +0.4 (n.s.); SVM -6.6 / -1.4. The tuned LSTM hybrid vs the deployed hybrid: +0.65 / +0.15 pt (n.s.). Comparisons with the deployed hybrid (post-hoc family) mix window stride 4 with 8 and are listed only in Supplementary Table S4. Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 22 tests. Table names describe architectures; they are not reproductions of the cited papers.
 \end{table*}

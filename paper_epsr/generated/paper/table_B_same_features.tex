@@ -1,6 +1,7 @@
-\begin{table*}[t]\centering
+\begin{table*}[!htbp]\centering
 \caption{Same 12 DWT + second-harmonic features, different classifiers: default configuration (B1: equal training routine) and tuned with an equal 12-configuration search (B2); standalone and inside the dual-path logic (hybrid). Dependability / security in \%, plant-A CV, 3 seeds $\times$ 5 folds, common set, mean over seeds.}\label{tab:pB_same_features}
 \scriptsize\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcccccccccp{4.2cm}@{}}\toprule
 Classifier (architecture) & \multicolumn{4}{c}{Default configuration} & \multicolumn{4}{c}{Tuned, equal budget} & unique & chosen configuration \\
 & \multicolumn{2}{c}{standalone} & \multicolumn{2}{c}{hybrid} & \multicolumn{2}{c}{standalone} & \multicolumn{2}{c}{hybrid} & configs & \\
@@ -11,6 +12,6 @@ MLP (pooled features) & 97.2 & 96.5 & 93.1 & 99.1 & 97.7 & 97.1 & 94.9 & 99.2 & 
 1D-CNN (sequence) & 97.1 & 97.0 & 93.7 & 99.2 & 98.0 & 97.3 & 95.7 & 99.0 & 10 & channels 64, kernel 5, layers 3, dropout 0.1, lr 0.001 \\
 GRU + attention (sequence) & 97.6 & 95.6 & 93.9 & 98.8 & 98.0 & 97.3 & 95.6 & 98.8 & 11 & hidden 128, layers 1, dropout 0.1, lr 0.001 \\
 LSTM + attention (sequence) & 97.7 & 95.6 & 93.0 & 99.0 & 98.4 & 97.3 & 93.6 & 99.1 & 10 & hidden 128, layers 2, dropout 0.2, lr 0.003 \\
-\bottomrule\end{tabular}
+\bottomrule\end{tabular}}
 \vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Default = B1 run (stride 8; LSTM = deployed model). Tuned = B2: 12 drawn configurations per model, chosen on validation traces of seed 1, folds 1--3 (not nested), 25 epochs / patience 5, stride 4; SVM / RF fitted on 30{,}000 / 50{,}000 subsampled windows. Tuned hybrid minus tuned LSTM hybrid (dep. / sec., pt): CNN +2.2 / -0.1 (n.s.); GRU +2.0 / -0.3 (n.s.); ANN +1.3 / +0.1 (n.s.); RF -0.1 (n.s.) / +0.4 (n.s.); SVM -6.6 / -1.4. Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 22 tests. Full notes: Supplementary Table S1.
 \end{table*}

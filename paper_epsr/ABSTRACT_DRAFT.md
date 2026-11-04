@@ -8,9 +8,9 @@ A model-agnostic dual-path supervisory logic for transformer differential protec
 
 ## Abstract (draft)
 
-Learning-based transformer differential relays are rarely compared under the same data, folds and decision logic. We evaluate on simulated 300 MVA and 40 MVA plants with trace-grouped cross-validation (3 seeds x 5 folds, 3,302 traces) and re-implement six published methods at their own sampling rates. Natively, none reaches 93 % dependability and 98.8 % security together: the two most dependable reach 97.0 % and 96.5 % at 75.3 % and 82.9 % security. We then study a dual-path supervisory logic (an 87T vote gating a confirmed classifier output, a high-confidence classifier-alone path and a high-set element) with interchangeable classifiers. With an equal search and epoch budget, six instances (1D-CNN, GRU, MLP, Key's network, random forest, LSTM) reach 93.5-95.7 % dependability and 98.8-99.9 % security; the deployed LSTM instance of our Simulink closed loop reaches 93.0 % and 99.0 %. All six are more dependable than a validation-tuned harmonic-restrained 87T (91.2 % / 99.1 %) by 2.3-4.6 points (post-hoc, trace-clustered test, Holm-adjusted), with security within -0.3 to +0.8 points. Transfer to the unseen plant depends on the classifier: zero-shot security is 99.9 % with Key's network but 88.4 % with the deployed LSTM, whose classifier-alone path caused 87 of 89 false trips. High-impedance internal faults remain a limit: about 65 % dependability for the hybrid and 62 % for the tuned conventional relay. The supervisory logic and the evaluation protocol, not the choice of classifier, are the contribution.
+Learning-based transformer differential relays are rarely compared under the same data, folds and decision logic. We evaluate on simulated 300 MVA and 40 MVA plants with trace-grouped cross-validation (3 seeds x 5 folds, 3,302 traces) and re-implement six published methods at their own sampling rates. Natively, none reaches 93 % dependability and 98.8 % security together: the two most dependable reach 97.0 % and 96.5 % at 75.3 % and 82.9 % security. We then study a dual-path supervisory logic (an 87T vote gating a confirmed classifier output, a classifier-alone path, a high-set element) with interchangeable classifiers. With an equal search and epoch budget, six classifier instances reach 93.5-95.7 % dependability and 98.8-99.9 % security. All six are more dependable than a validation-tuned harmonic-restrained 87T (91.2 % / 99.1 %) by 2.3-4.6 points (post-hoc, trace-clustered test, Holm-adjusted), with security within -0.3 to +0.8 points. The deployed LSTM instance of our Simulink closed loop (93.0 % / 99.0 %) is 1.8 points more dependable than the tuned relay (p_H = 0.005), but its lead is not stable across seeds (-0.2 to +2.8 points). Transfer to the unseen plant depends on the classifier: zero-shot security is 99.9 % with Key's network but 88.4 % with the deployed LSTM, whose classifier-alone path caused 87 of 89 false trips. High-impedance internal faults remain a limit (dependability about 65 % deployed, 62 % tuned relay). The supervisory logic and the evaluation protocol, not the choice of classifier, are the contribution.
 
-*237 words.* EPSR's abstract limit is to be checked against the final template; trimming changes wording only, never numbers.
+*245 words.* EPSR's abstract limit is to be checked against the final template; trimming changes wording only, never numbers.
 
 ## Number-to-source map
 
@@ -31,20 +31,24 @@ Learning-based transformer differential relays are rarely compared under the sam
 | 13 | 95.7 % | highest instance dependability (hybrid, CV) | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
 | 14 | 98.8 | lowest instance security (hybrid, CV) | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
 | 15 | 99.9 % | highest instance security (hybrid, CV) | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 16 | 93.0 % | deployed hybrid CV dependability | `runs/20261101_v5_benchmark_fair/n5_statistics.json` |
-| 17 | 99.0 % | deployed hybrid CV security | `runs/20261101_v5_benchmark_fair/n5_statistics.json` |
-| 18 | 91.2 % | tuned harmonic 87T CV dependability | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 19 | 99.1 % | tuned harmonic 87T CV security | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 20 | 2.3 | smallest instance minus tuned-harmonic dependability difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 21 | 4.6 | largest instance minus tuned-harmonic dependability difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 22 | -0.3 | smallest security difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 23 | +0.8 | largest security difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 24 | 99.9 % | Key hybrid plant-B zero-shot security | `runs/20261101_v5_benchmark_fair/full/key_hybrid/final_plantB_main.json` |
-| 25 | 88.4 % | deployed hybrid plant-B zero-shot security | `runs/20261029_v5_plant_b_zeroshot/zero_shot_summary.json` |
-| 26 | 87 | plant-B false trips first fired by the AI-alone path | `runs/20261029_v5_plant_b_zeroshot/trip_path_check.json` |
-| 27 | 89 | plant-B false trips, deployed hybrid | `runs/20261029_v5_plant_b_zeroshot/trip_path_check.json` |
-| 28 | 65 % | Internal_HiZ dependability, deployed hybrid (CV) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.txt` |
-| 29 | 62 % | Internal_HiZ dependability, tuned harmonic 87T (CV) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.txt` |
+| 16 | 91.2 % | tuned harmonic 87T CV dependability | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
+| 17 | 99.1 % | tuned harmonic 87T CV security | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
+| 18 | 2.3 | smallest instance minus tuned-harmonic dependability difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
+| 19 | 4.6 | largest instance minus tuned-harmonic dependability difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
+| 20 | -0.3 | smallest security difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
+| 21 | +0.8 | largest security difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
+| 22 | 93.0 % | deployed hybrid CV dependability | `runs/20261101_v5_benchmark_fair/n5_statistics.json` |
+| 23 | 99.0 % | deployed hybrid CV security | `runs/20261101_v5_benchmark_fair/n5_statistics.json` |
+| 24 | 1.8 | deployed hybrid minus tuned harmonic 87T, dependability (pt) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.json` |
+| 25 | 0.005 | clustered Holm-4 p of that difference | `audit/scripts/out/clustered_sensitivity.json` |
+| 26 | -0.2 | smallest per-seed lead (pt) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.json` |
+| 27 | +2.8 | largest per-seed lead (pt) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.json` |
+| 28 | 99.9 % | Key hybrid plant-B zero-shot security | `runs/20261101_v5_benchmark_fair/full/key_hybrid/final_plantB_main.json` |
+| 29 | 88.4 % | deployed hybrid plant-B zero-shot security | `runs/20261029_v5_plant_b_zeroshot/zero_shot_summary.json` |
+| 30 | 87 | plant-B false trips first fired by the AI-alone path | `runs/20261029_v5_plant_b_zeroshot/trip_path_check.json` |
+| 31 | 89 | plant-B false trips, deployed hybrid | `runs/20261029_v5_plant_b_zeroshot/trip_path_check.json` |
+| 32 | 65 % | Internal_HiZ dependability, deployed hybrid (CV) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.txt` |
+| 33 | 62 % | Internal_HiZ dependability, tuned harmonic 87T (CV) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.txt` |
 
 ## Automatic checks
 
@@ -54,7 +58,7 @@ Learning-based transformer differential relays are rarely compared under the sam
 - [x] no instance significantly less secure than the tuned harmonic 87T
 - [x] range quoted over ALL instances (min and max), not the top instance only
 - [x] Internal_HiZ limitation present (n = 459)
-- [x] abstract has 237 words (EPSR limit 250)
+- [x] abstract has 245 words (EPSR limit 250)
 
 ## Labels that must travel with these numbers
 

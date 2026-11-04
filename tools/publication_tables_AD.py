@@ -147,10 +147,26 @@ def tex_to_md(lines: list[str]) -> list[str]:
 PAPER_DIR = ROOT / "paper_epsr" / "generated" / "paper"   # manuscript copies: same cells, short notes (full notes go to the supplement)
 
 
+def fit_width(lines: list[str]) -> list[str]:
+    """Scale the tabular to the text width (the elsarticle preprint column is narrow); cells are unchanged."""
+    out = []
+    for ln in lines:
+        ln = ln.replace(r"\begin{table*}[t]", r"\begin{table*}[!htbp]").replace(r"\begin{table}[t]", r"\begin{table}[!htbp]")   # large tables: do not defer every float to the end
+        if ln.lstrip().startswith(r"\begin{tabular}") or (r"\begin{tabular}" in ln and ln.startswith((r"\small", r"\scriptsize", r"\footnotesize"))):
+            pre, tab = ln.split(r"\begin{tabular}", 1)
+            out.append(pre + r"\resizebox{\textwidth}{!}{%")
+            out.append(r"\begin{tabular}" + tab)
+        elif r"\end{tabular}" in ln:
+            out.append(ln.replace(r"\end{tabular}", r"\end{tabular}}"))
+        else:
+            out.append(ln)
+    return out
+
+
 def tex_write(name: str, lines: list[str], short_note: str | None = None) -> None:
     for d in OUT_DIRS:
         d.mkdir(parents=True, exist_ok=True)
-        (d / name).write_text("\n".join(lines), encoding="utf-8")
+        (d / name).write_text("\n".join(lines if d.name == "latex" else fit_width(lines)), encoding="utf-8")
     MD_DIR.mkdir(parents=True, exist_ok=True)
     (MD_DIR / name.replace(".tex", ".md")).write_text("\n".join(tex_to_md(lines)) + "\n", encoding="utf-8")
     if short_note is not None:
@@ -158,7 +174,7 @@ def tex_write(name: str, lines: list[str], short_note: str | None = None) -> Non
         size = r"\scriptsize" if r"\scriptsize\textit{Notes.}" in "".join(lines) else r"\footnotesize"
         paper = [(r"\vspace{3pt}\par\raggedright" + size + r"\textit{Notes.} " + short_note) if ("\\textit{Notes.}" in ln) else ln for ln in lines]
         paper = [ln.replace(r"\label{tab:", r"\label{tab:p") for ln in paper]
-        (PAPER_DIR / name).write_text("\n".join(paper), encoding="utf-8")
+        (PAPER_DIR / name).write_text("\n".join(fit_width(paper)), encoding="utf-8")
     print(f"Generated {name} (+ .md" + (", paper copy)" if short_note is not None else ")"))
 
 

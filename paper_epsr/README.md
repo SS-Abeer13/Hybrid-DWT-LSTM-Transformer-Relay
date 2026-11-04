@@ -17,7 +17,9 @@ pdflatex supplementary; pdflatex supplementary
 ```
 Python: numpy, scipy, scikit-learn, statsmodels, matplotlib (see `audit/requirements.txt`). The thesis is frozen: restore `latex_source/latex/table_[A-D]_*.tex` after the first command if the thesis must not change (`git checkout latex_source/latex/`).
 
-Not compiled in the cloud session (no LaTeX there): compile locally and check page layout, table widths and figure placement.
+TeX: `texlive-publishers` (elsarticle), `texlive-latex-extra`, `texlive-fonts-recommended` (Latin Modern, vector fonts), `texlive-pictures` (TikZ).
+Checked 2026-11-04 in the cloud session (TeX Live 2023): `main.tex` and `supplementary.tex` compile with 0 errors and 0 undefined references or citations;
+the compiled `main.pdf` and `supplementary.pdf` are committed for review (regenerate them after any change).
 
 ## Files
 - `main.tex` manuscript; `supplementary.tex` supplementary material (full table notes, reproduction specs, all paired tests, order of decisions, audit).
@@ -27,7 +29,7 @@ Not compiled in the cloud session (no LaTeX there): compile locally and check pa
 - `figures/` generated figures; `generated/` generated tables, macros, abstract and check report. Do not edit generated files by hand.
 
 ## Placeholders for the author (red `[AUTHOR: ...]` in the PDF)
-1. Author names; department and institution; city; country (front matter).
+1. Author names; department and institution; city; country (front matter; plain-text capitals `AUTHOR NAMES`, `DEPARTMENT, INSTITUTION`, `CITY`, `COUNTRY`, because the elsarticle front matter does not take colour macros).
 2. AI coding assistant: tool name, version and developer (Methods, "AI-assisted code and analysis"); confirm which prompts / plans / logs are published.
 3. Data and code availability: release tag and commit; dataset / model deposit (DOI) or "on request"; MATLAB/Simulink release and toolboxes.
 4. CRediT authorship statement.

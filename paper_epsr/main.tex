@@ -5,7 +5,8 @@
 \documentclass[preprint,12pt]{elsarticle}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath,amssymb,booktabs,float,graphicx,xcolor,tikz,array,url}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,booktabs,float,graphicx,xcolor,tikz,array,url,xurl}
 \usetikzlibrary{arrows.meta,positioning,calc}
 \input{generated/paper_macros.tex}
 \newcommand{\placeholder}[1]{\textcolor{red}{[\textbf{AUTHOR:} #1]}}
@@ -14,8 +15,9 @@
 \begin{document}
 \begin{frontmatter}
 \title{A model-agnostic dual-path supervisory logic for transformer differential protection, evaluated with a leak-free benchmark of six reproduced methods}
-\author[inst1]{\placeholder{author names}}
-\affiliation[inst1]{organization={\placeholder{department, institution}}, city={\placeholder{city}}, country={\placeholder{country}}}
+%% AUTHOR: replace the plain-text placeholders below (plain text on purpose: elsarticle front matter does not take colour macros)
+\author[inst1]{AUTHOR NAMES}
+\affiliation[inst1]{organization={DEPARTMENT, INSTITUTION}, city={CITY}, country={COUNTRY}}
 \begin{abstract}
 \input{generated/abstract.tex}
 \end{abstract}
@@ -136,7 +138,7 @@ With identical features and an equal search budget (Table~\ref{tab:pB_same_featu
 \subsection{Categories and high-impedance faults}
 \begin{figure}[t]\centering
 \includegraphics[width=\textwidth]{figures/fig_categories.pdf}
-\caption{Correct decisions per scenario category (plant-A CV, common set, pooled over seeds): dependability for fault categories, security for the others.}\label{fig:categories}
+\caption{Correct decisions per scenario category (plant-A CV, common set, pooled over seeds): dependability for fault categories, security for the others. The axis starts at 50\,\%.}\label{fig:categories}
 \end{figure}
 Most categories are close to ceiling for all relays (Fig.~\ref{fig:categories}). The exception is the high-impedance internal fault ($n=\hizN$ traces): \hizDep\,\% for the deployed instance, \hizTuned\,\% for the tuned harmonic 87T and \hizTextbook\,\% for the textbook settings; on the other internal faults the two are \otherDep\,\% and \otherTuned\,\%. The instances detect \hizInstLo--\hizInstHi\,\% of them, so a large share is missed by every relay, consistent with the known blind spot of percentage differential protection for low-level faults \citep{farzin2019,farzin2020,mieske2025}. Switch-on-to-fault and external faults during inrush are the next weakest categories.
 

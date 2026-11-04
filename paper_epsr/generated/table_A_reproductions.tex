@@ -1,6 +1,7 @@
-\begin{table*}[t]\centering
+\begin{table*}[!htbp]\centering
 \caption{Six published methods re-implemented and trained on the benchmark data (native decision logic and like-for-like mode), against the proposed relay. Dependability / security in \%; CV = plant A, 3 seeds $\times$ 5 folds, common set (3{,}302 traces), mean over seeds; OOD and plant B: one final model scored once (plant B zero-shot, logic and threshold frozen from plant A). The reproductions are re-implementations trained on our data, not the authors' code.}\label{tab:A_reproductions}
 \scriptsize\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}p{3.6cm}lccccccp{1.0cm}p{4.2cm}@{}}\toprule
 Method & Mode & \multicolumn{2}{c}{CV} & \multicolumn{2}{c}{OOD} & \multicolumn{2}{c}{Plant B} & Rate & Latency per decision (median / budget) \\
 & & dep. & sec. & dep. & sec. & dep. & sec. & & \\ \midrule
@@ -25,6 +26,6 @@ Alhamd et al.\ 2024 (RT-BSWT + BiLSTM) & native$^{\ddagger}$ & 96.5 & 82.9 & 97.
 \midrule
 Proposed relay (deployed LSTM, dual-path) & hybrid & 93.0 & 99.0 & 98.0 & 96.0 & 92.7 & 88.4 & 1.6\,kHz & 140\,/\,625\,\textmu s (ONNX) \\
 LSTM alone (same logic, no 87T path) & standalone & 97.7 & 95.6 & 99.3 & 87.3 & 92.9 & 87.3 & & \\
-\bottomrule\end{tabular}
+\bottomrule\end{tabular}}
 \vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Like-for-like = 20-sample dwell (12.5\,ms) with a threshold tuned on validation traces (plateau rule) plus the relay's high-set element; Sim\~oes and Ngaopitakkul act once per detector firing (no dwell). Native = the method's own decision rule (the ``as intended'' row). Reproductions are scored on the traces that exist in the 20\,kHz re-simulation (plant A 3{,}302 of 3{,}332, OOD 297, plant B 1{,}278); the proposed-relay rows use all evaluable traces (OOD 299, plant B 1{,}257). $^{\ddagger}$ fold-model standard deviation $>3$ pt: report the range, do not rank by the mean. $^{\triangle}$ the paper's sanity check holds on noise-free currents but not on the benchmark's CT secondaries with measurement noise (detector fires in 12--38\,\% of internal-fault traces; spec amendment 8); the lumped plants have almost no energy above 1.6\,kHz (no winding capacitances), which also limits Sim\~oes. Variants in the appendix: Sim\~oes with the published $C,\gamma$ 59.9 / 95.3; Afrasiabi without the Hajipour stage 86.4 / 88.1 (the stage is nearly inactive on our CT-stress traces); Abdusalam GA + SVM 77.2 / 99.9; Alhamd with the reduced CPU budget 85.8 / 54.9 (native, CV). Sim\~oes' detector factor was chosen on validation traces (50 or 100): it finds 86--92\,\% of events, which caps its dependability (decision rule fixed in a dated plan before the analysis). Latency: single thread, development PC, Python; networks at the largest search-space size except Alhamd (trained configurations listed); n/e = not evaluated. Paired comparisons with the proposed relay (native and like-for-like, 48 tests) are listed in Supplementary Table S3. Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 48 tests. Rows use the second (full) run of each reproduction; Key and Afrasiabi training is not bit-reproducible (Supplementary Section S2).
 \end{table*}

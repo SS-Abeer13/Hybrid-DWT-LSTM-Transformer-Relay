@@ -98,6 +98,13 @@ title = "A model-agnostic dual-path supervisory logic for transformer differenti
 inst_names = "1D-CNN, GRU, MLP, Key's network, random forest, LSTM"
 W = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
 f_clu = ROOT / "audit" / "scripts" / "out" / "clustered_sensitivity.json"
+f_n6j = BASE / "n6c_tuned_harmonic.json"
+_g = [t for t in jload(f_clu)["N6c (Holm 4)"] if t["label"] == "tuned harmonic vs proposed hybrid dependability"][0]
+gap_dep, gap_p = -_g["diff"], _g["holm_clust"]
+_seeds = [-v for v in jload(f_n6j)["tests"][2]["per_seed"].values()]   # hybrid minus tuned harmonic, per seed
+assert abs(-jload(f_n6j)["tests"][2]["diff_pt"] - gap_dep) < 1e-9
+gap_lo, gap_hi = min(_seeds), max(_seeds)
+gap_stable = all(v > 0 for v in _seeds) or all(v < 0 for v in _seeds)
 clu8 = {t["label"]: t for t in jload(f_clu)["N8a (Holm 16)"]}
 clu_dep_max = max(t["holm_clust"] for lab, t in clu8.items() if lab.endswith("dependability"))
 assert clu_dep_max < 0.05, "a dependability gain is not significant under the clustered test"
@@ -110,22 +117,25 @@ A = (
     f"{num(c_sec, '.1f', 'joint criterion, security (decision rule fixed in the dated plan)', f_plan, ' %')} security together: the two most dependable reach "
     f"{num(dep[by_dep[0]], '.1f', f'{by_dep[0]} native CV dependability', f_n5, ' %')} and {num(dep[by_dep[1]], '.1f', f'{by_dep[1]} native CV dependability', f_n5, ' %')} at "
     f"{num(sec[by_dep[0]], '.1f', f'{by_dep[0]} native CV security', f_n5, ' %')} and {num(sec[by_dep[1]], '.1f', f'{by_dep[1]} native CV security', f_n5, ' %')} security. "
-    "We then study a dual-path supervisory logic (an 87T vote gating a confirmed classifier output, a high-confidence classifier-alone path and a high-set element) with interchangeable classifiers. "
-    f"With an equal search and epoch budget, {W[n_inst]} instances ({inst_names}) reach "
+    "We then study a dual-path supervisory logic (an 87T vote gating a confirmed classifier output, a classifier-alone path, a high-set element) with interchangeable classifiers. "
+    f"With an equal search and epoch budget, {W[n_inst]} classifier instances reach "
     f"{num(min(t['instance_pct'] for t in d8), '.1f', 'lowest instance dependability (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in d8), '.1f', 'highest instance dependability (hybrid, CV)', f_n8, ' %')} dependability and "
-    f"{num(min(t['instance_pct'] for t in s8), '.1f', 'lowest instance security (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in s8), '.1f', 'highest instance security (hybrid, CV)', f_n8, ' %')} security; "
-    f"the deployed LSTM instance of our Simulink closed loop reaches {num(deployed['dependability'], '.1f', 'deployed hybrid CV dependability', f_n5, ' %')} and "
-    f"{num(deployed['security'], '.1f', 'deployed hybrid CV security', f_n5, ' %')}. "
+    f"{num(min(t['instance_pct'] for t in s8), '.1f', 'lowest instance security (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in s8), '.1f', 'highest instance security (hybrid, CV)', f_n8, ' %')} security. "
     f"All {W[n_inst]} are more dependable than a validation-tuned harmonic-restrained 87T "
     f"({num(th_dep, '.1f', 'tuned harmonic 87T CV dependability', f_n8, ' %')} / {num(th_sec, '.1f', 'tuned harmonic 87T CV security', f_n8, ' %')}) by "
     f"{num(min(t['diff_pt'] for t in d8), '.1f', 'smallest instance minus tuned-harmonic dependability difference', f_n8)}-{num(max(t['diff_pt'] for t in d8), '.1f', 'largest instance minus tuned-harmonic dependability difference', f_n8)} points "
     f"(post-hoc, trace-clustered test, Holm-adjusted), with security within {num(min(t['diff_pt'] for t in s8), '+.1f', 'smallest security difference', f_n8)} to {num(max(t['diff_pt'] for t in s8), '+.1f', 'largest security difference', f_n8)} points. "
+    f"The deployed LSTM instance of our Simulink closed loop ({num(deployed['dependability'], '.1f', 'deployed hybrid CV dependability', f_n5, ' %')} / {num(deployed['security'], '.1f', 'deployed hybrid CV security', f_n5, ' %')}) "
+    f"is {num(gap_dep, '.1f', 'deployed hybrid minus tuned harmonic 87T, dependability (pt)', f_n6j)} points more dependable than the tuned relay "
+    f"(p_H = {num(gap_p, '.3f', 'clustered Holm-4 p of that difference', f_clu)}), "
+    + (f"in every seed. " if gap_stable else f"but its lead is not stable across seeds ({num(gap_lo, '+.1f', 'smallest per-seed lead (pt)', f_n6j)} to {num(gap_hi, '+.1f', 'largest per-seed lead (pt)', f_n6j)} points). ")
+    + 
     f"Transfer to the unseen plant depends on the classifier: zero-shot security is "
     f"{num(kb_sec, '.1f', 'Key hybrid plant-B zero-shot security', f_kb, ' %')} with Key's network but {num(zs['security_pct'], '.1f', 'deployed hybrid plant-B zero-shot security', f_zs, ' %')} with the deployed LSTM, "
     f"whose classifier-alone path caused {num(tpc['false_trip_first_path']['solo'], 'd', 'plant-B false trips first fired by the AI-alone path', f_tpc)} of "
     f"{num(tpc['variants']['Proposed as evaluated (high-set + gate + solo)']['false_trips'], 'd', 'plant-B false trips, deployed hybrid', f_tpc)} false trips. "
-    f"High-impedance internal faults remain a limit: about {num(float(hiz.group(2)), '.0f', 'Internal_HiZ dependability, deployed hybrid (CV)', f_n6t, ' %')} dependability for the hybrid and "
-    f"{num(float(hiz.group(3)), '.0f', 'Internal_HiZ dependability, tuned harmonic 87T (CV)', f_n6t, ' %')} for the tuned conventional relay. "
+    f"High-impedance internal faults remain a limit (dependability about {num(float(hiz.group(2)), '.0f', 'Internal_HiZ dependability, deployed hybrid (CV)', f_n6t, ' %')} deployed, "
+    f"{num(float(hiz.group(3)), '.0f', 'Internal_HiZ dependability, tuned harmonic 87T (CV)', f_n6t, ' %')} tuned relay). "
     "The supervisory logic and the evaluation protocol, not the choice of classifier, are the contribution."
 )
 
@@ -142,6 +152,7 @@ words = len(A.split())
 checks.append((f"abstract has {words} words (EPSR limit 250)", words <= 250))
 TEX = ROOT / "paper_epsr" / "generated" / "abstract.tex"
 tex = A
+tex = tex.replace("p_H = ", "$p_{\\mathrm{H}}=$\\,")
 for o, n in ((" %", "\\,\\%"), (" x ", " $\\times$ "), (" MVA", "\\,MVA"), ("-", "--")):
     tex = tex.replace(o, n)
 tex = tex.replace("trace--grouped", "trace-grouped").replace("high--set", "high-set").replace("classifier--alone", "classifier-alone").replace("validation--tuned", "validation-tuned") \

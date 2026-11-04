@@ -42,11 +42,11 @@ def main() -> None:
     other = [c for c in present_classes if not any(cats and c in cats for _, cats in CLASSES)]
 
     def table(groups: tuple[str, ...], label: str, caption_extra: str) -> list[str]:
-        L = [r"\begin{table*}[t]\centering",
+        L = [r"\begin{table*}[!htbp]\centering",
              r"\caption{Operate time (ms) per method and fault class: median / 90th percentile over correctly tripped fault traces, plant-A CV pooled over "
              + f"{len(P.SEEDS)} seeds $\\times$ 5 folds, common set{caption_extra}." + r"}\label{" + label + "}",
              r"\scriptsize\setlength{\tabcolsep}{4pt}",
-             r"\begin{tabular}{@{}ll" + "c" * len(CLASSES) + r"r@{}}\toprule",
+             r"\resizebox{\textwidth}{!}{%", r"\begin{tabular}{@{}ll" + "c" * len(CLASSES) + r"r@{}}\toprule",
              "Group & Method & " + " & ".join(c for c, _ in CLASSES) + r" & $n$ (all) \\ \midrule"]
         last = None
         for name, r in res.items():
@@ -56,7 +56,7 @@ def main() -> None:
                 L.append(r"\addlinespace")
             L.append(f"{r['group'] if r['group'] != last else ''} & {name.replace(' (native)', '').replace(' (like-for-like)', ', like-for-like').replace('õ', '{\\~o}')} & " + " & ".join(cell(r[c]) for c, _ in CLASSES) + f" & {r['All faults']['n']:,}".replace(",", "{,}") + r" \\")
             last = r["group"]
-        L += [r"\bottomrule\end{tabular}",
+        L += [r"\bottomrule\end{tabular}}",
               r"\vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Operate time = trip time minus the applied fault time (verified on the waveform by the generator check); "
               r"counts are (seed, fold, trace) decisions, so each trace appears up to three times; descriptive, no test. Reproductions run at their own sampling rates and decide once per detector firing (Sim\~oes, Ngaopitakkul) or per window; "
               r"the harmonic 87T row is a single pass over all traces with textbook settings (no operate times were saved for the tuned settings). "

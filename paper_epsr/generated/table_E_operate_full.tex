@@ -1,6 +1,7 @@
-\begin{table*}[t]\centering
+\begin{table*}[!htbp]\centering
 \caption{Operate time (ms) per method and fault class: median / 90th percentile over correctly tripped fault traces, plant-A CV pooled over 3 seeds $\times$ 5 folds, common set, including the like-for-like rows.}\label{tab:E_operate_full}
 \scriptsize\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}llccccccr@{}}\toprule
 Group & Method & All faults & Solid LV / HV & CT saturation & In inrush & SOTF & High impedance & $n$ (all) \\ \midrule
 Reproduction (native) & Sim{\~o}es & 0.4 / 1.3 & 0.3 / 0.9 & 0.5 / 0.6 & 0.3 / 0.6 & 0.4 / 1.3 & 0.4 / 7.0 & 2{,}590 \\
@@ -41,6 +42,6 @@ Dual-path instance & LSTM, deployed & 16.2 / 36.2 & 15.6 / 31.2 & 16.2 / 27.5 & 
 \addlinespace
 Ablation & LSTM, deployed, gated only & 16.2 / 33.1 & 15.6 / 26.9 & 16.2 / 27.5 & 28.1 / 45.6 & 21.2 / 163.4 & 20.6 / 36.2 & 3{,}287 \\
  & LSTM alone & 15.6 / 31.9 & 15.0 / 22.5 & 15.6 / 20.0 & 23.8 / 41.4 & 18.8 / 112.9 & 18.1 / 39.4 & 3{,}630 \\
-\bottomrule\end{tabular}
+\bottomrule\end{tabular}}
 \vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Operate time = trip time minus the applied fault time (verified on the waveform by the generator check); counts are (seed, fold, trace) decisions, so each trace appears up to three times; descriptive, no test. Reproductions run at their own sampling rates and decide once per detector firing (Sim\~oes, Ngaopitakkul) or per window; the harmonic 87T row is a single pass over all traces with textbook settings (no operate times were saved for the tuned settings). Evolving faults are counted only in `All faults'. `--' = no correctly tripped trace in the class.
 \end{table*}

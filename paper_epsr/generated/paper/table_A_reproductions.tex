@@ -1,6 +1,7 @@
-\begin{table*}[t]\centering
+\begin{table*}[!htbp]\centering
 \caption{Six published methods re-implemented and trained on the benchmark data (native decision logic and like-for-like mode), against the proposed relay. Dependability / security in \%; CV = plant A, 3 seeds $\times$ 5 folds, common set (3{,}302 traces), mean over seeds; OOD and plant B: one final model scored once (plant B zero-shot, logic and threshold frozen from plant A). The reproductions are re-implementations trained on our data, not the authors' code.}\label{tab:pA_reproductions}
 \scriptsize\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}p{3.6cm}lccccccp{1.0cm}p{4.2cm}@{}}\toprule
 Method & Mode & \multicolumn{2}{c}{CV} & \multicolumn{2}{c}{OOD} & \multicolumn{2}{c}{Plant B} & Rate & Latency per decision (median / budget) \\
 & & dep. & sec. & dep. & sec. & dep. & sec. & & \\ \midrule
@@ -25,6 +26,6 @@ Alhamd et al.\ 2024 (RT-BSWT + BiLSTM) & native$^{\ddagger}$ & 96.5 & 82.9 & 97.
 \midrule
 Proposed relay (deployed LSTM, dual-path) & hybrid & 93.0 & 99.0 & 98.0 & 96.0 & 92.7 & 88.4 & 1.6\,kHz & 140\,/\,625\,\textmu s (ONNX) \\
 LSTM alone (same logic, no 87T path) & standalone & 97.7 & 95.6 & 99.3 & 87.3 & 92.9 & 87.3 & & \\
-\bottomrule\end{tabular}
+\bottomrule\end{tabular}}
 \vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Native = the method's own decision rule; like-for-like = the same classifier with the relay's 20-sample dwell, validation-tuned threshold and high-set element. CV on the 3{,}302-trace common set (traces with a 20\,kHz re-simulation). OOD and plant B scored once with frozen thresholds. $^{\ddagger}$ fold-model s.d.\ $>3$ pt. $^{\triangle}$ detector sanity check fails with measurement noise. Latency: single-thread Python on a development PC. Paired tests in Supplementary Table S3 (Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 48 tests.) Full notes: Supplementary Table S1.
 \end{table*}

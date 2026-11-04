@@ -79,7 +79,9 @@ def fig_categories(M) -> None:
         v = [100 * np.mean([r["correct"] for r in rows if r["category"] == c]) for c in cats]
         ax.barh(y + (i - (len(show) - 1) / 2) * h, v, height=h * 0.86, color=SLOTS[i], label=name, zorder=3)
     ax.set_yticks(y, [f"{c} ({'fault' if fault[c] else 'no fault'})" for c in cats])
-    ax.invert_yaxis(); ax.set_xlim(0, 100); ax.set_xlabel("Correct decisions (%): dependability for fault categories, security otherwise")
+    lo = 50
+    assert min(min(100 * np.mean([r["correct"] for r in M[n][1] if r["category"] == c and not r.get("undetectable")]) for c in cats) for n in show) >= lo, "a bar would be cut at the axis start"
+    ax.invert_yaxis(); ax.set_xlim(lo, 100); ax.set_xlabel("Correct decisions (%, axis from 50 %): dependability for fault categories, security otherwise")
     ax.grid(axis="y", visible=False)
     ax.legend(ncol=len(show), loc="lower center", bbox_to_anchor=(0.5, 1.0), fontsize=6.5)
     save(fig, "fig_categories.pdf")

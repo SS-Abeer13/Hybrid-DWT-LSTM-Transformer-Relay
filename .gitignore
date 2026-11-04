@@ -68,3 +68,12 @@ latex_source/MIST_LaTeX*/**/~*.docx
 
 # Local agent instructions (deleted from the remote on purpose)
 brain/
+
+# LaTeX build files (paper_epsr)
+paper_epsr/*.aux
+paper_epsr/*.log
+paper_epsr/*.out
+paper_epsr/*.bbl
+paper_epsr/*.blg
+paper_epsr/*.spl
+paper_epsr/bib.out
