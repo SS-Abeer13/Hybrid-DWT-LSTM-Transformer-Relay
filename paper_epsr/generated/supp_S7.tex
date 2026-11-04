@@ -1,0 +1,8 @@
+\begin{longtable}{@{}p{8.6cm}rrr@{}}
+\caption{Key's network inside the logic vs the deployed LSTM instance. Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 50 tests. Pooled = exact McNemar on (seed, fold, trace) decisions, Holm in the same family (each trace counted up to three times; shown for transparency, not used for the marks).}\label{tab:S7}\\
+\toprule Comparison (difference = first minus second, pt) & diff. & $p_{\mathrm{H}}$ pooled & $p_{\mathrm{H}}$ clustered \\ \midrule \endfirsthead
+\toprule Comparison & diff. & $p_{\mathrm{H}}$ pooled & $p_{\mathrm{H}}$ clustered \\ \midrule \endhead
+Key hybrid vs proposed hybrid dependability & +1.16 & $1\times10^{-2}$ & 0.06 \\
+Key hybrid vs proposed hybrid security & +0.91 & $2\times10^{-10}$ & $\le 2\times10^{-4}$$^{*}$ \\
+\bottomrule
+\end{longtable}

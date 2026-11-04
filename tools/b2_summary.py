@@ -36,7 +36,10 @@ L = [f"Table B, tuned with equal budget ({len(files)} fold-models per model; com
 best = json.loads((D / "chosen_configs.json").read_text())
 for n in names:
     L.append(f"{n:16s} {pct(rows[n]['standalone'],1):9.2f} / {pct(rows[n]['standalone'],0):6.2f}   {pct(rows[n]['hybrid'],1):7.2f} / {pct(rows[n]['hybrid'],0):6.2f} {np.mean(ep[n]) if ep[n] else float('nan'):7.1f}  {best[n]}")
-L.append(f"{'deployed LSTM':16s} {pct({k: v for k, v in deployed_sa.items() if (k in rows['Proposed LSTM']['standalone'])},1):9.2f} / {pct({k: v for k, v in deployed_sa.items() if (k in rows['Proposed LSTM']['standalone'])},0):6.2f}   {pct({k: v for k, v in deployed.items() if (k in rows['Proposed LSTM']['hybrid'])},1):7.2f} / {pct({k: v for k, v in deployed.items() if (k in rows['Proposed LSTM']['hybrid'])},0):6.2f}  (default configuration, stride 4, from the CV)")
+import re as _re
+DEPLOYED_STRIDE = int(_re.search(r'"--train-stride", type=int, default=(\d+)', (ROOT / "lstm_models" / "train_cv_v5.py").read_text()).group(1))
+assert "--train-stride" not in (ROOT / "run_v5_cv.sh").read_text()
+L.append(f"{'deployed LSTM':16s} {pct({k: v for k, v in deployed_sa.items() if (k in rows['Proposed LSTM']['standalone'])},1):9.2f} / {pct({k: v for k, v in deployed_sa.items() if (k in rows['Proposed LSTM']['standalone'])},0):6.2f}   {pct({k: v for k, v in deployed.items() if (k in rows['Proposed LSTM']['hybrid'])},1):7.2f} / {pct({k: v for k, v in deployed.items() if (k in rows['Proposed LSTM']['hybrid'])},0):6.2f}  (default configuration, window stride {DEPLOYED_STRIDE}, from the CV)")
 tests = []
 def test(label, a_rows, b_rows):
     for metric, flag in (("dependability", 1), ("security", 0)):

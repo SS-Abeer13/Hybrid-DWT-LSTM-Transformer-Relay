@@ -1,0 +1,12 @@
+\begin{table}[t]\centering
+\caption{Conventional relays on the benchmark data (dependability / security, \%): unrestrained dual-slope 87T, harmonic-restrained 87T with textbook settings, and harmonic-restrained 87T tuned on validation traces, against the proposed relay. Plant-A CV (3 seeds $\times$ 5 folds, common set), OOD (final scoring) and plant-B zero-shot.}\label{tab:pC_conventional}
+\small\begin{tabular}{@{}lcccccc@{}}\toprule
+Relay & \multicolumn{2}{c}{CV} & \multicolumn{2}{c}{OOD} & \multicolumn{2}{c}{Plant B} \\ & dep. & sec. & dep. & sec. & dep. & sec. \\ \midrule
+87T unrestrained (dual slope, 0.30\,pu pickup) & 80.3 & 63.5 & 89.3 & 53.3 & 89.5 & 62.0 \\
+Harmonic 87T, textbook (0.30\,pu, $k_2$ 0.15, $k_5$ 0.35) & 86.0 & 99.4 & 94.0 & 88.7 & 94.1 & 99.0 \\
+Harmonic 87T, tuned on validation & 91.2 & 99.1 & n/e & n/e & n/e & n/e \\
+\midrule
+Proposed relay (deployed LSTM hybrid) & 93.0 & 99.0 & 98.0 & 96.0 & 92.7 & 88.4 \\
+\bottomrule\end{tabular}
+\vspace{3pt}\par\raggedright\footnotesize\textit{Notes.} Grid boundary: pickup at the lowest grid value in 15 of 15, $k_2$ at the highest in 9 of 15, $k_5$ at the lowest grid value in 15 of 15 fold-models, so a wider grid might raise the tuned relay's dependability (not tested). Tuned minus proposed: dependability -1.78 pt ($p_{\mathrm{H}}=5\times10^{-3}$), security +0.12 pt ($p_{\mathrm{H}}=0.68$); textbook minus proposed: -6.99 pt ($p_{\mathrm{H}}\le2\times10^{-5}$) / +0.44 pt ($p_{\mathrm{H}}=0.11$). Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 4 tests. n/e = not evaluated. Full notes: Supplementary Table S1.
+\end{table}

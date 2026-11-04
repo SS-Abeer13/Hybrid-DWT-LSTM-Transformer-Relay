@@ -1,71 +1,74 @@
-%% Draft for Electric Power Systems Research (Elsevier). Every number comes from generated/results_macros.tex (tools/build_paper_macros_v5.py).
-%% Citations marked \tc{...} are placeholders: the reference list is not yet verified (see REFERENCES_TO_VERIFY.md).
-\documentclass[preprint,12pt,authoryear]{elsarticle}
+%% Electric Power Systems Research (Elsevier) - manuscript paper-v1 (claim C: model-agnostic dual-path logic + leak-free benchmark).
+%% Every number in the text is a macro from generated/paper_macros.tex (tools/build_paper_v1_macros.py); tables and figures are generated
+%% by tools/publication_tables_AD.py, tools/paper_operate_times.py and tools/make_paper_figures.py from saved result files. Do not type numbers.
+%% Build order: see README.md. Items for the author are marked \placeholder{...} (red) and listed in README.md.
+\documentclass[preprint,12pt]{elsarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,booktabs,float,graphicx,xcolor,tikz,array,url}
 \usetikzlibrary{arrows.meta,positioning,calc}
-\input{generated/results_macros.tex}
-\newcommand{\tc}[1]{\textcolor{red}{[cite: #1]}}
+\input{generated/paper_macros.tex}
+\newcommand{\placeholder}[1]{\textcolor{red}{[\textbf{AUTHOR:} #1]}}
 \journal{Electric Power Systems Research}
 
 \begin{document}
 \begin{frontmatter}
-\title{Dual-path supervision of a transformer differential relay by a wavelet-feature LSTM: a leak-free evaluation on two simulated plants}
-\author[inst1]{Author One}
-\author[inst1]{Author Two}
-\affiliation[inst1]{organization={Department, University}, city={City}, country={Country}}
+\title{A model-agnostic dual-path supervisory logic for transformer differential protection, evaluated with a leak-free benchmark of six reproduced methods}
+\author[inst1]{\placeholder{author names}}
+\affiliation[inst1]{organization={\placeholder{department, institution}}, city={\placeholder{city}}, country={\placeholder{country}}}
 \begin{abstract}
-A conventional transformer differential relay (87T) with percentage restraint operates on inrush, over-excitation and current-transformer (CT) saturation unless harmonic restraint is added; learned classifiers can discriminate these conditions but are commonly evaluated on random splits of correlated windows against weak baselines. This paper describes a supervisory relay in which a long short-term memory (LSTM) network on wavelet and second-harmonic features confirms the 87T vote and, separately, trips on its own when a persistence-filtered score exceeds a higher threshold, while the high-set element stays outside the network. The relay is evaluated on two Simulink/SimPowerSystems transformers (300\,MVA YNd1 and 40\,MVA Dyn11) with CTs sized to be linear for the through-fault current at nominal burden, using trace-grouped cross-validation, onset-based labels, thresholds tuned on validation traces only, an out-of-distribution set scored once, and a per-phase harmonic-restrained 87T and five literature classifiers as baselines on identical folds. On plant~A (\cvNfold{} fold-models) the relay reaches \cvHybDep\,\% dependability and \cvHybSec\,\% security; the per-phase harmonic 87T reaches \cvHarmDep\,\% and \cvHarmSec\,\%. The dependability difference is significant (paired McNemar, $p=\mcPDepP$), the security difference is not ($p=\mcPSecP$). A model trained on plant~A does not transfer to plant~B (security \zsPropSec\,\%); training on both plants gives \cpDep\,\% and \cpSec\,\%. Limitations: simulation only, two plants, terminal faults, internal high-impedance faults detected in \catHiz\,\% of traces.
+\input{generated/abstract.tex}
 \end{abstract}
 \begin{keyword}
-transformer differential protection \sep inrush \sep CT saturation \sep LSTM \sep wavelet transform \sep evaluation protocol
+transformer differential protection \sep inrush \sep CT saturation \sep machine learning \sep supervisory logic \sep benchmark \sep grouped cross-validation
 \end{keyword}
 \end{frontmatter}
 
+%% ============================================================================================ 1
 \section{Introduction}
-Differential protection (ANSI 87T) is the main protection of power transformers. Its percentage-restrained characteristic is blocked or restrained against magnetising inrush, over-excitation and CT saturation by harmonic content of the differential current, and these measures trade security against operating speed and sensitivity to internal faults with low current \citep{sharp1958,ieee_c37_91}. A large body of work replaces or supplements the harmonic criteria with wavelet features and classifiers: support vector machines, shallow networks, random forests, convolutional and recurrent networks \tc{transformer differential protection with ML: SVM, ANN, RF, CNN, GRU, LSTM}.
+\label{sec:intro}
+Percentage-restrained differential protection (87T) is the main protection of power transformers. Magnetising inrush, over-excitation and current-transformer (CT) saturation create differential current without an internal fault, so practical relays add harmonic restraint or blocking, and these measures trade security against speed and against sensitivity to faults with low current \citep{ieeec3791}. Many studies replace or supplement the harmonic criteria with a learned classifier on wavelet or raw-current features \citep{tripathy2010,afrasiabi2020,simoes2021,abdusalam2022,murugan2022,afsharisefat2023,alhamd2024,key2025}.
 
-Three problems limit what such studies show. First, the evaluation unit is often a window cut from a small number of simulated cases, so that windows from one case appear in both training and test sets. Second, the baseline is an unrestrained percentage-differential characteristic, not a harmonic-restrained one. Third, the simulated plant is rarely documented to the extent that its through-fault current, CT burden and saturation behaviour can be judged. This paper addresses these points with a stated protocol and a plant that was checked against explicit physics criteria; the DWT\,+\,LSTM feature pipeline itself is not claimed as new.
+Two things limit what such studies show. First, they are rarely compared with each other under the same data, folds and decision logic, and the split unit (case or window) is often not stated; windows of one simulated case in both training and test sets inflate accuracy \citep{kapoor2023,matania2024}. Second, the learned model usually \emph{is} the relay. When it errs, nothing in the protection logic bounds the error, and transfer to a transformer that was not in the training data is seldom tested.
 
-The contributions are:
+This paper treats both problems together. The relay logic is a small supervisory layer that any classifier can plug into: an 87T vote gates a confirmed classifier output, a separate high-confidence path lets the classifier trip alone, and a high-set element trips without it. The evaluation is a benchmark in which six published methods are re-implemented on the same simulated data and scored with the same trace-grouped folds as the proposed logic and as a validation-tuned harmonic-restrained 87T. The contributions are:
 \begin{enumerate}
-\item a \emph{dual-path supervisory relay}: an 87T-gated AI confirmation, a persistence-filtered AI-alone path for faults below the 87T pickup, and a high-set element that does not depend on the network (Section~\ref{sec:method});
-\item a \emph{leak-free evaluation protocol} (Section~\ref{sec:protocol}): trace-grouped cross-validation over three seeds, onset-based labels, thresholds tuned on validation traces only, an out-of-distribution (OOD) set scored once, and undetectable faults reported separately;
-\item \emph{baselines on identical folds} with paired statistics: the unrestrained 87T, a per-phase harmonic-restrained 87T and five literature classifiers (Section~\ref{sec:results});
-\item a test on a \emph{second transformer}: zero-shot transfer, pooled training and leave-one-plant-out, and a Simulink closed loop that reproduces the offline decisions.
+\item a \emph{leak-free benchmark} for learned 87T schemes: trace-grouped cross-validation (CV) over \nSeeds{} seeds, validation-only thresholds, a shifted-range test set scored once, zero-shot transfer to a second transformer, six reproduced methods in their native and in a like-for-like mode, and paired tests whose unit is the trace (Sections~\ref{sec:data}--\ref{sec:protocol});
+\item a \emph{dual-path supervisory logic} evaluated with \nClsAll{} interchangeable classifiers, which shows that its operating point depends little on the classifier, while its transfer to another plant depends strongly on it (Sections~\ref{sec:logic} and~\ref{sec:results});
+\item an analysis of \emph{where the supervision helps}: the 87T gate adds security for a poorly calibrated classifier and costs dependability for a well-calibrated one, and the classifier-alone path is the weak point under transfer (Section~\ref{sec:discussion}).
 \end{enumerate}
-The results do not show that the relay is better than a harmonic-restrained 87T in every respect; Section~\ref{sec:results} states where it is and where it is not.
+Section~\ref{sec:related} places the logic among prior hybrid schemes, Section~\ref{sec:data} describes the plants and data, Section~\ref{sec:logic} the logic, Section~\ref{sec:protocol} the protocol, Section~\ref{sec:results} the results, Section~\ref{sec:discussion} their interpretation and Section~\ref{sec:limits} the limitations.
 
+%% ============================================================================================ 2
 \section{Related work}
 \label{sec:related}
-\tc{Harmonic restraint and blocking: second/fifth harmonic, waveform-based, voltage-restrained, flux-based methods}. \tc{Wavelet-based discrimination of inrush and internal faults}. \tc{CT-saturation detection and compensation}. \tc{Machine-learning transformer protection: SVM, ANN, RF, CNN, GRU, LSTM, with the evaluation methods they report}. Leakage between training and test data is a documented source of overstated results in machine-learning studies \citep{kapoor2023}. Block-decomposition and Clarke-wavelet methods are discussed as alternatives in Section~\ref{sec:limits}.
+\textbf{How a learned model meets the 87T.} The searched literature shows four patterns. (i) The model \emph{restrains or blocks} the 87T: Rebizant et al.\ combine neural inrush detectors with second-harmonic restraint in one stabilising unit \citep{rebizant2007}, and fuzzy and network-based stabilisation follow the same idea \citep{bejmert2014}. (ii) The model \emph{conditions the input} of the 87T: Lin et al.\ mark the saturated samples of the differential current with an attention network and estimate the fundamental on the rest, so that a ratio-differential element decides without an inrush-blocking module \citep{lin2023}. (iii) The model \emph{adapts the settings}: Rezaei recognises sub-synchronous resonance and ferroresonance and changes the relay settings for them \citep{rezaei2026}. (iv) The model \emph{is} the relay, as in most recent work \citep{afrasiabi2020,afrasiabi2022,murugan2022,afsharisefat2023,afsharisefat2024,alhamd2024,key2025,wang2025}, sometimes with a confirmation counter on its output \citep{shi2026} or an ANN that issues the trip next to the differential relay \citep{bhatt2016}. In line protection the mirror image appears: a learned model vetoes a conventional trip \citep{khaw2019} or supervises a zone \citep{sahoo2021}. To our knowledge, prior work uses the learned model to restrain the differential element, to condition its input, to adapt its settings, or to replace it; here the 87T vote gates the learned decision, with a separate high-confidence path and a persistence filter on the output. The parts are known; the combination and its evaluation are what this paper adds.
 
+\textbf{Evaluation practice.} Grouped (blocked) cross-validation is the standard remedy against dependent samples \citep{roberts2017}, and leakage between training and test data is a documented source of overstated machine-learning results \citep{kapoor2023,matania2024}. Paired classifier comparisons call for McNemar-type tests \citep{mcnemar1947,dietterich1998,demsar2006} with a correction for multiple comparisons \citep{holm1979}% TODO: holm1979 is unverified (no DOI; check JSTOR 4615733)
+. Generalisation across systems is examined by knowledge-based networks \citep{li2020} and, for line protection, by an open benchmark with committed partitions \citep{oelhaf2026}. In the transformer-protection papers above, significance tests and cross-transformer transfer tests are rare, and baselines are re-implemented without a stated training budget.
+
+\textbf{Methods not reproduced.} The benchmark reproduces six methods for which a paper gives a complete specification (Section~\ref{sec:protocol}). The MRA--BiGRU and VMD--CNN--BiLSTM schemes \citep{afsharisefat2023,afsharisefat2024} belong to the wavelet plus recurrent family represented by the Alhamd reproduction; the fast GRNN \citep{afrasiabi2022} differs from the reproduced CNN of the same group \citep{afrasiabi2020} in the cell and the loss, and a GRU with the same budget is part of the same-feature study; the signal-localised CNN \citep{murugan2022} is a CNN on wavelet coefficients, the family of the 1D-CNN instance; variable-window reinforcement learning \citep{wang2025} and methods that need the magnetising-branch voltage \citep{li2020} are outside a current-only relay. Deterministic wavelet 87T schemes \citep{medeiros2016,medeiros2018} were not implemented.
+
+%% ============================================================================================ 3
 \section{Plants and data}
 \label{sec:data}
-\subsection{Plants}
-Plant~A is a 300\,MVA, 230/11\,kV YNd1 transformer with 5\,A CT secondaries (1\,$\Omega$ nominal burden); plant~B is a 40\,MVA, 132/33\,kV Dyn11 transformer with 1\,A secondaries (2.5\,$\Omega$). Both are SimPowerSystems models with a saturable transformer, six saturable CT subsystems, a series source impedance, a load, breaker-controlled energisation and fault blocks on the LV and HV sides. Transformer reactance is 11\,\% (A) and 10\,\% (B) with $X/R\approx 20$; the earlier version of the plants (2\,\% and 1\,\% leakage) produced through-fault currents of 23.9 and 37.6\,pu and CTs that saturated on every solid external fault, and was discarded.
+\textbf{Plants.} Plant~A is a \mvaA\,MVA, \kvHVA/\kvLVA\,kV \vgA{} transformer, plant~B a \mvaB\,MVA, \kvHVB/\kvLVB\,kV \vgB{} transformer, both Simulink models with a saturable transformer core, six saturable CTs, a source impedance, a load, breaker-controlled energisation and fault blocks on both sides. The leakage reactance is \xA\,\% (A) and \xB\,\% (B) with $X/R\approx\xrA$. Before any data were generated, each plant was checked against \critAN{} physics criteria (true through-fault current, CT linearity at nominal burden, CT saturation with DC offset and with increased burden, voltage under load, CT ratio drift). The true steady through-fault current is \tfA\,pu (A) and \tfB\,pu (B). Plant~A meets all \critAN{} criteria; plant~B fails \critBFail{} of \critBN{} (a fully offset fault does not saturate its CTs at nominal burden, and its ratio drift at three times the burden exceeds the limit), and is reported as measured.
 
-The CTs are sized so that they are linear in steady state at nominal burden for the maximum symmetrical through-fault, and saturate only with DC offset or increased burden. The following checks were run on each plant before any data was generated: true line currents from V--I blocks (not CT secondaries) give a steady through-fault of \tfA\,pu RMS on plant~A and \tfB\,pu on plant~B; the CT secondary follows the scaled primary within a few per cent at nominal burden; the normal-operation differential residual is below 0.01\,pu; CT ratio drift at 150\,\% load and three times the burden is about 2\,\%. Plant~B does not meet two of the six criteria set in advance (a DC offset at maximum asymmetry does not saturate its CTs at nominal burden, and the ratio drift of 2.02\,\% exceeds the 2\,\% limit by 0.02 points); these are reported as measured (file \texttt{plant\_v5\_checks\_B.txt} in the repository).
+\textbf{Scenarios.} Each trace is \traceLen\,s at \fs\,Hz. \nCat{} categories cover normal load, energisation inrush (no-load, loaded, recovery after an external fault), over-excitation, external faults (solid, high-impedance, with CT saturation, during inrush) and internal faults (low- and high-voltage side, solid, high-impedance, evolving, switch-on-to-fault, with CT saturation, during inrush). Load, power factor, noise, CT mismatch and burden, source strength, frequency, inception angle, residual flux and fault resistance are drawn per trace. The ``high-impedance'' internal faults are terminal faults through a fault resistance drawn from bins of a sensitivity sweep; they are not turn-to-turn faults. Sympathetic inrush between parallel transformers and CT remanence are not modelled.
 
-\subsection{Scenarios and coverage}
-Each trace is 1.1\,s sampled at 1600\,Hz. \catNcat{} scenario categories cover normal operation at 1--130\,\% load, energisation inrush (no-load, loaded, sympathetic recovery after an external fault), over-excitation, external faults (solid, high-impedance, with CT saturation, during inrush), internal faults on the LV and HV side (solid, high-impedance, evolving, switch-on-to-fault, with CT saturation, during inrush). Per trace, load, power factor, noise, CT gain mismatch, CT burden, source strength, frequency, inception angle, residual flux and fault resistance are drawn from stated ranges; high-impedance fault resistance is drawn from bins derived from a sensitivity sweep of the differential current (87T-visible, AI-only, undetectable). Plant~A has \dsMainA{} and plant~B \dsMainB{} traces in the main sets (including top-ups to meet the coverage criteria) plus OOD sets generated with ranges outside the training distribution (extreme load, weak source and frequency offset, extreme CT burden, severe over-excitation, high noise and CT mismatch). A coverage report with eight acceptance criteria (cell counts per scenario group and load bin, inrush angle and flux cells, high-impedance bins, CT-saturation fraction, over-excitation harmonics, realised load, generator checks, true through-fault range) is part of the repository; both plants pass it.
+\textbf{Sets.} Plant~A has \nKept{} distinct traces after deduplication; the reproductions need a 20\,kHz re-simulation, which failed for \nMissing{}, so every comparison uses the common set of \nCommon{} traces (\nFaultTr{} detectable faults, \nHealthyTr{} healthy traces). A shifted-range set of \nOOD{} plant-A traces (extreme load, weak source, frequency offset, extreme burden, severe over-excitation, high noise) is scored once by each final model. Plant~B provides \nBEval{} evaluable traces for zero-shot transfer (\nBUndet{} undetectable faults excluded).
 
-\section{Method}
-\label{sec:method}
-\subsection{Features}
-The plant-compensated differential current (YNd1: matrix on the HV side; Dyn11: matrix on the LV side) is divided by the rated CT secondary current. For each phase a 32-sample window (20\,ms) is decomposed with a two-level Daubechies-4 wavelet; the energies of D1, D2 and A2 enter as $\ln(1+E)$. The ratio of the 100\,Hz to the 50\,Hz DFT magnitude of the window, limited to 2, is added per phase. The feature vector has 12 elements \citep{mallat1989}. The same code path is used by the offline pipeline and the Simulink relay; their features agree with zero error in a parity check on both plants.
-
-\subsection{Network}
-A two-layer unidirectional LSTM \citep{hochreiter1997} (hidden size 64) is followed by layer normalisation, a single-head additive attention over the 32 time steps and a two-layer classifier with a sigmoid output; the input is 32 steps of the 12 features. The network has \netParams{} parameters and about \netMacs\,M multiply--accumulate operations per inference.
-
-\subsection{Decision logic}
+%% ============================================================================================ 4
+\section{Dual-path supervisory logic}
+\label{sec:logic}
 \begin{figure}[t]\centering
 \begin{tikzpicture}[node distance=5mm, box/.style={draw,rounded corners=2pt,minimum height=7mm,align=center,font=\small}, arr/.style={-{Latex[length=2mm]}}]
 \node[box] (ct) {CT currents\\(6 channels)};
-\node[box,right=of ct] (dwt) {Plant map,\\p.u., DWT+DFT\\12 features};
-\node[box,right=of dwt] (lstm) {LSTM\\score $p$};
-\node[box,right=of lstm] (min) {min of last\\$N_d$ outputs\\$\hat p$};
+\node[box,right=of ct] (dwt) {Features\\(any classifier\\input)};
+\node[box,right=of dwt] (lstm) {Classifier\\score $p$};
+\node[box,right=of lstm] (min) {min of last\\$N_d$ scores\\$\hat p$};
 \node[box,below=8mm of dwt] (87) {87T: dual slope\\vote $v$};
-\node[box,below=of 87] (hs) {High-set\\$I_d>10$\,pu};
+\node[box,below=of 87] (hs) {High-set\\$I_d>\highset$\,pu};
 \node[box,right=14mm of 87] (and) {AND};
 \node[box,right=of min,xshift=2mm] (or) {OR};
 \node[box,right=of or] (trip) {TRIP};
@@ -76,77 +79,130 @@ A two-layer unidirectional LSTM \citep{hochreiter1997} (hidden size 64) is follo
 \draw[arr] (hs.east)-|([xshift=3mm]or.south);
 \draw[arr] (or)--(trip);
 \end{tikzpicture}
-\caption{Dual-path relay. $\hat p$ is the minimum of the last $N_d$ network outputs; the three inputs of the OR are the AI-gated 87T vote, the AI-alone path and the high-set element.}\label{fig:relay}
+\caption{Dual-path supervisory logic. Any classifier that returns a fault score at the relay's decision instants can be used; $\hat p$ is the minimum of its last $N_d$ scores.}\label{fig:relay}
 \end{figure}
-The relay trips when
+The relay (Fig.~\ref{fig:relay}) trips when
 \begin{equation}
 \text{TRIP}=\text{HighSet}\;\vee\;\big(v\wedge \hat p\ge\theta_{AI}\big)\;\vee\;\big(\hat p\ge\theta_{solo}\big),
 \label{eq:trip}
 \end{equation}
-where $v$ is the any-phase vote of the dual-slope 87T (pickup 0.30\,pu, slopes 25\,\% and 60\,\%, breakpoint 3\,pu), and $\hat p$ is the minimum of the last $N_d=\dwellN$ network outputs (12.5\,ms at 1600\,Hz). The AI-alone path exists because a fault below the 87T pickup produces no vote; the high-set element ($I_d>10$\,pu) trips without the network. In the final plant-A model $\theta_{AI}=\thrAi$ and $\theta_{solo}=\thrSolo$.
+where $v$ is the any-phase vote of a dual-slope 87T (pickup \pickup\,pu, slopes \slopeOne\,\% and \slopeTwo\,\%, breakpoint \breakpoint\,pu), $\hat p$ is the minimum of the last $N_d=\dwell$ classifier scores (\dwellMs\,ms at \fs\,Hz), and the high-set element trips above \highset\,pu without the classifier. The gated path lets the classifier veto 87T operations on inrush, over-excitation and CT saturation; the classifier-alone path exists because a fault below the 87T pickup produces no vote. The same per-unit settings are used on both plants.
 
-\subsection{Thresholds}
-Both thresholds are chosen by a plateau rule on the validation traces of each model: the lowest threshold in the longest range over which validation dependability and security stay within fixed tolerances of their maximum. No test or OOD trace is used.
+\textbf{Thresholds.} For every model, $\theta_{AI}$ and $\theta_{solo}$ are chosen on its validation traces by a plateau rule: among grid thresholds whose validation dependability and security are within \depTol{} and \secTol{} points of their maxima, the rule takes the longest contiguous run and returns its centre in logit space. If no threshold on the solo grid meets the rule, the classifier-alone path stays off. In the final plant-A model of the deployed instance $\theta_{AI}=\thrAi$ and $\theta_{solo}=\thrSolo$.
 
-\section{Evaluation protocol}
+\textbf{Deployed instance.} The instance used in the Simulink closed loop is an LSTM \citep{hochreiter1997} with \layers{} layers of \hidden{} units, layer normalisation, additive attention over \seq{} time steps and a two-layer output head (\nParams{} parameters). Its input is \seq{} steps of \nFeat{} features of the plant-compensated per-unit differential current: per phase, the energies of a two-level Daubechies-4 decomposition \citep{mallat1989} of a \winMs\,ms window and the second-harmonic ratio. Its architecture was chosen in an earlier study on older data, outside the protocol below; the other instances were configured inside it.
+
+%% ============================================================================================ 5
+\section{Benchmark protocol}
 \label{sec:protocol}
-\textbf{Splits.} Folds are stratified by scenario and contain whole traces (not windows); duplicate traces are removed by waveform fingerprint. Five folds are repeated with three seeds, giving \cvNfold{} fold-models; within each training set 15\,\% of the traces are held out for threshold tuning.
-\textbf{Labels.} The fault label starts at the fault inception time of the generator (verified against the simulated waveform) plus eight samples; healthy traces are negative throughout. A trip before inception counts as a pre-fault trip and as a miss.
-\textbf{Undetectable faults.} Faults whose rise of the compensated differential after inception is below 0.05\,pu are not part of the headline dependability; they are reported separately.
-\textbf{OOD.} The final model (trained on all main-set traces except its validation share) scores the OOD set once.
-\textbf{Baselines.} The unrestrained 87T, a harmonic-restrained 87T with per-phase 2nd/5th-harmonic restraint (15\,\% and 35\,\%), and five literature classifiers (SVM, ANN, random forest, 1D-CNN, GRU on the same wavelet features), trained on the same folds with the same dwell filter and high-set element.
-\textbf{Statistics.} Paired McNemar tests \citep{mcnemar1947,dietterich1998} (continuity correction) on traces matched by identity, and Wilson 95\,\% intervals \citep{wilson1927}. Dependability is computed over fault traces and security over healthy traces.
-\textbf{Closed loop.} Selected traces are replayed in the Simulink model with the network active; the decisions and trip times are compared with the Python mirror of the relay.
+\textbf{Splits and labels.} Folds are stratified by scenario and contain whole traces, never windows; \nFolds{} folds are repeated with \nSeeds{} seeds (\nFoldModels{} fold-models per method), and every method uses identical folds. Within each training set, \valShare\,\% of the traces are held out; they serve both early stopping and threshold tuning, a mild optimism on validation shared by every learned model. The fault label starts at the applied fault time, verified on the waveform by the generator check; healthy traces are negative throughout. A trip before the fault counts as a miss. Faults whose compensated differential current rises by less than \minFaultPu\,pu are reported separately and excluded from dependability. Dependability is the share of detectable fault traces tripped, security the share of healthy traces not tripped.
 
+\textbf{Reproduced methods.} Six methods were re-implemented from written specifications and trained on our data at each paper's sampling rate: Sim\~oes et al.\ \citep{simoes2021}, Ngaopitakkul and Kunakorn \citep{ngaopitakkul2006}% TODO: ngaopitakkul2006 is unverified (not in Crossref); check against the PDF
+, Abdusalam et al.\ \citep{abdusalam2022}, Afrasiabi et al.\ \citep{afrasiabi2020} with the CT compensation stage of Hajipour et al.\ \citep{hajipour2015}, Key et al.\ \citep{key2025} and Alhamd et al.\ \citep{alhamd2024}. Each is scored in its \emph{native} mode (the paper's own decision rule) and in a \emph{like-for-like} mode (the same classifier with the relay's dwell, a validation-tuned threshold and the high-set element). Details that the papers leave open were fixed in writing before the code was run; specifications, amendments and sanity checks are in Supplementary Section~S2.
+
+\textbf{Same-feature classifiers.} SVM, random forest, MLP, 1D-CNN, GRU and LSTM on the same \nFeat{} features are evaluated standalone and inside the logic, once with default configurations (B1) and once tuned with an equal budget (B2): \drawn{} configurations drawn per model (\uniqLo--\uniqHi{} unique; LSTM \uniqLstm), at most \epochs{} epochs with patience \patience{} (about \epochsUsed{} used). The B2 search used validation traces of seed~1, folds~1--3, which are test traces of other fold-models, so it is not nested; SVM and random forest were fitted on \subSvm{} and \subRf{} subsampled windows; B2 used window stride \strideBtwo{}, the deployed LSTM stride \strideDep. The budget is therefore equal in configurations and epochs, not in data, and the like-for-like reference for B2 is the tuned LSTM.
+
+\textbf{Conventional relays.} The unrestrained dual-slope 87T; a per-phase harmonic-restrained 87T with textbook settings (pickup \pickup\,pu, second harmonic \kTwo\,\%, fifth harmonic \kFive\,\%); and the same relay tuned per fold on validation traces over a grid of pickup, $k_2$ and $k_5$ with the plateau rule.
+
+\textbf{Shifted range and transfer.} Each final model is trained on all plant-A main traces except its validation share and scores the shifted-range set once. On plant~B, the plant-A model is applied with its thresholds frozen (zero-shot); plant-B outcomes are never used to choose a setting.
+
+\textbf{Statistics.} Because the \nSeeds{} CV repetitions reuse the same traces, a pooled McNemar test would count each trace up to \nSeeds{} times. All reported significance therefore comes from a trace-clustered sign-flip permutation test: the per-trace difference between two methods (correct minus correct) is averaged over the repetitions, and its mean is compared with \permDraws{} random sign flips \citep{dietterich1998,demsar2006}. The test unit is the trace. $p$-values are Holm-adjusted \citep{holm1979} within the families stated in each table note ($p_{\mathrm{H}}$). Decision rules were fixed in a dated plan before each analysis. Analyses that were added after earlier results had been seen (the instance-versus-tuned-harmonic family, the comparisons with the deployed instance in B2, the gated-only ablation and the latency re-measurement of one reproduction) are labelled post-hoc wherever they are reported.
+
+\textbf{AI-assisted code and analysis.} The evaluation code, the reproduction modules, the statistics scripts, the table and figure generators and an independent audit of the results were written with an AI coding assistant (\placeholder{tool name, version and developer}). The assistant worked on the repository under written project rules: numbers enter the manuscript only through scripts that read saved result files; protocol and thresholds may not be changed after results are seen; every literature reference must resolve to a publisher record. The author specified the experiments, reviewed the code, the generated tables and the dated plan, and ran the simulations and trainings. All prompts, plans and logs are kept in the repository (\placeholder{confirm what is published}).
+
+%% ============================================================================================ 6
 \section{Results}
 \label{sec:results}
-\subsection{Plant A: ablation}
-\input{generated/table_6_1_ablation.tex}
-Pooled over \cvNfold{} fold-models, the relay with the AI-alone path reaches \cvHybDep\,\% dependability and \cvHybSec\,\% security (\cvHybMissed{} missed faults, \cvHybFalse{} false trips); the standard deviation over fold-models is \cvHybDepSD{} and \cvHybSecSD{} points. Without the AI-alone path the 87T-gated relay reaches \cvGateDep\,\% and \cvGateSec\,\%; the network alone reaches \cvLstmDep\,\% and \cvLstmSec\,\% with \cvLstmFalse{} false trips. The unrestrained 87T reaches \cvTaDep\,\% and \cvTaSec\,\%; its false trips are inrush and over-excitation, as expected without harmonic restraint.
+\subsection{Six reproduced methods}
+\input{generated/paper/table_A_reproductions.tex}
+In their native modes the six methods span a wide range of operating points (Table~\ref{tab:pA_reproductions}, Fig.~\ref{fig:points}). The most dependable, Key et al.\ (\depKeyN\,\% / \secKeyN\,\%) and Alhamd et al.\ (\depAlhN\,\% / \secAlhN\,\%), trip on many healthy traces, and the most secure, Abdusalam et al.\ (\depAbdN\,\% / \secAbdN\,\%), misses many faults. \nNatMeet{} of the six reaches \critDep\,\% dependability and \critSec\,\% security together (the joint criterion of the dated plan). The like-for-like mode changes this: Key's classifier with the relay's dwell, threshold and high-set reaches \depKeyL\,\% / \secKeyL\,\%, and Alhamd's \depAlhL\,\% / \secAlhL\,\%; \nLflMeet{} reproduction (\lflMeetNames) meets the joint criterion in this mode. Much of the gap between published methods and a protection relay is therefore in the decision rule, not in the classifier. Two reproductions are tested off their design point: the lumped plants carry little energy above \hfLimit\,kHz, which limits the high-frequency detectors of Sim\~oes et al.\ and Ngaopitakkul and Kunakorn, and the latter's detector fails its own sanity check once measurement noise is present.
 
-\subsection{Baselines and statistics}
-The per-phase harmonic-restrained 87T reaches \cvHarmDep\,\% dependability and \cvHarmSec\,\% security on the same traces. In the first repetition, which the paired test uses, the relay reaches \mcPDepProp\,\% dependability and \mcPSecProp\,\% security against \mcPDepBase\,\% and \mcPSecBase\,\% for the harmonic 87T. Against it the relay is better on dependability (\mcPDepWins{} traces correct only for the relay, \mcPDepLoss{} only for the harmonic 87T, $p=\mcPDepP$) and not different on security (\mcPSecWins{} against \mcPSecLoss{}, $p=\mcPSecP$). Against the unrestrained 87T both differences are significant (dependability $p=\mcUDepP$, security $p=\mcUSecP$).
-\input{generated/table_6_3_statistical_tests.tex}
-Table~\ref{tab:lit} places the five literature classifiers beside the relay. Used as direct-trip classifiers they reach 97--98\,\% dependability and 96--97\,\% security; placed in the dual-path relay, all of them reach 92--94\,\% dependability and 98--99\,\% security. The differences between the learned models inside the relay are small; the difference between the two operating modes is larger than the difference between models.
-\begin{table}[t]\centering\small
-\caption{Literature classifiers and the proposed network on the same folds (first repetition), as direct trip and inside the dual-path relay.}\label{tab:lit}
-\resizebox{\textwidth}{!}{\input{generated/table_lit_paper.tex}}
-\end{table}
+\subsection{Conventional relays}
+\input{generated/paper/table_C_conventional.tex}
+Tuning the harmonic 87T on validation traces raises its dependability from \depHb\,\% to \depHt\,\% at \secHt\,\% security (Table~\ref{tab:pC_conventional}). The deployed LSTM instance is \gapTuned{} points more dependable ($\gapTunedP$; the per-seed lead ranges from \gapSeedLo{} to \gapSeedHi{} points) and not different in security ($\tunedSecP$). Against the textbook settings its lead is \gapTextbook{} points. The tuned settings sit at the edge of the grid in every fold-model, so a wider grid might narrow the gap further.
 
-\subsection{Categories}
-\input{generated/table_6_2_categories.tex}
-The weakest categories of the relay are internal high-impedance faults (\catHiz\,\% correct), external faults during inrush (\catExtInrush\,\%) and switch-on-to-fault (\catSotf\,\%); internal solid faults on the LV side are \catLvSolid\,\%.
+\subsection{Instances of the logic}
+\input{generated/paper/table_D_instances.tex}
+\begin{figure}[t]\centering
+\includegraphics[width=\textwidth]{figures/fig_operating_points.pdf}
+\caption{Dependability versus security on the plant-A CV (common set) for all reproductions (native and like-for-like), conventional relays, instances of the dual-path logic and the ablations. Right: zoom on the region of the conventional relays and the instances.}\label{fig:points}
+\end{figure}
+Inside the same logic, the \nInst{} instances reach \instDepLo--\instDepHi\,\% dependability and \instSecLo--\instSecHi\,\% security (Table~\ref{tab:pD_instances}). All of them are significantly more dependable than the tuned harmonic 87T, by \gainLo--\gainHi{} points ($p_{\mathrm{H}}\le\gainPmax$, post-hoc), with security differences from \secDiffLo{} to \secDiffHi{} points; only Key's network is significantly more secure, and none is significantly less secure. The deployed LSTM is the least dependable of the good instances; it is kept because it is the instance of the Simulink closed loop. Only the kernel SVM (\depSvm\,\% / \secSvm\,\%) falls clearly outside the cluster.
 
-\subsection{Out-of-distribution}
-\input{generated/table_6_4_ood.tex}
-On the \oodN{} OOD traces (scored once) the relay reaches \oodDep\,\% dependability and \oodSec\,\% security (\oodMissed{} missed faults, \oodFalse{} false trips); the weakest block for security is over-excitation (\oodBlockDSec\,\%).
+\subsection{Same features, different classifiers}
+\input{generated/paper/table_B_same_features.tex}
+With identical features and an equal search budget (Table~\ref{tab:pB_same_features}), the tuned CNN, GRU and MLP hybrids are more dependable than the tuned LSTM hybrid (\vsLtCnn, \vsLtGru{} and \vsLtMlp{} points; $\vsLtCnnP$, $\vsLtGruP$, $\vsLtMlpP$), and none differs significantly in security. Tuning the LSTM does not change it ($\ltVsDep$ points, $\ltVsDepP$). The ranking of classifiers inside the logic is therefore real but small next to the change from standalone to hybrid mode, which costs every classifier several points of dependability and raises its security.
 
-\subsection{Plant B}
-\input{generated/table_6_8_plant_b_generalization.tex}
-The model trained on plant~A, applied to plant~B without retraining and with its thresholds frozen, reaches \zsPropDep\,\% dependability and \zsPropSec\,\% security (\zsPropFalse{} false trips among \zsNhealthy{} healthy traces); the harmonic 87T reaches \zsHarmDep\,\% and \zsHarmSec\,\% (\zsHarmFalse{} false trips). A trip-path analysis shows that \tpFalseSolo{} of the \tpFalseAll{} false trips come first through the AI-alone path, mostly on external faults with CT saturation (\tpFalseExt{} traces); without that path the zero-shot relay reaches \tpNoSoloDep\,\% and \tpNoSoloSec\,\%. Training on both plants gives \cpDep\,\% and \cpSec\,\% (plant~A subset \cpADep\,\%/\cpASec\,\%, plant~B subset \cpBDep\,\%/\cpBSec\,\%). Trained on plant~A and tested on plant~B: \looABDep\,\%/\looABSec\,\%; trained on plant~B and tested on plant~A: \looBADep\,\%/\looBASec\,\%.
+\subsection{Categories and high-impedance faults}
+\begin{figure}[t]\centering
+\includegraphics[width=\textwidth]{figures/fig_categories.pdf}
+\caption{Correct decisions per scenario category (plant-A CV, common set, pooled over seeds): dependability for fault categories, security for the others.}\label{fig:categories}
+\end{figure}
+Most categories are close to ceiling for all relays (Fig.~\ref{fig:categories}). The exception is the high-impedance internal fault ($n=\hizN$ traces): \hizDep\,\% for the deployed instance, \hizTuned\,\% for the tuned harmonic 87T and \hizTextbook\,\% for the textbook settings; on the other internal faults the two are \otherDep\,\% and \otherTuned\,\%. The instances detect \hizInstLo--\hizInstHi\,\% of them, so a large share is missed by every relay, consistent with the known blind spot of percentage differential protection for low-level faults \citep{farzin2019,farzin2020,mieske2025}. Switch-on-to-fault and external faults during inrush are the next weakest categories.
+
+\subsection{Operate time}
+\input{generated/paper/table_E_operate.tex}
+\begin{figure}[t]\centering
+\includegraphics[width=0.62\textwidth]{figures/fig_operate_ecdf.pdf}
+\caption{Empirical distribution of the operate time of correctly tripped faults (plant-A CV, common set).}\label{fig:ecdf}
+\end{figure}
+The deployed instance trips with a median of \opMedDep\,ms (90th percentile \opPnDep\,ms), the textbook harmonic 87T with \opMedHb\,ms (\opPnHb\,ms) and the unrestrained 87T with \opMedTa\,ms (Table~\ref{tab:pE_operate}, Fig.~\ref{fig:ecdf}). The \dwellMs\,ms dwell sets a floor for every instance. Key's network is slower inside the logic (median \opMedKeyH\,ms) than in its native mode (\opMedKeyN\,ms). The deployed instance is slower than the harmonic relay on faults during inrush (median \opInrushDep\,ms against \opInrushHb\,ms) and on high-impedance faults (\opHizDep\,ms against \opHizHb\,ms). Operate times are reported as measured from the applied fault time; no limit from a standard is claimed \citep{iec60255187}.
+
+\subsection{Shifted range and transfer to plant B}
+\begin{figure}[t]\centering
+\includegraphics[width=0.75\textwidth]{figures/fig_plantb_paths.pdf}
+\caption{Plant-B zero-shot transfer: the path that tripped first, for false trips (left) and fault trips (right), deployed LSTM instance and Key's network inside the same logic.}\label{fig:plantb}
+\end{figure}
+On the shifted-range set the deployed instance reaches \oodDepDep\,\% / \oodSecDep\,\% and Key's network \oodDepKey\,\% / \oodSecKey\,\% (single scoring, Table~\ref{tab:pD_instances}). On plant~B the two diverge: the deployed instance keeps \bDepDep\,\% dependability but its security drops to \bSecDep\,\% (\bFt{} false trips among \bHealthy{} healthy traces), while Key's network reaches \bDepKey\,\% / \bSecKey\,\% (\bFtKey{} false trip among \bHealthyKey). \bFtSolo{} of the \bFt{} false trips of the deployed instance came first through the classifier-alone path, \bFtExtCt{} of them on external faults with CT saturation (Fig.~\ref{fig:plantb}). With that path off, the same traces give \bDepNoSolo\,\% / \bSecNoSolo\,\%. The textbook harmonic 87T reaches \bDepHb\,\% / \bSecHb\,\% on plant~B. Transfer is thus a property of the classifier, and the classifier-alone path is where a poorly transferring classifier does harm.
 
 \subsection{Closed loop and execution time}
-\input{generated/table_6_5_closed_loop.tex}
-In the Simulink closed loop, \clAgree{} of \clTotal{} decisions agree with the Python mirror; the median absolute trip-time difference is \clDtMed\,ms (maximum \clDtMax\,ms). Against the ground truth Simulink is correct on \clSimOk{} of \clTotal{} traces; \clNfail{} traces fail the combined decision-and-30\,ms check. The 12-case suite on plant~B passes \clBPass{} of \clBTotal{}.
-\input{generated/table_6_6_latency.tex}
-The feature extraction and network take a median of \latOnnxMed\,$\mu$s with ONNX Runtime and \latCMed\,$\mu$s in hand-written ANSI C (99th percentile \latCPnn\,$\mu$s) on a development PC, against a sample period of \latPeriod\,$\mu$s. These figures are not measurements on a relay processor.
+In the Simulink closed loop, the relay with the deployed instance agreed with the offline mirror on \clAgree{} of \clTotal{} traces (maximum trip-time difference \clDtMax\,ms over \clCommonTrips{} common trips) and was correct on \clSimOk{}; \clPass{} of \clPassN{} cases met the combined decision and \clLimitMs\,ms check, and the plant-B suite passed \clBPass{} of \clBTotal. Feature extraction and inference take a median of \latOnnx\,$\mu$s with ONNX Runtime and \latC\,$\mu$s in ANSI C (99th percentile \latCPnn\,$\mu$s) against a \period\,$\mu$s sample period on a development PC; these are not relay-processor measurements. Among the reproductions, the feature stage of Abdusalam et al.\ needs \latAbd\,ms per window against a \latAbdBudget\,ms budget, and Alhamd's trained network \latAlh\,$\mu$s against \latAlhBudget\,$\mu$s.
 
-\subsection{A design variant tested afterwards}
-Using the per-phase harmonic-restrained 87T as the gate of the relay (decided after the results above; protocol fixed before the run) gives \eOneDep\,\% dependability and \eOneSec\,\% security in cross-validation (dependability: \eOneDepWins{} against \eOneDepLoss{} discordant traces, $p=\eOneDepP$), \eOneOodSec\,\% security on the OOD set, and no change in the zero-shot false trips. The variant is not adopted.
+%% ============================================================================================ 7
+\section{Discussion}
+\label{sec:discussion}
+\textbf{What ``model-agnostic'' means here.} The supervisory layer (dwell, validation-tuned threshold, high-set, optional 87T gate) gives a similar operating point with \nClsGood{} of \nClsAll{} classifiers. The 87T gate itself is not what makes a classifier secure. For the poorly calibrated deployed LSTM, the gate raises security from \secAlone\,\% (classifier alone, same dwell and threshold rule) to \secDep\,\% at a cost of dependability (\depAlone\,\% to \depDep\,\%). For Key's network, which is well calibrated, the like-for-like mode without the gate already reaches \depKeyL\,\% / \secKeyL\,\%, and the gate moves it to \depKeyH\,\% / \secKeyH\,\%: \keyGateCost{} points of dependability for \keyGateSec{} points of security. The gate is therefore a guard against a classifier one cannot trust, not an improvement of a good one.
 
+\textbf{The classifier-alone path is an option, not a default.} It adds \gatedDepLoss{} points of dependability on plant~A at a cost of \gatedSecGain{} points of security, mainly on faults below the 87T pickup. On the unseen plant it caused almost all false trips of the deployed instance, and the plateau rule already switched it off in \soloOff{} of \nFoldModels{} CV fold-models (AI threshold \aiMin--\aiMax). A utility applying the logic to a transformer it was not trained on should run the gated-only variant until the classifier has been retrained or validated on that transformer; with a classifier that transfers (Key's network) the path did little harm.
+
+\textbf{The conventional baseline.} The tuned harmonic 87T is a stronger baseline than textbook settings, and the deployed instance's dependability lead over it is small and varies across seeds. Its grid optimum lies at the grid boundary, and cross-blocking or waveform-based restraint were not evaluated, so the lead of the learned instances over a fully optimised numerical relay may be smaller than reported here.
+
+\textbf{Benchmark lessons.} Native and like-for-like scores of the same classifier differ by tens of points for some reproductions, so a comparison of published accuracies says little about the classifiers. The neural reproductions of Key and Afrasiabi were not bit-reproducible: their first and second runs on identical folds differ on \runDiffKey{} and \runDiffAfr{} of \runKeysKey{} decisions; the tables use the second run.
+
+%% ============================================================================================ 8
 \section{Limitations}
 \label{sec:limits}
-The study is a simulation of two transformers with terminal faults; there is no hardware-in-the-loop test, no field data, no inter-turn faults and no CT remanence. Internal high-impedance faults are detected in \catHiz\,\% of traces. The model does not transfer to a different transformer without retraining. The relay's dependability is lower than that of the standalone networks and higher than that of the harmonic-restrained 87T; its security is equal to the latter's within the statistical resolution. Two plant~B physics criteria are not met (Section~\ref{sec:data}). The execution times are those of a development PC. Block-decomposition and Clarke-wavelet detectors \tc{} were not implemented and are not compared.
+The study is a simulation of two lumped transformer models with terminal faults; there is no hardware-in-the-loop or field test, no turn-to-turn fault, no winding capacitance, no CT remanence \citep{ieeec37110} and no sympathetic inrush \citep{bronzeado1995,rudez2016}. Plant~B fails \critBFail{} of its \critBN{} physics criteria. No relay detects more than \hizInstHi\,\% of the high-impedance internal faults. Several analyses are post-hoc (Section~\ref{sec:protocol}); the B2 search is not nested and gives SVM and random forest fewer training windows. The tuned harmonic 87T and the B2 instances were evaluated in CV only. Execution times come from a development PC. The reproductions are re-implementations trained on our data, not the authors' code, and those of Sim\~oes et al.\ and Ngaopitakkul and Kunakorn run off their design point on these plants.
 
-\section{Conclusion}
-On a plant whose CTs are linear at nominal burden, a wavelet-feature LSTM used as a dual-path supervisor of the 87T matches the security of a per-phase harmonic-restrained 87T and raises dependability from \cvHarmDep\,\% to \cvHybDep\,\% on the same cross-validation traces, mainly on faults below the 87T pickup. It needs training on the protected plant or on a pool of plants. The evaluation protocol, the plant checks and the generators are in the repository.
+%% ============================================================================================ 9
+\section{Conclusions}
+\label{sec:conclusion}
+\begin{enumerate}
+\item On a leak-free benchmark, the decision rule of a learned 87T scheme matters as much as its classifier: \nNatMeet{} of six reproduced methods meets \critDep\,\% dependability and \critSec\,\% security in its native mode, and \nLflMeet{} in the like-for-like mode.
+\item A dual-path supervisory logic reaches a similar operating point with \nClsGood{} of \nClsAll{} classifiers, and each of them is more dependable than a validation-tuned harmonic-restrained 87T by \gainLo--\gainHi{} points at comparable security.
+\item Transfer to an unseen transformer depends on the classifier, and the classifier-alone path is the weak point under transfer; the gated-only variant is the safe choice for an untrained plant.
+\item High-impedance internal faults remain the limit of all relays tested.
+\end{enumerate}
+The benchmark (folds, per-trace decisions, specifications and generators) is public, so further learned 87T schemes can be compared on the same terms.
 
 \section*{Data and code availability}
-Generators, models, evaluation code and logs: \url{https://github.com/SS-Abeer13/Hybrid-DWT-LSTM-Transformer-Relay}. Datasets and trained models are not stored in the repository because of their size and are regenerated by the scripts listed in its README.
+The Simulink plant models, data generators, evaluation code, reproduction specifications, per-trace decisions of every method and the scripts that build every table and figure are available at \url{https://github.com/SS-Abeer13/Hybrid-DWT-LSTM-Transformer-Relay} (\placeholder{release tag and commit}). The simulated datasets and trained models are \placeholder{deposited at a DOI, or available on request because of their size; they can be regenerated with the listed scripts in MATLAB/Simulink release and toolboxes to be stated}. All statistics and tables can be recomputed from the per-trace result files without MATLAB. No field data were used.
 
-\section*{Declarations}
-Funding, competing interests, CRediT author statement and use of AI tools: to be completed by the authors.
+\section*{CRediT authorship contribution statement}
+\placeholder{CRediT roles for each author}
 
-\bibliographystyle{elsarticle-harv}
+\section*{Funding}
+\placeholder{funding sources, or ``This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.''}
+
+\section*{Declaration of competing interest}
+\placeholder{competing-interest statement}
+
+\section*{Acknowledgements}
+\placeholder{acknowledgements, if any}
+
+\section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+\placeholder{the author's own declaration: tool, purpose, and that the authors reviewed and edited the output and take full responsibility (Elsevier policy). Research use of the AI coding assistant is described in Section~\ref{sec:protocol}.}
+
+\bibliographystyle{elsarticle-num}
 \bibliography{refs}
 \end{document}

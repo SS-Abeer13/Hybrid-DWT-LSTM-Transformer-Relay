@@ -59,7 +59,7 @@ NAMES = {"key": "Key et al.", "alhamd": "Alhamd et al.", "abdusalam_ba_svm": "Ab
 by_dep = sorted(dep, key=lambda k: -dep[k])
 most_secure = max(sec, key=lambda k: sec[k])
 
-# pre-registered joint criterion (BENCHMARK_FAIRNESS_PLAN.md, 2026-11-04 00:10, decision 2): >= 93 % dependability and >= 98.8 % security
+# joint criterion fixed in the dated plan (BENCHMARK_FAIRNESS_PLAN.md, 2026-11-04 00:10, decision 2): >= 93 % dependability and >= 98.8 % security
 f_plan = ROOT / "BENCHMARK_FAIRNESS_PLAN.md"
 crit = re.search(r"only family of methods with ≥ (\d+) % dependability and ≥ ([\d.]+) % security", f_plan.read_text(encoding="utf-8"))
 c_dep, c_sec = float(crit.group(1)), float(crit.group(2))
@@ -95,36 +95,38 @@ svm = {t["metric"]: t["other_pct"] for t in jload(f_b2) if t["test"].startswith(
 
 # ------------------------------------------------------------------------------------------------ abstract (approved wording)
 title = "A model-agnostic dual-path supervisory logic for transformer differential protection, evaluated with a leak-free benchmark of six reproduced methods"
-inst_names = "1D-CNN, GRU, ANN, Key's network, RF, LSTM"
+inst_names = "1D-CNN, GRU, MLP, Key's network, random forest, LSTM"
+W = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+f_clu = ROOT / "audit" / "scripts" / "out" / "clustered_sensitivity.json"
+clu8 = {t["label"]: t for t in jload(f_clu)["N8a (Holm 16)"]}
+clu_dep_max = max(t["holm_clust"] for lab, t in clu8.items() if lab.endswith("dependability"))
+assert clu_dep_max < 0.05, "a dependability gain is not significant under the clustered test"
 A = (
-    "Published learning-based transformer differential relays are rarely compared under the same data, folds and decision logic. "
+    "Learning-based transformer differential relays are rarely compared under the same data, folds and decision logic. "
     f"We evaluate on simulated {num(mva_A, 'd', 'plant A rating', f_plA, ' MVA')} and {num(mva_B, 'd', 'plant B rating', f_plB, ' MVA')} plants with trace-grouped cross-validation "
     f"({num(n_seeds, 'd', 'number of seeds', 'lstm_models/baselines/cv.py (cv.SEEDS)')} seeds x {num(n_folds, 'd', 'folds per seed', rel(BASE / 'key') + '/rows_seed*_fold*.json (file count)')} folds, "
-    f"{num(n_traces, ',d', 'plant-A common-set traces (kept minus missing 20 kHz re-simulation)', f_miss)} traces) and re-implement "
-    f"{['zero','one','two','three','four','five','six','seven'][n_methods]} published methods, trained on our data at each paper's own sampling rate. "
-    f"Natively, none of the {['zero','one','two','three','four','five','six','seven'][n_methods]} reaches {num(c_dep, '.0f', 'joint criterion, dependability (pre-registered)', f_plan, ' %')} dependability and "
-    f"{num(c_sec, '.1f', 'joint criterion, security (pre-registered)', f_plan, ' %')} security together: the two most dependable ({NAMES[by_dep[0]]}, {NAMES[by_dep[1]]}) reach "
-    f"{num(dep[by_dep[0]], '.1f', f'{by_dep[0]} native CV dependability', f_n5, ' %')} and {num(dep[by_dep[1]], '.1f', f'{by_dep[1]} native CV dependability', f_n5, ' %')} at only "
-    f"{num(sec[by_dep[0]], '.1f', f'{by_dep[0]} native CV security', f_n5, ' %')} and {num(sec[by_dep[1]], '.1f', f'{by_dep[1]} native CV security', f_n5, ' %')} security, "
-    f"and the most secure ({NAMES[most_secure]}) reaches {num(dep[most_secure], '.1f', f'{most_secure} native CV dependability', f_n5, ' %')} dependability. "
-    "We then study a dual-path supervisory logic (87T vote, confirmed classifier output, AI-alone path, high-set) with interchangeable classifiers. "
-    f"In hybrid mode, {['zero','one','two','three','four','five','six','seven'][n_inst]} instances ({inst_names}; equal {num(drawn, 'd', 'configurations drawn per model (B2)', f_uniq)}-configuration search, equal training budget) give "
+    f"{num(n_traces, ',d', 'plant-A common-set traces (kept minus missing 20 kHz re-simulation)', f_miss)} traces) and re-implement {W[n_methods]} published methods at their own sampling rates. "
+    f"Natively, none reaches {num(c_dep, '.0f', 'joint criterion, dependability (decision rule fixed in the dated plan)', f_plan, ' %')} dependability and "
+    f"{num(c_sec, '.1f', 'joint criterion, security (decision rule fixed in the dated plan)', f_plan, ' %')} security together: the two most dependable reach "
+    f"{num(dep[by_dep[0]], '.1f', f'{by_dep[0]} native CV dependability', f_n5, ' %')} and {num(dep[by_dep[1]], '.1f', f'{by_dep[1]} native CV dependability', f_n5, ' %')} at "
+    f"{num(sec[by_dep[0]], '.1f', f'{by_dep[0]} native CV security', f_n5, ' %')} and {num(sec[by_dep[1]], '.1f', f'{by_dep[1]} native CV security', f_n5, ' %')} security. "
+    "We then study a dual-path supervisory logic (an 87T vote gating a confirmed classifier output, a high-confidence classifier-alone path and a high-set element) with interchangeable classifiers. "
+    f"With an equal search and epoch budget, {W[n_inst]} instances ({inst_names}) reach "
     f"{num(min(t['instance_pct'] for t in d8), '.1f', 'lowest instance dependability (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in d8), '.1f', 'highest instance dependability (hybrid, CV)', f_n8, ' %')} dependability and "
-    f"{num(min(t['instance_pct'] for t in s8), '.1f', 'lowest instance security (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in s8), '.1f', 'highest instance security (hybrid, CV)', f_n8, ' %')} security, "
-    f"and the deployed LSTM instance used in our Simulink closed loop gives {num(deployed['dependability'], '.1f', 'deployed hybrid CV dependability', f_n5, ' %')} and "
+    f"{num(min(t['instance_pct'] for t in s8), '.1f', 'lowest instance security (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in s8), '.1f', 'highest instance security (hybrid, CV)', f_n8, ' %')} security; "
+    f"the deployed LSTM instance of our Simulink closed loop reaches {num(deployed['dependability'], '.1f', 'deployed hybrid CV dependability', f_n5, ' %')} and "
     f"{num(deployed['security'], '.1f', 'deployed hybrid CV security', f_n5, ' %')}. "
-    f"All {['zero','one','two','three','four','five','six','seven'][n_inst]} are significantly more dependable than a validation-tuned harmonic-restrained 87T "
+    f"All {W[n_inst]} are more dependable than a validation-tuned harmonic-restrained 87T "
     f"({num(th_dep, '.1f', 'tuned harmonic 87T CV dependability', f_n8, ' %')} / {num(th_sec, '.1f', 'tuned harmonic 87T CV security', f_n8, ' %')}) by "
-    f"{num(min(t['diff_pt'] for t in d8), '.1f', 'smallest instance minus tuned-harmonic dependability difference', f_n8)}-{num(max(t['diff_pt'] for t in d8), '.1f', 'largest instance minus tuned-harmonic dependability difference', f_n8)} percentage points "
-    f"(Holm-corrected, post-hoc), with security within {num(min(t['diff_pt'] for t in s8), '+.1f', 'smallest security difference', f_n8)} to {num(max(t['diff_pt'] for t in s8), '+.1f', 'largest security difference', f_n8)} points. "
-    f"Transfer to an unseen plant depends on the classifier: zero-shot security on the {num(mva_B, 'd', 'plant B rating', f_plB, ' MVA')} plant is "
+    f"{num(min(t['diff_pt'] for t in d8), '.1f', 'smallest instance minus tuned-harmonic dependability difference', f_n8)}-{num(max(t['diff_pt'] for t in d8), '.1f', 'largest instance minus tuned-harmonic dependability difference', f_n8)} points "
+    f"(post-hoc, trace-clustered test, Holm-adjusted), with security within {num(min(t['diff_pt'] for t in s8), '+.1f', 'smallest security difference', f_n8)} to {num(max(t['diff_pt'] for t in s8), '+.1f', 'largest security difference', f_n8)} points. "
+    f"Transfer to the unseen plant depends on the classifier: zero-shot security is "
     f"{num(kb_sec, '.1f', 'Key hybrid plant-B zero-shot security', f_kb, ' %')} with Key's network but {num(zs['security_pct'], '.1f', 'deployed hybrid plant-B zero-shot security', f_zs, ' %')} with the deployed LSTM, "
-    f"whose AI-alone path caused {num(tpc['false_trip_first_path']['solo'], 'd', 'plant-B false trips first fired by the AI-alone path', f_tpc)} of "
+    f"whose classifier-alone path caused {num(tpc['false_trip_first_path']['solo'], 'd', 'plant-B false trips first fired by the AI-alone path', f_tpc)} of "
     f"{num(tpc['variants']['Proposed as evaluated (high-set + gate + solo)']['false_trips'], 'd', 'plant-B false trips, deployed hybrid', f_tpc)} false trips. "
-    f"High-impedance faults remain the limit: about {num(float(hiz.group(2)), '.0f', 'Internal_HiZ dependability, deployed hybrid (CV)', f_n6t, ' %')} dependability for the hybrid and "
+    f"High-impedance internal faults remain a limit: about {num(float(hiz.group(2)), '.0f', 'Internal_HiZ dependability, deployed hybrid (CV)', f_n6t, ' %')} dependability for the hybrid and "
     f"{num(float(hiz.group(3)), '.0f', 'Internal_HiZ dependability, tuned harmonic 87T (CV)', f_n6t, ' %')} for the tuned conventional relay. "
-    f"Only a kernel SVM is clearly worse ({num(svm['dependability'], '.1f', 'SVM hybrid (tuned, B2) CV dependability', f_b2, ' %')} / {num(svm['security'], '.1f', 'SVM hybrid (tuned, B2) CV security', f_b2, ' %')}). "
-    "Among the other classifiers the choice is not decisive; the supervisory logic and the evaluation protocol are the contribution."
+    "The supervisory logic and the evaluation protocol, not the choice of classifier, are the contribution."
 )
 
 # ------------------------------------------------------------------------------------------------ checks
@@ -137,8 +139,20 @@ checks = [
     (f"Internal_HiZ limitation present (n = {hiz.group(1)})", "High-impedance" in A),
 ]
 words = len(A.split())
+checks.append((f"abstract has {words} words (EPSR limit 250)", words <= 250))
+TEX = ROOT / "paper_epsr" / "generated" / "abstract.tex"
+tex = A
+for o, n in ((" %", "\\,\\%"), (" x ", " $\\times$ "), (" MVA", "\\,MVA"), ("-", "--")):
+    tex = tex.replace(o, n)
+tex = tex.replace("trace--grouped", "trace-grouped").replace("high--set", "high-set").replace("classifier--alone", "classifier-alone").replace("validation--tuned", "validation-tuned") \
+         .replace("harmonic--restrained", "harmonic-restrained").replace("zero--shot", "zero-shot").replace("post--hoc", "post-hoc").replace("Holm--adjusted", "Holm-adjusted") \
+         .replace("High--impedance", "High-impedance").replace("high--confidence", "high-confidence").replace("Learning--based", "Learning-based").replace("trace--clustered", "trace-clustered") \
+         .replace("cross--validation", "cross-validation").replace("1D--CNN", "1D-CNN").replace("dual--path", "dual-path").replace("re--implement", "re-implement") \
+         .replace("--0.", "$-$0.").replace("to $-$", "to $-$")
+TEX.parent.mkdir(parents=True, exist_ok=True)
+TEX.write_text("% generated by tools/build_abstract_draft_n8b.py - do not edit\n" + tex + "\n", encoding="utf-8")
 
-L = ["# Abstract draft (D-N8b) — NOT final, not in main.tex", "",
+L = ["# Abstract (D-N8b, revised for paper-v1: <= 250 words, clustered test, equal search and epoch budget)", "",
      "Generated by `tools/build_abstract_draft_n8b.py`; do not edit by hand (re-run the script). Every number below is read from a saved result file; "
      "the map after the abstract lists each one with its source. Wording = `paper_epsr/abstract_draft_N8b.txt` (approved by the author, "
      "IMPLEMENTATION_PLAN.md entry 2026-11-04 00:13). The paper body is **not** rewritten until the author approves this file.", "",

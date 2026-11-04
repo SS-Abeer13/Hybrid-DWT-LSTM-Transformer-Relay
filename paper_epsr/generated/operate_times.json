@@ -1,0 +1,794 @@
+{
+ "Sim\u00f5es (native)": {
+  "group": "Reproduction (native)",
+  "All faults": {
+   "n": 2590,
+   "median_ms": 0.3906249999999778,
+   "p90_ms": 1.3281250000000133
+  },
+  "Solid LV / HV": {
+   "n": 1673,
+   "median_ms": 0.31250000000004885,
+   "p90_ms": 0.93749999999998
+  },
+  "CT saturation": {
+   "n": 221,
+   "median_ms": 0.46874999999996225,
+   "p90_ms": 0.6249999999999867
+  },
+  "In inrush": {
+   "n": 17,
+   "median_ms": 0.31249999999999334,
+   "p90_ms": 0.6250000000000311
+  },
+  "SOTF": {
+   "n": 184,
+   "median_ms": 0.3906249999999778,
+   "p90_ms": 1.3281249999999023
+  },
+  "High impedance": {
+   "n": 259,
+   "median_ms": 0.3906249999999778,
+   "p90_ms": 6.968750000000003
+  }
+ },
+ "Sim\u00f5es (like-for-like)": {
+  "group": "Reproduction (like-for-like)",
+  "All faults": {
+   "n": 2856,
+   "median_ms": 0.31250000000004885,
+   "p90_ms": 0.6249999999999867
+  },
+  "Solid LV / HV": {
+   "n": 1837,
+   "median_ms": 0.31249999999999334,
+   "p90_ms": 0.6249999999999867
+  },
+  "CT saturation": {
+   "n": 225,
+   "median_ms": 0.3906250000000888,
+   "p90_ms": 0.6249999999999867
+  },
+  "In inrush": {
+   "n": 5,
+   "median_ms": 0.5468750000000022,
+   "p90_ms": 0.5937500000000151
+  },
+  "SOTF": {
+   "n": 207,
+   "median_ms": 0.3906249999999778,
+   "p90_ms": 0.9531250000000004
+  },
+  "High impedance": {
+   "n": 342,
+   "median_ms": 0.31250000000004885,
+   "p90_ms": 0.6249999999999867
+  }
+ },
+ "Ngaopitakkul (native)": {
+  "group": "Reproduction (native)",
+  "All faults": {
+   "n": 1030,
+   "median_ms": 5.099999999999993,
+   "p90_ms": 65.25
+  },
+  "Solid LV / HV": {
+   "n": 689,
+   "median_ms": 5.099999999999993,
+   "p90_ms": 51.35000000000001
+  },
+  "CT saturation": {
+   "n": 0,
+   "median_ms": null,
+   "p90_ms": null
+  },
+  "In inrush": {
+   "n": 52,
+   "median_ms": 5.174999999999985,
+   "p90_ms": 674.0625
+  },
+  "SOTF": {
+   "n": 68,
+   "median_ms": 5.075000000000052,
+   "p90_ms": 5.325000000000024
+  },
+  "High impedance": {
+   "n": 84,
+   "median_ms": 5.02500000000003,
+   "p90_ms": 5.27500000000003
+  }
+ },
+ "Ngaopitakkul (like-for-like)": {
+  "group": "Reproduction (like-for-like)",
+  "All faults": {
+   "n": 1427,
+   "median_ms": 4.975000000000007,
+   "p90_ms": 9.625000000000007
+  },
+  "Solid LV / HV": {
+   "n": 1024,
+   "median_ms": 4.850000000000021,
+   "p90_ms": 6.249999999999978
+  },
+  "CT saturation": {
+   "n": 0,
+   "median_ms": null,
+   "p90_ms": null
+  },
+  "In inrush": {
+   "n": 57,
+   "median_ms": 5.174999999999985,
+   "p90_ms": 771.0
+  },
+  "SOTF": {
+   "n": 93,
+   "median_ms": 5.099999999999993,
+   "p90_ms": 515.0
+  },
+  "High impedance": {
+   "n": 103,
+   "median_ms": 5.025000000000002,
+   "p90_ms": 5.27500000000003
+  }
+ },
+ "Abdusalam (native)": {
+  "group": "Reproduction (native)",
+  "All faults": {
+   "n": 2839,
+   "median_ms": 21.05000000000001,
+   "p90_ms": 28.53000000000002
+  },
+  "Solid LV / HV": {
+   "n": 1849,
+   "median_ms": 21.074999999999953,
+   "p90_ms": 27.910000000000036
+  },
+  "CT saturation": {
+   "n": 328,
+   "median_ms": 23.650000000000006,
+   "p90_ms": 40.61750000000003
+  },
+  "In inrush": {
+   "n": 31,
+   "median_ms": 18.74999999999999,
+   "p90_ms": 21.249999999999993
+  },
+  "SOTF": {
+   "n": 157,
+   "median_ms": 21.075000000000067,
+   "p90_ms": 27.740000000000016
+  },
+  "High impedance": {
+   "n": 234,
+   "median_ms": 18.950000000000024,
+   "p90_ms": 21.525000000000016
+  }
+ },
+ "Abdusalam (like-for-like)": {
+  "group": "Reproduction (like-for-like)",
+  "All faults": {
+   "n": 2945,
+   "median_ms": 23.34999999999998,
+   "p90_ms": 29.39999999999998
+  },
+  "Solid LV / HV": {
+   "n": 1894,
+   "median_ms": 21.287500000000016,
+   "p90_ms": 29.242500000000017
+  },
+  "CT saturation": {
+   "n": 357,
+   "median_ms": 23.94999999999997,
+   "p90_ms": 31.63500000000002
+  },
+  "In inrush": {
+   "n": 26,
+   "median_ms": 15.712500000000004,
+   "p90_ms": 23.01249999999999
+  },
+  "SOTF": {
+   "n": 194,
+   "median_ms": 23.249999999999993,
+   "p90_ms": 27.527499999999975
+  },
+  "High impedance": {
+   "n": 234,
+   "median_ms": 26.84999999999993,
+   "p90_ms": 29.625000000000014
+  }
+ },
+ "Afrasiabi (native)": {
+  "group": "Reproduction (native)",
+  "All faults": {
+   "n": 3223,
+   "median_ms": 11.16071428571419,
+   "p90_ms": 17.749999999999982
+  },
+  "Solid LV / HV": {
+   "n": 1911,
+   "median_ms": 10.98214285714283,
+   "p90_ms": 17.85714285714285
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 11.071428571428566,
+   "p90_ms": 13.750000000000039
+  },
+  "In inrush": {
+   "n": 238,
+   "median_ms": 8.30357142857141,
+   "p90_ms": 12.232142857142803
+  },
+  "SOTF": {
+   "n": 237,
+   "median_ms": 11.607142857142872,
+   "p90_ms": 21.732142857142826
+  },
+  "High impedance": {
+   "n": 234,
+   "median_ms": 16.11607142857141,
+   "p90_ms": 24.08928571428572
+  }
+ },
+ "Afrasiabi (like-for-like)": {
+  "group": "Reproduction (like-for-like)",
+  "All faults": {
+   "n": 3244,
+   "median_ms": 22.321428571428548,
+   "p90_ms": 28.92857142857136
+  },
+  "Solid LV / HV": {
+   "n": 1911,
+   "median_ms": 22.23214285714281,
+   "p90_ms": 29.107142857142833
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 22.321428571428548,
+   "p90_ms": 25.35714285714284
+  },
+  "In inrush": {
+   "n": 285,
+   "median_ms": 18.571428571428573,
+   "p90_ms": 21.750000000000025
+  },
+  "SOTF": {
+   "n": 211,
+   "median_ms": 22.678571428571438,
+   "p90_ms": 28.39285714285722
+  },
+  "High impedance": {
+   "n": 234,
+   "median_ms": 27.366071428571395,
+   "p90_ms": 35.3392857142857
+  }
+ },
+ "Key (native)": {
+  "group": "Reproduction (native)",
+  "All faults": {
+   "n": 3605,
+   "median_ms": 18.125000000000004,
+   "p90_ms": 19.687500000000078
+  },
+  "Solid LV / HV": {
+   "n": 2085,
+   "median_ms": 18.125000000000004,
+   "p90_ms": 19.374999999999922
+  },
+  "CT saturation": {
+   "n": 331,
+   "median_ms": 18.437499999999996,
+   "p90_ms": 20.000000000000018
+  },
+  "In inrush": {
+   "n": 276,
+   "median_ms": 15.937499999999993,
+   "p90_ms": 19.687499999999968
+  },
+  "SOTF": {
+   "n": 222,
+   "median_ms": 19.062499999999982,
+   "p90_ms": 47.50000000000005
+  },
+  "High impedance": {
+   "n": 451,
+   "median_ms": 18.125000000000004,
+   "p90_ms": 21.249999999999993
+  }
+ },
+ "Key (like-for-like)": {
+  "group": "Reproduction (like-for-like)",
+  "All faults": {
+   "n": 3614,
+   "median_ms": 30.00000000000003,
+   "p90_ms": 32.50000000000002
+  },
+  "Solid LV / HV": {
+   "n": 2081,
+   "median_ms": 29.999999999999915,
+   "p90_ms": 31.25
+  },
+  "CT saturation": {
+   "n": 357,
+   "median_ms": 30.624999999999957,
+   "p90_ms": 31.874999999999986
+  },
+  "In inrush": {
+   "n": 332,
+   "median_ms": 29.99999999999997,
+   "p90_ms": 41.09375000000006
+  },
+  "SOTF": {
+   "n": 181,
+   "median_ms": 31.25,
+   "p90_ms": 113.12500000000003
+  },
+  "High impedance": {
+   "n": 423,
+   "median_ms": 30.00000000000003,
+   "p90_ms": 34.06249999999999
+  }
+ },
+ "Alhamd (native)": {
+  "group": "Reproduction (native)",
+  "All faults": {
+   "n": 3588,
+   "median_ms": 15.208333333333378,
+   "p90_ms": 20.208333333333385
+  },
+  "Solid LV / HV": {
+   "n": 2082,
+   "median_ms": 15.000000000000014,
+   "p90_ms": 20.000000000000018
+  },
+  "CT saturation": {
+   "n": 341,
+   "median_ms": 16.666666666666607,
+   "p90_ms": 20.625000000000004
+  },
+  "In inrush": {
+   "n": 253,
+   "median_ms": 14.16666666666677,
+   "p90_ms": 19.541666666666682
+  },
+  "SOTF": {
+   "n": 236,
+   "median_ms": 19.37499999999995,
+   "p90_ms": 21.87499999999998
+  },
+  "High impedance": {
+   "n": 436,
+   "median_ms": 12.812500000000004,
+   "p90_ms": 19.79166666666665
+  }
+ },
+ "Alhamd (like-for-like)": {
+  "group": "Reproduction (like-for-like)",
+  "All faults": {
+   "n": 3640,
+   "median_ms": 26.249999999999996,
+   "p90_ms": 32.49999999999997
+  },
+  "Solid LV / HV": {
+   "n": 2074,
+   "median_ms": 23.75000000000002,
+   "p90_ms": 31.666666666666732
+  },
+  "CT saturation": {
+   "n": 353,
+   "median_ms": 29.583333333333293,
+   "p90_ms": 32.91666666666671
+  },
+  "In inrush": {
+   "n": 331,
+   "median_ms": 27.291666666666714,
+   "p90_ms": 32.91666666666665
+  },
+  "SOTF": {
+   "n": 232,
+   "median_ms": 31.25,
+   "p90_ms": 33.93749999999999
+  },
+  "High impedance": {
+   "n": 410,
+   "median_ms": 26.35416666666662,
+   "p90_ms": 32.72916666666667
+  }
+ },
+ "87T unrestrained": {
+  "group": "Conventional relay",
+  "All faults": {
+   "n": 2985,
+   "median_ms": 1.25,
+   "p90_ms": 7.5
+  },
+  "Solid LV / HV": {
+   "n": 1911,
+   "median_ms": 1.25,
+   "p90_ms": 8.125
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 1.25,
+   "p90_ms": 3.75
+  },
+  "In inrush": {
+   "n": 0,
+   "median_ms": null,
+   "p90_ms": null
+  },
+  "SOTF": {
+   "n": 237,
+   "median_ms": 1.875,
+   "p90_ms": 6.25
+  },
+  "High impedance": {
+   "n": 234,
+   "median_ms": 6.25,
+   "p90_ms": 14.375
+  }
+ },
+ "Harmonic 87T, textbook (single pass)": {
+  "group": "Conventional relay",
+  "All faults": {
+   "n": 1065,
+   "median_ms": 16.875,
+   "p90_ms": 20.0
+  },
+  "Solid LV / HV": {
+   "n": 637,
+   "median_ms": 16.25,
+   "p90_ms": 19.375
+  },
+  "CT saturation": {
+   "n": 121,
+   "median_ms": 17.5,
+   "p90_ms": 20.0
+  },
+  "In inrush": {
+   "n": 96,
+   "median_ms": 17.1875,
+   "p90_ms": 377.8125
+  },
+  "SOTF": {
+   "n": 53,
+   "median_ms": 16.875,
+   "p90_ms": 87.25000000000009
+  },
+  "High impedance": {
+   "n": 78,
+   "median_ms": 17.1875,
+   "p90_ms": 18.9375
+  }
+ },
+ "LSTM, deployed": {
+  "group": "Dual-path instance",
+  "All faults": {
+   "n": 3455,
+   "median_ms": 16.25,
+   "p90_ms": 36.25
+  },
+  "Solid LV / HV": {
+   "n": 2006,
+   "median_ms": 15.625,
+   "p90_ms": 31.25
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 16.25,
+   "p90_ms": 27.5
+  },
+  "In inrush": {
+   "n": 333,
+   "median_ms": 28.125,
+   "p90_ms": 45.625
+  },
+  "SOTF": {
+   "n": 213,
+   "median_ms": 21.25,
+   "p90_ms": 163.37500000000006
+  },
+  "High impedance": {
+   "n": 300,
+   "median_ms": 25.0,
+   "p90_ms": 45.687500000000014
+  }
+ },
+ "Key's network": {
+  "group": "Dual-path instance",
+  "All faults": {
+   "n": 3498,
+   "median_ms": 30.0,
+   "p90_ms": 33.75
+  },
+  "Solid LV / HV": {
+   "n": 2057,
+   "median_ms": 30.0,
+   "p90_ms": 31.875
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 30.625,
+   "p90_ms": 31.875
+  },
+  "In inrush": {
+   "n": 331,
+   "median_ms": 30.0,
+   "p90_ms": 40.625
+  },
+  "SOTF": {
+   "n": 178,
+   "median_ms": 31.25,
+   "p90_ms": 98.93750000000009
+  },
+  "High impedance": {
+   "n": 329,
+   "median_ms": 30.0,
+   "p90_ms": 41.25
+  }
+ },
+ "1D-CNN": {
+  "group": "Dual-path instance",
+  "All faults": {
+   "n": 3559,
+   "median_ms": 16.25,
+   "p90_ms": 31.875
+  },
+  "Solid LV / HV": {
+   "n": 2065,
+   "median_ms": 15.0,
+   "p90_ms": 26.000000000000085
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 16.25,
+   "p90_ms": 20.0
+  },
+  "In inrush": {
+   "n": 331,
+   "median_ms": 23.125,
+   "p90_ms": 38.125
+  },
+  "SOTF": {
+   "n": 218,
+   "median_ms": 19.375,
+   "p90_ms": 151.0
+  },
+  "High impedance": {
+   "n": 342,
+   "median_ms": 19.375,
+   "p90_ms": 39.93750000000002
+  }
+ },
+ "GRU": {
+  "group": "Dual-path instance",
+  "All faults": {
+   "n": 3553,
+   "median_ms": 15.0,
+   "p90_ms": 29.375
+  },
+  "Solid LV / HV": {
+   "n": 2050,
+   "median_ms": 14.375,
+   "p90_ms": 23.125
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 15.0,
+   "p90_ms": 21.25
+  },
+  "In inrush": {
+   "n": 332,
+   "median_ms": 20.625,
+   "p90_ms": 38.75
+  },
+  "SOTF": {
+   "n": 216,
+   "median_ms": 18.4375,
+   "p90_ms": 46.5625
+  },
+  "High impedance": {
+   "n": 352,
+   "median_ms": 19.375,
+   "p90_ms": 43.00000000000004
+  }
+ },
+ "MLP": {
+  "group": "Dual-path instance",
+  "All faults": {
+   "n": 3528,
+   "median_ms": 16.25,
+   "p90_ms": 38.75
+  },
+  "Solid LV / HV": {
+   "n": 2056,
+   "median_ms": 15.625,
+   "p90_ms": 33.125
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 16.25,
+   "p90_ms": 19.375
+  },
+  "In inrush": {
+   "n": 333,
+   "median_ms": 35.0,
+   "p90_ms": 43.125
+  },
+  "SOTF": {
+   "n": 213,
+   "median_ms": 35.625,
+   "p90_ms": 160.5
+  },
+  "High impedance": {
+   "n": 323,
+   "median_ms": 20.625,
+   "p90_ms": 51.25
+  }
+ },
+ "Random forest": {
+  "group": "Dual-path instance",
+  "All faults": {
+   "n": 3475,
+   "median_ms": 17.5,
+   "p90_ms": 50.0
+  },
+  "Solid LV / HV": {
+   "n": 2041,
+   "median_ms": 15.625,
+   "p90_ms": 46.25
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 19.375,
+   "p90_ms": 35.50000000000001
+  },
+  "In inrush": {
+   "n": 329,
+   "median_ms": 37.5,
+   "p90_ms": 48.87499999999999
+  },
+  "SOTF": {
+   "n": 193,
+   "median_ms": 30.0,
+   "p90_ms": 143.5
+  },
+  "High impedance": {
+   "n": 309,
+   "median_ms": 31.875,
+   "p90_ms": 68.74999999999997
+  }
+ },
+ "LSTM, tuned": {
+  "group": "Dual-path instance",
+  "All faults": {
+   "n": 3479,
+   "median_ms": 15.625,
+   "p90_ms": 30.0
+  },
+  "Solid LV / HV": {
+   "n": 2005,
+   "median_ms": 15.0,
+   "p90_ms": 19.375
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 15.625,
+   "p90_ms": 20.0
+  },
+  "In inrush": {
+   "n": 332,
+   "median_ms": 21.875,
+   "p90_ms": 41.25
+  },
+  "SOTF": {
+   "n": 228,
+   "median_ms": 16.875,
+   "p90_ms": 45.81250000000001
+  },
+  "High impedance": {
+   "n": 311,
+   "median_ms": 16.25,
+   "p90_ms": 39.375
+  }
+ },
+ "SVM": {
+  "group": "Dual-path instance",
+  "All faults": {
+   "n": 3234,
+   "median_ms": 17.5,
+   "p90_ms": 37.5
+  },
+  "Solid LV / HV": {
+   "n": 1888,
+   "median_ms": 16.25,
+   "p90_ms": 35.0
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 16.875,
+   "p90_ms": 35.625
+  },
+  "In inrush": {
+   "n": 327,
+   "median_ms": 35.625,
+   "p90_ms": 47.37500000000004
+  },
+  "SOTF": {
+   "n": 185,
+   "median_ms": 35.625,
+   "p90_ms": 40.375
+  },
+  "High impedance": {
+   "n": 231,
+   "median_ms": 31.875,
+   "p90_ms": 38.125
+  }
+ },
+ "LSTM, deployed, gated only": {
+  "group": "Ablation",
+  "All faults": {
+   "n": 3287,
+   "median_ms": 16.25,
+   "p90_ms": 33.125
+  },
+  "Solid LV / HV": {
+   "n": 1905,
+   "median_ms": 15.625,
+   "p90_ms": 26.875
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 16.25,
+   "p90_ms": 27.5
+  },
+  "In inrush": {
+   "n": 333,
+   "median_ms": 28.125,
+   "p90_ms": 45.625
+  },
+  "SOTF": {
+   "n": 213,
+   "median_ms": 21.25,
+   "p90_ms": 163.37500000000006
+  },
+  "High impedance": {
+   "n": 233,
+   "median_ms": 20.625,
+   "p90_ms": 36.25
+  }
+ },
+ "LSTM alone": {
+  "group": "Ablation",
+  "All faults": {
+   "n": 3630,
+   "median_ms": 15.625,
+   "p90_ms": 31.875
+  },
+  "Solid LV / HV": {
+   "n": 2082,
+   "median_ms": 15.0,
+   "p90_ms": 22.5
+  },
+  "CT saturation": {
+   "n": 363,
+   "median_ms": 15.625,
+   "p90_ms": 20.0
+  },
+  "In inrush": {
+   "n": 329,
+   "median_ms": 23.75,
+   "p90_ms": 41.37499999999999
+  },
+  "SOTF": {
+   "n": 217,
+   "median_ms": 18.75,
+   "p90_ms": 112.87500000000009
+  },
+  "High impedance": {
+   "n": 399,
+   "median_ms": 18.125,
+   "p90_ms": 39.375
+  }
+ }
+}

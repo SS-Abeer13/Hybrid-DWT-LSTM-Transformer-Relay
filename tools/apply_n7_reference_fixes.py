@@ -23,7 +23,7 @@ MARK = "% N7 2026-11-04: {s} (see documents/reference_fixes_N7.md)"
 R0 = "% R0 2026-10-31: UNVERIFIED (see documents/reference_audit.md)\n"
 
 BIB = {
-    "ref2": ("REPLACED", r"Q. Alhamd, M. Saniei, and S. G. Seifossadat, ``Advanced detection and discrimination of power transformer internal faults from other abnormal condition using DWT-based feature extraction and ANN classifier,'' \textit{Periodicals of Engineering and Natural Sciences}, vol.~12, no.~1, pp.~236--254, 2024. doi:10.21533/pen.v12.i1.33."),
+    "ref2": ("REPLACED", r"Q. Alhamd, M. Saniei, and S. G. Seifossadat, ``Advanced detection and discrimination of power transformer internal faults from other abnormal condition using DWT-based feature extraction and ANN classification,'' \textit{Periodicals of Engineering and Natural Sciences}, vol.~12, no.~1, pp.~236--254, 2024. doi:10.21533/pen.v12.i1.33."),
     "ref5": ("REPLACED", r"S. Santoso, E. J. Powers, W. M. Grady, and P. Hofmann, ``Power quality assessment via wavelet transform analysis,'' \textit{IEEE Transactions on Power Delivery}, vol.~11, no.~2, pp.~924--930, 1996. doi:10.1109/61.489353."),
     "ref10": ("REPLACED", r"M. Raichura, N. Chothani, and D. Patel, ``Review of methodologies used for detection of magnetising inrush and fault conditions in power transformer,'' \textit{IET Energy Systems Integration}, vol.~3, no.~2, pp.~109--129, 2021. doi:10.1049/esi2.12012."),
     "ref18": ("REPLACED", r"P. L. Mao and R. K. Aggarwal, ``A novel approach to the classification of the transient phenomena in power transformers using combined wavelet transform and neural network,'' \textit{IEEE Transactions on Power Delivery}, vol.~16, no.~4, pp.~654--660, 2001. doi:10.1109/61.956753."),
@@ -80,10 +80,21 @@ def sub_once(s: str, old: str, new: str, where: str, errors: list[str]) -> str:
     return s.replace(old, new)
 
 
+POSTFIX = [  # corrections found by audit/cloud_n8_check.md after N7 was applied (idempotent)
+    ("using DWT-based feature extraction and ANN classifier,''", "using DWT-based feature extraction and ANN classification,''"),  # ref2 title as in Crossref
+]
+
+
 def main() -> None:
     tex, gen = TEX.read_text(encoding="utf-8"), GEN.read_text(encoding="utf-8")
     if "% N7 2026-11-04" in tex:
-        sys.exit("main.tex already carries the N7 fixes; nothing done")
+        n = 0
+        for old, new in POSTFIX:
+            if old in tex:
+                tex = tex.replace(old, new); n += 1
+        if n:
+            TEX.write_text(tex, encoding="utf-8")
+        sys.exit(f"main.tex already carries the N7 fixes; {n} post-fix(es) applied")
     err: list[str] = []
     for old, new in TEXT:
         tex = sub_once(tex, old, new, "main.tex text", err)

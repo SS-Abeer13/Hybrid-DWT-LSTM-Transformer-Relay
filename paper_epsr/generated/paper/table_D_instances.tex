@@ -1,0 +1,19 @@
+\begin{table*}[t]\centering
+\caption{Instances of the dual-path supervisory logic with interchangeable classifiers (dependability / security, \%): plant-A CV (3 seeds $\times$ 5 folds, common set, mean over seeds), OOD and plant-B zero-shot where a final model was scored; difference to the validation-tuned harmonic 87T (91.2 / 99.1; post-hoc, Holm over 16 tests); and the gated-only ablation (AI-alone path off).}\label{tab:pD_instances}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccccccc@{}}\toprule
+Instance (hybrid mode) & \multicolumn{2}{c}{CV} & $\Delta$ dep. vs tuned & $\Delta$ sec. vs tuned & \multicolumn{2}{c}{OOD} & \multicolumn{2}{c}{Plant B} \\ & dep. & sec. & harmonic 87T (pt) & harmonic 87T (pt) & dep. & sec. & dep. & sec. \\ \midrule
+LSTM, deployed (closed-loop configuration) & 93.0 & 99.0 & n/e & n/e & 98.0 & 96.0 & 92.7 & 88.4 \\
+LSTM, tuned (B2) & 93.6 & 99.1 & +2.42$^{*}$ & +0.03$^{\dagger}$ & n/e & n/e & n/e & n/e \\
+1D-CNN, tuned (B2) & 95.7 & 99.0 & +4.57$^{*}$ & -0.05$^{\dagger}$ & n/e & n/e & n/e & n/e \\
+GRU, tuned (B2) & 95.6 & 98.8 & +4.41$^{*}$ & -0.25$^{\dagger}$ & n/e & n/e & n/e & n/e \\
+MLP, tuned (B2) & 94.9 & 99.2 & +3.74$^{*}$ & +0.14$^{\dagger}$ & n/e & n/e & n/e & n/e \\
+Random forest, tuned (B2) & 93.5 & 99.5 & +2.31$^{*}$ & +0.42 & n/e & n/e & n/e & n/e \\
+Key et al.\ network (Dis-DNN output) & 94.1 & 99.9 & +2.93$^{*}$ & +0.80$^{*}$ & 98.0 & 95.3 & 95.5 & 99.9 \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Ablation, AI-alone path off (gated only; post-hoc, from saved decisions)}} \\
+LSTM, deployed, gated only & 88.4 & 99.4 & & & 94.6 & 98.7 & 90.5 & 99.2 \\
+Key et al.\ network, gated only & n/e & n/e & & & 94.6 & 95.3 & 94.1 & 100.0 \\
+\bottomrule\end{tabular}
+\vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} $^{*}$ $p_{\mathrm{H}}<0.05$ (post-hoc family of 16 tests: 12 added after the tuned-harmonic comparison plus its 4); $^{\dagger}$ per-seed differences change sign. Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 16 tests. 6 of 6 instances are significantly more dependable than the tuned harmonic 87T (+2.3 to +4.6 pt, $p_{\mathrm{H}}\le1\times10^{-3}$); Key's network significantly more secure; none is significantly less secure. In 3 of 15 CV fold-models of the deployed LSTM the plateau rule switched the AI-alone path off (AI threshold 0.75--0.999), so its CV row mixes dual-path and gated-only fold-models. Plant B false trips of the deployed hybrid: 87 of 89 via the AI-alone path. Gated only = AI-alone path off (post-hoc). n/e = not evaluated. Full notes: Supplementary Table S1.
+\end{table*}

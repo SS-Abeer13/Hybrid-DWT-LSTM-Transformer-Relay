@@ -1,0 +1,29 @@
+\begin{table*}[t]\centering
+\caption{Operate time (ms) per method and fault class: median / 90th percentile over correctly tripped fault traces, plant-A CV pooled over 3 seeds $\times$ 5 folds, common set.}\label{tab:pE_operate}
+\scriptsize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llccccccr@{}}\toprule
+Group & Method & All faults & Solid LV / HV & CT saturation & In inrush & SOTF & High impedance & $n$ (all) \\ \midrule
+Reproduction (native) & Sim{\~o}es & 0.4 / 1.3 & 0.3 / 0.9 & 0.5 / 0.6 & 0.3 / 0.6 & 0.4 / 1.3 & 0.4 / 7.0 & 2{,}590 \\
+ & Ngaopitakkul & 5.1 / 65.2 & 5.1 / 51.4 & -- & 5.2 / 674.1 & 5.1 / 5.3 & 5.0 / 5.3 & 1{,}030 \\
+ & Abdusalam & 21.1 / 28.5 & 21.1 / 27.9 & 23.7 / 40.6 & 18.7 / 21.2 & 21.1 / 27.7 & 19.0 / 21.5 & 2{,}839 \\
+ & Afrasiabi & 11.2 / 17.7 & 11.0 / 17.9 & 11.1 / 13.8 & 8.3 / 12.2 & 11.6 / 21.7 & 16.1 / 24.1 & 3{,}223 \\
+ & Key & 18.1 / 19.7 & 18.1 / 19.4 & 18.4 / 20.0 & 15.9 / 19.7 & 19.1 / 47.5 & 18.1 / 21.2 & 3{,}605 \\
+ & Alhamd & 15.2 / 20.2 & 15.0 / 20.0 & 16.7 / 20.6 & 14.2 / 19.5 & 19.4 / 21.9 & 12.8 / 19.8 & 3{,}588 \\
+\addlinespace
+Conventional relay & 87T unrestrained & 1.2 / 7.5 & 1.2 / 8.1 & 1.2 / 3.8 & -- & 1.9 / 6.2 & 6.2 / 14.4 & 2{,}985 \\
+ & Harmonic 87T, textbook (single pass) & 16.9 / 20.0 & 16.2 / 19.4 & 17.5 / 20.0 & 17.2 / 377.8 & 16.9 / 87.3 & 17.2 / 18.9 & 1{,}065 \\
+\addlinespace
+Dual-path instance & LSTM, deployed & 16.2 / 36.2 & 15.6 / 31.2 & 16.2 / 27.5 & 28.1 / 45.6 & 21.2 / 163.4 & 25.0 / 45.7 & 3{,}455 \\
+ & Key's network & 30.0 / 33.8 & 30.0 / 31.9 & 30.6 / 31.9 & 30.0 / 40.6 & 31.2 / 98.9 & 30.0 / 41.2 & 3{,}498 \\
+ & 1D-CNN & 16.2 / 31.9 & 15.0 / 26.0 & 16.2 / 20.0 & 23.1 / 38.1 & 19.4 / 151.0 & 19.4 / 39.9 & 3{,}559 \\
+ & GRU & 15.0 / 29.4 & 14.4 / 23.1 & 15.0 / 21.2 & 20.6 / 38.8 & 18.4 / 46.6 & 19.4 / 43.0 & 3{,}553 \\
+ & MLP & 16.2 / 38.8 & 15.6 / 33.1 & 16.2 / 19.4 & 35.0 / 43.1 & 35.6 / 160.5 & 20.6 / 51.2 & 3{,}528 \\
+ & Random forest & 17.5 / 50.0 & 15.6 / 46.2 & 19.4 / 35.5 & 37.5 / 48.9 & 30.0 / 143.5 & 31.9 / 68.7 & 3{,}475 \\
+ & LSTM, tuned & 15.6 / 30.0 & 15.0 / 19.4 & 15.6 / 20.0 & 21.9 / 41.2 & 16.9 / 45.8 & 16.2 / 39.4 & 3{,}479 \\
+ & SVM & 17.5 / 37.5 & 16.2 / 35.0 & 16.9 / 35.6 & 35.6 / 47.4 & 35.6 / 40.4 & 31.9 / 38.1 & 3{,}234 \\
+\addlinespace
+Ablation & LSTM, deployed, gated only & 16.2 / 33.1 & 15.6 / 26.9 & 16.2 / 27.5 & 28.1 / 45.6 & 21.2 / 163.4 & 20.6 / 36.2 & 3{,}287 \\
+ & LSTM alone & 15.6 / 31.9 & 15.0 / 22.5 & 15.6 / 20.0 & 23.8 / 41.4 & 18.8 / 112.9 & 18.1 / 39.4 & 3{,}630 \\
+\bottomrule\end{tabular}
+\vspace{3pt}\par\raggedright\scriptsize\textit{Notes.} Operate time = trip time minus the applied fault time (verified on the waveform by the generator check); counts are (seed, fold, trace) decisions, so each trace appears up to three times; descriptive, no test. Reproductions run at their own sampling rates and decide once per detector firing (Sim\~oes, Ngaopitakkul) or per window; the harmonic 87T row is a single pass over all traces with textbook settings (no operate times were saved for the tuned settings). Evolving faults are counted only in `All faults'. `--' = no correctly tripped trace in the class.
+\end{table*}

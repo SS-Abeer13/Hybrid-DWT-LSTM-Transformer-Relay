@@ -1,4 +1,7 @@
-"""Writes paper_epsr/generated/results_macros.tex (every number used in the paper text) from the saved result files, and copies the generated tables.
+"""SUPERSEDED (paper-v1, 2026-11-04): the manuscript now uses tools/build_paper_v1_macros.py (paper_macros.tex) and Tables A-E;
+the October tables 6.x and results_macros.tex were removed from paper_epsr/. Kept for the thesis record only; needs the local .mat files.
+
+Writes paper_epsr/generated/results_macros.tex (every number used in the paper text) from the saved result files, and copies the generated tables.
 No number is typed by hand.   python tools/build_paper_macros_v5.py
 """
 from __future__ import annotations

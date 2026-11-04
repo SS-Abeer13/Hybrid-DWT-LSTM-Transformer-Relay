@@ -1,0 +1,54 @@
+\begin{longtable}{@{}p{8.6cm}rrr@{}}
+\caption{Reproductions vs the proposed relay and vs the LSTM alone, native and like-for-like. Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 48 tests. Pooled = exact McNemar on (seed, fold, trace) decisions, Holm in the same family (each trace counted up to three times; shown for transparency, not used for the marks).}\label{tab:S3}\\
+\toprule Comparison (difference = first minus second, pt) & diff. & $p_{\mathrm{H}}$ pooled & $p_{\mathrm{H}}$ clustered \\ \midrule \endfirsthead
+\toprule Comparison & diff. & $p_{\mathrm{H}}$ pooled & $p_{\mathrm{H}}$ clustered \\ \midrule \endhead
+Proposed hybrid vs Sim\~oes [native] dependability & -23.27 & $3\times10^{-169}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs Sim\~oes [native] security & -6.75 & $8\times10^{-80}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs Sim\~oes [native] dependability & -27.98 & $0\times10^{0}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs Sim\~oes [native] security & -3.37 & $4\times10^{-14}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs afrasiabi [native] dependability & -6.24 & $1\times10^{-45}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs afrasiabi [native] security & -10.32 & $1\times10^{-151}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs afrasiabi [native] dependability & -10.95 & $2\times10^{-95}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs afrasiabi [native] security & -6.94 & $1\times10^{-47}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs key [native] dependability & +4.04 & $4\times10^{-15}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs key [native] security & -23.67 & $0\times10^{0}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs key [native] dependability & -0.67 & 0.25 & 0.67 \\
+LSTM alone vs key [native] security & -20.29 & $1\times10^{-241}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs alhamd [native] dependability & +3.58 & $6\times10^{-12}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs alhamd [native] security & -16.04 & $1\times10^{-250}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs alhamd [native] dependability & -1.13 & $9\times10^{-3}$ & 0.09 \\
+LSTM alone vs alhamd [native] security & -12.66 & $9\times10^{-131}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs abdusalam\_ba\_svm [native] dependability & -16.57 & $1\times10^{-172}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs abdusalam\_ba\_svm [native] security & +1.00 & $3\times10^{-14}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs abdusalam\_ba\_svm [native] dependability & -21.28 & $1\times10^{-234}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs abdusalam\_ba\_svm [native] security & +4.38 & $3\times10^{-72}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs ngaopitakkul [native] dependability & -65.24 & $0\times10^{0}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs ngaopitakkul [native] security & +0.30 & 0.29 & 0.67 \\
+LSTM alone vs ngaopitakkul [native] dependability & -69.95 & $0\times10^{0}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs ngaopitakkul [native] security & +3.69 & $6\times10^{-38}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs Sim\~oes [modeb] dependability & -16.12 & $4\times10^{-88}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs Sim\~oes [modeb] security & -26.87 & $0\times10^{0}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs Sim\~oes [modeb] dependability & -20.82 & $2\times10^{-183}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs Sim\~oes [modeb] security & -23.49 & $1\times10^{-278}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs afrasiabi [modeb] dependability & -5.68 & $5\times10^{-47}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs afrasiabi [modeb] security & +0.69 & $6\times10^{-6}$ & $6\times10^{-4}$$^{*}$ \\
+LSTM alone vs afrasiabi [modeb] dependability & -10.38 & $9\times10^{-100}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs afrasiabi [modeb] security & +4.08 & $9\times10^{-58}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs key [modeb] dependability & +4.28 & $4\times10^{-24}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs key [modeb] security & +0.61 & $1\times10^{-3}$ & 0.02$^{*}$ \\
+LSTM alone vs key [modeb] dependability & -0.43 & 0.30 & 0.67 \\
+LSTM alone vs key [modeb] security & +3.99 & $2\times10^{-49}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs alhamd [modeb] dependability & +4.98 & $6\times10^{-36}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs alhamd [modeb] security & -0.78 & $1\times10^{-3}$ & 0.02$^{*}$ \\
+LSTM alone vs alhamd [modeb] dependability & +0.27 & 0.36 & 0.67 \\
+LSTM alone vs alhamd [modeb] security & +2.61 & $4\times10^{-19}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs abdusalam\_ba\_svm [modeb] dependability & -13.72 & $1\times10^{-132}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs abdusalam\_ba\_svm [modeb] security & -6.04 & $5\times10^{-70}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs abdusalam\_ba\_svm [modeb] dependability & -18.43 & $4\times10^{-193}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs abdusalam\_ba\_svm [modeb] security & -2.66 & $6\times10^{-9}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs ngaopitakkul [modeb] dependability & -54.56 & $0\times10^{0}$ & $\le 2\times10^{-4}$$^{*}$ \\
+Proposed hybrid vs ngaopitakkul [modeb] security & -1.47 & $7\times10^{-9}$ & $2\times10^{-4}$$^{*}$ \\
+LSTM alone vs ngaopitakkul [modeb] dependability & -59.27 & $0\times10^{0}$ & $\le 2\times10^{-4}$$^{*}$ \\
+LSTM alone vs ngaopitakkul [modeb] security & +1.91 & $2\times10^{-7}$ & $3\times10^{-4}$$^{*}$ \\
+\bottomrule
+\end{longtable}

@@ -1,5 +1,5 @@
-Dual-path relay: 87T-gated LSTM confirmation plus persistence-filtered AI-alone trip
-Leak-free protocol: trace-grouped CV, validation-only thresholds, OOD scored once
-Per-phase harmonic 87T and five literature models compared on identical folds
-Security not significantly different from harmonic 87T; dependability higher
-No zero-shot transfer to plant B; training on both plants restores security
+Published learned 87T methods re-implemented and scored on identical grouped folds
+Dual-path logic: an 87T vote gates a classifier, with a guarded classifier-alone path
+Different classifiers inside the logic give similar operating points on the same data
+Most instances of the logic are more dependable than a tuned harmonic-restrained 87T
+Transfer to an unseen transformer depends on the classifier, not on the logic

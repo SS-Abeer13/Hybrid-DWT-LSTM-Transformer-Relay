@@ -1,0 +1,28 @@
+\begin{longtable}{@{}p{8.6cm}rrr@{}}
+\caption{Same-feature hybrids (B2): vs the tuned LSTM hybrid (planned) and vs the deployed hybrid (post-hoc; window stride 4 vs 8). Significance: trace-clustered sign-flip permutation test (test unit = trace; per-trace difference averaged over the three CV repetitions; 200{,}000 draws), Holm-adjusted within a family of 22 tests. Pooled = exact McNemar on (seed, fold, trace) decisions, Holm in the same family (each trace counted up to three times; shown for transparency, not used for the marks).}\label{tab:S4}\\
+\toprule Comparison (difference = first minus second, pt) & diff. & $p_{\mathrm{H}}$ pooled & $p_{\mathrm{H}}$ clustered \\ \midrule \endfirsthead
+\toprule Comparison & diff. & $p_{\mathrm{H}}$ pooled & $p_{\mathrm{H}}$ clustered \\ \midrule \endhead
+Wavelet-SVM hybrid vs tuned LSTM hybrid dependability & -6.59 & $2\times10^{-57}$ & $\le 1\times10^{-4}$$^{*}$ \\
+Wavelet-SVM hybrid vs tuned LSTM hybrid security & -1.37 & $1\times10^{-8}$ & $1\times10^{-4}$$^{*}$ \\
+Wavelet-RF hybrid vs tuned LSTM hybrid dependability & -0.11 & 1.00 & 1.00 \\
+Wavelet-RF hybrid vs tuned LSTM hybrid security & +0.39 & 0.10 & 0.49 \\
+Wavelet-ANN hybrid vs tuned LSTM hybrid dependability & +1.32 & $1\times10^{-3}$ & 0.02$^{*}$ \\
+Wavelet-ANN hybrid vs tuned LSTM hybrid security & +0.10 & 1.00 & 1.00 \\
+1D-CNN hybrid vs tuned LSTM hybrid dependability & +2.15 & $8\times10^{-11}$ & $\le 1\times10^{-4}$$^{*}$ \\
+1D-CNN hybrid vs tuned LSTM hybrid security & -0.08 & 1.00 & 1.00 \\
+Wavelet-GRU hybrid vs tuned LSTM hybrid dependability & +1.99 & $3\times10^{-8}$ & $\le 1\times10^{-4}$$^{*}$ \\
+Wavelet-GRU hybrid vs tuned LSTM hybrid security & -0.29 & 0.36 & 0.72 \\
+tuned LSTM hybrid vs deployed hybrid dependability & +0.65 & 0.79 & 0.72 \\
+tuned LSTM hybrid vs deployed hybrid security & +0.15 & 1.00 & 1.00 \\
+Wavelet-SVM hybrid vs deployed hybrid dependability & -5.95 & $6\times10^{-57}$ & $\le 1\times10^{-4}$$^{*}$ \\
+Wavelet-SVM hybrid vs deployed hybrid security & -1.22 & $3\times10^{-7}$ & $2\times10^{-4}$$^{*}$ \\
+Wavelet-RF hybrid vs deployed hybrid dependability & +0.54 & 0.90 & 1.00 \\
+Wavelet-RF hybrid vs deployed hybrid security & +0.54 & $5\times10^{-3}$ & 0.03$^{*}$ \\
+Wavelet-ANN hybrid vs deployed hybrid dependability & +1.96 & $3\times10^{-8}$ & $\le 1\times10^{-4}$$^{*}$ \\
+Wavelet-ANN hybrid vs deployed hybrid security & +0.25 & 0.90 & 1.00 \\
+1D-CNN hybrid vs deployed hybrid dependability & +2.80 & $1\times10^{-17}$ & $\le 1\times10^{-4}$$^{*}$ \\
+1D-CNN hybrid vs deployed hybrid security & +0.07 & 1.00 & 1.00 \\
+Wavelet-GRU hybrid vs deployed hybrid dependability & +2.64 & $5\times10^{-15}$ & $\le 1\times10^{-4}$$^{*}$ \\
+Wavelet-GRU hybrid vs deployed hybrid security & -0.14 & 1.00 & 1.00 \\
+\bottomrule
+\end{longtable}
