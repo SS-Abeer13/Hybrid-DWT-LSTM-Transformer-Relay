@@ -2138,5 +2138,313 @@
    "holm_clust": 1.0,
    "holm_seed1": 1.0
   }
+ ],
+ "N6c ext (Holm 4)": [
+  {
+   "label": "textbook harmonic vs proposed hybrid dependability",
+   "diff": -6.994888350820561,
+   "p_pooled": 1.4405619071914718e-69,
+   "p_clust": 4.9999750001249995e-06,
+   "p_perm": 4.9999750001249995e-06,
+   "p_normal": 3.823280554953444e-25,
+   "n_discordant_traces": 138,
+   "p_seed1": 1.5934990285464438e-28,
+   "seed1_disc": [
+    99,
+    1
+   ],
+   "n_seed1": 1239,
+   "reported_p_holm": null,
+   "holm_pooled": 5.762247628765887e-69,
+   "holm_clust": 1.9999900000499998e-05,
+   "holm_seed1": 6.373996114185775e-28
+  },
+  {
+   "label": "textbook harmonic vs proposed hybrid security",
+   "diff": 0.4399323181049075,
+   "p_pooled": 0.0060379576322632045,
+   "p_clust": 0.054034729826350866,
+   "p_perm": 0.054034729826350866,
+   "p_normal": 0.04614014707290848,
+   "n_discordant_traces": 52,
+   "p_seed1": 0.45825831964612007,
+   "seed1_disc": [
+    12,
+    17
+   ],
+   "n_seed1": 1970,
+   "reported_p_holm": null,
+   "holm_pooled": 0.018113872896789614,
+   "holm_clust": 0.16210418947905259,
+   "holm_seed1": 0.9165166392922401
+  },
+  {
+   "label": "tuned harmonic vs proposed hybrid dependability",
+   "diff": -0.16142050040355294,
+   "p_pooled": 0.7325958519969554,
+   "p_clust": 0.807880960595197,
+   "p_perm": 0.807880960595197,
+   "p_normal": 0.7696979437812895,
+   "n_discordant_traces": 127,
+   "p_seed1": 0.20003136851310313,
+   "seed1_disc": [
+    36,
+    25
+   ],
+   "n_seed1": 1239,
+   "reported_p_holm": null,
+   "holm_pooled": 1.0,
+   "holm_clust": 1.0,
+   "holm_seed1": 0.6000941055393094
+  },
+  {
+   "label": "tuned harmonic vs proposed hybrid security",
+   "diff": -0.01692047377326311,
+   "p_pooled": 1.0,
+   "p_clust": 1.0,
+   "p_perm": 1.0,
+   "p_normal": 0.9458776385286422,
+   "n_discordant_traces": 64,
+   "p_seed1": 0.8679394004284404,
+   "seed1_disc": [
+    19,
+    17
+   ],
+   "n_seed1": 1970,
+   "reported_p_holm": null,
+   "holm_pooled": 1.0,
+   "holm_clust": 1.0,
+   "holm_seed1": 0.9165166392922401
+  }
+ ],
+ "N8a ext (Holm 16)": [
+  {
+   "label": "1D-CNN hybrid vs tuned harmonic dependability",
+   "diff": 2.9593758407317705,
+   "p_pooled": 1.5967229541010385e-17,
+   "p_clust": 4.9999750001249995e-06,
+   "p_perm": 4.9999750001249995e-06,
+   "p_normal": 3.511640929531444e-08,
+   "n_discordant_traces": 88,
+   "p_seed1": 7.665168380445453e-06,
+   "seed1_disc": [
+    13,
+    48
+   ],
+   "n_seed1": 1239,
+   "reported_p_holm": null,
+   "holm_pooled": 2.3950844311515576e-16,
+   "holm_clust": 7.999960000199999e-05,
+   "holm_seed1": 0.0001149775257066818
+  },
+  {
+   "label": "1D-CNN hybrid vs tuned harmonic security",
+   "diff": 0.08460236886632666,
+   "p_pooled": 0.687885343579692,
+   "p_clust": 0.7784861075694621,
+   "p_perm": 0.7784861075694621,
+   "p_normal": 0.7230087105700098,
+   "n_discordant_traces": 58,
+   "p_seed1": 0.7283324808813632,
+   "seed1_disc": [
+    15,
+    18
+   ],
+   "n_seed1": 1970,
+   "reported_p_holm": null,
+   "holm_pooled": 1.0,
+   "holm_clust": 1.0,
+   "holm_seed1": 1.0
+  },
+  {
+   "label": "Wavelet-GRU hybrid vs tuned harmonic dependability",
+   "diff": 2.7979553403282176,
+   "p_pooled": 5.518207697056329e-15,
+   "p_clust": 4.9999750001249995e-06,
+   "p_perm": 4.9999750001249995e-06,
+   "p_normal": 9.549853067059143e-08,
+   "n_discordant_traces": 102,
+   "p_seed1": 0.09795444051950736,
+   "seed1_disc": [
+    24,
+    38
+   ],
+   "n_seed1": 1239,
+   "reported_p_holm": null,
+   "holm_pooled": 7.725490775878861e-14,
+   "holm_clust": 7.999960000199999e-05,
+   "holm_seed1": 1.0
+  },
+  {
+   "label": "Wavelet-GRU hybrid vs tuned harmonic security",
+   "diff": -0.11844331641286399,
+   "p_pooled": 0.6002946177102677,
+   "p_clust": 0.7303163484182579,
+   "p_perm": 0.7303163484182579,
+   "p_normal": 0.6856094939268216,
+   "n_discordant_traces": 68,
+   "p_seed1": 0.735878800856881,
+   "seed1_disc": [
+    16,
+    19
+   ],
+   "n_seed1": 1970,
+   "reported_p_holm": null,
+   "holm_pooled": 1.0,
+   "holm_clust": 1.0,
+   "holm_seed1": 1.0
+  },
+  {
+   "label": "Wavelet-ANN hybrid vs tuned harmonic dependability",
+   "diff": 2.1253699219800914,
+   "p_pooled": 1.9838836552142605e-10,
+   "p_clust": 2.9999850000749997e-05,
+   "p_perm": 2.9999850000749997e-05,
+   "p_normal": 1.885039337023534e-05,
+   "n_discordant_traces": 84,
+   "p_seed1": 0.03648340000835981,
+   "seed1_disc": [
+    18,
+    34
+   ],
+   "n_seed1": 1239,
+   "reported_p_holm": null,
+   "holm_pooled": 2.3806603862571126e-09,
+   "holm_clust": 0.00035999820000899997,
+   "holm_seed1": 0.43780080010031774
+  },
+  {
+   "label": "Wavelet-ANN hybrid vs tuned harmonic security",
+   "diff": 0.2707275803722431,
+   "p_pooled": 0.12534569718849248,
+   "p_clust": 0.3042034789826051,
+   "p_perm": 0.3042034789826051,
+   "p_normal": 0.2718184432554951,
+   "n_discordant_traces": 50,
+   "p_seed1": 0.720100131817162,
+   "seed1_disc": [
+    14,
+    17
+   ],
+   "n_seed1": 1970,
+   "reported_p_holm": null,
+   "holm_pooled": 0.7520741831309549,
+   "holm_clust": 1.0,
+   "holm_seed1": 1.0
+  },
+  {
+   "label": "Key hybrid vs tuned harmonic dependability",
+   "diff": 1.3182674199623379,
+   "p_pooled": 1.9141845929673903e-05,
+   "p_clust": 0.0031949840250798745,
+   "p_perm": 0.0031949840250798745,
+   "p_normal": 0.0030207847237238906,
+   "n_discordant_traces": 73,
+   "p_seed1": 0.19959086691960698,
+   "seed1_disc": [
+    15,
+    24
+   ],
+   "n_seed1": 1239,
+   "reported_p_holm": null,
+   "holm_pooled": 0.00021056030522641293,
+   "holm_clust": 0.03194984025079874,
+   "holm_seed1": 1.0
+  },
+  {
+   "label": "Key hybrid vs tuned harmonic security",
+   "diff": 0.9306260575296044,
+   "p_pooled": 1.0271364278048329e-11,
+   "p_clust": 1.9999900000499998e-05,
+   "p_perm": 1.9999900000499998e-05,
+   "p_normal": 3.215955563200662e-05,
+   "n_discordant_traces": 35,
+   "p_seed1": 0.002599477767944336,
+   "seed1_disc": [
+    4,
+    19
+   ],
+   "n_seed1": 1970,
+   "reported_p_holm": null,
+   "holm_pooled": 1.3352773561462828e-10,
+   "holm_clust": 0.0002599987000065,
+   "holm_seed1": 0.0363926887512207
+  },
+  {
+   "label": "Wavelet-RF hybrid vs tuned harmonic dependability",
+   "diff": 0.6994888350820516,
+   "p_pooled": 0.042229198541974794,
+   "p_clust": 0.18079909600452,
+   "p_perm": 0.18079909600452,
+   "p_normal": 0.16339423080314586,
+   "n_discordant_traces": 76,
+   "p_seed1": 0.7838463022094988,
+   "seed1_disc": [
+    25,
+    28
+   ],
+   "n_seed1": 1239,
+   "reported_p_holm": null,
+   "holm_pooled": 0.33783358833579835,
+   "holm_clust": 1.0,
+   "holm_seed1": 1.0
+  },
+  {
+   "label": "Wavelet-RF hybrid vs tuned harmonic security",
+   "diff": 0.5583756345177604,
+   "p_pooled": 2.7191876822818543e-05,
+   "p_clust": 0.002484987575062125,
+   "p_perm": 0.002484987575062125,
+   "p_normal": 0.002485467909945251,
+   "n_discordant_traces": 34,
+   "p_seed1": 0.0192108154296875,
+   "seed1_disc": [
+    4,
+    15
+   ],
+   "n_seed1": 1970,
+   "reported_p_holm": null,
+   "holm_pooled": 0.00027191876822818545,
+   "holm_clust": 0.027334863325683374,
+   "holm_seed1": 0.2497406005859375
+  },
+  {
+   "label": "Proposed LSTM hybrid vs tuned harmonic dependability",
+   "diff": 0.8071025020177536,
+   "p_pooled": 0.06860601081202006,
+   "p_clust": 0.2093689531552342,
+   "p_perm": 0.2093689531552342,
+   "p_normal": 0.1942093539903853,
+   "n_discordant_traces": 136,
+   "p_seed1": 0.7375543089843226,
+   "seed1_disc": [
+    38,
+    42
+   ],
+   "n_seed1": 1239,
+   "reported_p_holm": null,
+   "holm_pooled": 0.4802420756841404,
+   "holm_clust": 1.0,
+   "holm_seed1": 1.0
+  },
+  {
+   "label": "Proposed LSTM hybrid vs tuned harmonic security",
+   "diff": 0.16920473773265332,
+   "p_pooled": 0.3865726089882611,
+   "p_clust": 0.5642171789141054,
+   "p_perm": 0.5642171789141054,
+   "p_normal": 0.5186050164287255,
+   "n_discordant_traces": 60,
+   "p_seed1": 1.0,
+   "seed1_disc": [
+    18,
+    19
+   ],
+   "n_seed1": 1970,
+   "reported_p_holm": null,
+   "holm_pooled": 1.0,
+   "holm_clust": 1.0,
+   "holm_seed1": 1.0
+  }
  ]
 }

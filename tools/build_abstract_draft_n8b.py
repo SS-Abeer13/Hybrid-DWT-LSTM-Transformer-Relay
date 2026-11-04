@@ -99,6 +99,24 @@ inst_names = "1D-CNN, GRU, MLP, Key's network, random forest, LSTM"
 W = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
 f_clu = ROOT / "audit" / "scripts" / "out" / "clustered_sensitivity.json"
 f_n6j = BASE / "n6c_tuned_harmonic.json"
+# extended-grid tuned harmonic 87T = the reference relay (post-hoc; D-X1 clustered families "N6c ext" and "N8a ext")
+f_n6xr, f_n6xt = BASE / "n6c_tuned_rows_ext.json", BASE / "n6c_tuned_harmonic_ext.txt"
+f_n8x, f_dx2 = BASE / "n8a_instances_vs_tuned_harmonic_ext.json", BASE / "dx2_tuned_harmonic_ood_plantb.json"
+_rx = jload(f_n6xr)["tuned"]
+dHx = float(np.mean([100 * np.mean([r["correct"] for r in _rx if r["key"][0] == sd and r["should_trip"] and not r["undetectable"]]) for sd in cv.SEEDS]))
+sHx = float(np.mean([100 * np.mean([r["correct"] for r in _rx if r["key"][0] == sd and not r["should_trip"] and not r["undetectable"]]) for sd in cv.SEEDS]))
+_cx = {t["label"]: t for t in jload(f_clu)["N6c ext (Holm 4)"]}
+gx_p = (_cx["tuned harmonic vs proposed hybrid dependability"]["holm_clust"], _cx["tuned harmonic vs proposed hybrid security"]["holm_clust"])
+deployed_equal = min(gx_p) >= 0.05
+hizx = re.search(r"Internal_HiZ \(n=(\d+)\): hybrid ([\d.]+), tuned harmonic ([\d.]+)", f_n6xt.read_text())
+_c8x = {t["label"]: t for t in jload(f_clu)["N8a ext (Holm 16)"]}
+_CN = {"1D-CNN": "1D-CNN hybrid", "Wavelet-GRU": "Wavelet-GRU hybrid", "Wavelet-ANN": "Wavelet-ANN hybrid", "Key (claim-C run)": "Key hybrid", "Wavelet-RF": "Wavelet-RF hybrid", "LSTM (tuned, B2)": "Proposed LSTM hybrid"}
+n8x = jload(f_n8x)
+_sigx = lambda t: _c8x[f"{_CN[t['instance']]} vs tuned harmonic {t['metric']}"]["holm_clust"] < 0.05  # noqa: E731
+up_x = [t for t in n8x if t["metric"] == "dependability" and _sigx(t) and t["diff_pt"] > 0]
+k_sig = len(up_x)
+lower_x = [t for t in n8x if _sigx(t) and t["diff_pt"] < 0]
+xb = jload(f_dx2)["plantB_main|tuned, extended grid (frozen)"]
 _g = [t for t in jload(f_clu)["N6c (Holm 4)"] if t["label"] == "tuned harmonic vs proposed hybrid dependability"][0]
 gap_dep, gap_p = -_g["diff"], _g["holm_clust"]
 _seeds = [-v for v in jload(f_n6j)["tests"][2]["per_seed"].values()]   # hybrid minus tuned harmonic, per seed
@@ -109,7 +127,7 @@ clu8 = {t["label"]: t for t in jload(f_clu)["N8a (Holm 16)"]}
 clu_dep_max = max(t["holm_clust"] for lab, t in clu8.items() if lab.endswith("dependability"))
 assert clu_dep_max < 0.05, "a dependability gain is not significant under the clustered test"
 A = (
-    "Learning-based transformer differential relays are rarely compared under the same data, folds and decision logic. "
+    "Learned transformer differential relays are rarely compared on common data, folds and decision logic. "
     f"We evaluate on simulated {num(mva_A, 'd', 'plant A rating', f_plA, ' MVA')} and {num(mva_B, 'd', 'plant B rating', f_plB, ' MVA')} plants with trace-grouped cross-validation "
     f"({num(n_seeds, 'd', 'number of seeds', 'lstm_models/baselines/cv.py (cv.SEEDS)')} seeds x {num(n_folds, 'd', 'folds per seed', rel(BASE / 'key') + '/rows_seed*_fold*.json (file count)')} folds, "
     f"{num(n_traces, ',d', 'plant-A common-set traces (kept minus missing 20 kHz re-simulation)', f_miss)} traces) and re-implement {W[n_methods]} published methods at their own sampling rates. "
@@ -117,36 +135,42 @@ A = (
     f"{num(c_sec, '.1f', 'joint criterion, security (decision rule fixed in the dated plan)', f_plan, ' %')} security together: the two most dependable reach "
     f"{num(dep[by_dep[0]], '.1f', f'{by_dep[0]} native CV dependability', f_n5, ' %')} and {num(dep[by_dep[1]], '.1f', f'{by_dep[1]} native CV dependability', f_n5, ' %')} at "
     f"{num(sec[by_dep[0]], '.1f', f'{by_dep[0]} native CV security', f_n5, ' %')} and {num(sec[by_dep[1]], '.1f', f'{by_dep[1]} native CV security', f_n5, ' %')} security. "
-    "We then study a dual-path supervisory logic (an 87T vote gating a confirmed classifier output, a classifier-alone path, a high-set element) with interchangeable classifiers. "
+    "We then study a dual-path supervisory logic (87T-gated classifier, classifier-alone path, high-set) with interchangeable classifiers. "
     f"With an equal search and epoch budget, {W[n_inst]} classifier instances reach "
     f"{num(min(t['instance_pct'] for t in d8), '.1f', 'lowest instance dependability (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in d8), '.1f', 'highest instance dependability (hybrid, CV)', f_n8, ' %')} dependability and "
     f"{num(min(t['instance_pct'] for t in s8), '.1f', 'lowest instance security (hybrid, CV)', f_n8)}-{num(max(t['instance_pct'] for t in s8), '.1f', 'highest instance security (hybrid, CV)', f_n8, ' %')} security. "
-    f"All {W[n_inst]} are more dependable than a validation-tuned harmonic-restrained 87T "
-    f"({num(th_dep, '.1f', 'tuned harmonic 87T CV dependability', f_n8, ' %')} / {num(th_sec, '.1f', 'tuned harmonic 87T CV security', f_n8, ' %')}) by "
-    f"{num(min(t['diff_pt'] for t in d8), '.1f', 'smallest instance minus tuned-harmonic dependability difference', f_n8)}-{num(max(t['diff_pt'] for t in d8), '.1f', 'largest instance minus tuned-harmonic dependability difference', f_n8)} points "
-    f"(post-hoc, trace-clustered test, Holm-adjusted), with security within {num(min(t['diff_pt'] for t in s8), '+.1f', 'smallest security difference', f_n8)} to {num(max(t['diff_pt'] for t in s8), '+.1f', 'largest security difference', f_n8)} points. "
-    f"The deployed LSTM instance of our Simulink closed loop ({num(deployed['dependability'], '.1f', 'deployed hybrid CV dependability', f_n5, ' %')} / {num(deployed['security'], '.1f', 'deployed hybrid CV security', f_n5, ' %')}) "
-    f"is {num(gap_dep, '.1f', 'deployed hybrid minus tuned harmonic 87T, dependability (pt)', f_n6j)} points more dependable than the tuned relay "
-    f"(p_H = {num(gap_p, '.3f', 'clustered Holm-4 p of that difference', f_clu)}), "
-    + (f"in every seed. " if gap_stable else f"but its lead is not stable across seeds ({num(gap_lo, '+.1f', 'smallest per-seed lead (pt)', f_n6j)} to {num(gap_hi, '+.1f', 'largest per-seed lead (pt)', f_n6j)} points). ")
-    + 
+    f"A harmonic-restrained 87T tuned on validation traces over an extended grid (post-hoc; "
+    f"{num(dHx, '.1f', 'extended-grid tuned harmonic 87T CV dependability', f_n6xr, ' %')} / {num(sHx, '.1f', 'extended-grid tuned harmonic 87T CV security', f_n6xr, ' %')}) "
+    f"cannot be told apart from the deployed LSTM instance of our Simulink closed loop ({num(deployed['dependability'], '.1f', 'deployed hybrid CV dependability', f_n5, ' %')} / "
+    f"{num(deployed['security'], '.1f', 'deployed hybrid CV security', f_n5, ' %')}; trace-clustered test, "
+    + (f"p_H = {num(gx_p[0], '.2f', 'clustered Holm-4 p, deployed vs extended-grid tuned harmonic (dependability and security)', f_clu)} on both metrics"
+       if f"{gx_p[0]:.2f}" == f"{gx_p[1]:.2f}" else
+       f"p_H = {num(gx_p[0], '.2f', 'clustered Holm-4 p, dependability', f_clu)} and {num(gx_p[1], '.2f', 'clustered Holm-4 p, security', f_clu)}")
+    + f") and detects more high-impedance faults ({num(float(hizx.group(3)), '.1f', 'Internal_HiZ dependability, extended-grid tuned harmonic (CV)', f_n6xt, ' %')} against "
+    f"{num(float(hizx.group(2)), '.1f', 'Internal_HiZ dependability, deployed hybrid (CV)', f_n6xt, ' %')}). "
+    f"{W[k_sig].capitalize()} of the {W[n_inst]} instances are more dependable than this relay, by "
+    f"{num(min(t['diff_pt'] for t in up_x), '.1f', 'smallest significant instance minus extended-grid tuned harmonic dependability difference [a]', f_n8x)}-"
+    f"{num(max(t['diff_pt'] for t in up_x), '.1f', 'largest significant instance minus extended-grid tuned harmonic dependability difference [b]', f_n8x)} points "
+    f"(post-hoc, Holm-adjusted), and none is less secure. "
     f"Transfer to the unseen plant depends on the classifier: zero-shot security is "
     f"{num(kb_sec, '.1f', 'Key hybrid plant-B zero-shot security', f_kb, ' %')} with Key's network but {num(zs['security_pct'], '.1f', 'deployed hybrid plant-B zero-shot security', f_zs, ' %')} with the deployed LSTM, "
     f"whose classifier-alone path caused {num(tpc['false_trip_first_path']['solo'], 'd', 'plant-B false trips first fired by the AI-alone path', f_tpc)} of "
-    f"{num(tpc['variants']['Proposed as evaluated (high-set + gate + solo)']['false_trips'], 'd', 'plant-B false trips, deployed hybrid', f_tpc)} false trips. "
-    f"High-impedance internal faults remain a limit (dependability about {num(float(hiz.group(2)), '.0f', 'Internal_HiZ dependability, deployed hybrid (CV)', f_n6t, ' %')} deployed, "
-    f"{num(float(hiz.group(3)), '.0f', 'Internal_HiZ dependability, tuned harmonic 87T (CV)', f_n6t, ' %')} tuned relay). "
-    "The supervisory logic and the evaluation protocol, not the choice of classifier, are the contribution."
+    f"{num(tpc['variants']['Proposed as evaluated (high-set + gate + solo)']['false_trips'], 'd', 'plant-B false trips, deployed hybrid', f_tpc)} false trips; "
+    f"the tuned relay, frozen from plant A, reaches {num(xb['dep'], '.1f', 'extended-grid tuned harmonic plant-B zero-shot dependability', f_dx2, ' %')} / "
+    f"{num(xb['sec'], '.1f', 'extended-grid tuned harmonic plant-B zero-shot security', f_dx2, ' %')}. "
+    "The deployed LSTM relay does not outperform a well-tuned conventional relay; the contribution is the leak-free benchmark, the reproductions and the classifier-agnostic logic."
 )
 
 # ------------------------------------------------------------------------------------------------ checks
 checks = [
     ("no banned word in title or abstract", not any(re.search(rf"\b{re.escape(b)}\b", (title + ' ' + A).lower()) for b in BANNED)),
     (f"no native reproduction meets {c_dep:.0f} % / {c_sec} % (claim restricted to native mode)", none_native_meets),
-    (f"every instance significantly more dependable than the tuned harmonic 87T (Holm-{holm_n}): {n_sig_dep} of {n_inst}", n_sig_dep == n_inst),
-    ("no instance significantly less secure than the tuned harmonic 87T", not any(t["p_holm16"] < 0.05 and t["diff_pt"] < 0 for t in s8)),
+    ("the deployed hybrid is NOT significantly different from the extended-grid tuned harmonic 87T on either metric (clustered Holm-4), so no 'beats' claim", deployed_equal),
+    ("no sentence claims that the deployed hybrid beats a tuned relay", "points more dependable than the tuned relay" not in A and "lead" not in A),
+    (f"[k] = {k_sig} of {n_inst} instances significantly more dependable than the extended-grid reference (clustered Holm-16); [a]-[b] over those {k_sig}", k_sig >= 1),
+    ("no instance significantly less dependable or less secure than the extended-grid reference (so 'none is less secure' holds)", not lower_x),
     ("range quoted over ALL instances (min and max), not the top instance only", True),
-    (f"Internal_HiZ limitation present (n = {hiz.group(1)})", "High-impedance" in A),
+    (f"high-impedance result present (n = {hizx.group(1)})", "high-impedance" in A),
 ]
 words = len(A.split())
 checks.append((f"abstract has {words} words (EPSR limit 250)", words <= 250))

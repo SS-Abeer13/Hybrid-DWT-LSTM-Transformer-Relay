@@ -40,10 +40,12 @@ Every paired comparison behind a significance mark in the paper. The marks use t
 \input{generated/supp_S5.tex}
 \input{generated/supp_S6.tex}
 \input{generated/supp_S7.tex}
+\input{generated/supp_S8.tex}
+\input{generated/supp_S9.tex}
 
 \section{Order of decisions and analyses}
 \label{sec:S8}
-Decision rules were fixed in a dated plan before each analysis (\texttt{BENCHMARK\_FAIRNESS\_PLAN.md}, with the git history of the repository as the time record; progress log \texttt{IMPLEMENTATION\_PLAN.md}). The hypotheses and decision tables for the reproductions, the statistics and the conventional baselines were committed before any reproduction was evaluated, and were not edited afterwards. The following analyses were added after earlier results had been seen and are labelled post-hoc in the paper: the comparison of every instance with the tuned harmonic 87T and the range-only wording for it; the B2 comparisons with the deployed instance; the gated-only ablation; the extension of the claim to the like-for-like mode; the re-measurement of the latency of Alhamd's trained configurations; and the larger training budget of Alhamd's reproduction (both budgets are reported). Some review sections of the plan were committed together after the results they discuss; their timing rests on the dated log.
+Decision rules were fixed in a dated plan before each analysis (\texttt{BENCHMARK\_FAIRNESS\_PLAN.md}, with the git history of the repository as the time record; progress log \texttt{IMPLEMENTATION\_PLAN.md}). The hypotheses and decision tables for the reproductions, the statistics and the conventional baselines were committed before any reproduction was evaluated, and were not edited afterwards. The following analyses were added after earlier results had been seen and are labelled post-hoc in the paper: the comparison of every instance with the tuned harmonic 87T and the range-only wording for it; the B2 comparisons with the deployed instance; the gated-only ablation; the extension of the harmonic grid of the tuned 87T to \nGridX{} settings, with its decision rules (restate the claim if the tuned relay is not significantly less dependable than the deployed instance; report a new boundary as unresolved, no second extension) fixed before its run, and every comparison with the relay tuned on it, including its frozen-setting scoring on the shifted-range set and on plant~B; the extension of the claim to the like-for-like mode; the re-measurement of the latency of Alhamd's trained configurations; and the larger training budget of Alhamd's reproduction (both budgets are reported). Some review sections of the plan were committed together after the results they discuss; their timing rests on the dated log.
 
 \section{Audit}
 \label{sec:S9}

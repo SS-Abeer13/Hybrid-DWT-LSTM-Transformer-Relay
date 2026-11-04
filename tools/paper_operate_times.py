@@ -34,7 +34,7 @@ def main() -> None:
     for name, v in P.all_methods().items():
         if name == "Harmonic 87T, textbook":      # no operate times saved for the n6c re-runs: use the single pass
             M["Harmonic 87T, textbook (single pass)"] = ("Conventional relay", P.harmonic_textbook_single_pass())
-        elif name != "Harmonic 87T, tuned":
+        elif name not in ("Harmonic 87T, tuned", "Harmonic 87T, tuned (extended grid)"):   # no operate times saved for the tuned runs
             M[name] = v
     res = {name: {"group": g, **{c: stats(P.operate_times(rows, cats)) for c, cats in CLASSES}} for name, (g, rows) in M.items()}
     (OUT / "operate_times.json").write_text(json.dumps(res, indent=1), encoding="utf-8")

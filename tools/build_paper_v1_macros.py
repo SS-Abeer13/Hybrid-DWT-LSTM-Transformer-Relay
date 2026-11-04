@@ -206,6 +206,46 @@ put("latAbd", lb["abdusalam_features_per_decision"]["median_us"] / 1000, "{:.0f}
 tr = [v["latency"] for kk, v in la.items() if kk.startswith(("seed", "final"))]
 put("latAlh", min(x["median_us"] for x in tr), "{:,.0f}"); put("latAlhBudget", tr[0]["budget_us"], "{:,.0f}")
 
+# ------------------------------------------------------------------ D-X1 / D-X4: extended-grid tuned harmonic 87T = the reference relay (post-hoc)
+dX, sX = P.dep_sec(Mth["Harmonic 87T, tuned (extended grid)"][1])
+put("depHx", dX); put("secHx", sX); put("depGainGrid", dX - P.dep_sec(Mth["Harmonic 87T, tuned"][1])[0])
+cx = {t["label"]: t for t in AD.CLU["N6c ext (Holm 4)"]}
+gx, gxs = cx["tuned harmonic vs proposed hybrid dependability"], cx["tuned harmonic vs proposed hybrid security"]
+n6x = J(BASE / "n6c_tuned_harmonic_ext.json")
+assert abs(gx["diff"] - n6x["tests"][2]["diff_pt"]) < 1e-9
+put("gapExt", -gx["diff"], "{:+.2f}"); put("gapExtP", tex_p(gx)); put("gapExtSec", -gxs["diff"], "{:+.2f}"); put("gapExtSecP", tex_p(gxs))
+psx = [-v for v in n6x["tests"][2]["per_seed"].values()]
+put("gapExtSeedLo", min(psx), "{:+.2f}"); put("gapExtSeedHi", max(psx), "{:+.2f}")
+put("textbookSecPx", tex_p(cx["textbook harmonic vs proposed hybrid security"]))
+G = AD.harmonic_grids()["extended"]
+chx = [c["setting"] for c in n6x["chosen"]]
+put("nGridX", len(G["pickup"]) * len(G["k2"]) * len(G["k5"]), "{:d}", "tools/n6c_tuned_harmonic.py")
+put("pickupLowX", min(G["pickup"]), "{:.2f}"); put("pickupEdgeX", sum(abs(c[0] - min(G["pickup"])) < 1e-9 for c in chx), "{:d}")
+hx = re.search(r"Internal_HiZ \(n=(\d+)\): hybrid ([\d.]+), tuned harmonic ([\d.]+)", T(BASE / "n6c_tuned_harmonic_ext.txt"))
+assert hx.group(1) == M["hizN"] and hx.group(2) == M["hizDep"]
+put("hizTunedX", hx.group(3)); put("otherTunedX", re.search(r"other internal faults \(n=\d+\): hybrid [\d.]+, tuned harmonic ([\d.]+)", T(BASE / "n6c_tuned_harmonic_ext.txt")).group(1))
+n8x = J(BASE / "n8a_instances_vs_tuned_harmonic_ext.json")
+c8x = {t["label"]: t for t in AD.CLU["N8a ext (Holm 16)"]}
+CN = {"1D-CNN": "1D-CNN hybrid", "Wavelet-GRU": "Wavelet-GRU hybrid", "Wavelet-ANN": "Wavelet-ANN hybrid", "Key (claim-C run)": "Key hybrid", "Wavelet-RF": "Wavelet-RF hybrid", "LSTM (tuned, B2)": "Proposed LSTM hybrid"}
+NICE = {"1D-CNN": "1D-CNN", "Wavelet-GRU": "GRU", "Wavelet-ANN": "MLP", "Key (claim-C run)": "Key's network", "Wavelet-RF": "random forest", "LSTM (tuned, B2)": "tuned LSTM"}
+for t in n8x:
+    assert abs(c8x[f"{CN[t['instance']]} vs tuned harmonic {t['metric']}"]["diff"] - t["diff_pt"]) < 1e-9
+sig = lambda t: c8x[f"{CN[t['instance']]} vs tuned harmonic {t['metric']}"]["holm_clust"] < 0.05  # noqa: E731
+dX8 = [t for t in n8x if t["metric"] == "dependability"]; sX8 = [t for t in n8x if t["metric"] == "security"]
+up = [t for t in dX8 if sig(t) and t["diff_pt"] > 0]; secup = [t for t in sX8 if sig(t) and t["diff_pt"] > 0]
+assert not any(sig(t) and t["diff_pt"] < 0 for t in n8x), "an instance is significantly worse than the reference"
+put("kSigX", len(up), "{:d}", "clustered N8a ext"); put("aGainX", min(t["diff_pt"] for t in up)); put("bGainX", max(t["diff_pt"] for t in up))
+put("sigNamesX", ", ".join(NICE[t["instance"]] for t in up[:-1]) + " and " + NICE[up[-1]["instance"]])
+ns = [t for t in dX8 if t not in up]
+put("nsNamesX", " and ".join(NICE[t["instance"]] for t in ns)); put("nsGainLoX", min(t["diff_pt"] for t in ns)); put("nsGainHiX", max(t["diff_pt"] for t in ns))
+put("pGainXmax", AD.sci(max(c8x[f"{CN[t['instance']]} vs tuned harmonic dependability"]["holm_clust"] for t in up)))
+put("secUpNamesX", " and ".join(NICE[t["instance"]] for t in secup)); put("secUpLoX", min(t["diff_pt"] for t in secup)); put("secUpHiX", max(t["diff_pt"] for t in secup))
+put("secDiffLoX", min(t["diff_pt"] for t in sX8), "{:+.1f}"); put("secDiffHiX", max(t["diff_pt"] for t in sX8), "{:+.1f}")
+dx2 = J(BASE / "dx2_tuned_harmonic_ood_plantb.json")
+xo, xb = dx2["plantA_OOD|tuned, extended grid (frozen)"], dx2["plantB_main|tuned, extended grid (frozen)"]
+put("oodDepHx", xo["dep"]); put("oodSecHx", xo["sec"]); put("bDepHx", xb["dep"]); put("bSecHx", xb["sec"]); put("bFtHx", xb["false_trips"], "{:d}"); put("bHealthyHx", xb["n_healthy"], "{:d}")
+put("frozenSet", "pickup {:.2f}\\,pu, $k_2$ {:.2f}, $k_5$ {:.2f}".format(*dx2["setting"]))
+
 # ------------------------------------------------------------------ protocol constants and derived counts used in the prose
 gen = T(ROOT / "simulations" / "generate_stress_dataset_v5.m")
 put("traceLen", float(re.search(r"'StopTime', ([\d.]+)", gen).group(1)), "{:.1f}", "generate_stress_dataset_v5.m")

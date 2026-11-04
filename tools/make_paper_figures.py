@@ -38,7 +38,7 @@ def save(fig, name: str) -> None:
 
 
 # label placement only (points / text alignment), chosen by looking at the rendered figure
-LABEL_OFFSET = {"Ngaopitakkul (native)": (-4, 2, "right"), "Abdusalam (native)": (-4, 3, "right"), "LSTM, tuned": (-4, 3, "right"),
+LABEL_OFFSET = {"Harmonic 87T, tuned": (3, -7, "left"), "Harmonic 87T, tuned (extended grid)": (-4, -8, "right"), "Ngaopitakkul (native)": (-4, 2, "right"), "Abdusalam (native)": (-4, 3, "right"), "LSTM, tuned": (-4, 3, "right"),
                 "Random forest": (2, -8, "left"), "Key's network": (-2, 4, "right"), "LSTM, deployed": (3, -6, "left"),
                 "GRU": (-4, 2, "right"), "1D-CNN": (3, 2, "left"), "MLP": (3, 2, "left")}
 
@@ -69,7 +69,7 @@ def fig_operating_points(M) -> None:
 
 
 def fig_categories(M) -> None:
-    show = ["LSTM, deployed", "Key's network", "1D-CNN", "Harmonic 87T, tuned"]
+    show = ["LSTM, deployed", "Key's network", "1D-CNN", "Harmonic 87T, tuned (extended grid)"]
     cats = sorted({r["category"] for r in M[show[0]][1]}, key=lambda c: (0 if any(r["should_trip"] for r in M[show[0]][1] if r["category"] == c) else 1, c))
     fault = {c: any(r["should_trip"] for r in M[show[0]][1] if r["category"] == c) for c in cats}
     fig, ax = plt.subplots(figsize=(180 * MM, 92 * MM))

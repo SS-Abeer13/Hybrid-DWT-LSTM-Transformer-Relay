@@ -186,8 +186,14 @@ PERM_DRAWS = int(re.search(r"\((\d+) draws", _CLU_TXT).group(1))
 PERM_FLOOR = float(re.search(r"floor ([0-9.]+e-\d+)", _CLU_TXT).group(1))
 
 
+def _fam_match(key: str, prefix: str) -> bool:
+    """'N6c' matches 'N6c (Holm 4)' but not 'N6c ext (Holm 4)'; 'N5b' matches 'N5b native + like-for-like (Holm 48)'."""
+    base = key.split(" (Holm")[0]
+    return base == prefix or (base.startswith(prefix + " ") and not base[len(prefix):].startswith(" ext"))
+
+
 def clu(family_prefix: str, label: str) -> dict:
-    fam = [k for k in CLU if k.startswith(family_prefix)]
+    fam = [k for k in CLU if _fam_match(k, family_prefix)]
     assert len(fam) == 1, family_prefix
     t = [x for x in CLU[fam[0]] if x["label"] == label]
     assert len(t) == 1, (family_prefix, label)
@@ -196,7 +202,8 @@ def clu(family_prefix: str, label: str) -> dict:
 
 def clu_n(family_prefix: str) -> int:
     """Holm family size of a clustered family, read from its key, e.g. 'N8a (Holm 16)'."""
-    fam = [k for k in CLU if k.startswith(family_prefix)]
+    fam = [k for k in CLU if _fam_match(k, family_prefix)]
+    assert len(fam) == 1, family_prefix
     return int(re.search(r"Holm (\d+)", fam[0]).group(1))
 
 
@@ -222,6 +229,28 @@ INST_LABEL = {"Key (claim-C run)": "Key's network", "LSTM (tuned, B2)": "the tun
 def sci(q: float) -> str:
     m, e = f"{q:.0e}".split("e")
     return f"{m}\\times10^{{{int(e)}}}"
+
+
+def harmonic_grids() -> dict[str, dict[str, tuple]]:
+    """The original (N6c) and extended (grid-edge check, D-X1) grids of the tuned harmonic 87T, as coded in tools/n6c_tuned_harmonic.py."""
+    src = (ROOT / "tools" / "n6c_tuned_harmonic.py").read_text()
+    m = re.search(r"if EXT:\n\s+PICK, K2, K5 = (.+)\nelse:\n\s+PICK, K2, K5 = (.+)\n", src)
+    to = lambda t: dict(zip(("pickup", "k2", "k5"), eval(t, {})))  # noqa: E731  (tuple literals only)
+    return {"extended": to(m.group(1)), "original": to(m.group(2))}
+
+
+def grid_edges(chosen: list, grid: dict) -> str:
+    edge = []
+    for ix, (nm, g) in enumerate(grid.items()):
+        assert all(any(abs(c[ix] - g_) < 1e-9 for g_ in g) for c in chosen), nm
+        lo = sum(abs(c[ix] - min(g)) < 1e-9 for c in chosen); hi = sum(abs(c[ix] - max(g)) < 1e-9 for c in chosen)
+        if lo: edge.append(f"{nm} at the lowest grid value in {lo} of {len(chosen)}")
+        if hi: edge.append(f"{nm} at the highest in {hi} of {len(chosen)}")
+    return (", ".join(edge) if edge else "no setting at a grid edge").replace("k2", "$k_2$").replace("k5", "$k_5$")
+
+
+def gset(g: tuple) -> str:
+    return "$\\{" + ", ".join(f"{v:g}" for v in g) + "\\}$"
 
 
 def code_constants() -> dict:
@@ -481,44 +510,45 @@ def table_C() -> None:
     dx = json.loads((BASE / "dx2_tuned_harmonic_ood_plantb.json").read_text())
     xo, xb = dx["plantA_OOD|tuned, extended grid (frozen)"], dx["plantB_main|tuned, extended grid (frozen)"]
     hy = mean_over_seeds(cv_ref(DEP))
-    fam = [l for l in (BASE / "n6c_tuned_harmonic.txt").read_text().splitlines() if l.startswith("dependability, ")]
+    n6x = json.loads((BASE / "n6c_tuned_harmonic_ext.json").read_text())
+    fam = [l for l in (BASE / "n6c_tuned_harmonic_ext.txt").read_text().splitlines() if l.startswith("dependability, ")]
     ct_d, ct_s = clu("N6c", "tuned harmonic vs proposed hybrid dependability"), clu("N6c", "tuned harmonic vs proposed hybrid security")
-    cb_d, cb_s = clu("N6c", "textbook harmonic vs proposed hybrid dependability"), clu("N6c", "textbook harmonic vs proposed hybrid security")
+    cx_d, cx_s = clu("N6c ext", "tuned harmonic vs proposed hybrid dependability"), clu("N6c ext", "tuned harmonic vs proposed hybrid security")
+    cb_d, cb_s = clu("N6c ext", "textbook harmonic vs proposed hybrid dependability"), clu("N6c ext", "textbook harmonic vs proposed hybrid security")
     assert abs(ct_d["diff"] - n6["tests"][2]["diff_pt"]) < 1e-9 and abs(ct_s["diff"] - n6["tests"][3]["diff_pt"]) < 1e-9
-    grid = {"pickup": [0.2, 0.3, 0.4], "k2": [0.12, 0.15, 0.20], "k5": [0.25, 0.35]}   # the N6c grid as fixed in BENCHMARK_FAIRNESS_PLAN.md (printed in the note)
-    chosen = [c["setting"] for c in n6["chosen"]]
-    assert all(any(abs(c[ix] - g_) < 1e-9 for g_ in g) for c in chosen for ix, g in enumerate(grid.values()))
-    edge = []
-    for ix, (nm, g) in enumerate(grid.items()):
-        lo = sum(abs(c[ix] - min(g)) < 1e-9 for c in chosen); hi = sum(abs(c[ix] - max(g)) < 1e-9 for c in chosen)
-        if lo: edge.append(f"{nm} at the lowest grid value in {lo} of {len(chosen)}")
-        if hi: edge.append(f"{nm} at the highest in {hi} of {len(chosen)}")
-    corner = "Grid boundary: " + ", ".join(edge).replace("k2", "$k_2$").replace("k5", "$k_5$") + " fold-models, so a wider grid might raise the tuned relay's dependability (not tested)."
+    assert abs(cx_d["diff"] - n6x["tests"][2]["diff_pt"]) < 1e-9 and abs(cx_s["diff"] - n6x["tests"][3]["diff_pt"]) < 1e-9
+    G = harmonic_grids()
+    corner_o = grid_edges([c["setting"] for c in n6["chosen"]], G["original"])
+    corner_x = grid_edges([c["setting"] for c in n6x["chosen"]], G["extended"])
+    gtxt = lambda g: f"pickup {gset(g['pickup'])}\\,pu $\\times$ $k_2$ {gset(g['k2'])} $\\times$ $k_5$ {gset(g['k5'])}"  # noqa: E731
+    seeds_x = list(n6x["tests"][2]["per_seed"].values())
+    ext_line = (f"$^{{\\S}}$ Reference relay of the paper: tuned on validation traces over the extended grid (post-hoc, fixed before its run; OOD and plant B with one setting frozen from plant A): {gtxt(G['extended'])}, chosen per fold by the same plateau rule; {corner_x} fold-models (left unresolved: no second extension). "
+                f"Tuned (extended) minus proposed hybrid: dependability {cx_d['diff']:+.2f} pt ({ptex(cx_d)}; per-seed {', '.join(f'{v:+.2f}' for v in seeds_x)}), security {cx_s['diff']:+.2f} pt ({ptex(cx_s)}): not distinguishable. ")
+    note_C = (ext_line
+              + f"Original grid: {gtxt(G['original'])}; {corner_o} fold-models; tuned (original) minus proposed: dependability {ct_d['diff']:+.2f} pt ({ptex(ct_d)}), security {ct_s['diff']:+.2f} pt ({ptex(ct_s)}). "
+              + f"Textbook minus proposed: dependability {cb_d['diff']:+.2f} pt ({ptex(cb_d)}), security {cb_s['diff']:+.2f} pt ({ptex(cb_s)}). "
+              + "; ".join(fam).replace("dependability, ", "Dependability, ").replace("tuned harmonic", "tuned harmonic (extended)").replace("_", "\\_") + ". "
+              + test_unit(clu_n("N6c ext")) + " The original-grid comparison is a separate family of " + str(clu_n("N6c")) + ". n/e = not evaluated (no new experiments).")
+    short_C = (ext_line + f"Textbook minus proposed: {cb_d['diff']:+.2f} pt ({ptex(cb_d)}) / {cb_s['diff']:+.2f} pt ({ptex(cb_s)}). "
+               + test_unit(clu_n("N6c ext")) + " n/e = not evaluated. Full notes: Supplementary Table S1.")
     L = [r"\begin{table}[t]\centering",
-         r"\caption{Conventional relays on the benchmark data (dependability / security, \%): unrestrained dual-slope 87T, harmonic-restrained 87T with textbook settings, and harmonic-restrained 87T tuned on validation traces, against the proposed relay. Plant-A CV (3 seeds $\times$ 5 folds, common set), OOD (final scoring) and plant-B zero-shot.}\label{tab:C_conventional}",
+         r"\caption{Conventional relays on the benchmark data (dependability / security, \%): unrestrained dual-slope 87T, harmonic-restrained 87T with textbook settings, and harmonic-restrained 87T tuned on validation traces over the original and over the extended grid (post-hoc; the reference relay of this paper), against the proposed relay. Plant-A CV (3 seeds $\times$ 5 folds, common set), OOD (final scoring) and plant-B zero-shot.}\label{tab:C_conventional}",
          r"\small\begin{tabular}{@{}lcccccc@{}}\toprule",
          r"Relay & \multicolumn{2}{c}{CV} & \multicolumn{2}{c}{OOD} & \multicolumn{2}{c}{Plant B} \\ & dep. & sec. & dep. & sec. & dep. & sec. \\ \midrule",
          f"87T unrestrained (dual slope, 0.30\\,pu pickup) & {t87[0]:.1f} & {t87[1]:.1f} & {o['87T alone']['dependability_pct']:.1f} & {o['87T alone']['security_pct']:.1f} & {z['87T alone']['dependability_pct']:.1f} & {z['87T alone']['security_pct']:.1f} \\\\",
          f"Harmonic 87T, textbook (0.30\\,pu, $k_2$ 0.15, $k_5$ 0.35) & {tb[0]:.1f} & {tb[1]:.1f} & {h['per_phase']['ood_overall']['dependability_pct']:.1f} & {h['per_phase']['ood_overall']['security_pct']:.1f} & {z['Harmonic 87T']['dependability_pct']:.1f} & {z['Harmonic 87T']['security_pct']:.1f} \\\\",
-         f"Harmonic 87T, tuned on validation, original grid & {tt[0]:.1f} & {tt[1]:.1f} & n/e & n/e & n/e & n/e \\\\",
-         f"Harmonic 87T, tuned on validation, extended grid (post-hoc; OOD and plant B with the setting frozen from plant A) & {tx[0]:.1f} & {tx[1]:.1f} & {xo['dep']:.1f} & {xo['sec']:.1f} & {xb['dep']:.1f} & {xb['sec']:.1f} \\\\", r"\midrule",
+         f"Harmonic 87T, tuned, original grid & {tt[0]:.1f} & {tt[1]:.1f} & n/e & n/e & n/e & n/e \\\\",
+         f"\\textbf{{Harmonic 87T, tuned, extended grid}}$^{{\\S}}$ & {tx[0]:.1f} & {tx[1]:.1f} & {xo['dep']:.1f} & {xo['sec']:.1f} & {xb['dep']:.1f} & {xb['sec']:.1f} \\\\", r"\midrule",
          f"Proposed relay (deployed LSTM hybrid) & {hy[0]:.1f} & {hy[1]:.1f} & {o[DEP]['dependability_pct']:.1f} & {o[DEP]['security_pct']:.1f} & {z['Proposed']['dependability_pct']:.1f} & {z['Proposed']['security_pct']:.1f} \\\\",
          r"\bottomrule\end{tabular}",
-         r"\vspace{3pt}\par\raggedright\footnotesize\textit{Notes.} Tuned = grid pickup $\{0.2, 0.3, 0.4\}$\,pu $\times$ $k_2$ $\{0.12, 0.15, 0.20\}$ $\times$ $k_5$ $\{0.25, 0.35\}$, chosen per fold on validation traces by the plateau rule (fills fixed before the run); chosen settings over the 15 fold-models: "
-         + "; ".join(f"{k.replace('[', '(').replace(']', ')')} in {v}" for k, v in ch.items()) + ". "
-         + corner + " "
-         + f"Tuned harmonic 87T minus proposed hybrid: dependability {ct_d['diff']:+.2f} pt ({ptex(ct_d)}; per-seed differences {', '.join(f'{v:+.2f}' for v in n6['tests'][2]['per_seed'].values())}, sign changes: unstable), security {ct_s['diff']:+.2f} pt ({ptex(ct_s)}). "
-         + f"Textbook harmonic 87T minus proposed hybrid: dependability {cb_d['diff']:+.2f} pt ({ptex(cb_d)}), security {cb_s['diff']:+.2f} pt ({ptex(cb_s)}). "
-         + "; ".join(fam).replace("dependability, ", "Dependability, ").replace("_", "\\_") + ". " + test_unit(clu_n("N6c")) + " n/e = not evaluated (no new experiments).",
+         r"\vspace{3pt}\par\raggedright\footnotesize\textit{Notes.} " + note_C,
          r"\end{table}"]
-    short_C = (corner + f" Tuned minus proposed: dependability {ct_d['diff']:+.2f} pt ({ptex(ct_d)}), security {ct_s['diff']:+.2f} pt ({ptex(ct_s)}); textbook minus proposed: {cb_d['diff']:+.2f} pt ({ptex(cb_d)}) / {cb_s['diff']:+.2f} pt ({ptex(cb_s)}). "
-               + test_unit(clu_n("N6c")) + " n/e = not evaluated. Full notes: Supplementary Table S1.")
     tex_write("table_C_conventional.tex", L, short_C)
 
 
 # ---------------------------------------------------------------------------------------------------------------- Table D
 def table_D() -> None:
-    n8 = {(t["instance"], t["metric"]): t for t in json.loads((BASE / "n8a_instances_vs_tuned_harmonic.json").read_text())}
+    n8 = {(t["instance"], t["metric"]): t for t in json.loads((BASE / "n8a_instances_vs_tuned_harmonic_ext.json").read_text())}
     b2 = {}
     for f in sorted((BASE / "b2_equal_search").glob("final_seed*_fold*.json")):
         j = json.loads(f.read_text())
@@ -537,7 +567,7 @@ def table_D() -> None:
         f = [r["correct"] for r in rows if r["should_trip"]]; h = [r["correct"] for r in rows if not r["should_trip"]]
         return 100 * np.mean(f), 100 * np.mean(h)
     hs = holm_sizes()
-    n8l = json.loads((BASE / "n8a_instances_vs_tuned_harmonic.json").read_text())
+    n8l = json.loads((BASE / "n8a_instances_vs_tuned_harmonic_ext.json").read_text())
     th_d = {round(t["tuned_harmonic_pct"], 6) for t in n8l if t["metric"] == "dependability"}; assert len(th_d) == 1; th_d = th_d.pop()
     th_s = {round(t["tuned_harmonic_pct"], 6) for t in n8l if t["metric"] == "security"}; assert len(th_s) == 1; th_s = th_s.pop()
     dd = [t for t in n8l if t["metric"] == "dependability"]; dsec = [t for t in n8l if t["metric"] == "security"]
@@ -549,23 +579,28 @@ def table_D() -> None:
     stab = lambda d: all(v > 0 for v in d.values()) or all(v < 0 for v in d.values())  # noqa: E731
     CN = {"1D-CNN": "1D-CNN hybrid", "Wavelet-GRU": "Wavelet-GRU hybrid", "Wavelet-ANN": "Wavelet-ANN hybrid", "Key (claim-C run)": "Key hybrid",
           "Wavelet-RF": "Wavelet-RF hybrid", "LSTM (tuned, B2)": "Proposed LSTM hybrid"}
-    cl = {(t["instance"], t["metric"]): clu("N8a", f"{CN[t['instance']]} vs tuned harmonic {t['metric']}") for t in n8l}
+    cl = {(t["instance"], t["metric"]): clu("N8a ext", f"{CN[t['instance']]} vs tuned harmonic {t['metric']}") for t in n8l}
     for kk, t in cl.items():
         assert abs(t["diff"] - n8[kk]["diff_pt"]) < 1e-9, kk
     n_dep_sig = sum(cl[(t["instance"], "dependability")]["holm_clust"] < 0.05 and t["diff_pt"] > 0 for t in dd)
     n_sec_lower = sum(cl[(t["instance"], "security")]["holm_clust"] < 0.05 and t["diff_pt"] < 0 for t in dsec)
+    dd_sig = [t for t in dd if cl[(t["instance"], "dependability")]["holm_clust"] < 0.05 and t["diff_pt"] > 0]
     sec_up = [t["instance"] for t in dsec if cl[(t["instance"], "security")]["holm_clust"] < 0.05 and t["diff_pt"] > 0]
     dep_p = [cl[(t["instance"], "dependability")]["holm_clust"] for t in dd]
     kc = {m: clu("Key hybrid", f"Key hybrid vs proposed hybrid {m}") for m in ("dependability", "security")}
     so = solo_settings()
     sig = lambda t: ("$^{*}$" if cl[(t["instance"], t["metric"])]["holm_clust"] < 0.05 else "") + ("" if t["sign_stable"] else "$^{\\dagger}$")  # noqa: E731
     L = [r"\begin{table*}[t]\centering",
-         r"\caption{Instances of the dual-path supervisory logic with interchangeable classifiers (dependability / security, \%): plant-A CV (3 seeds $\times$ 5 folds, common set, mean over seeds), OOD and plant-B zero-shot where a final model was scored; difference to the validation-tuned harmonic 87T (" + f"{th_d:.1f} / {th_s:.1f}; post-hoc, Holm over {hs['n8a']} tests" + r"); and the gated-only ablation (AI-alone path off).}\label{tab:D_instances}",
+         r"\caption{Instances of the dual-path supervisory logic with interchangeable classifiers (dependability / security, \%): plant-A CV (3 seeds $\times$ 5 folds, common set, mean over seeds), OOD and plant-B zero-shot where a final model was scored; difference to the validation-tuned harmonic 87T on the extended grid (" + f"{th_d:.1f} / {th_s:.1f}; post-hoc reference, Holm over {clu_n('N8a ext')} tests" + r"); and the gated-only ablation (AI-alone path off).}\label{tab:D_instances}",
          r"\scriptsize\setlength{\tabcolsep}{3pt}",
          r"\begin{tabular}{@{}lcccccccc@{}}\toprule",
          r"Instance (hybrid mode) & \multicolumn{2}{c}{CV} & $\Delta$ dep. vs tuned & $\Delta$ sec. vs tuned & \multicolumn{2}{c}{OOD} & \multicolumn{2}{c}{Plant B} \\ & dep. & sec. & harmonic 87T (pt) & harmonic 87T (pt) & dep. & sec. & dep. & sec. \\ \midrule"]
     hy = mean_over_seeds(cv_ref(DEP))
-    L.append(f"LSTM, deployed (closed-loop configuration) & {hy[0]:.1f} & {hy[1]:.1f} & n/e & n/e & {o[DEP]['dependability_pct']:.1f} & {o[DEP]['security_pct']:.1f} & {z['Proposed']['dependability_pct']:.1f} & {z['Proposed']['security_pct']:.1f} \\\\")
+    n6x_t = json.loads((BASE / "n6c_tuned_harmonic_ext.json").read_text())["tests"]
+    dep_x = {m: clu("N6c ext", f"tuned harmonic vs proposed hybrid {m}") for m in ("dependability", "security")}
+    dep_stab = {m: (lambda v: all(x > 0 for x in v) or all(x < 0 for x in v))(list(n6x_t[2 + k]["per_seed"].values())) for k, m in enumerate(("dependability", "security"))}
+    dcell = lambda m: f"{-dep_x[m]['diff']:+.2f}" + ("$^{*}$" if dep_x[m]["holm_clust"] < 0.05 else "") + ("" if dep_stab[m] else "$^{\\dagger}$")  # noqa: E731
+    L.append(f"LSTM, deployed (closed-loop configuration) & {hy[0]:.1f} & {hy[1]:.1f} & {dcell('dependability')} & {dcell('security')} & {o[DEP]['dependability_pct']:.1f} & {o[DEP]['security_pct']:.1f} & {z['Proposed']['dependability_pct']:.1f} & {z['Proposed']['security_pct']:.1f} \\\\")
     for key, label, nm in (("Proposed LSTM", "LSTM, tuned (B2)", "LSTM (tuned, B2)"), ("1D-CNN", "1D-CNN, tuned (B2)", "1D-CNN"), ("Wavelet-GRU", "GRU, tuned (B2)", "Wavelet-GRU"),
                            ("Wavelet-ANN", "MLP, tuned (B2)", "Wavelet-ANN"), ("Wavelet-RF", "Random forest, tuned (B2)", "Wavelet-RF")):
         v = mean_over_seeds(b2[key]); td, ts = n8[(nm, "dependability")], n8[(nm, "security")]
@@ -580,9 +615,10 @@ def table_D() -> None:
     pf = json.loads((BASE / "full" / "key_hybrid" / "final_plantB_main.json").read_text())["paths"]["false_trips"]
     n_kb_h = sum(1 for r in kb["hybrid"] if not r["should_trip"] and not r["undetectable"])
     dg, sg = gat["dependability"], gat["security"]
-    common = (f"$^{{*}}$ $p_{{\\mathrm{{H}}}}<0.05$ (post-hoc family of {clu_n('N8a')} tests: {hs['n8a_new']} added after the tuned-harmonic comparison plus its {hs['n6c']}); $^{{\\dagger}}$ per-seed differences change sign. "
-              + test_unit(clu_n("N8a")) + " "
-              + f"{n_dep_sig} of {len(dd)} instances are significantly more dependable than the tuned harmonic 87T ({min(t['diff_pt'] for t in dd):+.1f} to {max(t['diff_pt'] for t in dd):+.1f} pt, $p_{{\\mathrm{{H}}}}\\le{sci(max(dep_p))}$); "
+    common = (f"$^{{*}}$ $p_{{\\mathrm{{H}}}}<0.05$ (post-hoc family of {clu_n('N8a ext')} tests: {hs['n8a_new']} against the extended-grid tuned harmonic 87T plus its {hs['n6c']} tests); $^{{\\dagger}}$ per-seed differences change sign. "
+              + test_unit(clu_n("N8a ext")) + " "
+              + f"Deployed LSTM row: from the {clu_n('N6c ext')}-test family of Table C (deployed minus tuned). "
+              + f"{n_dep_sig} of {len(dd)} instances are significantly more dependable than the extended-grid tuned harmonic 87T ({min(t['diff_pt'] for t in dd_sig):+.1f} to {max(t['diff_pt'] for t in dd_sig):+.1f} pt; all six {min(t['diff_pt'] for t in dd):+.1f} to {max(t['diff_pt'] for t in dd):+.1f} pt); "
               + (", ".join(INST_LABEL.get(x, x) for x in sec_up) + " significantly more secure; " if sec_up else "") + ("none is" if n_sec_lower == 0 else f"{n_sec_lower} are") + " significantly less secure. "
               + f"In {so['solo_off']} of {so['n']} CV fold-models of the deployed LSTM the plateau rule switched the AI-alone path off (AI threshold {so['ai_min']}--{so['ai_max']}), so its CV row mixes dual-path and gated-only fold-models. ")
     note_D = (common

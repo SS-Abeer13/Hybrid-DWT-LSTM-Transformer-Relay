@@ -55,9 +55,9 @@ def _b2(model: str, mode: str) -> list[dict]:
     return out
 
 
-def _n6c(key: str) -> list[dict]:
+def _n6c(key: str, fname: str = "n6c_tuned_rows.json") -> list[dict]:
     cm = category_map()
-    rows = json.loads((BASE / "n6c_tuned_rows.json").read_text())[key]
+    rows = json.loads((BASE / fname).read_text())[key]
     return [dict(r, trace=r["key"][2], category=cm[r["key"][2]], operate_ms=None) for r in rows if r["key"][2] in cm]
 
 
@@ -77,6 +77,7 @@ def all_methods() -> dict[str, tuple[str, list[dict]]]:
     M["87T unrestrained"] = ("Conventional relay", _cv_variant("87T alone"))
     M["Harmonic 87T, textbook"] = ("Conventional relay", _n6c("textbook"))
     M["Harmonic 87T, tuned"] = ("Conventional relay", _n6c("tuned"))
+    M["Harmonic 87T, tuned (extended grid)"] = ("Conventional relay", _n6c("tuned", "n6c_tuned_rows_ext.json"))   # post-hoc reference relay
     M["LSTM, deployed"] = ("Dual-path instance", _cv_variant(DEP))
     M["Key's network"] = ("Dual-path instance", _full("key_hybrid", "hybrid"))
     for key, lab in B2:

@@ -17,6 +17,6 @@ supplementary.tex: banned / forbidden words: []
 supplementary.tex: [cite: placeholders: 0
 supplementary.tex: placeholders for the author: 0
 main.tex prose: digit strings typed by hand (allowed: 87T, 1D-CNN, figure/section numbers, years, model names): ['1', '1,', '14', '2', '20', '25,', '3', '3,', '4', '5', '50', '6', '7', '8', '87', '87.', '90', '99']
-EPSR word count (abstract + text + tables + captions + declarations; references and acknowledgements excluded): 6022
-abstract words: 228
-highlights: 5 bullets, lengths [82, 85, 85, 84, 77] (limit 85)
+EPSR word count (abstract + text + tables + captions + declarations; references and acknowledgements excluded): 6455
+abstract words: 229
+highlights: 5 bullets, lengths [82, 85, 85, 81, 77] (limit 85)

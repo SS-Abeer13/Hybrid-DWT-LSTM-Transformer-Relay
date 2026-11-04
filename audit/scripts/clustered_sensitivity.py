@@ -7,7 +7,7 @@ This script re-tests every reported comparison two ways that respect the cluster
       statistic = sum(d_i); 200,000 random sign flips (two-sided, add-one correction); when no permutation reaches the observed
       value, a normal approximation of the same statistic is also given;
   (b) seed-1-only exact McNemar (each trace exactly once; seed 20261021 only).
-Holm is then re-applied inside the SAME families as reported (24, 48, 50, 4, 16, 22). The output lists every test whose
+Holm is then re-applied inside the SAME families as reported (24, 48, 50, 4, 16, 22; D-X1 adds the extended-grid 4 and 16). The output lists every test whose
 'significant after Holm' verdict changes.
 Output: audit/scripts/out/clustered_sensitivity.txt / .json
 """
@@ -126,6 +126,20 @@ def main():
         for m, f in (("dependability", 1), ("security", 0)):
             b2c.append((f"{n} hybrid vs deployed hybrid {m}", refs["Proposed hybrid"], inst[n], f, None))
     fams["B2 (Holm 22)"] = run_family("b2", b2c)
+    # D-X1 (2026-11-04): the same tests against the EXTENDED-grid tuned harmonic 87T (post-hoc; n6c_tuned_rows_ext.json).
+    # Appended after every earlier family, so the shared RNG stream - and every earlier result - is unchanged.
+    rows_x = json.loads((R.BF / "n6c_tuned_rows_ext.json").read_text())
+    tuned_x = {tuple(r["key"]): r for r in rows_x["tuned"]}; text_x = {tuple(r["key"]): r for r in rows_x["textbook"]}
+    n6x = [(f"{nm} harmonic vs proposed hybrid {m}", refs["Proposed hybrid"], d, f, None) for nm, d in (("textbook", text_x), ("tuned", tuned_x)) for m, f in (("dependability", 1), ("security", 0))]
+    fams["N6c ext (Holm 4)"] = run_family("n6c_ext", n6x)
+    n8x = [(f"{n} hybrid vs tuned harmonic {m}", tuned_x, inst[n], f, None) for n in ("1D-CNN", "Wavelet-GRU", "Wavelet-ANN", "Key", "Wavelet-RF", "Proposed LSTM") for m, f in (("dependability", 1), ("security", 0))]
+    n8xr = run_family("n8a_ext", n8x, extra_prior=None)
+    allc = R.holm([x["p_clust"] for x in n8xr] + [x["p_clust"] for x in fams["N6c ext (Holm 4)"]])
+    all1 = R.holm([x["p_seed1"] for x in n8xr] + [x["p_seed1"] for x in fams["N6c ext (Holm 4)"]])
+    allp = R.holm([x["p_pooled"] for x in n8xr] + [x["p_pooled"] for x in fams["N6c ext (Holm 4)"]])
+    for x, a, b, c in zip(n8xr, allp, allc, all1):
+        x["holm_pooled"], x["holm_clust"], x["holm_seed1"] = float(a), float(b), float(c)
+    fams["N8a ext (Holm 16)"] = n8xr
     flips = []
     for fam, rows in fams.items():
         L += fmt(fam, rows)

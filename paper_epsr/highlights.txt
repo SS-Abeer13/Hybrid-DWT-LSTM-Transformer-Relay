@@ -1,5 +1,5 @@
 Published learned 87T methods re-implemented and scored on identical grouped folds
 Dual-path logic: an 87T vote gates a classifier, with a guarded classifier-alone path
 Different classifiers inside the logic give similar operating points on the same data
-Most instances of the logic are more dependable than a tuned harmonic-restrained 87T
+A tuned harmonic 87T matches the deployed LSTM relay; several instances exceed it
 Transfer to an unseen transformer depends on the classifier, not on the logic

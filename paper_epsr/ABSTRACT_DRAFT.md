@@ -8,9 +8,9 @@ A model-agnostic dual-path supervisory logic for transformer differential protec
 
 ## Abstract (draft)
 
-Learning-based transformer differential relays are rarely compared under the same data, folds and decision logic. We evaluate on simulated 300 MVA and 40 MVA plants with trace-grouped cross-validation (3 seeds x 5 folds, 3,302 traces) and re-implement six published methods at their own sampling rates. Natively, none reaches 93 % dependability and 98.8 % security together: the two most dependable reach 97.0 % and 96.5 % at 75.3 % and 82.9 % security. We then study a dual-path supervisory logic (an 87T vote gating a confirmed classifier output, a classifier-alone path, a high-set element) with interchangeable classifiers. With an equal search and epoch budget, six classifier instances reach 93.5-95.7 % dependability and 98.8-99.9 % security. All six are more dependable than a validation-tuned harmonic-restrained 87T (91.2 % / 99.1 %) by 2.3-4.6 points (post-hoc, trace-clustered test, Holm-adjusted), with security within -0.3 to +0.8 points. The deployed LSTM instance of our Simulink closed loop (93.0 % / 99.0 %) is 1.8 points more dependable than the tuned relay (p_H = 0.005), but its lead is not stable across seeds (-0.2 to +2.8 points). Transfer to the unseen plant depends on the classifier: zero-shot security is 99.9 % with Key's network but 88.4 % with the deployed LSTM, whose classifier-alone path caused 87 of 89 false trips. High-impedance internal faults remain a limit (dependability about 65 % deployed, 62 % tuned relay). The supervisory logic and the evaluation protocol, not the choice of classifier, are the contribution.
+Learned transformer differential relays are rarely compared on common data, folds and decision logic. We evaluate on simulated 300 MVA and 40 MVA plants with trace-grouped cross-validation (3 seeds x 5 folds, 3,302 traces) and re-implement six published methods at their own sampling rates. Natively, none reaches 93 % dependability and 98.8 % security together: the two most dependable reach 97.0 % and 96.5 % at 75.3 % and 82.9 % security. We then study a dual-path supervisory logic (87T-gated classifier, classifier-alone path, high-set) with interchangeable classifiers. With an equal search and epoch budget, six classifier instances reach 93.5-95.7 % dependability and 98.8-99.9 % security. A harmonic-restrained 87T tuned on validation traces over an extended grid (post-hoc; 92.8 % / 98.9 %) cannot be told apart from the deployed LSTM instance of our Simulink closed loop (93.0 % / 99.0 %; trace-clustered test, p_H = 1.00 on both metrics) and detects more high-impedance faults (69.9 % against 65.4 %). Four of the six instances are more dependable than this relay, by 1.3-3.0 points (post-hoc, Holm-adjusted), and none is less secure. Transfer to the unseen plant depends on the classifier: zero-shot security is 99.9 % with Key's network but 88.4 % with the deployed LSTM, whose classifier-alone path caused 87 of 89 false trips; the tuned relay, frozen from plant A, reaches 96.8 % / 99.1 %. The deployed LSTM relay does not outperform a well-tuned conventional relay; the contribution is the leak-free benchmark, the reproductions and the classifier-agnostic logic.
 
-*245 words.* EPSR's abstract limit is to be checked against the final template; trimming changes wording only, never numbers.
+*249 words.* EPSR's abstract limit is to be checked against the final template; trimming changes wording only, never numbers.
 
 ## Number-to-source map
 
@@ -31,34 +31,33 @@ Learning-based transformer differential relays are rarely compared under the sam
 | 13 | 95.7 % | highest instance dependability (hybrid, CV) | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
 | 14 | 98.8 | lowest instance security (hybrid, CV) | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
 | 15 | 99.9 % | highest instance security (hybrid, CV) | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 16 | 91.2 % | tuned harmonic 87T CV dependability | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 17 | 99.1 % | tuned harmonic 87T CV security | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 18 | 2.3 | smallest instance minus tuned-harmonic dependability difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 19 | 4.6 | largest instance minus tuned-harmonic dependability difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 20 | -0.3 | smallest security difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 21 | +0.8 | largest security difference | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic.json` |
-| 22 | 93.0 % | deployed hybrid CV dependability | `runs/20261101_v5_benchmark_fair/n5_statistics.json` |
-| 23 | 99.0 % | deployed hybrid CV security | `runs/20261101_v5_benchmark_fair/n5_statistics.json` |
-| 24 | 1.8 | deployed hybrid minus tuned harmonic 87T, dependability (pt) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.json` |
-| 25 | 0.005 | clustered Holm-4 p of that difference | `audit/scripts/out/clustered_sensitivity.json` |
-| 26 | -0.2 | smallest per-seed lead (pt) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.json` |
-| 27 | +2.8 | largest per-seed lead (pt) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.json` |
-| 28 | 99.9 % | Key hybrid plant-B zero-shot security | `runs/20261101_v5_benchmark_fair/full/key_hybrid/final_plantB_main.json` |
-| 29 | 88.4 % | deployed hybrid plant-B zero-shot security | `runs/20261029_v5_plant_b_zeroshot/zero_shot_summary.json` |
-| 30 | 87 | plant-B false trips first fired by the AI-alone path | `runs/20261029_v5_plant_b_zeroshot/trip_path_check.json` |
-| 31 | 89 | plant-B false trips, deployed hybrid | `runs/20261029_v5_plant_b_zeroshot/trip_path_check.json` |
-| 32 | 65 % | Internal_HiZ dependability, deployed hybrid (CV) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.txt` |
-| 33 | 62 % | Internal_HiZ dependability, tuned harmonic 87T (CV) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic.txt` |
+| 16 | 92.8 % | extended-grid tuned harmonic 87T CV dependability | `runs/20261101_v5_benchmark_fair/n6c_tuned_rows_ext.json` |
+| 17 | 98.9 % | extended-grid tuned harmonic 87T CV security | `runs/20261101_v5_benchmark_fair/n6c_tuned_rows_ext.json` |
+| 18 | 93.0 % | deployed hybrid CV dependability | `runs/20261101_v5_benchmark_fair/n5_statistics.json` |
+| 19 | 99.0 % | deployed hybrid CV security | `runs/20261101_v5_benchmark_fair/n5_statistics.json` |
+| 20 | 1.00 | clustered Holm-4 p, deployed vs extended-grid tuned harmonic (dependability and security) | `audit/scripts/out/clustered_sensitivity.json` |
+| 21 | 69.9 % | Internal_HiZ dependability, extended-grid tuned harmonic (CV) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic_ext.txt` |
+| 22 | 65.4 % | Internal_HiZ dependability, deployed hybrid (CV) | `runs/20261101_v5_benchmark_fair/n6c_tuned_harmonic_ext.txt` |
+| 23 | 1.3 | smallest significant instance minus extended-grid tuned harmonic dependability difference [a] | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic_ext.json` |
+| 24 | 3.0 | largest significant instance minus extended-grid tuned harmonic dependability difference [b] | `runs/20261101_v5_benchmark_fair/n8a_instances_vs_tuned_harmonic_ext.json` |
+| 25 | 99.9 % | Key hybrid plant-B zero-shot security | `runs/20261101_v5_benchmark_fair/full/key_hybrid/final_plantB_main.json` |
+| 26 | 88.4 % | deployed hybrid plant-B zero-shot security | `runs/20261029_v5_plant_b_zeroshot/zero_shot_summary.json` |
+| 27 | 87 | plant-B false trips first fired by the AI-alone path | `runs/20261029_v5_plant_b_zeroshot/trip_path_check.json` |
+| 28 | 89 | plant-B false trips, deployed hybrid | `runs/20261029_v5_plant_b_zeroshot/trip_path_check.json` |
+| 29 | 96.8 % | extended-grid tuned harmonic plant-B zero-shot dependability | `runs/20261101_v5_benchmark_fair/dx2_tuned_harmonic_ood_plantb.json` |
+| 30 | 99.1 % | extended-grid tuned harmonic plant-B zero-shot security | `runs/20261101_v5_benchmark_fair/dx2_tuned_harmonic_ood_plantb.json` |
 
 ## Automatic checks
 
 - [x] no banned word in title or abstract
 - [x] no native reproduction meets 93 % / 98.8 % (claim restricted to native mode)
-- [x] every instance significantly more dependable than the tuned harmonic 87T (Holm-16): 6 of 6
-- [x] no instance significantly less secure than the tuned harmonic 87T
+- [x] the deployed hybrid is NOT significantly different from the extended-grid tuned harmonic 87T on either metric (clustered Holm-4), so no 'beats' claim
+- [x] no sentence claims that the deployed hybrid beats a tuned relay
+- [x] [k] = 4 of 6 instances significantly more dependable than the extended-grid reference (clustered Holm-16); [a]-[b] over those 4
+- [x] no instance significantly less dependable or less secure than the extended-grid reference (so 'none is less secure' holds)
 - [x] range quoted over ALL instances (min and max), not the top instance only
-- [x] Internal_HiZ limitation present (n = 459)
-- [x] abstract has 245 words (EPSR limit 250)
+- [x] high-impedance result present (n = 459)
+- [x] abstract has 249 words (EPSR limit 250)
 
 ## Labels that must travel with these numbers
 

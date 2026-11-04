@@ -18,7 +18,9 @@ FAMS = [("N5b", "S3", "Reproductions vs the proposed relay and vs the LSTM alone
         ("B2", "S4", "Same-feature hybrids (B2): vs the tuned LSTM hybrid (planned) and vs the deployed hybrid (post-hoc; window stride 4 vs 8)"),
         ("N8a", "S5", "Instances of the logic vs the validation-tuned harmonic 87T (post-hoc)"),
         ("N6c", "S6", "Harmonic 87T (textbook and tuned) vs the proposed relay"),
-        ("Key hybrid", "S7", "Key's network inside the logic vs the deployed LSTM instance")]
+        ("Key hybrid", "S7", "Key's network inside the logic vs the deployed LSTM instance"),
+        ("N6c ext", "S8", "Harmonic 87T on the extended grid (post-hoc reference) and textbook settings vs the proposed relay"),
+        ("N8a ext", "S9", "Instances of the logic vs the harmonic 87T tuned on the extended grid (post-hoc reference)")]
 
 
 def esc(s: str, names: bool = True) -> str:
@@ -35,7 +37,9 @@ def p(x: float, floor: bool) -> str:
 
 def main() -> None:
     for fam, tab, title in FAMS:
-        key = [k for k in AD.CLU if k.startswith(fam)][0]
+        key = [k for k in AD.CLU if AD._fam_match(k, fam)]
+        assert len(key) == 1, fam
+        key = key[0]
         n = AD.clu_n(fam)
         L = [r"\begin{longtable}{@{}p{8.6cm}rrr@{}}",
              r"\caption{" + f"{title}. " + AD.test_unit(n) + r" Pooled = exact McNemar on (seed, fold, trace) decisions, Holm in the same family (each trace counted up to three times; shown for transparency, not used for the marks).}\label{tab:" + tab + r"}\\",

@@ -131,6 +131,28 @@ Wavelet-ANN hybrid vs deployed hybrid security                       +0.25   9.0
 Wavelet-GRU hybrid vs deployed hybrid dependability                  +2.64   5.40e-15   1.10e-04   1.00e+00   SEED-1 FLIPS
 Wavelet-GRU hybrid vs deployed hybrid security                       -0.14   1.00e+00   1.00e+00   1.00e+00  
 
+== N6c ext (Holm 4) (Holm family size 4)
+comparison                                                            diff  pH pooled   pH clust   pH seed1  verdict change
+textbook harmonic vs proposed hybrid dependability                   -6.99   5.76e-69   2.00e-05   6.37e-28  
+textbook harmonic vs proposed hybrid security                        +0.44   1.81e-02   1.62e-01   9.17e-01  CLUSTERED FLIPS SEED-1 FLIPS
+tuned harmonic vs proposed hybrid dependability                      -0.16   1.00e+00   1.00e+00   6.00e-01  
+tuned harmonic vs proposed hybrid security                           -0.02   1.00e+00   1.00e+00   9.17e-01  
+
+== N8a ext (Holm 16) (Holm family size 12)
+comparison                                                            diff  pH pooled   pH clust   pH seed1  verdict change
+1D-CNN hybrid vs tuned harmonic dependability                        +2.96   2.40e-16   8.00e-05   1.15e-04  
+1D-CNN hybrid vs tuned harmonic security                             +0.08   1.00e+00   1.00e+00   1.00e+00  
+Wavelet-GRU hybrid vs tuned harmonic dependability                   +2.80   7.73e-14   8.00e-05   1.00e+00   SEED-1 FLIPS
+Wavelet-GRU hybrid vs tuned harmonic security                        -0.12   1.00e+00   1.00e+00   1.00e+00  
+Wavelet-ANN hybrid vs tuned harmonic dependability                   +2.13   2.38e-09   3.60e-04   4.38e-01   SEED-1 FLIPS
+Wavelet-ANN hybrid vs tuned harmonic security                        +0.27   7.52e-01   1.00e+00   1.00e+00  
+Key hybrid vs tuned harmonic dependability                           +1.32   2.11e-04   3.19e-02   1.00e+00   SEED-1 FLIPS
+Key hybrid vs tuned harmonic security                                +0.93   1.34e-10   2.60e-04   3.64e-02  
+Wavelet-RF hybrid vs tuned harmonic dependability                    +0.70   3.38e-01   1.00e+00   1.00e+00  
+Wavelet-RF hybrid vs tuned harmonic security                         +0.56   2.72e-04   2.73e-02   2.50e-01   SEED-1 FLIPS
+Proposed LSTM hybrid vs tuned harmonic dependability                 +0.81   4.80e-01   1.00e+00   1.00e+00  
+Proposed LSTM hybrid vs tuned harmonic security                      +0.17   1.00e+00   1.00e+00   1.00e+00  
+
 == Verdict changes (significant after Holm: pooled vs clustered or seed-1 only)
   - N5 native (Holm 24): LSTM alone vs alhamd [native] dependability diff -1.13: pooled pH 5.40e-03, clustered pH 5.60e-02, seed-1 pH 6.61e-01
   - N5b native + like-for-like (Holm 48): LSTM alone vs alhamd [native] dependability diff -1.13: pooled pH 9.00e-03, clustered pH 9.45e-02, seed-1 pH 1.00e+00
@@ -147,4 +169,9 @@ Wavelet-GRU hybrid vs deployed hybrid security                       -0.14   1.0
   - B2 (Holm 22): Wavelet-RF hybrid vs deployed hybrid security diff +0.54: pooled pH 4.53e-03, clustered pH 2.72e-02, seed-1 pH 1.00e+00
   - B2 (Holm 22): Wavelet-ANN hybrid vs deployed hybrid dependability diff +1.96: pooled pH 3.41e-08, clustered pH 1.10e-04, seed-1 pH 1.00e+00
   - B2 (Holm 22): Wavelet-GRU hybrid vs deployed hybrid dependability diff +2.64: pooled pH 5.40e-15, clustered pH 1.10e-04, seed-1 pH 1.00e+00
-  total 15
+  - N6c ext (Holm 4): textbook harmonic vs proposed hybrid security diff +0.44: pooled pH 1.81e-02, clustered pH 1.62e-01, seed-1 pH 9.17e-01
+  - N8a ext (Holm 16): Wavelet-GRU hybrid vs tuned harmonic dependability diff +2.80: pooled pH 7.73e-14, clustered pH 8.00e-05, seed-1 pH 1.00e+00
+  - N8a ext (Holm 16): Wavelet-ANN hybrid vs tuned harmonic dependability diff +2.13: pooled pH 2.38e-09, clustered pH 3.60e-04, seed-1 pH 4.38e-01
+  - N8a ext (Holm 16): Key hybrid vs tuned harmonic dependability diff +1.32: pooled pH 2.11e-04, clustered pH 3.19e-02, seed-1 pH 1.00e+00
+  - N8a ext (Holm 16): Wavelet-RF hybrid vs tuned harmonic security diff +0.56: pooled pH 2.72e-04, clustered pH 2.73e-02, seed-1 pH 2.50e-01
+  total 20
