@@ -1,0 +1,17 @@
+POST-HOC (added after N6c): architecture instances (hybrid mode) vs the validation-tuned harmonic 87T (reference row of this run), exact McNemar on (seed, fold, trace), Holm over 16 tests (12 here + 4 of N6c)
+instance             metric            n  harm %  inst %  diff pt harm-only inst-only         p  p_Holm16  per-seed
+1D-CNN               dependability  3717   92.79   95.75    +2.96        33       143  1.60e-17  2.40e-16 *  +2.82 +2.58 +3.47
+1D-CNN               security       5910   98.93   99.02    +0.08        47        52  6.88e-01  1.00e+00  +0.15 +0.30 -0.20  unstable
+Wavelet-GRU          dependability  3717   92.79   95.59    +2.80        40       144  5.52e-15  7.73e-14 *  +1.13 +2.50 +4.76
+Wavelet-GRU          security       5910   98.93   98.82    -0.12        69        62  6.00e-01  1.00e+00  +0.15 -0.10 -0.41  unstable
+Wavelet-ANN          dependability  3717   92.79   94.92    +2.13        39       118  1.98e-10  2.38e-09 *  +1.29 +1.94 +3.15
+Wavelet-ANN          security       5910   98.93   99.20    +0.27        40        56  1.25e-01  7.52e-01  +0.15 +0.51 +0.15
+Key (claim-C run)    dependability  3717   92.79   94.11    +1.32        40        89  1.91e-05  2.11e-04 *  +0.73 +1.29 +1.94
+Key (claim-C run)    security       5910   98.93   99.86    +0.93         8        63  1.03e-11  1.34e-10 *  +0.76 +1.07 +0.96
+Wavelet-RF           dependability  3717   92.79   93.49    +0.70        63        89  4.22e-02  3.38e-01  +0.24 +0.81 +1.05
+Wavelet-RF           security       5910   98.93   99.49    +0.56        14        47  2.72e-05  2.72e-04 *  +0.56 +0.86 +0.25
+LSTM (tuned, B2)     dependability  3717   92.79   93.60    +0.81       112       142  6.86e-02  4.80e-01  +0.32 -0.24 +2.34  unstable
+LSTM (tuned, B2)     security       5910   98.93   99.10    +0.17        49        59  3.87e-01  1.00e+00  +0.05 +0.56 -0.10  unstable
+
+dependability: 4 of 6 instances significantly higher than the tuned harmonic 87T after Holm-16; range of the differences over all 6 instances +0.70 to +2.96 pt; over the significant ones +1.32 to +2.96 pt
+security: instances significantly different from the tuned harmonic 87T: Key (claim-C run) +0.93 pt, Wavelet-RF +0.56 pt; range of the differences -0.12 to +0.93 pt

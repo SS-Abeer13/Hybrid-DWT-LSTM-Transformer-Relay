@@ -1,0 +1,4 @@
+Plotted traces (fixed rule: the trace with the median key metric of its scenario)
+Energisation inrush (no load): scenario Inrush_NoLoad, source index 457, median of 200 traces by diffRms100ms = 1.37; ctBurden 1.185238001599548, event at 0.5702 s
+Internal fault (phase A to ground): scenario Internal_AG, source index 1305, median of 46 traces by faultDiffPu = 0.813; ctBurden 1.162446921853558, event at 0.5409 s
+External fault, CT saturation: scenario Stress_ExtCTSat_ABC, source index 2650, median of 22 traces by ctRatioErrorMax = 44.5; ctBurden 3.000945931269229, event at 0.6480 s

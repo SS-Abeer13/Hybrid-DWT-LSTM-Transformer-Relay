@@ -26,9 +26,14 @@ from baselines import common as C, cv  # noqa: E402
 import n5_statistics as N5  # noqa: E402
 
 OUT = ROOT / "runs" / "20261101_v5_benchmark_fair"
-PICK, K2, K5 = (0.2, 0.3, 0.4), (0.12, 0.15, 0.20), (0.25, 0.35)
-GRID = list(itertools.product(range(3), range(3), range(2)))
-TEXTBOOK = (1, 1, 1)
+EXT = len(sys.argv) > 1 and sys.argv[1] == "extended"      # post-hoc extension of the grid (plan entry of the grid-edge check); the original run is the default
+if EXT:
+    PICK, K2, K5 = (0.10, 0.15, 0.20, 0.30, 0.40), (0.12, 0.15, 0.20, 0.25, 0.30), (0.15, 0.20, 0.25, 0.35, 0.45)
+else:
+    PICK, K2, K5 = (0.2, 0.3, 0.4), (0.12, 0.15, 0.20), (0.25, 0.35)
+SUF = "_ext" if EXT else ""
+GRID = list(itertools.product(range(len(PICK)), range(len(K2)), range(len(K5))))
+TEXTBOOK = (PICK.index(0.30), K2.index(0.15), K5.index(0.35))
 W = 32
 
 
@@ -118,7 +123,10 @@ def main():
     counts = {}
     for c in chosen:
         counts[str(c["setting"])] = counts.get(str(c["setting"]), 0) + 1
-    L = ["Validation-tuned harmonic 87T (per-phase) vs textbook settings, plant-A CV (3 seeds x 5 folds, common set)",
+    edge = {name: (sum(1 for c in chosen if c["setting"][i] == grid_vals[0]), sum(1 for c in chosen if c["setting"][i] == grid_vals[-1]))
+            for i, (name, grid_vals) in enumerate((("pickup", PICK), ("k2", K2), ("k5", K5)))}
+    L = ["Validation-tuned harmonic 87T (per-phase) vs textbook settings, plant-A CV (3 seeds x 5 folds, common set)" + (" - EXTENDED GRID (post-hoc)" if EXT else ""),
+         "chosen at the lower / upper edge of the grid (of 15 fold-models): " + ", ".join(f"{k} {lo} / {hi}" for k, (lo, hi) in edge.items()),
          "chosen settings (pickup, k2, k5) over the 15 fold-models: " + str(counts)]
     tests = []
     for name, rows in (("textbook 0.30/0.15/0.35", text_rows), ("tuned on validation", tuned_rows)):
@@ -146,9 +154,9 @@ def main():
         (hy, n) = dep_of({k: ref[k] for k in tuned_rows if k in ref}, g)
         L.append(f"dependability, {g} (n={n}): hybrid {hy:.1f}, tuned harmonic {dep_of(tuned_rows, g)[0]:.1f}, textbook harmonic {dep_of(text_rows, g)[0]:.1f}")
     rows_dump = {"tuned": [dict(v, key=list(k)) for k, v in tuned_rows.items()], "textbook": [dict(v, key=list(k)) for k, v in text_rows.items()]}
-    (OUT / "n6c_tuned_rows.json").write_text(json.dumps(rows_dump, default=float))
-    (OUT / "n6c_tuned_harmonic.txt").write_text("\n".join(L))
-    (OUT / "n6c_tuned_harmonic.json").write_text(json.dumps({"chosen": chosen, "tests": tests}, indent=1, default=float))
+    (OUT / f"n6c_tuned_rows{SUF}.json").write_text(json.dumps(rows_dump, default=float))
+    (OUT / f"n6c_tuned_harmonic{SUF}.txt").write_text("\n".join(L))
+    (OUT / f"n6c_tuned_harmonic{SUF}.json").write_text(json.dumps({"chosen": chosen, "tests": tests}, indent=1, default=float))
     print("\n".join(L))
 
 
