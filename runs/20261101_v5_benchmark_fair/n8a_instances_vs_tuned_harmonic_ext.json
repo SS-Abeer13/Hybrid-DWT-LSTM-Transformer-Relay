@@ -1,0 +1,218 @@
+[
+ {
+  "instance": "1D-CNN",
+  "metric": "dependability",
+  "n": 3717,
+  "tuned_harmonic_pct": 92.78988431530804,
+  "instance_pct": 95.74926015603981,
+  "diff_pt": 2.9593758407317705,
+  "harmonic_only": 33,
+  "instance_only": 143,
+  "p": 1.5967229541010385e-17,
+  "per_seed": {
+   "20261021": 2.824858757062143,
+   "20261022": 2.5827280064568137,
+   "20261023": 3.470540758676355
+  },
+  "p_holm16": 2.3950844311515576e-16,
+  "sign_stable": true
+ },
+ {
+  "instance": "1D-CNN",
+  "metric": "security",
+  "n": 5910,
+  "tuned_harmonic_pct": 98.93401015228427,
+  "instance_pct": 99.0186125211506,
+  "diff_pt": 0.08460236886632666,
+  "harmonic_only": 47,
+  "instance_only": 52,
+  "p": 0.687885343579692,
+  "per_seed": {
+   "20261021": 0.1522842639593902,
+   "20261022": 0.3045685279187804,
+   "20261023": -0.20304568527919065
+  },
+  "p_holm16": 1.0,
+  "sign_stable": false
+ },
+ {
+  "instance": "Wavelet-GRU",
+  "metric": "dependability",
+  "n": 3717,
+  "tuned_harmonic_pct": 92.78988431530804,
+  "instance_pct": 95.58783965563626,
+  "diff_pt": 2.7979553403282176,
+  "harmonic_only": 40,
+  "instance_only": 144,
+  "p": 5.518207697056363e-15,
+  "per_seed": {
+   "20261021": 1.1299435028248594,
+   "20261022": 2.502017756255037,
+   "20261023": 4.761904761904767
+  },
+  "p_holm16": 7.725490775878908e-14,
+  "sign_stable": true
+ },
+ {
+  "instance": "Wavelet-GRU",
+  "metric": "security",
+  "n": 5910,
+  "tuned_harmonic_pct": 98.93401015228427,
+  "instance_pct": 98.81556683587141,
+  "diff_pt": -0.11844331641286399,
+  "harmonic_only": 69,
+  "instance_only": 62,
+  "p": 0.6002946177102679,
+  "per_seed": {
+   "20261021": 0.1522842639593902,
+   "20261022": -0.10152284263960087,
+   "20261023": -0.4060913705583813
+  },
+  "p_holm16": 1.0,
+  "sign_stable": false
+ },
+ {
+  "instance": "Wavelet-ANN",
+  "metric": "dependability",
+  "n": 3717,
+  "tuned_harmonic_pct": 92.78988431530804,
+  "instance_pct": 94.91525423728814,
+  "diff_pt": 2.1253699219800914,
+  "harmonic_only": 39,
+  "instance_only": 118,
+  "p": 1.9838836552142636e-10,
+  "per_seed": {
+   "20261021": 1.2913640032284013,
+   "20261022": 1.937046004842613,
+   "20261023": 3.147699757869249
+  },
+  "p_holm16": 2.3806603862571163e-09,
+  "sign_stable": true
+ },
+ {
+  "instance": "Wavelet-ANN",
+  "metric": "security",
+  "n": 5910,
+  "tuned_harmonic_pct": 98.93401015228427,
+  "instance_pct": 99.20473773265651,
+  "diff_pt": 0.2707275803722431,
+  "harmonic_only": 40,
+  "instance_only": 56,
+  "p": 0.1253456971884926,
+  "per_seed": {
+   "20261021": 0.1522842639593902,
+   "20261022": 0.5076142131979711,
+   "20261023": 0.1522842639593902
+  },
+  "p_holm16": 0.7520741831309555,
+  "sign_stable": true
+ },
+ {
+  "instance": "Key (claim-C run)",
+  "metric": "dependability",
+  "n": 3717,
+  "tuned_harmonic_pct": 92.78988431530804,
+  "instance_pct": 94.10815173527038,
+  "diff_pt": 1.3182674199623379,
+  "harmonic_only": 40,
+  "instance_only": 89,
+  "p": 1.9141845929673862e-05,
+  "per_seed": {
+   "20261021": 0.7263922518159771,
+   "20261022": 1.2913640032284013,
+   "20261023": 1.937046004842613
+  },
+  "p_holm16": 0.0002105603052264125,
+  "sign_stable": true
+ },
+ {
+  "instance": "Key (claim-C run)",
+  "metric": "security",
+  "n": 5910,
+  "tuned_harmonic_pct": 98.93401015228427,
+  "instance_pct": 99.86463620981387,
+  "diff_pt": 0.9306260575296044,
+  "harmonic_only": 8,
+  "instance_only": 63,
+  "p": 1.0271364278048329e-11,
+  "per_seed": {
+   "20261021": 0.761421319796951,
+   "20261022": 1.0659898477157315,
+   "20261023": 0.9644670050761417
+  },
+  "p_holm16": 1.3352773561462828e-10,
+  "sign_stable": true
+ },
+ {
+  "instance": "Wavelet-RF",
+  "metric": "dependability",
+  "n": 3717,
+  "tuned_harmonic_pct": 92.78988431530804,
+  "instance_pct": 93.4893731503901,
+  "diff_pt": 0.6994888350820516,
+  "harmonic_only": 63,
+  "instance_only": 89,
+  "p": 0.04222919854197487,
+  "per_seed": {
+   "20261021": 0.2421307506053183,
+   "20261022": 0.8071025020177536,
+   "20261023": 1.049233252623083
+  },
+  "p_holm16": 0.33783358833579896,
+  "sign_stable": true
+ },
+ {
+  "instance": "Wavelet-RF",
+  "metric": "security",
+  "n": 5910,
+  "tuned_harmonic_pct": 98.93401015228427,
+  "instance_pct": 99.49238578680203,
+  "diff_pt": 0.5583756345177604,
+  "harmonic_only": 14,
+  "instance_only": 47,
+  "p": 2.7191876822818543e-05,
+  "per_seed": {
+   "20261021": 0.5583756345177715,
+   "20261022": 0.8629441624365519,
+   "20261023": 0.25380710659898
+  },
+  "p_holm16": 0.00027191876822818545,
+  "sign_stable": true
+ },
+ {
+  "instance": "LSTM (tuned, B2)",
+  "metric": "dependability",
+  "n": 3717,
+  "tuned_harmonic_pct": 92.78988431530804,
+  "instance_pct": 93.5969868173258,
+  "diff_pt": 0.8071025020177536,
+  "harmonic_only": 112,
+  "instance_only": 142,
+  "p": 0.06860601081202031,
+  "per_seed": {
+   "20261021": 0.32284100080709477,
+   "20261022": -0.2421307506053294,
+   "20261023": 2.3405972558514954
+  },
+  "p_holm16": 0.4802420756841421,
+  "sign_stable": false
+ },
+ {
+  "instance": "LSTM (tuned, B2)",
+  "metric": "security",
+  "n": 5910,
+  "tuned_harmonic_pct": 98.93401015228427,
+  "instance_pct": 99.10321489001691,
+  "diff_pt": 0.16920473773265332,
+  "harmonic_only": 49,
+  "instance_only": 59,
+  "p": 0.3865726089882611,
+  "per_seed": {
+   "20261021": 0.05076142131980044,
+   "20261022": 0.5583756345177604,
+   "20261023": -0.10152284263958977
+  },
+  "p_holm16": 1.0,
+  "sign_stable": false
+ }
+]
